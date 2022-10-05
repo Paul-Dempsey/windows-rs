@@ -1,5 +1,25 @@
-pub fn write(name: &str, references: &super::reader::Reader, types: &[TypeDef]) -> Vec<u8> {
-    todo!();
+mod strings;
+mod blobs;
+mod tables;
+mod value;
+mod codes;
+mod type_name;
+
+use super::*;
+use strings::*;
+use blobs::*;
+use value::*;
+use codes::*;
+pub use type_name::*;
+
+pub fn write<P: AsRef<std::path::Path>>(path: P, _references: &super::reader::Reader, _types: &[TypeDef]) {
+    let _module_name = path.as_ref().file_name().expect("Missing file name").to_str().expect("Invalid file name");
+
+}
+
+pub(crate) fn round(size: usize, round: usize) -> usize {
+    let round = round - 1;
+    (size + round) & !round
 }
 
 pub enum TypeDef {
@@ -7,13 +27,13 @@ pub enum TypeDef {
 }
 
 pub struct Struct {
-    pub ident: String,
+    pub name: TypeName,
     pub winrt: bool,
     pub fields: Vec<Field>,
 }
 
 pub struct Field {
-    pub ident: String,
+    pub name: String,
     pub ty: Type,
 }
 
@@ -45,7 +65,7 @@ pub enum Type {
     BSTR,
     TypeName,
     GenericParam(String),
-    TypeDef((String, Vec<Self>)),
+    TypeDef((TypeName, Vec<Self>)),
     MutPtr((Box<Self>, usize)),
     ConstPtr((Box<Self>, usize)),
     Win32Array((Box<Self>, usize)),
