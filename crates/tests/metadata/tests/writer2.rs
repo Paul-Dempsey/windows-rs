@@ -7,7 +7,7 @@ fn writer2() {
     let reader = &reader::Reader::new(&files);
     
     let mut types = Vec::new();
-    types.push(TypeDef::Struct(Struct {
+    types.push(Item::Struct(Struct {
         name: TypeName::new("TestWindows.Foundation", "Rect"),
         winrt: true,
         fields: vec![
@@ -18,6 +18,6 @@ fn writer2() {
         ]
     }));
 
-    write("test.winmd", reader, &types);
+    write("/git/test.winmd", reader, &types);
 }
 

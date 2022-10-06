@@ -1,28 +1,23 @@
-mod strings;
-mod blobs;
-mod tables;
-mod value;
-mod codes;
-mod type_name;
+mod imp;
+use super::imp::*;
 
-use super::*;
-use strings::*;
-use blobs::*;
-use value::*;
-use codes::*;
-pub use type_name::*;
-
-pub fn write<P: AsRef<std::path::Path>>(path: P, _references: &super::reader::Reader, _types: &[TypeDef]) {
-    let _module_name = path.as_ref().file_name().expect("Missing file name").to_str().expect("Invalid file name");
-
+pub fn write<P: AsRef<std::path::Path>>(path: P, references: &crate::reader::Reader, items: &[Item]) {
+    imp::write(path, references, items)
 }
 
-pub(crate) fn round(size: usize, round: usize) -> usize {
-    let round = round - 1;
-    (size + round) & !round
+#[derive(Clone)]
+pub struct TypeName {
+    pub namespace: String,
+    pub name: String,
 }
 
-pub enum TypeDef {
+impl TypeName {
+    pub fn new(namespace: &str, name: &str) -> Self {
+        Self { namespace: namespace.to_string(), name: name.to_string() }
+    }
+}
+
+pub enum Item {
     Struct(Struct),
 }
 
@@ -72,4 +67,20 @@ pub enum Type {
     WinrtArray(Box<Self>),
     WinrtArrayRef(Box<Self>),
     WinrtConstRef(Box<Self>),
+}
+
+pub enum Value {
+    Bool(bool),
+    U8(u8),
+    I8(i8),
+    U16(u16),
+    I16(i16),
+    U32(u32),
+    I32(i32),
+    U64(u64),
+    I64(i64),
+    F32(f32),
+    F64(f64),
+    String(String),
+    TypeDef(TypeName),
 }

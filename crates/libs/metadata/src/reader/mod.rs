@@ -7,7 +7,7 @@ mod tree;
 mod r#type;
 mod type_name;
 
-use super::*;
+use super::imp::*;
 pub use blob::*;
 pub use codes::*;
 pub use file::*;
@@ -16,6 +16,7 @@ pub use r#type::*;
 pub use row::*;
 pub use tree::*;
 pub use type_name::*;
+use std::collections::*;
 
 macro_rules! tables {
     ($($name:ident,)*) => ($(
