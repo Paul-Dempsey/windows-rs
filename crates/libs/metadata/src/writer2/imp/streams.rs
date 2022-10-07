@@ -19,6 +19,12 @@ impl Streams {
         let value_type = tables.TypeRef.push2(TypeRef { TypeName: strings.insert("ValueType"), TypeNamespace: strings.insert("System"), ResolutionScope: ResolutionScope::AssemblyRef(mscorlib) });
         let enum_type = tables.TypeRef.push2(TypeRef { TypeName: strings.insert("Enum"), TypeNamespace: strings.insert("System"), ResolutionScope: ResolutionScope::AssemblyRef(mscorlib) });
 
+        // TODO: need a list of winmd files for reference so we can properly set the ResolutionScope
+        // for such TypeRef rows.
+
+        // TODO: also needs a index of TypeDef rows being produced so that subsequent rows can reference those 
+        // TypeDef row numbers.
+
         for (type_name, item) in items {
             match item {
                 Item::Struct(item) => {
@@ -32,8 +38,15 @@ impl Streams {
                         TypeName: strings.insert(&type_name.name),
                         TypeNamespace: strings.insert(&type_name.namespace),
                         Extends: TypeDefOrRef::TypeRef(value_type),
+                        FieldList: tables.Field.len() as _,
+                        MethodList: tables.MethodDef.len() as _,
                         ..Default::default()
                     });
+                    // for field in item.fields {
+                    //     tables.Field.push(Field {
+                    //         Name: strings.insert(&field.name),
+                    //     })
+                    // }
                 }
             }
         }
