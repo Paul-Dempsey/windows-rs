@@ -16,7 +16,7 @@ use strings::*;
 use tables::*;
 
 // TODO: do we need references?
-pub fn write<P: AsRef<std::path::Path>>(path: P, _references: &crate::reader::Reader, items: &[Item]) {
+pub fn write<P: AsRef<std::path::Path>>(path: P, _references: &crate::reader::Reader, items: Vec<Item>) {
     let module = path.as_ref().file_name().expect("Missing file name").to_str().expect("Invalid file name");
 
     let streams = Streams::new(module, items);
