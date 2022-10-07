@@ -1,20 +1,38 @@
+#[repr(transparent)]
 #[derive(Default)]
-pub struct FieldAttributes(pub usize);
+pub struct AssemblyFlags(pub u32);
 
+#[repr(transparent)]
 #[derive(Default)]
-pub struct MethodAttributes(pub usize);
+pub struct FieldAttributes(pub u16);
 
+#[repr(transparent)]
 #[derive(Default)]
-pub struct MethodImplAttributes(pub usize);
+pub struct MethodAttributes(pub u16);
 
+#[repr(transparent)]
 #[derive(Default)]
-pub struct ParamAttributes(pub usize);
+pub struct MethodImplAttributes(pub u16);
 
+#[repr(transparent)]
 #[derive(Default)]
-pub struct PInvokeAttributes(pub usize);
+pub struct ParamAttributes(pub u16);
 
+#[repr(transparent)]
 #[derive(Default)]
-pub struct TypeAttributes(pub usize);
+pub struct PInvokeAttributes(pub u16);
+
+#[repr(transparent)]
+#[derive(Default)]
+pub struct TypeAttributes(pub u32);
+
+#[repr(transparent)]
+#[derive(Default)]
+pub struct GenericParamAttributes(pub u16);
+
+#[repr(transparent)]
+#[derive(Default)]
+pub struct PropertyAttributes(pub u16);
 
 impl FieldAttributes {
     pub fn literal(&self) -> bool {

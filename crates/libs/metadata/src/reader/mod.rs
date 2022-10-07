@@ -14,9 +14,9 @@ pub use file::*;
 pub use guid::*;
 pub use r#type::*;
 pub use row::*;
+use std::collections::*;
 pub use tree::*;
 pub use type_name::*;
-use std::collections::*;
 
 macro_rules! tables {
     ($($name:ident,)*) => ($(
@@ -353,7 +353,7 @@ impl<'a> Reader<'a> {
     //
 
     pub fn field_flags(&self, row: Field) -> FieldAttributes {
-        FieldAttributes(self.row_usize(row.0, 0))
+        FieldAttributes(self.row_usize(row.0, 0) as _)
     }
     pub fn field_name(&self, row: Field) -> &str {
         self.row_str(row.0, 1)
@@ -413,7 +413,7 @@ impl<'a> Reader<'a> {
     //
 
     pub fn impl_map_flags(&self, row: ImplMap) -> PInvokeAttributes {
-        PInvokeAttributes(self.row_usize(row.0, 0))
+        PInvokeAttributes(self.row_usize(row.0, 0) as _)
     }
     pub fn impl_map_scope(&self, row: ImplMap) -> ModuleRef {
         ModuleRef(Row::new(self.row_usize(row.0, 3) - 1, TABLE_MODULEREF, row.0.file as _))
@@ -460,10 +460,10 @@ impl<'a> Reader<'a> {
     //
 
     pub fn method_def_impl_flags(&self, row: MethodDef) -> MethodImplAttributes {
-        MethodImplAttributes(self.row_usize(row.0, 1))
+        MethodImplAttributes(self.row_usize(row.0, 1) as _)
     }
     pub fn method_def_flags(&self, row: MethodDef) -> MethodAttributes {
-        MethodAttributes(self.row_usize(row.0, 2))
+        MethodAttributes(self.row_usize(row.0, 2) as _)
     }
     pub fn method_def_name(&self, row: MethodDef) -> &str {
         self.row_str(row.0, 3)
@@ -674,7 +674,7 @@ impl<'a> Reader<'a> {
     //
 
     pub fn param_flags(&self, row: Param) -> ParamAttributes {
-        ParamAttributes(self.row_usize(row.0, 0))
+        ParamAttributes(self.row_usize(row.0, 0) as _)
     }
     pub fn param_sequence(&self, row: Param) -> usize {
         self.row_usize(row.0, 1)
@@ -736,7 +736,7 @@ impl<'a> Reader<'a> {
     //
 
     pub fn type_def_flags(&self, row: TypeDef) -> TypeAttributes {
-        TypeAttributes(self.row_usize(row.0, 0))
+        TypeAttributes(self.row_usize(row.0, 0) as _)
     }
     pub fn type_def_name(&self, row: TypeDef) -> &str {
         self.row_str(row.0, 1)

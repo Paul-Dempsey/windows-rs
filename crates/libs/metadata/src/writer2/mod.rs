@@ -22,7 +22,7 @@ pub enum Item {
 }
 
 pub struct Struct {
-    pub name: TypeName,
+    pub type_name: TypeName,
     pub winrt: bool,
     pub fields: Vec<Field>,
 }

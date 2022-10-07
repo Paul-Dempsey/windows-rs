@@ -8,7 +8,7 @@ fn writer2() {
     
     let mut types = Vec::new();
     types.push(Item::Struct(Struct {
-        name: TypeName::new("TestWindows.Foundation", "Rect"),
+        type_name: TypeName::new("TestWindows.Foundation", "Rect"),
         winrt: true,
         fields: vec![
             Field { name: "X".to_string(),  ty: Type::F32 },

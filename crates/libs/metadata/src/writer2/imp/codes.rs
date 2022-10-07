@@ -2,14 +2,14 @@
 #[derive(Clone)]
 pub enum ResolutionScope {
     None,
-    Module(usize),
-    ModuleRef(usize),
-    AssemblyRef(usize),
-    TypeRef(usize),
+    Module(u32),
+    ModuleRef(u32),
+    AssemblyRef(u32),
+    TypeRef(u32),
 }
 
 impl ResolutionScope {
-    pub fn encode(&self) -> usize {
+    pub fn encode(&self) -> u32 {
         match self {
             Self::Module(row) => (row + 1) << 2,
             Self::ModuleRef(row) => ((row + 1) << 2) + 1,
@@ -30,13 +30,13 @@ impl Default for ResolutionScope {
 #[derive(Clone)]
 pub enum TypeDefOrRef {
     None,
-    TypeDef(usize),
-    TypeRef(usize),
-    TypeSpec(usize),
+    TypeDef(u32),
+    TypeRef(u32),
+    TypeSpec(u32),
 }
 
 impl TypeDefOrRef {
-    pub fn encode(&self) -> usize {
+    pub fn encode(&self) -> u32 {
         match self {
             Self::TypeDef(row) => (row + 1) << 2,
             Self::TypeRef(row) => ((row + 1) << 2) + 1,
@@ -56,13 +56,13 @@ impl Default for TypeDefOrRef {
 #[derive(Clone)]
 pub enum HasConstant {
     None,
-    Field(usize),
-    Param(usize),
-    Property(usize),
+    Field(u32),
+    Param(u32),
+    Property(u32),
 }
 
 impl HasConstant {
-    pub fn encode(&self) -> usize {
+    pub fn encode(&self) -> u32 {
         match self {
             Self::Field(row) => (row + 1) << 2,
             Self::Param(row) => ((row + 1) << 2) + 1,
@@ -73,6 +73,61 @@ impl HasConstant {
 }
 
 impl Default for HasConstant {
+    fn default() -> Self {
+        Self::None
+    }
+}
+
+#[derive(Clone)]
+pub enum HasCustomAttribute {
+    None,
+}
+
+impl Default for HasCustomAttribute {
+    fn default() -> Self {
+        Self::None
+    }
+}
+
+#[derive(Clone)]
+pub enum CustomAttributeType {
+    None,
+}
+
+impl Default for CustomAttributeType {
+    fn default() -> Self {
+        Self::None
+    }
+}
+
+#[derive(Clone)]
+pub enum TypeOrMethodDef {
+    None,
+}
+
+impl Default for TypeOrMethodDef {
+    fn default() -> Self {
+        Self::None
+    }
+}
+
+#[derive(Clone)]
+pub enum MemberForwarded {
+    None,
+}
+
+impl Default for MemberForwarded {
+    fn default() -> Self {
+        Self::None
+    }
+}
+
+#[derive(Clone)]
+pub enum MemberRefParent {
+    None,
+}
+
+impl Default for MemberRefParent {
     fn default() -> Self {
         Self::None
     }

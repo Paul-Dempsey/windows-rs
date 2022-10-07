@@ -1,19 +1,19 @@
 mod blobs;
 mod codes;
+mod file;
 mod streams;
 mod strings;
 mod tables;
-mod file;
 
 use super::*;
+use blobs::*;
 use codes::*;
-use streams::*;
 use std::collections::*;
 use std::mem::*;
 use std::slice::*;
-use tables::*;
+use streams::*;
 use strings::*;
-use blobs::*;
+use tables::*;
 
 // TODO: do we need references?
 pub fn write<P: AsRef<std::path::Path>>(path: P, _references: &crate::reader::Reader, items: &[Item]) {

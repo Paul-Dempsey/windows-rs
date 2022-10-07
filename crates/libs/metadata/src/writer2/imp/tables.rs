@@ -6,7 +6,7 @@ pub struct AssemblyRef {
     pub MinorVersion: u16,
     pub BuildNumber: u16,
     pub RevisionNumber: u16,
-    pub Flags: u32,
+    pub Flags: AssemblyFlags,
     pub PublicKeyOrToken: u32,
     pub Name: u32,
     pub Culture: u32,
@@ -23,20 +23,20 @@ pub struct ClassLayout {
 #[derive(Default)]
 pub struct Constant {
     pub Type: u8,
-    pub Parent: u32,
+    pub Parent: HasConstant,
     pub Value: u32,
 }
 
 #[derive(Default)]
 pub struct CustomAttribute {
-    pub Parent: u32,
-    pub Type: u32,
+    pub Parent: HasCustomAttribute,
+    pub Type: CustomAttributeType,
     pub Value: u32,
 }
 
 #[derive(Default)]
 pub struct Field {
-    pub Flags: u16,
+    pub Flags: FieldAttributes,
     pub Name: u32,
     pub Signature: u32,
 }
@@ -44,15 +44,15 @@ pub struct Field {
 #[derive(Default)]
 pub struct GenericParam {
     pub Number: u16,
-    pub Flags: u16,
-    pub Owner: u32,
+    pub Flags: GenericParamAttributes,
+    pub Owner: TypeOrMethodDef,
     pub Name: u32,
 }
 
 #[derive(Default)]
 pub struct ImplMap {
-    pub MappingFlags: u16,
-    pub MemberForwarded: u32,
+    pub MappingFlags: PInvokeAttributes,
+    pub MemberForwarded: MemberForwarded,
     pub ImportName: u32,
     pub ImportScope: u32,
 }
@@ -60,21 +60,21 @@ pub struct ImplMap {
 #[derive(Default)]
 pub struct InterfaceImpl {
     pub Class: u32,
-    pub Interface: u32,
+    pub Interface: TypeDefOrRef,
 }
 
 #[derive(Default)]
 pub struct MemberRef {
-    pub Class: u32,
+    pub Class: MemberRefParent,
     pub Name: u32,
-    pub Signature:u32,
+    pub Signature: u32,
 }
 
 #[derive(Default)]
 pub struct MethodDef {
     pub RVA: u32,
-    pub ImplFlags: u16,
-    pub Flags: u16,
+    pub ImplFlags: MethodImplAttributes,
+    pub Flags: MethodAttributes,
     pub Name: u32,
     pub Signature: u32,
     pub ParamList: u32,
@@ -102,31 +102,31 @@ pub struct NestedClass {
 
 #[derive(Default)]
 pub struct Param {
-    pub Flags: u16,
+    pub Flags: ParamAttributes,
     pub Sequence: u16,
     pub Name: u32,
 }
 
 #[derive(Default)]
 pub struct Property {
-    pub Flags: u16,
+    pub Flags: PropertyAttributes,
     pub Name: u32,
     pub Type: u32,
 }
 
 #[derive(Default)]
 pub struct TypeDef {
-    pub Flags: u32,
+    pub Flags: TypeAttributes,
     pub TypeName: u32,
     pub TypeNamespace: u32,
-    pub Extends: u32,
+    pub Extends: TypeDefOrRef,
     pub FieldList: u32,
     pub MethodList: u32,
 }
 
 #[derive(Default)]
 pub struct TypeRef {
-    pub ResolutionScope: u32,
+    pub ResolutionScope: ResolutionScope,
     pub TypeName: u32,
     pub TypeNamespace: u32,
 }
@@ -135,7 +135,6 @@ pub struct TypeRef {
 pub struct TypeSpec {
     pub Signature: u32,
 }
-
 
 #[derive(Default)]
 pub struct Tables {
@@ -161,11 +160,43 @@ pub struct Tables {
 
 impl Tables {
     pub fn into_stream(mut self) -> Vec<u8> {
-        let mut buffer = Vec::new();
-        let header = Header::new();
-        buffer.write(&header);
+        let resolution_scope = coded_index_size(&[self.Module.len(), self.ModuleRef.len(), self.AssemblyRef.len(), self.TypeRef.len()]);
+        let type_def_or_ref = coded_index_size(&[self.TypeDef.len(), self.TypeRef.len(), self.TypeSpec.len()]);
+        let has_constant = coded_index_size(&[self.Field.len(), self.Param.len(), self.Property.len()]);
 
-        buffer.write(&(self.Module.len() as u32)); 
+        let valid_tables: u64 = 1 << 0 | // Module 
+        1 << 0x01 | // TypeRef
+        1 << 0x02 | // TypeDef
+        1 << 0x04 | // Field
+        1 << 0x06 | // MethodDef
+        1 << 0x08 | // Param
+        1 << 0x09 | // InterfaceImpl
+        1 << 0x0A | // MemberRef
+        1 << 0x0B | // Constant
+        1 << 0x0C | // CustomAttribute
+        1 << 0x0F | // ClassLayout
+        1 << 0x17 | // Property
+        1 << 0x1A | // ModuleRef
+        1 << 0x1B | // TypeSpec
+        1 << 0x1C | // ImplMap
+        1 << 0x23 | // AssemblyRef
+        1 << 0x29 | // NestedClass
+        1 << 0x2A; // GenericParam
+
+        // The #~ stream header...
+
+        let mut buffer = Vec::new();
+        buffer.write(&0u32); // Reserved
+        buffer.write(&2u8); // MajorVersion
+        buffer.write(&0u8); // MinorVersion
+        buffer.write(&0b111u8); // HeapSizes
+        buffer.write(&0u8); // Reserved
+        buffer.write(&valid_tables);
+        buffer.write(&0u64); // Sorted
+
+        // Followed by the length of each of the valid tables...
+
+        buffer.write(&(self.Module.len() as u32));
         buffer.write(&(self.TypeRef.len() as u32));
         buffer.write(&(self.TypeDef.len() as u32));
         buffer.write(&(self.Field.len() as u32));
@@ -184,6 +215,8 @@ impl Tables {
         buffer.write(&(self.NestedClass.len() as u32));
         buffer.write(&(self.GenericParam.len() as u32));
 
+        // Followed by each table's rows...
+
         for x in self.Module {
             buffer.write(&x.Generation);
             buffer.write(&x.Name);
@@ -193,7 +226,7 @@ impl Tables {
         }
 
         for x in self.TypeRef {
-            buffer.write(&x.ResolutionScope);
+            write_coded_index(&mut buffer, x.ResolutionScope.encode(), resolution_scope);
             buffer.write(&x.TypeName);
             buffer.write(&x.TypeNamespace);
         }
@@ -202,9 +235,29 @@ impl Tables {
             buffer.write(&x.Flags);
             buffer.write(&x.TypeName);
             buffer.write(&x.TypeNamespace);
-            buffer.write(&x.Extends);
-            buffer.write(&x.FieldList);
-            buffer.write(&x.MethodList);
+            write_coded_index(&mut buffer, x.Extends.encode(), type_def_or_ref);
+            write_index(&mut buffer, x.FieldList, self.Field.len());
+            write_index(&mut buffer, x.MethodList, self.MethodDef.len());
+        }
+
+        for x in self.Field {}
+
+        for x in self.MethodDef {}
+
+        for x in self.Param {}
+
+        for x in self.Constant {}
+
+        for x in self.AssemblyRef {
+            buffer.write(&x.MajorVersion);
+            buffer.write(&x.MinorVersion);
+            buffer.write(&x.BuildNumber);
+            buffer.write(&x.RevisionNumber);
+            buffer.write(&x.Flags);
+            buffer.write(&x.PublicKeyOrToken);
+            buffer.write(&x.Name);
+            buffer.write(&x.Culture);
+            buffer.write(&x.HashValue);
         }
 
         buffer.resize(round(buffer.len(), 4), 0);
@@ -212,44 +265,18 @@ impl Tables {
     }
 }
 
-
-#[repr(C)]
-#[derive(Default)]
-struct Header {
-    reserved1: u32,
-    major_version: u8,
-    minor_version: u8,
-    heap_sizes: u8,
-    reserved2: u8,
-    valid: u64,
-    sorted: u64,
+fn write_index(buffer: &mut Vec<u8>, index: u32, len: usize) {
+    if len < (1 << 16) {
+        buffer.write(&(index as u16 + 1))
+    } else {
+        buffer.write(&(index as u32 + 1))
+    }
 }
 
-impl Header {
-    fn new() -> Self {
-        Self {
-            major_version: 2,
-            reserved2: 1,
-            heap_sizes: 0b111, // 4 byte indexes
-            valid: 1 << 0 |    // Module 
-                   1 << 0x01 | // TypeRef
-                   1 << 0x02 | // TypeDef
-                   1 << 0x04 | // Field
-                   1 << 0x06 | // MethodDef
-                   1 << 0x08 | // Param
-                   1 << 0x09 | // InterfaceImpl
-                   1 << 0x0A | // MemberRef
-                   1 << 0x0B | // Constant
-                   1 << 0x0C | // CustomAttribute
-                   1 << 0x0F | // ClassLayout
-                   1 << 0x17 | // Property
-                   1 << 0x1A | // ModuleRef
-                   1 << 0x1B | // TypeSpec
-                   1 << 0x1C | // ImplMap
-                   1 << 0x23 | // AssemblyRef
-                   1 << 0x29 | // NestedClass
-                   1 << 0x2A, // GenericParam
-            ..Default::default()
-        }
+fn write_coded_index(buffer: &mut Vec<u8>, value: u32, size: usize) {
+    if size == 2 {
+        buffer.write(&(value as u16))
+    } else {
+        buffer.write(&(value as u32))
     }
 }
