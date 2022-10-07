@@ -1,7 +1,7 @@
 mod imp;
 use super::imp::*;
 
-pub fn write<P: AsRef<std::path::Path>>(path: P, references: &crate::reader::Reader, items: Vec<Item>) {
+pub fn write<P: AsRef<std::path::Path>>(path: P, references: &crate::reader::Reader, items: &std::collections::BTreeMap<TypeName, Item>) {
     imp::write(path, references, items)
 }
 
@@ -17,34 +17,13 @@ impl TypeName {
     }
 }
 
-#[derive(Eq, PartialEq, Ord, PartialOrd)]
 pub enum Item {
     Struct(Struct),
 }
 
 pub struct Struct {
-    pub type_name: TypeName,
     pub winrt: bool,
     pub fields: Vec<Field>,
-}
-
-impl std::cmp::Ord for Struct {
-    fn cmp(&self, other: &Self) -> std::cmp::Ordering {
-        self.type_name.cmp(&other.type_name)
-    }
-}
-
-impl std::cmp::PartialOrd for Struct {
-    fn partial_cmp(&self, other: &Self) -> Option<std::cmp::Ordering> {
-        Some(self.type_name.cmp(&other.type_name))
-    }
-}
-
-impl Eq for Struct {}
-impl PartialEq for Struct {
-    fn eq(&self, other: &Self) -> bool {
-        self.type_name == other.type_name
-    }
 }
 
 pub struct Field {

@@ -9,7 +9,7 @@ pub struct Streams {
 }
 
 impl Streams {
-    pub fn new(module: &str, mut items: Vec<Item>) -> Self {
+    pub fn new(module: &str, mut items: &std::collections::BTreeMap<TypeName, Item>) -> Self {
         let mut tables = Tables::default();
         let mut strings = Strings::new();
         let mut blobs = Blobs::new();
@@ -19,10 +19,7 @@ impl Streams {
         let value_type = tables.TypeRef.push2(TypeRef { TypeName: strings.insert("ValueType"), TypeNamespace: strings.insert("System"), ResolutionScope: ResolutionScope::AssemblyRef(mscorlib) });
         let enum_type = tables.TypeRef.push2(TypeRef { TypeName: strings.insert("Enum"), TypeNamespace: strings.insert("System"), ResolutionScope: ResolutionScope::AssemblyRef(mscorlib) });
 
-        // Sorting the items (by name) ensures the winmd is reproducible.
-        items.sort();
-
-        for item in items {
+        for (type_name, item) in items {
             match item {
                 Item::Struct(item) => {
                     let mut flags = TypeAttributes::default();
@@ -32,8 +29,8 @@ impl Streams {
                     }
                     tables.TypeDef.push(TypeDef {
                         Flags: flags,
-                        TypeName: strings.insert(&item.type_name.name),
-                        TypeNamespace: strings.insert(&item.type_name.namespace),
+                        TypeName: strings.insert(&type_name.name),
+                        TypeNamespace: strings.insert(&type_name.namespace),
                         Extends: TypeDefOrRef::TypeRef(value_type),
                         ..Default::default()
                     });

@@ -5,10 +5,9 @@ fn writer2() {
 
     let files = vec![reader::File::new("../../libs/metadata/default/Windows.winmd").unwrap(), metadata::reader::File::new("../../libs/metadata/default/Windows.Win32.winmd").unwrap(), metadata::reader::File::new("../../libs/metadata/default/Windows.Win32.Interop.winmd").unwrap()];
     let reader = &reader::Reader::new(&files);
-    let mut types = Vec::new();
+    let mut types = std::collections::BTreeMap::new();
 
-    types.push(Item::Struct(Struct {
-        type_name: TypeName::new("TestWindows.Foundation", "Rect"),
+    types.insert( TypeName::new("TestWindows.Foundation", "Rect"), Item::Struct(Struct {
         winrt: true,
         fields: vec![
             // TODO: Field::new("X", Type::F32) ?
@@ -19,6 +18,6 @@ fn writer2() {
         ]
     }));
 
-    write("/git/test.winmd", reader, types);
+    write("/git/test.winmd", reader, &types);
 }
 
