@@ -10,6 +10,7 @@ impl Blobs {
         Self { set: BTreeMap::new(), stream: vec![0] }
     }
 
+    // TODO: take `value` by value?
     pub fn insert(&mut self, value: &[u8]) -> u32 {
         if value.is_empty() {
             return 0;
@@ -42,6 +43,13 @@ impl Blobs {
         }
 
         pos as _
+    }
+
+    pub fn insert_field_sig(&mut self, ty: &Type) -> u32 {
+        if let Some(code) = type_to_code(ty) {
+            return self.insert(&vec![0x6, code as _]);
+        }
+        todo!();
     }
 
     pub fn into_stream(mut self) -> Vec<u8> {

@@ -159,10 +159,10 @@ pub struct Tables {
 }
 
 impl Tables {
-    pub fn into_stream(mut self) -> Vec<u8> {
+    pub fn into_stream(self) -> Vec<u8> {
         let resolution_scope = coded_index_size(&[self.Module.len(), self.ModuleRef.len(), self.AssemblyRef.len(), self.TypeRef.len()]);
         let type_def_or_ref = coded_index_size(&[self.TypeDef.len(), self.TypeRef.len(), self.TypeSpec.len()]);
-        let has_constant = coded_index_size(&[self.Field.len(), self.Param.len(), self.Property.len()]);
+        //let has_constant = coded_index_size(&[self.Field.len(), self.Param.len(), self.Property.len()]);
 
         let valid_tables: u64 = 1 << 0 | // Module 
         1 << 0x01 | // TypeRef
@@ -240,13 +240,17 @@ impl Tables {
             write_index(&mut buffer, x.MethodList, self.MethodDef.len());
         }
 
-        for x in self.Field {}
+        for x in self.Field {
+            buffer.write(&x.Flags);
+            buffer.write(&x.Name);
+            buffer.write(&x.Signature);
+        }
 
-        for x in self.MethodDef {}
+        // for x in self.MethodDef {}
 
-        for x in self.Param {}
+        // for x in self.Param {}
 
-        for x in self.Constant {}
+        // for x in self.Constant {}
 
         for x in self.AssemblyRef {
             buffer.write(&x.MajorVersion);
