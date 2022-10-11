@@ -47,6 +47,12 @@ impl FieldAttributes {
     pub fn set_literal(&mut self) {
         self.0 |= 0x40;
     }
+    pub fn r#static(&self) -> bool {
+        self.0 & 0x10 != 0
+    }
+    pub fn set_static(&mut self) {
+        self.0 |= 0x10;
+    }
 }
 
 impl MethodAttributes {

@@ -22,7 +22,7 @@ pub struct ClassLayout {
 
 #[derive(Default)]
 pub struct Constant {
-    pub Type: u8,
+    pub Type: u16,
     pub Parent: HasConstant,
     pub Value: u32,
 }
@@ -139,8 +139,8 @@ pub struct TypeSpec {
 #[derive(Default)]
 pub struct Tables {
     pub Module: Vec<Module>,
-    pub TypeRef: Vec<TypeRef>,
-    pub TypeDef: Vec<TypeDef>,
+    pub TypeRef: BTreeMap<TypeName, TypeRef>,
+    pub TypeDef: BTreeMap<TypeName, TypeDef>,
     pub Field: Vec<Field>,
     pub MethodDef: Vec<MethodDef>,
     pub Param: Vec<Param>,
@@ -162,7 +162,7 @@ impl Tables {
     pub fn into_stream(self) -> Vec<u8> {
         let resolution_scope = coded_index_size(&[self.Module.len(), self.ModuleRef.len(), self.AssemblyRef.len(), self.TypeRef.len()]);
         let type_def_or_ref = coded_index_size(&[self.TypeDef.len(), self.TypeRef.len(), self.TypeSpec.len()]);
-        //let has_constant = coded_index_size(&[self.Field.len(), self.Param.len(), self.Property.len()]);
+        let has_constant = coded_index_size(&[self.Field.len(), self.Param.len(), self.Property.len()]);
 
         let valid_tables: u64 = 1 << 0 | // Module 
         1 << 0x01 | // TypeRef
@@ -250,7 +250,11 @@ impl Tables {
 
         // for x in self.Param {}
 
-        // for x in self.Constant {}
+        for x in self.Constant {
+            buffer.write(&x.Type);
+            write_coded_index(&mut buffer, x.Parent.encode(), has_constant);
+            buffer.write(&x.Value);
+        }
 
         for x in self.AssemblyRef {
             buffer.write(&x.MajorVersion);

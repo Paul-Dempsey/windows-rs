@@ -15,7 +15,7 @@ use streams::*;
 use strings::*;
 
 // TODO: do we need references?
-pub fn write<P: AsRef<std::path::Path>>(path: P, _references: &crate::reader::Reader, items: &std::collections::BTreeMap<TypeName, Item>) {
+pub fn write<P: AsRef<std::path::Path>>(path: P, items: &std::collections::BTreeMap<TypeName, Item>) {
     let module = path.as_ref().file_name().expect("Missing file name").to_str().expect("Invalid file name");
 
     let streams = Streams::new(module, items);
@@ -41,7 +41,7 @@ impl Write for Vec<u8> {
 
 /// Returns an `ELEMENT_TYPE` (see ECMA-335) type constant for the `Type` object, typically
 /// used to indicate the type of a constant or primitive type signature.
-pub fn type_to_code(ty: &Type) -> Option<usize> {
+pub fn type_to_code(ty: &Type) -> Option<u16> {
     match ty {
         Type::Void => Some(0x01),
         Type::Bool => Some(0x02),

@@ -1,8 +1,10 @@
 mod imp;
 use super::imp::*;
 
-pub fn write<P: AsRef<std::path::Path>>(path: P, references: &crate::reader::Reader, items: &std::collections::BTreeMap<TypeName, Item>) {
-    imp::write(path, references, items)
+pub fn write<P: AsRef<std::path::Path>>(
+    path: P, 
+    items: &std::collections::BTreeMap<TypeName, Item>) {
+    imp::write(path,  items)
 }
 
 #[derive(Clone, PartialEq, Eq, PartialOrd, Ord)]
@@ -19,6 +21,7 @@ impl TypeName {
 
 pub enum Item {
     Struct(Struct),
+    Enum(Enum),
 }
 
 pub struct Struct {
@@ -26,9 +29,32 @@ pub struct Struct {
     pub fields: Vec<Field>,
 }
 
+pub struct Enum {
+    pub winrt: bool,
+    pub constants: Vec<Constant>,
+}
+
 pub struct Field {
     pub name: String,
     pub ty: Type,
+}
+
+impl Field {
+    pub fn new(name: &str, ty: Type) -> Self {
+        Self { name: name.to_string(), ty }
+    }
+}
+
+pub struct Constant {
+    pub name: String,
+    pub value: Value,
+}
+
+
+impl Constant {
+    pub fn new(name: &str, value: Value) -> Self {
+        Self { name: name.to_string(), value}
+    }
 }
 
 pub enum Type {
