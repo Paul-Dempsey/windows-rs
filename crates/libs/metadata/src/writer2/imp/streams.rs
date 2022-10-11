@@ -23,12 +23,12 @@ impl Streams {
         let mut item_index = BTreeMap::<&TypeName, u32>::new();
 
         for (index, type_name) in items.keys().enumerate() {
-            item_index.insert(type_name, index as _);
+            item_index.insert(type_name, index as u32 + 1);
         }
 
         // TODO: may need TypeRef assembly refs after all including whether the TypeRef is a value type or class type.
 
-        let to_field_sig = |ty: &Type| -> u32 {
+        let to_field_sig = |ty: &Type|  {
             let mut blob = vec![0x6];
             if let Some(code) = type_to_code(ty) {
                 blob.push(code as _);
@@ -42,7 +42,7 @@ impl Streams {
                     _ => todo!(),
                 }
             }
-            blobs.insert(&blob)
+            blob
         };
 
         for (type_name, item) in items {
@@ -64,7 +64,7 @@ impl Streams {
                     for field in &item.fields {
                         let mut flags = FieldAttributes::default();
                         flags.set_public();
-                        tables.Field.push(tables::Field { Name: strings.insert(&field.name), Flags: flags, Signature: to_field_sig(&field.ty) });
+                        tables.Field.push(tables::Field { Name: strings.insert(&field.name), Flags: flags, Signature: blobs.insert(&to_field_sig(&field.ty)) });
                     }
                 }
                 Item::Enum(item) => {
@@ -87,8 +87,8 @@ impl Streams {
                         flags.set_public();
                         flags.set_literal();
                         flags.set_static();
-                        tables.Field.push(tables::Field { Name: strings.insert(&constant.name), Flags: flags, Signature: to_field_sig(&enum_type) });
-                        tables.Constant.push(tables::Constant { Type: type_to_code(&value_to_type(&constant.value)).expect("Invalid constant type"), Parent: HasConstant::Field(tables.Field.len() as u32 - 1), Value: blobs.insert(&value_to_bytes(&constant.value)) });
+                        tables.Field.push(tables::Field { Name: strings.insert(&constant.name), Flags: flags, Signature: blobs.insert(&to_field_sig(&enum_type)) });
+                        tables.Constant.push(tables::Constant { Type: type_to_code(&value_to_type(&constant.value)).expect("Invalid constant type"), Parent: HasConstant::Field(tables.Field.len() as u32), Value: blobs.insert(&value_to_bytes(&constant.value)) });
                     }
                 }
             }

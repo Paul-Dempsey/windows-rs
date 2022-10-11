@@ -136,11 +136,12 @@ pub struct TypeSpec {
     pub Signature: u32,
 }
 
+// TODO: some of these need to be sorted by a primary key
 #[derive(Default)]
 pub struct Tables {
     pub Module: Vec<Module>,
-    pub TypeRef: BTreeMap<TypeName, TypeRef>,
-    pub TypeDef: BTreeMap<TypeName, TypeDef>,
+    pub TypeRef: Vec< TypeRef>,
+    pub TypeDef: Vec<TypeDef>,
     pub Field: Vec<Field>,
     pub MethodDef: Vec<MethodDef>,
     pub Param: Vec<Param>,
