@@ -1,6 +1,6 @@
 use super::*;
 
-pub(crate) struct Blobs {
+pub struct Blobs {
     set: BTreeMap<Vec<u8>, usize>,
     stream: Vec<u8>,
 }

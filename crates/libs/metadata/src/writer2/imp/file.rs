@@ -71,16 +71,16 @@ pub fn write<P: AsRef<std::path::Path>>(path: P, mut streams: Streams) {
     clr.MetaData.Size = unsafe { section.Misc.VirtualSize } - size_of::<IMAGE_COR20_HEADER>() as u32;
 
     let mut buffer = Vec::<u8>::new();
-    buffer.write(&dos);
-    buffer.write(&IMAGE_NT_SIGNATURE);
-    buffer.write(&file);
-    buffer.write(&optional);
-    buffer.write(&section);
+    buffer.write_header(&dos);
+    buffer.write_u32(IMAGE_NT_SIGNATURE);
+    buffer.write_header(&file);
+    buffer.write_header(&optional);
+    buffer.write_header(&section);
     debug_assert!(buffer.len() < optional.FileAlignment as _);
     buffer.resize(optional.FileAlignment as _, 0);
-    buffer.write(&clr);
+    buffer.write_header(&clr);
     let metadata_offset = buffer.len();
-    buffer.write(&metadata);
+    buffer.write_header(&metadata);
 
     let stream_offset = buffer.len() - metadata_offset + size_of_stream_headers;
     let tables_header = TablesHeader::new(stream_offset as _, streams.tables.len() as _, b"#~\0\0");
@@ -88,10 +88,10 @@ pub fn write<P: AsRef<std::path::Path>>(path: P, mut streams: Streams) {
     let guids_header = GuidsHeader::new(strings_header.next_offset(), streams.guids.len() as _, b"#GUID\0\0\0");
     let blobs_header = BlobsHeader::new(guids_header.next_offset(), streams.blobs.len() as _, b"#Blob\0\0\0");
 
-    buffer.write(&tables_header);
-    buffer.write(&strings_header);
-    buffer.write(&guids_header);
-    buffer.write(&blobs_header);
+    buffer.write_header(&tables_header);
+    buffer.write_header(&strings_header);
+    buffer.write_header(&guids_header);
+    buffer.write_header(&blobs_header);
 
     buffer.append(&mut streams.tables);
     buffer.append(&mut streams.strings);

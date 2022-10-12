@@ -13,9 +13,9 @@ impl Streams {
         let mut tables = tables::Tables::default();
         let mut strings = Strings::new();
         let mut blobs = Blobs::new();
-        tables.Module.push(tables::Module { Name: strings.insert(module), Mvid: 1, ..Default::default() });
+        tables.Module.push(tables::Module { Name: module.into() });
         tables.TypeDef.push(tables::TypeDef { TypeName: strings.insert("<Module>"), ..Default::default() });
-        let mscorlib = tables.AssemblyRef.push2(tables::AssemblyRef { Name: strings.insert("mscorlib"), MajorVersion: 4, ..Default::default() });
+        let mscorlib = tables.AssemblyRef.push2(tables::AssemblyRef { Name: "mscorlib".into(), MajorVersion: 4, ..Default::default() });
         let value_type = tables.TypeRef.push2(tables::TypeRef { TypeName: strings.insert("ValueType"), TypeNamespace: strings.insert("System"), ResolutionScope: ResolutionScope::AssemblyRef(mscorlib) });
         let enum_type = tables.TypeRef.push2(tables::TypeRef { TypeName: strings.insert("Enum"), TypeNamespace: strings.insert("System"), ResolutionScope: ResolutionScope::AssemblyRef(mscorlib) });
 
@@ -95,7 +95,7 @@ impl Streams {
         }
 
         Self {
-            tables: tables.into_stream(),
+            tables: tables.into_stream(&mut strings, &mut blobs),
             strings: strings.into_stream(),
             blobs: blobs.into_stream(),
             guids: vec![0; 16], // zero guid

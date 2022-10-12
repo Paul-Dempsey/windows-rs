@@ -7,38 +7,38 @@ pub struct AssemblyRef {
     pub BuildNumber: u16,
     pub RevisionNumber: u16,
     pub Flags: AssemblyFlags,
-    pub PublicKeyOrToken: u32,
-    pub Name: u32,
-    pub Culture: u32,
-    pub HashValue: u32,
+    pub PublicKeyOrToken: Vec<u8>,
+    pub Name: String,
+    pub Culture: String,
+    pub HashValue: Vec<u8>,
 }
 
 #[derive(Default)]
 pub struct ClassLayout {
     pub PackingSize: u16,
     pub ClassSize: u32,
-    pub Parent: u32,
+    pub Parent: TypeName,
 }
 
 #[derive(Default)]
 pub struct Constant {
-    pub Type: u16,
+    pub Type: Type,
     pub Parent: HasConstant,
-    pub Value: u32,
+    pub Value: Vec<u8>,
 }
 
 #[derive(Default)]
 pub struct CustomAttribute {
     pub Parent: HasCustomAttribute,
     pub Type: CustomAttributeType,
-    pub Value: u32,
+    pub Value: Vec<u8>,
 }
 
 #[derive(Default)]
 pub struct Field {
     pub Flags: FieldAttributes,
-    pub Name: u32,
-    pub Signature: u32,
+    pub Name: String,
+    pub Signature: Type,
 }
 
 #[derive(Default)]
@@ -46,14 +46,14 @@ pub struct GenericParam {
     pub Number: u16,
     pub Flags: GenericParamAttributes,
     pub Owner: TypeOrMethodDef,
-    pub Name: u32,
+    pub Name: String,
 }
 
 #[derive(Default)]
 pub struct ImplMap {
     pub MappingFlags: PInvokeAttributes,
     pub MemberForwarded: MemberForwarded,
-    pub ImportName: u32,
+    pub ImportName: String,
     pub ImportScope: u32,
 }
 
@@ -66,8 +66,8 @@ pub struct InterfaceImpl {
 #[derive(Default)]
 pub struct MemberRef {
     pub Class: MemberRefParent,
-    pub Name: u32,
-    pub Signature: u32,
+    pub Name: String,
+    pub Signature: Vec<u8>,
 }
 
 #[derive(Default)]
@@ -75,23 +75,19 @@ pub struct MethodDef {
     pub RVA: u32,
     pub ImplFlags: MethodImplAttributes,
     pub Flags: MethodAttributes,
-    pub Name: u32,
-    pub Signature: u32,
+    pub Name: String,
+    pub Signature: Vec<u8>,
     pub ParamList: u32,
 }
 
 #[derive(Default)]
 pub struct ModuleRef {
-    pub Name: u32,
+    pub Name: String,
 }
 
 #[derive(Default)]
 pub struct Module {
-    pub Generation: u16,
-    pub Name: u32,
-    pub Mvid: u32,
-    pub EncId: u32,
-    pub EncBaseId: u32,
+    pub Name: String,
 }
 
 #[derive(Default)]
@@ -104,21 +100,21 @@ pub struct NestedClass {
 pub struct Param {
     pub Flags: ParamAttributes,
     pub Sequence: u16,
-    pub Name: u32,
+    pub Name: String,
 }
 
 #[derive(Default)]
 pub struct Property {
     pub Flags: PropertyAttributes,
-    pub Name: u32,
-    pub Type: u32,
+    pub Name: String,
+    pub Type: Type,
 }
 
 #[derive(Default)]
 pub struct TypeDef {
     pub Flags: TypeAttributes,
-    pub TypeName: u32,
-    pub TypeNamespace: u32,
+    pub TypeName: String,
+    pub TypeNamespace: String,
     pub Extends: TypeDefOrRef,
     pub FieldList: u32,
     pub MethodList: u32,
@@ -127,13 +123,13 @@ pub struct TypeDef {
 #[derive(Default)]
 pub struct TypeRef {
     pub ResolutionScope: ResolutionScope,
-    pub TypeName: u32,
-    pub TypeNamespace: u32,
+    pub TypeName: String,
+    pub TypeNamespace: String,
 }
 
 #[derive(Default)]
 pub struct TypeSpec {
-    pub Signature: u32,
+    pub Signature: Type,
 }
 
 // TODO: some of these need to be sorted by a primary key
@@ -160,7 +156,7 @@ pub struct Tables {
 }
 
 impl Tables {
-    pub fn into_stream(self) -> Vec<u8> {
+    pub fn into_stream(self, strings: &mut Strings, blobs: &mut Blobs) -> Vec<u8> {
         let resolution_scope = coded_index_size(&[self.Module.len(), self.ModuleRef.len(), self.AssemblyRef.len(), self.TypeRef.len()]);
         let type_def_or_ref = coded_index_size(&[self.TypeDef.len(), self.TypeRef.len(), self.TypeSpec.len()]);
         let has_constant = coded_index_size(&[self.Field.len(), self.Param.len(), self.Property.len()]);
@@ -187,64 +183,64 @@ impl Tables {
         // The #~ stream header...
 
         let mut buffer = Vec::new();
-        buffer.write(&0u32); // Reserved
-        buffer.write(&2u8); // MajorVersion
-        buffer.write(&0u8); // MinorVersion
-        buffer.write(&0b111u8); // HeapSizes
-        buffer.write(&0u8); // Reserved
-        buffer.write(&valid_tables);
-        buffer.write(&0u64); // Sorted
+        buffer.write_u32(0); // Reserved
+        buffer.write_u8(2); // MajorVersion
+        buffer.write_u8(0); // MinorVersion
+        buffer.write_u8(0b111); // HeapSizes
+        buffer.write_u8(0); // Reserved
+        buffer.write_u64(valid_tables);
+        buffer.write_u64(0); // Sorted
 
         // Followed by the length of each of the valid tables...
 
-        buffer.write(&(self.Module.len() as u32));
-        buffer.write(&(self.TypeRef.len() as u32));
-        buffer.write(&(self.TypeDef.len() as u32));
-        buffer.write(&(self.Field.len() as u32));
-        buffer.write(&(self.MethodDef.len() as u32));
-        buffer.write(&(self.Param.len() as u32));
-        buffer.write(&(self.InterfaceImpl.len() as u32));
-        buffer.write(&(self.MemberRef.len() as u32));
-        buffer.write(&(self.Constant.len() as u32));
-        buffer.write(&(self.CustomAttribute.len() as u32));
-        buffer.write(&(self.ClassLayout.len() as u32));
-        buffer.write(&(self.Property.len() as u32));
-        buffer.write(&(self.ModuleRef.len() as u32));
-        buffer.write(&(self.TypeSpec.len() as u32));
-        buffer.write(&(self.ImplMap.len() as u32));
-        buffer.write(&(self.AssemblyRef.len() as u32));
-        buffer.write(&(self.NestedClass.len() as u32));
-        buffer.write(&(self.GenericParam.len() as u32));
+        buffer.write_u32(self.Module.len() as u32);
+        buffer.write_u32(self.TypeRef.len() as u32);
+        buffer.write_u32(self.TypeDef.len() as u32);
+        buffer.write_u32(self.Field.len() as u32);
+        buffer.write_u32(self.MethodDef.len() as u32);
+        buffer.write_u32(self.Param.len() as u32);
+        buffer.write_u32(self.InterfaceImpl.len() as u32);
+        buffer.write_u32(self.MemberRef.len() as u32);
+        buffer.write_u32(self.Constant.len() as u32);
+        buffer.write_u32(self.CustomAttribute.len() as u32);
+        buffer.write_u32(self.ClassLayout.len() as u32);
+        buffer.write_u32(self.Property.len() as u32);
+        buffer.write_u32(self.ModuleRef.len() as u32);
+        buffer.write_u32(self.TypeSpec.len() as u32);
+        buffer.write_u32(self.ImplMap.len() as u32);
+        buffer.write_u32(self.AssemblyRef.len() as u32);
+        buffer.write_u32(self.NestedClass.len() as u32);
+        buffer.write_u32(self.GenericParam.len() as u32);
 
         // Followed by each table's rows...
 
         for x in self.Module {
-            buffer.write(&x.Generation);
-            buffer.write(&x.Name);
-            buffer.write(&x.Mvid);
-            buffer.write(&x.EncId);
-            buffer.write(&x.EncBaseId);
+            buffer.write_u16(0); // Generation (reserved)
+            buffer.write_u32(strings.insert(&x.Name));
+            buffer.write_u32(0); // Mvid (zero guid for repeatable builds)
+            buffer.write_u32(0); // EncId (reserved)
+            buffer.write_u32(0); // EncBaseId (reserved)
         }
 
         for x in self.TypeRef {
-            write_coded_index(&mut buffer, x.ResolutionScope.encode(), resolution_scope);
-            buffer.write(&x.TypeName);
-            buffer.write(&x.TypeNamespace);
+            buffer.write_code(x.ResolutionScope.encode(), resolution_scope);
+            buffer.write_u32(strings.insert(&x.TypeName));
+            buffer.write_u32(strings.insert(&x.TypeNamespace));
         }
 
         for x in self.TypeDef {
-            buffer.write(&x.Flags);
-            buffer.write(&x.TypeName);
-            buffer.write(&x.TypeNamespace);
-            write_coded_index(&mut buffer, x.Extends.encode(), type_def_or_ref);
-            write_index(&mut buffer, x.FieldList, self.Field.len());
-            write_index(&mut buffer, x.MethodList, self.MethodDef.len());
+            buffer.write_u32(x.Flags.0);
+            buffer.write_u32(strings.insert(&x.TypeName));
+            buffer.write_u32(strings.insert(&x.TypeNamespace));
+            buffer.write_code(x.Extends.encode(), type_def_or_ref);
+            buffer.write_index(x.FieldList, self.Field.len());
+            buffer.write_index(x.MethodList, self.MethodDef.len());
         }
 
         for x in self.Field {
-            buffer.write(&x.Flags);
-            buffer.write(&x.Name);
-            buffer.write(&x.Signature);
+            buffer.write_u32(x.Flags.0);
+            buffer.write_u32(strings.insert(&x.Name));
+            buffer.write_u32(blobs.insert(&x.Signature));
         }
 
         // for x in self.MethodDef {}
@@ -252,21 +248,21 @@ impl Tables {
         // for x in self.Param {}
 
         for x in self.Constant {
-            buffer.write(&x.Type);
-            write_coded_index(&mut buffer, x.Parent.encode(), has_constant);
-            buffer.write(&x.Value);
+            buffer.write_u16(x.Type);
+            buffer.write_code(x.Parent.encode(), has_constant);
+            buffer.write_u32(blobs.insert(&x.Value));
         }
 
         for x in self.AssemblyRef {
-            buffer.write(&x.MajorVersion);
-            buffer.write(&x.MinorVersion);
-            buffer.write(&x.BuildNumber);
-            buffer.write(&x.RevisionNumber);
-            buffer.write(&x.Flags);
-            buffer.write(&x.PublicKeyOrToken);
-            buffer.write(&x.Name);
-            buffer.write(&x.Culture);
-            buffer.write(&x.HashValue);
+            buffer.write_u8(x.MajorVersion);
+            buffer.write_u8(x.MinorVersion);
+            buffer.write_u8(x.BuildNumber);
+            buffer.write_u8(x.RevisionNumber);
+            buffer.write_16(x.Flags.0);
+            buffer.write_u32(blobs.insert(&x.PublicKeyOrToken));
+            buffer.write_u32(strings.insert(&x.Name));
+            buffer.write_u32(strings.insert(&x.Culture));
+            buffer.write_u32(blobs.insert(&x.HashValue));
         }
 
         buffer.resize(round(buffer.len(), 4), 0);
@@ -274,18 +270,3 @@ impl Tables {
     }
 }
 
-fn write_index(buffer: &mut Vec<u8>, index: u32, len: usize) {
-    if len < (1 << 16) {
-        buffer.write(&(index as u16 + 1))
-    } else {
-        buffer.write(&(index as u32 + 1))
-    }
-}
-
-fn write_coded_index(buffer: &mut Vec<u8>, value: u32, size: usize) {
-    if size == 2 {
-        buffer.write(&(value as u16))
-    } else {
-        buffer.write(&(value as u32))
-    }
-}
