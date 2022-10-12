@@ -9,15 +9,15 @@ pub struct Streams {
 }
 
 impl Streams {
-    pub fn new(module: &str, items: &std::collections::BTreeMap<TypeName, Item>) -> Self {
+    pub fn new(module: &str, winrt: bool, items: &std::collections::BTreeMap<TypeName, Item>) -> Self {
         let mut tables = tables::Tables::default();
         let mut strings = Strings::new();
         let mut blobs = Blobs::new();
-        tables.Module.push(tables::Module { Name: module.into() });
-        tables.TypeDef.push(tables::TypeDef { TypeName: strings.insert("<Module>"), ..Default::default() });
-        let mscorlib = tables.AssemblyRef.push2(tables::AssemblyRef { Name: "mscorlib".into(), MajorVersion: 4, ..Default::default() });
-        let value_type = tables.TypeRef.push2(tables::TypeRef { TypeName: strings.insert("ValueType"), TypeNamespace: strings.insert("System"), ResolutionScope: ResolutionScope::AssemblyRef(mscorlib) });
-        let enum_type = tables.TypeRef.push2(tables::TypeRef { TypeName: strings.insert("Enum"), TypeNamespace: strings.insert("System"), ResolutionScope: ResolutionScope::AssemblyRef(mscorlib) });
+        tables.Module.push(tables::Module { Name: module });
+        tables.TypeDef.push(tables::TypeDef { Flags: TypeAttributes(0), TypeName: "<Module>", TypeNamespace: "", Extends: TypeDefOrRef::None, FieldList: 0, MethodList: 0 });
+        let mscorlib = tables.AssemblyRef.push2(tables::AssemblyRef { MajorVersion: 4, MinorVersion: 0, BuildNumber: 0, RevisionNumber: 0, Flags: AssemblyFlags(0), Name: "mscorlib" });
+        let value_type = tables.TypeRef.push2(tables::TypeRef { TypeName: "ValueType", TypeNamespace: "System", ResolutionScope: ResolutionScope::AssemblyRef(mscorlib) });
+        let enum_type = tables.TypeRef.push2(tables::TypeRef { TypeName: "Enum", TypeNamespace: "System", ResolutionScope: ResolutionScope::AssemblyRef(mscorlib) });
 
         // TypeDef index for self-referencing. If a type is not in the index it just means it must be a TypeRef (with a null resolution scope).
         let mut item_index = BTreeMap::<&TypeName, u32>::new();
@@ -28,7 +28,7 @@ impl Streams {
 
         // TODO: may need TypeRef assembly refs after all including whether the TypeRef is a value type or class type.
 
-        let to_field_sig = |ty: &Type|  {
+        let to_field_sig = |ty: &Type| {
             let mut blob = vec![0x6];
             if let Some(code) = type_to_code(ty) {
                 blob.push(code as _);
@@ -48,48 +48,48 @@ impl Streams {
         for (type_name, item) in items {
             match item {
                 Item::Struct(item) => {
-                    let mut flags = TypeAttributes::default();
+                    let mut flags = TypeAttributes(0);
                     flags.set_public();
-                    if item.winrt {
+                    if winrt {
                         flags.set_winrt();
                     }
                     tables.TypeDef.push(tables::TypeDef {
                         Flags: flags,
-                        TypeName: strings.insert(&type_name.name),
-                        TypeNamespace: strings.insert(&type_name.namespace),
+                        TypeName: &type_name.name,
+                        TypeNamespace: &type_name.namespace,
                         Extends: TypeDefOrRef::TypeRef(value_type),
                         FieldList: tables.Field.len() as _,
                         MethodList: 0,
                     });
-                    for field in &item.fields {
-                        let mut flags = FieldAttributes::default();
-                        flags.set_public();
-                        tables.Field.push(tables::Field { Name: strings.insert(&field.name), Flags: flags, Signature: blobs.insert(&to_field_sig(&field.ty)) });
-                    }
+                    // for field in &item.fields {
+                    //     let mut flags = FieldAttributes(0);
+                    //     flags.set_public();
+                    //     tables.Field.push(tables::Field { Name: &field.name, Flags: flags, Signature: field.ty });
+                    // }
                 }
                 Item::Enum(item) => {
-                    let mut flags = TypeAttributes::default();
+                    let mut flags = TypeAttributes(0);
                     flags.set_public();
-                    if item.winrt {
+                    if winrt {
                         flags.set_winrt();
                     }
                     tables.TypeDef.push(tables::TypeDef {
                         Flags: flags,
-                        TypeName: strings.insert(&type_name.name),
-                        TypeNamespace: strings.insert(&type_name.namespace),
+                        TypeName: &type_name.name,
+                        TypeNamespace: &type_name.namespace,
                         Extends: TypeDefOrRef::TypeRef(enum_type),
                         FieldList: tables.Field.len() as _,
                         MethodList: 0,
                     });
-                    let enum_type = Type::TypeDef((type_name.clone(), Vec::new()));
-                    for constant in &item.constants {
-                        let mut flags = FieldAttributes::default();
-                        flags.set_public();
-                        flags.set_literal();
-                        flags.set_static();
-                        tables.Field.push(tables::Field { Name: strings.insert(&constant.name), Flags: flags, Signature: blobs.insert(&to_field_sig(&enum_type)) });
-                        tables.Constant.push(tables::Constant { Type: type_to_code(&value_to_type(&constant.value)).expect("Invalid constant type"), Parent: HasConstant::Field(tables.Field.len() as u32), Value: blobs.insert(&value_to_bytes(&constant.value)) });
-                    }
+                    // let enum_type = Type::TypeDef((type_name.clone(), Vec::new()));
+                    // for constant in &item.constants {
+                    //     let mut flags = FieldAttributes(0);
+                    //     flags.set_public();
+                    //     flags.set_literal();
+                    //     flags.set_static();
+                    //     tables.Field.push(tables::Field { Name: &constant.name, Flags: flags, Signature: enum_type });
+                    //     tables.Constant.push(tables::Constant { Type: value_to_type(&constant.value), Parent: HasConstant::Field(tables.Field.len() as u32), Value: value_to_bytes(&constant.value) });
+                    // }
                 }
             }
         }
@@ -118,37 +118,36 @@ impl<T> Push2<T> for Vec<T> {
     }
 }
 
-
-    fn value_to_type(value: &Value) -> Type {
-        match value {
-            Value::Bool(_) => Type::Bool,
-            Value::U8(_) => Type::U8,
-            Value::I8(_) => Type::I8,
-            Value::U16(_) => Type::U16,
-            Value::I16(_) => Type::I16,
-            Value::U32(_) => Type::U32,
-            Value::I32(_) => Type::I32,
-            Value::U64(_) => Type::U64,
-            Value::I64(_) => Type::I64,
-            Value::F32(_) => Type::F32,
-            Value::F64(_) => Type::F64,
-            Value::String(_) => Type::String,
-            Value::TypeDef(value) => Type::TypeDef((value.clone(), Vec::new())),
-        }
+fn value_to_type(value: &Value) -> Type {
+    match value {
+        Value::Bool(_) => Type::Bool,
+        Value::U8(_) => Type::U8,
+        Value::I8(_) => Type::I8,
+        Value::U16(_) => Type::U16,
+        Value::I16(_) => Type::I16,
+        Value::U32(_) => Type::U32,
+        Value::I32(_) => Type::I32,
+        Value::U64(_) => Type::U64,
+        Value::I64(_) => Type::I64,
+        Value::F32(_) => Type::F32,
+        Value::F64(_) => Type::F64,
+        Value::String(_) => Type::String,
+        Value::TypeDef(value) => Type::TypeDef((value.clone(), Vec::new())),
     }
+}
 
-    pub fn value_to_bytes(value:&Value) -> Vec<u8> {
-        match value {
-            Value::U8(value) => value.to_le_bytes().into(),
-            Value::I8(value) => value.to_le_bytes().into(),
-            Value::U16(value) => value.to_le_bytes().into(),
-            Value::I16(value) => value.to_le_bytes().into(),
-            Value::U32(value) => value.to_le_bytes().into(),
-            Value::I32(value) => value.to_le_bytes().into(),
-            Value::U64(value) => value.to_le_bytes().into(),
-            Value::I64(value) => value.to_le_bytes().into(),
-            Value::F32(value) => value.to_le_bytes().into(),
-            Value::F64(value) => value.to_le_bytes().into(),
-            _ => unimplemented!(),
-        }
+pub fn value_to_bytes(value: &Value) -> Vec<u8> {
+    match value {
+        Value::U8(value) => value.to_le_bytes().into(),
+        Value::I8(value) => value.to_le_bytes().into(),
+        Value::U16(value) => value.to_le_bytes().into(),
+        Value::I16(value) => value.to_le_bytes().into(),
+        Value::U32(value) => value.to_le_bytes().into(),
+        Value::I32(value) => value.to_le_bytes().into(),
+        Value::U64(value) => value.to_le_bytes().into(),
+        Value::I64(value) => value.to_le_bytes().into(),
+        Value::F32(value) => value.to_le_bytes().into(),
+        Value::F64(value) => value.to_le_bytes().into(),
+        _ => unimplemented!(),
     }
+}

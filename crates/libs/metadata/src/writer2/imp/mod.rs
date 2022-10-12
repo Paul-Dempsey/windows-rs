@@ -15,11 +15,11 @@ use streams::*;
 use strings::*;
 
 // TODO: do we need references?
-pub fn write<P: AsRef<std::path::Path>>(path: P, items: &std::collections::BTreeMap<TypeName, Item>) {
+pub fn write<P: AsRef<std::path::Path>>(path: P, winrt: bool, items: &std::collections::BTreeMap<TypeName, Item>) {
     let module = path.as_ref().file_name().expect("Missing file name").to_str().expect("Invalid file name");
 
-    let streams = Streams::new(module, items);
-    file::write(path, streams);
+    let streams = Streams::new(module, winrt, items);
+    file::write(path, winrt, streams);
 }
 
 pub fn round(size: usize, round: usize) -> usize {
@@ -34,30 +34,30 @@ pub trait Write {
     fn write_u32(&mut self, value: u32);
     fn write_u64(&mut self, value: u64);
     fn write_code(&mut self, value: u32, size: usize);
-    fn write_index(&mut self, index: u32, len: usize);    
+    fn write_index(&mut self, index: u32, len: usize);
 }
 
 impl Write for Vec<u8> {
     unsafe fn write_header<T: Sized>(&mut self, value: &T) {
-            self.extend_from_slice(from_raw_parts(value as *const _ as _, size_of::<T>()));
+        self.extend_from_slice(from_raw_parts(value as *const _ as _, size_of::<T>()));
     }
 
     fn write_u8(&mut self, value: u8) {
-        self.extend_from_slice(value.to_le_bytes());
+        self.extend_from_slice(&value.to_le_bytes());
     }
 
     fn write_u16(&mut self, value: u16) {
-        self.extend_from_slice(value.to_le_bytes());
+        self.extend_from_slice(&value.to_le_bytes());
     }
-    
+
     fn write_u32(&mut self, value: u32) {
-        self.extend_from_slice(value.to_le_bytes());
+        self.extend_from_slice(&value.to_le_bytes());
     }
-    
+
     fn write_u64(&mut self, value: u64) {
-        self.extend_from_slice(value.to_le_bytes());
+        self.extend_from_slice(&value.to_le_bytes());
     }
-    
+
     fn write_code(&mut self, value: u32, size: usize) {
         if size == 2 {
             self.write_u16(value as _);
@@ -65,12 +65,12 @@ impl Write for Vec<u8> {
             self.write_u32(value);
         }
     }
-    
+
     fn write_index(&mut self, index: u32, len: usize) {
         if len < (1 << 16) {
             self.write_u16(index as u16 + 1);
         } else {
-            self.write_u32(index  + 1);
+            self.write_u32(index + 1);
         }
     }
 }

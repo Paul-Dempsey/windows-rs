@@ -7,7 +7,6 @@ fn writer2() {
     types.insert(
         TypeName::new("TestWindows.Foundation", "Rect"),
         Item::Struct(Struct {
-            winrt: true,
             fields: vec![Field::new("X", Type::F32), Field::new("Y", Type::F32), Field::new("Width", Type::F32), Field::new("Height", Type::F32)],
         }),
     );
@@ -15,10 +14,9 @@ fn writer2() {
     types.insert(
         TypeName::new("TestWindows.Foundation", "AsyncStatus"),
         Item::Enum(Enum {
-            winrt: true,
             constants: vec![Constant::new("Canceled", Value::I32(2)), Constant::new("Completed", Value::I32(1)), Constant::new("Error", Value::I32(3)), Constant::new("Started", Value::I32(0))],
         }),
     );
 
-    write("/git/test.winmd", &types);
+    write("/git/test.winmd", true, &types);
 }

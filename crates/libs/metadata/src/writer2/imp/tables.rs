@@ -1,161 +1,140 @@
 use super::*;
 
-#[derive(Default)]
-pub struct AssemblyRef {
+pub struct AssemblyRef<'a> {
     pub MajorVersion: u16,
     pub MinorVersion: u16,
     pub BuildNumber: u16,
     pub RevisionNumber: u16,
     pub Flags: AssemblyFlags,
-    pub PublicKeyOrToken: Vec<u8>,
-    pub Name: String,
-    pub Culture: String,
-    pub HashValue: Vec<u8>,
+    pub Name: &'a str,
 }
 
-#[derive(Default)]
 pub struct ClassLayout {
     pub PackingSize: u16,
     pub ClassSize: u32,
     pub Parent: TypeName,
 }
 
-#[derive(Default)]
 pub struct Constant {
     pub Type: Type,
     pub Parent: HasConstant,
     pub Value: Vec<u8>,
 }
 
-#[derive(Default)]
 pub struct CustomAttribute {
     pub Parent: HasCustomAttribute,
     pub Type: CustomAttributeType,
     pub Value: Vec<u8>,
 }
 
-#[derive(Default)]
-pub struct Field {
+pub struct Field<'a> {
     pub Flags: FieldAttributes,
-    pub Name: String,
+    pub Name: &'a str,
     pub Signature: Type,
 }
 
-#[derive(Default)]
-pub struct GenericParam {
+pub struct GenericParam<'a> {
     pub Number: u16,
     pub Flags: GenericParamAttributes,
     pub Owner: TypeOrMethodDef,
-    pub Name: String,
+    pub Name: &'a str,
 }
 
-#[derive(Default)]
-pub struct ImplMap {
+pub struct ImplMap<'a> {
     pub MappingFlags: PInvokeAttributes,
     pub MemberForwarded: MemberForwarded,
-    pub ImportName: String,
+    pub ImportName: &'a str,
     pub ImportScope: u32,
 }
 
-#[derive(Default)]
 pub struct InterfaceImpl {
     pub Class: u32,
     pub Interface: TypeDefOrRef,
 }
 
-#[derive(Default)]
-pub struct MemberRef {
+pub struct MemberRef<'a> {
     pub Class: MemberRefParent,
-    pub Name: String,
+    pub Name: &'a str,
     pub Signature: Vec<u8>,
 }
 
-#[derive(Default)]
-pub struct MethodDef {
+pub struct MethodDef<'a> {
     pub RVA: u32,
     pub ImplFlags: MethodImplAttributes,
     pub Flags: MethodAttributes,
-    pub Name: String,
+    pub Name: &'a str,
     pub Signature: Vec<u8>,
     pub ParamList: u32,
 }
 
-#[derive(Default)]
-pub struct ModuleRef {
-    pub Name: String,
+pub struct ModuleRef<'a> {
+    pub Name: &'a str,
 }
 
-#[derive(Default)]
-pub struct Module {
-    pub Name: String,
+pub struct Module<'a> {
+    pub Name: &'a str,
 }
 
-#[derive(Default)]
 pub struct NestedClass {
     pub NestedClass: u32,
     pub EnclosingClass: u32,
 }
 
-#[derive(Default)]
-pub struct Param {
+pub struct Param<'a> {
     pub Flags: ParamAttributes,
     pub Sequence: u16,
-    pub Name: String,
+    pub Name: &'a str,
 }
 
-#[derive(Default)]
-pub struct Property {
+pub struct Property<'a> {
     pub Flags: PropertyAttributes,
-    pub Name: String,
+    pub Name: &'a str,
     pub Type: Type,
 }
 
-#[derive(Default)]
-pub struct TypeDef {
+pub struct TypeDef<'a> {
     pub Flags: TypeAttributes,
-    pub TypeName: String,
-    pub TypeNamespace: String,
+    pub TypeName: &'a str,
+    pub TypeNamespace: &'a str,
     pub Extends: TypeDefOrRef,
     pub FieldList: u32,
     pub MethodList: u32,
 }
 
-#[derive(Default)]
-pub struct TypeRef {
+pub struct TypeRef<'a> {
     pub ResolutionScope: ResolutionScope,
-    pub TypeName: String,
-    pub TypeNamespace: String,
+    pub TypeName: &'a str,
+    pub TypeNamespace: &'a str,
 }
 
-#[derive(Default)]
 pub struct TypeSpec {
     pub Signature: Type,
 }
 
 // TODO: some of these need to be sorted by a primary key
 #[derive(Default)]
-pub struct Tables {
-    pub Module: Vec<Module>,
-    pub TypeRef: Vec< TypeRef>,
-    pub TypeDef: Vec<TypeDef>,
-    pub Field: Vec<Field>,
-    pub MethodDef: Vec<MethodDef>,
-    pub Param: Vec<Param>,
+pub struct Tables<'a> {
+    pub Module: Vec<Module<'a>>,
+    pub TypeRef: Vec<TypeRef<'a>>,
+    pub TypeDef: Vec<TypeDef<'a>>,
+    pub Field: Vec<Field<'a>>,
+    pub MethodDef: Vec<MethodDef<'a>>,
+    pub Param: Vec<Param<'a>>,
     pub InterfaceImpl: Vec<InterfaceImpl>,
-    pub MemberRef: Vec<MemberRef>,
+    pub MemberRef: Vec<MemberRef<'a>>,
     pub Constant: Vec<Constant>,
     pub CustomAttribute: Vec<CustomAttribute>,
     pub ClassLayout: Vec<ClassLayout>,
-    pub Property: Vec<Property>,
-    pub ModuleRef: Vec<ModuleRef>,
+    pub Property: Vec<Property<'a>>,
+    pub ModuleRef: Vec<ModuleRef<'a>>,
     pub TypeSpec: Vec<TypeSpec>,
-    pub ImplMap: Vec<ImplMap>,
-    pub AssemblyRef: Vec<AssemblyRef>,
+    pub ImplMap: Vec<ImplMap<'a>>,
+    pub AssemblyRef: Vec<AssemblyRef<'a>>,
     pub NestedClass: Vec<NestedClass>,
-    pub GenericParam: Vec<GenericParam>,
+    pub GenericParam: Vec<GenericParam<'a>>,
 }
 
-impl Tables {
+impl<'a> Tables<'a> {
     pub fn into_stream(self, strings: &mut Strings, blobs: &mut Blobs) -> Vec<u8> {
         let resolution_scope = coded_index_size(&[self.Module.len(), self.ModuleRef.len(), self.AssemblyRef.len(), self.TypeRef.len()]);
         let type_def_or_ref = coded_index_size(&[self.TypeDef.len(), self.TypeRef.len(), self.TypeSpec.len()]);
@@ -237,36 +216,35 @@ impl Tables {
             buffer.write_index(x.MethodList, self.MethodDef.len());
         }
 
-        for x in self.Field {
-            buffer.write_u32(x.Flags.0);
-            buffer.write_u32(strings.insert(&x.Name));
-            buffer.write_u32(blobs.insert(&x.Signature));
-        }
+        // for x in self.Field {
+        //     buffer.write_u16(x.Flags.0);
+        //     buffer.write_u32(strings.insert(&x.Name));
+        //     buffer.write_u32(blobs.insert(&x.Signature));
+        // }
 
         // for x in self.MethodDef {}
 
         // for x in self.Param {}
 
-        for x in self.Constant {
-            buffer.write_u16(x.Type);
-            buffer.write_code(x.Parent.encode(), has_constant);
-            buffer.write_u32(blobs.insert(&x.Value));
-        }
+        // for x in self.Constant {
+        //     buffer.write_u16(x.Type);
+        //     buffer.write_code(x.Parent.encode(), has_constant);
+        //     buffer.write_u32(blobs.insert(&x.Value));
+        // }
 
         for x in self.AssemblyRef {
-            buffer.write_u8(x.MajorVersion);
-            buffer.write_u8(x.MinorVersion);
-            buffer.write_u8(x.BuildNumber);
-            buffer.write_u8(x.RevisionNumber);
-            buffer.write_16(x.Flags.0);
-            buffer.write_u32(blobs.insert(&x.PublicKeyOrToken));
+            buffer.write_u16(x.MajorVersion);
+            buffer.write_u16(x.MinorVersion);
+            buffer.write_u16(x.BuildNumber);
+            buffer.write_u16(x.RevisionNumber);
+            buffer.write_u32(x.Flags.0);
+            buffer.write_u32(0); // PublicKeyOrToken
             buffer.write_u32(strings.insert(&x.Name));
-            buffer.write_u32(strings.insert(&x.Culture));
-            buffer.write_u32(blobs.insert(&x.HashValue));
+            buffer.write_u32(0); // Culture
+            buffer.write_u32(0); // HashValue
         }
 
         buffer.resize(round(buffer.len(), 4), 0);
         buffer
     }
 }
-

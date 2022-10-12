@@ -1,10 +1,8 @@
 mod imp;
 use super::imp::*;
 
-pub fn write<P: AsRef<std::path::Path>>(
-    path: P, 
-    items: &std::collections::BTreeMap<TypeName, Item>) {
-    imp::write(path,  items)
+pub fn write<P: AsRef<std::path::Path>>(path: P, winrt: bool, items: &std::collections::BTreeMap<TypeName, Item>) {
+    imp::write(path, winrt, items)
 }
 
 #[derive(Clone, PartialEq, Eq, PartialOrd, Ord)]
@@ -25,12 +23,10 @@ pub enum Item {
 }
 
 pub struct Struct {
-    pub winrt: bool,
     pub fields: Vec<Field>,
 }
 
 pub struct Enum {
-    pub winrt: bool,
     pub constants: Vec<Constant>,
 }
 
@@ -50,10 +46,9 @@ pub struct Constant {
     pub value: Value,
 }
 
-
 impl Constant {
     pub fn new(name: &str, value: Value) -> Self {
-        Self { name: name.to_string(), value}
+        Self { name: name.to_string(), value }
     }
 }
 
