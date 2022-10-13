@@ -1,3 +1,9 @@
+mod bindings;
+mod flags;
+
+pub use bindings::*;
+pub use flags::*;
+
 #[repr(C)]
 #[derive(Default)]
 pub struct METADATA_HEADER {
