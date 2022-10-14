@@ -1,16 +1,18 @@
 use super::*;
 
-pub(crate) struct Blobs {
+pub struct Blobs {
     set: BTreeMap<Vec<u8>, usize>,
     stream: Vec<u8>,
 }
 
-impl Blobs {
-    pub fn new() -> Self {
+impl Default for Blobs {
+    fn default() -> Self {
         // The stream's first entry is always an "empty" blob consisting of a single zero byte.
         Self { set: BTreeMap::new(), stream: vec![0] }
     }
+}
 
+impl Blobs {
     // TODO: take `value` by value?
     pub fn insert(&mut self, value: &[u8]) -> u32 {
         if value.is_empty() {

@@ -1,8 +1,8 @@
 use super::*;
 use crate::imp::*;
 
-#[derive(Default)]
-pub struct Tables {
+// TODO: call it Staging?
+pub struct Tables<'a> {
     pub AssemblyRef: Vec<AssemblyRef>,
     pub ClassLayout: Vec<ClassLayout>,
     pub Constant: Vec<Constant>,
@@ -21,6 +21,12 @@ pub struct Tables {
     pub TypeDef: Vec<TypeDef>,
     pub TypeRef: Vec<TypeRef>,
     pub TypeSpec: Vec<TypeSpec>,
+
+    pub strings: Strings,
+    pub blobs : Blobs,
+    pub type_def_index : BTreeMap::<(&'a str, &'a str), (u32, bool)>,
+    pub type_ref_index : BTreeMap::<(&'a str, &'a str), (u32, bool)>,
+    pub references: &'a reader::Reader<'a>,
 }
 
 #[derive(Default)]
@@ -159,12 +165,62 @@ pub struct TypeSpec {
     pub Signature: u32,
 }
 
-impl Tables {
-    pub fn new() -> Self {
-        Self::default()
+impl<'a> Tables<'a> {
+    pub fn new(references: &'a reader::Reader) -> Self {
+        Self {
+        AssemblyRef: Default::default(),
+        ClassLayout: Default::default(),
+        Constant: Default::default(),
+        CustomAttribute: Default::default(),
+        Field: Default::default(),
+        GenericParam: Default::default(),
+        ImplMap: Default::default(),
+        InterfaceImpl: Default::default(),
+        MemberRef: Default::default(),
+        MethodDef: Default::default(),
+        Module: Default::default(),
+        ModuleRef: Default::default(),
+        NestedClass: Default::default(),
+        Param: Default::default(),
+        Property: Default::default(),
+        TypeDef: Default::default(),
+        TypeRef: Default::default(),
+        TypeSpec: Default::default(),
+    
+        strings: Default::default(),
+        blobs : Default::default(),
+        type_def_index : Default::default(),
+        type_ref_index : Default::default(),
+        references,
+        }
+        
     }
 
-    pub fn into_stream(self) -> Vec<u8> {
+    pub fn field_sig(&mut self, ty: &Type) -> Vec<u8> {
+        let mut buffer = vec![0x6];
+        match ty {
+            Type::Void => buffer.push(0x01),
+            Type::Bool => buffer.push(0x02),
+            Type::Char => buffer.push(0x03),
+            Type::I8 => buffer.push(0x04),
+            Type::U8 => buffer.push(0x05),
+            Type::I16 => buffer.push(0x06),
+            Type::U16 => buffer.push(0x07),
+            Type::I32 => buffer.push(0x08),
+            Type::U32 => buffer.push(0x09),
+            Type::I64 => buffer.push(0x0a),
+            Type::U64 => buffer.push(0x0b),
+            Type::F32 => buffer.push(0x0c),
+            Type::F64 => buffer.push(0x0d),
+            Type::ISize => buffer.push(0x18),
+            Type::USize => buffer.push(0x19),
+            Type::String => buffer.push(0x0e),
+            Type::TypeDef((namespace, name)) => todo!(), // Build a TypeDefOrRef...
+        }
+        buffer
+    }
+
+    pub fn into_streams(self) -> Streams {
         let resolution_scope = coded_index_size(&[self.Module.len(), self.ModuleRef.len(), self.AssemblyRef.len(), self.TypeRef.len()]);
         let type_def_or_ref = coded_index_size(&[self.TypeDef.len(), self.TypeRef.len(), self.TypeSpec.len()]);
         let has_constant = coded_index_size(&[self.Field.len(), self.Param.len(), self.Property.len()]);
@@ -245,11 +301,11 @@ impl Tables {
             buffer.write_index(x.MethodList, self.MethodDef.len());
         }
 
-        // for x in self.Field {
-        //     buffer.write_u16(x.Flags);
-        //     buffer.write_u32(x.Name);
-        //     buffer.write_u32(x.Signature);
-        // }
+        for x in self.Field {
+            buffer.write_u16(x.Flags);
+            buffer.write_u32(x.Name);
+            buffer.write_u32(x.Signature);
+        }
 
         // for x in self.MethodDef {
 
@@ -276,6 +332,12 @@ impl Tables {
         }
 
         buffer.resize(round(buffer.len(), 4), 0);
-        buffer
+
+        Streams { 
+            tables: buffer,
+            strings: self.strings.into_stream(),
+            blobs: self.blobs.into_stream(),
+            guids: vec![0; 16], // zero guid
+        }
     }
 }

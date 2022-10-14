@@ -18,29 +18,22 @@ use codes::*;
 pub fn write<P: AsRef<std::path::Path>>(path: P, references: &[P], items: &[Item]) {
     let references: Vec<reader::File> = references.iter().map(|path|reader::File::new(path).expect("Invalid winmd file")).collect();
     let references = reader::Reader::new(&references);
+    let mut tables =  Tables::new(&references);
 
-    // TODO: move into Tables?
-    let mut type_def_index = BTreeMap::<(&str, &str), (u32, bool)>::new();
-    let mut type_ref_index = BTreeMap::<(&str, &str), (u32, bool)>::new();
-
-    let mut tables =  Tables::new();
-    let mut strings = Strings::new();
-    let mut blobs = Blobs::new();
-
-    tables.Module.push(Module { Name: strings.insert(path.as_ref().file_name().expect("Missing file name").to_str().expect("Invalid file name")), Mvid: 1, ..Default::default() });
-    tables.TypeDef.push(TypeDef { TypeName: strings.insert("<Module>"), ..Default::default() });
-    let mscorlib = tables.AssemblyRef.push2(AssemblyRef { MajorVersion: 4, Name: strings.insert("mscorlib"), ..Default::default() });
-    let value_type = tables.TypeRef.push2(TypeRef { TypeName: strings.insert("ValueType"), TypeNamespace: strings.insert("System"), ResolutionScope: ResolutionScope::AssemblyRef(mscorlib).encode() });
-    let enum_type = tables.TypeRef.push2(TypeRef { TypeName: strings.insert("Enum"), TypeNamespace: strings.insert("System"), ResolutionScope: ResolutionScope::AssemblyRef(mscorlib).encode() });
+    tables.Module.push(Module { Name: tables.strings.insert(path.as_ref().file_name().expect("Missing file name").to_str().expect("Invalid file name")), Mvid: 1, ..Default::default() });
+    tables.TypeDef.push(TypeDef { TypeName: tables.strings.insert("<Module>"), ..Default::default() });
+    let mscorlib = tables.AssemblyRef.push2(AssemblyRef { MajorVersion: 4, Name: tables.strings.insert("mscorlib"), ..Default::default() });
+    let value_type = tables.TypeRef.push2(TypeRef { TypeName: tables.strings.insert("ValueType"), TypeNamespace: tables.strings.insert("System"), ResolutionScope: ResolutionScope::AssemblyRef(mscorlib).encode() });
+    let enum_type = tables.TypeRef.push2(TypeRef { TypeName: tables.strings.insert("Enum"), TypeNamespace: tables.strings.insert("System"), ResolutionScope: ResolutionScope::AssemblyRef(mscorlib).encode() });
 
     for (index, item) in items.iter().enumerate() {
         let index = index + 1;
         match item {
             Item::Struct(s) => {
-                type_def_index.insert((&s.name.0, &s.name.1), (index as u32, true));
+                tables.type_def_index.insert((&s.name.0, &s.name.1), (index as u32, true));
             }
             Item::Enum(e) => {
-                type_def_index.insert((&e.name.0, &e.name.1), (index as u32, true));
+                tables.type_def_index.insert((&e.name.0, &e.name.1), (index as u32, true));
             }
         }
     }
@@ -55,17 +48,18 @@ pub fn write<P: AsRef<std::path::Path>>(path: P, references: &[P], items: &[Item
                 }
                 tables.TypeDef.push(TypeDef {
                     Flags: flags.0,
-                    TypeNamespace: strings.insert(&s.name.0),
-                    TypeName: strings.insert(&s.name.1),
+                    TypeNamespace: tables.strings.insert(&s.name.0),
+                    TypeName: tables.strings.insert(&s.name.1),
                     Extends: TypeDefOrRef::TypeRef(value_type).encode(),
                     FieldList: tables.Field.len() as _,
                     MethodList: 0,
                 });
-                // for f in &s.fields {
-                //     let mut flags = FieldAttributes(0);
-                //     flags.set_public();
-                //     tables.Field.push(tables::Field { Flags: flags.0, Name: strings.insert(&f.name), Signature: blobs.insert_field_sig(&f.ty) })
-                // }
+                for f in &s.fields {
+                    let mut flags = FieldAttributes(0);
+                    flags.set_public();
+                    let signature = tables.field_sig(&f.ty);
+                    tables.Field.push(tables::Field { Flags: flags.0, Name: tables.strings.insert(&f.name), Signature: tables.blobs.insert(&signature) })
+                }
             }
             Item::Enum(e) => {
                 
@@ -73,14 +67,7 @@ pub fn write<P: AsRef<std::path::Path>>(path: P, references: &[P], items: &[Item
         }
     }
 
-    let streams = Streams { 
-        tables: tables.into_stream(),
-        strings: strings.into_stream(),
-        blobs: blobs.into_stream(),
-        guids: vec![0; 16], // zero guid
-    };
-
-    file::write(path,  streams);
+    file::write(path,  tables.into_streams());
 }
 
 pub struct Streams {

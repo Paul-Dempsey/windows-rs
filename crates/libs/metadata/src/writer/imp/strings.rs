@@ -5,12 +5,14 @@ pub struct Strings {
     stream: Vec<u8>,
 }
 
-impl Strings {
-    pub fn new() -> Self {
+impl Default for Strings {
+    fn default() -> Self {
         // The stream's first entry is always an empty string e.g. '\0'.
         Self { set: BTreeMap::new(), stream: vec![0] }
     }
+}
 
+impl Strings {
     pub fn insert(&mut self, value: &str) -> u32 {
         if value.is_empty() {
             return 0;
