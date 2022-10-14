@@ -7,7 +7,7 @@ fn writer2() {
     types.push(
         Item::Struct(Struct {
             name: ("TestWindows.Foundation".into(), "Rect".into()),
-            fields: vec![Field::new("X", Type::F32), Field::new("Y", Type::F32), Field::new("Width", Type::F32), Field::new("Height", Type::F32)],
+            fields: vec![Field::new("X", Type::F32), Field::new("Y", Type::F32), Field::new("Width", Type::F32), Field::new("Height", Type::TypeDef(("TestWindows.Foundation".into(), "Rect".into())))],
             winrt: true,
         }),
     );

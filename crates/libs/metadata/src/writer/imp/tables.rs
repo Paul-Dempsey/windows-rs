@@ -215,7 +215,27 @@ impl<'a> Tables<'a> {
             Type::ISize => buffer.push(0x18),
             Type::USize => buffer.push(0x19),
             Type::String => buffer.push(0x0e),
-            Type::TypeDef((namespace, name)) => todo!(), // Build a TypeDefOrRef...
+            Type::TypeDef((namespace, name)) => {
+                if let Some((index, value_type)) = self.type_def_index.get(&(namespace, name)) {
+                    if *value_type {
+                        buffer.push(0x11);
+                    } else {
+                        buffer.push(0x12);
+                    }
+                    let code = TypeDefOrRef::TypeDef(*index).encode();
+                    // TODO: now need the inverse of Blob::peek_usize to encode the code. 
+                    
+                } else if let Some((index, value_type)) = self.type_ref_index.get(&(namespace, name)) {
+                    if *value_type {
+                        buffer.push(0x11);
+                    } else {
+                        buffer.push(0x12);
+                    }
+                    let code = TypeDefOrRef::TypeRef(*index).encode();
+                }
+
+                panic!("Type not found");
+            }
         }
         buffer
     }
