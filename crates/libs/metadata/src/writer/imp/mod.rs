@@ -15,7 +15,7 @@ use std::mem::*;
 use tables::*;
 use codes::*;
 
-pub fn write<P: AsRef<std::path::Path>>(path: P, winrt: bool, references: &[P], items: &[Item]) {
+pub fn write<P: AsRef<std::path::Path>>(path: P, references: &[P], items: &[Item]) {
     let references: Vec<reader::File> = references.iter().map(|path|reader::File::new(path).expect("Invalid winmd file")).collect();
     let references = reader::Reader::new(&references);
 
@@ -48,7 +48,7 @@ pub fn write<P: AsRef<std::path::Path>>(path: P, winrt: bool, references: &[P], 
             Item::Struct(s) => {
                 let mut flags = TypeAttributes(0);
                 flags.set_public();
-                if winrt {
+                if s.winrt {
                     flags.set_winrt();
                 }
                 tables.TypeDef.push(TypeDef {
@@ -73,7 +73,7 @@ pub fn write<P: AsRef<std::path::Path>>(path: P, winrt: bool, references: &[P], 
         guids: vec![0; 16], // zero guid
     };
 
-    file::write(path, winrt, streams);
+    file::write(path,  streams);
 }
 
 pub struct Streams {

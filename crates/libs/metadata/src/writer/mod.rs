@@ -1,8 +1,8 @@
 mod imp;
 use std::collections::*;
 
-pub fn write<P: AsRef<std::path::Path>>(path: P, winrt: bool, references: &[P], items: &[Item]) {
-    imp::write(path, winrt, references, items)
+pub fn write<P: AsRef<std::path::Path>>(path: P, references: &[P], items: &[Item]) {
+    imp::write(path,  references, items)
 }
 
 pub enum Item {
@@ -13,11 +13,13 @@ pub enum Item {
 pub struct Struct {
     pub name: (String, String),
     pub fields: Vec<Field>,
+    pub winrt: bool,
 }
 
 pub struct Enum {
     pub name: (String, String),
     pub constants: Vec<Constant>,
+    pub winrt: bool,
 }
 
 pub struct Field {

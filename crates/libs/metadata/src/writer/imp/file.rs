@@ -2,7 +2,7 @@ use super::*;
 use std::mem::*;
 use crate::imp::*;
 
-pub fn write<P: AsRef<std::path::Path>>(path: P, winrt: bool, mut streams: Streams) {
+pub fn write<P: AsRef<std::path::Path>>(path: P,  mut streams: Streams) {
     unsafe {
         let mut dos: IMAGE_DOS_HEADER = zeroed();
         dos.e_magic = IMAGE_DOS_SIGNATURE as _;
