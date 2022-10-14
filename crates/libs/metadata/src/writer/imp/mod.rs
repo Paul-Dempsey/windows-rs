@@ -4,7 +4,7 @@ mod tables;
 mod codes;
 mod file;
 
-//use crate::imp::*;
+use crate::imp::*;
 use super::*;
 use strings::*;
 use blobs::*;
@@ -16,9 +16,6 @@ use tables::*;
 use codes::*;
 
 pub fn write<P: AsRef<std::path::Path>>(path: P, winrt: bool, references: &[P], items: &[Item]) {
-    let file_name = path.as_ref().file_name().expect("Missing file name").to_str().expect("Invalid file name");
-    assert_eq!(file_name, "test.winmd");
-
     let references: Vec<reader::File> = references.iter().map(|path|reader::File::new(path).expect("Invalid winmd file")).collect();
     let references = reader::Reader::new(&references);
 
@@ -29,7 +26,7 @@ pub fn write<P: AsRef<std::path::Path>>(path: P, winrt: bool, references: &[P], 
     let mut strings = Strings::new();
     let mut blobs = Blobs::new();
 
-    tables.Module.push(Module { Name: strings.insert(file_name), Mvid: 1, ..Default::default() });
+    tables.Module.push(Module { Name: strings.insert(path.as_ref().file_name().expect("Missing file name").to_str().expect("Invalid file name")), Mvid: 1, ..Default::default() });
     tables.TypeDef.push(TypeDef { TypeName: strings.insert("<Module>"), ..Default::default() });
     let mscorlib = tables.AssemblyRef.push2(AssemblyRef { MajorVersion: 4, Name: strings.insert("mscorlib"), ..Default::default() });
     let value_type = tables.TypeRef.push2(TypeRef { TypeName: strings.insert("ValueType"), TypeNamespace: strings.insert("System"), ResolutionScope: ResolutionScope::AssemblyRef(mscorlib).encode() });
@@ -49,7 +46,19 @@ pub fn write<P: AsRef<std::path::Path>>(path: P, winrt: bool, references: &[P], 
     for item in items {
         match item {
             Item::Struct(s) => {
-                
+                let mut flags = TypeAttributes(0);
+                flags.set_public();
+                if winrt {
+                    flags.set_winrt();
+                }
+                tables.TypeDef.push(TypeDef {
+                    Flags: flags.0,
+                    TypeNamespace: strings.insert(&s.name.0),
+                    TypeName: strings.insert(&s.name.1),
+                    Extends: TypeDefOrRef::TypeRef(value_type).encode(),
+                    FieldList: tables.Field.len() as _,
+                    MethodList: 0,
+                })
             }
             Item::Enum(e) => {
                 

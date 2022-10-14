@@ -7,6 +7,7 @@ pub(crate) struct Blobs {
 
 impl Blobs {
     pub fn new() -> Self {
+        // The stream's first entry is always an "empty" blob consisting of a single zero byte.
         Self { set: BTreeMap::new(), stream: vec![0] }
     }
 

@@ -7,6 +7,7 @@ pub struct Strings {
 
 impl Strings {
     pub fn new() -> Self {
+        // The stream's first entry is always an empty string e.g. '\0'.
         Self { set: BTreeMap::new(), stream: vec![0] }
     }
 
