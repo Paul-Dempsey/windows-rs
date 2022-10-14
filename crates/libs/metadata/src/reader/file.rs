@@ -52,11 +52,8 @@ fn error_invalid_winmd() -> Error {
 }
 
 impl File {
-    pub fn new(path: &str) -> Result<Self> {
-        let path = std::path::Path::new(path);
-
-        let mut result = File { bytes: std::fs::read(path)?, ..Default::default() };
-
+    pub fn new<P: AsRef<std::path::Path>>(path: P) -> Result<Self> {
+        let mut result = File { bytes: std::fs::read(&path)?, ..Default::default() };
         let dos = result.bytes.view_as::<IMAGE_DOS_HEADER>(0);
 
         if dos.e_magic != IMAGE_DOS_SIGNATURE as _ || result.bytes.copy_as::<u32>(dos.e_lfanew as _) != IMAGE_NT_SIGNATURE {
@@ -313,7 +310,7 @@ impl File {
         result.tables[TABLE_GENERICPARAM].set_data(&mut view);
 
         // Since the file was read successfully, we just assume it has a valid file name.
-        result.name = path.file_name().unwrap().to_string_lossy().to_string();
+        result.name = path.as_ref().file_name().unwrap().to_string_lossy().to_string();
         Ok(result)
     }
 

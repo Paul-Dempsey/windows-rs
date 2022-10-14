@@ -1176,6 +1176,9 @@ impl<'a> Reader<'a> {
         }
         result
     }
+    pub fn type_def_module(&self, row: TypeDef) -> &str {
+        self.files[row.0.file as usize].str(0, TABLE_MODULE, 1)
+    }
 
     //
     // TypeRef table queries
