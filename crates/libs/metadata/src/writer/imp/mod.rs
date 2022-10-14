@@ -19,6 +19,7 @@ pub fn write<P: AsRef<std::path::Path>>(path: P, references: &[P], items: &[Item
     let references: Vec<reader::File> = references.iter().map(|path|reader::File::new(path).expect("Invalid winmd file")).collect();
     let references = reader::Reader::new(&references);
 
+    // TODO: move into Tables?
     let mut type_def_index = BTreeMap::<(&str, &str), (u32, bool)>::new();
     let mut type_ref_index = BTreeMap::<(&str, &str), (u32, bool)>::new();
 
@@ -33,6 +34,7 @@ pub fn write<P: AsRef<std::path::Path>>(path: P, references: &[P], items: &[Item
     let enum_type = tables.TypeRef.push2(TypeRef { TypeName: strings.insert("Enum"), TypeNamespace: strings.insert("System"), ResolutionScope: ResolutionScope::AssemblyRef(mscorlib).encode() });
 
     for (index, item) in items.iter().enumerate() {
+        let index = index + 1;
         match item {
             Item::Struct(s) => {
                 type_def_index.insert((&s.name.0, &s.name.1), (index as u32, true));
@@ -58,7 +60,12 @@ pub fn write<P: AsRef<std::path::Path>>(path: P, references: &[P], items: &[Item
                     Extends: TypeDefOrRef::TypeRef(value_type).encode(),
                     FieldList: tables.Field.len() as _,
                     MethodList: 0,
-                })
+                });
+                // for f in &s.fields {
+                //     let mut flags = FieldAttributes(0);
+                //     flags.set_public();
+                //     tables.Field.push(tables::Field { Flags: flags.0, Name: strings.insert(&f.name), Signature: blobs.insert_field_sig(&f.ty) })
+                // }
             }
             Item::Enum(e) => {
                 
