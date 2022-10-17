@@ -39,6 +39,24 @@ pub fn write<P: AsRef<std::path::Path>>(path: P, references: &[P], items: &[Item
         }
     }
 
+    TODO: collect all type refs
+    for item in items {
+        match item {
+            Item::Struct(s) => {
+                for f in &s.fields {
+                    tables.
+                    let mut flags = FieldAttributes(0);
+                    flags.set_public();
+                    let signature = tables.field_sig(&f.ty);
+                    tables.Field.push(tables::Field { Flags: flags.0, Name: tables.strings.insert(&f.name), Signature: tables.blobs.insert(&signature) })
+                }
+            }
+            Item::Enum(e) => {
+                
+            }
+        }
+    }
+
     // TODO: first fill in the TypeRef table by walking the items and resolving type refs
 
     // then walk the items and fill in the definitions
