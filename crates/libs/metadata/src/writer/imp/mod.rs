@@ -26,6 +26,7 @@ pub fn write<P: AsRef<std::path::Path>>(path: P, references: &[P], items: &[Item
     let value_type = tables.TypeRef.push2(TypeRef { TypeName: tables.strings.insert("ValueType"), TypeNamespace: tables.strings.insert("System"), ResolutionScope: ResolutionScope::AssemblyRef(mscorlib).encode() });
     let enum_type = tables.TypeRef.push2(TypeRef { TypeName: tables.strings.insert("Enum"), TypeNamespace: tables.strings.insert("System"), ResolutionScope: ResolutionScope::AssemblyRef(mscorlib).encode() });
 
+    
     for (index, item) in items.iter().enumerate() {
         let index = index + 1;
         match item {
@@ -37,6 +38,10 @@ pub fn write<P: AsRef<std::path::Path>>(path: P, references: &[P], items: &[Item
             }
         }
     }
+
+    // TODO: first fill in the TypeRef table by walking the items and resolving type refs
+
+    // then walk the items and fill in the definitions
 
     for item in items {
         match item {
