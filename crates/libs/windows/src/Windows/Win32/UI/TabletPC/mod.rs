@@ -949,7 +949,7 @@ pub struct IInkCollector_Vtbl {
     pub DynamicRendering: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, enabled: *mut i16) -> ::windows::core::HRESULT,
     pub SetDynamicRendering: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, enabled: i16) -> ::windows::core::HRESULT,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub DesiredPacketDescription: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, packetguids: *mut super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub DesiredPacketDescription: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, packetguids: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     DesiredPacketDescription: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
@@ -1661,7 +1661,7 @@ pub struct IInkDisp_Vtbl {
     #[cfg(not(feature = "Win32_System_Com"))]
     HitTestWithRectangle: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub HitTestWithLasso: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, points: ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>, intersectpercent: f32, lassopoints: *mut super::super::System::Com::VARIANT, strokes: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT,
+    pub HitTestWithLasso: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, points: ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>, intersectpercent: f32, lassopoints: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>, strokes: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     HitTestWithLasso: usize,
     #[cfg(feature = "Win32_System_Com")]
@@ -1677,7 +1677,7 @@ pub struct IInkDisp_Vtbl {
     #[cfg(not(feature = "Win32_System_Com"))]
     AddStrokesAtRectangle: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub Save: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, persistenceformat: InkPersistenceFormat, compressionmode: InkPersistenceCompressionMode, data: *mut super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub Save: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, persistenceformat: InkPersistenceFormat, compressionmode: InkPersistenceCompressionMode, data: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     Save: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
@@ -2589,7 +2589,7 @@ pub struct IInkEdit_Vtbl {
     pub Factoid: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pval: *mut ::core::mem::ManuallyDrop<::windows::core::BSTR>) -> ::windows::core::HRESULT,
     pub SetFactoid: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, newval: ::core::mem::ManuallyDrop<::windows::core::BSTR>) -> ::windows::core::HRESULT,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub SelInks: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pselink: *mut super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub SelInks: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pselink: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     SelInks: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
@@ -2645,7 +2645,7 @@ pub struct IInkEdit_Vtbl {
     pub DisableNoScroll: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pval: *mut i16) -> ::windows::core::HRESULT,
     pub SetDisableNoScroll: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, newval: i16) -> ::windows::core::HRESULT,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub SelAlignment: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pvarselalignment: *mut super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub SelAlignment: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pvarselalignment: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     SelAlignment: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
@@ -2653,7 +2653,7 @@ pub struct IInkEdit_Vtbl {
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     SetSelAlignment: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub SelBold: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pvarselbold: *mut super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub SelBold: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pvarselbold: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     SelBold: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
@@ -2661,7 +2661,7 @@ pub struct IInkEdit_Vtbl {
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     SetSelBold: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub SelItalic: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pvarselitalic: *mut super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub SelItalic: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pvarselitalic: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     SelItalic: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
@@ -2669,7 +2669,7 @@ pub struct IInkEdit_Vtbl {
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     SetSelItalic: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub SelUnderline: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pvarselunderline: *mut super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub SelUnderline: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pvarselunderline: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     SelUnderline: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
@@ -2677,7 +2677,7 @@ pub struct IInkEdit_Vtbl {
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     SetSelUnderline: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub SelColor: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pvarselcolor: *mut super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub SelColor: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pvarselcolor: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     SelColor: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
@@ -2685,7 +2685,7 @@ pub struct IInkEdit_Vtbl {
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     SetSelColor: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub SelFontName: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pvarselfontname: *mut super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub SelFontName: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pvarselfontname: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     SelFontName: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
@@ -2693,7 +2693,7 @@ pub struct IInkEdit_Vtbl {
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     SetSelFontName: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub SelFontSize: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pvarselfontsize: *mut super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub SelFontSize: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pvarselfontsize: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     SelFontSize: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
@@ -2701,7 +2701,7 @@ pub struct IInkEdit_Vtbl {
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     SetSelFontSize: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub SelCharOffset: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pvarselcharoffset: *mut super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub SelCharOffset: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pvarselcharoffset: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     SelCharOffset: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
@@ -2882,7 +2882,7 @@ pub struct IInkExtendedProperty_Vtbl {
     pub base__: super::super::System::Com::IDispatch_Vtbl,
     pub Guid: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, guid: *mut ::core::mem::ManuallyDrop<::windows::core::BSTR>) -> ::windows::core::HRESULT,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub Data: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, data: *mut super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub Data: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, data: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     Data: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
@@ -3359,7 +3359,7 @@ pub struct IInkOverlay_Vtbl {
     pub DynamicRendering: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, enabled: *mut i16) -> ::windows::core::HRESULT,
     pub SetDynamicRendering: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, enabled: i16) -> ::windows::core::HRESULT,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub DesiredPacketDescription: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, packetguids: *mut super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub DesiredPacketDescription: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, packetguids: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     DesiredPacketDescription: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
@@ -3791,7 +3791,7 @@ pub struct IInkPicture_Vtbl {
     pub DynamicRendering: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, enabled: *mut i16) -> ::windows::core::HRESULT,
     pub SetDynamicRendering: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, enabled: i16) -> ::windows::core::HRESULT,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub DesiredPacketDescription: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, packetguids: *mut super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub DesiredPacketDescription: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, packetguids: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     DesiredPacketDescription: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
@@ -4014,19 +4014,19 @@ pub struct IInkRecognitionAlternate_Vtbl {
     pub String: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, recostring: *mut ::core::mem::ManuallyDrop<::windows::core::BSTR>) -> ::windows::core::HRESULT,
     pub Confidence: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, confidence: *mut InkRecognitionConfidence) -> ::windows::core::HRESULT,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub Baseline: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, baseline: *mut super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub Baseline: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, baseline: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     Baseline: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub Midline: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, midline: *mut super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub Midline: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, midline: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     Midline: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub Ascender: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, ascender: *mut super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub Ascender: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, ascender: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     Ascender: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub Descender: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, descender: *mut super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub Descender: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, descender: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     Descender: usize,
     pub LineNumber: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, linenumber: *mut i32) -> ::windows::core::HRESULT,
@@ -4059,7 +4059,7 @@ pub struct IInkRecognitionAlternate_Vtbl {
     #[cfg(not(feature = "Win32_System_Com"))]
     AlternatesWithConstantPropertyValues: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub GetPropertyValue: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, propertytype: ::core::mem::ManuallyDrop<::windows::core::BSTR>, propertyvalue: *mut super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub GetPropertyValue: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, propertytype: ::core::mem::ManuallyDrop<::windows::core::BSTR>, propertyvalue: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     GetPropertyValue: usize,
 }
@@ -4317,15 +4317,15 @@ pub struct IInkRecognizer_Vtbl {
     pub Vendor: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, vendor: *mut ::core::mem::ManuallyDrop<::windows::core::BSTR>) -> ::windows::core::HRESULT,
     pub Capabilities: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, capabilitiesflags: *mut InkRecognizerCapabilities) -> ::windows::core::HRESULT,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub Languages: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, languages: *mut super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub Languages: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, languages: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     Languages: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub SupportedProperties: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, supportedproperties: *mut super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub SupportedProperties: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, supportedproperties: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     SupportedProperties: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub PreferredPacketDescription: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, preferredpacketdescription: *mut super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub PreferredPacketDescription: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, preferredpacketdescription: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     PreferredPacketDescription: usize,
     #[cfg(feature = "Win32_System_Com")]
@@ -4387,7 +4387,7 @@ pub struct IInkRecognizer2_Vtbl {
     pub base__: super::super::System::Com::IDispatch_Vtbl,
     pub Id: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pbstrid: *mut ::core::mem::ManuallyDrop<::windows::core::BSTR>) -> ::windows::core::HRESULT,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub UnicodeRanges: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, unicoderanges: *mut super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub UnicodeRanges: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, unicoderanges: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     UnicodeRanges: usize,
 }
@@ -4668,7 +4668,7 @@ unsafe impl ::windows::core::Interface for IInkRecognizerContext2 {
 pub struct IInkRecognizerContext2_Vtbl {
     pub base__: super::super::System::Com::IDispatch_Vtbl,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub EnabledUnicodeRanges: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, unicoderanges: *mut super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub EnabledUnicodeRanges: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, unicoderanges: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     EnabledUnicodeRanges: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
@@ -5150,11 +5150,11 @@ pub struct IInkRenderer_Vtbl {
     pub PixelToInkSpace: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, hdc: isize, x: *mut i32, y: *mut i32) -> ::windows::core::HRESULT,
     pub InkSpaceToPixel: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, hdcdisplay: isize, x: *mut i32, y: *mut i32) -> ::windows::core::HRESULT,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub PixelToInkSpaceFromPoints: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, hdc: isize, points: *mut super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub PixelToInkSpaceFromPoints: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, hdc: isize, points: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     PixelToInkSpaceFromPoints: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub InkSpaceToPixelFromPoints: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, hdc: isize, points: *mut super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub InkSpaceToPixelFromPoints: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, hdc: isize, points: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     InkSpaceToPixelFromPoints: usize,
     #[cfg(feature = "Win32_System_Com")]
@@ -5403,7 +5403,7 @@ pub struct IInkStrokeDisp_Vtbl {
     pub base__: super::super::System::Com::IDispatch_Vtbl,
     pub ID: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, id: *mut i32) -> ::windows::core::HRESULT,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub BezierPoints: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, points: *mut super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub BezierPoints: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, points: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     BezierPoints: usize,
     #[cfg(feature = "Win32_System_Com")]
@@ -5423,21 +5423,21 @@ pub struct IInkStrokeDisp_Vtbl {
     #[cfg(not(feature = "Win32_System_Com"))]
     ExtendedProperties: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub PolylineCusps: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, cusps: *mut super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub PolylineCusps: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, cusps: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     PolylineCusps: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub BezierCusps: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, cusps: *mut super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub BezierCusps: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, cusps: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     BezierCusps: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub SelfIntersections: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, intersections: *mut super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub SelfIntersections: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, intersections: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     SelfIntersections: usize,
     pub PacketCount: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, plcount: *mut i32) -> ::windows::core::HRESULT,
     pub PacketSize: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, plsize: *mut i32) -> ::windows::core::HRESULT,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub PacketDescription: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, packetdescription: *mut super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub PacketDescription: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, packetdescription: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     PacketDescription: usize,
     pub Deleted: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, deleted: *mut i16) -> ::windows::core::HRESULT,
@@ -5446,11 +5446,11 @@ pub struct IInkStrokeDisp_Vtbl {
     #[cfg(not(feature = "Win32_System_Com"))]
     GetBoundingBox: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub FindIntersections: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, strokes: *mut ::core::ffi::c_void, intersections: *mut super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub FindIntersections: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, strokes: *mut ::core::ffi::c_void, intersections: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     FindIntersections: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub GetRectangleIntersections: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, rectangle: *mut ::core::ffi::c_void, intersections: *mut super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub GetRectangleIntersections: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, rectangle: *mut ::core::ffi::c_void, intersections: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     GetRectangleIntersections: usize,
     #[cfg(feature = "Win32_System_Com")]
@@ -5465,7 +5465,7 @@ pub struct IInkStrokeDisp_Vtbl {
     Split: usize,
     pub GetPacketDescriptionPropertyMetrics: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, propertyname: ::core::mem::ManuallyDrop<::windows::core::BSTR>, minimum: *mut i32, maximum: *mut i32, units: *mut TabletPropertyMetricUnit, resolution: *mut f32) -> ::windows::core::HRESULT,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub GetPoints: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, index: i32, count: i32, points: *mut super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub GetPoints: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, index: i32, count: i32, points: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     GetPoints: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
@@ -5473,11 +5473,11 @@ pub struct IInkStrokeDisp_Vtbl {
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     SetPoints: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub GetPacketData: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, index: i32, count: i32, packetdata: *mut super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub GetPacketData: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, index: i32, count: i32, packetdata: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     GetPacketData: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub GetPacketValuesByProperty: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, propertyname: ::core::mem::ManuallyDrop<::windows::core::BSTR>, index: i32, count: i32, packetvalues: *mut super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub GetPacketValuesByProperty: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, propertyname: ::core::mem::ManuallyDrop<::windows::core::BSTR>, index: i32, count: i32, packetvalues: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     GetPacketValuesByProperty: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
@@ -5485,7 +5485,7 @@ pub struct IInkStrokeDisp_Vtbl {
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     SetPacketValuesByProperty: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub GetFlattenedBezierPoints: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, fittingerror: i32, flattenedbezierpoints: *mut super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub GetFlattenedBezierPoints: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, fittingerror: i32, flattenedbezierpoints: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     GetFlattenedBezierPoints: usize,
     #[cfg(feature = "Win32_System_Com")]
@@ -8548,69 +8548,69 @@ pub const EM_SETUSEMOUSEFORINPUT: u32 = 1560u32;
 #[doc = "*Required features: `\"Win32_UI_TabletPC\"`*"]
 pub const FACILITY_INK: u32 = 40u32;
 #[doc = "*Required features: `\"Win32_UI_TabletPC\"`*"]
-pub const FACTOID_BOPOMOFO: &str = "BOPOMOFO";
+pub const FACTOID_BOPOMOFO: ::windows::core::PCWSTR = ::windows::w!("BOPOMOFO");
 #[doc = "*Required features: `\"Win32_UI_TabletPC\"`*"]
-pub const FACTOID_CHINESESIMPLECOMMON: &str = "CHS_COMMON";
+pub const FACTOID_CHINESESIMPLECOMMON: ::windows::core::PCWSTR = ::windows::w!("CHS_COMMON");
 #[doc = "*Required features: `\"Win32_UI_TabletPC\"`*"]
-pub const FACTOID_CHINESETRADITIONALCOMMON: &str = "CHT_COMMON";
+pub const FACTOID_CHINESETRADITIONALCOMMON: ::windows::core::PCWSTR = ::windows::w!("CHT_COMMON");
 #[doc = "*Required features: `\"Win32_UI_TabletPC\"`*"]
-pub const FACTOID_CURRENCY: &str = "CURRENCY";
+pub const FACTOID_CURRENCY: ::windows::core::PCWSTR = ::windows::w!("CURRENCY");
 #[doc = "*Required features: `\"Win32_UI_TabletPC\"`*"]
-pub const FACTOID_DATE: &str = "DATE";
+pub const FACTOID_DATE: ::windows::core::PCWSTR = ::windows::w!("DATE");
 #[doc = "*Required features: `\"Win32_UI_TabletPC\"`*"]
-pub const FACTOID_DEFAULT: &str = "DEFAULT";
+pub const FACTOID_DEFAULT: ::windows::core::PCWSTR = ::windows::w!("DEFAULT");
 #[doc = "*Required features: `\"Win32_UI_TabletPC\"`*"]
-pub const FACTOID_DIGIT: &str = "DIGIT";
+pub const FACTOID_DIGIT: ::windows::core::PCWSTR = ::windows::w!("DIGIT");
 #[doc = "*Required features: `\"Win32_UI_TabletPC\"`*"]
-pub const FACTOID_EMAIL: &str = "EMAIL";
+pub const FACTOID_EMAIL: ::windows::core::PCWSTR = ::windows::w!("EMAIL");
 #[doc = "*Required features: `\"Win32_UI_TabletPC\"`*"]
-pub const FACTOID_FILENAME: &str = "FILENAME";
+pub const FACTOID_FILENAME: ::windows::core::PCWSTR = ::windows::w!("FILENAME");
 #[doc = "*Required features: `\"Win32_UI_TabletPC\"`*"]
-pub const FACTOID_HANGULCOMMON: &str = "HANGUL_COMMON";
+pub const FACTOID_HANGULCOMMON: ::windows::core::PCWSTR = ::windows::w!("HANGUL_COMMON");
 #[doc = "*Required features: `\"Win32_UI_TabletPC\"`*"]
-pub const FACTOID_HANGULRARE: &str = "HANGUL_RARE";
+pub const FACTOID_HANGULRARE: ::windows::core::PCWSTR = ::windows::w!("HANGUL_RARE");
 #[doc = "*Required features: `\"Win32_UI_TabletPC\"`*"]
-pub const FACTOID_HIRAGANA: &str = "HIRAGANA";
+pub const FACTOID_HIRAGANA: ::windows::core::PCWSTR = ::windows::w!("HIRAGANA");
 #[doc = "*Required features: `\"Win32_UI_TabletPC\"`*"]
-pub const FACTOID_JAMO: &str = "JAMO";
+pub const FACTOID_JAMO: ::windows::core::PCWSTR = ::windows::w!("JAMO");
 #[doc = "*Required features: `\"Win32_UI_TabletPC\"`*"]
-pub const FACTOID_JAPANESECOMMON: &str = "JPN_COMMON";
+pub const FACTOID_JAPANESECOMMON: ::windows::core::PCWSTR = ::windows::w!("JPN_COMMON");
 #[doc = "*Required features: `\"Win32_UI_TabletPC\"`*"]
-pub const FACTOID_KANJICOMMON: &str = "KANJI_COMMON";
+pub const FACTOID_KANJICOMMON: ::windows::core::PCWSTR = ::windows::w!("KANJI_COMMON");
 #[doc = "*Required features: `\"Win32_UI_TabletPC\"`*"]
-pub const FACTOID_KANJIRARE: &str = "KANJI_RARE";
+pub const FACTOID_KANJIRARE: ::windows::core::PCWSTR = ::windows::w!("KANJI_RARE");
 #[doc = "*Required features: `\"Win32_UI_TabletPC\"`*"]
-pub const FACTOID_KATAKANA: &str = "KATAKANA";
+pub const FACTOID_KATAKANA: ::windows::core::PCWSTR = ::windows::w!("KATAKANA");
 #[doc = "*Required features: `\"Win32_UI_TabletPC\"`*"]
-pub const FACTOID_KOREANCOMMON: &str = "KOR_COMMON";
+pub const FACTOID_KOREANCOMMON: ::windows::core::PCWSTR = ::windows::w!("KOR_COMMON");
 #[doc = "*Required features: `\"Win32_UI_TabletPC\"`*"]
-pub const FACTOID_LOWERCHAR: &str = "LOWERCHAR";
+pub const FACTOID_LOWERCHAR: ::windows::core::PCWSTR = ::windows::w!("LOWERCHAR");
 #[doc = "*Required features: `\"Win32_UI_TabletPC\"`*"]
-pub const FACTOID_NONE: &str = "NONE";
+pub const FACTOID_NONE: ::windows::core::PCWSTR = ::windows::w!("NONE");
 #[doc = "*Required features: `\"Win32_UI_TabletPC\"`*"]
-pub const FACTOID_NUMBER: &str = "NUMBER";
+pub const FACTOID_NUMBER: ::windows::core::PCWSTR = ::windows::w!("NUMBER");
 #[doc = "*Required features: `\"Win32_UI_TabletPC\"`*"]
-pub const FACTOID_NUMBERSIMPLE: &str = "NUMSIMPLE";
+pub const FACTOID_NUMBERSIMPLE: ::windows::core::PCWSTR = ::windows::w!("NUMSIMPLE");
 #[doc = "*Required features: `\"Win32_UI_TabletPC\"`*"]
-pub const FACTOID_ONECHAR: &str = "ONECHAR";
+pub const FACTOID_ONECHAR: ::windows::core::PCWSTR = ::windows::w!("ONECHAR");
 #[doc = "*Required features: `\"Win32_UI_TabletPC\"`*"]
-pub const FACTOID_PERCENT: &str = "PERCENT";
+pub const FACTOID_PERCENT: ::windows::core::PCWSTR = ::windows::w!("PERCENT");
 #[doc = "*Required features: `\"Win32_UI_TabletPC\"`*"]
-pub const FACTOID_POSTALCODE: &str = "POSTALCODE";
+pub const FACTOID_POSTALCODE: ::windows::core::PCWSTR = ::windows::w!("POSTALCODE");
 #[doc = "*Required features: `\"Win32_UI_TabletPC\"`*"]
-pub const FACTOID_PUNCCHAR: &str = "PUNCCHAR";
+pub const FACTOID_PUNCCHAR: ::windows::core::PCWSTR = ::windows::w!("PUNCCHAR");
 #[doc = "*Required features: `\"Win32_UI_TabletPC\"`*"]
-pub const FACTOID_SYSTEMDICTIONARY: &str = "SYSDICT";
+pub const FACTOID_SYSTEMDICTIONARY: ::windows::core::PCWSTR = ::windows::w!("SYSDICT");
 #[doc = "*Required features: `\"Win32_UI_TabletPC\"`*"]
-pub const FACTOID_TELEPHONE: &str = "TELEPHONE";
+pub const FACTOID_TELEPHONE: ::windows::core::PCWSTR = ::windows::w!("TELEPHONE");
 #[doc = "*Required features: `\"Win32_UI_TabletPC\"`*"]
-pub const FACTOID_TIME: &str = "TIME";
+pub const FACTOID_TIME: ::windows::core::PCWSTR = ::windows::w!("TIME");
 #[doc = "*Required features: `\"Win32_UI_TabletPC\"`*"]
-pub const FACTOID_UPPERCHAR: &str = "UPPERCHAR";
+pub const FACTOID_UPPERCHAR: ::windows::core::PCWSTR = ::windows::w!("UPPERCHAR");
 #[doc = "*Required features: `\"Win32_UI_TabletPC\"`*"]
-pub const FACTOID_WEB: &str = "WEB";
+pub const FACTOID_WEB: ::windows::core::PCWSTR = ::windows::w!("WEB");
 #[doc = "*Required features: `\"Win32_UI_TabletPC\"`*"]
-pub const FACTOID_WORDLIST: &str = "WORDLIST";
+pub const FACTOID_WORDLIST: ::windows::core::PCWSTR = ::windows::w!("WORDLIST");
 #[doc = "*Required features: `\"Win32_UI_TabletPC\"`*"]
 pub const FLICK_WM_HANDLED_MASK: u32 = 1u32;
 #[doc = "*Required features: `\"Win32_UI_TabletPC\"`*"]
@@ -8917,27 +8917,27 @@ pub const IECN__BASE: u32 = 2048u32;
 #[doc = "*Required features: `\"Win32_UI_TabletPC\"`*"]
 pub const IEC__BASE: u32 = 1536u32;
 #[doc = "*Required features: `\"Win32_UI_TabletPC\"`*"]
-pub const INKEDIT_CLASS: &str = "INKEDIT";
+pub const INKEDIT_CLASS: ::windows::core::PCWSTR = ::windows::w!("INKEDIT");
 #[doc = "*Required features: `\"Win32_UI_TabletPC\"`*"]
-pub const INKEDIT_CLASSW: &str = "INKEDIT";
+pub const INKEDIT_CLASSW: ::windows::core::PCWSTR = ::windows::w!("INKEDIT");
 #[doc = "*Required features: `\"Win32_UI_TabletPC\"`*"]
-pub const INKRECOGNITIONPROPERTY_BOXNUMBER: &str = "{2C243E3A-F733-4EB6-B1F8-B5DC5C2C4CDA}";
+pub const INKRECOGNITIONPROPERTY_BOXNUMBER: ::windows::core::PCWSTR = ::windows::w!("{2C243E3A-F733-4EB6-B1F8-B5DC5C2C4CDA}");
 #[doc = "*Required features: `\"Win32_UI_TabletPC\"`*"]
-pub const INKRECOGNITIONPROPERTY_CONFIDENCELEVEL: &str = "{7DFE11A7-FB5D-4958-8765-154ADF0D833F}";
+pub const INKRECOGNITIONPROPERTY_CONFIDENCELEVEL: ::windows::core::PCWSTR = ::windows::w!("{7DFE11A7-FB5D-4958-8765-154ADF0D833F}");
 #[doc = "*Required features: `\"Win32_UI_TabletPC\"`*"]
-pub const INKRECOGNITIONPROPERTY_HOTPOINT: &str = "{CA6F40DC-5292-452a-91FB-2181C0BEC0DE}";
+pub const INKRECOGNITIONPROPERTY_HOTPOINT: ::windows::core::PCWSTR = ::windows::w!("{CA6F40DC-5292-452a-91FB-2181C0BEC0DE}");
 #[doc = "*Required features: `\"Win32_UI_TabletPC\"`*"]
-pub const INKRECOGNITIONPROPERTY_LINEMETRICS: &str = "{8CC24B27-30A9-4b96-9056-2D3A90DA0727}";
+pub const INKRECOGNITIONPROPERTY_LINEMETRICS: ::windows::core::PCWSTR = ::windows::w!("{8CC24B27-30A9-4b96-9056-2D3A90DA0727}");
 #[doc = "*Required features: `\"Win32_UI_TabletPC\"`*"]
-pub const INKRECOGNITIONPROPERTY_LINENUMBER: &str = "{DBF29F2C-5289-4BE8-B3D8-6EF63246253E}";
+pub const INKRECOGNITIONPROPERTY_LINENUMBER: ::windows::core::PCWSTR = ::windows::w!("{DBF29F2C-5289-4BE8-B3D8-6EF63246253E}");
 #[doc = "*Required features: `\"Win32_UI_TabletPC\"`*"]
-pub const INKRECOGNITIONPROPERTY_MAXIMUMSTROKECOUNT: &str = "{BF0EEC4E-4B7D-47a9-8CFA-234DD24BD22A}";
+pub const INKRECOGNITIONPROPERTY_MAXIMUMSTROKECOUNT: ::windows::core::PCWSTR = ::windows::w!("{BF0EEC4E-4B7D-47a9-8CFA-234DD24BD22A}");
 #[doc = "*Required features: `\"Win32_UI_TabletPC\"`*"]
-pub const INKRECOGNITIONPROPERTY_POINTSPERINCH: &str = "{7ED16B76-889C-468e-8276-0021B770187E}";
+pub const INKRECOGNITIONPROPERTY_POINTSPERINCH: ::windows::core::PCWSTR = ::windows::w!("{7ED16B76-889C-468e-8276-0021B770187E}");
 #[doc = "*Required features: `\"Win32_UI_TabletPC\"`*"]
-pub const INKRECOGNITIONPROPERTY_SEGMENTATION: &str = "{B3C0FE6C-FB51-4164-BA2F-844AF8F983DA}";
+pub const INKRECOGNITIONPROPERTY_SEGMENTATION: ::windows::core::PCWSTR = ::windows::w!("{B3C0FE6C-FB51-4164-BA2F-844AF8F983DA}");
 #[doc = "*Required features: `\"Win32_UI_TabletPC\"`*"]
-pub const INK_SERIALIZED_FORMAT: &str = "Ink Serialized Format";
+pub const INK_SERIALIZED_FORMAT: ::windows::core::PCWSTR = ::windows::w!("Ink Serialized Format");
 #[doc = "*Required features: `\"Win32_UI_TabletPC\"`*"]
 pub const IP_CURSOR_DOWN: u32 = 1u32;
 #[doc = "*Required features: `\"Win32_UI_TabletPC\"`*"]
@@ -8980,15 +8980,15 @@ pub const MAX_PACKET_PROPERTY_COUNT: u32 = 32u32;
 #[doc = "*Required features: `\"Win32_UI_TabletPC\"`*"]
 pub const MAX_VENDORNAME: u32 = 32u32;
 #[doc = "*Required features: `\"Win32_UI_TabletPC\"`*"]
-pub const MICROSOFT_PENINPUT_PANEL_PROPERTY_T: &str = "Microsoft PenInputPanel 1.5";
+pub const MICROSOFT_PENINPUT_PANEL_PROPERTY_T: ::windows::core::PCWSTR = ::windows::w!("Microsoft PenInputPanel 1.5");
 #[doc = "*Required features: `\"Win32_UI_TabletPC\"`*"]
-pub const MICROSOFT_TIP_COMBOBOXLIST_PROPERTY: &str = "Microsoft TIP ComboBox List Window Identifier";
+pub const MICROSOFT_TIP_COMBOBOXLIST_PROPERTY: ::windows::core::PCWSTR = ::windows::w!("Microsoft TIP ComboBox List Window Identifier");
 #[doc = "*Required features: `\"Win32_UI_TabletPC\"`*"]
-pub const MICROSOFT_TIP_NO_INSERT_BUTTON_PROPERTY: &str = "Microsoft TIP No Insert Option";
+pub const MICROSOFT_TIP_NO_INSERT_BUTTON_PROPERTY: ::windows::core::PCWSTR = ::windows::w!("Microsoft TIP No Insert Option");
 #[doc = "*Required features: `\"Win32_UI_TabletPC\"`*"]
-pub const MICROSOFT_TIP_OPENING_MSG: &str = "TabletInputPanelOpening";
+pub const MICROSOFT_TIP_OPENING_MSG: ::windows::core::PCWSTR = ::windows::w!("TabletInputPanelOpening");
 #[doc = "*Required features: `\"Win32_UI_TabletPC\"`*"]
-pub const MICROSOFT_URL_EXPERIENCE_PROPERTY: &str = "Microsoft TIP URL Experience";
+pub const MICROSOFT_URL_EXPERIENCE_PROPERTY: ::windows::core::PCWSTR = ::windows::w!("Microsoft TIP URL Experience");
 pub const MathInputControl: ::windows::core::GUID = ::windows::core::GUID::from_u128(0xc561816c_14d8_4090_830c_98d994b21c7b);
 #[doc = "*Required features: `\"Win32_UI_TabletPC\"`*"]
 pub const NUM_FLICK_DIRECTIONS: u32 = 8u32;
@@ -9054,47 +9054,47 @@ pub const RealTimeStylus: ::windows::core::GUID = ::windows::core::GUID::from_u1
 #[doc = "*Required features: `\"Win32_UI_TabletPC\"`*"]
 pub const SAFE_PARTIAL: u32 = 1u32;
 #[doc = "*Required features: `\"Win32_UI_TabletPC\"`*"]
-pub const STR_GUID_ALTITUDEORIENTATION: &str = "{82DEC5C7-F6BA-4906-894F-66D68DFC456C}";
+pub const STR_GUID_ALTITUDEORIENTATION: ::windows::core::PCWSTR = ::windows::w!("{82DEC5C7-F6BA-4906-894F-66D68DFC456C}");
 #[doc = "*Required features: `\"Win32_UI_TabletPC\"`*"]
-pub const STR_GUID_AZIMUTHORIENTATION: &str = "{029123B4-8828-410B-B250-A0536595E5DC}";
+pub const STR_GUID_AZIMUTHORIENTATION: ::windows::core::PCWSTR = ::windows::w!("{029123B4-8828-410B-B250-A0536595E5DC}");
 #[doc = "*Required features: `\"Win32_UI_TabletPC\"`*"]
-pub const STR_GUID_BUTTONPRESSURE: &str = "{8B7FEFC4-96AA-4BFE-AC26-8A5F0BE07BF5}";
+pub const STR_GUID_BUTTONPRESSURE: ::windows::core::PCWSTR = ::windows::w!("{8B7FEFC4-96AA-4BFE-AC26-8A5F0BE07BF5}");
 #[doc = "*Required features: `\"Win32_UI_TabletPC\"`*"]
-pub const STR_GUID_DEVICE_CONTACT_ID: &str = "{02585B91-049B-4750-9615-DF8948AB3C9C}";
+pub const STR_GUID_DEVICE_CONTACT_ID: ::windows::core::PCWSTR = ::windows::w!("{02585B91-049B-4750-9615-DF8948AB3C9C}");
 #[doc = "*Required features: `\"Win32_UI_TabletPC\"`*"]
-pub const STR_GUID_FINGERCONTACTCONFIDENCE: &str = "{E706C804-57F0-4F00-8A0C-853D57789BE9}";
+pub const STR_GUID_FINGERCONTACTCONFIDENCE: ::windows::core::PCWSTR = ::windows::w!("{E706C804-57F0-4F00-8A0C-853D57789BE9}");
 #[doc = "*Required features: `\"Win32_UI_TabletPC\"`*"]
-pub const STR_GUID_HEIGHT: &str = "{E61858D2-E447-4218-9D3F-18865C203DF4}";
+pub const STR_GUID_HEIGHT: ::windows::core::PCWSTR = ::windows::w!("{E61858D2-E447-4218-9D3F-18865C203DF4}");
 #[doc = "*Required features: `\"Win32_UI_TabletPC\"`*"]
-pub const STR_GUID_NORMALPRESSURE: &str = "{7307502D-F9F4-4E18-B3F2-2CE1B1A3610C}";
+pub const STR_GUID_NORMALPRESSURE: ::windows::core::PCWSTR = ::windows::w!("{7307502D-F9F4-4E18-B3F2-2CE1B1A3610C}");
 #[doc = "*Required features: `\"Win32_UI_TabletPC\"`*"]
-pub const STR_GUID_PAKETSTATUS: &str = "{6E0E07BF-AFE7-4CF7-87D1-AF6446208418}";
+pub const STR_GUID_PAKETSTATUS: ::windows::core::PCWSTR = ::windows::w!("{6E0E07BF-AFE7-4CF7-87D1-AF6446208418}");
 #[doc = "*Required features: `\"Win32_UI_TabletPC\"`*"]
-pub const STR_GUID_PITCHROTATION: &str = "{7F7E57B7-BE37-4BE1-A356-7A84160E1893}";
+pub const STR_GUID_PITCHROTATION: ::windows::core::PCWSTR = ::windows::w!("{7F7E57B7-BE37-4BE1-A356-7A84160E1893}");
 #[doc = "*Required features: `\"Win32_UI_TabletPC\"`*"]
-pub const STR_GUID_ROLLROTATION: &str = "{5D5D5E56-6BA9-4C5B-9FB0-851C91714E56}";
+pub const STR_GUID_ROLLROTATION: ::windows::core::PCWSTR = ::windows::w!("{5D5D5E56-6BA9-4C5B-9FB0-851C91714E56}");
 #[doc = "*Required features: `\"Win32_UI_TabletPC\"`*"]
-pub const STR_GUID_SERIALNUMBER: &str = "{78A81B56-0935-4493-BAAE-00541A8A16C4}";
+pub const STR_GUID_SERIALNUMBER: ::windows::core::PCWSTR = ::windows::w!("{78A81B56-0935-4493-BAAE-00541A8A16C4}");
 #[doc = "*Required features: `\"Win32_UI_TabletPC\"`*"]
-pub const STR_GUID_TANGENTPRESSURE: &str = "{6DA4488B-5244-41EC-905B-32D89AB80809}";
+pub const STR_GUID_TANGENTPRESSURE: ::windows::core::PCWSTR = ::windows::w!("{6DA4488B-5244-41EC-905B-32D89AB80809}");
 #[doc = "*Required features: `\"Win32_UI_TabletPC\"`*"]
-pub const STR_GUID_TIMERTICK: &str = "{436510C5-FED3-45D1-8B76-71D3EA7A829D}";
+pub const STR_GUID_TIMERTICK: ::windows::core::PCWSTR = ::windows::w!("{436510C5-FED3-45D1-8B76-71D3EA7A829D}");
 #[doc = "*Required features: `\"Win32_UI_TabletPC\"`*"]
-pub const STR_GUID_TWISTORIENTATION: &str = "{0D324960-13B2-41E4-ACE6-7AE9D43D2D3B}";
+pub const STR_GUID_TWISTORIENTATION: ::windows::core::PCWSTR = ::windows::w!("{0D324960-13B2-41E4-ACE6-7AE9D43D2D3B}");
 #[doc = "*Required features: `\"Win32_UI_TabletPC\"`*"]
-pub const STR_GUID_WIDTH: &str = "{BAABE94D-2712-48F5-BE9D-8F8B5EA0711A}";
+pub const STR_GUID_WIDTH: ::windows::core::PCWSTR = ::windows::w!("{BAABE94D-2712-48F5-BE9D-8F8B5EA0711A}");
 #[doc = "*Required features: `\"Win32_UI_TabletPC\"`*"]
-pub const STR_GUID_X: &str = "{598A6A8F-52C0-4BA0-93AF-AF357411A561}";
+pub const STR_GUID_X: ::windows::core::PCWSTR = ::windows::w!("{598A6A8F-52C0-4BA0-93AF-AF357411A561}");
 #[doc = "*Required features: `\"Win32_UI_TabletPC\"`*"]
-pub const STR_GUID_XTILTORIENTATION: &str = "{A8D07B3A-8BF0-40B0-95A9-B80A6BB787BF}";
+pub const STR_GUID_XTILTORIENTATION: ::windows::core::PCWSTR = ::windows::w!("{A8D07B3A-8BF0-40B0-95A9-B80A6BB787BF}");
 #[doc = "*Required features: `\"Win32_UI_TabletPC\"`*"]
-pub const STR_GUID_Y: &str = "{B53F9F75-04E0-4498-A7EE-C30DBB5A9011}";
+pub const STR_GUID_Y: ::windows::core::PCWSTR = ::windows::w!("{B53F9F75-04E0-4498-A7EE-C30DBB5A9011}");
 #[doc = "*Required features: `\"Win32_UI_TabletPC\"`*"]
-pub const STR_GUID_YAWROTATION: &str = "{6A849980-7C3A-45B7-AA82-90A262950E89}";
+pub const STR_GUID_YAWROTATION: ::windows::core::PCWSTR = ::windows::w!("{6A849980-7C3A-45B7-AA82-90A262950E89}");
 #[doc = "*Required features: `\"Win32_UI_TabletPC\"`*"]
-pub const STR_GUID_YTILTORIENTATION: &str = "{0E932389-1D77-43AF-AC00-5B950D6D4B2D}";
+pub const STR_GUID_YTILTORIENTATION: ::windows::core::PCWSTR = ::windows::w!("{0E932389-1D77-43AF-AC00-5B950D6D4B2D}");
 #[doc = "*Required features: `\"Win32_UI_TabletPC\"`*"]
-pub const STR_GUID_Z: &str = "{735ADB30-0EBB-4788-A0E4-0F316490055D}";
+pub const STR_GUID_Z: ::windows::core::PCWSTR = ::windows::w!("{735ADB30-0EBB-4788-A0E4-0F316490055D}");
 pub const SketchInk: ::windows::core::GUID = ::windows::core::GUID::from_u128(0xf0291081_e87c_4e07_97da_a0a03761e586);
 pub const StrokeBuilder: ::windows::core::GUID = ::windows::core::GUID::from_u128(0xe810cee7_6e51_4cb0_aa3a_0b985b70daf7);
 #[doc = "*Required features: `\"Win32_UI_TabletPC\"`*"]

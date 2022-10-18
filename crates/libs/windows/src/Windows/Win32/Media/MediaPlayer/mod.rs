@@ -2179,48 +2179,48 @@ pub struct IWMPContentPartner_Vtbl {
     pub base__: ::windows::core::IUnknown_Vtbl,
     pub SetCallback: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pcallback: *mut ::core::ffi::c_void) -> ::windows::core::HRESULT,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub Notify: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, r#type: WMPPartnerNotification, pcontext: *const super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub Notify: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, r#type: WMPPartnerNotification, pcontext: *const ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     Notify: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub GetItemInfo: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, bstrinfoname: ::core::mem::ManuallyDrop<::windows::core::BSTR>, pcontext: *const super::super::System::Com::VARIANT, pdata: *mut super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub GetItemInfo: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, bstrinfoname: ::core::mem::ManuallyDrop<::windows::core::BSTR>, pcontext: *const ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>, pdata: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     GetItemInfo: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub GetContentPartnerInfo: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, bstrinfoname: ::core::mem::ManuallyDrop<::windows::core::BSTR>, pdata: *mut super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub GetContentPartnerInfo: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, bstrinfoname: ::core::mem::ManuallyDrop<::windows::core::BSTR>, pdata: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     GetContentPartnerInfo: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub GetCommands: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, location: ::core::mem::ManuallyDrop<::windows::core::BSTR>, plocationcontext: *const super::super::System::Com::VARIANT, itemlocation: ::core::mem::ManuallyDrop<::windows::core::BSTR>, citemids: u32, prgitemids: *const u32, pcitemids: *mut u32, pprgitems: *mut *mut WMPContextMenuInfo) -> ::windows::core::HRESULT,
+    pub GetCommands: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, location: ::core::mem::ManuallyDrop<::windows::core::BSTR>, plocationcontext: *const ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>, itemlocation: ::core::mem::ManuallyDrop<::windows::core::BSTR>, citemids: u32, prgitemids: *const u32, pcitemids: *mut u32, pprgitems: *mut *mut ::core::mem::ManuallyDrop<WMPContextMenuInfo>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     GetCommands: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub InvokeCommand: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, dwcommandid: u32, location: ::core::mem::ManuallyDrop<::windows::core::BSTR>, plocationcontext: *const super::super::System::Com::VARIANT, itemlocation: ::core::mem::ManuallyDrop<::windows::core::BSTR>, citemids: u32, rgitemids: *const u32) -> ::windows::core::HRESULT,
+    pub InvokeCommand: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, dwcommandid: u32, location: ::core::mem::ManuallyDrop<::windows::core::BSTR>, plocationcontext: *const ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>, itemlocation: ::core::mem::ManuallyDrop<::windows::core::BSTR>, citemids: u32, rgitemids: *const u32) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     InvokeCommand: usize,
     pub CanBuySilent: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pinfo: *mut ::core::ffi::c_void, pbstrtotalprice: *mut ::core::mem::ManuallyDrop<::windows::core::BSTR>, psilentok: *mut i16) -> ::windows::core::HRESULT,
     pub Buy: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pinfo: *mut ::core::ffi::c_void, cookie: u32) -> ::windows::core::HRESULT,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub GetStreamingURL: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, st: WMPStreamingType, pstreamcontext: *const super::super::System::Com::VARIANT, pbstrurl: *mut ::core::mem::ManuallyDrop<::windows::core::BSTR>) -> ::windows::core::HRESULT,
+    pub GetStreamingURL: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, st: WMPStreamingType, pstreamcontext: *const ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>, pbstrurl: *mut ::core::mem::ManuallyDrop<::windows::core::BSTR>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     GetStreamingURL: usize,
     pub Download: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pinfo: *mut ::core::ffi::c_void, cookie: u32) -> ::windows::core::HRESULT,
     pub DownloadTrackComplete: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, hrresult: ::windows::core::HRESULT, contentid: u32, downloadtrackparam: ::core::mem::ManuallyDrop<::windows::core::BSTR>) -> ::windows::core::HRESULT,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub RefreshLicense: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, dwcookie: u32, flocal: i16, bstrurl: ::core::mem::ManuallyDrop<::windows::core::BSTR>, r#type: WMPStreamingType, contentid: u32, bstrrefreshreason: ::core::mem::ManuallyDrop<::windows::core::BSTR>, preasoncontext: *const super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub RefreshLicense: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, dwcookie: u32, flocal: i16, bstrurl: ::core::mem::ManuallyDrop<::windows::core::BSTR>, r#type: WMPStreamingType, contentid: u32, bstrrefreshreason: ::core::mem::ManuallyDrop<::windows::core::BSTR>, preasoncontext: *const ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     RefreshLicense: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub GetCatalogURL: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, dwcatalogversion: u32, dwcatalogschemaversion: u32, cataloglcid: u32, pdwnewcatalogversion: *mut u32, pbstrcatalogurl: *mut ::core::mem::ManuallyDrop<::windows::core::BSTR>, pexpirationdate: *mut super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub GetCatalogURL: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, dwcatalogversion: u32, dwcatalogschemaversion: u32, cataloglcid: u32, pdwnewcatalogversion: *mut u32, pbstrcatalogurl: *mut ::core::mem::ManuallyDrop<::windows::core::BSTR>, pexpirationdate: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     GetCatalogURL: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub GetTemplate: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, task: WMPTaskType, location: ::core::mem::ManuallyDrop<::windows::core::BSTR>, pcontext: *const super::super::System::Com::VARIANT, clicklocation: ::core::mem::ManuallyDrop<::windows::core::BSTR>, pclickcontext: *const super::super::System::Com::VARIANT, bstrfilter: ::core::mem::ManuallyDrop<::windows::core::BSTR>, bstrviewparams: ::core::mem::ManuallyDrop<::windows::core::BSTR>, pbstrtemplateurl: *mut ::core::mem::ManuallyDrop<::windows::core::BSTR>, ptemplatesize: *mut WMPTemplateSize) -> ::windows::core::HRESULT,
+    pub GetTemplate: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, task: WMPTaskType, location: ::core::mem::ManuallyDrop<::windows::core::BSTR>, pcontext: *const ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>, clicklocation: ::core::mem::ManuallyDrop<::windows::core::BSTR>, pclickcontext: *const ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>, bstrfilter: ::core::mem::ManuallyDrop<::windows::core::BSTR>, bstrviewparams: ::core::mem::ManuallyDrop<::windows::core::BSTR>, pbstrtemplateurl: *mut ::core::mem::ManuallyDrop<::windows::core::BSTR>, ptemplatesize: *mut WMPTemplateSize) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     GetTemplate: usize,
     pub UpdateDevice: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, bstrdevicename: ::core::mem::ManuallyDrop<::windows::core::BSTR>) -> ::windows::core::HRESULT,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub GetListContents: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, location: ::core::mem::ManuallyDrop<::windows::core::BSTR>, pcontext: *const super::super::System::Com::VARIANT, bstrlisttype: ::core::mem::ManuallyDrop<::windows::core::BSTR>, bstrparams: ::core::mem::ManuallyDrop<::windows::core::BSTR>, dwlistcookie: u32) -> ::windows::core::HRESULT,
+    pub GetListContents: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, location: ::core::mem::ManuallyDrop<::windows::core::BSTR>, pcontext: *const ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>, bstrlisttype: ::core::mem::ManuallyDrop<::windows::core::BSTR>, bstrparams: ::core::mem::ManuallyDrop<::windows::core::BSTR>, dwlistcookie: u32) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     GetListContents: usize,
     #[cfg(feature = "Win32_System_Com")]
@@ -2236,7 +2236,7 @@ pub struct IWMPContentPartner_Vtbl {
     pub StationEvent: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, bstrstationeventtype: ::core::mem::ManuallyDrop<::windows::core::BSTR>, stationid: u32, playlistindex: u32, trackid: u32, trackdata: ::core::mem::ManuallyDrop<::windows::core::BSTR>, dwsecondsplayed: u32) -> ::windows::core::HRESULT,
     pub CompareContainerListPrices: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, plistbase: *mut ::core::ffi::c_void, plistcompare: *mut ::core::ffi::c_void, presult: *mut i32) -> ::windows::core::HRESULT,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub VerifyPermission: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, bstrpermission: ::core::mem::ManuallyDrop<::windows::core::BSTR>, pcontext: *const super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub VerifyPermission: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, bstrpermission: ::core::mem::ManuallyDrop<::windows::core::BSTR>, pcontext: *const ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     VerifyPermission: usize,
 }
@@ -2316,7 +2316,7 @@ unsafe impl ::windows::core::Interface for IWMPContentPartnerCallback {
 pub struct IWMPContentPartnerCallback_Vtbl {
     pub base__: ::windows::core::IUnknown_Vtbl,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub Notify: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, r#type: WMPCallbackNotification, pcontext: *const super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub Notify: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, r#type: WMPCallbackNotification, pcontext: *const ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     Notify: usize,
     pub BuyComplete: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, hrresult: ::windows::core::HRESULT, dwbuycookie: u32) -> ::windows::core::HRESULT,
@@ -2331,7 +2331,7 @@ pub struct IWMPContentPartnerCallback_Vtbl {
     pub RefreshLicenseComplete: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, dwcookie: u32, contentid: u32, hrrefresh: ::windows::core::HRESULT) -> ::windows::core::HRESULT,
     pub ShowPopup: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, lindex: i32, bstrparameters: ::core::mem::ManuallyDrop<::windows::core::BSTR>) -> ::windows::core::HRESULT,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub VerifyPermissionComplete: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, bstrpermission: ::core::mem::ManuallyDrop<::windows::core::BSTR>, pcontext: *const super::super::System::Com::VARIANT, hrpermission: ::windows::core::HRESULT) -> ::windows::core::HRESULT,
+    pub VerifyPermissionComplete: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, bstrpermission: ::core::mem::ManuallyDrop<::windows::core::BSTR>, pcontext: *const ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>, hrpermission: ::windows::core::HRESULT) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     VerifyPermissionComplete: usize,
 }
@@ -4020,7 +4020,7 @@ pub struct IWMPErrorItem_Vtbl {
     pub errorCode: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, phr: *mut i32) -> ::windows::core::HRESULT,
     pub errorDescription: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pbstrdescription: *mut ::core::mem::ManuallyDrop<::windows::core::BSTR>) -> ::windows::core::HRESULT,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub errorContext: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pvarcontext: *mut super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub errorContext: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pvarcontext: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     errorContext: usize,
     pub remedy: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, plremedy: *mut i32) -> ::windows::core::HRESULT,
@@ -5930,7 +5930,7 @@ pub struct IWMPMedia3_Vtbl {
     pub base__: IWMPMedia2_Vtbl,
     pub getAttributeCountByType: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, bstrtype: ::core::mem::ManuallyDrop<::windows::core::BSTR>, bstrlanguage: ::core::mem::ManuallyDrop<::windows::core::BSTR>, plcount: *mut i32) -> ::windows::core::HRESULT,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub getItemInfoByType: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, bstrtype: ::core::mem::ManuallyDrop<::windows::core::BSTR>, bstrlanguage: ::core::mem::ManuallyDrop<::windows::core::BSTR>, lindex: i32, pvarvalue: *mut super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub getItemInfoByType: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, bstrtype: ::core::mem::ManuallyDrop<::windows::core::BSTR>, bstrlanguage: ::core::mem::ManuallyDrop<::windows::core::BSTR>, lindex: i32, pvarvalue: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     getItemInfoByType: usize,
 }
@@ -8387,11 +8387,11 @@ pub struct IWMPPluginUI_Vtbl {
     #[cfg(not(feature = "Win32_Foundation"))]
     DisplayPropertyPage: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub GetProperty: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pwszname: ::windows::core::PCWSTR, pvarproperty: *mut super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub GetProperty: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pwszname: ::windows::core::PCWSTR, pvarproperty: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     GetProperty: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub SetProperty: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pwszname: ::windows::core::PCWSTR, pvarproperty: *const super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub SetProperty: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pwszname: ::windows::core::PCWSTR, pvarproperty: *const ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     SetProperty: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_UI_WindowsAndMessaging"))]
@@ -9020,7 +9020,7 @@ pub struct IWMPStringCollection2_Vtbl {
     pub getItemInfo: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, lcollectionindex: i32, bstritemname: ::core::mem::ManuallyDrop<::windows::core::BSTR>, pbstrvalue: *mut ::core::mem::ManuallyDrop<::windows::core::BSTR>) -> ::windows::core::HRESULT,
     pub getAttributeCountByType: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, lcollectionindex: i32, bstrtype: ::core::mem::ManuallyDrop<::windows::core::BSTR>, bstrlanguage: ::core::mem::ManuallyDrop<::windows::core::BSTR>, plcount: *mut i32) -> ::windows::core::HRESULT,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub getItemInfoByType: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, lcollectionindex: i32, bstrtype: ::core::mem::ManuallyDrop<::windows::core::BSTR>, bstrlanguage: ::core::mem::ManuallyDrop<::windows::core::BSTR>, lattributeindex: i32, pvarvalue: *mut super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub getItemInfoByType: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, lcollectionindex: i32, bstrtype: ::core::mem::ManuallyDrop<::windows::core::BSTR>, bstrlanguage: ::core::mem::ManuallyDrop<::windows::core::BSTR>, lattributeindex: i32, pvarvalue: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     getItemInfoByType: usize,
 }
@@ -12326,9 +12326,9 @@ pub const IOCTL_WMP_DEVICE_CAN_SYNC: u32 = 844123479u32;
 #[doc = "*Required features: `\"Win32_Media_MediaPlayer\"`*"]
 pub const IOCTL_WMP_METADATA_ROUND_TRIP: u32 = 827346263u32;
 #[doc = "*Required features: `\"Win32_Media_MediaPlayer\"`*"]
-pub const PLUGIN_ALL_MEDIASENDTO: &str = "MediaSendTo";
+pub const PLUGIN_ALL_MEDIASENDTO: ::windows::core::PCWSTR = ::windows::w!("MediaSendTo");
 #[doc = "*Required features: `\"Win32_Media_MediaPlayer\"`*"]
-pub const PLUGIN_ALL_PLAYLISTSENDTO: &str = "PlaylistSendTo";
+pub const PLUGIN_ALL_PLAYLISTSENDTO: ::windows::core::PCWSTR = ::windows::w!("PlaylistSendTo");
 #[doc = "*Required features: `\"Win32_Media_MediaPlayer\"`*"]
 pub const PLUGIN_FLAGS_ACCEPTSMEDIA: u32 = 268435456u32;
 #[doc = "*Required features: `\"Win32_Media_MediaPlayer\"`*"]
@@ -12344,37 +12344,37 @@ pub const PLUGIN_FLAGS_INSTALLAUTORUN: u32 = 1073741824u32;
 #[doc = "*Required features: `\"Win32_Media_MediaPlayer\"`*"]
 pub const PLUGIN_FLAGS_LAUNCHPROPERTYPAGE: u32 = 536870912u32;
 #[doc = "*Required features: `\"Win32_Media_MediaPlayer\"`*"]
-pub const PLUGIN_INSTALLREGKEY: &str = "Software\\Microsoft\\MediaPlayer\\UIPlugins";
+pub const PLUGIN_INSTALLREGKEY: ::windows::core::PCWSTR = ::windows::w!("Software\\Microsoft\\MediaPlayer\\UIPlugins");
 #[doc = "*Required features: `\"Win32_Media_MediaPlayer\"`*"]
-pub const PLUGIN_INSTALLREGKEY_CAPABILITIES: &str = "Capabilities";
+pub const PLUGIN_INSTALLREGKEY_CAPABILITIES: ::windows::core::PCWSTR = ::windows::w!("Capabilities");
 #[doc = "*Required features: `\"Win32_Media_MediaPlayer\"`*"]
-pub const PLUGIN_INSTALLREGKEY_DESCRIPTION: &str = "Description";
+pub const PLUGIN_INSTALLREGKEY_DESCRIPTION: ::windows::core::PCWSTR = ::windows::w!("Description");
 #[doc = "*Required features: `\"Win32_Media_MediaPlayer\"`*"]
-pub const PLUGIN_INSTALLREGKEY_FRIENDLYNAME: &str = "FriendlyName";
+pub const PLUGIN_INSTALLREGKEY_FRIENDLYNAME: ::windows::core::PCWSTR = ::windows::w!("FriendlyName");
 #[doc = "*Required features: `\"Win32_Media_MediaPlayer\"`*"]
-pub const PLUGIN_INSTALLREGKEY_UNINSTALL: &str = "UninstallPath";
+pub const PLUGIN_INSTALLREGKEY_UNINSTALL: ::windows::core::PCWSTR = ::windows::w!("UninstallPath");
 #[doc = "*Required features: `\"Win32_Media_MediaPlayer\"`*"]
-pub const PLUGIN_MISC_CURRENTPRESET: &str = "CurrentPreset";
+pub const PLUGIN_MISC_CURRENTPRESET: ::windows::core::PCWSTR = ::windows::w!("CurrentPreset");
 #[doc = "*Required features: `\"Win32_Media_MediaPlayer\"`*"]
-pub const PLUGIN_MISC_PRESETCOUNT: &str = "PresetCount";
+pub const PLUGIN_MISC_PRESETCOUNT: ::windows::core::PCWSTR = ::windows::w!("PresetCount");
 #[doc = "*Required features: `\"Win32_Media_MediaPlayer\"`*"]
-pub const PLUGIN_MISC_PRESETNAMES: &str = "PresetNames";
+pub const PLUGIN_MISC_PRESETNAMES: ::windows::core::PCWSTR = ::windows::w!("PresetNames");
 #[doc = "*Required features: `\"Win32_Media_MediaPlayer\"`*"]
-pub const PLUGIN_MISC_QUERYDESTROY: &str = "QueryDestroy";
+pub const PLUGIN_MISC_QUERYDESTROY: ::windows::core::PCWSTR = ::windows::w!("QueryDestroy");
 #[doc = "*Required features: `\"Win32_Media_MediaPlayer\"`*"]
-pub const PLUGIN_SEPARATEWINDOW_DEFAULTHEIGHT: &str = "DefaultHeight";
+pub const PLUGIN_SEPARATEWINDOW_DEFAULTHEIGHT: ::windows::core::PCWSTR = ::windows::w!("DefaultHeight");
 #[doc = "*Required features: `\"Win32_Media_MediaPlayer\"`*"]
-pub const PLUGIN_SEPARATEWINDOW_DEFAULTWIDTH: &str = "DefaultWidth";
+pub const PLUGIN_SEPARATEWINDOW_DEFAULTWIDTH: ::windows::core::PCWSTR = ::windows::w!("DefaultWidth");
 #[doc = "*Required features: `\"Win32_Media_MediaPlayer\"`*"]
-pub const PLUGIN_SEPARATEWINDOW_MAXHEIGHT: &str = "MaxHeight";
+pub const PLUGIN_SEPARATEWINDOW_MAXHEIGHT: ::windows::core::PCWSTR = ::windows::w!("MaxHeight");
 #[doc = "*Required features: `\"Win32_Media_MediaPlayer\"`*"]
-pub const PLUGIN_SEPARATEWINDOW_MAXWIDTH: &str = "MaxWidth";
+pub const PLUGIN_SEPARATEWINDOW_MAXWIDTH: ::windows::core::PCWSTR = ::windows::w!("MaxWidth");
 #[doc = "*Required features: `\"Win32_Media_MediaPlayer\"`*"]
-pub const PLUGIN_SEPARATEWINDOW_MINHEIGHT: &str = "MinHeight";
+pub const PLUGIN_SEPARATEWINDOW_MINHEIGHT: ::windows::core::PCWSTR = ::windows::w!("MinHeight");
 #[doc = "*Required features: `\"Win32_Media_MediaPlayer\"`*"]
-pub const PLUGIN_SEPARATEWINDOW_MINWIDTH: &str = "MinWidth";
+pub const PLUGIN_SEPARATEWINDOW_MINWIDTH: ::windows::core::PCWSTR = ::windows::w!("MinWidth");
 #[doc = "*Required features: `\"Win32_Media_MediaPlayer\"`*"]
-pub const PLUGIN_SEPARATEWINDOW_RESIZABLE: &str = "Resizable";
+pub const PLUGIN_SEPARATEWINDOW_RESIZABLE: ::windows::core::PCWSTR = ::windows::w!("Resizable");
 #[doc = "*Required features: `\"Win32_Media_MediaPlayer\"`*"]
 pub const PLUGIN_TYPE_BACKGROUND: u32 = 1u32;
 #[doc = "*Required features: `\"Win32_Media_MediaPlayer\"`*"]
@@ -12449,9 +12449,9 @@ pub const WMP_PLUGINTYPE_DSP: ::windows::core::GUID = ::windows::core::GUID::fro
 pub const WMP_PLUGINTYPE_DSP_OUTOFPROC: ::windows::core::GUID = ::windows::core::GUID::from_u128(0xef29b174_c347_44cc_9a4f_2399118ff38c);
 pub const WMP_PLUGINTYPE_RENDERING: ::windows::core::GUID = ::windows::core::GUID::from_u128(0xa8554541_115d_406a_a4c7_51111c330183);
 #[doc = "*Required features: `\"Win32_Media_MediaPlayer\"`*"]
-pub const WMP_SUBSCR_DL_TYPE_BACKGROUND: &str = "background";
+pub const WMP_SUBSCR_DL_TYPE_BACKGROUND: ::windows::core::PCWSTR = ::windows::w!("background");
 #[doc = "*Required features: `\"Win32_Media_MediaPlayer\"`*"]
-pub const WMP_SUBSCR_DL_TYPE_REALTIME: &str = "real time";
+pub const WMP_SUBSCR_DL_TYPE_REALTIME: ::windows::core::PCWSTR = ::windows::w!("real time");
 pub const WMProfile_V40_100Video: ::windows::core::GUID = ::windows::core::GUID::from_u128(0x8f99ddd8_6684_456b_a0a3_33e1316895f0);
 pub const WMProfile_V40_128Audio: ::windows::core::GUID = ::windows::core::GUID::from_u128(0x93ddbe12_13dc_4e32_a35e_40378e34279a);
 pub const WMProfile_V40_16AMRadio: ::windows::core::GUID = ::windows::core::GUID::from_u128(0x0f4be81f_d57d_41e1_b2e3_2fad986bfec2);
@@ -12528,155 +12528,155 @@ pub const WMProfile_V80_FAIRVBRVideo: ::windows::core::GUID = ::windows::core::G
 pub const WMProfile_V80_HIGHVBRVideo: ::windows::core::GUID = ::windows::core::GUID::from_u128(0x0f10d9d3_3b04_4fb0_a3d3_88d4ac854acc);
 pub const WindowsMediaPlayer: ::windows::core::GUID = ::windows::core::GUID::from_u128(0x6bf52a52_394a_11d3_b153_00c04f79faa6);
 #[doc = "*Required features: `\"Win32_Media_MediaPlayer\"`*"]
-pub const g_szAllAuthors: &str = "AllAuthors";
+pub const g_szAllAuthors: ::windows::core::PCWSTR = ::windows::w!("AllAuthors");
 #[doc = "*Required features: `\"Win32_Media_MediaPlayer\"`*"]
-pub const g_szAllCPAlbumIDs: &str = "AllCPAlbumIDs";
+pub const g_szAllCPAlbumIDs: ::windows::core::PCWSTR = ::windows::w!("AllCPAlbumIDs");
 #[doc = "*Required features: `\"Win32_Media_MediaPlayer\"`*"]
-pub const g_szAllCPAlbumSubGenreIDs: &str = "AllCPAlbumSubGenreIDs";
+pub const g_szAllCPAlbumSubGenreIDs: ::windows::core::PCWSTR = ::windows::w!("AllCPAlbumSubGenreIDs");
 #[doc = "*Required features: `\"Win32_Media_MediaPlayer\"`*"]
-pub const g_szAllCPArtistIDs: &str = "AllCPArtistIDs";
+pub const g_szAllCPArtistIDs: ::windows::core::PCWSTR = ::windows::w!("AllCPArtistIDs");
 #[doc = "*Required features: `\"Win32_Media_MediaPlayer\"`*"]
-pub const g_szAllCPGenreIDs: &str = "AllCPGenreIDs";
+pub const g_szAllCPGenreIDs: ::windows::core::PCWSTR = ::windows::w!("AllCPGenreIDs");
 #[doc = "*Required features: `\"Win32_Media_MediaPlayer\"`*"]
-pub const g_szAllCPListIDs: &str = "AllCPListIDs";
+pub const g_szAllCPListIDs: ::windows::core::PCWSTR = ::windows::w!("AllCPListIDs");
 #[doc = "*Required features: `\"Win32_Media_MediaPlayer\"`*"]
-pub const g_szAllCPRadioIDs: &str = "AllCPRadioIDs";
+pub const g_szAllCPRadioIDs: ::windows::core::PCWSTR = ::windows::w!("AllCPRadioIDs");
 #[doc = "*Required features: `\"Win32_Media_MediaPlayer\"`*"]
-pub const g_szAllCPTrackIDs: &str = "AllCPTrackIDs";
+pub const g_szAllCPTrackIDs: ::windows::core::PCWSTR = ::windows::w!("AllCPTrackIDs");
 #[doc = "*Required features: `\"Win32_Media_MediaPlayer\"`*"]
-pub const g_szAllReleaseDateYears: &str = "AllReleaseDateYears";
+pub const g_szAllReleaseDateYears: ::windows::core::PCWSTR = ::windows::w!("AllReleaseDateYears");
 #[doc = "*Required features: `\"Win32_Media_MediaPlayer\"`*"]
-pub const g_szAllUserEffectiveRatingStarss: &str = "AllUserEffectiveRatingStarss";
+pub const g_szAllUserEffectiveRatingStarss: ::windows::core::PCWSTR = ::windows::w!("AllUserEffectiveRatingStarss");
 #[doc = "*Required features: `\"Win32_Media_MediaPlayer\"`*"]
-pub const g_szAllWMParentalRatings: &str = "AllWMParentalRatings";
+pub const g_szAllWMParentalRatings: ::windows::core::PCWSTR = ::windows::w!("AllWMParentalRatings");
 #[doc = "*Required features: `\"Win32_Media_MediaPlayer\"`*"]
-pub const g_szAuthor: &str = "Author";
+pub const g_szAuthor: ::windows::core::PCWSTR = ::windows::w!("Author");
 #[doc = "*Required features: `\"Win32_Media_MediaPlayer\"`*"]
-pub const g_szCPAlbumID: &str = "CPAlbumID";
+pub const g_szCPAlbumID: ::windows::core::PCWSTR = ::windows::w!("CPAlbumID");
 #[doc = "*Required features: `\"Win32_Media_MediaPlayer\"`*"]
-pub const g_szCPAlbumSubGenreID: &str = "CPAlbumSubGenreID";
+pub const g_szCPAlbumSubGenreID: ::windows::core::PCWSTR = ::windows::w!("CPAlbumSubGenreID");
 #[doc = "*Required features: `\"Win32_Media_MediaPlayer\"`*"]
-pub const g_szCPArtistID: &str = "CPArtistID";
+pub const g_szCPArtistID: ::windows::core::PCWSTR = ::windows::w!("CPArtistID");
 #[doc = "*Required features: `\"Win32_Media_MediaPlayer\"`*"]
-pub const g_szCPGenreID: &str = "CPGenreID";
+pub const g_szCPGenreID: ::windows::core::PCWSTR = ::windows::w!("CPGenreID");
 #[doc = "*Required features: `\"Win32_Media_MediaPlayer\"`*"]
-pub const g_szCPListID: &str = "CPListID";
+pub const g_szCPListID: ::windows::core::PCWSTR = ::windows::w!("CPListID");
 #[doc = "*Required features: `\"Win32_Media_MediaPlayer\"`*"]
-pub const g_szCPRadioID: &str = "CPRadioID";
+pub const g_szCPRadioID: ::windows::core::PCWSTR = ::windows::w!("CPRadioID");
 #[doc = "*Required features: `\"Win32_Media_MediaPlayer\"`*"]
-pub const g_szCPTrackID: &str = "CPTrackID";
+pub const g_szCPTrackID: ::windows::core::PCWSTR = ::windows::w!("CPTrackID");
 #[doc = "*Required features: `\"Win32_Media_MediaPlayer\"`*"]
-pub const g_szContentPartnerInfo_AccountBalance: &str = "AccountBalance";
+pub const g_szContentPartnerInfo_AccountBalance: ::windows::core::PCWSTR = ::windows::w!("AccountBalance");
 #[doc = "*Required features: `\"Win32_Media_MediaPlayer\"`*"]
-pub const g_szContentPartnerInfo_AccountType: &str = "AccountType";
+pub const g_szContentPartnerInfo_AccountType: ::windows::core::PCWSTR = ::windows::w!("AccountType");
 #[doc = "*Required features: `\"Win32_Media_MediaPlayer\"`*"]
-pub const g_szContentPartnerInfo_HasCachedCredentials: &str = "HasCachedCredentials";
+pub const g_szContentPartnerInfo_HasCachedCredentials: ::windows::core::PCWSTR = ::windows::w!("HasCachedCredentials");
 #[doc = "*Required features: `\"Win32_Media_MediaPlayer\"`*"]
-pub const g_szContentPartnerInfo_LicenseRefreshAdvanceWarning: &str = "LicenseRefreshAdvanceWarning";
+pub const g_szContentPartnerInfo_LicenseRefreshAdvanceWarning: ::windows::core::PCWSTR = ::windows::w!("LicenseRefreshAdvanceWarning");
 #[doc = "*Required features: `\"Win32_Media_MediaPlayer\"`*"]
-pub const g_szContentPartnerInfo_LoginState: &str = "LoginState";
+pub const g_szContentPartnerInfo_LoginState: ::windows::core::PCWSTR = ::windows::w!("LoginState");
 #[doc = "*Required features: `\"Win32_Media_MediaPlayer\"`*"]
-pub const g_szContentPartnerInfo_MaximumTrackPurchasePerPurchase: &str = "MaximumNumberOfTracksPerPurchase";
+pub const g_szContentPartnerInfo_MaximumTrackPurchasePerPurchase: ::windows::core::PCWSTR = ::windows::w!("MaximumNumberOfTracksPerPurchase");
 #[doc = "*Required features: `\"Win32_Media_MediaPlayer\"`*"]
-pub const g_szContentPartnerInfo_MediaPlayerAccountType: &str = "MediaPlayerAccountType";
+pub const g_szContentPartnerInfo_MediaPlayerAccountType: ::windows::core::PCWSTR = ::windows::w!("MediaPlayerAccountType");
 #[doc = "*Required features: `\"Win32_Media_MediaPlayer\"`*"]
-pub const g_szContentPartnerInfo_PurchasedTrackRequiresReDownload: &str = "PurchasedTrackRequiresReDownload";
+pub const g_szContentPartnerInfo_PurchasedTrackRequiresReDownload: ::windows::core::PCWSTR = ::windows::w!("PurchasedTrackRequiresReDownload");
 #[doc = "*Required features: `\"Win32_Media_MediaPlayer\"`*"]
-pub const g_szContentPartnerInfo_UserName: &str = "UserName";
+pub const g_szContentPartnerInfo_UserName: ::windows::core::PCWSTR = ::windows::w!("UserName");
 #[doc = "*Required features: `\"Win32_Media_MediaPlayer\"`*"]
-pub const g_szContentPrice_CannotBuy: &str = "PriceCannotBuy";
+pub const g_szContentPrice_CannotBuy: ::windows::core::PCWSTR = ::windows::w!("PriceCannotBuy");
 #[doc = "*Required features: `\"Win32_Media_MediaPlayer\"`*"]
-pub const g_szContentPrice_Free: &str = "PriceFree";
+pub const g_szContentPrice_Free: ::windows::core::PCWSTR = ::windows::w!("PriceFree");
 #[doc = "*Required features: `\"Win32_Media_MediaPlayer\"`*"]
-pub const g_szContentPrice_Unknown: &str = "PriceUnknown";
+pub const g_szContentPrice_Unknown: ::windows::core::PCWSTR = ::windows::w!("PriceUnknown");
 #[doc = "*Required features: `\"Win32_Media_MediaPlayer\"`*"]
-pub const g_szFlyoutMenu: &str = "FlyoutMenu";
+pub const g_szFlyoutMenu: ::windows::core::PCWSTR = ::windows::w!("FlyoutMenu");
 #[doc = "*Required features: `\"Win32_Media_MediaPlayer\"`*"]
-pub const g_szItemInfo_ALTLoginCaption: &str = "ALTLoginCaption";
+pub const g_szItemInfo_ALTLoginCaption: ::windows::core::PCWSTR = ::windows::w!("ALTLoginCaption");
 #[doc = "*Required features: `\"Win32_Media_MediaPlayer\"`*"]
-pub const g_szItemInfo_ALTLoginURL: &str = "ALTLoginURL";
+pub const g_szItemInfo_ALTLoginURL: ::windows::core::PCWSTR = ::windows::w!("ALTLoginURL");
 #[doc = "*Required features: `\"Win32_Media_MediaPlayer\"`*"]
-pub const g_szItemInfo_AlbumArtURL: &str = "AlbumArt";
+pub const g_szItemInfo_AlbumArtURL: ::windows::core::PCWSTR = ::windows::w!("AlbumArt");
 #[doc = "*Required features: `\"Win32_Media_MediaPlayer\"`*"]
-pub const g_szItemInfo_ArtistArtURL: &str = "ArtistArt";
+pub const g_szItemInfo_ArtistArtURL: ::windows::core::PCWSTR = ::windows::w!("ArtistArt");
 #[doc = "*Required features: `\"Win32_Media_MediaPlayer\"`*"]
-pub const g_szItemInfo_AuthenticationSuccessURL: &str = "AuthenticationSuccessURL";
+pub const g_szItemInfo_AuthenticationSuccessURL: ::windows::core::PCWSTR = ::windows::w!("AuthenticationSuccessURL");
 #[doc = "*Required features: `\"Win32_Media_MediaPlayer\"`*"]
-pub const g_szItemInfo_CreateAccountURL: &str = "CreateAccount";
+pub const g_szItemInfo_CreateAccountURL: ::windows::core::PCWSTR = ::windows::w!("CreateAccount");
 #[doc = "*Required features: `\"Win32_Media_MediaPlayer\"`*"]
-pub const g_szItemInfo_ErrorDescription: &str = "CPErrorDescription";
+pub const g_szItemInfo_ErrorDescription: ::windows::core::PCWSTR = ::windows::w!("CPErrorDescription");
 #[doc = "*Required features: `\"Win32_Media_MediaPlayer\"`*"]
-pub const g_szItemInfo_ErrorURL: &str = "CPErrorURL";
+pub const g_szItemInfo_ErrorURL: ::windows::core::PCWSTR = ::windows::w!("CPErrorURL");
 #[doc = "*Required features: `\"Win32_Media_MediaPlayer\"`*"]
-pub const g_szItemInfo_ErrorURLLinkText: &str = "CPErrorURLLinkText";
+pub const g_szItemInfo_ErrorURLLinkText: ::windows::core::PCWSTR = ::windows::w!("CPErrorURLLinkText");
 #[doc = "*Required features: `\"Win32_Media_MediaPlayer\"`*"]
-pub const g_szItemInfo_ForgetPasswordURL: &str = "ForgotPassword";
+pub const g_szItemInfo_ForgetPasswordURL: ::windows::core::PCWSTR = ::windows::w!("ForgotPassword");
 #[doc = "*Required features: `\"Win32_Media_MediaPlayer\"`*"]
-pub const g_szItemInfo_GenreArtURL: &str = "GenreArt";
+pub const g_szItemInfo_GenreArtURL: ::windows::core::PCWSTR = ::windows::w!("GenreArt");
 #[doc = "*Required features: `\"Win32_Media_MediaPlayer\"`*"]
-pub const g_szItemInfo_HTMLViewURL: &str = "HTMLViewURL";
+pub const g_szItemInfo_HTMLViewURL: ::windows::core::PCWSTR = ::windows::w!("HTMLViewURL");
 #[doc = "*Required features: `\"Win32_Media_MediaPlayer\"`*"]
-pub const g_szItemInfo_ListArtURL: &str = "ListArt";
+pub const g_szItemInfo_ListArtURL: ::windows::core::PCWSTR = ::windows::w!("ListArt");
 #[doc = "*Required features: `\"Win32_Media_MediaPlayer\"`*"]
-pub const g_szItemInfo_LoginFailureURL: &str = "LoginFailureURL";
+pub const g_szItemInfo_LoginFailureURL: ::windows::core::PCWSTR = ::windows::w!("LoginFailureURL");
 #[doc = "*Required features: `\"Win32_Media_MediaPlayer\"`*"]
-pub const g_szItemInfo_PopupCaption: &str = "PopupCaption";
+pub const g_szItemInfo_PopupCaption: ::windows::core::PCWSTR = ::windows::w!("PopupCaption");
 #[doc = "*Required features: `\"Win32_Media_MediaPlayer\"`*"]
-pub const g_szItemInfo_PopupURL: &str = "Popup";
+pub const g_szItemInfo_PopupURL: ::windows::core::PCWSTR = ::windows::w!("Popup");
 #[doc = "*Required features: `\"Win32_Media_MediaPlayer\"`*"]
-pub const g_szItemInfo_RadioArtURL: &str = "RadioArt";
+pub const g_szItemInfo_RadioArtURL: ::windows::core::PCWSTR = ::windows::w!("RadioArt");
 #[doc = "*Required features: `\"Win32_Media_MediaPlayer\"`*"]
-pub const g_szItemInfo_SubGenreArtURL: &str = "SubGenreArt";
+pub const g_szItemInfo_SubGenreArtURL: ::windows::core::PCWSTR = ::windows::w!("SubGenreArt");
 #[doc = "*Required features: `\"Win32_Media_MediaPlayer\"`*"]
-pub const g_szItemInfo_TreeListIconURL: &str = "CPListIDIcon";
+pub const g_szItemInfo_TreeListIconURL: ::windows::core::PCWSTR = ::windows::w!("CPListIDIcon");
 #[doc = "*Required features: `\"Win32_Media_MediaPlayer\"`*"]
-pub const g_szMediaPlayerTask_Browse: &str = "Browse";
+pub const g_szMediaPlayerTask_Browse: ::windows::core::PCWSTR = ::windows::w!("Browse");
 #[doc = "*Required features: `\"Win32_Media_MediaPlayer\"`*"]
-pub const g_szMediaPlayerTask_Burn: &str = "Burn";
+pub const g_szMediaPlayerTask_Burn: ::windows::core::PCWSTR = ::windows::w!("Burn");
 #[doc = "*Required features: `\"Win32_Media_MediaPlayer\"`*"]
-pub const g_szMediaPlayerTask_Sync: &str = "Sync";
+pub const g_szMediaPlayerTask_Sync: ::windows::core::PCWSTR = ::windows::w!("Sync");
 #[doc = "*Required features: `\"Win32_Media_MediaPlayer\"`*"]
-pub const g_szOnlineStore: &str = "OnlineStore";
+pub const g_szOnlineStore: ::windows::core::PCWSTR = ::windows::w!("OnlineStore");
 #[doc = "*Required features: `\"Win32_Media_MediaPlayer\"`*"]
-pub const g_szRefreshLicenseBurn: &str = "RefreshForBurn";
+pub const g_szRefreshLicenseBurn: ::windows::core::PCWSTR = ::windows::w!("RefreshForBurn");
 #[doc = "*Required features: `\"Win32_Media_MediaPlayer\"`*"]
-pub const g_szRefreshLicensePlay: &str = "RefreshForPlay";
+pub const g_szRefreshLicensePlay: ::windows::core::PCWSTR = ::windows::w!("RefreshForPlay");
 #[doc = "*Required features: `\"Win32_Media_MediaPlayer\"`*"]
-pub const g_szRefreshLicenseSync: &str = "RefreshForSync";
+pub const g_szRefreshLicenseSync: ::windows::core::PCWSTR = ::windows::w!("RefreshForSync");
 #[doc = "*Required features: `\"Win32_Media_MediaPlayer\"`*"]
-pub const g_szReleaseDateYear: &str = "ReleaseDateYear";
+pub const g_szReleaseDateYear: ::windows::core::PCWSTR = ::windows::w!("ReleaseDateYear");
 #[doc = "*Required features: `\"Win32_Media_MediaPlayer\"`*"]
-pub const g_szRootLocation: &str = "RootLocation";
+pub const g_szRootLocation: ::windows::core::PCWSTR = ::windows::w!("RootLocation");
 #[doc = "*Required features: `\"Win32_Media_MediaPlayer\"`*"]
-pub const g_szStationEvent_Complete: &str = "TrackComplete";
+pub const g_szStationEvent_Complete: ::windows::core::PCWSTR = ::windows::w!("TrackComplete");
 #[doc = "*Required features: `\"Win32_Media_MediaPlayer\"`*"]
-pub const g_szStationEvent_Skipped: &str = "TrackSkipped";
+pub const g_szStationEvent_Skipped: ::windows::core::PCWSTR = ::windows::w!("TrackSkipped");
 #[doc = "*Required features: `\"Win32_Media_MediaPlayer\"`*"]
-pub const g_szStationEvent_Started: &str = "TrackStarted";
+pub const g_szStationEvent_Started: ::windows::core::PCWSTR = ::windows::w!("TrackStarted");
 #[doc = "*Required features: `\"Win32_Media_MediaPlayer\"`*"]
-pub const g_szUnknownLocation: &str = "UnknownLocation";
+pub const g_szUnknownLocation: ::windows::core::PCWSTR = ::windows::w!("UnknownLocation");
 #[doc = "*Required features: `\"Win32_Media_MediaPlayer\"`*"]
-pub const g_szUserEffectiveRatingStars: &str = "UserEffectiveRatingStars";
+pub const g_szUserEffectiveRatingStars: ::windows::core::PCWSTR = ::windows::w!("UserEffectiveRatingStars");
 #[doc = "*Required features: `\"Win32_Media_MediaPlayer\"`*"]
-pub const g_szUserPlaylist: &str = "UserPlaylist";
+pub const g_szUserPlaylist: ::windows::core::PCWSTR = ::windows::w!("UserPlaylist");
 #[doc = "*Required features: `\"Win32_Media_MediaPlayer\"`*"]
-pub const g_szVerifyPermissionSync: &str = "VerifyPermissionSync";
+pub const g_szVerifyPermissionSync: ::windows::core::PCWSTR = ::windows::w!("VerifyPermissionSync");
 #[doc = "*Required features: `\"Win32_Media_MediaPlayer\"`*"]
-pub const g_szVideoRecent: &str = "VideoRecent";
+pub const g_szVideoRecent: ::windows::core::PCWSTR = ::windows::w!("VideoRecent");
 #[doc = "*Required features: `\"Win32_Media_MediaPlayer\"`*"]
-pub const g_szVideoRoot: &str = "VideoRoot";
+pub const g_szVideoRoot: ::windows::core::PCWSTR = ::windows::w!("VideoRoot");
 #[doc = "*Required features: `\"Win32_Media_MediaPlayer\"`*"]
-pub const g_szViewMode_Details: &str = "ViewModeDetails";
+pub const g_szViewMode_Details: ::windows::core::PCWSTR = ::windows::w!("ViewModeDetails");
 #[doc = "*Required features: `\"Win32_Media_MediaPlayer\"`*"]
-pub const g_szViewMode_Icon: &str = "ViewModeIcon";
+pub const g_szViewMode_Icon: ::windows::core::PCWSTR = ::windows::w!("ViewModeIcon");
 #[doc = "*Required features: `\"Win32_Media_MediaPlayer\"`*"]
-pub const g_szViewMode_OrderedList: &str = "ViewModeOrderedList";
+pub const g_szViewMode_OrderedList: ::windows::core::PCWSTR = ::windows::w!("ViewModeOrderedList");
 #[doc = "*Required features: `\"Win32_Media_MediaPlayer\"`*"]
-pub const g_szViewMode_Report: &str = "ViewModeReport";
+pub const g_szViewMode_Report: ::windows::core::PCWSTR = ::windows::w!("ViewModeReport");
 #[doc = "*Required features: `\"Win32_Media_MediaPlayer\"`*"]
-pub const g_szViewMode_Tile: &str = "ViewModeTile";
+pub const g_szViewMode_Tile: ::windows::core::PCWSTR = ::windows::w!("ViewModeTile");
 #[doc = "*Required features: `\"Win32_Media_MediaPlayer\"`*"]
-pub const g_szWMParentalRating: &str = "WMParentalRating";
+pub const g_szWMParentalRating: ::windows::core::PCWSTR = ::windows::w!("WMParentalRating");
 #[doc = "*Required features: `\"Win32_Media_MediaPlayer\"`*"]
 pub const kfltTimedLevelMaximumFrequency: f32 = 22050f32;
 #[doc = "*Required features: `\"Win32_Media_MediaPlayer\"`*"]

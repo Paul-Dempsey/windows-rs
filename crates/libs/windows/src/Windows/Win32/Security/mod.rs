@@ -303,95 +303,95 @@ where
 #[doc = "*Required features: `\"Win32_Security\"`, `\"Win32_Foundation\"`*"]
 #[cfg(feature = "Win32_Foundation")]
 #[inline]
-pub unsafe fn AddAccessAllowedAce<'a, P0>(pacl: *mut ACL, dwacerevision: u32, accessmask: u32, psid: P0) -> super::Foundation::BOOL
+pub unsafe fn AddAccessAllowedAce<'a, P0>(pacl: *mut ACL, dwacerevision: ACE_REVISION, accessmask: u32, psid: P0) -> super::Foundation::BOOL
 where
     P0: ::std::convert::Into<super::Foundation::PSID>,
 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn AddAccessAllowedAce(pacl: *mut ACL, dwacerevision: u32, accessmask: u32, psid: super::Foundation::PSID) -> super::Foundation::BOOL;
+        fn AddAccessAllowedAce(pacl: *mut ACL, dwacerevision: ACE_REVISION, accessmask: u32, psid: super::Foundation::PSID) -> super::Foundation::BOOL;
     }
     AddAccessAllowedAce(::core::mem::transmute(pacl), dwacerevision, accessmask, psid.into())
 }
 #[doc = "*Required features: `\"Win32_Security\"`, `\"Win32_Foundation\"`*"]
 #[cfg(feature = "Win32_Foundation")]
 #[inline]
-pub unsafe fn AddAccessAllowedAceEx<'a, P0>(pacl: *mut ACL, dwacerevision: u32, aceflags: ACE_FLAGS, accessmask: u32, psid: P0) -> super::Foundation::BOOL
+pub unsafe fn AddAccessAllowedAceEx<'a, P0>(pacl: *mut ACL, dwacerevision: ACE_REVISION, aceflags: ACE_FLAGS, accessmask: u32, psid: P0) -> super::Foundation::BOOL
 where
     P0: ::std::convert::Into<super::Foundation::PSID>,
 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn AddAccessAllowedAceEx(pacl: *mut ACL, dwacerevision: u32, aceflags: ACE_FLAGS, accessmask: u32, psid: super::Foundation::PSID) -> super::Foundation::BOOL;
+        fn AddAccessAllowedAceEx(pacl: *mut ACL, dwacerevision: ACE_REVISION, aceflags: ACE_FLAGS, accessmask: u32, psid: super::Foundation::PSID) -> super::Foundation::BOOL;
     }
     AddAccessAllowedAceEx(::core::mem::transmute(pacl), dwacerevision, aceflags, accessmask, psid.into())
 }
 #[doc = "*Required features: `\"Win32_Security\"`, `\"Win32_Foundation\"`*"]
 #[cfg(feature = "Win32_Foundation")]
 #[inline]
-pub unsafe fn AddAccessAllowedObjectAce<'a, P0>(pacl: *mut ACL, dwacerevision: u32, aceflags: ACE_FLAGS, accessmask: u32, objecttypeguid: ::core::option::Option<*const ::windows::core::GUID>, inheritedobjecttypeguid: ::core::option::Option<*const ::windows::core::GUID>, psid: P0) -> super::Foundation::BOOL
+pub unsafe fn AddAccessAllowedObjectAce<'a, P0>(pacl: *mut ACL, dwacerevision: ACE_REVISION, aceflags: ACE_FLAGS, accessmask: u32, objecttypeguid: ::core::option::Option<*const ::windows::core::GUID>, inheritedobjecttypeguid: ::core::option::Option<*const ::windows::core::GUID>, psid: P0) -> super::Foundation::BOOL
 where
     P0: ::std::convert::Into<super::Foundation::PSID>,
 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn AddAccessAllowedObjectAce(pacl: *mut ACL, dwacerevision: u32, aceflags: ACE_FLAGS, accessmask: u32, objecttypeguid: *const ::windows::core::GUID, inheritedobjecttypeguid: *const ::windows::core::GUID, psid: super::Foundation::PSID) -> super::Foundation::BOOL;
+        fn AddAccessAllowedObjectAce(pacl: *mut ACL, dwacerevision: ACE_REVISION, aceflags: ACE_FLAGS, accessmask: u32, objecttypeguid: *const ::windows::core::GUID, inheritedobjecttypeguid: *const ::windows::core::GUID, psid: super::Foundation::PSID) -> super::Foundation::BOOL;
     }
     AddAccessAllowedObjectAce(::core::mem::transmute(pacl), dwacerevision, aceflags, accessmask, ::core::mem::transmute(objecttypeguid.unwrap_or(::std::ptr::null())), ::core::mem::transmute(inheritedobjecttypeguid.unwrap_or(::std::ptr::null())), psid.into())
 }
 #[doc = "*Required features: `\"Win32_Security\"`, `\"Win32_Foundation\"`*"]
 #[cfg(feature = "Win32_Foundation")]
 #[inline]
-pub unsafe fn AddAccessDeniedAce<'a, P0>(pacl: *mut ACL, dwacerevision: u32, accessmask: u32, psid: P0) -> super::Foundation::BOOL
+pub unsafe fn AddAccessDeniedAce<'a, P0>(pacl: *mut ACL, dwacerevision: ACE_REVISION, accessmask: u32, psid: P0) -> super::Foundation::BOOL
 where
     P0: ::std::convert::Into<super::Foundation::PSID>,
 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn AddAccessDeniedAce(pacl: *mut ACL, dwacerevision: u32, accessmask: u32, psid: super::Foundation::PSID) -> super::Foundation::BOOL;
+        fn AddAccessDeniedAce(pacl: *mut ACL, dwacerevision: ACE_REVISION, accessmask: u32, psid: super::Foundation::PSID) -> super::Foundation::BOOL;
     }
     AddAccessDeniedAce(::core::mem::transmute(pacl), dwacerevision, accessmask, psid.into())
 }
 #[doc = "*Required features: `\"Win32_Security\"`, `\"Win32_Foundation\"`*"]
 #[cfg(feature = "Win32_Foundation")]
 #[inline]
-pub unsafe fn AddAccessDeniedAceEx<'a, P0>(pacl: *mut ACL, dwacerevision: u32, aceflags: ACE_FLAGS, accessmask: u32, psid: P0) -> super::Foundation::BOOL
+pub unsafe fn AddAccessDeniedAceEx<'a, P0>(pacl: *mut ACL, dwacerevision: ACE_REVISION, aceflags: ACE_FLAGS, accessmask: u32, psid: P0) -> super::Foundation::BOOL
 where
     P0: ::std::convert::Into<super::Foundation::PSID>,
 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn AddAccessDeniedAceEx(pacl: *mut ACL, dwacerevision: u32, aceflags: ACE_FLAGS, accessmask: u32, psid: super::Foundation::PSID) -> super::Foundation::BOOL;
+        fn AddAccessDeniedAceEx(pacl: *mut ACL, dwacerevision: ACE_REVISION, aceflags: ACE_FLAGS, accessmask: u32, psid: super::Foundation::PSID) -> super::Foundation::BOOL;
     }
     AddAccessDeniedAceEx(::core::mem::transmute(pacl), dwacerevision, aceflags, accessmask, psid.into())
 }
 #[doc = "*Required features: `\"Win32_Security\"`, `\"Win32_Foundation\"`*"]
 #[cfg(feature = "Win32_Foundation")]
 #[inline]
-pub unsafe fn AddAccessDeniedObjectAce<'a, P0>(pacl: *mut ACL, dwacerevision: u32, aceflags: ACE_FLAGS, accessmask: u32, objecttypeguid: ::core::option::Option<*const ::windows::core::GUID>, inheritedobjecttypeguid: ::core::option::Option<*const ::windows::core::GUID>, psid: P0) -> super::Foundation::BOOL
+pub unsafe fn AddAccessDeniedObjectAce<'a, P0>(pacl: *mut ACL, dwacerevision: ACE_REVISION, aceflags: ACE_FLAGS, accessmask: u32, objecttypeguid: ::core::option::Option<*const ::windows::core::GUID>, inheritedobjecttypeguid: ::core::option::Option<*const ::windows::core::GUID>, psid: P0) -> super::Foundation::BOOL
 where
     P0: ::std::convert::Into<super::Foundation::PSID>,
 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn AddAccessDeniedObjectAce(pacl: *mut ACL, dwacerevision: u32, aceflags: ACE_FLAGS, accessmask: u32, objecttypeguid: *const ::windows::core::GUID, inheritedobjecttypeguid: *const ::windows::core::GUID, psid: super::Foundation::PSID) -> super::Foundation::BOOL;
+        fn AddAccessDeniedObjectAce(pacl: *mut ACL, dwacerevision: ACE_REVISION, aceflags: ACE_FLAGS, accessmask: u32, objecttypeguid: *const ::windows::core::GUID, inheritedobjecttypeguid: *const ::windows::core::GUID, psid: super::Foundation::PSID) -> super::Foundation::BOOL;
     }
     AddAccessDeniedObjectAce(::core::mem::transmute(pacl), dwacerevision, aceflags, accessmask, ::core::mem::transmute(objecttypeguid.unwrap_or(::std::ptr::null())), ::core::mem::transmute(inheritedobjecttypeguid.unwrap_or(::std::ptr::null())), psid.into())
 }
 #[doc = "*Required features: `\"Win32_Security\"`, `\"Win32_Foundation\"`*"]
 #[cfg(feature = "Win32_Foundation")]
 #[inline]
-pub unsafe fn AddAce(pacl: *mut ACL, dwacerevision: u32, dwstartingaceindex: u32, pacelist: *const ::core::ffi::c_void, nacelistlength: u32) -> super::Foundation::BOOL {
+pub unsafe fn AddAce(pacl: *mut ACL, dwacerevision: ACE_REVISION, dwstartingaceindex: u32, pacelist: *const ::core::ffi::c_void, nacelistlength: u32) -> super::Foundation::BOOL {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn AddAce(pacl: *mut ACL, dwacerevision: u32, dwstartingaceindex: u32, pacelist: *const ::core::ffi::c_void, nacelistlength: u32) -> super::Foundation::BOOL;
+        fn AddAce(pacl: *mut ACL, dwacerevision: ACE_REVISION, dwstartingaceindex: u32, pacelist: *const ::core::ffi::c_void, nacelistlength: u32) -> super::Foundation::BOOL;
     }
     AddAce(::core::mem::transmute(pacl), dwacerevision, dwstartingaceindex, ::core::mem::transmute(pacelist), nacelistlength)
 }
 #[doc = "*Required features: `\"Win32_Security\"`, `\"Win32_Foundation\"`*"]
 #[cfg(feature = "Win32_Foundation")]
 #[inline]
-pub unsafe fn AddAuditAccessAce<'a, P0, P1, P2>(pacl: *mut ACL, dwacerevision: u32, dwaccessmask: u32, psid: P0, bauditsuccess: P1, bauditfailure: P2) -> super::Foundation::BOOL
+pub unsafe fn AddAuditAccessAce<'a, P0, P1, P2>(pacl: *mut ACL, dwacerevision: ACE_REVISION, dwaccessmask: u32, psid: P0, bauditsuccess: P1, bauditfailure: P2) -> super::Foundation::BOOL
 where
     P0: ::std::convert::Into<super::Foundation::PSID>,
     P1: ::std::convert::Into<super::Foundation::BOOL>,
@@ -399,14 +399,14 @@ where
 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn AddAuditAccessAce(pacl: *mut ACL, dwacerevision: u32, dwaccessmask: u32, psid: super::Foundation::PSID, bauditsuccess: super::Foundation::BOOL, bauditfailure: super::Foundation::BOOL) -> super::Foundation::BOOL;
+        fn AddAuditAccessAce(pacl: *mut ACL, dwacerevision: ACE_REVISION, dwaccessmask: u32, psid: super::Foundation::PSID, bauditsuccess: super::Foundation::BOOL, bauditfailure: super::Foundation::BOOL) -> super::Foundation::BOOL;
     }
     AddAuditAccessAce(::core::mem::transmute(pacl), dwacerevision, dwaccessmask, psid.into(), bauditsuccess.into(), bauditfailure.into())
 }
 #[doc = "*Required features: `\"Win32_Security\"`, `\"Win32_Foundation\"`*"]
 #[cfg(feature = "Win32_Foundation")]
 #[inline]
-pub unsafe fn AddAuditAccessAceEx<'a, P0, P1, P2>(pacl: *mut ACL, dwacerevision: u32, aceflags: ACE_FLAGS, dwaccessmask: u32, psid: P0, bauditsuccess: P1, bauditfailure: P2) -> super::Foundation::BOOL
+pub unsafe fn AddAuditAccessAceEx<'a, P0, P1, P2>(pacl: *mut ACL, dwacerevision: ACE_REVISION, aceflags: ACE_FLAGS, dwaccessmask: u32, psid: P0, bauditsuccess: P1, bauditfailure: P2) -> super::Foundation::BOOL
 where
     P0: ::std::convert::Into<super::Foundation::PSID>,
     P1: ::std::convert::Into<super::Foundation::BOOL>,
@@ -414,14 +414,14 @@ where
 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn AddAuditAccessAceEx(pacl: *mut ACL, dwacerevision: u32, aceflags: ACE_FLAGS, dwaccessmask: u32, psid: super::Foundation::PSID, bauditsuccess: super::Foundation::BOOL, bauditfailure: super::Foundation::BOOL) -> super::Foundation::BOOL;
+        fn AddAuditAccessAceEx(pacl: *mut ACL, dwacerevision: ACE_REVISION, aceflags: ACE_FLAGS, dwaccessmask: u32, psid: super::Foundation::PSID, bauditsuccess: super::Foundation::BOOL, bauditfailure: super::Foundation::BOOL) -> super::Foundation::BOOL;
     }
     AddAuditAccessAceEx(::core::mem::transmute(pacl), dwacerevision, aceflags, dwaccessmask, psid.into(), bauditsuccess.into(), bauditfailure.into())
 }
 #[doc = "*Required features: `\"Win32_Security\"`, `\"Win32_Foundation\"`*"]
 #[cfg(feature = "Win32_Foundation")]
 #[inline]
-pub unsafe fn AddAuditAccessObjectAce<'a, P0, P1, P2>(pacl: *mut ACL, dwacerevision: u32, aceflags: ACE_FLAGS, accessmask: u32, objecttypeguid: ::core::option::Option<*const ::windows::core::GUID>, inheritedobjecttypeguid: ::core::option::Option<*const ::windows::core::GUID>, psid: P0, bauditsuccess: P1, bauditfailure: P2) -> super::Foundation::BOOL
+pub unsafe fn AddAuditAccessObjectAce<'a, P0, P1, P2>(pacl: *mut ACL, dwacerevision: ACE_REVISION, aceflags: ACE_FLAGS, accessmask: u32, objecttypeguid: ::core::option::Option<*const ::windows::core::GUID>, inheritedobjecttypeguid: ::core::option::Option<*const ::windows::core::GUID>, psid: P0, bauditsuccess: P1, bauditfailure: P2) -> super::Foundation::BOOL
 where
     P0: ::std::convert::Into<super::Foundation::PSID>,
     P1: ::std::convert::Into<super::Foundation::BOOL>,
@@ -429,21 +429,21 @@ where
 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn AddAuditAccessObjectAce(pacl: *mut ACL, dwacerevision: u32, aceflags: ACE_FLAGS, accessmask: u32, objecttypeguid: *const ::windows::core::GUID, inheritedobjecttypeguid: *const ::windows::core::GUID, psid: super::Foundation::PSID, bauditsuccess: super::Foundation::BOOL, bauditfailure: super::Foundation::BOOL) -> super::Foundation::BOOL;
+        fn AddAuditAccessObjectAce(pacl: *mut ACL, dwacerevision: ACE_REVISION, aceflags: ACE_FLAGS, accessmask: u32, objecttypeguid: *const ::windows::core::GUID, inheritedobjecttypeguid: *const ::windows::core::GUID, psid: super::Foundation::PSID, bauditsuccess: super::Foundation::BOOL, bauditfailure: super::Foundation::BOOL) -> super::Foundation::BOOL;
     }
     AddAuditAccessObjectAce(::core::mem::transmute(pacl), dwacerevision, aceflags, accessmask, ::core::mem::transmute(objecttypeguid.unwrap_or(::std::ptr::null())), ::core::mem::transmute(inheritedobjecttypeguid.unwrap_or(::std::ptr::null())), psid.into(), bauditsuccess.into(), bauditfailure.into())
 }
 #[doc = "*Required features: `\"Win32_Security\"`, `\"Win32_Foundation\"`*"]
 #[cfg(feature = "Win32_Foundation")]
 #[inline]
-pub unsafe fn AddConditionalAce<'a, P0, P1>(pacl: *mut ACL, dwacerevision: u32, aceflags: ACE_FLAGS, acetype: u8, accessmask: u32, psid: P0, conditionstr: P1, returnlength: *mut u32) -> super::Foundation::BOOL
+pub unsafe fn AddConditionalAce<'a, P0, P1>(pacl: *mut ACL, dwacerevision: ACE_REVISION, aceflags: ACE_FLAGS, acetype: u8, accessmask: u32, psid: P0, conditionstr: P1, returnlength: *mut u32) -> super::Foundation::BOOL
 where
     P0: ::std::convert::Into<super::Foundation::PSID>,
     P1: ::std::convert::Into<::windows::core::PCWSTR>,
 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn AddConditionalAce(pacl: *mut ACL, dwacerevision: u32, aceflags: ACE_FLAGS, acetype: u8, accessmask: u32, psid: super::Foundation::PSID, conditionstr: ::windows::core::PCWSTR, returnlength: *mut u32) -> super::Foundation::BOOL;
+        fn AddConditionalAce(pacl: *mut ACL, dwacerevision: ACE_REVISION, aceflags: ACE_FLAGS, acetype: u8, accessmask: u32, psid: super::Foundation::PSID, conditionstr: ::windows::core::PCWSTR, returnlength: *mut u32) -> super::Foundation::BOOL;
     }
     AddConditionalAce(::core::mem::transmute(pacl), dwacerevision, aceflags, acetype, accessmask, psid.into(), conditionstr.into(), ::core::mem::transmute(returnlength))
 }
@@ -463,26 +463,26 @@ where
 #[doc = "*Required features: `\"Win32_Security\"`, `\"Win32_Foundation\"`*"]
 #[cfg(feature = "Win32_Foundation")]
 #[inline]
-pub unsafe fn AddResourceAttributeAce<'a, P0>(pacl: *mut ACL, dwacerevision: u32, aceflags: ACE_FLAGS, accessmask: u32, psid: P0, pattributeinfo: *const CLAIM_SECURITY_ATTRIBUTES_INFORMATION, preturnlength: *mut u32) -> super::Foundation::BOOL
+pub unsafe fn AddResourceAttributeAce<'a, P0>(pacl: *mut ACL, dwacerevision: ACE_REVISION, aceflags: ACE_FLAGS, accessmask: u32, psid: P0, pattributeinfo: *const CLAIM_SECURITY_ATTRIBUTES_INFORMATION, preturnlength: *mut u32) -> super::Foundation::BOOL
 where
     P0: ::std::convert::Into<super::Foundation::PSID>,
 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn AddResourceAttributeAce(pacl: *mut ACL, dwacerevision: u32, aceflags: ACE_FLAGS, accessmask: u32, psid: super::Foundation::PSID, pattributeinfo: *const CLAIM_SECURITY_ATTRIBUTES_INFORMATION, preturnlength: *mut u32) -> super::Foundation::BOOL;
+        fn AddResourceAttributeAce(pacl: *mut ACL, dwacerevision: ACE_REVISION, aceflags: ACE_FLAGS, accessmask: u32, psid: super::Foundation::PSID, pattributeinfo: *const CLAIM_SECURITY_ATTRIBUTES_INFORMATION, preturnlength: *mut u32) -> super::Foundation::BOOL;
     }
     AddResourceAttributeAce(::core::mem::transmute(pacl), dwacerevision, aceflags, accessmask, psid.into(), ::core::mem::transmute(pattributeinfo), ::core::mem::transmute(preturnlength))
 }
 #[doc = "*Required features: `\"Win32_Security\"`, `\"Win32_Foundation\"`*"]
 #[cfg(feature = "Win32_Foundation")]
 #[inline]
-pub unsafe fn AddScopedPolicyIDAce<'a, P0>(pacl: *mut ACL, dwacerevision: u32, aceflags: ACE_FLAGS, accessmask: u32, psid: P0) -> super::Foundation::BOOL
+pub unsafe fn AddScopedPolicyIDAce<'a, P0>(pacl: *mut ACL, dwacerevision: ACE_REVISION, aceflags: ACE_FLAGS, accessmask: u32, psid: P0) -> super::Foundation::BOOL
 where
     P0: ::std::convert::Into<super::Foundation::PSID>,
 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn AddScopedPolicyIDAce(pacl: *mut ACL, dwacerevision: u32, aceflags: ACE_FLAGS, accessmask: u32, psid: super::Foundation::PSID) -> super::Foundation::BOOL;
+        fn AddScopedPolicyIDAce(pacl: *mut ACL, dwacerevision: ACE_REVISION, aceflags: ACE_FLAGS, accessmask: u32, psid: super::Foundation::PSID) -> super::Foundation::BOOL;
     }
     AddScopedPolicyIDAce(::core::mem::transmute(pacl), dwacerevision, aceflags, accessmask, psid.into())
 }
@@ -1925,51 +1925,51 @@ pub const cwcFILENAMESUFFIXMAX: u32 = 20u32;
 #[doc = "*Required features: `\"Win32_Security\"`*"]
 pub const cwcHRESULTSTRING: u32 = 40u32;
 #[doc = "*Required features: `\"Win32_Security\"`*"]
-pub const szLBRACE: &str = "{";
+pub const szLBRACE: ::windows::core::PCSTR = ::windows::s!("{");
 #[doc = "*Required features: `\"Win32_Security\"`*"]
-pub const szLPAREN: &str = "(";
+pub const szLPAREN: ::windows::core::PCSTR = ::windows::s!("(");
 #[doc = "*Required features: `\"Win32_Security\"`*"]
-pub const szRBRACE: &str = "}";
+pub const szRBRACE: ::windows::core::PCSTR = ::windows::s!("}");
 #[doc = "*Required features: `\"Win32_Security\"`*"]
-pub const szRPAREN: &str = ")";
+pub const szRPAREN: ::windows::core::PCSTR = ::windows::s!(")");
 #[doc = "*Required features: `\"Win32_Security\"`*"]
-pub const wszCERTENROLLSHAREPATH: &str = "CertSrv\\CertEnroll";
+pub const wszCERTENROLLSHAREPATH: ::windows::core::PCWSTR = ::windows::w!("CertSrv\\CertEnroll");
 #[doc = "*Required features: `\"Win32_Security\"`*"]
-pub const wszFCSAPARM_CERTFILENAMESUFFIX: &str = "%4";
+pub const wszFCSAPARM_CERTFILENAMESUFFIX: ::windows::core::PCWSTR = ::windows::w!("%4");
 #[doc = "*Required features: `\"Win32_Security\"`*"]
-pub const wszFCSAPARM_CONFIGDN: &str = "%6";
+pub const wszFCSAPARM_CONFIGDN: ::windows::core::PCWSTR = ::windows::w!("%6");
 #[doc = "*Required features: `\"Win32_Security\"`*"]
-pub const wszFCSAPARM_CRLDELTAFILENAMESUFFIX: &str = "%9";
+pub const wszFCSAPARM_CRLDELTAFILENAMESUFFIX: ::windows::core::PCWSTR = ::windows::w!("%9");
 #[doc = "*Required features: `\"Win32_Security\"`*"]
-pub const wszFCSAPARM_CRLFILENAMESUFFIX: &str = "%8";
+pub const wszFCSAPARM_CRLFILENAMESUFFIX: ::windows::core::PCWSTR = ::windows::w!("%8");
 #[doc = "*Required features: `\"Win32_Security\"`*"]
-pub const wszFCSAPARM_DOMAINDN: &str = "%5";
+pub const wszFCSAPARM_DOMAINDN: ::windows::core::PCWSTR = ::windows::w!("%5");
 #[doc = "*Required features: `\"Win32_Security\"`*"]
-pub const wszFCSAPARM_DSCACERTATTRIBUTE: &str = "%11";
+pub const wszFCSAPARM_DSCACERTATTRIBUTE: ::windows::core::PCWSTR = ::windows::w!("%11");
 #[doc = "*Required features: `\"Win32_Security\"`*"]
-pub const wszFCSAPARM_DSCRLATTRIBUTE: &str = "%10";
+pub const wszFCSAPARM_DSCRLATTRIBUTE: ::windows::core::PCWSTR = ::windows::w!("%10");
 #[doc = "*Required features: `\"Win32_Security\"`*"]
-pub const wszFCSAPARM_DSCROSSCERTPAIRATTRIBUTE: &str = "%14";
+pub const wszFCSAPARM_DSCROSSCERTPAIRATTRIBUTE: ::windows::core::PCWSTR = ::windows::w!("%14");
 #[doc = "*Required features: `\"Win32_Security\"`*"]
-pub const wszFCSAPARM_DSKRACERTATTRIBUTE: &str = "%13";
+pub const wszFCSAPARM_DSKRACERTATTRIBUTE: ::windows::core::PCWSTR = ::windows::w!("%13");
 #[doc = "*Required features: `\"Win32_Security\"`*"]
-pub const wszFCSAPARM_DSUSERCERTATTRIBUTE: &str = "%12";
+pub const wszFCSAPARM_DSUSERCERTATTRIBUTE: ::windows::core::PCWSTR = ::windows::w!("%12");
 #[doc = "*Required features: `\"Win32_Security\"`*"]
-pub const wszFCSAPARM_SANITIZEDCANAME: &str = "%3";
+pub const wszFCSAPARM_SANITIZEDCANAME: ::windows::core::PCWSTR = ::windows::w!("%3");
 #[doc = "*Required features: `\"Win32_Security\"`*"]
-pub const wszFCSAPARM_SANITIZEDCANAMEHASH: &str = "%7";
+pub const wszFCSAPARM_SANITIZEDCANAMEHASH: ::windows::core::PCWSTR = ::windows::w!("%7");
 #[doc = "*Required features: `\"Win32_Security\"`*"]
-pub const wszFCSAPARM_SERVERDNSNAME: &str = "%1";
+pub const wszFCSAPARM_SERVERDNSNAME: ::windows::core::PCWSTR = ::windows::w!("%1");
 #[doc = "*Required features: `\"Win32_Security\"`*"]
-pub const wszFCSAPARM_SERVERSHORTNAME: &str = "%2";
+pub const wszFCSAPARM_SERVERSHORTNAME: ::windows::core::PCWSTR = ::windows::w!("%2");
 #[doc = "*Required features: `\"Win32_Security\"`*"]
-pub const wszLBRACE: &str = "{";
+pub const wszLBRACE: ::windows::core::PCWSTR = ::windows::w!("{");
 #[doc = "*Required features: `\"Win32_Security\"`*"]
-pub const wszLPAREN: &str = "(";
+pub const wszLPAREN: ::windows::core::PCWSTR = ::windows::w!("(");
 #[doc = "*Required features: `\"Win32_Security\"`*"]
-pub const wszRBRACE: &str = "}";
+pub const wszRBRACE: ::windows::core::PCWSTR = ::windows::w!("}");
 #[doc = "*Required features: `\"Win32_Security\"`*"]
-pub const wszRPAREN: &str = ")";
+pub const wszRPAREN: ::windows::core::PCWSTR = ::windows::w!(")");
 #[doc = "*Required features: `\"Win32_Security\"`*"]
 #[repr(transparent)]
 #[derive(::core::cmp::PartialEq, ::core::cmp::Eq)]

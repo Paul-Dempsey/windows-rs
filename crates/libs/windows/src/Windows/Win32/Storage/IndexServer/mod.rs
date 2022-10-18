@@ -114,7 +114,7 @@ pub struct IFilter_Vtbl {
     GetChunk: usize,
     pub GetText: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pcwcbuffer: *mut u32, awcbuffer: ::windows::core::PWSTR) -> i32,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com_StructuredStorage"))]
-    pub GetValue: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pppropvalue: *mut *mut super::super::System::Com::StructuredStorage::PROPVARIANT) -> i32,
+    pub GetValue: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pppropvalue: *mut *mut ::core::mem::ManuallyDrop<super::super::System::Com::StructuredStorage::PROPVARIANT>) -> i32,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com_StructuredStorage")))]
     GetValue: usize,
     pub BindRegion: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, origpos: FILTERREGION, riid: *const ::windows::core::GUID, ppunk: *mut *mut ::core::ffi::c_void) -> i32,
@@ -168,7 +168,7 @@ pub struct IPhraseSink_Vtbl {
     pub PutPhrase: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pwcphrase: ::windows::core::PCWSTR, cwcphrase: u32) -> ::windows::core::HRESULT,
 }
 #[doc = "*Required features: `\"Win32_Storage_IndexServer\"`*"]
-pub const CIADMIN: &str = "::_nodocstore_::";
+pub const CIADMIN: ::windows::core::PCWSTR = ::windows::w!("::_nodocstore_::");
 #[doc = "*Required features: `\"Win32_Storage_IndexServer\"`*"]
 pub const CICAT_ALL_OPENED: u32 = 32u32;
 #[doc = "*Required features: `\"Win32_Storage_IndexServer\"`*"]
@@ -182,7 +182,7 @@ pub const CICAT_STOPPED: u32 = 1u32;
 #[doc = "*Required features: `\"Win32_Storage_IndexServer\"`*"]
 pub const CICAT_WRITABLE: u32 = 4u32;
 #[doc = "*Required features: `\"Win32_Storage_IndexServer\"`*"]
-pub const CINULLCATALOG: &str = "::_noindex_::";
+pub const CINULLCATALOG: ::windows::core::PCWSTR = ::windows::w!("::_noindex_::");
 #[doc = "*Required features: `\"Win32_Storage_IndexServer\"`*"]
 pub const CI_PROVIDER_ALL: u32 = 4294967295u32;
 #[doc = "*Required features: `\"Win32_Storage_IndexServer\"`*"]

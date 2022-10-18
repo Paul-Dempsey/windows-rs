@@ -1909,7 +1909,7 @@ pub struct IFaxDevice_Vtbl {
     pub ReceivingNow: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pbreceivingnow: *mut i16) -> ::windows::core::HRESULT,
     pub SendingNow: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pbsendingnow: *mut i16) -> ::windows::core::HRESULT,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub UsedRoutingMethods: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pvusedroutingmethods: *mut super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub UsedRoutingMethods: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pvusedroutingmethods: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     UsedRoutingMethods: usize,
     pub Description: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pbstrdescription: *mut ::core::mem::ManuallyDrop<::windows::core::BSTR>) -> ::windows::core::HRESULT,
@@ -1927,7 +1927,7 @@ pub struct IFaxDevice_Vtbl {
     pub Refresh: unsafe extern "system" fn(this: *mut ::core::ffi::c_void) -> ::windows::core::HRESULT,
     pub Save: unsafe extern "system" fn(this: *mut ::core::ffi::c_void) -> ::windows::core::HRESULT,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub GetExtensionProperty: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, bstrguid: ::core::mem::ManuallyDrop<::windows::core::BSTR>, pvproperty: *mut super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub GetExtensionProperty: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, bstrguid: ::core::mem::ManuallyDrop<::windows::core::BSTR>, pvproperty: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     GetExtensionProperty: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
@@ -2112,7 +2112,7 @@ pub struct IFaxDeviceProvider_Vtbl {
     pub Status: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pstatus: *mut FAX_PROVIDER_STATUS_ENUM) -> ::windows::core::HRESULT,
     pub InitErrorCode: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pliniterrorcode: *mut i32) -> ::windows::core::HRESULT,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub DeviceIds: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pvdeviceids: *mut super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub DeviceIds: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pvdeviceids: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     DeviceIds: usize,
 }
@@ -2482,11 +2482,11 @@ pub struct IFaxDocument_Vtbl {
     #[cfg(not(feature = "Win32_System_Com"))]
     putref_TapiConnection: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub Submit: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, bstrfaxservername: ::core::mem::ManuallyDrop<::windows::core::BSTR>, pvfaxoutgoingjobids: *mut super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub Submit: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, bstrfaxservername: ::core::mem::ManuallyDrop<::windows::core::BSTR>, pvfaxoutgoingjobids: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     Submit: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub ConnectedSubmit: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pfaxserver: *mut ::core::ffi::c_void, pvfaxoutgoingjobids: *mut super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub ConnectedSubmit: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pfaxserver: *mut ::core::ffi::c_void, pvfaxoutgoingjobids: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     ConnectedSubmit: usize,
     pub AttachFaxToReceipt: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pbattachfax: *mut i16) -> ::windows::core::HRESULT,
@@ -2706,7 +2706,7 @@ pub struct IFaxDocument2_Vtbl {
     pub base__: IFaxDocument_Vtbl,
     pub SubmissionId: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pbstrsubmissionid: *mut ::core::mem::ManuallyDrop<::windows::core::BSTR>) -> ::windows::core::HRESULT,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub Bodies: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pvbodies: *mut super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub Bodies: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pvbodies: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     Bodies: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
@@ -2714,11 +2714,11 @@ pub struct IFaxDocument2_Vtbl {
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     SetBodies: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub Submit2: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, bstrfaxservername: ::core::mem::ManuallyDrop<::windows::core::BSTR>, pvfaxoutgoingjobids: *mut super::super::System::Com::VARIANT, plerrorbodyfile: *mut i32) -> ::windows::core::HRESULT,
+    pub Submit2: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, bstrfaxservername: ::core::mem::ManuallyDrop<::windows::core::BSTR>, pvfaxoutgoingjobids: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>, plerrorbodyfile: *mut i32) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     Submit2: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub ConnectedSubmit2: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pfaxserver: *mut ::core::ffi::c_void, pvfaxoutgoingjobids: *mut super::super::System::Com::VARIANT, plerrorbodyfile: *mut i32) -> ::windows::core::HRESULT,
+    pub ConnectedSubmit2: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pfaxserver: *mut ::core::ffi::c_void, pvfaxoutgoingjobids: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>, plerrorbodyfile: *mut i32) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     ConnectedSubmit2: usize,
 }
@@ -3054,7 +3054,7 @@ pub struct IFaxInboundRoutingExtension_Vtbl {
     pub Status: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pstatus: *mut FAX_PROVIDER_STATUS_ENUM) -> ::windows::core::HRESULT,
     pub InitErrorCode: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pliniterrorcode: *mut i32) -> ::windows::core::HRESULT,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub Methods: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pvmethods: *mut super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub Methods: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pvmethods: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     Methods: usize,
 }
@@ -6078,7 +6078,7 @@ unsafe impl ::windows::core::Interface for IFaxSecurity {
 pub struct IFaxSecurity_Vtbl {
     pub base__: super::super::System::Com::IDispatch_Vtbl,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub Descriptor: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pvdescriptor: *mut super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub Descriptor: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pvdescriptor: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     Descriptor: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
@@ -6165,7 +6165,7 @@ unsafe impl ::windows::core::Interface for IFaxSecurity2 {
 pub struct IFaxSecurity2_Vtbl {
     pub base__: super::super::System::Com::IDispatch_Vtbl,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub Descriptor: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pvdescriptor: *mut super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub Descriptor: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pvdescriptor: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     Descriptor: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
@@ -6586,7 +6586,7 @@ pub struct IFaxServer_Vtbl {
     Security: usize,
     pub Disconnect: unsafe extern "system" fn(this: *mut ::core::ffi::c_void) -> ::windows::core::HRESULT,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub GetExtensionProperty: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, bstrguid: ::core::mem::ManuallyDrop<::windows::core::BSTR>, pvproperty: *mut super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub GetExtensionProperty: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, bstrguid: ::core::mem::ManuallyDrop<::windows::core::BSTR>, pvproperty: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     GetExtensionProperty: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
@@ -7967,15 +7967,15 @@ pub struct _IFaxServerNotify2_Vtbl {
     OnGeneralServerConfigChanged: usize,
 }
 #[doc = "*Required features: `\"Win32_Devices_Fax\"`*"]
-pub const CF_MSFAXSRV_DEVICE_ID: &str = "FAXSRV_DeviceID";
+pub const CF_MSFAXSRV_DEVICE_ID: ::windows::core::PCWSTR = ::windows::w!("FAXSRV_DeviceID");
 #[doc = "*Required features: `\"Win32_Devices_Fax\"`*"]
-pub const CF_MSFAXSRV_FSP_GUID: &str = "FAXSRV_FSPGuid";
+pub const CF_MSFAXSRV_FSP_GUID: ::windows::core::PCWSTR = ::windows::w!("FAXSRV_FSPGuid");
 #[doc = "*Required features: `\"Win32_Devices_Fax\"`*"]
-pub const CF_MSFAXSRV_ROUTEEXT_NAME: &str = "FAXSRV_RoutingExtName";
+pub const CF_MSFAXSRV_ROUTEEXT_NAME: ::windows::core::PCWSTR = ::windows::w!("FAXSRV_RoutingExtName");
 #[doc = "*Required features: `\"Win32_Devices_Fax\"`*"]
-pub const CF_MSFAXSRV_ROUTING_METHOD_GUID: &str = "FAXSRV_RoutingMethodGuid";
+pub const CF_MSFAXSRV_ROUTING_METHOD_GUID: ::windows::core::PCWSTR = ::windows::w!("FAXSRV_RoutingMethodGuid");
 #[doc = "*Required features: `\"Win32_Devices_Fax\"`*"]
-pub const CF_MSFAXSRV_SERVER_NAME: &str = "FAXSRV_ServerName";
+pub const CF_MSFAXSRV_SERVER_NAME: ::windows::core::PCWSTR = ::windows::w!("FAXSRV_ServerName");
 pub const CLSID_Sti: ::windows::core::GUID = ::windows::core::GUID::from_u128(0xb323f8e0_2e68_11d0_90ea_00aa0060f86c);
 #[doc = "*Required features: `\"Win32_Devices_Fax\"`, `\"Win32_Devices_Properties\"`*"]
 #[cfg(feature = "Win32_Devices_Properties")]
@@ -8257,7 +8257,7 @@ pub const GUID_ScanFaxImage: ::windows::core::GUID = ::windows::core::GUID::from
 pub const GUID_ScanImage: ::windows::core::GUID = ::windows::core::GUID::from_u128(0xa6c5a715_8c6e_11d2_977a_0000f87a926f);
 pub const GUID_ScanPrintImage: ::windows::core::GUID = ::windows::core::GUID::from_u128(0xb441f425_8c6e_11d2_977a_0000f87a926f);
 #[doc = "*Required features: `\"Win32_Devices_Fax\"`*"]
-pub const IS_DIGITAL_CAMERA_STR: &str = "IsDigitalCamera";
+pub const IS_DIGITAL_CAMERA_STR: ::windows::core::PCWSTR = ::windows::w!("IsDigitalCamera");
 #[doc = "*Required features: `\"Win32_Devices_Fax\"`*"]
 pub const IS_DIGITAL_CAMERA_VAL: u32 = 1u32;
 #[doc = "*Required features: `\"Win32_Devices_Fax\"`*"]
@@ -8289,55 +8289,55 @@ pub const JT_UNKNOWN: u32 = 0u32;
 #[doc = "*Required features: `\"Win32_Devices_Fax\"`*"]
 pub const MAX_NOTIFICATION_DATA: u32 = 64u32;
 #[doc = "*Required features: `\"Win32_Devices_Fax\"`*"]
-pub const MS_FAXROUTE_EMAIL_GUID: &str = "{6bbf7bfe-9af2-11d0-abf7-00c04fd91a4e}";
+pub const MS_FAXROUTE_EMAIL_GUID: ::windows::core::PCWSTR = ::windows::w!("{6bbf7bfe-9af2-11d0-abf7-00c04fd91a4e}");
 #[doc = "*Required features: `\"Win32_Devices_Fax\"`*"]
-pub const MS_FAXROUTE_FOLDER_GUID: &str = "{92041a90-9af2-11d0-abf7-00c04fd91a4e}";
+pub const MS_FAXROUTE_FOLDER_GUID: ::windows::core::PCWSTR = ::windows::w!("{92041a90-9af2-11d0-abf7-00c04fd91a4e}");
 #[doc = "*Required features: `\"Win32_Devices_Fax\"`*"]
-pub const MS_FAXROUTE_PRINTING_GUID: &str = "{aec1b37c-9af2-11d0-abf7-00c04fd91a4e}";
+pub const MS_FAXROUTE_PRINTING_GUID: ::windows::core::PCWSTR = ::windows::w!("{aec1b37c-9af2-11d0-abf7-00c04fd91a4e}");
 #[doc = "*Required features: `\"Win32_Devices_Fax\"`*"]
-pub const REGSTR_VAL_BAUDRATE: &str = "BaudRate";
+pub const REGSTR_VAL_BAUDRATE: ::windows::core::PCWSTR = ::windows::w!("BaudRate");
 #[doc = "*Required features: `\"Win32_Devices_Fax\"`*"]
-pub const REGSTR_VAL_BAUDRATE_A: &str = "BaudRate";
+pub const REGSTR_VAL_BAUDRATE_A: ::windows::core::PCSTR = ::windows::s!("BaudRate");
 #[doc = "*Required features: `\"Win32_Devices_Fax\"`*"]
-pub const REGSTR_VAL_DATA_W: &str = "DeviceData";
+pub const REGSTR_VAL_DATA_W: ::windows::core::PCWSTR = ::windows::w!("DeviceData");
 #[doc = "*Required features: `\"Win32_Devices_Fax\"`*"]
-pub const REGSTR_VAL_DEVICESUBTYPE_W: &str = "DeviceSubType";
+pub const REGSTR_VAL_DEVICESUBTYPE_W: ::windows::core::PCWSTR = ::windows::w!("DeviceSubType");
 #[doc = "*Required features: `\"Win32_Devices_Fax\"`*"]
-pub const REGSTR_VAL_DEVICETYPE_W: &str = "DeviceType";
+pub const REGSTR_VAL_DEVICETYPE_W: ::windows::core::PCWSTR = ::windows::w!("DeviceType");
 #[doc = "*Required features: `\"Win32_Devices_Fax\"`*"]
-pub const REGSTR_VAL_DEVICE_NAME_W: &str = "DriverDesc";
+pub const REGSTR_VAL_DEVICE_NAME_W: ::windows::core::PCWSTR = ::windows::w!("DriverDesc");
 #[doc = "*Required features: `\"Win32_Devices_Fax\"`*"]
-pub const REGSTR_VAL_DEV_NAME_W: &str = "DeviceName";
+pub const REGSTR_VAL_DEV_NAME_W: ::windows::core::PCWSTR = ::windows::w!("DeviceName");
 #[doc = "*Required features: `\"Win32_Devices_Fax\"`*"]
-pub const REGSTR_VAL_DRIVER_DESC_W: &str = "DriverDesc";
+pub const REGSTR_VAL_DRIVER_DESC_W: ::windows::core::PCWSTR = ::windows::w!("DriverDesc");
 #[doc = "*Required features: `\"Win32_Devices_Fax\"`*"]
-pub const REGSTR_VAL_FRIENDLY_NAME_W: &str = "FriendlyName";
+pub const REGSTR_VAL_FRIENDLY_NAME_W: ::windows::core::PCWSTR = ::windows::w!("FriendlyName");
 #[doc = "*Required features: `\"Win32_Devices_Fax\"`*"]
-pub const REGSTR_VAL_GENERIC_CAPS_W: &str = "Capabilities";
+pub const REGSTR_VAL_GENERIC_CAPS_W: ::windows::core::PCWSTR = ::windows::w!("Capabilities");
 #[doc = "*Required features: `\"Win32_Devices_Fax\"`*"]
-pub const REGSTR_VAL_GUID: &str = "GUID";
+pub const REGSTR_VAL_GUID: ::windows::core::PCWSTR = ::windows::w!("GUID");
 #[doc = "*Required features: `\"Win32_Devices_Fax\"`*"]
-pub const REGSTR_VAL_GUID_W: &str = "GUID";
+pub const REGSTR_VAL_GUID_W: ::windows::core::PCWSTR = ::windows::w!("GUID");
 #[doc = "*Required features: `\"Win32_Devices_Fax\"`*"]
-pub const REGSTR_VAL_HARDWARE: &str = "HardwareConfig";
+pub const REGSTR_VAL_HARDWARE: ::windows::core::PCWSTR = ::windows::w!("HardwareConfig");
 #[doc = "*Required features: `\"Win32_Devices_Fax\"`*"]
-pub const REGSTR_VAL_HARDWARE_W: &str = "HardwareConfig";
+pub const REGSTR_VAL_HARDWARE_W: ::windows::core::PCWSTR = ::windows::w!("HardwareConfig");
 #[doc = "*Required features: `\"Win32_Devices_Fax\"`*"]
-pub const REGSTR_VAL_LAUNCHABLE: &str = "Launchable";
+pub const REGSTR_VAL_LAUNCHABLE: ::windows::core::PCWSTR = ::windows::w!("Launchable");
 #[doc = "*Required features: `\"Win32_Devices_Fax\"`*"]
-pub const REGSTR_VAL_LAUNCHABLE_W: &str = "Launchable";
+pub const REGSTR_VAL_LAUNCHABLE_W: ::windows::core::PCWSTR = ::windows::w!("Launchable");
 #[doc = "*Required features: `\"Win32_Devices_Fax\"`*"]
-pub const REGSTR_VAL_LAUNCH_APPS: &str = "LaunchApplications";
+pub const REGSTR_VAL_LAUNCH_APPS: ::windows::core::PCWSTR = ::windows::w!("LaunchApplications");
 #[doc = "*Required features: `\"Win32_Devices_Fax\"`*"]
-pub const REGSTR_VAL_LAUNCH_APPS_W: &str = "LaunchApplications";
+pub const REGSTR_VAL_LAUNCH_APPS_W: ::windows::core::PCWSTR = ::windows::w!("LaunchApplications");
 #[doc = "*Required features: `\"Win32_Devices_Fax\"`*"]
-pub const REGSTR_VAL_SHUTDOWNDELAY: &str = "ShutdownIfUnusedDelay";
+pub const REGSTR_VAL_SHUTDOWNDELAY: ::windows::core::PCWSTR = ::windows::w!("ShutdownIfUnusedDelay");
 #[doc = "*Required features: `\"Win32_Devices_Fax\"`*"]
-pub const REGSTR_VAL_SHUTDOWNDELAY_W: &str = "ShutdownIfUnusedDelay";
+pub const REGSTR_VAL_SHUTDOWNDELAY_W: ::windows::core::PCWSTR = ::windows::w!("ShutdownIfUnusedDelay");
 #[doc = "*Required features: `\"Win32_Devices_Fax\"`*"]
-pub const REGSTR_VAL_TYPE_W: &str = "Type";
+pub const REGSTR_VAL_TYPE_W: ::windows::core::PCWSTR = ::windows::w!("Type");
 #[doc = "*Required features: `\"Win32_Devices_Fax\"`*"]
-pub const REGSTR_VAL_VENDOR_NAME_W: &str = "Vendor";
+pub const REGSTR_VAL_VENDOR_NAME_W: ::windows::core::PCWSTR = ::windows::w!("Vendor");
 #[doc = "*Required features: `\"Win32_Devices_Fax\"`*"]
 pub const STIEDFL_ALLDEVICES: u32 = 0u32;
 #[doc = "*Required features: `\"Win32_Devices_Fax\"`*"]
@@ -8387,9 +8387,9 @@ pub const STIERR_SHARING_VIOLATION: ::windows::core::HRESULT = ::windows::core::
 #[doc = "*Required features: `\"Win32_Devices_Fax\"`*"]
 pub const STIERR_UNSUPPORTED: i32 = -2147467263i32;
 #[doc = "*Required features: `\"Win32_Devices_Fax\"`*"]
-pub const STI_ADD_DEVICE_BROADCAST_ACTION: &str = "Arrival";
+pub const STI_ADD_DEVICE_BROADCAST_ACTION: ::windows::core::PCSTR = ::windows::s!("Arrival");
 #[doc = "*Required features: `\"Win32_Devices_Fax\"`*"]
-pub const STI_ADD_DEVICE_BROADCAST_STRING: &str = "STI\\";
+pub const STI_ADD_DEVICE_BROADCAST_STRING: ::windows::core::PCSTR = ::windows::s!("STI\\");
 #[doc = "*Required features: `\"Win32_Devices_Fax\"`*"]
 pub const STI_CHANGENOEFFECT: i32 = 1i32;
 #[doc = "*Required features: `\"Win32_Devices_Fax\"`*"]
@@ -8403,29 +8403,29 @@ pub const STI_DEVICE_CREATE_MASK: u32 = 65535u32;
 #[doc = "*Required features: `\"Win32_Devices_Fax\"`*"]
 pub const STI_DEVICE_CREATE_STATUS: u32 = 1u32;
 #[doc = "*Required features: `\"Win32_Devices_Fax\"`*"]
-pub const STI_DEVICE_VALUE_DEFAULT_LAUNCHAPP: &str = "DefaultLaunchApp";
+pub const STI_DEVICE_VALUE_DEFAULT_LAUNCHAPP: ::windows::core::PCWSTR = ::windows::w!("DefaultLaunchApp");
 #[doc = "*Required features: `\"Win32_Devices_Fax\"`*"]
-pub const STI_DEVICE_VALUE_DEFAULT_LAUNCHAPP_A: &str = "DefaultLaunchApp";
+pub const STI_DEVICE_VALUE_DEFAULT_LAUNCHAPP_A: ::windows::core::PCSTR = ::windows::s!("DefaultLaunchApp");
 #[doc = "*Required features: `\"Win32_Devices_Fax\"`*"]
-pub const STI_DEVICE_VALUE_DISABLE_NOTIFICATIONS: &str = "DisableNotifications";
+pub const STI_DEVICE_VALUE_DISABLE_NOTIFICATIONS: ::windows::core::PCWSTR = ::windows::w!("DisableNotifications");
 #[doc = "*Required features: `\"Win32_Devices_Fax\"`*"]
-pub const STI_DEVICE_VALUE_DISABLE_NOTIFICATIONS_A: &str = "DisableNotifications";
+pub const STI_DEVICE_VALUE_DISABLE_NOTIFICATIONS_A: ::windows::core::PCSTR = ::windows::s!("DisableNotifications");
 #[doc = "*Required features: `\"Win32_Devices_Fax\"`*"]
-pub const STI_DEVICE_VALUE_ICM_PROFILE: &str = "ICMProfile";
+pub const STI_DEVICE_VALUE_ICM_PROFILE: ::windows::core::PCWSTR = ::windows::w!("ICMProfile");
 #[doc = "*Required features: `\"Win32_Devices_Fax\"`*"]
-pub const STI_DEVICE_VALUE_ICM_PROFILE_A: &str = "ICMProfile";
+pub const STI_DEVICE_VALUE_ICM_PROFILE_A: ::windows::core::PCSTR = ::windows::s!("ICMProfile");
 #[doc = "*Required features: `\"Win32_Devices_Fax\"`*"]
-pub const STI_DEVICE_VALUE_ISIS_NAME: &str = "ISISDriverName";
+pub const STI_DEVICE_VALUE_ISIS_NAME: ::windows::core::PCWSTR = ::windows::w!("ISISDriverName");
 #[doc = "*Required features: `\"Win32_Devices_Fax\"`*"]
-pub const STI_DEVICE_VALUE_ISIS_NAME_A: &str = "ISISDriverName";
+pub const STI_DEVICE_VALUE_ISIS_NAME_A: ::windows::core::PCSTR = ::windows::s!("ISISDriverName");
 #[doc = "*Required features: `\"Win32_Devices_Fax\"`*"]
-pub const STI_DEVICE_VALUE_TIMEOUT: &str = "PollTimeout";
+pub const STI_DEVICE_VALUE_TIMEOUT: ::windows::core::PCWSTR = ::windows::w!("PollTimeout");
 #[doc = "*Required features: `\"Win32_Devices_Fax\"`*"]
-pub const STI_DEVICE_VALUE_TIMEOUT_A: &str = "PollTimeout";
+pub const STI_DEVICE_VALUE_TIMEOUT_A: ::windows::core::PCSTR = ::windows::s!("PollTimeout");
 #[doc = "*Required features: `\"Win32_Devices_Fax\"`*"]
-pub const STI_DEVICE_VALUE_TWAIN_NAME: &str = "TwainDS";
+pub const STI_DEVICE_VALUE_TWAIN_NAME: ::windows::core::PCWSTR = ::windows::w!("TwainDS");
 #[doc = "*Required features: `\"Win32_Devices_Fax\"`*"]
-pub const STI_DEVICE_VALUE_TWAIN_NAME_A: &str = "TwainDS";
+pub const STI_DEVICE_VALUE_TWAIN_NAME_A: ::windows::core::PCSTR = ::windows::s!("TwainDS");
 #[doc = "*Required features: `\"Win32_Devices_Fax\"`*"]
 pub const STI_DEVSTATUS_EVENTS_STATE: u32 = 2u32;
 #[doc = "*Required features: `\"Win32_Devices_Fax\"`*"]
@@ -8499,9 +8499,9 @@ pub const STI_ONLINESTATE_WARMING_UP: u32 = 2048u32;
 #[doc = "*Required features: `\"Win32_Devices_Fax\"`*"]
 pub const STI_RAW_RESERVED: u32 = 4096u32;
 #[doc = "*Required features: `\"Win32_Devices_Fax\"`*"]
-pub const STI_REMOVE_DEVICE_BROADCAST_ACTION: &str = "Removal";
+pub const STI_REMOVE_DEVICE_BROADCAST_ACTION: ::windows::core::PCSTR = ::windows::s!("Removal");
 #[doc = "*Required features: `\"Win32_Devices_Fax\"`*"]
-pub const STI_REMOVE_DEVICE_BROADCAST_STRING: &str = "STI\\";
+pub const STI_REMOVE_DEVICE_BROADCAST_STRING: ::windows::core::PCSTR = ::windows::s!("STI\\");
 #[doc = "*Required features: `\"Win32_Devices_Fax\"`*"]
 pub const STI_SUBSCRIBE_FLAG_EVENT: u32 = 2u32;
 #[doc = "*Required features: `\"Win32_Devices_Fax\"`*"]
@@ -8527,7 +8527,7 @@ pub const STI_VERSION_MIN_ALLOWED: u32 = 2u32;
 #[doc = "*Required features: `\"Win32_Devices_Fax\"`*"]
 pub const STI_VERSION_REAL: u32 = 2u32;
 #[doc = "*Required features: `\"Win32_Devices_Fax\"`*"]
-pub const SUPPORTS_MSCPLUS_STR: &str = "SupportsMSCPlus";
+pub const SUPPORTS_MSCPLUS_STR: ::windows::core::PCWSTR = ::windows::w!("SupportsMSCPlus");
 #[doc = "*Required features: `\"Win32_Devices_Fax\"`*"]
 pub const SUPPORTS_MSCPLUS_VAL: u32 = 1u32;
 #[doc = "*Required features: `\"Win32_Devices_Fax\"`*"]

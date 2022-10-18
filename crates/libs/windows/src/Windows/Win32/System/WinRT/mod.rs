@@ -1974,15 +1974,6 @@ pub struct IRestrictedErrorInfo_Vtbl {
 #[doc = "*Required features: `\"Win32_System_WinRT\"`*"]
 #[repr(transparent)]
 pub struct IRoMetaDataLocator(::std::ptr::NonNull<::std::ffi::c_void>);
-unsafe impl ::windows::core::Abi for Option<IRoMetaDataLocator> {
-    type Abi = *mut ::std::ffi::c_void;
-}
-unsafe impl ::windows::core::Abi for IRoMetaDataLocator {
-    type Abi = *mut ::std::ffi::c_void;
-    fn abi_is_possibly_valid(abi: &Self::Abi) -> bool {
-        !abi.is_null()
-    }
-}
 impl IRoMetaDataLocator {
     pub unsafe fn Locate<'a, P0, P1>(&self, nameelement: P0, metadatadestination: P1) -> ::windows::core::Result<()>
     where
@@ -2019,15 +2010,6 @@ pub struct IRoMetaDataLocator_Vtbl {
 #[doc = "*Required features: `\"Win32_System_WinRT\"`*"]
 #[repr(transparent)]
 pub struct IRoSimpleMetaDataBuilder(::std::ptr::NonNull<::std::ffi::c_void>);
-unsafe impl ::windows::core::Abi for Option<IRoSimpleMetaDataBuilder> {
-    type Abi = *mut ::std::ffi::c_void;
-}
-unsafe impl ::windows::core::Abi for IRoSimpleMetaDataBuilder {
-    type Abi = *mut ::std::ffi::c_void;
-    fn abi_is_possibly_valid(abi: &Self::Abi) -> bool {
-        !abi.is_null()
-    }
-}
 impl IRoSimpleMetaDataBuilder {
     pub unsafe fn SetWinRtInterface(&self, iid: ::windows::core::GUID) -> ::windows::core::Result<()> {
         (::windows::core::Vtable::vtable(self).SetWinRtInterface)(::windows::core::Vtable::as_raw(self), ::core::mem::transmute(iid)).ok()
@@ -2667,11 +2649,11 @@ pub struct IWebAuthenticationCoreManagerInterop_Vtbl {
     RequestTokenWithWebAccountForWindowAsync: usize,
 }
 #[doc = "*Required features: `\"Win32_System_WinRT\"`*"]
-pub const CastingSourceInfo_Property_CastingTypes: &str = "CastingTypes";
+pub const CastingSourceInfo_Property_CastingTypes: ::windows::core::PCWSTR = ::windows::w!("CastingTypes");
 #[doc = "*Required features: `\"Win32_System_WinRT\"`*"]
-pub const CastingSourceInfo_Property_PreferredSourceUriScheme: &str = "PreferredSourceUriScheme";
+pub const CastingSourceInfo_Property_PreferredSourceUriScheme: ::windows::core::PCWSTR = ::windows::w!("PreferredSourceUriScheme");
 #[doc = "*Required features: `\"Win32_System_WinRT\"`*"]
-pub const CastingSourceInfo_Property_ProtectedMedia: &str = "ProtectedMedia";
+pub const CastingSourceInfo_Property_ProtectedMedia: ::windows::core::PCWSTR = ::windows::w!("ProtectedMedia");
 #[doc = "*Required features: `\"Win32_System_WinRT\"`*"]
 pub const MAX_ERROR_MESSAGE_CHARS: u32 = 512u32;
 #[doc = "*Required features: `\"Win32_System_WinRT\"`*"]

@@ -30,7 +30,7 @@ fn gen_win_interface(gen: &Gen, def: TypeDef) -> TokenStream {
     let cfg = gen.reader.type_def_cfg(def, &[]);
     let doc = gen.cfg_doc(&cfg);
     let features = gen.cfg_features(&cfg);
-    let interfaces = gen.reader.type_interfaces(&Type::TypeDef((def, generics.to_vec()))); // TODO: how to avoid copy?
+    let interfaces = gen.reader.type_interfaces(&Type::TypeDef((def, generics.to_vec())));
     let vtables = gen.reader.type_def_vtables(def);
     let has_unknown_base = matches!(vtables.first(), Some(Type::IUnknown));
 
@@ -51,24 +51,13 @@ fn gen_win_interface(gen: &Gen, def: TypeDef) -> TokenStream {
             #features
             #[repr(transparent)]
             pub struct #ident(::std::ptr::NonNull<::std::ffi::c_void>);
-            #features
-            unsafe impl ::windows::core::Abi for Option<#ident> {
-                type Abi = *mut ::std::ffi::c_void;
-            }
-            #features
-            unsafe impl ::windows::core::Abi for #ident {
-                type Abi = *mut ::std::ffi::c_void;
-
-                fn abi_is_possibly_valid(abi: &Self::Abi) -> bool {
-                    !abi.is_null()
-                }
-            }
         });
     }
 
     if !is_exclusive {
         let mut methods = quote! {};
-        // TODO: why do we need to distinguish between public and virtual methods?
+        // We need to distinguish between public and virtual methods because some WinRT type hierarchies inherit colliding (overloaded)
+        // methods that must be distinguishable.
         let method_names = &mut MethodNames::new();
         let virtual_names = &mut MethodNames::new();
 

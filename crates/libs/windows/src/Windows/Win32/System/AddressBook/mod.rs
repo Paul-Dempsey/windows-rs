@@ -2560,22 +2560,13 @@ unsafe impl ::windows::core::Interface for IWABExtInit {
 pub struct IWABExtInit_Vtbl {
     pub base__: ::windows::core::IUnknown_Vtbl,
     #[cfg(feature = "Win32_Foundation")]
-    pub Initialize: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, lpwabextdisplay: *mut WABEXTDISPLAY) -> ::windows::core::HRESULT,
+    pub Initialize: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, lpwabextdisplay: *mut ::core::mem::ManuallyDrop<WABEXTDISPLAY>) -> ::windows::core::HRESULT,
     #[cfg(not(feature = "Win32_Foundation"))]
     Initialize: usize,
 }
 #[doc = "*Required features: `\"Win32_System_AddressBook\"`*"]
 #[repr(transparent)]
 pub struct IWABOBJECT_(::std::ptr::NonNull<::std::ffi::c_void>);
-unsafe impl ::windows::core::Abi for Option<IWABOBJECT_> {
-    type Abi = *mut ::std::ffi::c_void;
-}
-unsafe impl ::windows::core::Abi for IWABOBJECT_ {
-    type Abi = *mut ::std::ffi::c_void;
-    fn abi_is_possibly_valid(abi: &Self::Abi) -> bool {
-        !abi.is_null()
-    }
-}
 impl IWABOBJECT_ {
     pub unsafe fn QueryInterface(&self, riid: *const ::windows::core::GUID, ppvobj: *mut *mut ::core::ffi::c_void) -> ::windows::core::Result<()> {
         (::windows::core::Vtable::vtable(self).QueryInterface)(::windows::core::Vtable::as_raw(self), ::core::mem::transmute(riid), ::core::mem::transmute(ppvobj)).ok()
@@ -3215,7 +3206,7 @@ pub const MV_FLAG: u32 = 4096u32;
 #[doc = "*Required features: `\"Win32_System_AddressBook\"`*"]
 pub const MV_INSTANCE: u32 = 8192u32;
 #[doc = "*Required features: `\"Win32_System_AddressBook\"`*"]
-pub const OPENSTREAMONFILE: &str = "OpenStreamOnFile";
+pub const OPENSTREAMONFILE: ::windows::core::PCSTR = ::windows::s!("OpenStreamOnFile");
 #[doc = "*Required features: `\"Win32_System_AddressBook\"`*"]
 pub const PRIHIGHEST: u32 = 32767u32;
 #[doc = "*Required features: `\"Win32_System_AddressBook\"`*"]
@@ -3283,9 +3274,9 @@ pub const WAB_DISPLAY_ISNTDS: u32 = 4u32;
 #[doc = "*Required features: `\"Win32_System_AddressBook\"`*"]
 pub const WAB_DISPLAY_LDAPURL: u32 = 1u32;
 #[doc = "*Required features: `\"Win32_System_AddressBook\"`*"]
-pub const WAB_DLL_NAME: &str = "WAB32.DLL";
+pub const WAB_DLL_NAME: ::windows::core::PCWSTR = ::windows::w!("WAB32.DLL");
 #[doc = "*Required features: `\"Win32_System_AddressBook\"`*"]
-pub const WAB_DLL_PATH_KEY: &str = "Software\\Microsoft\\WAB\\DLLPath";
+pub const WAB_DLL_PATH_KEY: ::windows::core::PCWSTR = ::windows::w!("Software\\Microsoft\\WAB\\DLLPath");
 #[doc = "*Required features: `\"Win32_System_AddressBook\"`*"]
 pub const WAB_ENABLE_PROFILES: u32 = 4194304u32;
 #[doc = "*Required features: `\"Win32_System_AddressBook\"`*"]
@@ -3309,11 +3300,11 @@ pub const fMapiUnicode: u32 = 0u32;
 #[doc = "*Required features: `\"Win32_System_AddressBook\"`*"]
 pub const hrSuccess: u32 = 0u32;
 #[doc = "*Required features: `\"Win32_System_AddressBook\"`*"]
-pub const szHrDispatchNotifications: &str = "HrDispatchNotifications";
+pub const szHrDispatchNotifications: ::windows::core::PCSTR = ::windows::s!("HrDispatchNotifications");
 #[doc = "*Required features: `\"Win32_System_AddressBook\"`*"]
-pub const szMAPINotificationMsg: &str = "MAPI Notify window message";
+pub const szMAPINotificationMsg: ::windows::core::PCSTR = ::windows::s!("MAPI Notify window message");
 #[doc = "*Required features: `\"Win32_System_AddressBook\"`*"]
-pub const szScCreateConversationIndex: &str = "ScCreateConversationIndex";
+pub const szScCreateConversationIndex: ::windows::core::PCSTR = ::windows::s!("ScCreateConversationIndex");
 #[doc = "*Required features: `\"Win32_System_AddressBook\"`*"]
 #[repr(transparent)]
 #[derive(::core::cmp::PartialEq, ::core::cmp::Eq)]

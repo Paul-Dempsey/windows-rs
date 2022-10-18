@@ -492,15 +492,16 @@ pub unsafe fn BuildImpersonateTrusteeW(ptrustee: *mut TRUSTEE_W, pimpersonatetru
     }
     BuildImpersonateTrusteeW(::core::mem::transmute(ptrustee), ::core::mem::transmute(pimpersonatetrustee.unwrap_or(::std::ptr::null())))
 }
-#[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
+#[doc = "*Required features: `\"Win32_Security_Authorization\"`, `\"Win32_Foundation\"`*"]
+#[cfg(feature = "Win32_Foundation")]
 #[inline]
-pub unsafe fn BuildSecurityDescriptorA<'a, P0>(powner: ::core::option::Option<*const TRUSTEE_A>, pgroup: ::core::option::Option<*const TRUSTEE_A>, plistofaccessentries: ::core::option::Option<&[EXPLICIT_ACCESS_A]>, plistofauditentries: ::core::option::Option<&[EXPLICIT_ACCESS_A]>, poldsd: P0, psizenewsd: *mut u32, pnewsd: *mut super::PSECURITY_DESCRIPTOR) -> u32
+pub unsafe fn BuildSecurityDescriptorA<'a, P0>(powner: ::core::option::Option<*const TRUSTEE_A>, pgroup: ::core::option::Option<*const TRUSTEE_A>, plistofaccessentries: ::core::option::Option<&[EXPLICIT_ACCESS_A]>, plistofauditentries: ::core::option::Option<&[EXPLICIT_ACCESS_A]>, poldsd: P0, psizenewsd: *mut u32, pnewsd: *mut super::PSECURITY_DESCRIPTOR) -> super::super::Foundation::WIN32_ERROR
 where
     P0: ::std::convert::Into<super::PSECURITY_DESCRIPTOR>,
 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn BuildSecurityDescriptorA(powner: *const TRUSTEE_A, pgroup: *const TRUSTEE_A, ccountofaccessentries: u32, plistofaccessentries: *const EXPLICIT_ACCESS_A, ccountofauditentries: u32, plistofauditentries: *const EXPLICIT_ACCESS_A, poldsd: super::PSECURITY_DESCRIPTOR, psizenewsd: *mut u32, pnewsd: *mut super::PSECURITY_DESCRIPTOR) -> u32;
+        fn BuildSecurityDescriptorA(powner: *const TRUSTEE_A, pgroup: *const TRUSTEE_A, ccountofaccessentries: u32, plistofaccessentries: *const EXPLICIT_ACCESS_A, ccountofauditentries: u32, plistofauditentries: *const EXPLICIT_ACCESS_A, poldsd: super::PSECURITY_DESCRIPTOR, psizenewsd: *mut u32, pnewsd: *mut super::PSECURITY_DESCRIPTOR) -> super::super::Foundation::WIN32_ERROR;
     }
     BuildSecurityDescriptorA(
         ::core::mem::transmute(powner.unwrap_or(::std::ptr::null())),
@@ -514,15 +515,16 @@ where
         ::core::mem::transmute(pnewsd),
     )
 }
-#[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
+#[doc = "*Required features: `\"Win32_Security_Authorization\"`, `\"Win32_Foundation\"`*"]
+#[cfg(feature = "Win32_Foundation")]
 #[inline]
-pub unsafe fn BuildSecurityDescriptorW<'a, P0>(powner: ::core::option::Option<*const TRUSTEE_W>, pgroup: ::core::option::Option<*const TRUSTEE_W>, plistofaccessentries: ::core::option::Option<&[EXPLICIT_ACCESS_W]>, plistofauditentries: ::core::option::Option<&[EXPLICIT_ACCESS_W]>, poldsd: P0, psizenewsd: *mut u32, pnewsd: *mut super::PSECURITY_DESCRIPTOR) -> u32
+pub unsafe fn BuildSecurityDescriptorW<'a, P0>(powner: ::core::option::Option<*const TRUSTEE_W>, pgroup: ::core::option::Option<*const TRUSTEE_W>, plistofaccessentries: ::core::option::Option<&[EXPLICIT_ACCESS_W]>, plistofauditentries: ::core::option::Option<&[EXPLICIT_ACCESS_W]>, poldsd: P0, psizenewsd: *mut u32, pnewsd: *mut super::PSECURITY_DESCRIPTOR) -> super::super::Foundation::WIN32_ERROR
 where
     P0: ::std::convert::Into<super::PSECURITY_DESCRIPTOR>,
 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn BuildSecurityDescriptorW(powner: *const TRUSTEE_W, pgroup: *const TRUSTEE_W, ccountofaccessentries: u32, plistofaccessentries: *const EXPLICIT_ACCESS_W, ccountofauditentries: u32, plistofauditentries: *const EXPLICIT_ACCESS_W, poldsd: super::PSECURITY_DESCRIPTOR, psizenewsd: *mut u32, pnewsd: *mut super::PSECURITY_DESCRIPTOR) -> u32;
+        fn BuildSecurityDescriptorW(powner: *const TRUSTEE_W, pgroup: *const TRUSTEE_W, ccountofaccessentries: u32, plistofaccessentries: *const EXPLICIT_ACCESS_W, ccountofauditentries: u32, plistofauditentries: *const EXPLICIT_ACCESS_W, poldsd: super::PSECURITY_DESCRIPTOR, psizenewsd: *mut u32, pnewsd: *mut super::PSECURITY_DESCRIPTOR) -> super::super::Foundation::WIN32_ERROR;
     }
     BuildSecurityDescriptorW(
         ::core::mem::transmute(powner.unwrap_or(::std::ptr::null())),
@@ -744,94 +746,101 @@ where
     }
     ConvertStringSidToSidW(stringsid.into(), ::core::mem::transmute(sid))
 }
-#[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
+#[doc = "*Required features: `\"Win32_Security_Authorization\"`, `\"Win32_Foundation\"`*"]
+#[cfg(feature = "Win32_Foundation")]
 #[inline]
-pub unsafe fn FreeInheritedFromArray(pinheritarray: &[INHERITED_FROMW], pfnarray: ::core::option::Option<*const FN_OBJECT_MGR_FUNCTS>) -> u32 {
+pub unsafe fn FreeInheritedFromArray(pinheritarray: &[INHERITED_FROMW], pfnarray: ::core::option::Option<*const FN_OBJECT_MGR_FUNCTS>) -> super::super::Foundation::WIN32_ERROR {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn FreeInheritedFromArray(pinheritarray: *const INHERITED_FROMW, acecnt: u16, pfnarray: *const FN_OBJECT_MGR_FUNCTS) -> u32;
+        fn FreeInheritedFromArray(pinheritarray: *const INHERITED_FROMW, acecnt: u16, pfnarray: *const FN_OBJECT_MGR_FUNCTS) -> super::super::Foundation::WIN32_ERROR;
     }
     FreeInheritedFromArray(::core::mem::transmute(pinheritarray.as_ptr()), pinheritarray.len() as _, ::core::mem::transmute(pfnarray.unwrap_or(::std::ptr::null())))
 }
-#[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
+#[doc = "*Required features: `\"Win32_Security_Authorization\"`, `\"Win32_Foundation\"`*"]
+#[cfg(feature = "Win32_Foundation")]
 #[inline]
-pub unsafe fn GetAuditedPermissionsFromAclA(pacl: *const super::ACL, ptrustee: *const TRUSTEE_A, psuccessfulauditedrights: *mut u32, pfailedauditrights: *mut u32) -> u32 {
+pub unsafe fn GetAuditedPermissionsFromAclA(pacl: *const super::ACL, ptrustee: *const TRUSTEE_A, psuccessfulauditedrights: *mut u32, pfailedauditrights: *mut u32) -> super::super::Foundation::WIN32_ERROR {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn GetAuditedPermissionsFromAclA(pacl: *const super::ACL, ptrustee: *const TRUSTEE_A, psuccessfulauditedrights: *mut u32, pfailedauditrights: *mut u32) -> u32;
+        fn GetAuditedPermissionsFromAclA(pacl: *const super::ACL, ptrustee: *const TRUSTEE_A, psuccessfulauditedrights: *mut u32, pfailedauditrights: *mut u32) -> super::super::Foundation::WIN32_ERROR;
     }
     GetAuditedPermissionsFromAclA(::core::mem::transmute(pacl), ::core::mem::transmute(ptrustee), ::core::mem::transmute(psuccessfulauditedrights), ::core::mem::transmute(pfailedauditrights))
 }
-#[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
+#[doc = "*Required features: `\"Win32_Security_Authorization\"`, `\"Win32_Foundation\"`*"]
+#[cfg(feature = "Win32_Foundation")]
 #[inline]
-pub unsafe fn GetAuditedPermissionsFromAclW(pacl: *const super::ACL, ptrustee: *const TRUSTEE_W, psuccessfulauditedrights: *mut u32, pfailedauditrights: *mut u32) -> u32 {
+pub unsafe fn GetAuditedPermissionsFromAclW(pacl: *const super::ACL, ptrustee: *const TRUSTEE_W, psuccessfulauditedrights: *mut u32, pfailedauditrights: *mut u32) -> super::super::Foundation::WIN32_ERROR {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn GetAuditedPermissionsFromAclW(pacl: *const super::ACL, ptrustee: *const TRUSTEE_W, psuccessfulauditedrights: *mut u32, pfailedauditrights: *mut u32) -> u32;
+        fn GetAuditedPermissionsFromAclW(pacl: *const super::ACL, ptrustee: *const TRUSTEE_W, psuccessfulauditedrights: *mut u32, pfailedauditrights: *mut u32) -> super::super::Foundation::WIN32_ERROR;
     }
     GetAuditedPermissionsFromAclW(::core::mem::transmute(pacl), ::core::mem::transmute(ptrustee), ::core::mem::transmute(psuccessfulauditedrights), ::core::mem::transmute(pfailedauditrights))
 }
-#[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
+#[doc = "*Required features: `\"Win32_Security_Authorization\"`, `\"Win32_Foundation\"`*"]
+#[cfg(feature = "Win32_Foundation")]
 #[inline]
-pub unsafe fn GetEffectiveRightsFromAclA(pacl: *const super::ACL, ptrustee: *const TRUSTEE_A, paccessrights: *mut u32) -> u32 {
+pub unsafe fn GetEffectiveRightsFromAclA(pacl: *const super::ACL, ptrustee: *const TRUSTEE_A, paccessrights: *mut u32) -> super::super::Foundation::WIN32_ERROR {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn GetEffectiveRightsFromAclA(pacl: *const super::ACL, ptrustee: *const TRUSTEE_A, paccessrights: *mut u32) -> u32;
+        fn GetEffectiveRightsFromAclA(pacl: *const super::ACL, ptrustee: *const TRUSTEE_A, paccessrights: *mut u32) -> super::super::Foundation::WIN32_ERROR;
     }
     GetEffectiveRightsFromAclA(::core::mem::transmute(pacl), ::core::mem::transmute(ptrustee), ::core::mem::transmute(paccessrights))
 }
-#[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
+#[doc = "*Required features: `\"Win32_Security_Authorization\"`, `\"Win32_Foundation\"`*"]
+#[cfg(feature = "Win32_Foundation")]
 #[inline]
-pub unsafe fn GetEffectiveRightsFromAclW(pacl: *const super::ACL, ptrustee: *const TRUSTEE_W, paccessrights: *mut u32) -> u32 {
+pub unsafe fn GetEffectiveRightsFromAclW(pacl: *const super::ACL, ptrustee: *const TRUSTEE_W, paccessrights: *mut u32) -> super::super::Foundation::WIN32_ERROR {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn GetEffectiveRightsFromAclW(pacl: *const super::ACL, ptrustee: *const TRUSTEE_W, paccessrights: *mut u32) -> u32;
+        fn GetEffectiveRightsFromAclW(pacl: *const super::ACL, ptrustee: *const TRUSTEE_W, paccessrights: *mut u32) -> super::super::Foundation::WIN32_ERROR;
     }
     GetEffectiveRightsFromAclW(::core::mem::transmute(pacl), ::core::mem::transmute(ptrustee), ::core::mem::transmute(paccessrights))
 }
-#[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
+#[doc = "*Required features: `\"Win32_Security_Authorization\"`, `\"Win32_Foundation\"`*"]
+#[cfg(feature = "Win32_Foundation")]
 #[inline]
-pub unsafe fn GetExplicitEntriesFromAclA(pacl: *const super::ACL, pccountofexplicitentries: *mut u32, plistofexplicitentries: *mut *mut EXPLICIT_ACCESS_A) -> u32 {
+pub unsafe fn GetExplicitEntriesFromAclA(pacl: *const super::ACL, pccountofexplicitentries: *mut u32, plistofexplicitentries: *mut *mut EXPLICIT_ACCESS_A) -> super::super::Foundation::WIN32_ERROR {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn GetExplicitEntriesFromAclA(pacl: *const super::ACL, pccountofexplicitentries: *mut u32, plistofexplicitentries: *mut *mut EXPLICIT_ACCESS_A) -> u32;
+        fn GetExplicitEntriesFromAclA(pacl: *const super::ACL, pccountofexplicitentries: *mut u32, plistofexplicitentries: *mut *mut EXPLICIT_ACCESS_A) -> super::super::Foundation::WIN32_ERROR;
     }
     GetExplicitEntriesFromAclA(::core::mem::transmute(pacl), ::core::mem::transmute(pccountofexplicitentries), ::core::mem::transmute(plistofexplicitentries))
 }
-#[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
+#[doc = "*Required features: `\"Win32_Security_Authorization\"`, `\"Win32_Foundation\"`*"]
+#[cfg(feature = "Win32_Foundation")]
 #[inline]
-pub unsafe fn GetExplicitEntriesFromAclW(pacl: *const super::ACL, pccountofexplicitentries: *mut u32, plistofexplicitentries: *mut *mut EXPLICIT_ACCESS_W) -> u32 {
+pub unsafe fn GetExplicitEntriesFromAclW(pacl: *const super::ACL, pccountofexplicitentries: *mut u32, plistofexplicitentries: *mut *mut EXPLICIT_ACCESS_W) -> super::super::Foundation::WIN32_ERROR {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn GetExplicitEntriesFromAclW(pacl: *const super::ACL, pccountofexplicitentries: *mut u32, plistofexplicitentries: *mut *mut EXPLICIT_ACCESS_W) -> u32;
+        fn GetExplicitEntriesFromAclW(pacl: *const super::ACL, pccountofexplicitentries: *mut u32, plistofexplicitentries: *mut *mut EXPLICIT_ACCESS_W) -> super::super::Foundation::WIN32_ERROR;
     }
     GetExplicitEntriesFromAclW(::core::mem::transmute(pacl), ::core::mem::transmute(pccountofexplicitentries), ::core::mem::transmute(plistofexplicitentries))
 }
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`, `\"Win32_Foundation\"`*"]
 #[cfg(feature = "Win32_Foundation")]
 #[inline]
-pub unsafe fn GetInheritanceSourceA<'a, P0, P1>(pobjectname: P0, objecttype: SE_OBJECT_TYPE, securityinfo: u32, container: P1, pobjectclassguids: ::core::option::Option<&[*const ::windows::core::GUID]>, pacl: *const super::ACL, pfnarray: ::core::option::Option<*const FN_OBJECT_MGR_FUNCTS>, pgenericmapping: *const super::GENERIC_MAPPING, pinheritarray: *mut INHERITED_FROMA) -> u32
+pub unsafe fn GetInheritanceSourceA<'a, P0, P1>(pobjectname: P0, objecttype: SE_OBJECT_TYPE, securityinfo: u32, container: P1, pobjectclassguids: ::core::option::Option<&[*const ::windows::core::GUID]>, pacl: *const super::ACL, pfnarray: ::core::option::Option<*const FN_OBJECT_MGR_FUNCTS>, pgenericmapping: *const super::GENERIC_MAPPING, pinheritarray: *mut INHERITED_FROMA) -> super::super::Foundation::WIN32_ERROR
 where
     P0: ::std::convert::Into<::windows::core::PCSTR>,
     P1: ::std::convert::Into<super::super::Foundation::BOOL>,
 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn GetInheritanceSourceA(pobjectname: ::windows::core::PCSTR, objecttype: SE_OBJECT_TYPE, securityinfo: u32, container: super::super::Foundation::BOOL, pobjectclassguids: *const *const ::windows::core::GUID, guidcount: u32, pacl: *const super::ACL, pfnarray: *const FN_OBJECT_MGR_FUNCTS, pgenericmapping: *const super::GENERIC_MAPPING, pinheritarray: *mut INHERITED_FROMA) -> u32;
+        fn GetInheritanceSourceA(pobjectname: ::windows::core::PCSTR, objecttype: SE_OBJECT_TYPE, securityinfo: u32, container: super::super::Foundation::BOOL, pobjectclassguids: *const *const ::windows::core::GUID, guidcount: u32, pacl: *const super::ACL, pfnarray: *const FN_OBJECT_MGR_FUNCTS, pgenericmapping: *const super::GENERIC_MAPPING, pinheritarray: *mut INHERITED_FROMA) -> super::super::Foundation::WIN32_ERROR;
     }
     GetInheritanceSourceA(pobjectname.into(), objecttype, securityinfo, container.into(), ::core::mem::transmute(pobjectclassguids.as_deref().map_or(::core::ptr::null(), |slice| slice.as_ptr())), pobjectclassguids.as_deref().map_or(0, |slice| slice.len() as _), ::core::mem::transmute(pacl), ::core::mem::transmute(pfnarray.unwrap_or(::std::ptr::null())), ::core::mem::transmute(pgenericmapping), ::core::mem::transmute(pinheritarray))
 }
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`, `\"Win32_Foundation\"`*"]
 #[cfg(feature = "Win32_Foundation")]
 #[inline]
-pub unsafe fn GetInheritanceSourceW<'a, P0, P1>(pobjectname: P0, objecttype: SE_OBJECT_TYPE, securityinfo: u32, container: P1, pobjectclassguids: ::core::option::Option<&[*const ::windows::core::GUID]>, pacl: *const super::ACL, pfnarray: ::core::option::Option<*const FN_OBJECT_MGR_FUNCTS>, pgenericmapping: *const super::GENERIC_MAPPING, pinheritarray: *mut INHERITED_FROMW) -> u32
+pub unsafe fn GetInheritanceSourceW<'a, P0, P1>(pobjectname: P0, objecttype: SE_OBJECT_TYPE, securityinfo: u32, container: P1, pobjectclassguids: ::core::option::Option<&[*const ::windows::core::GUID]>, pacl: *const super::ACL, pfnarray: ::core::option::Option<*const FN_OBJECT_MGR_FUNCTS>, pgenericmapping: *const super::GENERIC_MAPPING, pinheritarray: *mut INHERITED_FROMW) -> super::super::Foundation::WIN32_ERROR
 where
     P0: ::std::convert::Into<::windows::core::PCWSTR>,
     P1: ::std::convert::Into<super::super::Foundation::BOOL>,
 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn GetInheritanceSourceW(pobjectname: ::windows::core::PCWSTR, objecttype: SE_OBJECT_TYPE, securityinfo: u32, container: super::super::Foundation::BOOL, pobjectclassguids: *const *const ::windows::core::GUID, guidcount: u32, pacl: *const super::ACL, pfnarray: *const FN_OBJECT_MGR_FUNCTS, pgenericmapping: *const super::GENERIC_MAPPING, pinheritarray: *mut INHERITED_FROMW) -> u32;
+        fn GetInheritanceSourceW(pobjectname: ::windows::core::PCWSTR, objecttype: SE_OBJECT_TYPE, securityinfo: u32, container: super::super::Foundation::BOOL, pobjectclassguids: *const *const ::windows::core::GUID, guidcount: u32, pacl: *const super::ACL, pfnarray: *const FN_OBJECT_MGR_FUNCTS, pgenericmapping: *const super::GENERIC_MAPPING, pinheritarray: *mut INHERITED_FROMW) -> super::super::Foundation::WIN32_ERROR;
     }
     GetInheritanceSourceW(pobjectname.into(), objecttype, securityinfo, container.into(), ::core::mem::transmute(pobjectclassguids.as_deref().map_or(::core::ptr::null(), |slice| slice.as_ptr())), pobjectclassguids.as_deref().map_or(0, |slice| slice.len() as _), ::core::mem::transmute(pacl), ::core::mem::transmute(pfnarray.unwrap_or(::std::ptr::null())), ::core::mem::transmute(pgenericmapping), ::core::mem::transmute(pinheritarray))
 }
@@ -964,52 +973,56 @@ pub unsafe fn GetTrusteeTypeW(ptrustee: ::core::option::Option<*const TRUSTEE_W>
     }
     GetTrusteeTypeW(::core::mem::transmute(ptrustee.unwrap_or(::std::ptr::null())))
 }
-#[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
+#[doc = "*Required features: `\"Win32_Security_Authorization\"`, `\"Win32_Foundation\"`*"]
+#[cfg(feature = "Win32_Foundation")]
 #[inline]
-pub unsafe fn LookupSecurityDescriptorPartsA<'a, P0>(ppowner: ::core::option::Option<*mut *mut TRUSTEE_A>, ppgroup: ::core::option::Option<*mut *mut TRUSTEE_A>, pccountofaccessentries: ::core::option::Option<*mut u32>, pplistofaccessentries: ::core::option::Option<*mut *mut EXPLICIT_ACCESS_A>, pccountofauditentries: ::core::option::Option<*mut u32>, pplistofauditentries: ::core::option::Option<*mut *mut EXPLICIT_ACCESS_A>, psd: P0) -> u32
+pub unsafe fn LookupSecurityDescriptorPartsA<'a, P0>(ppowner: ::core::option::Option<*mut *mut TRUSTEE_A>, ppgroup: ::core::option::Option<*mut *mut TRUSTEE_A>, pccountofaccessentries: ::core::option::Option<*mut u32>, pplistofaccessentries: ::core::option::Option<*mut *mut EXPLICIT_ACCESS_A>, pccountofauditentries: ::core::option::Option<*mut u32>, pplistofauditentries: ::core::option::Option<*mut *mut EXPLICIT_ACCESS_A>, psd: P0) -> super::super::Foundation::WIN32_ERROR
 where
     P0: ::std::convert::Into<super::PSECURITY_DESCRIPTOR>,
 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn LookupSecurityDescriptorPartsA(ppowner: *mut *mut TRUSTEE_A, ppgroup: *mut *mut TRUSTEE_A, pccountofaccessentries: *mut u32, pplistofaccessentries: *mut *mut EXPLICIT_ACCESS_A, pccountofauditentries: *mut u32, pplistofauditentries: *mut *mut EXPLICIT_ACCESS_A, psd: super::PSECURITY_DESCRIPTOR) -> u32;
+        fn LookupSecurityDescriptorPartsA(ppowner: *mut *mut TRUSTEE_A, ppgroup: *mut *mut TRUSTEE_A, pccountofaccessentries: *mut u32, pplistofaccessentries: *mut *mut EXPLICIT_ACCESS_A, pccountofauditentries: *mut u32, pplistofauditentries: *mut *mut EXPLICIT_ACCESS_A, psd: super::PSECURITY_DESCRIPTOR) -> super::super::Foundation::WIN32_ERROR;
     }
     LookupSecurityDescriptorPartsA(::core::mem::transmute(ppowner.unwrap_or(::std::ptr::null_mut())), ::core::mem::transmute(ppgroup.unwrap_or(::std::ptr::null_mut())), ::core::mem::transmute(pccountofaccessentries.unwrap_or(::std::ptr::null_mut())), ::core::mem::transmute(pplistofaccessentries.unwrap_or(::std::ptr::null_mut())), ::core::mem::transmute(pccountofauditentries.unwrap_or(::std::ptr::null_mut())), ::core::mem::transmute(pplistofauditentries.unwrap_or(::std::ptr::null_mut())), psd.into())
 }
-#[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
+#[doc = "*Required features: `\"Win32_Security_Authorization\"`, `\"Win32_Foundation\"`*"]
+#[cfg(feature = "Win32_Foundation")]
 #[inline]
-pub unsafe fn LookupSecurityDescriptorPartsW<'a, P0>(ppowner: ::core::option::Option<*mut *mut TRUSTEE_W>, ppgroup: ::core::option::Option<*mut *mut TRUSTEE_W>, pccountofaccessentries: ::core::option::Option<*mut u32>, pplistofaccessentries: ::core::option::Option<*mut *mut EXPLICIT_ACCESS_W>, pccountofauditentries: ::core::option::Option<*mut u32>, pplistofauditentries: ::core::option::Option<*mut *mut EXPLICIT_ACCESS_W>, psd: P0) -> u32
+pub unsafe fn LookupSecurityDescriptorPartsW<'a, P0>(ppowner: ::core::option::Option<*mut *mut TRUSTEE_W>, ppgroup: ::core::option::Option<*mut *mut TRUSTEE_W>, pccountofaccessentries: ::core::option::Option<*mut u32>, pplistofaccessentries: ::core::option::Option<*mut *mut EXPLICIT_ACCESS_W>, pccountofauditentries: ::core::option::Option<*mut u32>, pplistofauditentries: ::core::option::Option<*mut *mut EXPLICIT_ACCESS_W>, psd: P0) -> super::super::Foundation::WIN32_ERROR
 where
     P0: ::std::convert::Into<super::PSECURITY_DESCRIPTOR>,
 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn LookupSecurityDescriptorPartsW(ppowner: *mut *mut TRUSTEE_W, ppgroup: *mut *mut TRUSTEE_W, pccountofaccessentries: *mut u32, pplistofaccessentries: *mut *mut EXPLICIT_ACCESS_W, pccountofauditentries: *mut u32, pplistofauditentries: *mut *mut EXPLICIT_ACCESS_W, psd: super::PSECURITY_DESCRIPTOR) -> u32;
+        fn LookupSecurityDescriptorPartsW(ppowner: *mut *mut TRUSTEE_W, ppgroup: *mut *mut TRUSTEE_W, pccountofaccessentries: *mut u32, pplistofaccessentries: *mut *mut EXPLICIT_ACCESS_W, pccountofauditentries: *mut u32, pplistofauditentries: *mut *mut EXPLICIT_ACCESS_W, psd: super::PSECURITY_DESCRIPTOR) -> super::super::Foundation::WIN32_ERROR;
     }
     LookupSecurityDescriptorPartsW(::core::mem::transmute(ppowner.unwrap_or(::std::ptr::null_mut())), ::core::mem::transmute(ppgroup.unwrap_or(::std::ptr::null_mut())), ::core::mem::transmute(pccountofaccessentries.unwrap_or(::std::ptr::null_mut())), ::core::mem::transmute(pplistofaccessentries.unwrap_or(::std::ptr::null_mut())), ::core::mem::transmute(pccountofauditentries.unwrap_or(::std::ptr::null_mut())), ::core::mem::transmute(pplistofauditentries.unwrap_or(::std::ptr::null_mut())), psd.into())
 }
-#[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
+#[doc = "*Required features: `\"Win32_Security_Authorization\"`, `\"Win32_Foundation\"`*"]
+#[cfg(feature = "Win32_Foundation")]
 #[inline]
-pub unsafe fn SetEntriesInAclA(plistofexplicitentries: ::core::option::Option<&[EXPLICIT_ACCESS_A]>, oldacl: ::core::option::Option<*const super::ACL>, newacl: *mut *mut super::ACL) -> u32 {
+pub unsafe fn SetEntriesInAclA(plistofexplicitentries: ::core::option::Option<&[EXPLICIT_ACCESS_A]>, oldacl: ::core::option::Option<*const super::ACL>, newacl: *mut *mut super::ACL) -> super::super::Foundation::WIN32_ERROR {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn SetEntriesInAclA(ccountofexplicitentries: u32, plistofexplicitentries: *const EXPLICIT_ACCESS_A, oldacl: *const super::ACL, newacl: *mut *mut super::ACL) -> u32;
+        fn SetEntriesInAclA(ccountofexplicitentries: u32, plistofexplicitentries: *const EXPLICIT_ACCESS_A, oldacl: *const super::ACL, newacl: *mut *mut super::ACL) -> super::super::Foundation::WIN32_ERROR;
     }
     SetEntriesInAclA(plistofexplicitentries.as_deref().map_or(0, |slice| slice.len() as _), ::core::mem::transmute(plistofexplicitentries.as_deref().map_or(::core::ptr::null(), |slice| slice.as_ptr())), ::core::mem::transmute(oldacl.unwrap_or(::std::ptr::null())), ::core::mem::transmute(newacl))
 }
-#[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
+#[doc = "*Required features: `\"Win32_Security_Authorization\"`, `\"Win32_Foundation\"`*"]
+#[cfg(feature = "Win32_Foundation")]
 #[inline]
-pub unsafe fn SetEntriesInAclW(plistofexplicitentries: ::core::option::Option<&[EXPLICIT_ACCESS_W]>, oldacl: ::core::option::Option<*const super::ACL>, newacl: *mut *mut super::ACL) -> u32 {
+pub unsafe fn SetEntriesInAclW(plistofexplicitentries: ::core::option::Option<&[EXPLICIT_ACCESS_W]>, oldacl: ::core::option::Option<*const super::ACL>, newacl: *mut *mut super::ACL) -> super::super::Foundation::WIN32_ERROR {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn SetEntriesInAclW(ccountofexplicitentries: u32, plistofexplicitentries: *const EXPLICIT_ACCESS_W, oldacl: *const super::ACL, newacl: *mut *mut super::ACL) -> u32;
+        fn SetEntriesInAclW(ccountofexplicitentries: u32, plistofexplicitentries: *const EXPLICIT_ACCESS_W, oldacl: *const super::ACL, newacl: *mut *mut super::ACL) -> super::super::Foundation::WIN32_ERROR;
     }
     SetEntriesInAclW(plistofexplicitentries.as_deref().map_or(0, |slice| slice.len() as _), ::core::mem::transmute(plistofexplicitentries.as_deref().map_or(::core::ptr::null(), |slice| slice.as_ptr())), ::core::mem::transmute(oldacl.unwrap_or(::std::ptr::null())), ::core::mem::transmute(newacl))
 }
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`, `\"Win32_Foundation\"`*"]
 #[cfg(feature = "Win32_Foundation")]
 #[inline]
-pub unsafe fn SetNamedSecurityInfoA<'a, P0, P1, P2>(pobjectname: P0, objecttype: SE_OBJECT_TYPE, securityinfo: super::OBJECT_SECURITY_INFORMATION, psidowner: P1, psidgroup: P2, pdacl: ::core::option::Option<*const super::ACL>, psacl: ::core::option::Option<*const super::ACL>) -> u32
+pub unsafe fn SetNamedSecurityInfoA<'a, P0, P1, P2>(pobjectname: P0, objecttype: SE_OBJECT_TYPE, securityinfo: super::OBJECT_SECURITY_INFORMATION, psidowner: P1, psidgroup: P2, pdacl: ::core::option::Option<*const super::ACL>, psacl: ::core::option::Option<*const super::ACL>) -> super::super::Foundation::WIN32_ERROR
 where
     P0: ::std::convert::Into<::windows::core::PCSTR>,
     P1: ::std::convert::Into<super::super::Foundation::PSID>,
@@ -1017,14 +1030,14 @@ where
 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn SetNamedSecurityInfoA(pobjectname: ::windows::core::PCSTR, objecttype: SE_OBJECT_TYPE, securityinfo: super::OBJECT_SECURITY_INFORMATION, psidowner: super::super::Foundation::PSID, psidgroup: super::super::Foundation::PSID, pdacl: *const super::ACL, psacl: *const super::ACL) -> u32;
+        fn SetNamedSecurityInfoA(pobjectname: ::windows::core::PCSTR, objecttype: SE_OBJECT_TYPE, securityinfo: super::OBJECT_SECURITY_INFORMATION, psidowner: super::super::Foundation::PSID, psidgroup: super::super::Foundation::PSID, pdacl: *const super::ACL, psacl: *const super::ACL) -> super::super::Foundation::WIN32_ERROR;
     }
     SetNamedSecurityInfoA(pobjectname.into(), objecttype, securityinfo, psidowner.into(), psidgroup.into(), ::core::mem::transmute(pdacl.unwrap_or(::std::ptr::null())), ::core::mem::transmute(psacl.unwrap_or(::std::ptr::null())))
 }
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`, `\"Win32_Foundation\"`*"]
 #[cfg(feature = "Win32_Foundation")]
 #[inline]
-pub unsafe fn SetNamedSecurityInfoW<'a, P0, P1, P2>(pobjectname: P0, objecttype: SE_OBJECT_TYPE, securityinfo: super::OBJECT_SECURITY_INFORMATION, psidowner: P1, psidgroup: P2, pdacl: ::core::option::Option<*const super::ACL>, psacl: ::core::option::Option<*const super::ACL>) -> u32
+pub unsafe fn SetNamedSecurityInfoW<'a, P0, P1, P2>(pobjectname: P0, objecttype: SE_OBJECT_TYPE, securityinfo: super::OBJECT_SECURITY_INFORMATION, psidowner: P1, psidgroup: P2, pdacl: ::core::option::Option<*const super::ACL>, psacl: ::core::option::Option<*const super::ACL>) -> super::super::Foundation::WIN32_ERROR
 where
     P0: ::std::convert::Into<::windows::core::PCWSTR>,
     P1: ::std::convert::Into<super::super::Foundation::PSID>,
@@ -1032,14 +1045,14 @@ where
 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn SetNamedSecurityInfoW(pobjectname: ::windows::core::PCWSTR, objecttype: SE_OBJECT_TYPE, securityinfo: super::OBJECT_SECURITY_INFORMATION, psidowner: super::super::Foundation::PSID, psidgroup: super::super::Foundation::PSID, pdacl: *const super::ACL, psacl: *const super::ACL) -> u32;
+        fn SetNamedSecurityInfoW(pobjectname: ::windows::core::PCWSTR, objecttype: SE_OBJECT_TYPE, securityinfo: super::OBJECT_SECURITY_INFORMATION, psidowner: super::super::Foundation::PSID, psidgroup: super::super::Foundation::PSID, pdacl: *const super::ACL, psacl: *const super::ACL) -> super::super::Foundation::WIN32_ERROR;
     }
     SetNamedSecurityInfoW(pobjectname.into(), objecttype, securityinfo, psidowner.into(), psidgroup.into(), ::core::mem::transmute(pdacl.unwrap_or(::std::ptr::null())), ::core::mem::transmute(psacl.unwrap_or(::std::ptr::null())))
 }
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`, `\"Win32_Foundation\"`*"]
 #[cfg(feature = "Win32_Foundation")]
 #[inline]
-pub unsafe fn SetSecurityInfo<'a, P0, P1, P2>(handle: P0, objecttype: SE_OBJECT_TYPE, securityinfo: u32, psidowner: P1, psidgroup: P2, pdacl: ::core::option::Option<*const super::ACL>, psacl: ::core::option::Option<*const super::ACL>) -> u32
+pub unsafe fn SetSecurityInfo<'a, P0, P1, P2>(handle: P0, objecttype: SE_OBJECT_TYPE, securityinfo: u32, psidowner: P1, psidgroup: P2, pdacl: ::core::option::Option<*const super::ACL>, psacl: ::core::option::Option<*const super::ACL>) -> super::super::Foundation::WIN32_ERROR
 where
     P0: ::std::convert::Into<super::super::Foundation::HANDLE>,
     P1: ::std::convert::Into<super::super::Foundation::PSID>,
@@ -1047,14 +1060,14 @@ where
 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn SetSecurityInfo(handle: super::super::Foundation::HANDLE, objecttype: SE_OBJECT_TYPE, securityinfo: u32, psidowner: super::super::Foundation::PSID, psidgroup: super::super::Foundation::PSID, pdacl: *const super::ACL, psacl: *const super::ACL) -> u32;
+        fn SetSecurityInfo(handle: super::super::Foundation::HANDLE, objecttype: SE_OBJECT_TYPE, securityinfo: u32, psidowner: super::super::Foundation::PSID, psidgroup: super::super::Foundation::PSID, pdacl: *const super::ACL, psacl: *const super::ACL) -> super::super::Foundation::WIN32_ERROR;
     }
     SetSecurityInfo(handle.into(), objecttype, securityinfo, psidowner.into(), psidgroup.into(), ::core::mem::transmute(pdacl.unwrap_or(::std::ptr::null())), ::core::mem::transmute(psacl.unwrap_or(::std::ptr::null())))
 }
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`, `\"Win32_Foundation\"`*"]
 #[cfg(feature = "Win32_Foundation")]
 #[inline]
-pub unsafe fn TreeResetNamedSecurityInfoA<'a, P0, P1, P2, P3>(pobjectname: P0, objecttype: SE_OBJECT_TYPE, securityinfo: u32, powner: P1, pgroup: P2, pdacl: ::core::option::Option<*const super::ACL>, psacl: ::core::option::Option<*const super::ACL>, keepexplicit: P3, fnprogress: FN_PROGRESS, progressinvokesetting: PROG_INVOKE_SETTING, args: ::core::option::Option<*const ::core::ffi::c_void>) -> u32
+pub unsafe fn TreeResetNamedSecurityInfoA<'a, P0, P1, P2, P3>(pobjectname: P0, objecttype: SE_OBJECT_TYPE, securityinfo: u32, powner: P1, pgroup: P2, pdacl: ::core::option::Option<*const super::ACL>, psacl: ::core::option::Option<*const super::ACL>, keepexplicit: P3, fnprogress: FN_PROGRESS, progressinvokesetting: PROG_INVOKE_SETTING, args: ::core::option::Option<*const ::core::ffi::c_void>) -> super::super::Foundation::WIN32_ERROR
 where
     P0: ::std::convert::Into<::windows::core::PCSTR>,
     P1: ::std::convert::Into<super::super::Foundation::PSID>,
@@ -1063,14 +1076,14 @@ where
 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn TreeResetNamedSecurityInfoA(pobjectname: ::windows::core::PCSTR, objecttype: SE_OBJECT_TYPE, securityinfo: u32, powner: super::super::Foundation::PSID, pgroup: super::super::Foundation::PSID, pdacl: *const super::ACL, psacl: *const super::ACL, keepexplicit: super::super::Foundation::BOOL, fnprogress: *mut ::core::ffi::c_void, progressinvokesetting: PROG_INVOKE_SETTING, args: *const ::core::ffi::c_void) -> u32;
+        fn TreeResetNamedSecurityInfoA(pobjectname: ::windows::core::PCSTR, objecttype: SE_OBJECT_TYPE, securityinfo: u32, powner: super::super::Foundation::PSID, pgroup: super::super::Foundation::PSID, pdacl: *const super::ACL, psacl: *const super::ACL, keepexplicit: super::super::Foundation::BOOL, fnprogress: *mut ::core::ffi::c_void, progressinvokesetting: PROG_INVOKE_SETTING, args: *const ::core::ffi::c_void) -> super::super::Foundation::WIN32_ERROR;
     }
     TreeResetNamedSecurityInfoA(pobjectname.into(), objecttype, securityinfo, powner.into(), pgroup.into(), ::core::mem::transmute(pdacl.unwrap_or(::std::ptr::null())), ::core::mem::transmute(psacl.unwrap_or(::std::ptr::null())), keepexplicit.into(), ::core::mem::transmute(fnprogress), progressinvokesetting, ::core::mem::transmute(args.unwrap_or(::std::ptr::null())))
 }
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`, `\"Win32_Foundation\"`*"]
 #[cfg(feature = "Win32_Foundation")]
 #[inline]
-pub unsafe fn TreeResetNamedSecurityInfoW<'a, P0, P1, P2, P3>(pobjectname: P0, objecttype: SE_OBJECT_TYPE, securityinfo: u32, powner: P1, pgroup: P2, pdacl: ::core::option::Option<*const super::ACL>, psacl: ::core::option::Option<*const super::ACL>, keepexplicit: P3, fnprogress: FN_PROGRESS, progressinvokesetting: PROG_INVOKE_SETTING, args: ::core::option::Option<*const ::core::ffi::c_void>) -> u32
+pub unsafe fn TreeResetNamedSecurityInfoW<'a, P0, P1, P2, P3>(pobjectname: P0, objecttype: SE_OBJECT_TYPE, securityinfo: u32, powner: P1, pgroup: P2, pdacl: ::core::option::Option<*const super::ACL>, psacl: ::core::option::Option<*const super::ACL>, keepexplicit: P3, fnprogress: FN_PROGRESS, progressinvokesetting: PROG_INVOKE_SETTING, args: ::core::option::Option<*const ::core::ffi::c_void>) -> super::super::Foundation::WIN32_ERROR
 where
     P0: ::std::convert::Into<::windows::core::PCWSTR>,
     P1: ::std::convert::Into<super::super::Foundation::PSID>,
@@ -1079,14 +1092,14 @@ where
 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn TreeResetNamedSecurityInfoW(pobjectname: ::windows::core::PCWSTR, objecttype: SE_OBJECT_TYPE, securityinfo: u32, powner: super::super::Foundation::PSID, pgroup: super::super::Foundation::PSID, pdacl: *const super::ACL, psacl: *const super::ACL, keepexplicit: super::super::Foundation::BOOL, fnprogress: *mut ::core::ffi::c_void, progressinvokesetting: PROG_INVOKE_SETTING, args: *const ::core::ffi::c_void) -> u32;
+        fn TreeResetNamedSecurityInfoW(pobjectname: ::windows::core::PCWSTR, objecttype: SE_OBJECT_TYPE, securityinfo: u32, powner: super::super::Foundation::PSID, pgroup: super::super::Foundation::PSID, pdacl: *const super::ACL, psacl: *const super::ACL, keepexplicit: super::super::Foundation::BOOL, fnprogress: *mut ::core::ffi::c_void, progressinvokesetting: PROG_INVOKE_SETTING, args: *const ::core::ffi::c_void) -> super::super::Foundation::WIN32_ERROR;
     }
     TreeResetNamedSecurityInfoW(pobjectname.into(), objecttype, securityinfo, powner.into(), pgroup.into(), ::core::mem::transmute(pdacl.unwrap_or(::std::ptr::null())), ::core::mem::transmute(psacl.unwrap_or(::std::ptr::null())), keepexplicit.into(), ::core::mem::transmute(fnprogress), progressinvokesetting, ::core::mem::transmute(args.unwrap_or(::std::ptr::null())))
 }
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`, `\"Win32_Foundation\"`*"]
 #[cfg(feature = "Win32_Foundation")]
 #[inline]
-pub unsafe fn TreeSetNamedSecurityInfoA<'a, P0, P1, P2>(pobjectname: P0, objecttype: SE_OBJECT_TYPE, securityinfo: u32, powner: P1, pgroup: P2, pdacl: ::core::option::Option<*const super::ACL>, psacl: ::core::option::Option<*const super::ACL>, dwaction: TREE_SEC_INFO, fnprogress: FN_PROGRESS, progressinvokesetting: PROG_INVOKE_SETTING, args: ::core::option::Option<*const ::core::ffi::c_void>) -> u32
+pub unsafe fn TreeSetNamedSecurityInfoA<'a, P0, P1, P2>(pobjectname: P0, objecttype: SE_OBJECT_TYPE, securityinfo: u32, powner: P1, pgroup: P2, pdacl: ::core::option::Option<*const super::ACL>, psacl: ::core::option::Option<*const super::ACL>, dwaction: TREE_SEC_INFO, fnprogress: FN_PROGRESS, progressinvokesetting: PROG_INVOKE_SETTING, args: ::core::option::Option<*const ::core::ffi::c_void>) -> super::super::Foundation::WIN32_ERROR
 where
     P0: ::std::convert::Into<::windows::core::PCSTR>,
     P1: ::std::convert::Into<super::super::Foundation::PSID>,
@@ -1094,14 +1107,14 @@ where
 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn TreeSetNamedSecurityInfoA(pobjectname: ::windows::core::PCSTR, objecttype: SE_OBJECT_TYPE, securityinfo: u32, powner: super::super::Foundation::PSID, pgroup: super::super::Foundation::PSID, pdacl: *const super::ACL, psacl: *const super::ACL, dwaction: TREE_SEC_INFO, fnprogress: *mut ::core::ffi::c_void, progressinvokesetting: PROG_INVOKE_SETTING, args: *const ::core::ffi::c_void) -> u32;
+        fn TreeSetNamedSecurityInfoA(pobjectname: ::windows::core::PCSTR, objecttype: SE_OBJECT_TYPE, securityinfo: u32, powner: super::super::Foundation::PSID, pgroup: super::super::Foundation::PSID, pdacl: *const super::ACL, psacl: *const super::ACL, dwaction: TREE_SEC_INFO, fnprogress: *mut ::core::ffi::c_void, progressinvokesetting: PROG_INVOKE_SETTING, args: *const ::core::ffi::c_void) -> super::super::Foundation::WIN32_ERROR;
     }
     TreeSetNamedSecurityInfoA(pobjectname.into(), objecttype, securityinfo, powner.into(), pgroup.into(), ::core::mem::transmute(pdacl.unwrap_or(::std::ptr::null())), ::core::mem::transmute(psacl.unwrap_or(::std::ptr::null())), dwaction, ::core::mem::transmute(fnprogress), progressinvokesetting, ::core::mem::transmute(args.unwrap_or(::std::ptr::null())))
 }
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`, `\"Win32_Foundation\"`*"]
 #[cfg(feature = "Win32_Foundation")]
 #[inline]
-pub unsafe fn TreeSetNamedSecurityInfoW<'a, P0, P1, P2>(pobjectname: P0, objecttype: SE_OBJECT_TYPE, securityinfo: u32, powner: P1, pgroup: P2, pdacl: ::core::option::Option<*const super::ACL>, psacl: ::core::option::Option<*const super::ACL>, dwaction: TREE_SEC_INFO, fnprogress: FN_PROGRESS, progressinvokesetting: PROG_INVOKE_SETTING, args: ::core::option::Option<*const ::core::ffi::c_void>) -> u32
+pub unsafe fn TreeSetNamedSecurityInfoW<'a, P0, P1, P2>(pobjectname: P0, objecttype: SE_OBJECT_TYPE, securityinfo: u32, powner: P1, pgroup: P2, pdacl: ::core::option::Option<*const super::ACL>, psacl: ::core::option::Option<*const super::ACL>, dwaction: TREE_SEC_INFO, fnprogress: FN_PROGRESS, progressinvokesetting: PROG_INVOKE_SETTING, args: ::core::option::Option<*const ::core::ffi::c_void>) -> super::super::Foundation::WIN32_ERROR
 where
     P0: ::std::convert::Into<::windows::core::PCWSTR>,
     P1: ::std::convert::Into<super::super::Foundation::PSID>,
@@ -1109,7 +1122,7 @@ where
 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn TreeSetNamedSecurityInfoW(pobjectname: ::windows::core::PCWSTR, objecttype: SE_OBJECT_TYPE, securityinfo: u32, powner: super::super::Foundation::PSID, pgroup: super::super::Foundation::PSID, pdacl: *const super::ACL, psacl: *const super::ACL, dwaction: TREE_SEC_INFO, fnprogress: *mut ::core::ffi::c_void, progressinvokesetting: PROG_INVOKE_SETTING, args: *const ::core::ffi::c_void) -> u32;
+        fn TreeSetNamedSecurityInfoW(pobjectname: ::windows::core::PCWSTR, objecttype: SE_OBJECT_TYPE, securityinfo: u32, powner: super::super::Foundation::PSID, pgroup: super::super::Foundation::PSID, pdacl: *const super::ACL, psacl: *const super::ACL, dwaction: TREE_SEC_INFO, fnprogress: *mut ::core::ffi::c_void, progressinvokesetting: PROG_INVOKE_SETTING, args: *const ::core::ffi::c_void) -> super::super::Foundation::WIN32_ERROR;
     }
     TreeSetNamedSecurityInfoW(pobjectname.into(), objecttype, securityinfo, powner.into(), pgroup.into(), ::core::mem::transmute(pdacl.unwrap_or(::std::ptr::null())), ::core::mem::transmute(psacl.unwrap_or(::std::ptr::null())), dwaction, ::core::mem::transmute(fnprogress), progressinvokesetting, ::core::mem::transmute(args.unwrap_or(::std::ptr::null())))
 }
@@ -1618,7 +1631,7 @@ pub struct IAzApplication_Vtbl {
     #[cfg(not(feature = "Win32_Foundation"))]
     Writable: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub GetProperty: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, lpropid: i32, varreserved: ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>, pvarprop: *mut super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub GetProperty: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, lpropid: i32, varreserved: ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>, pvarprop: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     GetProperty: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
@@ -1626,11 +1639,11 @@ pub struct IAzApplication_Vtbl {
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     SetProperty: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub PolicyAdministrators: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pvaradmins: *mut super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub PolicyAdministrators: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pvaradmins: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     PolicyAdministrators: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub PolicyReaders: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pvarreaders: *mut super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub PolicyReaders: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pvarreaders: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     PolicyReaders: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
@@ -1750,7 +1763,7 @@ pub struct IAzApplication_Vtbl {
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     InitializeClientContextFromName: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub DelegatedPolicyUsers: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pvardelegatedpolicyusers: *mut super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub DelegatedPolicyUsers: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pvardelegatedpolicyusers: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     DelegatedPolicyUsers: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
@@ -1766,11 +1779,11 @@ pub struct IAzApplication_Vtbl {
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     InitializeClientContextFromStringSid: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub PolicyAdministratorsName: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pvaradmins: *mut super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub PolicyAdministratorsName: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pvaradmins: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     PolicyAdministratorsName: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub PolicyReadersName: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pvarreaders: *mut super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub PolicyReadersName: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pvarreaders: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     PolicyReadersName: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
@@ -1790,7 +1803,7 @@ pub struct IAzApplication_Vtbl {
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     DeletePolicyReaderName: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub DelegatedPolicyUsersName: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pvardelegatedpolicyusers: *mut super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub DelegatedPolicyUsersName: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pvardelegatedpolicyusers: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     DelegatedPolicyUsersName: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
@@ -3161,19 +3174,19 @@ pub struct IAzApplicationGroup_Vtbl {
     pub LdapQuery: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pbstrprop: *mut ::core::mem::ManuallyDrop<::windows::core::BSTR>) -> ::windows::core::HRESULT,
     pub SetLdapQuery: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, bstrprop: ::core::mem::ManuallyDrop<::windows::core::BSTR>) -> ::windows::core::HRESULT,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub AppMembers: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pvarprop: *mut super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub AppMembers: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pvarprop: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     AppMembers: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub AppNonMembers: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pvarprop: *mut super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub AppNonMembers: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pvarprop: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     AppNonMembers: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub Members: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pvarprop: *mut super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub Members: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pvarprop: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     Members: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub NonMembers: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pvarprop: *mut super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub NonMembers: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pvarprop: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     NonMembers: usize,
     pub Description: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pbstrdescription: *mut ::core::mem::ManuallyDrop<::windows::core::BSTR>) -> ::windows::core::HRESULT,
@@ -3215,7 +3228,7 @@ pub struct IAzApplicationGroup_Vtbl {
     #[cfg(not(feature = "Win32_Foundation"))]
     Writable: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub GetProperty: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, lpropid: i32, varreserved: ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>, pvarprop: *mut super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub GetProperty: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, lpropid: i32, varreserved: ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>, pvarprop: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     GetProperty: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
@@ -3251,11 +3264,11 @@ pub struct IAzApplicationGroup_Vtbl {
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     DeleteNonMemberName: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub MembersName: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pvarprop: *mut super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub MembersName: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pvarprop: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     MembersName: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub NonMembersName: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pvarprop: *mut super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub NonMembersName: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pvarprop: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     NonMembersName: usize,
 }
@@ -3606,7 +3619,7 @@ unsafe impl ::windows::core::Interface for IAzApplicationGroups {
 pub struct IAzApplicationGroups_Vtbl {
     pub base__: super::super::System::Com::IDispatch_Vtbl,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub get_Item: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, index: i32, pvarobtptr: *mut super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub get_Item: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, index: i32, pvarobtptr: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     get_Item: usize,
     pub Count: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, plcount: *mut i32) -> ::windows::core::HRESULT,
@@ -3669,7 +3682,7 @@ unsafe impl ::windows::core::Interface for IAzApplications {
 pub struct IAzApplications_Vtbl {
     pub base__: super::super::System::Com::IDispatch_Vtbl,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub get_Item: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, index: i32, pvarobtptr: *mut super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub get_Item: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, index: i32, pvarobtptr: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     get_Item: usize,
     pub Count: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, plcount: *mut i32) -> ::windows::core::HRESULT,
@@ -4080,7 +4093,7 @@ pub struct IAzAuthorizationStore_Vtbl {
     #[cfg(not(feature = "Win32_Foundation"))]
     Writable: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub GetProperty: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, lpropid: i32, varreserved: ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>, pvarprop: *mut super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub GetProperty: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, lpropid: i32, varreserved: ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>, pvarprop: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     GetProperty: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
@@ -4096,11 +4109,11 @@ pub struct IAzAuthorizationStore_Vtbl {
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     DeletePropertyItem: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub PolicyAdministrators: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pvaradmins: *mut super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub PolicyAdministrators: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pvaradmins: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     PolicyAdministrators: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub PolicyReaders: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pvarreaders: *mut super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub PolicyReaders: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pvarreaders: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     PolicyReaders: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
@@ -4168,7 +4181,7 @@ pub struct IAzAuthorizationStore_Vtbl {
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     Submit: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub DelegatedPolicyUsers: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pvardelegatedpolicyusers: *mut super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub DelegatedPolicyUsers: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pvardelegatedpolicyusers: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     DelegatedPolicyUsers: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
@@ -4189,11 +4202,11 @@ pub struct IAzAuthorizationStore_Vtbl {
     #[cfg(not(feature = "Win32_Foundation"))]
     SetApplyStoreSacl: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub PolicyAdministratorsName: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pvaradmins: *mut super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub PolicyAdministratorsName: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pvaradmins: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     PolicyAdministratorsName: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub PolicyReadersName: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pvarreaders: *mut super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub PolicyReadersName: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pvarreaders: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     PolicyReadersName: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
@@ -4213,7 +4226,7 @@ pub struct IAzAuthorizationStore_Vtbl {
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     DeletePolicyReaderName: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub DelegatedPolicyUsersName: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pvardelegatedpolicyusers: *mut super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub DelegatedPolicyUsersName: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pvardelegatedpolicyusers: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     DelegatedPolicyUsersName: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
@@ -5129,7 +5142,7 @@ pub struct IAzBizRuleContext_Vtbl {
     pub SetBusinessRuleString: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, bstrbusinessrulestring: ::core::mem::ManuallyDrop<::windows::core::BSTR>) -> ::windows::core::HRESULT,
     pub BusinessRuleString: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pbstrbusinessrulestring: *mut ::core::mem::ManuallyDrop<::windows::core::BSTR>) -> ::windows::core::HRESULT,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub GetParameter: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, bstrparametername: ::core::mem::ManuallyDrop<::windows::core::BSTR>, pvarparametervalue: *mut super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub GetParameter: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, bstrparametername: ::core::mem::ManuallyDrop<::windows::core::BSTR>, pvarparametervalue: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     GetParameter: usize,
 }
@@ -5217,7 +5230,7 @@ pub struct IAzBizRuleInterfaces_Vtbl {
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     AddInterfaces: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub GetInterfaceValue: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, bstrinterfacename: ::core::mem::ManuallyDrop<::windows::core::BSTR>, linterfaceflag: *mut i32, varinterface: *mut super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub GetInterfaceValue: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, bstrinterfacename: ::core::mem::ManuallyDrop<::windows::core::BSTR>, linterfaceflag: *mut i32, varinterface: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     GetInterfaceValue: usize,
     pub Remove: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, bstrinterfacename: ::core::mem::ManuallyDrop<::windows::core::BSTR>) -> ::windows::core::HRESULT,
@@ -5308,7 +5321,7 @@ pub struct IAzBizRuleParameters_Vtbl {
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     AddParameters: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub GetParameterValue: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, bstrparametername: ::core::mem::ManuallyDrop<::windows::core::BSTR>, pvarparametervalue: *mut super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub GetParameterValue: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, bstrparametername: ::core::mem::ManuallyDrop<::windows::core::BSTR>, pvarparametervalue: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     GetParameterValue: usize,
     pub Remove: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, varparametername: ::core::mem::ManuallyDrop<::windows::core::BSTR>) -> ::windows::core::HRESULT,
@@ -5427,7 +5440,18 @@ unsafe impl ::windows::core::Interface for IAzClientContext {
 pub struct IAzClientContext_Vtbl {
     pub base__: super::super::System::Com::IDispatch_Vtbl,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub AccessCheck: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, bstrobjectname: ::core::mem::ManuallyDrop<::windows::core::BSTR>, varscopenames: ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>, varoperations: ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>, varparameternames: ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>, varparametervalues: ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>, varinterfacenames: ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>, varinterfaceflags: ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>, varinterfaces: ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>, pvarresults: *mut super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub AccessCheck: unsafe extern "system" fn(
+        this: *mut ::core::ffi::c_void,
+        bstrobjectname: ::core::mem::ManuallyDrop<::windows::core::BSTR>,
+        varscopenames: ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>,
+        varoperations: ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>,
+        varparameternames: ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>,
+        varparametervalues: ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>,
+        varinterfacenames: ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>,
+        varinterfaceflags: ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>,
+        varinterfaces: ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>,
+        pvarresults: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>,
+    ) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     AccessCheck: usize,
     pub GetBusinessRuleString: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pbstrbusinessrulestring: *mut ::core::mem::ManuallyDrop<::windows::core::BSTR>) -> ::windows::core::HRESULT,
@@ -5439,11 +5463,11 @@ pub struct IAzClientContext_Vtbl {
     pub UserUpn: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pbstrprop: *mut ::core::mem::ManuallyDrop<::windows::core::BSTR>) -> ::windows::core::HRESULT,
     pub UserDnsSamCompat: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pbstrprop: *mut ::core::mem::ManuallyDrop<::windows::core::BSTR>) -> ::windows::core::HRESULT,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub GetProperty: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, lpropid: i32, varreserved: ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>, pvarprop: *mut super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub GetProperty: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, lpropid: i32, varreserved: ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>, pvarprop: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     GetProperty: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub GetRoles: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, bstrscopename: ::core::mem::ManuallyDrop<::windows::core::BSTR>, pvarrolenames: *mut super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub GetRoles: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, bstrscopename: ::core::mem::ManuallyDrop<::windows::core::BSTR>, pvarrolenames: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     GetRoles: usize,
     pub RoleForAccessCheck: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pbstrprop: *mut ::core::mem::ManuallyDrop<::windows::core::BSTR>) -> ::windows::core::HRESULT,
@@ -5597,7 +5621,7 @@ unsafe impl ::windows::core::Interface for IAzClientContext2 {
 pub struct IAzClientContext2_Vtbl {
     pub base__: IAzClientContext_Vtbl,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub GetAssignedScopesPage: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, loptions: i32, pagesize: i32, pvarcursor: *mut super::super::System::Com::VARIANT, pvarscopenames: *mut super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub GetAssignedScopesPage: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, loptions: i32, pagesize: i32, pvarcursor: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>, pvarscopenames: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     GetAssignedScopesPage: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
@@ -5825,11 +5849,11 @@ pub struct IAzClientContext3_Vtbl {
     #[cfg(not(feature = "Win32_System_Com"))]
     BizRuleInterfaces: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub GetGroups: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, bstrscopename: ::core::mem::ManuallyDrop<::windows::core::BSTR>, uloptions: AZ_PROP_CONSTANTS, pgrouparray: *mut super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub GetGroups: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, bstrscopename: ::core::mem::ManuallyDrop<::windows::core::BSTR>, uloptions: AZ_PROP_CONSTANTS, pgrouparray: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     GetGroups: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub Sids: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pstringsidarray: *mut super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub Sids: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pstringsidarray: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     Sids: usize,
 }
@@ -5888,7 +5912,7 @@ pub struct IAzNameResolver_Vtbl {
     pub base__: super::super::System::Com::IDispatch_Vtbl,
     pub NameFromSid: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, bstrsid: ::core::mem::ManuallyDrop<::windows::core::BSTR>, psidtype: *mut i32, pbstrname: *mut ::core::mem::ManuallyDrop<::windows::core::BSTR>) -> ::windows::core::HRESULT,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub NamesFromSids: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, vsids: ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>, pvsidtypes: *mut super::super::System::Com::VARIANT, pvnames: *mut super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub NamesFromSids: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, vsids: ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>, pvsidtypes: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>, pvnames: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     NamesFromSids: usize,
 }
@@ -5947,7 +5971,7 @@ unsafe impl ::windows::core::Interface for IAzObjectPicker {
 pub struct IAzObjectPicker_Vtbl {
     pub base__: super::super::System::Com::IDispatch_Vtbl,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub GetPrincipals: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, hparentwnd: super::super::Foundation::HWND, bstrtitle: ::core::mem::ManuallyDrop<::windows::core::BSTR>, pvsidtypes: *mut super::super::System::Com::VARIANT, pvnames: *mut super::super::System::Com::VARIANT, pvsids: *mut super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub GetPrincipals: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, hparentwnd: super::super::Foundation::HWND, bstrtitle: ::core::mem::ManuallyDrop<::windows::core::BSTR>, pvsidtypes: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>, pvnames: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>, pvsids: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     GetPrincipals: usize,
     pub Name: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pbstrname: *mut ::core::mem::ManuallyDrop<::windows::core::BSTR>) -> ::windows::core::HRESULT,
@@ -6067,7 +6091,7 @@ pub struct IAzOperation_Vtbl {
     #[cfg(not(feature = "Win32_Foundation"))]
     Writable: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub GetProperty: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, lpropid: i32, varreserved: ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>, pvarprop: *mut super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub GetProperty: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, lpropid: i32, varreserved: ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>, pvarprop: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     GetProperty: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
@@ -6249,7 +6273,7 @@ unsafe impl ::windows::core::Interface for IAzOperations {
 pub struct IAzOperations_Vtbl {
     pub base__: super::super::System::Com::IDispatch_Vtbl,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub get_Item: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, index: i32, pvarobtptr: *mut super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub get_Item: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, index: i32, pvarobtptr: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     get_Item: usize,
     pub Count: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, plcount: *mut i32) -> ::windows::core::HRESULT,
@@ -6584,7 +6608,7 @@ pub struct IAzRole_Vtbl {
     #[cfg(not(feature = "Win32_Foundation"))]
     Writable: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub GetProperty: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, lpropid: i32, varreserved: ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>, pvarprop: *mut super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub GetProperty: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, lpropid: i32, varreserved: ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>, pvarprop: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     GetProperty: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
@@ -6592,19 +6616,19 @@ pub struct IAzRole_Vtbl {
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     SetProperty: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub AppMembers: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pvarprop: *mut super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub AppMembers: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pvarprop: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     AppMembers: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub Members: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pvarprop: *mut super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub Members: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pvarprop: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     Members: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub Operations: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pvarprop: *mut super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub Operations: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pvarprop: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     Operations: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub Tasks: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pvarprop: *mut super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub Tasks: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pvarprop: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     Tasks: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
@@ -6628,7 +6652,7 @@ pub struct IAzRole_Vtbl {
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     DeleteMemberName: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub MembersName: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pvarprop: *mut super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub MembersName: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pvarprop: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     MembersName: usize,
 }
@@ -6941,7 +6965,7 @@ unsafe impl ::windows::core::Interface for IAzRoleAssignments {
 pub struct IAzRoleAssignments_Vtbl {
     pub base__: super::super::System::Com::IDispatch_Vtbl,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub get_Item: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, index: i32, pvarobtptr: *mut super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub get_Item: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, index: i32, pvarobtptr: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     get_Item: usize,
     pub Count: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, plcount: *mut i32) -> ::windows::core::HRESULT,
@@ -7225,7 +7249,7 @@ unsafe impl ::windows::core::Interface for IAzRoleDefinitions {
 pub struct IAzRoleDefinitions_Vtbl {
     pub base__: super::super::System::Com::IDispatch_Vtbl,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub get_Item: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, index: i32, pvarobtptr: *mut super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub get_Item: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, index: i32, pvarobtptr: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     get_Item: usize,
     pub Count: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, plcount: *mut i32) -> ::windows::core::HRESULT,
@@ -7288,7 +7312,7 @@ unsafe impl ::windows::core::Interface for IAzRoles {
 pub struct IAzRoles_Vtbl {
     pub base__: super::super::System::Com::IDispatch_Vtbl,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub get_Item: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, index: i32, pvarobtptr: *mut super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub get_Item: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, index: i32, pvarobtptr: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     get_Item: usize,
     pub Count: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, plcount: *mut i32) -> ::windows::core::HRESULT,
@@ -7614,7 +7638,7 @@ pub struct IAzScope_Vtbl {
     #[cfg(not(feature = "Win32_Foundation"))]
     Writable: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub GetProperty: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, lpropid: i32, varreserved: ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>, pvarprop: *mut super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub GetProperty: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, lpropid: i32, varreserved: ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>, pvarprop: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     GetProperty: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
@@ -7630,11 +7654,11 @@ pub struct IAzScope_Vtbl {
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     DeletePropertyItem: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub PolicyAdministrators: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pvaradmins: *mut super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub PolicyAdministrators: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pvaradmins: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     PolicyAdministrators: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub PolicyReaders: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pvarreaders: *mut super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub PolicyReaders: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pvarreaders: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     PolicyReaders: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
@@ -7714,11 +7738,11 @@ pub struct IAzScope_Vtbl {
     #[cfg(not(feature = "Win32_Foundation"))]
     BizrulesWritable: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub PolicyAdministratorsName: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pvaradmins: *mut super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub PolicyAdministratorsName: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pvaradmins: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     PolicyAdministratorsName: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub PolicyReadersName: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pvarreaders: *mut super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub PolicyReadersName: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pvarreaders: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     PolicyReadersName: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
@@ -8173,7 +8197,7 @@ unsafe impl ::windows::core::Interface for IAzScopes {
 pub struct IAzScopes_Vtbl {
     pub base__: super::super::System::Com::IDispatch_Vtbl,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub get_Item: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, index: i32, pvarobtptr: *mut super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub get_Item: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, index: i32, pvarobtptr: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     get_Item: usize,
     pub Count: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, plcount: *mut i32) -> ::windows::core::HRESULT,
@@ -8392,11 +8416,11 @@ pub struct IAzTask_Vtbl {
     #[cfg(not(feature = "Win32_Foundation"))]
     SetIsRoleDefinition: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub Operations: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pvarprop: *mut super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub Operations: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pvarprop: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     Operations: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub Tasks: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pvarprop: *mut super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub Tasks: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pvarprop: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     Tasks: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
@@ -8420,7 +8444,7 @@ pub struct IAzTask_Vtbl {
     #[cfg(not(feature = "Win32_Foundation"))]
     Writable: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub GetProperty: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, lpropid: i32, varreserved: ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>, pvarprop: *mut super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub GetProperty: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, lpropid: i32, varreserved: ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>, pvarprop: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     GetProperty: usize,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
@@ -8700,18 +8724,18 @@ unsafe impl ::windows::core::Interface for IAzTasks {
 pub struct IAzTasks_Vtbl {
     pub base__: super::super::System::Com::IDispatch_Vtbl,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub get_Item: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, index: i32, pvarobtptr: *mut super::super::System::Com::VARIANT) -> ::windows::core::HRESULT,
+    pub get_Item: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, index: i32, pvarobtptr: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     get_Item: usize,
     pub Count: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, plcount: *mut i32) -> ::windows::core::HRESULT,
     pub _NewEnum: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, ppenumptr: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT,
 }
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const ACCCTRL_DEFAULT_PROVIDER: &str = "Windows NT Access Provider";
+pub const ACCCTRL_DEFAULT_PROVIDER: ::windows::core::PCWSTR = ::windows::w!("Windows NT Access Provider");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const ACCCTRL_DEFAULT_PROVIDERA: &str = "Windows NT Access Provider";
+pub const ACCCTRL_DEFAULT_PROVIDERA: ::windows::core::PCSTR = ::windows::s!("Windows NT Access Provider");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const ACCCTRL_DEFAULT_PROVIDERW: &str = "Windows NT Access Provider";
+pub const ACCCTRL_DEFAULT_PROVIDERW: ::windows::core::PCWSTR = ::windows::w!("Windows NT Access Provider");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
 pub const ACTRL_ACCESS_NO_OPTIONS: u32 = 0u32;
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
@@ -8960,307 +8984,307 @@ pub const INHERITED_PARENT: u32 = 268435456u32;
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
 pub const OLESCRIPT_E_SYNTAX: ::windows::core::HRESULT = ::windows::core::HRESULT(-2147352319i32);
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_ACCESS_ALLOWED: &str = "A";
+pub const SDDL_ACCESS_ALLOWED: ::windows::core::PCWSTR = ::windows::w!("A");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_ACCESS_CONTROL_ASSISTANCE_OPS: &str = "AA";
+pub const SDDL_ACCESS_CONTROL_ASSISTANCE_OPS: ::windows::core::PCWSTR = ::windows::w!("AA");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_ACCESS_DENIED: &str = "D";
+pub const SDDL_ACCESS_DENIED: ::windows::core::PCWSTR = ::windows::w!("D");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_ACCESS_FILTER: &str = "FL";
+pub const SDDL_ACCESS_FILTER: ::windows::core::PCWSTR = ::windows::w!("FL");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_ACCOUNT_OPERATORS: &str = "AO";
+pub const SDDL_ACCOUNT_OPERATORS: ::windows::core::PCWSTR = ::windows::w!("AO");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_ACE_BEGIN: &str = "(";
+pub const SDDL_ACE_BEGIN: ::windows::core::PCWSTR = ::windows::w!("(");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_ACE_COND_ATTRIBUTE_PREFIX: &str = "@";
+pub const SDDL_ACE_COND_ATTRIBUTE_PREFIX: ::windows::core::PCWSTR = ::windows::w!("@");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_ACE_COND_BEGIN: &str = "(";
+pub const SDDL_ACE_COND_BEGIN: ::windows::core::PCWSTR = ::windows::w!("(");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_ACE_COND_BLOB_PREFIX: &str = "#";
+pub const SDDL_ACE_COND_BLOB_PREFIX: ::windows::core::PCWSTR = ::windows::w!("#");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_ACE_COND_DEVICE_ATTRIBUTE_PREFIX: &str = "@DEVICE.";
+pub const SDDL_ACE_COND_DEVICE_ATTRIBUTE_PREFIX: ::windows::core::PCWSTR = ::windows::w!("@DEVICE.");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_ACE_COND_END: &str = ")";
+pub const SDDL_ACE_COND_END: ::windows::core::PCWSTR = ::windows::w!(")");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_ACE_COND_RESOURCE_ATTRIBUTE_PREFIX: &str = "@RESOURCE.";
+pub const SDDL_ACE_COND_RESOURCE_ATTRIBUTE_PREFIX: ::windows::core::PCWSTR = ::windows::w!("@RESOURCE.");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_ACE_COND_SID_PREFIX: &str = "SID";
+pub const SDDL_ACE_COND_SID_PREFIX: ::windows::core::PCWSTR = ::windows::w!("SID");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_ACE_COND_TOKEN_ATTRIBUTE_PREFIX: &str = "@TOKEN.";
+pub const SDDL_ACE_COND_TOKEN_ATTRIBUTE_PREFIX: ::windows::core::PCWSTR = ::windows::w!("@TOKEN.");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_ACE_COND_USER_ATTRIBUTE_PREFIX: &str = "@USER.";
+pub const SDDL_ACE_COND_USER_ATTRIBUTE_PREFIX: ::windows::core::PCWSTR = ::windows::w!("@USER.");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_ACE_END: &str = ")";
+pub const SDDL_ACE_END: ::windows::core::PCWSTR = ::windows::w!(")");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_ALARM: &str = "AL";
+pub const SDDL_ALARM: ::windows::core::PCWSTR = ::windows::w!("AL");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_ALIAS_PREW2KCOMPACC: &str = "RU";
+pub const SDDL_ALIAS_PREW2KCOMPACC: ::windows::core::PCWSTR = ::windows::w!("RU");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
 pub const SDDL_ALIAS_SIZE: u32 = 2u32;
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_ALL_APP_PACKAGES: &str = "AC";
+pub const SDDL_ALL_APP_PACKAGES: ::windows::core::PCWSTR = ::windows::w!("AC");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_ANONYMOUS: &str = "AN";
+pub const SDDL_ANONYMOUS: ::windows::core::PCWSTR = ::windows::w!("AN");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_AUDIT: &str = "AU";
+pub const SDDL_AUDIT: ::windows::core::PCWSTR = ::windows::w!("AU");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_AUDIT_FAILURE: &str = "FA";
+pub const SDDL_AUDIT_FAILURE: ::windows::core::PCWSTR = ::windows::w!("FA");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_AUDIT_SUCCESS: &str = "SA";
+pub const SDDL_AUDIT_SUCCESS: ::windows::core::PCWSTR = ::windows::w!("SA");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_AUTHENTICATED_USERS: &str = "AU";
+pub const SDDL_AUTHENTICATED_USERS: ::windows::core::PCWSTR = ::windows::w!("AU");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_AUTHORITY_ASSERTED: &str = "AS";
+pub const SDDL_AUTHORITY_ASSERTED: ::windows::core::PCWSTR = ::windows::w!("AS");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_AUTO_INHERITED: &str = "AI";
+pub const SDDL_AUTO_INHERITED: ::windows::core::PCWSTR = ::windows::w!("AI");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_AUTO_INHERIT_REQ: &str = "AR";
+pub const SDDL_AUTO_INHERIT_REQ: ::windows::core::PCWSTR = ::windows::w!("AR");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_BACKUP_OPERATORS: &str = "BO";
+pub const SDDL_BACKUP_OPERATORS: ::windows::core::PCWSTR = ::windows::w!("BO");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_BLOB: &str = "TX";
+pub const SDDL_BLOB: ::windows::core::PCWSTR = ::windows::w!("TX");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_BOOLEAN: &str = "TB";
+pub const SDDL_BOOLEAN: ::windows::core::PCWSTR = ::windows::w!("TB");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_BUILTIN_ADMINISTRATORS: &str = "BA";
+pub const SDDL_BUILTIN_ADMINISTRATORS: ::windows::core::PCWSTR = ::windows::w!("BA");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_BUILTIN_GUESTS: &str = "BG";
+pub const SDDL_BUILTIN_GUESTS: ::windows::core::PCWSTR = ::windows::w!("BG");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_BUILTIN_USERS: &str = "BU";
+pub const SDDL_BUILTIN_USERS: ::windows::core::PCWSTR = ::windows::w!("BU");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_CALLBACK_ACCESS_ALLOWED: &str = "XA";
+pub const SDDL_CALLBACK_ACCESS_ALLOWED: ::windows::core::PCWSTR = ::windows::w!("XA");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_CALLBACK_ACCESS_DENIED: &str = "XD";
+pub const SDDL_CALLBACK_ACCESS_DENIED: ::windows::core::PCWSTR = ::windows::w!("XD");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_CALLBACK_AUDIT: &str = "XU";
+pub const SDDL_CALLBACK_AUDIT: ::windows::core::PCWSTR = ::windows::w!("XU");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_CALLBACK_OBJECT_ACCESS_ALLOWED: &str = "ZA";
+pub const SDDL_CALLBACK_OBJECT_ACCESS_ALLOWED: ::windows::core::PCWSTR = ::windows::w!("ZA");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_CERTSVC_DCOM_ACCESS: &str = "CD";
+pub const SDDL_CERTSVC_DCOM_ACCESS: ::windows::core::PCWSTR = ::windows::w!("CD");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_CERT_SERV_ADMINISTRATORS: &str = "CA";
+pub const SDDL_CERT_SERV_ADMINISTRATORS: ::windows::core::PCWSTR = ::windows::w!("CA");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_CLONEABLE_CONTROLLERS: &str = "CN";
+pub const SDDL_CLONEABLE_CONTROLLERS: ::windows::core::PCWSTR = ::windows::w!("CN");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_CONTAINER_INHERIT: &str = "CI";
+pub const SDDL_CONTAINER_INHERIT: ::windows::core::PCWSTR = ::windows::w!("CI");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_CONTROL_ACCESS: &str = "CR";
+pub const SDDL_CONTROL_ACCESS: ::windows::core::PCWSTR = ::windows::w!("CR");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_CREATE_CHILD: &str = "CC";
+pub const SDDL_CREATE_CHILD: ::windows::core::PCWSTR = ::windows::w!("CC");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_CREATOR_GROUP: &str = "CG";
+pub const SDDL_CREATOR_GROUP: ::windows::core::PCWSTR = ::windows::w!("CG");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_CREATOR_OWNER: &str = "CO";
+pub const SDDL_CREATOR_OWNER: ::windows::core::PCWSTR = ::windows::w!("CO");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_CRITICAL: &str = "CR";
+pub const SDDL_CRITICAL: ::windows::core::PCWSTR = ::windows::w!("CR");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_CRYPTO_OPERATORS: &str = "CY";
+pub const SDDL_CRYPTO_OPERATORS: ::windows::core::PCWSTR = ::windows::w!("CY");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_DACL: &str = "D";
+pub const SDDL_DACL: ::windows::core::PCWSTR = ::windows::w!("D");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_DELETE_CHILD: &str = "DC";
+pub const SDDL_DELETE_CHILD: ::windows::core::PCWSTR = ::windows::w!("DC");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_DELETE_TREE: &str = "DT";
+pub const SDDL_DELETE_TREE: ::windows::core::PCWSTR = ::windows::w!("DT");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_DELIMINATOR: &str = ":";
+pub const SDDL_DELIMINATOR: ::windows::core::PCWSTR = ::windows::w!(":");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_DOMAIN_ADMINISTRATORS: &str = "DA";
+pub const SDDL_DOMAIN_ADMINISTRATORS: ::windows::core::PCWSTR = ::windows::w!("DA");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_DOMAIN_COMPUTERS: &str = "DC";
+pub const SDDL_DOMAIN_COMPUTERS: ::windows::core::PCWSTR = ::windows::w!("DC");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_DOMAIN_DOMAIN_CONTROLLERS: &str = "DD";
+pub const SDDL_DOMAIN_DOMAIN_CONTROLLERS: ::windows::core::PCWSTR = ::windows::w!("DD");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_DOMAIN_GUESTS: &str = "DG";
+pub const SDDL_DOMAIN_GUESTS: ::windows::core::PCWSTR = ::windows::w!("DG");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_DOMAIN_USERS: &str = "DU";
+pub const SDDL_DOMAIN_USERS: ::windows::core::PCWSTR = ::windows::w!("DU");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_ENTERPRISE_ADMINS: &str = "EA";
+pub const SDDL_ENTERPRISE_ADMINS: ::windows::core::PCWSTR = ::windows::w!("EA");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_ENTERPRISE_DOMAIN_CONTROLLERS: &str = "ED";
+pub const SDDL_ENTERPRISE_DOMAIN_CONTROLLERS: ::windows::core::PCWSTR = ::windows::w!("ED");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_ENTERPRISE_KEY_ADMINS: &str = "EK";
+pub const SDDL_ENTERPRISE_KEY_ADMINS: ::windows::core::PCWSTR = ::windows::w!("EK");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_ENTERPRISE_RO_DCs: &str = "RO";
+pub const SDDL_ENTERPRISE_RO_DCs: ::windows::core::PCWSTR = ::windows::w!("RO");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_EVENT_LOG_READERS: &str = "ER";
+pub const SDDL_EVENT_LOG_READERS: ::windows::core::PCWSTR = ::windows::w!("ER");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_EVERYONE: &str = "WD";
+pub const SDDL_EVERYONE: ::windows::core::PCWSTR = ::windows::w!("WD");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_FILE_ALL: &str = "FA";
+pub const SDDL_FILE_ALL: ::windows::core::PCWSTR = ::windows::w!("FA");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_FILE_EXECUTE: &str = "FX";
+pub const SDDL_FILE_EXECUTE: ::windows::core::PCWSTR = ::windows::w!("FX");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_FILE_READ: &str = "FR";
+pub const SDDL_FILE_READ: ::windows::core::PCWSTR = ::windows::w!("FR");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_FILE_WRITE: &str = "FW";
+pub const SDDL_FILE_WRITE: ::windows::core::PCWSTR = ::windows::w!("FW");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_GENERIC_ALL: &str = "GA";
+pub const SDDL_GENERIC_ALL: ::windows::core::PCWSTR = ::windows::w!("GA");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_GENERIC_EXECUTE: &str = "GX";
+pub const SDDL_GENERIC_EXECUTE: ::windows::core::PCWSTR = ::windows::w!("GX");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_GENERIC_READ: &str = "GR";
+pub const SDDL_GENERIC_READ: ::windows::core::PCWSTR = ::windows::w!("GR");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_GENERIC_WRITE: &str = "GW";
+pub const SDDL_GENERIC_WRITE: ::windows::core::PCWSTR = ::windows::w!("GW");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_GROUP: &str = "G";
+pub const SDDL_GROUP: ::windows::core::PCWSTR = ::windows::w!("G");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_GROUP_POLICY_ADMINS: &str = "PA";
+pub const SDDL_GROUP_POLICY_ADMINS: ::windows::core::PCWSTR = ::windows::w!("PA");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_HYPER_V_ADMINS: &str = "HA";
+pub const SDDL_HYPER_V_ADMINS: ::windows::core::PCWSTR = ::windows::w!("HA");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_IIS_USERS: &str = "IS";
+pub const SDDL_IIS_USERS: ::windows::core::PCWSTR = ::windows::w!("IS");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_INHERITED: &str = "ID";
+pub const SDDL_INHERITED: ::windows::core::PCWSTR = ::windows::w!("ID");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_INHERIT_ONLY: &str = "IO";
+pub const SDDL_INHERIT_ONLY: ::windows::core::PCWSTR = ::windows::w!("IO");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_INT: &str = "TI";
+pub const SDDL_INT: ::windows::core::PCWSTR = ::windows::w!("TI");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_INTERACTIVE: &str = "IU";
+pub const SDDL_INTERACTIVE: ::windows::core::PCWSTR = ::windows::w!("IU");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_KEY_ADMINS: &str = "KA";
+pub const SDDL_KEY_ADMINS: ::windows::core::PCWSTR = ::windows::w!("KA");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_KEY_ALL: &str = "KA";
+pub const SDDL_KEY_ALL: ::windows::core::PCWSTR = ::windows::w!("KA");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_KEY_EXECUTE: &str = "KX";
+pub const SDDL_KEY_EXECUTE: ::windows::core::PCWSTR = ::windows::w!("KX");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_KEY_READ: &str = "KR";
+pub const SDDL_KEY_READ: ::windows::core::PCWSTR = ::windows::w!("KR");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_KEY_WRITE: &str = "KW";
+pub const SDDL_KEY_WRITE: ::windows::core::PCWSTR = ::windows::w!("KW");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_LIST_CHILDREN: &str = "LC";
+pub const SDDL_LIST_CHILDREN: ::windows::core::PCWSTR = ::windows::w!("LC");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_LIST_OBJECT: &str = "LO";
+pub const SDDL_LIST_OBJECT: ::windows::core::PCWSTR = ::windows::w!("LO");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_LOCAL_ADMIN: &str = "LA";
+pub const SDDL_LOCAL_ADMIN: ::windows::core::PCWSTR = ::windows::w!("LA");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_LOCAL_GUEST: &str = "LG";
+pub const SDDL_LOCAL_GUEST: ::windows::core::PCWSTR = ::windows::w!("LG");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_LOCAL_SERVICE: &str = "LS";
+pub const SDDL_LOCAL_SERVICE: ::windows::core::PCWSTR = ::windows::w!("LS");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_LOCAL_SYSTEM: &str = "SY";
+pub const SDDL_LOCAL_SYSTEM: ::windows::core::PCWSTR = ::windows::w!("SY");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_MANDATORY_LABEL: &str = "ML";
+pub const SDDL_MANDATORY_LABEL: ::windows::core::PCWSTR = ::windows::w!("ML");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_ML_HIGH: &str = "HI";
+pub const SDDL_ML_HIGH: ::windows::core::PCWSTR = ::windows::w!("HI");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_ML_LOW: &str = "LW";
+pub const SDDL_ML_LOW: ::windows::core::PCWSTR = ::windows::w!("LW");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_ML_MEDIUM: &str = "ME";
+pub const SDDL_ML_MEDIUM: ::windows::core::PCWSTR = ::windows::w!("ME");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_ML_MEDIUM_PLUS: &str = "MP";
+pub const SDDL_ML_MEDIUM_PLUS: ::windows::core::PCWSTR = ::windows::w!("MP");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_ML_SYSTEM: &str = "SI";
+pub const SDDL_ML_SYSTEM: ::windows::core::PCWSTR = ::windows::w!("SI");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_NETWORK: &str = "NU";
+pub const SDDL_NETWORK: ::windows::core::PCWSTR = ::windows::w!("NU");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_NETWORK_CONFIGURATION_OPS: &str = "NO";
+pub const SDDL_NETWORK_CONFIGURATION_OPS: ::windows::core::PCWSTR = ::windows::w!("NO");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_NETWORK_SERVICE: &str = "NS";
+pub const SDDL_NETWORK_SERVICE: ::windows::core::PCWSTR = ::windows::w!("NS");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_NO_EXECUTE_UP: &str = "NX";
+pub const SDDL_NO_EXECUTE_UP: ::windows::core::PCWSTR = ::windows::w!("NX");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_NO_PROPAGATE: &str = "NP";
+pub const SDDL_NO_PROPAGATE: ::windows::core::PCWSTR = ::windows::w!("NP");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_NO_READ_UP: &str = "NR";
+pub const SDDL_NO_READ_UP: ::windows::core::PCWSTR = ::windows::w!("NR");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_NO_WRITE_UP: &str = "NW";
+pub const SDDL_NO_WRITE_UP: ::windows::core::PCWSTR = ::windows::w!("NW");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_NULL_ACL: &str = "NO_ACCESS_CONTROL";
+pub const SDDL_NULL_ACL: ::windows::core::PCWSTR = ::windows::w!("NO_ACCESS_CONTROL");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_OBJECT_ACCESS_ALLOWED: &str = "OA";
+pub const SDDL_OBJECT_ACCESS_ALLOWED: ::windows::core::PCWSTR = ::windows::w!("OA");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_OBJECT_ACCESS_DENIED: &str = "OD";
+pub const SDDL_OBJECT_ACCESS_DENIED: ::windows::core::PCWSTR = ::windows::w!("OD");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_OBJECT_ALARM: &str = "OL";
+pub const SDDL_OBJECT_ALARM: ::windows::core::PCWSTR = ::windows::w!("OL");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_OBJECT_AUDIT: &str = "OU";
+pub const SDDL_OBJECT_AUDIT: ::windows::core::PCWSTR = ::windows::w!("OU");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_OBJECT_INHERIT: &str = "OI";
+pub const SDDL_OBJECT_INHERIT: ::windows::core::PCWSTR = ::windows::w!("OI");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_OWNER: &str = "O";
+pub const SDDL_OWNER: ::windows::core::PCWSTR = ::windows::w!("O");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_OWNER_RIGHTS: &str = "OW";
+pub const SDDL_OWNER_RIGHTS: ::windows::core::PCWSTR = ::windows::w!("OW");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_PERFLOG_USERS: &str = "LU";
+pub const SDDL_PERFLOG_USERS: ::windows::core::PCWSTR = ::windows::w!("LU");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_PERFMON_USERS: &str = "MU";
+pub const SDDL_PERFMON_USERS: ::windows::core::PCWSTR = ::windows::w!("MU");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_PERSONAL_SELF: &str = "PS";
+pub const SDDL_PERSONAL_SELF: ::windows::core::PCWSTR = ::windows::w!("PS");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_POWER_USERS: &str = "PU";
+pub const SDDL_POWER_USERS: ::windows::core::PCWSTR = ::windows::w!("PU");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_PRINTER_OPERATORS: &str = "PO";
+pub const SDDL_PRINTER_OPERATORS: ::windows::core::PCWSTR = ::windows::w!("PO");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_PROCESS_TRUST_LABEL: &str = "TL";
+pub const SDDL_PROCESS_TRUST_LABEL: ::windows::core::PCWSTR = ::windows::w!("TL");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_PROTECTED: &str = "P";
+pub const SDDL_PROTECTED: ::windows::core::PCWSTR = ::windows::w!("P");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_PROTECTED_USERS: &str = "AP";
+pub const SDDL_PROTECTED_USERS: ::windows::core::PCWSTR = ::windows::w!("AP");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_RAS_SERVERS: &str = "RS";
+pub const SDDL_RAS_SERVERS: ::windows::core::PCWSTR = ::windows::w!("RS");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_RDS_ENDPOINT_SERVERS: &str = "ES";
+pub const SDDL_RDS_ENDPOINT_SERVERS: ::windows::core::PCWSTR = ::windows::w!("ES");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_RDS_MANAGEMENT_SERVERS: &str = "MS";
+pub const SDDL_RDS_MANAGEMENT_SERVERS: ::windows::core::PCWSTR = ::windows::w!("MS");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_RDS_REMOTE_ACCESS_SERVERS: &str = "RA";
+pub const SDDL_RDS_REMOTE_ACCESS_SERVERS: ::windows::core::PCWSTR = ::windows::w!("RA");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_READ_CONTROL: &str = "RC";
+pub const SDDL_READ_CONTROL: ::windows::core::PCWSTR = ::windows::w!("RC");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_READ_PROPERTY: &str = "RP";
+pub const SDDL_READ_PROPERTY: ::windows::core::PCWSTR = ::windows::w!("RP");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_REMOTE_DESKTOP: &str = "RD";
+pub const SDDL_REMOTE_DESKTOP: ::windows::core::PCWSTR = ::windows::w!("RD");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_REMOTE_MANAGEMENT_USERS: &str = "RM";
+pub const SDDL_REMOTE_MANAGEMENT_USERS: ::windows::core::PCWSTR = ::windows::w!("RM");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_REPLICATOR: &str = "RE";
+pub const SDDL_REPLICATOR: ::windows::core::PCWSTR = ::windows::w!("RE");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_RESOURCE_ATTRIBUTE: &str = "RA";
+pub const SDDL_RESOURCE_ATTRIBUTE: ::windows::core::PCWSTR = ::windows::w!("RA");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_RESTRICTED_CODE: &str = "RC";
+pub const SDDL_RESTRICTED_CODE: ::windows::core::PCWSTR = ::windows::w!("RC");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
 pub const SDDL_REVISION: u32 = 1u32;
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
 pub const SDDL_REVISION_1: u32 = 1u32;
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_SACL: &str = "S";
+pub const SDDL_SACL: ::windows::core::PCWSTR = ::windows::w!("S");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_SCHEMA_ADMINISTRATORS: &str = "SA";
+pub const SDDL_SCHEMA_ADMINISTRATORS: ::windows::core::PCWSTR = ::windows::w!("SA");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_SCOPED_POLICY_ID: &str = "SP";
+pub const SDDL_SCOPED_POLICY_ID: ::windows::core::PCWSTR = ::windows::w!("SP");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_SELF_WRITE: &str = "SW";
+pub const SDDL_SELF_WRITE: ::windows::core::PCWSTR = ::windows::w!("SW");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_SEPERATOR: &str = ";";
+pub const SDDL_SEPERATOR: ::windows::core::PCWSTR = ::windows::w!(";");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_SERVER_OPERATORS: &str = "SO";
+pub const SDDL_SERVER_OPERATORS: ::windows::core::PCWSTR = ::windows::w!("SO");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_SERVICE: &str = "SU";
+pub const SDDL_SERVICE: ::windows::core::PCWSTR = ::windows::w!("SU");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_SERVICE_ASSERTED: &str = "SS";
+pub const SDDL_SERVICE_ASSERTED: ::windows::core::PCWSTR = ::windows::w!("SS");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_SID: &str = "TD";
+pub const SDDL_SID: ::windows::core::PCWSTR = ::windows::w!("TD");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_SPACE: &str = " ";
+pub const SDDL_SPACE: ::windows::core::PCWSTR = ::windows::w!(" ");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_STANDARD_DELETE: &str = "SD";
+pub const SDDL_STANDARD_DELETE: ::windows::core::PCWSTR = ::windows::w!("SD");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_TRUST_PROTECTED_FILTER: &str = "TP";
+pub const SDDL_TRUST_PROTECTED_FILTER: ::windows::core::PCWSTR = ::windows::w!("TP");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_UINT: &str = "TU";
+pub const SDDL_UINT: ::windows::core::PCWSTR = ::windows::w!("TU");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_USER_MODE_DRIVERS: &str = "UD";
+pub const SDDL_USER_MODE_DRIVERS: ::windows::core::PCWSTR = ::windows::w!("UD");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_WRITE_DAC: &str = "WD";
+pub const SDDL_WRITE_DAC: ::windows::core::PCWSTR = ::windows::w!("WD");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_WRITE_OWNER: &str = "WO";
+pub const SDDL_WRITE_OWNER: ::windows::core::PCWSTR = ::windows::w!("WO");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_WRITE_PROPERTY: &str = "WP";
+pub const SDDL_WRITE_PROPERTY: ::windows::core::PCWSTR = ::windows::w!("WP");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_WRITE_RESTRICTED_CODE: &str = "WR";
+pub const SDDL_WRITE_RESTRICTED_CODE: ::windows::core::PCWSTR = ::windows::w!("WR");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
-pub const SDDL_WSTRING: &str = "TS";
+pub const SDDL_WSTRING: ::windows::core::PCWSTR = ::windows::w!("TS");
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]
 pub const TRUSTEE_ACCESS_ALL: i32 = -1i32;
 #[doc = "*Required features: `\"Win32_Security_Authorization\"`*"]

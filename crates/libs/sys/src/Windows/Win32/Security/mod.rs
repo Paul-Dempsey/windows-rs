@@ -67,46 +67,46 @@ extern "system" {
     pub fn AccessCheckByTypeResultListAndAuditAlarmW(subsystemname: ::windows_sys::core::PCWSTR, handleid: *const ::core::ffi::c_void, objecttypename: ::windows_sys::core::PCWSTR, objectname: ::windows_sys::core::PCWSTR, securitydescriptor: PSECURITY_DESCRIPTOR, principalselfsid: super::Foundation::PSID, desiredaccess: u32, audittype: AUDIT_EVENT_TYPE, flags: u32, objecttypelist: *mut OBJECT_TYPE_LIST, objecttypelistlength: u32, genericmapping: *const GENERIC_MAPPING, objectcreation: super::Foundation::BOOL, grantedaccesslist: *mut u32, accessstatuslist: *mut u32, pfgenerateonclose: *mut i32) -> super::Foundation::BOOL;
     #[doc = "*Required features: `\"Win32_Security\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub fn AddAccessAllowedAce(pacl: *mut ACL, dwacerevision: u32, accessmask: u32, psid: super::Foundation::PSID) -> super::Foundation::BOOL;
+    pub fn AddAccessAllowedAce(pacl: *mut ACL, dwacerevision: ACE_REVISION, accessmask: u32, psid: super::Foundation::PSID) -> super::Foundation::BOOL;
     #[doc = "*Required features: `\"Win32_Security\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub fn AddAccessAllowedAceEx(pacl: *mut ACL, dwacerevision: u32, aceflags: ACE_FLAGS, accessmask: u32, psid: super::Foundation::PSID) -> super::Foundation::BOOL;
+    pub fn AddAccessAllowedAceEx(pacl: *mut ACL, dwacerevision: ACE_REVISION, aceflags: ACE_FLAGS, accessmask: u32, psid: super::Foundation::PSID) -> super::Foundation::BOOL;
     #[doc = "*Required features: `\"Win32_Security\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub fn AddAccessAllowedObjectAce(pacl: *mut ACL, dwacerevision: u32, aceflags: ACE_FLAGS, accessmask: u32, objecttypeguid: *const ::windows_sys::core::GUID, inheritedobjecttypeguid: *const ::windows_sys::core::GUID, psid: super::Foundation::PSID) -> super::Foundation::BOOL;
+    pub fn AddAccessAllowedObjectAce(pacl: *mut ACL, dwacerevision: ACE_REVISION, aceflags: ACE_FLAGS, accessmask: u32, objecttypeguid: *const ::windows_sys::core::GUID, inheritedobjecttypeguid: *const ::windows_sys::core::GUID, psid: super::Foundation::PSID) -> super::Foundation::BOOL;
     #[doc = "*Required features: `\"Win32_Security\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub fn AddAccessDeniedAce(pacl: *mut ACL, dwacerevision: u32, accessmask: u32, psid: super::Foundation::PSID) -> super::Foundation::BOOL;
+    pub fn AddAccessDeniedAce(pacl: *mut ACL, dwacerevision: ACE_REVISION, accessmask: u32, psid: super::Foundation::PSID) -> super::Foundation::BOOL;
     #[doc = "*Required features: `\"Win32_Security\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub fn AddAccessDeniedAceEx(pacl: *mut ACL, dwacerevision: u32, aceflags: ACE_FLAGS, accessmask: u32, psid: super::Foundation::PSID) -> super::Foundation::BOOL;
+    pub fn AddAccessDeniedAceEx(pacl: *mut ACL, dwacerevision: ACE_REVISION, aceflags: ACE_FLAGS, accessmask: u32, psid: super::Foundation::PSID) -> super::Foundation::BOOL;
     #[doc = "*Required features: `\"Win32_Security\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub fn AddAccessDeniedObjectAce(pacl: *mut ACL, dwacerevision: u32, aceflags: ACE_FLAGS, accessmask: u32, objecttypeguid: *const ::windows_sys::core::GUID, inheritedobjecttypeguid: *const ::windows_sys::core::GUID, psid: super::Foundation::PSID) -> super::Foundation::BOOL;
+    pub fn AddAccessDeniedObjectAce(pacl: *mut ACL, dwacerevision: ACE_REVISION, aceflags: ACE_FLAGS, accessmask: u32, objecttypeguid: *const ::windows_sys::core::GUID, inheritedobjecttypeguid: *const ::windows_sys::core::GUID, psid: super::Foundation::PSID) -> super::Foundation::BOOL;
     #[doc = "*Required features: `\"Win32_Security\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub fn AddAce(pacl: *mut ACL, dwacerevision: u32, dwstartingaceindex: u32, pacelist: *const ::core::ffi::c_void, nacelistlength: u32) -> super::Foundation::BOOL;
+    pub fn AddAce(pacl: *mut ACL, dwacerevision: ACE_REVISION, dwstartingaceindex: u32, pacelist: *const ::core::ffi::c_void, nacelistlength: u32) -> super::Foundation::BOOL;
     #[doc = "*Required features: `\"Win32_Security\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub fn AddAuditAccessAce(pacl: *mut ACL, dwacerevision: u32, dwaccessmask: u32, psid: super::Foundation::PSID, bauditsuccess: super::Foundation::BOOL, bauditfailure: super::Foundation::BOOL) -> super::Foundation::BOOL;
+    pub fn AddAuditAccessAce(pacl: *mut ACL, dwacerevision: ACE_REVISION, dwaccessmask: u32, psid: super::Foundation::PSID, bauditsuccess: super::Foundation::BOOL, bauditfailure: super::Foundation::BOOL) -> super::Foundation::BOOL;
     #[doc = "*Required features: `\"Win32_Security\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub fn AddAuditAccessAceEx(pacl: *mut ACL, dwacerevision: u32, aceflags: ACE_FLAGS, dwaccessmask: u32, psid: super::Foundation::PSID, bauditsuccess: super::Foundation::BOOL, bauditfailure: super::Foundation::BOOL) -> super::Foundation::BOOL;
+    pub fn AddAuditAccessAceEx(pacl: *mut ACL, dwacerevision: ACE_REVISION, aceflags: ACE_FLAGS, dwaccessmask: u32, psid: super::Foundation::PSID, bauditsuccess: super::Foundation::BOOL, bauditfailure: super::Foundation::BOOL) -> super::Foundation::BOOL;
     #[doc = "*Required features: `\"Win32_Security\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub fn AddAuditAccessObjectAce(pacl: *mut ACL, dwacerevision: u32, aceflags: ACE_FLAGS, accessmask: u32, objecttypeguid: *const ::windows_sys::core::GUID, inheritedobjecttypeguid: *const ::windows_sys::core::GUID, psid: super::Foundation::PSID, bauditsuccess: super::Foundation::BOOL, bauditfailure: super::Foundation::BOOL) -> super::Foundation::BOOL;
+    pub fn AddAuditAccessObjectAce(pacl: *mut ACL, dwacerevision: ACE_REVISION, aceflags: ACE_FLAGS, accessmask: u32, objecttypeguid: *const ::windows_sys::core::GUID, inheritedobjecttypeguid: *const ::windows_sys::core::GUID, psid: super::Foundation::PSID, bauditsuccess: super::Foundation::BOOL, bauditfailure: super::Foundation::BOOL) -> super::Foundation::BOOL;
     #[doc = "*Required features: `\"Win32_Security\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub fn AddConditionalAce(pacl: *mut ACL, dwacerevision: u32, aceflags: ACE_FLAGS, acetype: u8, accessmask: u32, psid: super::Foundation::PSID, conditionstr: ::windows_sys::core::PCWSTR, returnlength: *mut u32) -> super::Foundation::BOOL;
+    pub fn AddConditionalAce(pacl: *mut ACL, dwacerevision: ACE_REVISION, aceflags: ACE_FLAGS, acetype: u8, accessmask: u32, psid: super::Foundation::PSID, conditionstr: ::windows_sys::core::PCWSTR, returnlength: *mut u32) -> super::Foundation::BOOL;
     #[doc = "*Required features: `\"Win32_Security\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
     pub fn AddMandatoryAce(pacl: *mut ACL, dwacerevision: ACE_REVISION, aceflags: ACE_FLAGS, mandatorypolicy: u32, plabelsid: super::Foundation::PSID) -> super::Foundation::BOOL;
     #[doc = "*Required features: `\"Win32_Security\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub fn AddResourceAttributeAce(pacl: *mut ACL, dwacerevision: u32, aceflags: ACE_FLAGS, accessmask: u32, psid: super::Foundation::PSID, pattributeinfo: *const CLAIM_SECURITY_ATTRIBUTES_INFORMATION, preturnlength: *mut u32) -> super::Foundation::BOOL;
+    pub fn AddResourceAttributeAce(pacl: *mut ACL, dwacerevision: ACE_REVISION, aceflags: ACE_FLAGS, accessmask: u32, psid: super::Foundation::PSID, pattributeinfo: *const CLAIM_SECURITY_ATTRIBUTES_INFORMATION, preturnlength: *mut u32) -> super::Foundation::BOOL;
     #[doc = "*Required features: `\"Win32_Security\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub fn AddScopedPolicyIDAce(pacl: *mut ACL, dwacerevision: u32, aceflags: ACE_FLAGS, accessmask: u32, psid: super::Foundation::PSID) -> super::Foundation::BOOL;
+    pub fn AddScopedPolicyIDAce(pacl: *mut ACL, dwacerevision: ACE_REVISION, aceflags: ACE_FLAGS, accessmask: u32, psid: super::Foundation::PSID) -> super::Foundation::BOOL;
     #[doc = "*Required features: `\"Win32_Security\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
     pub fn AdjustTokenGroups(tokenhandle: super::Foundation::HANDLE, resettodefault: super::Foundation::BOOL, newstate: *const TOKEN_GROUPS, bufferlength: u32, previousstate: *mut TOKEN_GROUPS, returnlength: *mut u32) -> super::Foundation::BOOL;
@@ -432,51 +432,51 @@ pub const cwcFILENAMESUFFIXMAX: u32 = 20u32;
 #[doc = "*Required features: `\"Win32_Security\"`*"]
 pub const cwcHRESULTSTRING: u32 = 40u32;
 #[doc = "*Required features: `\"Win32_Security\"`*"]
-pub const szLBRACE: &str = "{";
+pub const szLBRACE: ::windows_sys::core::PCSTR = ::windows_sys::s!("{");
 #[doc = "*Required features: `\"Win32_Security\"`*"]
-pub const szLPAREN: &str = "(";
+pub const szLPAREN: ::windows_sys::core::PCSTR = ::windows_sys::s!("(");
 #[doc = "*Required features: `\"Win32_Security\"`*"]
-pub const szRBRACE: &str = "}";
+pub const szRBRACE: ::windows_sys::core::PCSTR = ::windows_sys::s!("}");
 #[doc = "*Required features: `\"Win32_Security\"`*"]
-pub const szRPAREN: &str = ")";
+pub const szRPAREN: ::windows_sys::core::PCSTR = ::windows_sys::s!(")");
 #[doc = "*Required features: `\"Win32_Security\"`*"]
-pub const wszCERTENROLLSHAREPATH: &str = "CertSrv\\CertEnroll";
+pub const wszCERTENROLLSHAREPATH: ::windows_sys::core::PCWSTR = ::windows_sys::w!("CertSrv\\CertEnroll");
 #[doc = "*Required features: `\"Win32_Security\"`*"]
-pub const wszFCSAPARM_CERTFILENAMESUFFIX: &str = "%4";
+pub const wszFCSAPARM_CERTFILENAMESUFFIX: ::windows_sys::core::PCWSTR = ::windows_sys::w!("%4");
 #[doc = "*Required features: `\"Win32_Security\"`*"]
-pub const wszFCSAPARM_CONFIGDN: &str = "%6";
+pub const wszFCSAPARM_CONFIGDN: ::windows_sys::core::PCWSTR = ::windows_sys::w!("%6");
 #[doc = "*Required features: `\"Win32_Security\"`*"]
-pub const wszFCSAPARM_CRLDELTAFILENAMESUFFIX: &str = "%9";
+pub const wszFCSAPARM_CRLDELTAFILENAMESUFFIX: ::windows_sys::core::PCWSTR = ::windows_sys::w!("%9");
 #[doc = "*Required features: `\"Win32_Security\"`*"]
-pub const wszFCSAPARM_CRLFILENAMESUFFIX: &str = "%8";
+pub const wszFCSAPARM_CRLFILENAMESUFFIX: ::windows_sys::core::PCWSTR = ::windows_sys::w!("%8");
 #[doc = "*Required features: `\"Win32_Security\"`*"]
-pub const wszFCSAPARM_DOMAINDN: &str = "%5";
+pub const wszFCSAPARM_DOMAINDN: ::windows_sys::core::PCWSTR = ::windows_sys::w!("%5");
 #[doc = "*Required features: `\"Win32_Security\"`*"]
-pub const wszFCSAPARM_DSCACERTATTRIBUTE: &str = "%11";
+pub const wszFCSAPARM_DSCACERTATTRIBUTE: ::windows_sys::core::PCWSTR = ::windows_sys::w!("%11");
 #[doc = "*Required features: `\"Win32_Security\"`*"]
-pub const wszFCSAPARM_DSCRLATTRIBUTE: &str = "%10";
+pub const wszFCSAPARM_DSCRLATTRIBUTE: ::windows_sys::core::PCWSTR = ::windows_sys::w!("%10");
 #[doc = "*Required features: `\"Win32_Security\"`*"]
-pub const wszFCSAPARM_DSCROSSCERTPAIRATTRIBUTE: &str = "%14";
+pub const wszFCSAPARM_DSCROSSCERTPAIRATTRIBUTE: ::windows_sys::core::PCWSTR = ::windows_sys::w!("%14");
 #[doc = "*Required features: `\"Win32_Security\"`*"]
-pub const wszFCSAPARM_DSKRACERTATTRIBUTE: &str = "%13";
+pub const wszFCSAPARM_DSKRACERTATTRIBUTE: ::windows_sys::core::PCWSTR = ::windows_sys::w!("%13");
 #[doc = "*Required features: `\"Win32_Security\"`*"]
-pub const wszFCSAPARM_DSUSERCERTATTRIBUTE: &str = "%12";
+pub const wszFCSAPARM_DSUSERCERTATTRIBUTE: ::windows_sys::core::PCWSTR = ::windows_sys::w!("%12");
 #[doc = "*Required features: `\"Win32_Security\"`*"]
-pub const wszFCSAPARM_SANITIZEDCANAME: &str = "%3";
+pub const wszFCSAPARM_SANITIZEDCANAME: ::windows_sys::core::PCWSTR = ::windows_sys::w!("%3");
 #[doc = "*Required features: `\"Win32_Security\"`*"]
-pub const wszFCSAPARM_SANITIZEDCANAMEHASH: &str = "%7";
+pub const wszFCSAPARM_SANITIZEDCANAMEHASH: ::windows_sys::core::PCWSTR = ::windows_sys::w!("%7");
 #[doc = "*Required features: `\"Win32_Security\"`*"]
-pub const wszFCSAPARM_SERVERDNSNAME: &str = "%1";
+pub const wszFCSAPARM_SERVERDNSNAME: ::windows_sys::core::PCWSTR = ::windows_sys::w!("%1");
 #[doc = "*Required features: `\"Win32_Security\"`*"]
-pub const wszFCSAPARM_SERVERSHORTNAME: &str = "%2";
+pub const wszFCSAPARM_SERVERSHORTNAME: ::windows_sys::core::PCWSTR = ::windows_sys::w!("%2");
 #[doc = "*Required features: `\"Win32_Security\"`*"]
-pub const wszLBRACE: &str = "{";
+pub const wszLBRACE: ::windows_sys::core::PCWSTR = ::windows_sys::w!("{");
 #[doc = "*Required features: `\"Win32_Security\"`*"]
-pub const wszLPAREN: &str = "(";
+pub const wszLPAREN: ::windows_sys::core::PCWSTR = ::windows_sys::w!("(");
 #[doc = "*Required features: `\"Win32_Security\"`*"]
-pub const wszRBRACE: &str = "}";
+pub const wszRBRACE: ::windows_sys::core::PCWSTR = ::windows_sys::w!("}");
 #[doc = "*Required features: `\"Win32_Security\"`*"]
-pub const wszRPAREN: &str = ")";
+pub const wszRPAREN: ::windows_sys::core::PCWSTR = ::windows_sys::w!(")");
 #[doc = "*Required features: `\"Win32_Security\"`*"]
 pub type ACE_FLAGS = u32;
 #[doc = "*Required features: `\"Win32_Security\"`*"]

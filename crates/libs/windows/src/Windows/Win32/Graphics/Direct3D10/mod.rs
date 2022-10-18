@@ -2149,15 +2149,6 @@ pub struct ID3D10Effect_Vtbl {
 #[doc = "*Required features: `\"Win32_Graphics_Direct3D10\"`*"]
 #[repr(transparent)]
 pub struct ID3D10EffectBlendVariable(::std::ptr::NonNull<::std::ffi::c_void>);
-unsafe impl ::windows::core::Abi for Option<ID3D10EffectBlendVariable> {
-    type Abi = *mut ::std::ffi::c_void;
-}
-unsafe impl ::windows::core::Abi for ID3D10EffectBlendVariable {
-    type Abi = *mut ::std::ffi::c_void;
-    fn abi_is_possibly_valid(abi: &Self::Abi) -> bool {
-        !abi.is_null()
-    }
-}
 impl ID3D10EffectBlendVariable {
     #[doc = "*Required features: `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
@@ -2291,15 +2282,6 @@ pub struct ID3D10EffectBlendVariable_Vtbl {
 #[doc = "*Required features: `\"Win32_Graphics_Direct3D10\"`*"]
 #[repr(transparent)]
 pub struct ID3D10EffectConstantBuffer(::std::ptr::NonNull<::std::ffi::c_void>);
-unsafe impl ::windows::core::Abi for Option<ID3D10EffectConstantBuffer> {
-    type Abi = *mut ::std::ffi::c_void;
-}
-unsafe impl ::windows::core::Abi for ID3D10EffectConstantBuffer {
-    type Abi = *mut ::std::ffi::c_void;
-    fn abi_is_possibly_valid(abi: &Self::Abi) -> bool {
-        !abi.is_null()
-    }
-}
 impl ID3D10EffectConstantBuffer {
     #[doc = "*Required features: `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
@@ -2443,15 +2425,6 @@ pub struct ID3D10EffectConstantBuffer_Vtbl {
 #[doc = "*Required features: `\"Win32_Graphics_Direct3D10\"`*"]
 #[repr(transparent)]
 pub struct ID3D10EffectDepthStencilVariable(::std::ptr::NonNull<::std::ffi::c_void>);
-unsafe impl ::windows::core::Abi for Option<ID3D10EffectDepthStencilVariable> {
-    type Abi = *mut ::std::ffi::c_void;
-}
-unsafe impl ::windows::core::Abi for ID3D10EffectDepthStencilVariable {
-    type Abi = *mut ::std::ffi::c_void;
-    fn abi_is_possibly_valid(abi: &Self::Abi) -> bool {
-        !abi.is_null()
-    }
-}
 impl ID3D10EffectDepthStencilVariable {
     #[doc = "*Required features: `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
@@ -2586,15 +2559,6 @@ pub struct ID3D10EffectDepthStencilVariable_Vtbl {
 #[doc = "*Required features: `\"Win32_Graphics_Direct3D10\"`*"]
 #[repr(transparent)]
 pub struct ID3D10EffectDepthStencilViewVariable(::std::ptr::NonNull<::std::ffi::c_void>);
-unsafe impl ::windows::core::Abi for Option<ID3D10EffectDepthStencilViewVariable> {
-    type Abi = *mut ::std::ffi::c_void;
-}
-unsafe impl ::windows::core::Abi for ID3D10EffectDepthStencilViewVariable {
-    type Abi = *mut ::std::ffi::c_void;
-    fn abi_is_possibly_valid(abi: &Self::Abi) -> bool {
-        !abi.is_null()
-    }
-}
 impl ID3D10EffectDepthStencilViewVariable {
     #[doc = "*Required features: `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
@@ -2734,15 +2698,6 @@ pub struct ID3D10EffectDepthStencilViewVariable_Vtbl {
 #[doc = "*Required features: `\"Win32_Graphics_Direct3D10\"`*"]
 #[repr(transparent)]
 pub struct ID3D10EffectMatrixVariable(::std::ptr::NonNull<::std::ffi::c_void>);
-unsafe impl ::windows::core::Abi for Option<ID3D10EffectMatrixVariable> {
-    type Abi = *mut ::std::ffi::c_void;
-}
-unsafe impl ::windows::core::Abi for ID3D10EffectMatrixVariable {
-    type Abi = *mut ::std::ffi::c_void;
-    fn abi_is_possibly_valid(abi: &Self::Abi) -> bool {
-        !abi.is_null()
-    }
-}
 impl ID3D10EffectMatrixVariable {
     #[doc = "*Required features: `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
@@ -2894,15 +2849,6 @@ pub struct ID3D10EffectMatrixVariable_Vtbl {
 #[doc = "*Required features: `\"Win32_Graphics_Direct3D10\"`*"]
 #[repr(transparent)]
 pub struct ID3D10EffectPass(::std::ptr::NonNull<::std::ffi::c_void>);
-unsafe impl ::windows::core::Abi for Option<ID3D10EffectPass> {
-    type Abi = *mut ::std::ffi::c_void;
-}
-unsafe impl ::windows::core::Abi for ID3D10EffectPass {
-    type Abi = *mut ::std::ffi::c_void;
-    fn abi_is_possibly_valid(abi: &Self::Abi) -> bool {
-        !abi.is_null()
-    }
-}
 impl ID3D10EffectPass {
     #[doc = "*Required features: `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
@@ -2967,9 +2913,9 @@ pub struct ID3D10EffectPass_Vtbl {
     #[cfg(not(feature = "Win32_Foundation"))]
     IsValid: usize,
     pub GetDesc: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pdesc: *mut D3D10_PASS_DESC) -> ::windows::core::HRESULT,
-    pub GetVertexShaderDesc: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pdesc: *mut D3D10_PASS_SHADER_DESC) -> ::windows::core::HRESULT,
-    pub GetGeometryShaderDesc: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pdesc: *mut D3D10_PASS_SHADER_DESC) -> ::windows::core::HRESULT,
-    pub GetPixelShaderDesc: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pdesc: *mut D3D10_PASS_SHADER_DESC) -> ::windows::core::HRESULT,
+    pub GetVertexShaderDesc: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pdesc: *mut ::core::mem::ManuallyDrop<D3D10_PASS_SHADER_DESC>) -> ::windows::core::HRESULT,
+    pub GetGeometryShaderDesc: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pdesc: *mut ::core::mem::ManuallyDrop<D3D10_PASS_SHADER_DESC>) -> ::windows::core::HRESULT,
+    pub GetPixelShaderDesc: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pdesc: *mut ::core::mem::ManuallyDrop<D3D10_PASS_SHADER_DESC>) -> ::windows::core::HRESULT,
     pub GetAnnotationByIndex: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, index: u32) -> ::core::option::Option<ID3D10EffectVariable>,
     pub GetAnnotationByName: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, name: ::windows::core::PCSTR) -> ::core::option::Option<ID3D10EffectVariable>,
     pub Apply: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, flags: u32) -> ::windows::core::HRESULT,
@@ -3017,15 +2963,6 @@ pub struct ID3D10EffectPool_Vtbl {
 #[doc = "*Required features: `\"Win32_Graphics_Direct3D10\"`*"]
 #[repr(transparent)]
 pub struct ID3D10EffectRasterizerVariable(::std::ptr::NonNull<::std::ffi::c_void>);
-unsafe impl ::windows::core::Abi for Option<ID3D10EffectRasterizerVariable> {
-    type Abi = *mut ::std::ffi::c_void;
-}
-unsafe impl ::windows::core::Abi for ID3D10EffectRasterizerVariable {
-    type Abi = *mut ::std::ffi::c_void;
-    fn abi_is_possibly_valid(abi: &Self::Abi) -> bool {
-        !abi.is_null()
-    }
-}
 impl ID3D10EffectRasterizerVariable {
     #[doc = "*Required features: `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
@@ -3160,15 +3097,6 @@ pub struct ID3D10EffectRasterizerVariable_Vtbl {
 #[doc = "*Required features: `\"Win32_Graphics_Direct3D10\"`*"]
 #[repr(transparent)]
 pub struct ID3D10EffectRenderTargetViewVariable(::std::ptr::NonNull<::std::ffi::c_void>);
-unsafe impl ::windows::core::Abi for Option<ID3D10EffectRenderTargetViewVariable> {
-    type Abi = *mut ::std::ffi::c_void;
-}
-unsafe impl ::windows::core::Abi for ID3D10EffectRenderTargetViewVariable {
-    type Abi = *mut ::std::ffi::c_void;
-    fn abi_is_possibly_valid(abi: &Self::Abi) -> bool {
-        !abi.is_null()
-    }
-}
 impl ID3D10EffectRenderTargetViewVariable {
     #[doc = "*Required features: `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
@@ -3308,15 +3236,6 @@ pub struct ID3D10EffectRenderTargetViewVariable_Vtbl {
 #[doc = "*Required features: `\"Win32_Graphics_Direct3D10\"`*"]
 #[repr(transparent)]
 pub struct ID3D10EffectSamplerVariable(::std::ptr::NonNull<::std::ffi::c_void>);
-unsafe impl ::windows::core::Abi for Option<ID3D10EffectSamplerVariable> {
-    type Abi = *mut ::std::ffi::c_void;
-}
-unsafe impl ::windows::core::Abi for ID3D10EffectSamplerVariable {
-    type Abi = *mut ::std::ffi::c_void;
-    fn abi_is_possibly_valid(abi: &Self::Abi) -> bool {
-        !abi.is_null()
-    }
-}
 impl ID3D10EffectSamplerVariable {
     #[doc = "*Required features: `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
@@ -3446,15 +3365,6 @@ pub struct ID3D10EffectSamplerVariable_Vtbl {
 #[doc = "*Required features: `\"Win32_Graphics_Direct3D10\"`*"]
 #[repr(transparent)]
 pub struct ID3D10EffectScalarVariable(::std::ptr::NonNull<::std::ffi::c_void>);
-unsafe impl ::windows::core::Abi for Option<ID3D10EffectScalarVariable> {
-    type Abi = *mut ::std::ffi::c_void;
-}
-unsafe impl ::windows::core::Abi for ID3D10EffectScalarVariable {
-    type Abi = *mut ::std::ffi::c_void;
-    fn abi_is_possibly_valid(abi: &Self::Abi) -> bool {
-        !abi.is_null()
-    }
-}
 impl ID3D10EffectScalarVariable {
     #[doc = "*Required features: `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
@@ -3648,15 +3558,6 @@ pub struct ID3D10EffectScalarVariable_Vtbl {
 #[doc = "*Required features: `\"Win32_Graphics_Direct3D10\"`*"]
 #[repr(transparent)]
 pub struct ID3D10EffectShaderResourceVariable(::std::ptr::NonNull<::std::ffi::c_void>);
-unsafe impl ::windows::core::Abi for Option<ID3D10EffectShaderResourceVariable> {
-    type Abi = *mut ::std::ffi::c_void;
-}
-unsafe impl ::windows::core::Abi for ID3D10EffectShaderResourceVariable {
-    type Abi = *mut ::std::ffi::c_void;
-    fn abi_is_possibly_valid(abi: &Self::Abi) -> bool {
-        !abi.is_null()
-    }
-}
 impl ID3D10EffectShaderResourceVariable {
     #[doc = "*Required features: `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
@@ -3796,15 +3697,6 @@ pub struct ID3D10EffectShaderResourceVariable_Vtbl {
 #[doc = "*Required features: `\"Win32_Graphics_Direct3D10\"`*"]
 #[repr(transparent)]
 pub struct ID3D10EffectShaderVariable(::std::ptr::NonNull<::std::ffi::c_void>);
-unsafe impl ::windows::core::Abi for Option<ID3D10EffectShaderVariable> {
-    type Abi = *mut ::std::ffi::c_void;
-}
-unsafe impl ::windows::core::Abi for ID3D10EffectShaderVariable {
-    type Abi = *mut ::std::ffi::c_void;
-    fn abi_is_possibly_valid(abi: &Self::Abi) -> bool {
-        !abi.is_null()
-    }
-}
 impl ID3D10EffectShaderVariable {
     #[doc = "*Required features: `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
@@ -3969,15 +3861,6 @@ pub struct ID3D10EffectShaderVariable_Vtbl {
 #[doc = "*Required features: `\"Win32_Graphics_Direct3D10\"`*"]
 #[repr(transparent)]
 pub struct ID3D10EffectStringVariable(::std::ptr::NonNull<::std::ffi::c_void>);
-unsafe impl ::windows::core::Abi for Option<ID3D10EffectStringVariable> {
-    type Abi = *mut ::std::ffi::c_void;
-}
-unsafe impl ::windows::core::Abi for ID3D10EffectStringVariable {
-    type Abi = *mut ::std::ffi::c_void;
-    fn abi_is_possibly_valid(abi: &Self::Abi) -> bool {
-        !abi.is_null()
-    }
-}
 impl ID3D10EffectStringVariable {
     #[doc = "*Required features: `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
@@ -4106,15 +3989,6 @@ pub struct ID3D10EffectStringVariable_Vtbl {
 #[doc = "*Required features: `\"Win32_Graphics_Direct3D10\"`*"]
 #[repr(transparent)]
 pub struct ID3D10EffectTechnique(::std::ptr::NonNull<::std::ffi::c_void>);
-unsafe impl ::windows::core::Abi for Option<ID3D10EffectTechnique> {
-    type Abi = *mut ::std::ffi::c_void;
-}
-unsafe impl ::windows::core::Abi for ID3D10EffectTechnique {
-    type Abi = *mut ::std::ffi::c_void;
-    fn abi_is_possibly_valid(abi: &Self::Abi) -> bool {
-        !abi.is_null()
-    }
-}
 impl ID3D10EffectTechnique {
     #[doc = "*Required features: `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
@@ -4185,15 +4059,6 @@ pub struct ID3D10EffectTechnique_Vtbl {
 #[doc = "*Required features: `\"Win32_Graphics_Direct3D10\"`*"]
 #[repr(transparent)]
 pub struct ID3D10EffectType(::std::ptr::NonNull<::std::ffi::c_void>);
-unsafe impl ::windows::core::Abi for Option<ID3D10EffectType> {
-    type Abi = *mut ::std::ffi::c_void;
-}
-unsafe impl ::windows::core::Abi for ID3D10EffectType {
-    type Abi = *mut ::std::ffi::c_void;
-    fn abi_is_possibly_valid(abi: &Self::Abi) -> bool {
-        !abi.is_null()
-    }
-}
 impl ID3D10EffectType {
     #[doc = "*Required features: `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
@@ -4268,15 +4133,6 @@ pub struct ID3D10EffectType_Vtbl {
 #[doc = "*Required features: `\"Win32_Graphics_Direct3D10\"`*"]
 #[repr(transparent)]
 pub struct ID3D10EffectVariable(::std::ptr::NonNull<::std::ffi::c_void>);
-unsafe impl ::windows::core::Abi for Option<ID3D10EffectVariable> {
-    type Abi = *mut ::std::ffi::c_void;
-}
-unsafe impl ::windows::core::Abi for ID3D10EffectVariable {
-    type Abi = *mut ::std::ffi::c_void;
-    fn abi_is_possibly_valid(abi: &Self::Abi) -> bool {
-        !abi.is_null()
-    }
-}
 impl ID3D10EffectVariable {
     #[doc = "*Required features: `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
@@ -4422,15 +4278,6 @@ pub struct ID3D10EffectVariable_Vtbl {
 #[doc = "*Required features: `\"Win32_Graphics_Direct3D10\"`*"]
 #[repr(transparent)]
 pub struct ID3D10EffectVectorVariable(::std::ptr::NonNull<::std::ffi::c_void>);
-unsafe impl ::windows::core::Abi for Option<ID3D10EffectVectorVariable> {
-    type Abi = *mut ::std::ffi::c_void;
-}
-unsafe impl ::windows::core::Abi for ID3D10EffectVectorVariable {
-    type Abi = *mut ::std::ffi::c_void;
-    fn abi_is_possibly_valid(abi: &Self::Abi) -> bool {
-        !abi.is_null()
-    }
-}
 impl ID3D10EffectVectorVariable {
     #[doc = "*Required features: `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
@@ -5675,15 +5522,6 @@ pub struct ID3D10ShaderReflection1_Vtbl {
 #[doc = "*Required features: `\"Win32_Graphics_Direct3D10\"`*"]
 #[repr(transparent)]
 pub struct ID3D10ShaderReflectionConstantBuffer(::std::ptr::NonNull<::std::ffi::c_void>);
-unsafe impl ::windows::core::Abi for Option<ID3D10ShaderReflectionConstantBuffer> {
-    type Abi = *mut ::std::ffi::c_void;
-}
-unsafe impl ::windows::core::Abi for ID3D10ShaderReflectionConstantBuffer {
-    type Abi = *mut ::std::ffi::c_void;
-    fn abi_is_possibly_valid(abi: &Self::Abi) -> bool {
-        !abi.is_null()
-    }
-}
 impl ID3D10ShaderReflectionConstantBuffer {
     #[doc = "*Required features: `\"Win32_Graphics_Direct3D\"`*"]
     #[cfg(feature = "Win32_Graphics_Direct3D")]
@@ -5735,15 +5573,6 @@ pub struct ID3D10ShaderReflectionConstantBuffer_Vtbl {
 #[doc = "*Required features: `\"Win32_Graphics_Direct3D10\"`*"]
 #[repr(transparent)]
 pub struct ID3D10ShaderReflectionType(::std::ptr::NonNull<::std::ffi::c_void>);
-unsafe impl ::windows::core::Abi for Option<ID3D10ShaderReflectionType> {
-    type Abi = *mut ::std::ffi::c_void;
-}
-unsafe impl ::windows::core::Abi for ID3D10ShaderReflectionType {
-    type Abi = *mut ::std::ffi::c_void;
-    fn abi_is_possibly_valid(abi: &Self::Abi) -> bool {
-        !abi.is_null()
-    }
-}
 impl ID3D10ShaderReflectionType {
     #[doc = "*Required features: `\"Win32_Graphics_Direct3D\"`*"]
     #[cfg(feature = "Win32_Graphics_Direct3D")]
@@ -5798,15 +5627,6 @@ pub struct ID3D10ShaderReflectionType_Vtbl {
 #[doc = "*Required features: `\"Win32_Graphics_Direct3D10\"`*"]
 #[repr(transparent)]
 pub struct ID3D10ShaderReflectionVariable(::std::ptr::NonNull<::std::ffi::c_void>);
-unsafe impl ::windows::core::Abi for Option<ID3D10ShaderReflectionVariable> {
-    type Abi = *mut ::std::ffi::c_void;
-}
-unsafe impl ::windows::core::Abi for ID3D10ShaderReflectionVariable {
-    type Abi = *mut ::std::ffi::c_void;
-    fn abi_is_possibly_valid(abi: &Self::Abi) -> bool {
-        !abi.is_null()
-    }
-}
 impl ID3D10ShaderReflectionVariable {
     pub unsafe fn GetDesc(&self) -> ::windows::core::Result<D3D10_SHADER_VARIABLE_DESC> {
         let mut result__ = ::core::mem::MaybeUninit::zeroed();
@@ -6469,19 +6289,19 @@ pub const D3D10_ANISOTROPIC_FILTERING_BIT: u32 = 64u32;
 #[doc = "*Required features: `\"Win32_Graphics_Direct3D10\"`*"]
 pub const D3D10_APPEND_ALIGNED_ELEMENT: u32 = 4294967295u32;
 #[doc = "*Required features: `\"Win32_Graphics_Direct3D10\"`*"]
-pub const D3D10_APPNAME_STRING: &str = "Name";
+pub const D3D10_APPNAME_STRING: ::windows::core::PCWSTR = ::windows::w!("Name");
 #[doc = "*Required features: `\"Win32_Graphics_Direct3D10\"`*"]
-pub const D3D10_APPSIZE_STRING: &str = "Size";
+pub const D3D10_APPSIZE_STRING: ::windows::core::PCWSTR = ::windows::w!("Size");
 #[doc = "*Required features: `\"Win32_Graphics_Direct3D10\"`*"]
 pub const D3D10_ARRAY_AXIS_ADDRESS_RANGE_BIT_COUNT: u32 = 9u32;
 #[doc = "*Required features: `\"Win32_Graphics_Direct3D10\"`*"]
-pub const D3D10_BREAKON_CATEGORY: &str = "BreakOn_CATEGORY_%s";
+pub const D3D10_BREAKON_CATEGORY: ::windows::core::PCWSTR = ::windows::w!("BreakOn_CATEGORY_%s");
 #[doc = "*Required features: `\"Win32_Graphics_Direct3D10\"`*"]
-pub const D3D10_BREAKON_ID_DECIMAL: &str = "BreakOn_ID_%d";
+pub const D3D10_BREAKON_ID_DECIMAL: ::windows::core::PCWSTR = ::windows::w!("BreakOn_ID_%d");
 #[doc = "*Required features: `\"Win32_Graphics_Direct3D10\"`*"]
-pub const D3D10_BREAKON_ID_STRING: &str = "BreakOn_ID_%s";
+pub const D3D10_BREAKON_ID_STRING: ::windows::core::PCWSTR = ::windows::w!("BreakOn_ID_%s");
 #[doc = "*Required features: `\"Win32_Graphics_Direct3D10\"`*"]
-pub const D3D10_BREAKON_SEVERITY: &str = "BreakOn_SEVERITY_%s";
+pub const D3D10_BREAKON_SEVERITY: ::windows::core::PCWSTR = ::windows::w!("BreakOn_SEVERITY_%s");
 #[doc = "*Required features: `\"Win32_Graphics_Direct3D10\"`*"]
 pub const D3D10_CLIP_OR_CULL_DISTANCE_COUNT: u32 = 8u32;
 #[doc = "*Required features: `\"Win32_Graphics_Direct3D10\"`*"]
@@ -6627,7 +6447,7 @@ pub const D3D10_EFFECT_VARIABLE_EXPLICIT_BIND_POINT: u32 = 4u32;
 #[doc = "*Required features: `\"Win32_Graphics_Direct3D10\"`*"]
 pub const D3D10_EFFECT_VARIABLE_POOLED: u32 = 1u32;
 #[doc = "*Required features: `\"Win32_Graphics_Direct3D10\"`*"]
-pub const D3D10_ENABLE_BREAK_ON_MESSAGE: &str = "EnableBreakOnMessage";
+pub const D3D10_ENABLE_BREAK_ON_MESSAGE: ::windows::core::PCWSTR = ::windows::w!("EnableBreakOnMessage");
 #[doc = "*Required features: `\"Win32_Graphics_Direct3D10\"`*"]
 pub const D3D10_ENABLE_UNBOUNDED_DESCRIPTOR_TABLES: u32 = 1048576u32;
 #[doc = "*Required features: `\"Win32_Graphics_Direct3D10\"`*"]
@@ -6711,7 +6531,7 @@ pub const D3D10_IA_VERTEX_INPUT_STRUCTURE_ELEMENTS_COMPONENTS: u32 = 64u32;
 #[doc = "*Required features: `\"Win32_Graphics_Direct3D10\"`*"]
 pub const D3D10_IA_VERTEX_INPUT_STRUCTURE_ELEMENT_COUNT: u32 = 16u32;
 #[doc = "*Required features: `\"Win32_Graphics_Direct3D10\"`*"]
-pub const D3D10_INFOQUEUE_STORAGE_FILTER_OVERRIDE: &str = "InfoQueueStorageFilterOverride";
+pub const D3D10_INFOQUEUE_STORAGE_FILTER_OVERRIDE: ::windows::core::PCWSTR = ::windows::w!("InfoQueueStorageFilterOverride");
 #[doc = "*Required features: `\"Win32_Graphics_Direct3D10\"`*"]
 pub const D3D10_INFO_QUEUE_DEFAULT_MESSAGE_COUNT_LIMIT: u32 = 1024u32;
 #[doc = "*Required features: `\"Win32_Graphics_Direct3D10\"`*"]
@@ -6755,15 +6575,15 @@ pub const D3D10_MIP_LOD_RANGE_BIT_COUNT: u32 = 8u32;
 #[doc = "*Required features: `\"Win32_Graphics_Direct3D10\"`*"]
 pub const D3D10_MULTISAMPLE_ANTIALIAS_LINE_WIDTH: f32 = 1.4f32;
 #[doc = "*Required features: `\"Win32_Graphics_Direct3D10\"`*"]
-pub const D3D10_MUTE_CATEGORY: &str = "Mute_CATEGORY_%s";
+pub const D3D10_MUTE_CATEGORY: ::windows::core::PCWSTR = ::windows::w!("Mute_CATEGORY_%s");
 #[doc = "*Required features: `\"Win32_Graphics_Direct3D10\"`*"]
-pub const D3D10_MUTE_DEBUG_OUTPUT: &str = "MuteDebugOutput";
+pub const D3D10_MUTE_DEBUG_OUTPUT: ::windows::core::PCWSTR = ::windows::w!("MuteDebugOutput");
 #[doc = "*Required features: `\"Win32_Graphics_Direct3D10\"`*"]
-pub const D3D10_MUTE_ID_DECIMAL: &str = "Mute_ID_%d";
+pub const D3D10_MUTE_ID_DECIMAL: ::windows::core::PCWSTR = ::windows::w!("Mute_ID_%d");
 #[doc = "*Required features: `\"Win32_Graphics_Direct3D10\"`*"]
-pub const D3D10_MUTE_ID_STRING: &str = "Mute_ID_%s";
+pub const D3D10_MUTE_ID_STRING: ::windows::core::PCWSTR = ::windows::w!("Mute_ID_%s");
 #[doc = "*Required features: `\"Win32_Graphics_Direct3D10\"`*"]
-pub const D3D10_MUTE_SEVERITY: &str = "Mute_SEVERITY_%s";
+pub const D3D10_MUTE_SEVERITY: ::windows::core::PCWSTR = ::windows::w!("Mute_SEVERITY_%s");
 #[doc = "*Required features: `\"Win32_Graphics_Direct3D10\"`*"]
 pub const D3D10_NONSAMPLE_FETCH_OUT_OF_RANGE_ACCESS_RESULT: u32 = 0u32;
 #[doc = "*Required features: `\"Win32_Graphics_Direct3D10\"`*"]
@@ -6803,7 +6623,7 @@ pub const D3D10_PS_OUTPUT_REGISTER_COUNT: u32 = 8u32;
 #[doc = "*Required features: `\"Win32_Graphics_Direct3D10\"`*"]
 pub const D3D10_PS_PIXEL_CENTER_FRACTIONAL_COMPONENT: f32 = 0.5f32;
 #[doc = "*Required features: `\"Win32_Graphics_Direct3D10\"`*"]
-pub const D3D10_REGKEY_PATH: &str = "Software\\Microsoft\\Direct3D";
+pub const D3D10_REGKEY_PATH: ::windows::core::PCWSTR = ::windows::w!("Software\\Microsoft\\Direct3D");
 #[doc = "*Required features: `\"Win32_Graphics_Direct3D10\"`*"]
 pub const D3D10_REQ_BLEND_OBJECT_COUNT_PER_CONTEXT: u32 = 4096u32;
 #[doc = "*Required features: `\"Win32_Graphics_Direct3D10\"`*"]
@@ -6967,7 +6787,7 @@ pub const D3D10_TEXT_1BIT_BIT: u32 = 2147483648u32;
 #[doc = "*Required features: `\"Win32_Graphics_Direct3D10\"`*"]
 pub const D3D10_UNBOUND_MEMORY_ACCESS_RESULT: u32 = 0u32;
 #[doc = "*Required features: `\"Win32_Graphics_Direct3D10\"`*"]
-pub const D3D10_UNMUTE_SEVERITY_INFO: &str = "Unmute_SEVERITY_INFO";
+pub const D3D10_UNMUTE_SEVERITY_INFO: ::windows::core::PCWSTR = ::windows::w!("Unmute_SEVERITY_INFO");
 #[doc = "*Required features: `\"Win32_Graphics_Direct3D10\"`*"]
 pub const D3D10_VIEWPORT_AND_SCISSORRECT_MAX_INDEX: u32 = 15u32;
 #[doc = "*Required features: `\"Win32_Graphics_Direct3D10\"`*"]
