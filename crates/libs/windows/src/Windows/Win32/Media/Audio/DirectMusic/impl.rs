@@ -203,7 +203,7 @@ impl IDirectMusicBuffer_Vtbl {
 }
 pub trait IDirectMusicCollection_Impl: Sized {
     fn GetInstrument(&self, dwpatch: u32) -> ::windows::core::Result<IDirectMusicInstrument>;
-    fn EnumInstrument(&self, dwindex: u32, pdwpatch: *mut u32, pwszname: &::windows::core::PCWSTR, dwnamelen: u32) -> ::windows::core::Result<()>;
+    fn EnumInstrument(&self, dwindex: u32, pdwpatch: *mut u32, pwszname: &::windows::core::PWSTR, dwnamelen: u32) -> ::windows::core::Result<()>;
 }
 impl ::windows::core::RuntimeName for IDirectMusicCollection {}
 impl IDirectMusicCollection_Vtbl {
@@ -219,7 +219,7 @@ impl IDirectMusicCollection_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn EnumInstrument<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDirectMusicCollection_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, dwindex: u32, pdwpatch: *mut u32, pwszname: ::windows::core::PCWSTR, dwnamelen: u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn EnumInstrument<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDirectMusicCollection_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, dwindex: u32, pdwpatch: *mut u32, pwszname: ::windows::core::PWSTR, dwnamelen: u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.EnumInstrument(::core::mem::transmute_copy(&dwindex), ::core::mem::transmute_copy(&pdwpatch), ::core::mem::transmute(&pwszname), ::core::mem::transmute_copy(&dwnamelen)).into()

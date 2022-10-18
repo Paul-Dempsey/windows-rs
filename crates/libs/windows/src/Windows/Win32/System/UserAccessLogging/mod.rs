@@ -1,10 +1,10 @@
 #[doc = "*Required features: `\"Win32_System_UserAccessLogging\"`, `\"Win32_Foundation\"`, `\"Win32_Networking_WinSock\"`*"]
 #[cfg(all(feature = "Win32_Foundation", feature = "Win32_Networking_WinSock"))]
 #[inline]
-pub unsafe fn UalInstrument(data: *const UAL_DATA_BLOB) -> ::windows::core::Result<()> {
+pub unsafe fn UalInstrument(data: *mut UAL_DATA_BLOB) -> ::windows::core::Result<()> {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn UalInstrument(data: *const UAL_DATA_BLOB) -> ::windows::core::HRESULT;
+        fn UalInstrument(data: *mut UAL_DATA_BLOB) -> ::windows::core::HRESULT;
     }
     UalInstrument(::core::mem::transmute(data)).ok()
 }
@@ -25,20 +25,20 @@ where
 #[doc = "*Required features: `\"Win32_System_UserAccessLogging\"`, `\"Win32_Foundation\"`, `\"Win32_Networking_WinSock\"`*"]
 #[cfg(all(feature = "Win32_Foundation", feature = "Win32_Networking_WinSock"))]
 #[inline]
-pub unsafe fn UalStart(data: *const UAL_DATA_BLOB) -> ::windows::core::Result<()> {
+pub unsafe fn UalStart(data: *mut UAL_DATA_BLOB) -> ::windows::core::Result<()> {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn UalStart(data: *const UAL_DATA_BLOB) -> ::windows::core::HRESULT;
+        fn UalStart(data: *mut UAL_DATA_BLOB) -> ::windows::core::HRESULT;
     }
     UalStart(::core::mem::transmute(data)).ok()
 }
 #[doc = "*Required features: `\"Win32_System_UserAccessLogging\"`, `\"Win32_Foundation\"`, `\"Win32_Networking_WinSock\"`*"]
 #[cfg(all(feature = "Win32_Foundation", feature = "Win32_Networking_WinSock"))]
 #[inline]
-pub unsafe fn UalStop(data: *const UAL_DATA_BLOB) -> ::windows::core::Result<()> {
+pub unsafe fn UalStop(data: *mut UAL_DATA_BLOB) -> ::windows::core::Result<()> {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn UalStop(data: *const UAL_DATA_BLOB) -> ::windows::core::HRESULT;
+        fn UalStop(data: *mut UAL_DATA_BLOB) -> ::windows::core::HRESULT;
     }
     UalStop(::core::mem::transmute(data)).ok()
 }

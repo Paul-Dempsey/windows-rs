@@ -7,7 +7,7 @@ extern "system" {
     #[doc = "*Required features: `\"Win32_Graphics_Direct3D_Fxc\"`*"]
     pub fn D3DCompileFromFile(pfilename: ::windows_sys::core::PCWSTR, pdefines: *const super::D3D_SHADER_MACRO, pinclude: super::ID3DInclude, pentrypoint: ::windows_sys::core::PCSTR, ptarget: ::windows_sys::core::PCSTR, flags1: u32, flags2: u32, ppcode: *mut super::ID3DBlob, pperrormsgs: *mut super::ID3DBlob) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_Graphics_Direct3D_Fxc\"`*"]
-    pub fn D3DCompressShaders(unumshaders: u32, pshaderdata: *const D3D_SHADER_DATA, uflags: u32, ppcompresseddata: *mut super::ID3DBlob) -> ::windows_sys::core::HRESULT;
+    pub fn D3DCompressShaders(unumshaders: u32, pshaderdata: *mut D3D_SHADER_DATA, uflags: u32, ppcompresseddata: *mut super::ID3DBlob) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_Graphics_Direct3D_Fxc\"`*"]
     pub fn D3DCreateBlob(size: usize, ppblob: *mut super::ID3DBlob) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_Graphics_Direct3D_Fxc\"`, `\"Win32_Graphics_Direct3D11\"`*"]
@@ -17,7 +17,7 @@ extern "system" {
     #[cfg(feature = "Win32_Graphics_Direct3D11")]
     pub fn D3DCreateLinker(pplinker: *mut super::super::Direct3D11::ID3D11Linker) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_Graphics_Direct3D_Fxc\"`*"]
-    pub fn D3DDecompressShaders(psrcdata: *const ::core::ffi::c_void, srcdatasize: usize, unumshaders: u32, ustartindex: u32, pindices: *const u32, uflags: u32, ppshaders: *mut super::ID3DBlob, ptotalshaders: *mut u32) -> ::windows_sys::core::HRESULT;
+    pub fn D3DDecompressShaders(psrcdata: *const ::core::ffi::c_void, srcdatasize: usize, unumshaders: u32, ustartindex: u32, pindices: *mut u32, uflags: u32, ppshaders: *mut super::ID3DBlob, ptotalshaders: *mut u32) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_Graphics_Direct3D_Fxc\"`*"]
     pub fn D3DDisassemble(psrcdata: *const ::core::ffi::c_void, srcdatasize: usize, flags: u32, szcomments: ::windows_sys::core::PCSTR, ppdisassembly: *mut super::ID3DBlob) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_Graphics_Direct3D_Fxc\"`, `\"Win32_Graphics_Direct3D10\"`*"]

@@ -334,13 +334,13 @@ where
 }
 #[doc = "*Required features: `\"Win32_Storage_CloudFilters\"`*"]
 #[inline]
-pub unsafe fn CfReportSyncStatus<'a, P0>(syncrootpath: P0, syncstatus: ::core::option::Option<*const CF_SYNC_STATUS>) -> ::windows::core::Result<()>
+pub unsafe fn CfReportSyncStatus<'a, P0>(syncrootpath: P0, syncstatus: ::core::option::Option<*mut CF_SYNC_STATUS>) -> ::windows::core::Result<()>
 where
     P0: ::std::convert::Into<::windows::core::PCWSTR>,
 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn CfReportSyncStatus(syncrootpath: ::windows::core::PCWSTR, syncstatus: *const CF_SYNC_STATUS) -> ::windows::core::HRESULT;
+        fn CfReportSyncStatus(syncrootpath: ::windows::core::PCWSTR, syncstatus: *mut CF_SYNC_STATUS) -> ::windows::core::HRESULT;
     }
     CfReportSyncStatus(syncrootpath.into(), ::core::mem::transmute(syncstatus.unwrap_or(::std::ptr::null()))).ok()
 }

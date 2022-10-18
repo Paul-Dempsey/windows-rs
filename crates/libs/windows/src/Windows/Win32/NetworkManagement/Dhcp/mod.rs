@@ -1,28 +1,25 @@
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`, `\"Win32_Foundation\"`*"]
 #[cfg(feature = "Win32_Foundation")]
 #[inline]
-pub unsafe fn DhcpAddFilterV4<'a, P0, P1>(serveripaddress: P0, addfilterinfo: *const DHCP_FILTER_ADD_INFO, forceflag: P1) -> u32
+pub unsafe fn DhcpAddFilterV4<'a, P0, P1>(serveripaddress: P0, addfilterinfo: *mut DHCP_FILTER_ADD_INFO, forceflag: P1) -> u32
 where
     P0: ::std::convert::Into<::windows::core::PCWSTR>,
     P1: ::std::convert::Into<super::super::Foundation::BOOL>,
 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn DhcpAddFilterV4(serveripaddress: ::windows::core::PCWSTR, addfilterinfo: *const DHCP_FILTER_ADD_INFO, forceflag: super::super::Foundation::BOOL) -> u32;
+        fn DhcpAddFilterV4(serveripaddress: ::windows::core::PCWSTR, addfilterinfo: *mut DHCP_FILTER_ADD_INFO, forceflag: super::super::Foundation::BOOL) -> u32;
     }
     DhcpAddFilterV4(serveripaddress.into(), ::core::mem::transmute(addfilterinfo), forceflag.into())
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`*"]
 #[inline]
-pub unsafe fn DhcpAddSecurityGroup<'a, P0>(pserver: P0) -> u32
-where
-    P0: ::std::convert::Into<::windows::core::PCWSTR>,
-{
+pub unsafe fn DhcpAddSecurityGroup(pserver: ::windows::core::PWSTR) -> u32 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn DhcpAddSecurityGroup(pserver: ::windows::core::PCWSTR) -> u32;
+        fn DhcpAddSecurityGroup(pserver: ::windows::core::PWSTR) -> u32;
     }
-    DhcpAddSecurityGroup(pserver.into())
+    DhcpAddSecurityGroup(::core::mem::transmute(pserver))
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`*"]
 #[inline]
@@ -71,40 +68,30 @@ where
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`*"]
 #[inline]
-pub unsafe fn DhcpAddSubnetElementV6<'a, P0>(serveripaddress: P0, subnetaddress: DHCP_IPV6_ADDRESS, addelementinfo: *mut DHCP_SUBNET_ELEMENT_DATA_V6) -> u32
-where
-    P0: ::std::convert::Into<::windows::core::PCWSTR>,
-{
+pub unsafe fn DhcpAddSubnetElementV6(serveripaddress: ::windows::core::PWSTR, subnetaddress: DHCP_IPV6_ADDRESS, addelementinfo: *mut DHCP_SUBNET_ELEMENT_DATA_V6) -> u32 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn DhcpAddSubnetElementV6(serveripaddress: ::windows::core::PCWSTR, subnetaddress: DHCP_IPV6_ADDRESS, addelementinfo: *mut DHCP_SUBNET_ELEMENT_DATA_V6) -> u32;
+        fn DhcpAddSubnetElementV6(serveripaddress: ::windows::core::PWSTR, subnetaddress: DHCP_IPV6_ADDRESS, addelementinfo: *mut DHCP_SUBNET_ELEMENT_DATA_V6) -> u32;
     }
-    DhcpAddSubnetElementV6(serveripaddress.into(), ::core::mem::transmute(subnetaddress), ::core::mem::transmute(addelementinfo))
+    DhcpAddSubnetElementV6(::core::mem::transmute(serveripaddress), ::core::mem::transmute(subnetaddress), ::core::mem::transmute(addelementinfo))
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`*"]
 #[inline]
-pub unsafe fn DhcpAuditLogGetParams<'a, P0>(serveripaddress: P0, flags: u32, auditlogdir: ::core::option::Option<*mut ::windows::core::PWSTR>, diskcheckinterval: *mut u32, maxlogfilessize: *mut u32, minspaceondisk: *mut u32) -> u32
-where
-    P0: ::std::convert::Into<::windows::core::PCWSTR>,
-{
+pub unsafe fn DhcpAuditLogGetParams(serveripaddress: ::windows::core::PWSTR, flags: u32, auditlogdir: ::core::option::Option<*mut ::windows::core::PWSTR>, diskcheckinterval: *mut u32, maxlogfilessize: *mut u32, minspaceondisk: *mut u32) -> u32 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn DhcpAuditLogGetParams(serveripaddress: ::windows::core::PCWSTR, flags: u32, auditlogdir: *mut ::windows::core::PWSTR, diskcheckinterval: *mut u32, maxlogfilessize: *mut u32, minspaceondisk: *mut u32) -> u32;
+        fn DhcpAuditLogGetParams(serveripaddress: ::windows::core::PWSTR, flags: u32, auditlogdir: *mut ::windows::core::PWSTR, diskcheckinterval: *mut u32, maxlogfilessize: *mut u32, minspaceondisk: *mut u32) -> u32;
     }
-    DhcpAuditLogGetParams(serveripaddress.into(), flags, ::core::mem::transmute(auditlogdir.unwrap_or(::std::ptr::null_mut())), ::core::mem::transmute(diskcheckinterval), ::core::mem::transmute(maxlogfilessize), ::core::mem::transmute(minspaceondisk))
+    DhcpAuditLogGetParams(::core::mem::transmute(serveripaddress), flags, ::core::mem::transmute(auditlogdir.unwrap_or(::std::ptr::null_mut())), ::core::mem::transmute(diskcheckinterval), ::core::mem::transmute(maxlogfilessize), ::core::mem::transmute(minspaceondisk))
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`*"]
 #[inline]
-pub unsafe fn DhcpAuditLogSetParams<'a, P0, P1>(serveripaddress: P0, flags: u32, auditlogdir: P1, diskcheckinterval: u32, maxlogfilessize: u32, minspaceondisk: u32) -> u32
-where
-    P0: ::std::convert::Into<::windows::core::PCWSTR>,
-    P1: ::std::convert::Into<::windows::core::PCWSTR>,
-{
+pub unsafe fn DhcpAuditLogSetParams(serveripaddress: ::windows::core::PWSTR, flags: u32, auditlogdir: ::windows::core::PWSTR, diskcheckinterval: u32, maxlogfilessize: u32, minspaceondisk: u32) -> u32 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn DhcpAuditLogSetParams(serveripaddress: ::windows::core::PCWSTR, flags: u32, auditlogdir: ::windows::core::PCWSTR, diskcheckinterval: u32, maxlogfilessize: u32, minspaceondisk: u32) -> u32;
+        fn DhcpAuditLogSetParams(serveripaddress: ::windows::core::PWSTR, flags: u32, auditlogdir: ::windows::core::PWSTR, diskcheckinterval: u32, maxlogfilessize: u32, minspaceondisk: u32) -> u32;
     }
-    DhcpAuditLogSetParams(serveripaddress.into(), flags, auditlogdir.into(), diskcheckinterval, maxlogfilessize, minspaceondisk)
+    DhcpAuditLogSetParams(::core::mem::transmute(serveripaddress), flags, ::core::mem::transmute(auditlogdir), diskcheckinterval, maxlogfilessize, minspaceondisk)
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`*"]
 #[inline]
@@ -127,28 +114,22 @@ pub unsafe fn DhcpCApiInitialize(version: *mut u32) -> u32 {
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`, `\"Win32_Foundation\"`*"]
 #[cfg(feature = "Win32_Foundation")]
 #[inline]
-pub unsafe fn DhcpCreateClass<'a, P0>(serveripaddress: P0, reservedmustbezero: u32, classinfo: *mut DHCP_CLASS_INFO) -> u32
-where
-    P0: ::std::convert::Into<::windows::core::PCWSTR>,
-{
+pub unsafe fn DhcpCreateClass(serveripaddress: ::windows::core::PWSTR, reservedmustbezero: u32, classinfo: *mut DHCP_CLASS_INFO) -> u32 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn DhcpCreateClass(serveripaddress: ::windows::core::PCWSTR, reservedmustbezero: u32, classinfo: *mut DHCP_CLASS_INFO) -> u32;
+        fn DhcpCreateClass(serveripaddress: ::windows::core::PWSTR, reservedmustbezero: u32, classinfo: *mut DHCP_CLASS_INFO) -> u32;
     }
-    DhcpCreateClass(serveripaddress.into(), reservedmustbezero, ::core::mem::transmute(classinfo))
+    DhcpCreateClass(::core::mem::transmute(serveripaddress), reservedmustbezero, ::core::mem::transmute(classinfo))
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`, `\"Win32_Foundation\"`*"]
 #[cfg(feature = "Win32_Foundation")]
 #[inline]
-pub unsafe fn DhcpCreateClassV6<'a, P0>(serveripaddress: P0, reservedmustbezero: u32, classinfo: *mut DHCP_CLASS_INFO_V6) -> u32
-where
-    P0: ::std::convert::Into<::windows::core::PCWSTR>,
-{
+pub unsafe fn DhcpCreateClassV6(serveripaddress: ::windows::core::PWSTR, reservedmustbezero: u32, classinfo: *mut DHCP_CLASS_INFO_V6) -> u32 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn DhcpCreateClassV6(serveripaddress: ::windows::core::PCWSTR, reservedmustbezero: u32, classinfo: *mut DHCP_CLASS_INFO_V6) -> u32;
+        fn DhcpCreateClassV6(serveripaddress: ::windows::core::PWSTR, reservedmustbezero: u32, classinfo: *mut DHCP_CLASS_INFO_V6) -> u32;
     }
-    DhcpCreateClassV6(serveripaddress.into(), reservedmustbezero, ::core::mem::transmute(classinfo))
+    DhcpCreateClassV6(::core::mem::transmute(serveripaddress), reservedmustbezero, ::core::mem::transmute(classinfo))
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`*"]
 #[inline]
@@ -201,31 +182,21 @@ where
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`*"]
 #[inline]
-pub unsafe fn DhcpCreateOptionV5<'a, P0, P1, P2>(serveripaddress: P0, flags: u32, optionid: u32, classname: P1, vendorname: P2, optioninfo: *mut DHCP_OPTION) -> u32
-where
-    P0: ::std::convert::Into<::windows::core::PCWSTR>,
-    P1: ::std::convert::Into<::windows::core::PCWSTR>,
-    P2: ::std::convert::Into<::windows::core::PCWSTR>,
-{
+pub unsafe fn DhcpCreateOptionV5(serveripaddress: ::windows::core::PWSTR, flags: u32, optionid: u32, classname: ::windows::core::PWSTR, vendorname: ::windows::core::PWSTR, optioninfo: *mut DHCP_OPTION) -> u32 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn DhcpCreateOptionV5(serveripaddress: ::windows::core::PCWSTR, flags: u32, optionid: u32, classname: ::windows::core::PCWSTR, vendorname: ::windows::core::PCWSTR, optioninfo: *mut DHCP_OPTION) -> u32;
+        fn DhcpCreateOptionV5(serveripaddress: ::windows::core::PWSTR, flags: u32, optionid: u32, classname: ::windows::core::PWSTR, vendorname: ::windows::core::PWSTR, optioninfo: *mut DHCP_OPTION) -> u32;
     }
-    DhcpCreateOptionV5(serveripaddress.into(), flags, optionid, classname.into(), vendorname.into(), ::core::mem::transmute(optioninfo))
+    DhcpCreateOptionV5(::core::mem::transmute(serveripaddress), flags, optionid, ::core::mem::transmute(classname), ::core::mem::transmute(vendorname), ::core::mem::transmute(optioninfo))
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`*"]
 #[inline]
-pub unsafe fn DhcpCreateOptionV6<'a, P0, P1, P2>(serveripaddress: P0, flags: u32, optionid: u32, classname: P1, vendorname: P2, optioninfo: *mut DHCP_OPTION) -> u32
-where
-    P0: ::std::convert::Into<::windows::core::PCWSTR>,
-    P1: ::std::convert::Into<::windows::core::PCWSTR>,
-    P2: ::std::convert::Into<::windows::core::PCWSTR>,
-{
+pub unsafe fn DhcpCreateOptionV6(serveripaddress: ::windows::core::PWSTR, flags: u32, optionid: u32, classname: ::windows::core::PWSTR, vendorname: ::windows::core::PWSTR, optioninfo: *mut DHCP_OPTION) -> u32 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn DhcpCreateOptionV6(serveripaddress: ::windows::core::PCWSTR, flags: u32, optionid: u32, classname: ::windows::core::PCWSTR, vendorname: ::windows::core::PCWSTR, optioninfo: *mut DHCP_OPTION) -> u32;
+        fn DhcpCreateOptionV6(serveripaddress: ::windows::core::PWSTR, flags: u32, optionid: u32, classname: ::windows::core::PWSTR, vendorname: ::windows::core::PWSTR, optioninfo: *mut DHCP_OPTION) -> u32;
     }
-    DhcpCreateOptionV6(serveripaddress.into(), flags, optionid, classname.into(), vendorname.into(), ::core::mem::transmute(optioninfo))
+    DhcpCreateOptionV6(::core::mem::transmute(serveripaddress), flags, optionid, ::core::mem::transmute(classname), ::core::mem::transmute(vendorname), ::core::mem::transmute(optioninfo))
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`*"]
 #[inline]
@@ -241,15 +212,12 @@ where
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`*"]
 #[inline]
-pub unsafe fn DhcpCreateSubnetV6<'a, P0>(serveripaddress: P0, subnetaddress: DHCP_IPV6_ADDRESS, subnetinfo: *mut DHCP_SUBNET_INFO_V6) -> u32
-where
-    P0: ::std::convert::Into<::windows::core::PCWSTR>,
-{
+pub unsafe fn DhcpCreateSubnetV6(serveripaddress: ::windows::core::PWSTR, subnetaddress: DHCP_IPV6_ADDRESS, subnetinfo: *mut DHCP_SUBNET_INFO_V6) -> u32 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn DhcpCreateSubnetV6(serveripaddress: ::windows::core::PCWSTR, subnetaddress: DHCP_IPV6_ADDRESS, subnetinfo: *mut DHCP_SUBNET_INFO_V6) -> u32;
+        fn DhcpCreateSubnetV6(serveripaddress: ::windows::core::PWSTR, subnetaddress: DHCP_IPV6_ADDRESS, subnetinfo: *mut DHCP_SUBNET_INFO_V6) -> u32;
     }
-    DhcpCreateSubnetV6(serveripaddress.into(), ::core::mem::transmute(subnetaddress), ::core::mem::transmute(subnetinfo))
+    DhcpCreateSubnetV6(::core::mem::transmute(serveripaddress), ::core::mem::transmute(subnetaddress), ::core::mem::transmute(subnetinfo))
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`*"]
 #[inline]
@@ -274,29 +242,21 @@ pub unsafe fn DhcpDeRegisterParamChange(flags: u32, reserved: *mut ::core::ffi::
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`*"]
 #[inline]
-pub unsafe fn DhcpDeleteClass<'a, P0, P1>(serveripaddress: P0, reservedmustbezero: u32, classname: P1) -> u32
-where
-    P0: ::std::convert::Into<::windows::core::PCWSTR>,
-    P1: ::std::convert::Into<::windows::core::PCWSTR>,
-{
+pub unsafe fn DhcpDeleteClass(serveripaddress: ::windows::core::PWSTR, reservedmustbezero: u32, classname: ::windows::core::PWSTR) -> u32 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn DhcpDeleteClass(serveripaddress: ::windows::core::PCWSTR, reservedmustbezero: u32, classname: ::windows::core::PCWSTR) -> u32;
+        fn DhcpDeleteClass(serveripaddress: ::windows::core::PWSTR, reservedmustbezero: u32, classname: ::windows::core::PWSTR) -> u32;
     }
-    DhcpDeleteClass(serveripaddress.into(), reservedmustbezero, classname.into())
+    DhcpDeleteClass(::core::mem::transmute(serveripaddress), reservedmustbezero, ::core::mem::transmute(classname))
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`*"]
 #[inline]
-pub unsafe fn DhcpDeleteClassV6<'a, P0, P1>(serveripaddress: P0, reservedmustbezero: u32, classname: P1) -> u32
-where
-    P0: ::std::convert::Into<::windows::core::PCWSTR>,
-    P1: ::std::convert::Into<::windows::core::PCWSTR>,
-{
+pub unsafe fn DhcpDeleteClassV6(serveripaddress: ::windows::core::PWSTR, reservedmustbezero: u32, classname: ::windows::core::PWSTR) -> u32 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn DhcpDeleteClassV6(serveripaddress: ::windows::core::PCWSTR, reservedmustbezero: u32, classname: ::windows::core::PCWSTR) -> u32;
+        fn DhcpDeleteClassV6(serveripaddress: ::windows::core::PWSTR, reservedmustbezero: u32, classname: ::windows::core::PWSTR) -> u32;
     }
-    DhcpDeleteClassV6(serveripaddress.into(), reservedmustbezero, classname.into())
+    DhcpDeleteClassV6(::core::mem::transmute(serveripaddress), reservedmustbezero, ::core::mem::transmute(classname))
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`*"]
 #[inline]
@@ -325,13 +285,13 @@ where
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`, `\"Win32_Foundation\"`*"]
 #[cfg(feature = "Win32_Foundation")]
 #[inline]
-pub unsafe fn DhcpDeleteFilterV4<'a, P0>(serveripaddress: P0, deletefilterinfo: *const DHCP_ADDR_PATTERN) -> u32
+pub unsafe fn DhcpDeleteFilterV4<'a, P0>(serveripaddress: P0, deletefilterinfo: *mut DHCP_ADDR_PATTERN) -> u32
 where
     P0: ::std::convert::Into<::windows::core::PCWSTR>,
 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn DhcpDeleteFilterV4(serveripaddress: ::windows::core::PCWSTR, deletefilterinfo: *const DHCP_ADDR_PATTERN) -> u32;
+        fn DhcpDeleteFilterV4(serveripaddress: ::windows::core::PCWSTR, deletefilterinfo: *mut DHCP_ADDR_PATTERN) -> u32;
     }
     DhcpDeleteFilterV4(serveripaddress.into(), ::core::mem::transmute(deletefilterinfo))
 }
@@ -358,15 +318,12 @@ where
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`*"]
 #[inline]
-pub unsafe fn DhcpDeleteSubnetV6<'a, P0>(serveripaddress: P0, subnetaddress: DHCP_IPV6_ADDRESS, forceflag: DHCP_FORCE_FLAG) -> u32
-where
-    P0: ::std::convert::Into<::windows::core::PCWSTR>,
-{
+pub unsafe fn DhcpDeleteSubnetV6(serveripaddress: ::windows::core::PWSTR, subnetaddress: DHCP_IPV6_ADDRESS, forceflag: DHCP_FORCE_FLAG) -> u32 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn DhcpDeleteSubnetV6(serveripaddress: ::windows::core::PCWSTR, subnetaddress: DHCP_IPV6_ADDRESS, forceflag: DHCP_FORCE_FLAG) -> u32;
+        fn DhcpDeleteSubnetV6(serveripaddress: ::windows::core::PWSTR, subnetaddress: DHCP_IPV6_ADDRESS, forceflag: DHCP_FORCE_FLAG) -> u32;
     }
-    DhcpDeleteSubnetV6(serveripaddress.into(), ::core::mem::transmute(subnetaddress), forceflag)
+    DhcpDeleteSubnetV6(::core::mem::transmute(serveripaddress), ::core::mem::transmute(subnetaddress), forceflag)
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`*"]
 #[inline]
@@ -402,28 +359,22 @@ pub unsafe fn DhcpDsInit() -> u32 {
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`, `\"Win32_Foundation\"`*"]
 #[cfg(feature = "Win32_Foundation")]
 #[inline]
-pub unsafe fn DhcpEnumClasses<'a, P0>(serveripaddress: P0, reservedmustbezero: u32, resumehandle: *mut u32, preferredmaximum: u32, classinfoarray: *mut *mut DHCP_CLASS_INFO_ARRAY, nread: *mut u32, ntotal: *mut u32) -> u32
-where
-    P0: ::std::convert::Into<::windows::core::PCWSTR>,
-{
+pub unsafe fn DhcpEnumClasses(serveripaddress: ::windows::core::PWSTR, reservedmustbezero: u32, resumehandle: *mut u32, preferredmaximum: u32, classinfoarray: *mut *mut DHCP_CLASS_INFO_ARRAY, nread: *mut u32, ntotal: *mut u32) -> u32 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn DhcpEnumClasses(serveripaddress: ::windows::core::PCWSTR, reservedmustbezero: u32, resumehandle: *mut u32, preferredmaximum: u32, classinfoarray: *mut *mut DHCP_CLASS_INFO_ARRAY, nread: *mut u32, ntotal: *mut u32) -> u32;
+        fn DhcpEnumClasses(serveripaddress: ::windows::core::PWSTR, reservedmustbezero: u32, resumehandle: *mut u32, preferredmaximum: u32, classinfoarray: *mut *mut DHCP_CLASS_INFO_ARRAY, nread: *mut u32, ntotal: *mut u32) -> u32;
     }
-    DhcpEnumClasses(serveripaddress.into(), reservedmustbezero, ::core::mem::transmute(resumehandle), preferredmaximum, ::core::mem::transmute(classinfoarray), ::core::mem::transmute(nread), ::core::mem::transmute(ntotal))
+    DhcpEnumClasses(::core::mem::transmute(serveripaddress), reservedmustbezero, ::core::mem::transmute(resumehandle), preferredmaximum, ::core::mem::transmute(classinfoarray), ::core::mem::transmute(nread), ::core::mem::transmute(ntotal))
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`, `\"Win32_Foundation\"`*"]
 #[cfg(feature = "Win32_Foundation")]
 #[inline]
-pub unsafe fn DhcpEnumClassesV6<'a, P0>(serveripaddress: P0, reservedmustbezero: u32, resumehandle: *mut u32, preferredmaximum: u32, classinfoarray: *mut *mut DHCP_CLASS_INFO_ARRAY_V6, nread: *mut u32, ntotal: *mut u32) -> u32
-where
-    P0: ::std::convert::Into<::windows::core::PCWSTR>,
-{
+pub unsafe fn DhcpEnumClassesV6(serveripaddress: ::windows::core::PWSTR, reservedmustbezero: u32, resumehandle: *mut u32, preferredmaximum: u32, classinfoarray: *mut *mut DHCP_CLASS_INFO_ARRAY_V6, nread: *mut u32, ntotal: *mut u32) -> u32 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn DhcpEnumClassesV6(serveripaddress: ::windows::core::PCWSTR, reservedmustbezero: u32, resumehandle: *mut u32, preferredmaximum: u32, classinfoarray: *mut *mut DHCP_CLASS_INFO_ARRAY_V6, nread: *mut u32, ntotal: *mut u32) -> u32;
+        fn DhcpEnumClassesV6(serveripaddress: ::windows::core::PWSTR, reservedmustbezero: u32, resumehandle: *mut u32, preferredmaximum: u32, classinfoarray: *mut *mut DHCP_CLASS_INFO_ARRAY_V6, nread: *mut u32, ntotal: *mut u32) -> u32;
     }
-    DhcpEnumClassesV6(serveripaddress.into(), reservedmustbezero, ::core::mem::transmute(resumehandle), preferredmaximum, ::core::mem::transmute(classinfoarray), ::core::mem::transmute(nread), ::core::mem::transmute(ntotal))
+    DhcpEnumClassesV6(::core::mem::transmute(serveripaddress), reservedmustbezero, ::core::mem::transmute(resumehandle), preferredmaximum, ::core::mem::transmute(classinfoarray), ::core::mem::transmute(nread), ::core::mem::transmute(ntotal))
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`, `\"Win32_Foundation\"`*"]
 #[cfg(feature = "Win32_Foundation")]
@@ -452,31 +403,24 @@ where
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`*"]
 #[inline]
-pub unsafe fn DhcpEnumOptionValuesV5<'a, P0, P1, P2>(serveripaddress: P0, flags: u32, classname: P1, vendorname: P2, scopeinfo: *mut DHCP_OPTION_SCOPE_INFO, resumehandle: *mut u32, preferredmaximum: u32, optionvalues: *mut *mut DHCP_OPTION_VALUE_ARRAY, optionsread: *mut u32, optionstotal: *mut u32) -> u32
-where
-    P0: ::std::convert::Into<::windows::core::PCWSTR>,
-    P1: ::std::convert::Into<::windows::core::PCWSTR>,
-    P2: ::std::convert::Into<::windows::core::PCWSTR>,
-{
+pub unsafe fn DhcpEnumOptionValuesV5(serveripaddress: ::windows::core::PWSTR, flags: u32, classname: ::windows::core::PWSTR, vendorname: ::windows::core::PWSTR, scopeinfo: *mut DHCP_OPTION_SCOPE_INFO, resumehandle: *mut u32, preferredmaximum: u32, optionvalues: *mut *mut DHCP_OPTION_VALUE_ARRAY, optionsread: *mut u32, optionstotal: *mut u32) -> u32 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn DhcpEnumOptionValuesV5(serveripaddress: ::windows::core::PCWSTR, flags: u32, classname: ::windows::core::PCWSTR, vendorname: ::windows::core::PCWSTR, scopeinfo: *mut DHCP_OPTION_SCOPE_INFO, resumehandle: *mut u32, preferredmaximum: u32, optionvalues: *mut *mut DHCP_OPTION_VALUE_ARRAY, optionsread: *mut u32, optionstotal: *mut u32) -> u32;
+        fn DhcpEnumOptionValuesV5(serveripaddress: ::windows::core::PWSTR, flags: u32, classname: ::windows::core::PWSTR, vendorname: ::windows::core::PWSTR, scopeinfo: *mut DHCP_OPTION_SCOPE_INFO, resumehandle: *mut u32, preferredmaximum: u32, optionvalues: *mut *mut DHCP_OPTION_VALUE_ARRAY, optionsread: *mut u32, optionstotal: *mut u32) -> u32;
     }
-    DhcpEnumOptionValuesV5(serveripaddress.into(), flags, classname.into(), vendorname.into(), ::core::mem::transmute(scopeinfo), ::core::mem::transmute(resumehandle), preferredmaximum, ::core::mem::transmute(optionvalues), ::core::mem::transmute(optionsread), ::core::mem::transmute(optionstotal))
+    DhcpEnumOptionValuesV5(::core::mem::transmute(serveripaddress), flags, ::core::mem::transmute(classname), ::core::mem::transmute(vendorname), ::core::mem::transmute(scopeinfo), ::core::mem::transmute(resumehandle), preferredmaximum, ::core::mem::transmute(optionvalues), ::core::mem::transmute(optionsread), ::core::mem::transmute(optionstotal))
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`*"]
 #[inline]
-pub unsafe fn DhcpEnumOptionValuesV6<'a, P0, P1, P2>(serveripaddress: P0, flags: u32, classname: P1, vendorname: P2, scopeinfo: *mut DHCP_OPTION_SCOPE_INFO6, resumehandle: *mut u32, preferredmaximum: u32, optionvalues: *mut *mut DHCP_OPTION_VALUE_ARRAY, optionsread: *mut u32, optionstotal: *mut u32) -> u32
+pub unsafe fn DhcpEnumOptionValuesV6<'a, P0>(serveripaddress: P0, flags: u32, classname: ::windows::core::PWSTR, vendorname: ::windows::core::PWSTR, scopeinfo: *mut DHCP_OPTION_SCOPE_INFO6, resumehandle: *mut u32, preferredmaximum: u32, optionvalues: *mut *mut DHCP_OPTION_VALUE_ARRAY, optionsread: *mut u32, optionstotal: *mut u32) -> u32
 where
     P0: ::std::convert::Into<::windows::core::PCWSTR>,
-    P1: ::std::convert::Into<::windows::core::PCWSTR>,
-    P2: ::std::convert::Into<::windows::core::PCWSTR>,
 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn DhcpEnumOptionValuesV6(serveripaddress: ::windows::core::PCWSTR, flags: u32, classname: ::windows::core::PCWSTR, vendorname: ::windows::core::PCWSTR, scopeinfo: *mut DHCP_OPTION_SCOPE_INFO6, resumehandle: *mut u32, preferredmaximum: u32, optionvalues: *mut *mut DHCP_OPTION_VALUE_ARRAY, optionsread: *mut u32, optionstotal: *mut u32) -> u32;
+        fn DhcpEnumOptionValuesV6(serveripaddress: ::windows::core::PCWSTR, flags: u32, classname: ::windows::core::PWSTR, vendorname: ::windows::core::PWSTR, scopeinfo: *mut DHCP_OPTION_SCOPE_INFO6, resumehandle: *mut u32, preferredmaximum: u32, optionvalues: *mut *mut DHCP_OPTION_VALUE_ARRAY, optionsread: *mut u32, optionstotal: *mut u32) -> u32;
     }
-    DhcpEnumOptionValuesV6(serveripaddress.into(), flags, classname.into(), vendorname.into(), ::core::mem::transmute(scopeinfo), ::core::mem::transmute(resumehandle), preferredmaximum, ::core::mem::transmute(optionvalues), ::core::mem::transmute(optionsread), ::core::mem::transmute(optionstotal))
+    DhcpEnumOptionValuesV6(serveripaddress.into(), flags, ::core::mem::transmute(classname), ::core::mem::transmute(vendorname), ::core::mem::transmute(scopeinfo), ::core::mem::transmute(resumehandle), preferredmaximum, ::core::mem::transmute(optionvalues), ::core::mem::transmute(optionsread), ::core::mem::transmute(optionstotal))
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`*"]
 #[inline]
@@ -492,31 +436,21 @@ where
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`*"]
 #[inline]
-pub unsafe fn DhcpEnumOptionsV5<'a, P0, P1, P2>(serveripaddress: P0, flags: u32, classname: P1, vendorname: P2, resumehandle: *mut u32, preferredmaximum: u32, options: *mut *mut DHCP_OPTION_ARRAY, optionsread: *mut u32, optionstotal: *mut u32) -> u32
-where
-    P0: ::std::convert::Into<::windows::core::PCWSTR>,
-    P1: ::std::convert::Into<::windows::core::PCWSTR>,
-    P2: ::std::convert::Into<::windows::core::PCWSTR>,
-{
+pub unsafe fn DhcpEnumOptionsV5(serveripaddress: ::windows::core::PWSTR, flags: u32, classname: ::windows::core::PWSTR, vendorname: ::windows::core::PWSTR, resumehandle: *mut u32, preferredmaximum: u32, options: *mut *mut DHCP_OPTION_ARRAY, optionsread: *mut u32, optionstotal: *mut u32) -> u32 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn DhcpEnumOptionsV5(serveripaddress: ::windows::core::PCWSTR, flags: u32, classname: ::windows::core::PCWSTR, vendorname: ::windows::core::PCWSTR, resumehandle: *mut u32, preferredmaximum: u32, options: *mut *mut DHCP_OPTION_ARRAY, optionsread: *mut u32, optionstotal: *mut u32) -> u32;
+        fn DhcpEnumOptionsV5(serveripaddress: ::windows::core::PWSTR, flags: u32, classname: ::windows::core::PWSTR, vendorname: ::windows::core::PWSTR, resumehandle: *mut u32, preferredmaximum: u32, options: *mut *mut DHCP_OPTION_ARRAY, optionsread: *mut u32, optionstotal: *mut u32) -> u32;
     }
-    DhcpEnumOptionsV5(serveripaddress.into(), flags, classname.into(), vendorname.into(), ::core::mem::transmute(resumehandle), preferredmaximum, ::core::mem::transmute(options), ::core::mem::transmute(optionsread), ::core::mem::transmute(optionstotal))
+    DhcpEnumOptionsV5(::core::mem::transmute(serveripaddress), flags, ::core::mem::transmute(classname), ::core::mem::transmute(vendorname), ::core::mem::transmute(resumehandle), preferredmaximum, ::core::mem::transmute(options), ::core::mem::transmute(optionsread), ::core::mem::transmute(optionstotal))
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`*"]
 #[inline]
-pub unsafe fn DhcpEnumOptionsV6<'a, P0, P1, P2>(serveripaddress: P0, flags: u32, classname: P1, vendorname: P2, resumehandle: *mut u32, preferredmaximum: u32, options: *mut *mut DHCP_OPTION_ARRAY, optionsread: *mut u32, optionstotal: *mut u32) -> u32
-where
-    P0: ::std::convert::Into<::windows::core::PCWSTR>,
-    P1: ::std::convert::Into<::windows::core::PCWSTR>,
-    P2: ::std::convert::Into<::windows::core::PCWSTR>,
-{
+pub unsafe fn DhcpEnumOptionsV6(serveripaddress: ::windows::core::PWSTR, flags: u32, classname: ::windows::core::PWSTR, vendorname: ::windows::core::PWSTR, resumehandle: *mut u32, preferredmaximum: u32, options: *mut *mut DHCP_OPTION_ARRAY, optionsread: *mut u32, optionstotal: *mut u32) -> u32 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn DhcpEnumOptionsV6(serveripaddress: ::windows::core::PCWSTR, flags: u32, classname: ::windows::core::PCWSTR, vendorname: ::windows::core::PCWSTR, resumehandle: *mut u32, preferredmaximum: u32, options: *mut *mut DHCP_OPTION_ARRAY, optionsread: *mut u32, optionstotal: *mut u32) -> u32;
+        fn DhcpEnumOptionsV6(serveripaddress: ::windows::core::PWSTR, flags: u32, classname: ::windows::core::PWSTR, vendorname: ::windows::core::PWSTR, resumehandle: *mut u32, preferredmaximum: u32, options: *mut *mut DHCP_OPTION_ARRAY, optionsread: *mut u32, optionstotal: *mut u32) -> u32;
     }
-    DhcpEnumOptionsV6(serveripaddress.into(), flags, classname.into(), vendorname.into(), ::core::mem::transmute(resumehandle), preferredmaximum, ::core::mem::transmute(options), ::core::mem::transmute(optionsread), ::core::mem::transmute(optionstotal))
+    DhcpEnumOptionsV6(::core::mem::transmute(serveripaddress), flags, ::core::mem::transmute(classname), ::core::mem::transmute(vendorname), ::core::mem::transmute(resumehandle), preferredmaximum, ::core::mem::transmute(options), ::core::mem::transmute(optionsread), ::core::mem::transmute(optionstotal))
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`*"]
 #[inline]
@@ -639,15 +573,12 @@ where
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`*"]
 #[inline]
-pub unsafe fn DhcpEnumSubnetElementsV6<'a, P0>(serveripaddress: P0, subnetaddress: DHCP_IPV6_ADDRESS, enumelementtype: DHCP_SUBNET_ELEMENT_TYPE_V6, resumehandle: *mut u32, preferredmaximum: u32, enumelementinfo: *mut *mut DHCP_SUBNET_ELEMENT_INFO_ARRAY_V6, elementsread: *mut u32, elementstotal: *mut u32) -> u32
-where
-    P0: ::std::convert::Into<::windows::core::PCWSTR>,
-{
+pub unsafe fn DhcpEnumSubnetElementsV6(serveripaddress: ::windows::core::PWSTR, subnetaddress: DHCP_IPV6_ADDRESS, enumelementtype: DHCP_SUBNET_ELEMENT_TYPE_V6, resumehandle: *mut u32, preferredmaximum: u32, enumelementinfo: *mut *mut DHCP_SUBNET_ELEMENT_INFO_ARRAY_V6, elementsread: *mut u32, elementstotal: *mut u32) -> u32 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn DhcpEnumSubnetElementsV6(serveripaddress: ::windows::core::PCWSTR, subnetaddress: DHCP_IPV6_ADDRESS, enumelementtype: DHCP_SUBNET_ELEMENT_TYPE_V6, resumehandle: *mut u32, preferredmaximum: u32, enumelementinfo: *mut *mut DHCP_SUBNET_ELEMENT_INFO_ARRAY_V6, elementsread: *mut u32, elementstotal: *mut u32) -> u32;
+        fn DhcpEnumSubnetElementsV6(serveripaddress: ::windows::core::PWSTR, subnetaddress: DHCP_IPV6_ADDRESS, enumelementtype: DHCP_SUBNET_ELEMENT_TYPE_V6, resumehandle: *mut u32, preferredmaximum: u32, enumelementinfo: *mut *mut DHCP_SUBNET_ELEMENT_INFO_ARRAY_V6, elementsread: *mut u32, elementstotal: *mut u32) -> u32;
     }
-    DhcpEnumSubnetElementsV6(serveripaddress.into(), ::core::mem::transmute(subnetaddress), enumelementtype, ::core::mem::transmute(resumehandle), preferredmaximum, ::core::mem::transmute(enumelementinfo), ::core::mem::transmute(elementsread), ::core::mem::transmute(elementstotal))
+    DhcpEnumSubnetElementsV6(::core::mem::transmute(serveripaddress), ::core::mem::transmute(subnetaddress), enumelementtype, ::core::mem::transmute(resumehandle), preferredmaximum, ::core::mem::transmute(enumelementinfo), ::core::mem::transmute(elementsread), ::core::mem::transmute(elementstotal))
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`*"]
 #[inline]
@@ -676,65 +607,50 @@ where
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`, `\"Win32_Foundation\"`*"]
 #[cfg(feature = "Win32_Foundation")]
 #[inline]
-pub unsafe fn DhcpGetAllOptionValues<'a, P0>(serveripaddress: P0, flags: u32, scopeinfo: *mut DHCP_OPTION_SCOPE_INFO, values: *mut *mut DHCP_ALL_OPTION_VALUES) -> u32
-where
-    P0: ::std::convert::Into<::windows::core::PCWSTR>,
-{
+pub unsafe fn DhcpGetAllOptionValues(serveripaddress: ::windows::core::PWSTR, flags: u32, scopeinfo: *mut DHCP_OPTION_SCOPE_INFO, values: *mut *mut DHCP_ALL_OPTION_VALUES) -> u32 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn DhcpGetAllOptionValues(serveripaddress: ::windows::core::PCWSTR, flags: u32, scopeinfo: *mut DHCP_OPTION_SCOPE_INFO, values: *mut *mut DHCP_ALL_OPTION_VALUES) -> u32;
+        fn DhcpGetAllOptionValues(serveripaddress: ::windows::core::PWSTR, flags: u32, scopeinfo: *mut DHCP_OPTION_SCOPE_INFO, values: *mut *mut DHCP_ALL_OPTION_VALUES) -> u32;
     }
-    DhcpGetAllOptionValues(serveripaddress.into(), flags, ::core::mem::transmute(scopeinfo), ::core::mem::transmute(values))
+    DhcpGetAllOptionValues(::core::mem::transmute(serveripaddress), flags, ::core::mem::transmute(scopeinfo), ::core::mem::transmute(values))
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`, `\"Win32_Foundation\"`*"]
 #[cfg(feature = "Win32_Foundation")]
 #[inline]
-pub unsafe fn DhcpGetAllOptionValuesV6<'a, P0>(serveripaddress: P0, flags: u32, scopeinfo: *mut DHCP_OPTION_SCOPE_INFO6, values: *mut *mut DHCP_ALL_OPTION_VALUES) -> u32
-where
-    P0: ::std::convert::Into<::windows::core::PCWSTR>,
-{
+pub unsafe fn DhcpGetAllOptionValuesV6(serveripaddress: ::windows::core::PWSTR, flags: u32, scopeinfo: *mut DHCP_OPTION_SCOPE_INFO6, values: *mut *mut DHCP_ALL_OPTION_VALUES) -> u32 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn DhcpGetAllOptionValuesV6(serveripaddress: ::windows::core::PCWSTR, flags: u32, scopeinfo: *mut DHCP_OPTION_SCOPE_INFO6, values: *mut *mut DHCP_ALL_OPTION_VALUES) -> u32;
+        fn DhcpGetAllOptionValuesV6(serveripaddress: ::windows::core::PWSTR, flags: u32, scopeinfo: *mut DHCP_OPTION_SCOPE_INFO6, values: *mut *mut DHCP_ALL_OPTION_VALUES) -> u32;
     }
-    DhcpGetAllOptionValuesV6(serveripaddress.into(), flags, ::core::mem::transmute(scopeinfo), ::core::mem::transmute(values))
+    DhcpGetAllOptionValuesV6(::core::mem::transmute(serveripaddress), flags, ::core::mem::transmute(scopeinfo), ::core::mem::transmute(values))
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`*"]
 #[inline]
-pub unsafe fn DhcpGetAllOptions<'a, P0>(serveripaddress: P0, flags: u32, optionstruct: *mut *mut DHCP_ALL_OPTIONS) -> u32
-where
-    P0: ::std::convert::Into<::windows::core::PCWSTR>,
-{
+pub unsafe fn DhcpGetAllOptions(serveripaddress: ::windows::core::PWSTR, flags: u32, optionstruct: *mut *mut DHCP_ALL_OPTIONS) -> u32 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn DhcpGetAllOptions(serveripaddress: ::windows::core::PCWSTR, flags: u32, optionstruct: *mut *mut DHCP_ALL_OPTIONS) -> u32;
+        fn DhcpGetAllOptions(serveripaddress: ::windows::core::PWSTR, flags: u32, optionstruct: *mut *mut DHCP_ALL_OPTIONS) -> u32;
     }
-    DhcpGetAllOptions(serveripaddress.into(), flags, ::core::mem::transmute(optionstruct))
+    DhcpGetAllOptions(::core::mem::transmute(serveripaddress), flags, ::core::mem::transmute(optionstruct))
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`*"]
 #[inline]
-pub unsafe fn DhcpGetAllOptionsV6<'a, P0>(serveripaddress: P0, flags: u32, optionstruct: *mut *mut DHCP_ALL_OPTIONS) -> u32
-where
-    P0: ::std::convert::Into<::windows::core::PCWSTR>,
-{
+pub unsafe fn DhcpGetAllOptionsV6(serveripaddress: ::windows::core::PWSTR, flags: u32, optionstruct: *mut *mut DHCP_ALL_OPTIONS) -> u32 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn DhcpGetAllOptionsV6(serveripaddress: ::windows::core::PCWSTR, flags: u32, optionstruct: *mut *mut DHCP_ALL_OPTIONS) -> u32;
+        fn DhcpGetAllOptionsV6(serveripaddress: ::windows::core::PWSTR, flags: u32, optionstruct: *mut *mut DHCP_ALL_OPTIONS) -> u32;
     }
-    DhcpGetAllOptionsV6(serveripaddress.into(), flags, ::core::mem::transmute(optionstruct))
+    DhcpGetAllOptionsV6(::core::mem::transmute(serveripaddress), flags, ::core::mem::transmute(optionstruct))
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`, `\"Win32_Foundation\"`*"]
 #[cfg(feature = "Win32_Foundation")]
 #[inline]
-pub unsafe fn DhcpGetClassInfo<'a, P0>(serveripaddress: P0, reservedmustbezero: u32, partialclassinfo: *mut DHCP_CLASS_INFO, filledclassinfo: *mut *mut DHCP_CLASS_INFO) -> u32
-where
-    P0: ::std::convert::Into<::windows::core::PCWSTR>,
-{
+pub unsafe fn DhcpGetClassInfo(serveripaddress: ::windows::core::PWSTR, reservedmustbezero: u32, partialclassinfo: *mut DHCP_CLASS_INFO, filledclassinfo: *mut *mut DHCP_CLASS_INFO) -> u32 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn DhcpGetClassInfo(serveripaddress: ::windows::core::PCWSTR, reservedmustbezero: u32, partialclassinfo: *mut DHCP_CLASS_INFO, filledclassinfo: *mut *mut DHCP_CLASS_INFO) -> u32;
+        fn DhcpGetClassInfo(serveripaddress: ::windows::core::PWSTR, reservedmustbezero: u32, partialclassinfo: *mut DHCP_CLASS_INFO, filledclassinfo: *mut *mut DHCP_CLASS_INFO) -> u32;
     }
-    DhcpGetClassInfo(serveripaddress.into(), reservedmustbezero, ::core::mem::transmute(partialclassinfo), ::core::mem::transmute(filledclassinfo))
+    DhcpGetClassInfo(::core::mem::transmute(serveripaddress), reservedmustbezero, ::core::mem::transmute(partialclassinfo), ::core::mem::transmute(filledclassinfo))
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`*"]
 #[inline]
@@ -860,31 +776,21 @@ where
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`*"]
 #[inline]
-pub unsafe fn DhcpGetOptionInfoV5<'a, P0, P1, P2>(serveripaddress: P0, flags: u32, optionid: u32, classname: P1, vendorname: P2, optioninfo: *mut *mut DHCP_OPTION) -> u32
-where
-    P0: ::std::convert::Into<::windows::core::PCWSTR>,
-    P1: ::std::convert::Into<::windows::core::PCWSTR>,
-    P2: ::std::convert::Into<::windows::core::PCWSTR>,
-{
+pub unsafe fn DhcpGetOptionInfoV5(serveripaddress: ::windows::core::PWSTR, flags: u32, optionid: u32, classname: ::windows::core::PWSTR, vendorname: ::windows::core::PWSTR, optioninfo: *mut *mut DHCP_OPTION) -> u32 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn DhcpGetOptionInfoV5(serveripaddress: ::windows::core::PCWSTR, flags: u32, optionid: u32, classname: ::windows::core::PCWSTR, vendorname: ::windows::core::PCWSTR, optioninfo: *mut *mut DHCP_OPTION) -> u32;
+        fn DhcpGetOptionInfoV5(serveripaddress: ::windows::core::PWSTR, flags: u32, optionid: u32, classname: ::windows::core::PWSTR, vendorname: ::windows::core::PWSTR, optioninfo: *mut *mut DHCP_OPTION) -> u32;
     }
-    DhcpGetOptionInfoV5(serveripaddress.into(), flags, optionid, classname.into(), vendorname.into(), ::core::mem::transmute(optioninfo))
+    DhcpGetOptionInfoV5(::core::mem::transmute(serveripaddress), flags, optionid, ::core::mem::transmute(classname), ::core::mem::transmute(vendorname), ::core::mem::transmute(optioninfo))
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`*"]
 #[inline]
-pub unsafe fn DhcpGetOptionInfoV6<'a, P0, P1, P2>(serveripaddress: P0, flags: u32, optionid: u32, classname: P1, vendorname: P2, optioninfo: *mut *mut DHCP_OPTION) -> u32
-where
-    P0: ::std::convert::Into<::windows::core::PCWSTR>,
-    P1: ::std::convert::Into<::windows::core::PCWSTR>,
-    P2: ::std::convert::Into<::windows::core::PCWSTR>,
-{
+pub unsafe fn DhcpGetOptionInfoV6(serveripaddress: ::windows::core::PWSTR, flags: u32, optionid: u32, classname: ::windows::core::PWSTR, vendorname: ::windows::core::PWSTR, optioninfo: *mut *mut DHCP_OPTION) -> u32 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn DhcpGetOptionInfoV6(serveripaddress: ::windows::core::PCWSTR, flags: u32, optionid: u32, classname: ::windows::core::PCWSTR, vendorname: ::windows::core::PCWSTR, optioninfo: *mut *mut DHCP_OPTION) -> u32;
+        fn DhcpGetOptionInfoV6(serveripaddress: ::windows::core::PWSTR, flags: u32, optionid: u32, classname: ::windows::core::PWSTR, vendorname: ::windows::core::PWSTR, optioninfo: *mut *mut DHCP_OPTION) -> u32;
     }
-    DhcpGetOptionInfoV6(serveripaddress.into(), flags, optionid, classname.into(), vendorname.into(), ::core::mem::transmute(optioninfo))
+    DhcpGetOptionInfoV6(::core::mem::transmute(serveripaddress), flags, optionid, ::core::mem::transmute(classname), ::core::mem::transmute(vendorname), ::core::mem::transmute(optioninfo))
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`*"]
 #[inline]
@@ -900,31 +806,21 @@ where
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`*"]
 #[inline]
-pub unsafe fn DhcpGetOptionValueV5<'a, P0, P1, P2>(serveripaddress: P0, flags: u32, optionid: u32, classname: P1, vendorname: P2, scopeinfo: *mut DHCP_OPTION_SCOPE_INFO, optionvalue: *mut *mut DHCP_OPTION_VALUE) -> u32
-where
-    P0: ::std::convert::Into<::windows::core::PCWSTR>,
-    P1: ::std::convert::Into<::windows::core::PCWSTR>,
-    P2: ::std::convert::Into<::windows::core::PCWSTR>,
-{
+pub unsafe fn DhcpGetOptionValueV5(serveripaddress: ::windows::core::PWSTR, flags: u32, optionid: u32, classname: ::windows::core::PWSTR, vendorname: ::windows::core::PWSTR, scopeinfo: *mut DHCP_OPTION_SCOPE_INFO, optionvalue: *mut *mut DHCP_OPTION_VALUE) -> u32 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn DhcpGetOptionValueV5(serveripaddress: ::windows::core::PCWSTR, flags: u32, optionid: u32, classname: ::windows::core::PCWSTR, vendorname: ::windows::core::PCWSTR, scopeinfo: *mut DHCP_OPTION_SCOPE_INFO, optionvalue: *mut *mut DHCP_OPTION_VALUE) -> u32;
+        fn DhcpGetOptionValueV5(serveripaddress: ::windows::core::PWSTR, flags: u32, optionid: u32, classname: ::windows::core::PWSTR, vendorname: ::windows::core::PWSTR, scopeinfo: *mut DHCP_OPTION_SCOPE_INFO, optionvalue: *mut *mut DHCP_OPTION_VALUE) -> u32;
     }
-    DhcpGetOptionValueV5(serveripaddress.into(), flags, optionid, classname.into(), vendorname.into(), ::core::mem::transmute(scopeinfo), ::core::mem::transmute(optionvalue))
+    DhcpGetOptionValueV5(::core::mem::transmute(serveripaddress), flags, optionid, ::core::mem::transmute(classname), ::core::mem::transmute(vendorname), ::core::mem::transmute(scopeinfo), ::core::mem::transmute(optionvalue))
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`*"]
 #[inline]
-pub unsafe fn DhcpGetOptionValueV6<'a, P0, P1, P2>(serveripaddress: P0, flags: u32, optionid: u32, classname: P1, vendorname: P2, scopeinfo: *mut DHCP_OPTION_SCOPE_INFO6, optionvalue: *mut *mut DHCP_OPTION_VALUE) -> u32
-where
-    P0: ::std::convert::Into<::windows::core::PCWSTR>,
-    P1: ::std::convert::Into<::windows::core::PCWSTR>,
-    P2: ::std::convert::Into<::windows::core::PCWSTR>,
-{
+pub unsafe fn DhcpGetOptionValueV6(serveripaddress: ::windows::core::PWSTR, flags: u32, optionid: u32, classname: ::windows::core::PWSTR, vendorname: ::windows::core::PWSTR, scopeinfo: *mut DHCP_OPTION_SCOPE_INFO6, optionvalue: *mut *mut DHCP_OPTION_VALUE) -> u32 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn DhcpGetOptionValueV6(serveripaddress: ::windows::core::PCWSTR, flags: u32, optionid: u32, classname: ::windows::core::PCWSTR, vendorname: ::windows::core::PCWSTR, scopeinfo: *mut DHCP_OPTION_SCOPE_INFO6, optionvalue: *mut *mut DHCP_OPTION_VALUE) -> u32;
+        fn DhcpGetOptionValueV6(serveripaddress: ::windows::core::PWSTR, flags: u32, optionid: u32, classname: ::windows::core::PWSTR, vendorname: ::windows::core::PWSTR, scopeinfo: *mut DHCP_OPTION_SCOPE_INFO6, optionvalue: *mut *mut DHCP_OPTION_VALUE) -> u32;
     }
-    DhcpGetOptionValueV6(serveripaddress.into(), flags, optionid, classname.into(), vendorname.into(), ::core::mem::transmute(scopeinfo), ::core::mem::transmute(optionvalue))
+    DhcpGetOptionValueV6(::core::mem::transmute(serveripaddress), flags, optionid, ::core::mem::transmute(classname), ::core::mem::transmute(vendorname), ::core::mem::transmute(scopeinfo), ::core::mem::transmute(optionvalue))
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`*"]
 #[inline]
@@ -978,15 +874,12 @@ where
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`*"]
 #[inline]
-pub unsafe fn DhcpGetSubnetDelayOffer<'a, P0>(serveripaddress: P0, subnetaddress: u32, timedelayinmilliseconds: *mut u16) -> u32
-where
-    P0: ::std::convert::Into<::windows::core::PCWSTR>,
-{
+pub unsafe fn DhcpGetSubnetDelayOffer(serveripaddress: ::windows::core::PWSTR, subnetaddress: u32, timedelayinmilliseconds: *mut u16) -> u32 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn DhcpGetSubnetDelayOffer(serveripaddress: ::windows::core::PCWSTR, subnetaddress: u32, timedelayinmilliseconds: *mut u16) -> u32;
+        fn DhcpGetSubnetDelayOffer(serveripaddress: ::windows::core::PWSTR, subnetaddress: u32, timedelayinmilliseconds: *mut u16) -> u32;
     }
-    DhcpGetSubnetDelayOffer(serveripaddress.into(), subnetaddress, ::core::mem::transmute(timedelayinmilliseconds))
+    DhcpGetSubnetDelayOffer(::core::mem::transmute(serveripaddress), subnetaddress, ::core::mem::transmute(timedelayinmilliseconds))
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`*"]
 #[inline]
@@ -1002,15 +895,12 @@ where
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`*"]
 #[inline]
-pub unsafe fn DhcpGetSubnetInfoV6<'a, P0>(serveripaddress: P0, subnetaddress: DHCP_IPV6_ADDRESS, subnetinfo: *mut *mut DHCP_SUBNET_INFO_V6) -> u32
-where
-    P0: ::std::convert::Into<::windows::core::PCWSTR>,
-{
+pub unsafe fn DhcpGetSubnetInfoV6(serveripaddress: ::windows::core::PWSTR, subnetaddress: DHCP_IPV6_ADDRESS, subnetinfo: *mut *mut DHCP_SUBNET_INFO_V6) -> u32 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn DhcpGetSubnetInfoV6(serveripaddress: ::windows::core::PCWSTR, subnetaddress: DHCP_IPV6_ADDRESS, subnetinfo: *mut *mut DHCP_SUBNET_INFO_V6) -> u32;
+        fn DhcpGetSubnetInfoV6(serveripaddress: ::windows::core::PWSTR, subnetaddress: DHCP_IPV6_ADDRESS, subnetinfo: *mut *mut DHCP_SUBNET_INFO_V6) -> u32;
     }
-    DhcpGetSubnetInfoV6(serveripaddress.into(), ::core::mem::transmute(subnetaddress), ::core::mem::transmute(subnetinfo))
+    DhcpGetSubnetInfoV6(::core::mem::transmute(serveripaddress), ::core::mem::transmute(subnetaddress), ::core::mem::transmute(subnetinfo))
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`*"]
 #[inline]
@@ -1047,28 +937,22 @@ pub unsafe fn DhcpGetThreadOptions(pflags: *mut u32, reserved: *mut ::core::ffi:
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`*"]
 #[inline]
-pub unsafe fn DhcpGetVersion<'a, P0>(serveripaddress: P0, majorversion: *mut u32, minorversion: *mut u32) -> u32
-where
-    P0: ::std::convert::Into<::windows::core::PCWSTR>,
-{
+pub unsafe fn DhcpGetVersion(serveripaddress: ::windows::core::PWSTR, majorversion: *mut u32, minorversion: *mut u32) -> u32 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn DhcpGetVersion(serveripaddress: ::windows::core::PCWSTR, majorversion: *mut u32, minorversion: *mut u32) -> u32;
+        fn DhcpGetVersion(serveripaddress: ::windows::core::PWSTR, majorversion: *mut u32, minorversion: *mut u32) -> u32;
     }
-    DhcpGetVersion(serveripaddress.into(), ::core::mem::transmute(majorversion), ::core::mem::transmute(minorversion))
+    DhcpGetVersion(::core::mem::transmute(serveripaddress), ::core::mem::transmute(majorversion), ::core::mem::transmute(minorversion))
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`, `\"Win32_Foundation\"`*"]
 #[cfg(feature = "Win32_Foundation")]
 #[inline]
-pub unsafe fn DhcpHlprAddV4PolicyCondition<'a, P0>(policy: *mut DHCP_POLICY, parentexpr: u32, r#type: DHCP_POL_ATTR_TYPE, optionid: u32, suboptionid: u32, vendorname: P0, operator: DHCP_POL_COMPARATOR, value: &[u8], conditionindex: *mut u32) -> u32
-where
-    P0: ::std::convert::Into<::windows::core::PCWSTR>,
-{
+pub unsafe fn DhcpHlprAddV4PolicyCondition(policy: *mut DHCP_POLICY, parentexpr: u32, r#type: DHCP_POL_ATTR_TYPE, optionid: u32, suboptionid: u32, vendorname: ::windows::core::PWSTR, operator: DHCP_POL_COMPARATOR, value: &[u8], conditionindex: *mut u32) -> u32 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn DhcpHlprAddV4PolicyCondition(policy: *mut DHCP_POLICY, parentexpr: u32, r#type: DHCP_POL_ATTR_TYPE, optionid: u32, suboptionid: u32, vendorname: ::windows::core::PCWSTR, operator: DHCP_POL_COMPARATOR, value: *const u8, valuelength: u32, conditionindex: *mut u32) -> u32;
+        fn DhcpHlprAddV4PolicyCondition(policy: *mut DHCP_POLICY, parentexpr: u32, r#type: DHCP_POL_ATTR_TYPE, optionid: u32, suboptionid: u32, vendorname: ::windows::core::PWSTR, operator: DHCP_POL_COMPARATOR, value: *mut u8, valuelength: u32, conditionindex: *mut u32) -> u32;
     }
-    DhcpHlprAddV4PolicyCondition(::core::mem::transmute(policy), parentexpr, r#type, optionid, suboptionid, vendorname.into(), operator, ::core::mem::transmute(value.as_ptr()), value.len() as _, ::core::mem::transmute(conditionindex))
+    DhcpHlprAddV4PolicyCondition(::core::mem::transmute(policy), parentexpr, r#type, optionid, suboptionid, ::core::mem::transmute(vendorname), operator, ::core::mem::transmute(value.as_ptr()), value.len() as _, ::core::mem::transmute(conditionindex))
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`, `\"Win32_Foundation\"`*"]
 #[cfg(feature = "Win32_Foundation")]
@@ -1083,51 +967,47 @@ pub unsafe fn DhcpHlprAddV4PolicyExpr(policy: *mut DHCP_POLICY, parentexpr: u32,
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`, `\"Win32_Foundation\"`*"]
 #[cfg(feature = "Win32_Foundation")]
 #[inline]
-pub unsafe fn DhcpHlprAddV4PolicyRange(policy: *mut DHCP_POLICY, range: *const DHCP_IP_RANGE) -> u32 {
+pub unsafe fn DhcpHlprAddV4PolicyRange(policy: *mut DHCP_POLICY, range: *mut DHCP_IP_RANGE) -> u32 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn DhcpHlprAddV4PolicyRange(policy: *mut DHCP_POLICY, range: *const DHCP_IP_RANGE) -> u32;
+        fn DhcpHlprAddV4PolicyRange(policy: *mut DHCP_POLICY, range: *mut DHCP_IP_RANGE) -> u32;
     }
     DhcpHlprAddV4PolicyRange(::core::mem::transmute(policy), ::core::mem::transmute(range))
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`, `\"Win32_Foundation\"`*"]
 #[cfg(feature = "Win32_Foundation")]
 #[inline]
-pub unsafe fn DhcpHlprCreateV4Policy<'a, P0, P1, P2, P3>(policyname: P0, fglobalpolicy: P1, subnet: u32, processingorder: u32, rootoperator: DHCP_POL_LOGIC_OPER, description: P2, enabled: P3, policy: *mut *mut DHCP_POLICY) -> u32
+pub unsafe fn DhcpHlprCreateV4Policy<'a, P0, P1>(policyname: ::windows::core::PWSTR, fglobalpolicy: P0, subnet: u32, processingorder: u32, rootoperator: DHCP_POL_LOGIC_OPER, description: ::windows::core::PWSTR, enabled: P1, policy: *mut *mut DHCP_POLICY) -> u32
 where
-    P0: ::std::convert::Into<::windows::core::PCWSTR>,
+    P0: ::std::convert::Into<super::super::Foundation::BOOL>,
     P1: ::std::convert::Into<super::super::Foundation::BOOL>,
-    P2: ::std::convert::Into<::windows::core::PCWSTR>,
-    P3: ::std::convert::Into<super::super::Foundation::BOOL>,
 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn DhcpHlprCreateV4Policy(policyname: ::windows::core::PCWSTR, fglobalpolicy: super::super::Foundation::BOOL, subnet: u32, processingorder: u32, rootoperator: DHCP_POL_LOGIC_OPER, description: ::windows::core::PCWSTR, enabled: super::super::Foundation::BOOL, policy: *mut *mut DHCP_POLICY) -> u32;
+        fn DhcpHlprCreateV4Policy(policyname: ::windows::core::PWSTR, fglobalpolicy: super::super::Foundation::BOOL, subnet: u32, processingorder: u32, rootoperator: DHCP_POL_LOGIC_OPER, description: ::windows::core::PWSTR, enabled: super::super::Foundation::BOOL, policy: *mut *mut DHCP_POLICY) -> u32;
     }
-    DhcpHlprCreateV4Policy(policyname.into(), fglobalpolicy.into(), subnet, processingorder, rootoperator, description.into(), enabled.into(), ::core::mem::transmute(policy))
+    DhcpHlprCreateV4Policy(::core::mem::transmute(policyname), fglobalpolicy.into(), subnet, processingorder, rootoperator, ::core::mem::transmute(description), enabled.into(), ::core::mem::transmute(policy))
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`, `\"Win32_Foundation\"`*"]
 #[cfg(feature = "Win32_Foundation")]
 #[inline]
-pub unsafe fn DhcpHlprCreateV4PolicyEx<'a, P0, P1, P2, P3>(policyname: P0, fglobalpolicy: P1, subnet: u32, processingorder: u32, rootoperator: DHCP_POL_LOGIC_OPER, description: P2, enabled: P3, policy: *mut *mut DHCP_POLICY_EX) -> u32
+pub unsafe fn DhcpHlprCreateV4PolicyEx<'a, P0, P1>(policyname: ::windows::core::PWSTR, fglobalpolicy: P0, subnet: u32, processingorder: u32, rootoperator: DHCP_POL_LOGIC_OPER, description: ::windows::core::PWSTR, enabled: P1, policy: *mut *mut DHCP_POLICY_EX) -> u32
 where
-    P0: ::std::convert::Into<::windows::core::PCWSTR>,
+    P0: ::std::convert::Into<super::super::Foundation::BOOL>,
     P1: ::std::convert::Into<super::super::Foundation::BOOL>,
-    P2: ::std::convert::Into<::windows::core::PCWSTR>,
-    P3: ::std::convert::Into<super::super::Foundation::BOOL>,
 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn DhcpHlprCreateV4PolicyEx(policyname: ::windows::core::PCWSTR, fglobalpolicy: super::super::Foundation::BOOL, subnet: u32, processingorder: u32, rootoperator: DHCP_POL_LOGIC_OPER, description: ::windows::core::PCWSTR, enabled: super::super::Foundation::BOOL, policy: *mut *mut DHCP_POLICY_EX) -> u32;
+        fn DhcpHlprCreateV4PolicyEx(policyname: ::windows::core::PWSTR, fglobalpolicy: super::super::Foundation::BOOL, subnet: u32, processingorder: u32, rootoperator: DHCP_POL_LOGIC_OPER, description: ::windows::core::PWSTR, enabled: super::super::Foundation::BOOL, policy: *mut *mut DHCP_POLICY_EX) -> u32;
     }
-    DhcpHlprCreateV4PolicyEx(policyname.into(), fglobalpolicy.into(), subnet, processingorder, rootoperator, description.into(), enabled.into(), ::core::mem::transmute(policy))
+    DhcpHlprCreateV4PolicyEx(::core::mem::transmute(policyname), fglobalpolicy.into(), subnet, processingorder, rootoperator, ::core::mem::transmute(description), enabled.into(), ::core::mem::transmute(policy))
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`*"]
 #[inline]
-pub unsafe fn DhcpHlprFindV4DhcpProperty(propertyarray: *const DHCP_PROPERTY_ARRAY, id: DHCP_PROPERTY_ID, r#type: DHCP_PROPERTY_TYPE) -> *mut DHCP_PROPERTY {
+pub unsafe fn DhcpHlprFindV4DhcpProperty(propertyarray: *mut DHCP_PROPERTY_ARRAY, id: DHCP_PROPERTY_ID, r#type: DHCP_PROPERTY_TYPE) -> *mut DHCP_PROPERTY {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn DhcpHlprFindV4DhcpProperty(propertyarray: *const DHCP_PROPERTY_ARRAY, id: DHCP_PROPERTY_ID, r#type: DHCP_PROPERTY_TYPE) -> *mut DHCP_PROPERTY;
+        fn DhcpHlprFindV4DhcpProperty(propertyarray: *mut DHCP_PROPERTY_ARRAY, id: DHCP_PROPERTY_ID, r#type: DHCP_PROPERTY_TYPE) -> *mut DHCP_PROPERTY;
     }
     DhcpHlprFindV4DhcpProperty(::core::mem::transmute(propertyarray), id, r#type)
 }
@@ -1192,30 +1072,30 @@ pub unsafe fn DhcpHlprFreeV4PolicyExArray(policyexarray: *mut DHCP_POLICY_EX_ARR
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`, `\"Win32_Foundation\"`*"]
 #[cfg(feature = "Win32_Foundation")]
 #[inline]
-pub unsafe fn DhcpHlprIsV4PolicySingleUC(policy: *const DHCP_POLICY) -> super::super::Foundation::BOOL {
+pub unsafe fn DhcpHlprIsV4PolicySingleUC(policy: *mut DHCP_POLICY) -> super::super::Foundation::BOOL {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn DhcpHlprIsV4PolicySingleUC(policy: *const DHCP_POLICY) -> super::super::Foundation::BOOL;
+        fn DhcpHlprIsV4PolicySingleUC(policy: *mut DHCP_POLICY) -> super::super::Foundation::BOOL;
     }
     DhcpHlprIsV4PolicySingleUC(::core::mem::transmute(policy))
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`, `\"Win32_Foundation\"`*"]
 #[cfg(feature = "Win32_Foundation")]
 #[inline]
-pub unsafe fn DhcpHlprIsV4PolicyValid(ppolicy: *const DHCP_POLICY) -> u32 {
+pub unsafe fn DhcpHlprIsV4PolicyValid(ppolicy: *mut DHCP_POLICY) -> u32 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn DhcpHlprIsV4PolicyValid(ppolicy: *const DHCP_POLICY) -> u32;
+        fn DhcpHlprIsV4PolicyValid(ppolicy: *mut DHCP_POLICY) -> u32;
     }
     DhcpHlprIsV4PolicyValid(::core::mem::transmute(ppolicy))
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`, `\"Win32_Foundation\"`*"]
 #[cfg(feature = "Win32_Foundation")]
 #[inline]
-pub unsafe fn DhcpHlprIsV4PolicyWellFormed(ppolicy: *const DHCP_POLICY) -> super::super::Foundation::BOOL {
+pub unsafe fn DhcpHlprIsV4PolicyWellFormed(ppolicy: *mut DHCP_POLICY) -> super::super::Foundation::BOOL {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn DhcpHlprIsV4PolicyWellFormed(ppolicy: *const DHCP_POLICY) -> super::super::Foundation::BOOL;
+        fn DhcpHlprIsV4PolicyWellFormed(ppolicy: *mut DHCP_POLICY) -> super::super::Foundation::BOOL;
     }
     DhcpHlprIsV4PolicyWellFormed(::core::mem::transmute(ppolicy))
 }
@@ -1242,41 +1122,32 @@ pub unsafe fn DhcpHlprResetV4PolicyExpr(policy: *mut DHCP_POLICY) -> u32 {
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`, `\"Win32_Foundation\"`*"]
 #[cfg(feature = "Win32_Foundation")]
 #[inline]
-pub unsafe fn DhcpModifyClass<'a, P0>(serveripaddress: P0, reservedmustbezero: u32, classinfo: *mut DHCP_CLASS_INFO) -> u32
-where
-    P0: ::std::convert::Into<::windows::core::PCWSTR>,
-{
+pub unsafe fn DhcpModifyClass(serveripaddress: ::windows::core::PWSTR, reservedmustbezero: u32, classinfo: *mut DHCP_CLASS_INFO) -> u32 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn DhcpModifyClass(serveripaddress: ::windows::core::PCWSTR, reservedmustbezero: u32, classinfo: *mut DHCP_CLASS_INFO) -> u32;
+        fn DhcpModifyClass(serveripaddress: ::windows::core::PWSTR, reservedmustbezero: u32, classinfo: *mut DHCP_CLASS_INFO) -> u32;
     }
-    DhcpModifyClass(serveripaddress.into(), reservedmustbezero, ::core::mem::transmute(classinfo))
+    DhcpModifyClass(::core::mem::transmute(serveripaddress), reservedmustbezero, ::core::mem::transmute(classinfo))
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`, `\"Win32_Foundation\"`*"]
 #[cfg(feature = "Win32_Foundation")]
 #[inline]
-pub unsafe fn DhcpModifyClassV6<'a, P0>(serveripaddress: P0, reservedmustbezero: u32, classinfo: *mut DHCP_CLASS_INFO_V6) -> u32
-where
-    P0: ::std::convert::Into<::windows::core::PCWSTR>,
-{
+pub unsafe fn DhcpModifyClassV6(serveripaddress: ::windows::core::PWSTR, reservedmustbezero: u32, classinfo: *mut DHCP_CLASS_INFO_V6) -> u32 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn DhcpModifyClassV6(serveripaddress: ::windows::core::PCWSTR, reservedmustbezero: u32, classinfo: *mut DHCP_CLASS_INFO_V6) -> u32;
+        fn DhcpModifyClassV6(serveripaddress: ::windows::core::PWSTR, reservedmustbezero: u32, classinfo: *mut DHCP_CLASS_INFO_V6) -> u32;
     }
-    DhcpModifyClassV6(serveripaddress.into(), reservedmustbezero, ::core::mem::transmute(classinfo))
+    DhcpModifyClassV6(::core::mem::transmute(serveripaddress), reservedmustbezero, ::core::mem::transmute(classinfo))
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`, `\"Win32_Foundation\"`*"]
 #[cfg(feature = "Win32_Foundation")]
 #[inline]
-pub unsafe fn DhcpRegisterParamChange<'a, P0>(flags: u32, reserved: ::core::option::Option<*mut ::core::ffi::c_void>, adaptername: P0, classid: *mut DHCPCAPI_CLASSID, params: DHCPCAPI_PARAMS_ARRAY, handle: *mut ::core::ffi::c_void) -> u32
-where
-    P0: ::std::convert::Into<::windows::core::PCWSTR>,
-{
+pub unsafe fn DhcpRegisterParamChange(flags: u32, reserved: ::core::option::Option<*mut ::core::ffi::c_void>, adaptername: ::windows::core::PWSTR, classid: *mut DHCPCAPI_CLASSID, params: DHCPCAPI_PARAMS_ARRAY, handle: *mut ::core::ffi::c_void) -> u32 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn DhcpRegisterParamChange(flags: u32, reserved: *mut ::core::ffi::c_void, adaptername: ::windows::core::PCWSTR, classid: *mut DHCPCAPI_CLASSID, params: DHCPCAPI_PARAMS_ARRAY, handle: *mut ::core::ffi::c_void) -> u32;
+        fn DhcpRegisterParamChange(flags: u32, reserved: *mut ::core::ffi::c_void, adaptername: ::windows::core::PWSTR, classid: *mut DHCPCAPI_CLASSID, params: DHCPCAPI_PARAMS_ARRAY, handle: *mut ::core::ffi::c_void) -> u32;
     }
-    DhcpRegisterParamChange(flags, ::core::mem::transmute(reserved.unwrap_or(::std::ptr::null_mut())), adaptername.into(), ::core::mem::transmute(classid), ::core::mem::transmute(params), ::core::mem::transmute(handle))
+    DhcpRegisterParamChange(flags, ::core::mem::transmute(reserved.unwrap_or(::std::ptr::null_mut())), ::core::mem::transmute(adaptername), ::core::mem::transmute(classid), ::core::mem::transmute(params), ::core::mem::transmute(handle))
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`*"]
 #[inline]
@@ -1301,31 +1172,21 @@ where
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`*"]
 #[inline]
-pub unsafe fn DhcpRemoveOptionV5<'a, P0, P1, P2>(serveripaddress: P0, flags: u32, optionid: u32, classname: P1, vendorname: P2) -> u32
-where
-    P0: ::std::convert::Into<::windows::core::PCWSTR>,
-    P1: ::std::convert::Into<::windows::core::PCWSTR>,
-    P2: ::std::convert::Into<::windows::core::PCWSTR>,
-{
+pub unsafe fn DhcpRemoveOptionV5(serveripaddress: ::windows::core::PWSTR, flags: u32, optionid: u32, classname: ::windows::core::PWSTR, vendorname: ::windows::core::PWSTR) -> u32 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn DhcpRemoveOptionV5(serveripaddress: ::windows::core::PCWSTR, flags: u32, optionid: u32, classname: ::windows::core::PCWSTR, vendorname: ::windows::core::PCWSTR) -> u32;
+        fn DhcpRemoveOptionV5(serveripaddress: ::windows::core::PWSTR, flags: u32, optionid: u32, classname: ::windows::core::PWSTR, vendorname: ::windows::core::PWSTR) -> u32;
     }
-    DhcpRemoveOptionV5(serveripaddress.into(), flags, optionid, classname.into(), vendorname.into())
+    DhcpRemoveOptionV5(::core::mem::transmute(serveripaddress), flags, optionid, ::core::mem::transmute(classname), ::core::mem::transmute(vendorname))
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`*"]
 #[inline]
-pub unsafe fn DhcpRemoveOptionV6<'a, P0, P1, P2>(serveripaddress: P0, flags: u32, optionid: u32, classname: P1, vendorname: P2) -> u32
-where
-    P0: ::std::convert::Into<::windows::core::PCWSTR>,
-    P1: ::std::convert::Into<::windows::core::PCWSTR>,
-    P2: ::std::convert::Into<::windows::core::PCWSTR>,
-{
+pub unsafe fn DhcpRemoveOptionV6(serveripaddress: ::windows::core::PWSTR, flags: u32, optionid: u32, classname: ::windows::core::PWSTR, vendorname: ::windows::core::PWSTR) -> u32 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn DhcpRemoveOptionV6(serveripaddress: ::windows::core::PCWSTR, flags: u32, optionid: u32, classname: ::windows::core::PCWSTR, vendorname: ::windows::core::PCWSTR) -> u32;
+        fn DhcpRemoveOptionV6(serveripaddress: ::windows::core::PWSTR, flags: u32, optionid: u32, classname: ::windows::core::PWSTR, vendorname: ::windows::core::PWSTR) -> u32;
     }
-    DhcpRemoveOptionV6(serveripaddress.into(), flags, optionid, classname.into(), vendorname.into())
+    DhcpRemoveOptionV6(::core::mem::transmute(serveripaddress), flags, optionid, ::core::mem::transmute(classname), ::core::mem::transmute(vendorname))
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`*"]
 #[inline]
@@ -1341,31 +1202,21 @@ where
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`*"]
 #[inline]
-pub unsafe fn DhcpRemoveOptionValueV5<'a, P0, P1, P2>(serveripaddress: P0, flags: u32, optionid: u32, classname: P1, vendorname: P2, scopeinfo: *mut DHCP_OPTION_SCOPE_INFO) -> u32
-where
-    P0: ::std::convert::Into<::windows::core::PCWSTR>,
-    P1: ::std::convert::Into<::windows::core::PCWSTR>,
-    P2: ::std::convert::Into<::windows::core::PCWSTR>,
-{
+pub unsafe fn DhcpRemoveOptionValueV5(serveripaddress: ::windows::core::PWSTR, flags: u32, optionid: u32, classname: ::windows::core::PWSTR, vendorname: ::windows::core::PWSTR, scopeinfo: *mut DHCP_OPTION_SCOPE_INFO) -> u32 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn DhcpRemoveOptionValueV5(serveripaddress: ::windows::core::PCWSTR, flags: u32, optionid: u32, classname: ::windows::core::PCWSTR, vendorname: ::windows::core::PCWSTR, scopeinfo: *mut DHCP_OPTION_SCOPE_INFO) -> u32;
+        fn DhcpRemoveOptionValueV5(serveripaddress: ::windows::core::PWSTR, flags: u32, optionid: u32, classname: ::windows::core::PWSTR, vendorname: ::windows::core::PWSTR, scopeinfo: *mut DHCP_OPTION_SCOPE_INFO) -> u32;
     }
-    DhcpRemoveOptionValueV5(serveripaddress.into(), flags, optionid, classname.into(), vendorname.into(), ::core::mem::transmute(scopeinfo))
+    DhcpRemoveOptionValueV5(::core::mem::transmute(serveripaddress), flags, optionid, ::core::mem::transmute(classname), ::core::mem::transmute(vendorname), ::core::mem::transmute(scopeinfo))
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`*"]
 #[inline]
-pub unsafe fn DhcpRemoveOptionValueV6<'a, P0, P1, P2>(serveripaddress: P0, flags: u32, optionid: u32, classname: P1, vendorname: P2, scopeinfo: *mut DHCP_OPTION_SCOPE_INFO6) -> u32
-where
-    P0: ::std::convert::Into<::windows::core::PCWSTR>,
-    P1: ::std::convert::Into<::windows::core::PCWSTR>,
-    P2: ::std::convert::Into<::windows::core::PCWSTR>,
-{
+pub unsafe fn DhcpRemoveOptionValueV6(serveripaddress: ::windows::core::PWSTR, flags: u32, optionid: u32, classname: ::windows::core::PWSTR, vendorname: ::windows::core::PWSTR, scopeinfo: *mut DHCP_OPTION_SCOPE_INFO6) -> u32 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn DhcpRemoveOptionValueV6(serveripaddress: ::windows::core::PCWSTR, flags: u32, optionid: u32, classname: ::windows::core::PCWSTR, vendorname: ::windows::core::PCWSTR, scopeinfo: *mut DHCP_OPTION_SCOPE_INFO6) -> u32;
+        fn DhcpRemoveOptionValueV6(serveripaddress: ::windows::core::PWSTR, flags: u32, optionid: u32, classname: ::windows::core::PWSTR, vendorname: ::windows::core::PWSTR, scopeinfo: *mut DHCP_OPTION_SCOPE_INFO6) -> u32;
     }
-    DhcpRemoveOptionValueV6(serveripaddress.into(), flags, optionid, classname.into(), vendorname.into(), ::core::mem::transmute(scopeinfo))
+    DhcpRemoveOptionValueV6(::core::mem::transmute(serveripaddress), flags, optionid, ::core::mem::transmute(classname), ::core::mem::transmute(vendorname), ::core::mem::transmute(scopeinfo))
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`*"]
 #[inline]
@@ -1405,29 +1256,22 @@ where
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`*"]
 #[inline]
-pub unsafe fn DhcpRemoveSubnetElementV6<'a, P0>(serveripaddress: P0, subnetaddress: DHCP_IPV6_ADDRESS, removeelementinfo: *mut DHCP_SUBNET_ELEMENT_DATA_V6, forceflag: DHCP_FORCE_FLAG) -> u32
-where
-    P0: ::std::convert::Into<::windows::core::PCWSTR>,
-{
+pub unsafe fn DhcpRemoveSubnetElementV6(serveripaddress: ::windows::core::PWSTR, subnetaddress: DHCP_IPV6_ADDRESS, removeelementinfo: *mut DHCP_SUBNET_ELEMENT_DATA_V6, forceflag: DHCP_FORCE_FLAG) -> u32 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn DhcpRemoveSubnetElementV6(serveripaddress: ::windows::core::PCWSTR, subnetaddress: DHCP_IPV6_ADDRESS, removeelementinfo: *mut DHCP_SUBNET_ELEMENT_DATA_V6, forceflag: DHCP_FORCE_FLAG) -> u32;
+        fn DhcpRemoveSubnetElementV6(serveripaddress: ::windows::core::PWSTR, subnetaddress: DHCP_IPV6_ADDRESS, removeelementinfo: *mut DHCP_SUBNET_ELEMENT_DATA_V6, forceflag: DHCP_FORCE_FLAG) -> u32;
     }
-    DhcpRemoveSubnetElementV6(serveripaddress.into(), ::core::mem::transmute(subnetaddress), ::core::mem::transmute(removeelementinfo), forceflag)
+    DhcpRemoveSubnetElementV6(::core::mem::transmute(serveripaddress), ::core::mem::transmute(subnetaddress), ::core::mem::transmute(removeelementinfo), forceflag)
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`, `\"Win32_Foundation\"`*"]
 #[cfg(feature = "Win32_Foundation")]
 #[inline]
-pub unsafe fn DhcpRequestParams<'a, P0, P1>(flags: u32, reserved: *mut ::core::ffi::c_void, adaptername: P0, classid: *mut DHCPCAPI_CLASSID, sendparams: DHCPCAPI_PARAMS_ARRAY, recdparams: DHCPCAPI_PARAMS_ARRAY, buffer: *mut u8, psize: *mut u32, requestidstr: P1) -> u32
-where
-    P0: ::std::convert::Into<::windows::core::PCWSTR>,
-    P1: ::std::convert::Into<::windows::core::PCWSTR>,
-{
+pub unsafe fn DhcpRequestParams(flags: u32, reserved: *mut ::core::ffi::c_void, adaptername: ::windows::core::PWSTR, classid: *mut DHCPCAPI_CLASSID, sendparams: DHCPCAPI_PARAMS_ARRAY, recdparams: DHCPCAPI_PARAMS_ARRAY, buffer: *mut u8, psize: *mut u32, requestidstr: ::windows::core::PWSTR) -> u32 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn DhcpRequestParams(flags: u32, reserved: *mut ::core::ffi::c_void, adaptername: ::windows::core::PCWSTR, classid: *mut DHCPCAPI_CLASSID, sendparams: DHCPCAPI_PARAMS_ARRAY, recdparams: DHCPCAPI_PARAMS_ARRAY, buffer: *mut u8, psize: *mut u32, requestidstr: ::windows::core::PCWSTR) -> u32;
+        fn DhcpRequestParams(flags: u32, reserved: *mut ::core::ffi::c_void, adaptername: ::windows::core::PWSTR, classid: *mut DHCPCAPI_CLASSID, sendparams: DHCPCAPI_PARAMS_ARRAY, recdparams: DHCPCAPI_PARAMS_ARRAY, buffer: *mut u8, psize: *mut u32, requestidstr: ::windows::core::PWSTR) -> u32;
     }
-    DhcpRequestParams(flags, ::core::mem::transmute(reserved), adaptername.into(), ::core::mem::transmute(classid), ::core::mem::transmute(sendparams), ::core::mem::transmute(recdparams), ::core::mem::transmute(buffer), ::core::mem::transmute(psize), requestidstr.into())
+    DhcpRequestParams(flags, ::core::mem::transmute(reserved), ::core::mem::transmute(adaptername), ::core::mem::transmute(classid), ::core::mem::transmute(sendparams), ::core::mem::transmute(recdparams), ::core::mem::transmute(buffer), ::core::mem::transmute(psize), ::core::mem::transmute(requestidstr))
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`*"]
 #[inline]
@@ -1462,16 +1306,12 @@ pub unsafe fn DhcpServerAuditlogParamsFree(configinfo: *mut DHCP_SERVER_CONFIG_I
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`*"]
 #[inline]
-pub unsafe fn DhcpServerBackupDatabase<'a, P0, P1>(serveripaddress: P0, path: P1) -> u32
-where
-    P0: ::std::convert::Into<::windows::core::PCWSTR>,
-    P1: ::std::convert::Into<::windows::core::PCWSTR>,
-{
+pub unsafe fn DhcpServerBackupDatabase(serveripaddress: ::windows::core::PWSTR, path: ::windows::core::PWSTR) -> u32 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn DhcpServerBackupDatabase(serveripaddress: ::windows::core::PCWSTR, path: ::windows::core::PCWSTR) -> u32;
+        fn DhcpServerBackupDatabase(serveripaddress: ::windows::core::PWSTR, path: ::windows::core::PWSTR) -> u32;
     }
-    DhcpServerBackupDatabase(serveripaddress.into(), path.into())
+    DhcpServerBackupDatabase(::core::mem::transmute(serveripaddress), ::core::mem::transmute(path))
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`*"]
 #[inline]
@@ -1527,65 +1367,49 @@ where
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`, `\"Win32_Foundation\"`*"]
 #[cfg(feature = "Win32_Foundation")]
 #[inline]
-pub unsafe fn DhcpServerQueryAttribute<'a, P0>(serveripaddr: P0, dwreserved: u32, dhcpattribid: u32, pdhcpattrib: *mut *mut DHCP_ATTRIB) -> u32
-where
-    P0: ::std::convert::Into<::windows::core::PCWSTR>,
-{
+pub unsafe fn DhcpServerQueryAttribute(serveripaddr: ::windows::core::PWSTR, dwreserved: u32, dhcpattribid: u32, pdhcpattrib: *mut *mut DHCP_ATTRIB) -> u32 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn DhcpServerQueryAttribute(serveripaddr: ::windows::core::PCWSTR, dwreserved: u32, dhcpattribid: u32, pdhcpattrib: *mut *mut DHCP_ATTRIB) -> u32;
+        fn DhcpServerQueryAttribute(serveripaddr: ::windows::core::PWSTR, dwreserved: u32, dhcpattribid: u32, pdhcpattrib: *mut *mut DHCP_ATTRIB) -> u32;
     }
-    DhcpServerQueryAttribute(serveripaddr.into(), dwreserved, dhcpattribid, ::core::mem::transmute(pdhcpattrib))
+    DhcpServerQueryAttribute(::core::mem::transmute(serveripaddr), dwreserved, dhcpattribid, ::core::mem::transmute(pdhcpattrib))
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`, `\"Win32_Foundation\"`*"]
 #[cfg(feature = "Win32_Foundation")]
 #[inline]
-pub unsafe fn DhcpServerQueryAttributes<'a, P0>(serveripaddr: P0, dwreserved: u32, dwattribcount: u32, pdhcpattribs: *mut u32, pdhcpattribarr: *mut *mut DHCP_ATTRIB_ARRAY) -> u32
-where
-    P0: ::std::convert::Into<::windows::core::PCWSTR>,
-{
+pub unsafe fn DhcpServerQueryAttributes(serveripaddr: ::windows::core::PWSTR, dwreserved: u32, dwattribcount: u32, pdhcpattribs: *mut u32, pdhcpattribarr: *mut *mut DHCP_ATTRIB_ARRAY) -> u32 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn DhcpServerQueryAttributes(serveripaddr: ::windows::core::PCWSTR, dwreserved: u32, dwattribcount: u32, pdhcpattribs: *mut u32, pdhcpattribarr: *mut *mut DHCP_ATTRIB_ARRAY) -> u32;
+        fn DhcpServerQueryAttributes(serveripaddr: ::windows::core::PWSTR, dwreserved: u32, dwattribcount: u32, pdhcpattribs: *mut u32, pdhcpattribarr: *mut *mut DHCP_ATTRIB_ARRAY) -> u32;
     }
-    DhcpServerQueryAttributes(serveripaddr.into(), dwreserved, dwattribcount, ::core::mem::transmute(pdhcpattribs), ::core::mem::transmute(pdhcpattribarr))
+    DhcpServerQueryAttributes(::core::mem::transmute(serveripaddr), dwreserved, dwattribcount, ::core::mem::transmute(pdhcpattribs), ::core::mem::transmute(pdhcpattribarr))
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`*"]
 #[inline]
-pub unsafe fn DhcpServerQueryDnsRegCredentials<'a, P0>(serveripaddress: P0, uname: &mut [u16], domain: &mut [u16]) -> u32
-where
-    P0: ::std::convert::Into<::windows::core::PCWSTR>,
-{
+pub unsafe fn DhcpServerQueryDnsRegCredentials(serveripaddress: ::windows::core::PWSTR, uname: &mut [u16], domain: &mut [u16]) -> u32 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn DhcpServerQueryDnsRegCredentials(serveripaddress: ::windows::core::PCWSTR, unamesize: u32, uname: ::windows::core::PWSTR, domainsize: u32, domain: ::windows::core::PWSTR) -> u32;
+        fn DhcpServerQueryDnsRegCredentials(serveripaddress: ::windows::core::PWSTR, unamesize: u32, uname: ::windows::core::PWSTR, domainsize: u32, domain: ::windows::core::PWSTR) -> u32;
     }
-    DhcpServerQueryDnsRegCredentials(serveripaddress.into(), uname.len() as _, ::core::mem::transmute(uname.as_ptr()), domain.len() as _, ::core::mem::transmute(domain.as_ptr()))
+    DhcpServerQueryDnsRegCredentials(::core::mem::transmute(serveripaddress), uname.len() as _, ::core::mem::transmute(uname.as_ptr()), domain.len() as _, ::core::mem::transmute(domain.as_ptr()))
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`*"]
 #[inline]
-pub unsafe fn DhcpServerRedoAuthorization<'a, P0>(serveripaddr: P0, dwreserved: u32) -> u32
-where
-    P0: ::std::convert::Into<::windows::core::PCWSTR>,
-{
+pub unsafe fn DhcpServerRedoAuthorization(serveripaddr: ::windows::core::PWSTR, dwreserved: u32) -> u32 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn DhcpServerRedoAuthorization(serveripaddr: ::windows::core::PCWSTR, dwreserved: u32) -> u32;
+        fn DhcpServerRedoAuthorization(serveripaddr: ::windows::core::PWSTR, dwreserved: u32) -> u32;
     }
-    DhcpServerRedoAuthorization(serveripaddr.into(), dwreserved)
+    DhcpServerRedoAuthorization(::core::mem::transmute(serveripaddr), dwreserved)
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`*"]
 #[inline]
-pub unsafe fn DhcpServerRestoreDatabase<'a, P0, P1>(serveripaddress: P0, path: P1) -> u32
-where
-    P0: ::std::convert::Into<::windows::core::PCWSTR>,
-    P1: ::std::convert::Into<::windows::core::PCWSTR>,
-{
+pub unsafe fn DhcpServerRestoreDatabase(serveripaddress: ::windows::core::PWSTR, path: ::windows::core::PWSTR) -> u32 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn DhcpServerRestoreDatabase(serveripaddress: ::windows::core::PCWSTR, path: ::windows::core::PCWSTR) -> u32;
+        fn DhcpServerRestoreDatabase(serveripaddress: ::windows::core::PWSTR, path: ::windows::core::PWSTR) -> u32;
     }
-    DhcpServerRestoreDatabase(serveripaddress.into(), path.into())
+    DhcpServerRestoreDatabase(::core::mem::transmute(serveripaddress), ::core::mem::transmute(path))
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`*"]
 #[inline]
@@ -1640,33 +1464,21 @@ where
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`*"]
 #[inline]
-pub unsafe fn DhcpServerSetDnsRegCredentials<'a, P0, P1, P2, P3>(serveripaddress: P0, uname: P1, domain: P2, passwd: P3) -> u32
-where
-    P0: ::std::convert::Into<::windows::core::PCWSTR>,
-    P1: ::std::convert::Into<::windows::core::PCWSTR>,
-    P2: ::std::convert::Into<::windows::core::PCWSTR>,
-    P3: ::std::convert::Into<::windows::core::PCWSTR>,
-{
+pub unsafe fn DhcpServerSetDnsRegCredentials(serveripaddress: ::windows::core::PWSTR, uname: ::windows::core::PWSTR, domain: ::windows::core::PWSTR, passwd: ::windows::core::PWSTR) -> u32 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn DhcpServerSetDnsRegCredentials(serveripaddress: ::windows::core::PCWSTR, uname: ::windows::core::PCWSTR, domain: ::windows::core::PCWSTR, passwd: ::windows::core::PCWSTR) -> u32;
+        fn DhcpServerSetDnsRegCredentials(serveripaddress: ::windows::core::PWSTR, uname: ::windows::core::PWSTR, domain: ::windows::core::PWSTR, passwd: ::windows::core::PWSTR) -> u32;
     }
-    DhcpServerSetDnsRegCredentials(serveripaddress.into(), uname.into(), domain.into(), passwd.into())
+    DhcpServerSetDnsRegCredentials(::core::mem::transmute(serveripaddress), ::core::mem::transmute(uname), ::core::mem::transmute(domain), ::core::mem::transmute(passwd))
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`*"]
 #[inline]
-pub unsafe fn DhcpServerSetDnsRegCredentialsV5<'a, P0, P1, P2, P3>(serveripaddress: P0, uname: P1, domain: P2, passwd: P3) -> u32
-where
-    P0: ::std::convert::Into<::windows::core::PCWSTR>,
-    P1: ::std::convert::Into<::windows::core::PCWSTR>,
-    P2: ::std::convert::Into<::windows::core::PCWSTR>,
-    P3: ::std::convert::Into<::windows::core::PCWSTR>,
-{
+pub unsafe fn DhcpServerSetDnsRegCredentialsV5(serveripaddress: ::windows::core::PWSTR, uname: ::windows::core::PWSTR, domain: ::windows::core::PWSTR, passwd: ::windows::core::PWSTR) -> u32 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn DhcpServerSetDnsRegCredentialsV5(serveripaddress: ::windows::core::PCWSTR, uname: ::windows::core::PCWSTR, domain: ::windows::core::PCWSTR, passwd: ::windows::core::PCWSTR) -> u32;
+        fn DhcpServerSetDnsRegCredentialsV5(serveripaddress: ::windows::core::PWSTR, uname: ::windows::core::PWSTR, domain: ::windows::core::PWSTR, passwd: ::windows::core::PWSTR) -> u32;
     }
-    DhcpServerSetDnsRegCredentialsV5(serveripaddress.into(), uname.into(), domain.into(), passwd.into())
+    DhcpServerSetDnsRegCredentialsV5(::core::mem::transmute(serveripaddress), ::core::mem::transmute(uname), ::core::mem::transmute(domain), ::core::mem::transmute(passwd))
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`*"]
 #[inline]
@@ -1720,13 +1532,13 @@ where
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`, `\"Win32_Foundation\"`*"]
 #[cfg(feature = "Win32_Foundation")]
 #[inline]
-pub unsafe fn DhcpSetFilterV4<'a, P0>(serveripaddress: P0, globalfilterinfo: *const DHCP_FILTER_GLOBAL_INFO) -> u32
+pub unsafe fn DhcpSetFilterV4<'a, P0>(serveripaddress: P0, globalfilterinfo: *mut DHCP_FILTER_GLOBAL_INFO) -> u32
 where
     P0: ::std::convert::Into<::windows::core::PCWSTR>,
 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn DhcpSetFilterV4(serveripaddress: ::windows::core::PCWSTR, globalfilterinfo: *const DHCP_FILTER_GLOBAL_INFO) -> u32;
+        fn DhcpSetFilterV4(serveripaddress: ::windows::core::PCWSTR, globalfilterinfo: *mut DHCP_FILTER_GLOBAL_INFO) -> u32;
     }
     DhcpSetFilterV4(serveripaddress.into(), ::core::mem::transmute(globalfilterinfo))
 }
@@ -1744,31 +1556,21 @@ where
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`*"]
 #[inline]
-pub unsafe fn DhcpSetOptionInfoV5<'a, P0, P1, P2>(serveripaddress: P0, flags: u32, optionid: u32, classname: P1, vendorname: P2, optioninfo: *mut DHCP_OPTION) -> u32
-where
-    P0: ::std::convert::Into<::windows::core::PCWSTR>,
-    P1: ::std::convert::Into<::windows::core::PCWSTR>,
-    P2: ::std::convert::Into<::windows::core::PCWSTR>,
-{
+pub unsafe fn DhcpSetOptionInfoV5(serveripaddress: ::windows::core::PWSTR, flags: u32, optionid: u32, classname: ::windows::core::PWSTR, vendorname: ::windows::core::PWSTR, optioninfo: *mut DHCP_OPTION) -> u32 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn DhcpSetOptionInfoV5(serveripaddress: ::windows::core::PCWSTR, flags: u32, optionid: u32, classname: ::windows::core::PCWSTR, vendorname: ::windows::core::PCWSTR, optioninfo: *mut DHCP_OPTION) -> u32;
+        fn DhcpSetOptionInfoV5(serveripaddress: ::windows::core::PWSTR, flags: u32, optionid: u32, classname: ::windows::core::PWSTR, vendorname: ::windows::core::PWSTR, optioninfo: *mut DHCP_OPTION) -> u32;
     }
-    DhcpSetOptionInfoV5(serveripaddress.into(), flags, optionid, classname.into(), vendorname.into(), ::core::mem::transmute(optioninfo))
+    DhcpSetOptionInfoV5(::core::mem::transmute(serveripaddress), flags, optionid, ::core::mem::transmute(classname), ::core::mem::transmute(vendorname), ::core::mem::transmute(optioninfo))
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`*"]
 #[inline]
-pub unsafe fn DhcpSetOptionInfoV6<'a, P0, P1, P2>(serveripaddress: P0, flags: u32, optionid: u32, classname: P1, vendorname: P2, optioninfo: *mut DHCP_OPTION) -> u32
-where
-    P0: ::std::convert::Into<::windows::core::PCWSTR>,
-    P1: ::std::convert::Into<::windows::core::PCWSTR>,
-    P2: ::std::convert::Into<::windows::core::PCWSTR>,
-{
+pub unsafe fn DhcpSetOptionInfoV6(serveripaddress: ::windows::core::PWSTR, flags: u32, optionid: u32, classname: ::windows::core::PWSTR, vendorname: ::windows::core::PWSTR, optioninfo: *mut DHCP_OPTION) -> u32 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn DhcpSetOptionInfoV6(serveripaddress: ::windows::core::PCWSTR, flags: u32, optionid: u32, classname: ::windows::core::PCWSTR, vendorname: ::windows::core::PCWSTR, optioninfo: *mut DHCP_OPTION) -> u32;
+        fn DhcpSetOptionInfoV6(serveripaddress: ::windows::core::PWSTR, flags: u32, optionid: u32, classname: ::windows::core::PWSTR, vendorname: ::windows::core::PWSTR, optioninfo: *mut DHCP_OPTION) -> u32;
     }
-    DhcpSetOptionInfoV6(serveripaddress.into(), flags, optionid, classname.into(), vendorname.into(), ::core::mem::transmute(optioninfo))
+    DhcpSetOptionInfoV6(::core::mem::transmute(serveripaddress), flags, optionid, ::core::mem::transmute(classname), ::core::mem::transmute(vendorname), ::core::mem::transmute(optioninfo))
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`*"]
 #[inline]
@@ -1784,31 +1586,21 @@ where
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`*"]
 #[inline]
-pub unsafe fn DhcpSetOptionValueV5<'a, P0, P1, P2>(serveripaddress: P0, flags: u32, optionid: u32, classname: P1, vendorname: P2, scopeinfo: *mut DHCP_OPTION_SCOPE_INFO, optionvalue: *mut DHCP_OPTION_DATA) -> u32
-where
-    P0: ::std::convert::Into<::windows::core::PCWSTR>,
-    P1: ::std::convert::Into<::windows::core::PCWSTR>,
-    P2: ::std::convert::Into<::windows::core::PCWSTR>,
-{
+pub unsafe fn DhcpSetOptionValueV5(serveripaddress: ::windows::core::PWSTR, flags: u32, optionid: u32, classname: ::windows::core::PWSTR, vendorname: ::windows::core::PWSTR, scopeinfo: *mut DHCP_OPTION_SCOPE_INFO, optionvalue: *mut DHCP_OPTION_DATA) -> u32 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn DhcpSetOptionValueV5(serveripaddress: ::windows::core::PCWSTR, flags: u32, optionid: u32, classname: ::windows::core::PCWSTR, vendorname: ::windows::core::PCWSTR, scopeinfo: *mut DHCP_OPTION_SCOPE_INFO, optionvalue: *mut DHCP_OPTION_DATA) -> u32;
+        fn DhcpSetOptionValueV5(serveripaddress: ::windows::core::PWSTR, flags: u32, optionid: u32, classname: ::windows::core::PWSTR, vendorname: ::windows::core::PWSTR, scopeinfo: *mut DHCP_OPTION_SCOPE_INFO, optionvalue: *mut DHCP_OPTION_DATA) -> u32;
     }
-    DhcpSetOptionValueV5(serveripaddress.into(), flags, optionid, classname.into(), vendorname.into(), ::core::mem::transmute(scopeinfo), ::core::mem::transmute(optionvalue))
+    DhcpSetOptionValueV5(::core::mem::transmute(serveripaddress), flags, optionid, ::core::mem::transmute(classname), ::core::mem::transmute(vendorname), ::core::mem::transmute(scopeinfo), ::core::mem::transmute(optionvalue))
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`*"]
 #[inline]
-pub unsafe fn DhcpSetOptionValueV6<'a, P0, P1, P2>(serveripaddress: P0, flags: u32, optionid: u32, classname: P1, vendorname: P2, scopeinfo: *mut DHCP_OPTION_SCOPE_INFO6, optionvalue: *mut DHCP_OPTION_DATA) -> u32
-where
-    P0: ::std::convert::Into<::windows::core::PCWSTR>,
-    P1: ::std::convert::Into<::windows::core::PCWSTR>,
-    P2: ::std::convert::Into<::windows::core::PCWSTR>,
-{
+pub unsafe fn DhcpSetOptionValueV6(serveripaddress: ::windows::core::PWSTR, flags: u32, optionid: u32, classname: ::windows::core::PWSTR, vendorname: ::windows::core::PWSTR, scopeinfo: *mut DHCP_OPTION_SCOPE_INFO6, optionvalue: *mut DHCP_OPTION_DATA) -> u32 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn DhcpSetOptionValueV6(serveripaddress: ::windows::core::PCWSTR, flags: u32, optionid: u32, classname: ::windows::core::PCWSTR, vendorname: ::windows::core::PCWSTR, scopeinfo: *mut DHCP_OPTION_SCOPE_INFO6, optionvalue: *mut DHCP_OPTION_DATA) -> u32;
+        fn DhcpSetOptionValueV6(serveripaddress: ::windows::core::PWSTR, flags: u32, optionid: u32, classname: ::windows::core::PWSTR, vendorname: ::windows::core::PWSTR, scopeinfo: *mut DHCP_OPTION_SCOPE_INFO6, optionvalue: *mut DHCP_OPTION_DATA) -> u32;
     }
-    DhcpSetOptionValueV6(serveripaddress.into(), flags, optionid, classname.into(), vendorname.into(), ::core::mem::transmute(scopeinfo), ::core::mem::transmute(optionvalue))
+    DhcpSetOptionValueV6(::core::mem::transmute(serveripaddress), flags, optionid, ::core::mem::transmute(classname), ::core::mem::transmute(vendorname), ::core::mem::transmute(scopeinfo), ::core::mem::transmute(optionvalue))
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`*"]
 #[inline]
@@ -1824,17 +1616,12 @@ where
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`*"]
 #[inline]
-pub unsafe fn DhcpSetOptionValuesV5<'a, P0, P1, P2>(serveripaddress: P0, flags: u32, classname: P1, vendorname: P2, scopeinfo: *mut DHCP_OPTION_SCOPE_INFO, optionvalues: *mut DHCP_OPTION_VALUE_ARRAY) -> u32
-where
-    P0: ::std::convert::Into<::windows::core::PCWSTR>,
-    P1: ::std::convert::Into<::windows::core::PCWSTR>,
-    P2: ::std::convert::Into<::windows::core::PCWSTR>,
-{
+pub unsafe fn DhcpSetOptionValuesV5(serveripaddress: ::windows::core::PWSTR, flags: u32, classname: ::windows::core::PWSTR, vendorname: ::windows::core::PWSTR, scopeinfo: *mut DHCP_OPTION_SCOPE_INFO, optionvalues: *mut DHCP_OPTION_VALUE_ARRAY) -> u32 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn DhcpSetOptionValuesV5(serveripaddress: ::windows::core::PCWSTR, flags: u32, classname: ::windows::core::PCWSTR, vendorname: ::windows::core::PCWSTR, scopeinfo: *mut DHCP_OPTION_SCOPE_INFO, optionvalues: *mut DHCP_OPTION_VALUE_ARRAY) -> u32;
+        fn DhcpSetOptionValuesV5(serveripaddress: ::windows::core::PWSTR, flags: u32, classname: ::windows::core::PWSTR, vendorname: ::windows::core::PWSTR, scopeinfo: *mut DHCP_OPTION_SCOPE_INFO, optionvalues: *mut DHCP_OPTION_VALUE_ARRAY) -> u32;
     }
-    DhcpSetOptionValuesV5(serveripaddress.into(), flags, classname.into(), vendorname.into(), ::core::mem::transmute(scopeinfo), ::core::mem::transmute(optionvalues))
+    DhcpSetOptionValuesV5(::core::mem::transmute(serveripaddress), flags, ::core::mem::transmute(classname), ::core::mem::transmute(vendorname), ::core::mem::transmute(scopeinfo), ::core::mem::transmute(optionvalues))
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`, `\"Win32_Foundation\"`*"]
 #[cfg(feature = "Win32_Foundation")]
@@ -1864,15 +1651,12 @@ where
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`*"]
 #[inline]
-pub unsafe fn DhcpSetSubnetDelayOffer<'a, P0>(serveripaddress: P0, subnetaddress: u32, timedelayinmilliseconds: u16) -> u32
-where
-    P0: ::std::convert::Into<::windows::core::PCWSTR>,
-{
+pub unsafe fn DhcpSetSubnetDelayOffer(serveripaddress: ::windows::core::PWSTR, subnetaddress: u32, timedelayinmilliseconds: u16) -> u32 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn DhcpSetSubnetDelayOffer(serveripaddress: ::windows::core::PCWSTR, subnetaddress: u32, timedelayinmilliseconds: u16) -> u32;
+        fn DhcpSetSubnetDelayOffer(serveripaddress: ::windows::core::PWSTR, subnetaddress: u32, timedelayinmilliseconds: u16) -> u32;
     }
-    DhcpSetSubnetDelayOffer(serveripaddress.into(), subnetaddress, timedelayinmilliseconds)
+    DhcpSetSubnetDelayOffer(::core::mem::transmute(serveripaddress), subnetaddress, timedelayinmilliseconds)
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`*"]
 #[inline]
@@ -1936,29 +1720,21 @@ pub unsafe fn DhcpSetThreadOptions(flags: u32, reserved: *mut ::core::ffi::c_voi
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`*"]
 #[inline]
-pub unsafe fn DhcpUndoRequestParams<'a, P0, P1>(flags: u32, reserved: ::core::option::Option<*mut ::core::ffi::c_void>, adaptername: P0, requestidstr: P1) -> u32
-where
-    P0: ::std::convert::Into<::windows::core::PCWSTR>,
-    P1: ::std::convert::Into<::windows::core::PCWSTR>,
-{
+pub unsafe fn DhcpUndoRequestParams(flags: u32, reserved: ::core::option::Option<*mut ::core::ffi::c_void>, adaptername: ::windows::core::PWSTR, requestidstr: ::windows::core::PWSTR) -> u32 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn DhcpUndoRequestParams(flags: u32, reserved: *mut ::core::ffi::c_void, adaptername: ::windows::core::PCWSTR, requestidstr: ::windows::core::PCWSTR) -> u32;
+        fn DhcpUndoRequestParams(flags: u32, reserved: *mut ::core::ffi::c_void, adaptername: ::windows::core::PWSTR, requestidstr: ::windows::core::PWSTR) -> u32;
     }
-    DhcpUndoRequestParams(flags, ::core::mem::transmute(reserved.unwrap_or(::std::ptr::null_mut())), adaptername.into(), requestidstr.into())
+    DhcpUndoRequestParams(flags, ::core::mem::transmute(reserved.unwrap_or(::std::ptr::null_mut())), ::core::mem::transmute(adaptername), ::core::mem::transmute(requestidstr))
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`*"]
 #[inline]
-pub unsafe fn DhcpV4AddPolicyRange<'a, P0, P1>(serveripaddress: P0, subnetaddress: u32, policyname: P1, range: *const DHCP_IP_RANGE) -> u32
-where
-    P0: ::std::convert::Into<::windows::core::PCWSTR>,
-    P1: ::std::convert::Into<::windows::core::PCWSTR>,
-{
+pub unsafe fn DhcpV4AddPolicyRange(serveripaddress: ::windows::core::PWSTR, subnetaddress: u32, policyname: ::windows::core::PWSTR, range: *mut DHCP_IP_RANGE) -> u32 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn DhcpV4AddPolicyRange(serveripaddress: ::windows::core::PCWSTR, subnetaddress: u32, policyname: ::windows::core::PCWSTR, range: *const DHCP_IP_RANGE) -> u32;
+        fn DhcpV4AddPolicyRange(serveripaddress: ::windows::core::PWSTR, subnetaddress: u32, policyname: ::windows::core::PWSTR, range: *mut DHCP_IP_RANGE) -> u32;
     }
-    DhcpV4AddPolicyRange(serveripaddress.into(), subnetaddress, policyname.into(), ::core::mem::transmute(range))
+    DhcpV4AddPolicyRange(::core::mem::transmute(serveripaddress), subnetaddress, ::core::mem::transmute(policyname), ::core::mem::transmute(range))
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`, `\"Win32_Foundation\"`*"]
 #[cfg(feature = "Win32_Foundation")]
@@ -1989,71 +1765,61 @@ where
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`, `\"Win32_Foundation\"`*"]
 #[cfg(feature = "Win32_Foundation")]
 #[inline]
-pub unsafe fn DhcpV4CreatePolicy<'a, P0>(serveripaddress: P0, ppolicy: *const DHCP_POLICY) -> u32
-where
-    P0: ::std::convert::Into<::windows::core::PCWSTR>,
-{
+pub unsafe fn DhcpV4CreatePolicy(serveripaddress: ::windows::core::PWSTR, ppolicy: *mut DHCP_POLICY) -> u32 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn DhcpV4CreatePolicy(serveripaddress: ::windows::core::PCWSTR, ppolicy: *const DHCP_POLICY) -> u32;
+        fn DhcpV4CreatePolicy(serveripaddress: ::windows::core::PWSTR, ppolicy: *mut DHCP_POLICY) -> u32;
     }
-    DhcpV4CreatePolicy(serveripaddress.into(), ::core::mem::transmute(ppolicy))
+    DhcpV4CreatePolicy(::core::mem::transmute(serveripaddress), ::core::mem::transmute(ppolicy))
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`, `\"Win32_Foundation\"`*"]
 #[cfg(feature = "Win32_Foundation")]
 #[inline]
-pub unsafe fn DhcpV4CreatePolicyEx<'a, P0>(serveripaddress: P0, policyex: *const DHCP_POLICY_EX) -> u32
-where
-    P0: ::std::convert::Into<::windows::core::PCWSTR>,
-{
+pub unsafe fn DhcpV4CreatePolicyEx(serveripaddress: ::windows::core::PWSTR, policyex: *mut DHCP_POLICY_EX) -> u32 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn DhcpV4CreatePolicyEx(serveripaddress: ::windows::core::PCWSTR, policyex: *const DHCP_POLICY_EX) -> u32;
+        fn DhcpV4CreatePolicyEx(serveripaddress: ::windows::core::PWSTR, policyex: *mut DHCP_POLICY_EX) -> u32;
     }
-    DhcpV4CreatePolicyEx(serveripaddress.into(), ::core::mem::transmute(policyex))
+    DhcpV4CreatePolicyEx(::core::mem::transmute(serveripaddress), ::core::mem::transmute(policyex))
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`, `\"Win32_Foundation\"`*"]
 #[cfg(feature = "Win32_Foundation")]
 #[inline]
-pub unsafe fn DhcpV4DeletePolicy<'a, P0, P1, P2>(serveripaddress: P0, fglobalpolicy: P1, subnetaddress: u32, policyname: P2) -> u32
+pub unsafe fn DhcpV4DeletePolicy<'a, P0>(serveripaddress: ::windows::core::PWSTR, fglobalpolicy: P0, subnetaddress: u32, policyname: ::windows::core::PWSTR) -> u32
 where
-    P0: ::std::convert::Into<::windows::core::PCWSTR>,
-    P1: ::std::convert::Into<super::super::Foundation::BOOL>,
-    P2: ::std::convert::Into<::windows::core::PCWSTR>,
+    P0: ::std::convert::Into<super::super::Foundation::BOOL>,
 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn DhcpV4DeletePolicy(serveripaddress: ::windows::core::PCWSTR, fglobalpolicy: super::super::Foundation::BOOL, subnetaddress: u32, policyname: ::windows::core::PCWSTR) -> u32;
+        fn DhcpV4DeletePolicy(serveripaddress: ::windows::core::PWSTR, fglobalpolicy: super::super::Foundation::BOOL, subnetaddress: u32, policyname: ::windows::core::PWSTR) -> u32;
     }
-    DhcpV4DeletePolicy(serveripaddress.into(), fglobalpolicy.into(), subnetaddress, policyname.into())
+    DhcpV4DeletePolicy(::core::mem::transmute(serveripaddress), fglobalpolicy.into(), subnetaddress, ::core::mem::transmute(policyname))
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`, `\"Win32_Foundation\"`*"]
 #[cfg(feature = "Win32_Foundation")]
 #[inline]
-pub unsafe fn DhcpV4EnumPolicies<'a, P0, P1>(serveripaddress: P0, resumehandle: *mut u32, preferredmaximum: u32, fglobalpolicy: P1, subnetaddress: u32, enuminfo: *mut *mut DHCP_POLICY_ARRAY, elementsread: *mut u32, elementstotal: *mut u32) -> u32
+pub unsafe fn DhcpV4EnumPolicies<'a, P0>(serveripaddress: ::windows::core::PWSTR, resumehandle: *mut u32, preferredmaximum: u32, fglobalpolicy: P0, subnetaddress: u32, enuminfo: *mut *mut DHCP_POLICY_ARRAY, elementsread: *mut u32, elementstotal: *mut u32) -> u32
 where
-    P0: ::std::convert::Into<::windows::core::PCWSTR>,
-    P1: ::std::convert::Into<super::super::Foundation::BOOL>,
+    P0: ::std::convert::Into<super::super::Foundation::BOOL>,
 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn DhcpV4EnumPolicies(serveripaddress: ::windows::core::PCWSTR, resumehandle: *mut u32, preferredmaximum: u32, fglobalpolicy: super::super::Foundation::BOOL, subnetaddress: u32, enuminfo: *mut *mut DHCP_POLICY_ARRAY, elementsread: *mut u32, elementstotal: *mut u32) -> u32;
+        fn DhcpV4EnumPolicies(serveripaddress: ::windows::core::PWSTR, resumehandle: *mut u32, preferredmaximum: u32, fglobalpolicy: super::super::Foundation::BOOL, subnetaddress: u32, enuminfo: *mut *mut DHCP_POLICY_ARRAY, elementsread: *mut u32, elementstotal: *mut u32) -> u32;
     }
-    DhcpV4EnumPolicies(serveripaddress.into(), ::core::mem::transmute(resumehandle), preferredmaximum, fglobalpolicy.into(), subnetaddress, ::core::mem::transmute(enuminfo), ::core::mem::transmute(elementsread), ::core::mem::transmute(elementstotal))
+    DhcpV4EnumPolicies(::core::mem::transmute(serveripaddress), ::core::mem::transmute(resumehandle), preferredmaximum, fglobalpolicy.into(), subnetaddress, ::core::mem::transmute(enuminfo), ::core::mem::transmute(elementsread), ::core::mem::transmute(elementstotal))
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`, `\"Win32_Foundation\"`*"]
 #[cfg(feature = "Win32_Foundation")]
 #[inline]
-pub unsafe fn DhcpV4EnumPoliciesEx<'a, P0, P1>(serveripaddress: P0, resumehandle: *mut u32, preferredmaximum: u32, globalpolicy: P1, subnetaddress: u32, enuminfo: *mut *mut DHCP_POLICY_EX_ARRAY, elementsread: *mut u32, elementstotal: *mut u32) -> u32
+pub unsafe fn DhcpV4EnumPoliciesEx<'a, P0>(serveripaddress: ::windows::core::PWSTR, resumehandle: *mut u32, preferredmaximum: u32, globalpolicy: P0, subnetaddress: u32, enuminfo: *mut *mut DHCP_POLICY_EX_ARRAY, elementsread: *mut u32, elementstotal: *mut u32) -> u32
 where
-    P0: ::std::convert::Into<::windows::core::PCWSTR>,
-    P1: ::std::convert::Into<super::super::Foundation::BOOL>,
+    P0: ::std::convert::Into<super::super::Foundation::BOOL>,
 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn DhcpV4EnumPoliciesEx(serveripaddress: ::windows::core::PCWSTR, resumehandle: *mut u32, preferredmaximum: u32, globalpolicy: super::super::Foundation::BOOL, subnetaddress: u32, enuminfo: *mut *mut DHCP_POLICY_EX_ARRAY, elementsread: *mut u32, elementstotal: *mut u32) -> u32;
+        fn DhcpV4EnumPoliciesEx(serveripaddress: ::windows::core::PWSTR, resumehandle: *mut u32, preferredmaximum: u32, globalpolicy: super::super::Foundation::BOOL, subnetaddress: u32, enuminfo: *mut *mut DHCP_POLICY_EX_ARRAY, elementsread: *mut u32, elementstotal: *mut u32) -> u32;
     }
-    DhcpV4EnumPoliciesEx(serveripaddress.into(), ::core::mem::transmute(resumehandle), preferredmaximum, globalpolicy.into(), subnetaddress, ::core::mem::transmute(enuminfo), ::core::mem::transmute(elementsread), ::core::mem::transmute(elementstotal))
+    DhcpV4EnumPoliciesEx(::core::mem::transmute(serveripaddress), ::core::mem::transmute(resumehandle), preferredmaximum, globalpolicy.into(), subnetaddress, ::core::mem::transmute(enuminfo), ::core::mem::transmute(elementsread), ::core::mem::transmute(elementstotal))
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`, `\"Win32_Foundation\"`*"]
 #[cfg(feature = "Win32_Foundation")]
@@ -2095,176 +1861,131 @@ where
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`*"]
 #[inline]
-pub unsafe fn DhcpV4FailoverAddScopeToRelationship<'a, P0>(serveripaddress: P0, prelationship: *const DHCP_FAILOVER_RELATIONSHIP) -> u32
-where
-    P0: ::std::convert::Into<::windows::core::PCWSTR>,
-{
+pub unsafe fn DhcpV4FailoverAddScopeToRelationship(serveripaddress: ::windows::core::PWSTR, prelationship: *mut DHCP_FAILOVER_RELATIONSHIP) -> u32 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn DhcpV4FailoverAddScopeToRelationship(serveripaddress: ::windows::core::PCWSTR, prelationship: *const DHCP_FAILOVER_RELATIONSHIP) -> u32;
+        fn DhcpV4FailoverAddScopeToRelationship(serveripaddress: ::windows::core::PWSTR, prelationship: *mut DHCP_FAILOVER_RELATIONSHIP) -> u32;
     }
-    DhcpV4FailoverAddScopeToRelationship(serveripaddress.into(), ::core::mem::transmute(prelationship))
+    DhcpV4FailoverAddScopeToRelationship(::core::mem::transmute(serveripaddress), ::core::mem::transmute(prelationship))
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`*"]
 #[inline]
-pub unsafe fn DhcpV4FailoverCreateRelationship<'a, P0>(serveripaddress: P0, prelationship: *const DHCP_FAILOVER_RELATIONSHIP) -> u32
-where
-    P0: ::std::convert::Into<::windows::core::PCWSTR>,
-{
+pub unsafe fn DhcpV4FailoverCreateRelationship(serveripaddress: ::windows::core::PWSTR, prelationship: *mut DHCP_FAILOVER_RELATIONSHIP) -> u32 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn DhcpV4FailoverCreateRelationship(serveripaddress: ::windows::core::PCWSTR, prelationship: *const DHCP_FAILOVER_RELATIONSHIP) -> u32;
+        fn DhcpV4FailoverCreateRelationship(serveripaddress: ::windows::core::PWSTR, prelationship: *mut DHCP_FAILOVER_RELATIONSHIP) -> u32;
     }
-    DhcpV4FailoverCreateRelationship(serveripaddress.into(), ::core::mem::transmute(prelationship))
+    DhcpV4FailoverCreateRelationship(::core::mem::transmute(serveripaddress), ::core::mem::transmute(prelationship))
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`*"]
 #[inline]
-pub unsafe fn DhcpV4FailoverDeleteRelationship<'a, P0, P1>(serveripaddress: P0, prelationshipname: P1) -> u32
-where
-    P0: ::std::convert::Into<::windows::core::PCWSTR>,
-    P1: ::std::convert::Into<::windows::core::PCWSTR>,
-{
+pub unsafe fn DhcpV4FailoverDeleteRelationship(serveripaddress: ::windows::core::PWSTR, prelationshipname: ::windows::core::PWSTR) -> u32 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn DhcpV4FailoverDeleteRelationship(serveripaddress: ::windows::core::PCWSTR, prelationshipname: ::windows::core::PCWSTR) -> u32;
+        fn DhcpV4FailoverDeleteRelationship(serveripaddress: ::windows::core::PWSTR, prelationshipname: ::windows::core::PWSTR) -> u32;
     }
-    DhcpV4FailoverDeleteRelationship(serveripaddress.into(), prelationshipname.into())
+    DhcpV4FailoverDeleteRelationship(::core::mem::transmute(serveripaddress), ::core::mem::transmute(prelationshipname))
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`*"]
 #[inline]
-pub unsafe fn DhcpV4FailoverDeleteScopeFromRelationship<'a, P0>(serveripaddress: P0, prelationship: *const DHCP_FAILOVER_RELATIONSHIP) -> u32
-where
-    P0: ::std::convert::Into<::windows::core::PCWSTR>,
-{
+pub unsafe fn DhcpV4FailoverDeleteScopeFromRelationship(serveripaddress: ::windows::core::PWSTR, prelationship: *mut DHCP_FAILOVER_RELATIONSHIP) -> u32 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn DhcpV4FailoverDeleteScopeFromRelationship(serveripaddress: ::windows::core::PCWSTR, prelationship: *const DHCP_FAILOVER_RELATIONSHIP) -> u32;
+        fn DhcpV4FailoverDeleteScopeFromRelationship(serveripaddress: ::windows::core::PWSTR, prelationship: *mut DHCP_FAILOVER_RELATIONSHIP) -> u32;
     }
-    DhcpV4FailoverDeleteScopeFromRelationship(serveripaddress.into(), ::core::mem::transmute(prelationship))
+    DhcpV4FailoverDeleteScopeFromRelationship(::core::mem::transmute(serveripaddress), ::core::mem::transmute(prelationship))
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`*"]
 #[inline]
-pub unsafe fn DhcpV4FailoverEnumRelationship<'a, P0>(serveripaddress: P0, resumehandle: *mut u32, preferredmaximum: u32, prelationship: *mut *mut DHCP_FAILOVER_RELATIONSHIP_ARRAY, relationshipread: *mut u32, relationshiptotal: *mut u32) -> u32
-where
-    P0: ::std::convert::Into<::windows::core::PCWSTR>,
-{
+pub unsafe fn DhcpV4FailoverEnumRelationship(serveripaddress: ::windows::core::PWSTR, resumehandle: *mut u32, preferredmaximum: u32, prelationship: *mut *mut DHCP_FAILOVER_RELATIONSHIP_ARRAY, relationshipread: *mut u32, relationshiptotal: *mut u32) -> u32 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn DhcpV4FailoverEnumRelationship(serveripaddress: ::windows::core::PCWSTR, resumehandle: *mut u32, preferredmaximum: u32, prelationship: *mut *mut DHCP_FAILOVER_RELATIONSHIP_ARRAY, relationshipread: *mut u32, relationshiptotal: *mut u32) -> u32;
+        fn DhcpV4FailoverEnumRelationship(serveripaddress: ::windows::core::PWSTR, resumehandle: *mut u32, preferredmaximum: u32, prelationship: *mut *mut DHCP_FAILOVER_RELATIONSHIP_ARRAY, relationshipread: *mut u32, relationshiptotal: *mut u32) -> u32;
     }
-    DhcpV4FailoverEnumRelationship(serveripaddress.into(), ::core::mem::transmute(resumehandle), preferredmaximum, ::core::mem::transmute(prelationship), ::core::mem::transmute(relationshipread), ::core::mem::transmute(relationshiptotal))
+    DhcpV4FailoverEnumRelationship(::core::mem::transmute(serveripaddress), ::core::mem::transmute(resumehandle), preferredmaximum, ::core::mem::transmute(prelationship), ::core::mem::transmute(relationshipread), ::core::mem::transmute(relationshiptotal))
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`*"]
 #[inline]
-pub unsafe fn DhcpV4FailoverGetAddressStatus<'a, P0>(serveripaddress: P0, subnetaddress: u32, pstatus: *mut u32) -> u32
-where
-    P0: ::std::convert::Into<::windows::core::PCWSTR>,
-{
+pub unsafe fn DhcpV4FailoverGetAddressStatus(serveripaddress: ::windows::core::PWSTR, subnetaddress: u32, pstatus: *mut u32) -> u32 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn DhcpV4FailoverGetAddressStatus(serveripaddress: ::windows::core::PCWSTR, subnetaddress: u32, pstatus: *mut u32) -> u32;
+        fn DhcpV4FailoverGetAddressStatus(serveripaddress: ::windows::core::PWSTR, subnetaddress: u32, pstatus: *mut u32) -> u32;
     }
-    DhcpV4FailoverGetAddressStatus(serveripaddress.into(), subnetaddress, ::core::mem::transmute(pstatus))
+    DhcpV4FailoverGetAddressStatus(::core::mem::transmute(serveripaddress), subnetaddress, ::core::mem::transmute(pstatus))
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`, `\"Win32_Foundation\"`*"]
 #[cfg(feature = "Win32_Foundation")]
 #[inline]
-pub unsafe fn DhcpV4FailoverGetClientInfo<'a, P0>(serveripaddress: P0, searchinfo: *const DHCP_SEARCH_INFO, clientinfo: *mut *mut DHCPV4_FAILOVER_CLIENT_INFO) -> u32
-where
-    P0: ::std::convert::Into<::windows::core::PCWSTR>,
-{
+pub unsafe fn DhcpV4FailoverGetClientInfo(serveripaddress: ::windows::core::PWSTR, searchinfo: *const DHCP_SEARCH_INFO, clientinfo: *mut *mut DHCPV4_FAILOVER_CLIENT_INFO) -> u32 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn DhcpV4FailoverGetClientInfo(serveripaddress: ::windows::core::PCWSTR, searchinfo: *const DHCP_SEARCH_INFO, clientinfo: *mut *mut DHCPV4_FAILOVER_CLIENT_INFO) -> u32;
+        fn DhcpV4FailoverGetClientInfo(serveripaddress: ::windows::core::PWSTR, searchinfo: *const DHCP_SEARCH_INFO, clientinfo: *mut *mut DHCPV4_FAILOVER_CLIENT_INFO) -> u32;
     }
-    DhcpV4FailoverGetClientInfo(serveripaddress.into(), ::core::mem::transmute(searchinfo), ::core::mem::transmute(clientinfo))
+    DhcpV4FailoverGetClientInfo(::core::mem::transmute(serveripaddress), ::core::mem::transmute(searchinfo), ::core::mem::transmute(clientinfo))
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`*"]
 #[inline]
-pub unsafe fn DhcpV4FailoverGetRelationship<'a, P0, P1>(serveripaddress: P0, prelationshipname: P1, prelationship: *mut *mut DHCP_FAILOVER_RELATIONSHIP) -> u32
-where
-    P0: ::std::convert::Into<::windows::core::PCWSTR>,
-    P1: ::std::convert::Into<::windows::core::PCWSTR>,
-{
+pub unsafe fn DhcpV4FailoverGetRelationship(serveripaddress: ::windows::core::PWSTR, prelationshipname: ::windows::core::PWSTR, prelationship: *mut *mut DHCP_FAILOVER_RELATIONSHIP) -> u32 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn DhcpV4FailoverGetRelationship(serveripaddress: ::windows::core::PCWSTR, prelationshipname: ::windows::core::PCWSTR, prelationship: *mut *mut DHCP_FAILOVER_RELATIONSHIP) -> u32;
+        fn DhcpV4FailoverGetRelationship(serveripaddress: ::windows::core::PWSTR, prelationshipname: ::windows::core::PWSTR, prelationship: *mut *mut DHCP_FAILOVER_RELATIONSHIP) -> u32;
     }
-    DhcpV4FailoverGetRelationship(serveripaddress.into(), prelationshipname.into(), ::core::mem::transmute(prelationship))
+    DhcpV4FailoverGetRelationship(::core::mem::transmute(serveripaddress), ::core::mem::transmute(prelationshipname), ::core::mem::transmute(prelationship))
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`*"]
 #[inline]
-pub unsafe fn DhcpV4FailoverGetScopeRelationship<'a, P0>(serveripaddress: P0, scopeid: u32, prelationship: *mut *mut DHCP_FAILOVER_RELATIONSHIP) -> u32
-where
-    P0: ::std::convert::Into<::windows::core::PCWSTR>,
-{
+pub unsafe fn DhcpV4FailoverGetScopeRelationship(serveripaddress: ::windows::core::PWSTR, scopeid: u32, prelationship: *mut *mut DHCP_FAILOVER_RELATIONSHIP) -> u32 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn DhcpV4FailoverGetScopeRelationship(serveripaddress: ::windows::core::PCWSTR, scopeid: u32, prelationship: *mut *mut DHCP_FAILOVER_RELATIONSHIP) -> u32;
+        fn DhcpV4FailoverGetScopeRelationship(serveripaddress: ::windows::core::PWSTR, scopeid: u32, prelationship: *mut *mut DHCP_FAILOVER_RELATIONSHIP) -> u32;
     }
-    DhcpV4FailoverGetScopeRelationship(serveripaddress.into(), scopeid, ::core::mem::transmute(prelationship))
+    DhcpV4FailoverGetScopeRelationship(::core::mem::transmute(serveripaddress), scopeid, ::core::mem::transmute(prelationship))
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`*"]
 #[inline]
-pub unsafe fn DhcpV4FailoverGetScopeStatistics<'a, P0>(serveripaddress: P0, scopeid: u32, pstats: *mut *mut DHCP_FAILOVER_STATISTICS) -> u32
-where
-    P0: ::std::convert::Into<::windows::core::PCWSTR>,
-{
+pub unsafe fn DhcpV4FailoverGetScopeStatistics(serveripaddress: ::windows::core::PWSTR, scopeid: u32, pstats: *mut *mut DHCP_FAILOVER_STATISTICS) -> u32 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn DhcpV4FailoverGetScopeStatistics(serveripaddress: ::windows::core::PCWSTR, scopeid: u32, pstats: *mut *mut DHCP_FAILOVER_STATISTICS) -> u32;
+        fn DhcpV4FailoverGetScopeStatistics(serveripaddress: ::windows::core::PWSTR, scopeid: u32, pstats: *mut *mut DHCP_FAILOVER_STATISTICS) -> u32;
     }
-    DhcpV4FailoverGetScopeStatistics(serveripaddress.into(), scopeid, ::core::mem::transmute(pstats))
+    DhcpV4FailoverGetScopeStatistics(::core::mem::transmute(serveripaddress), scopeid, ::core::mem::transmute(pstats))
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`*"]
 #[inline]
-pub unsafe fn DhcpV4FailoverGetSystemTime<'a, P0>(serveripaddress: P0, ptime: *mut u32, pmaxalloweddeltatime: *mut u32) -> u32
-where
-    P0: ::std::convert::Into<::windows::core::PCWSTR>,
-{
+pub unsafe fn DhcpV4FailoverGetSystemTime(serveripaddress: ::windows::core::PWSTR, ptime: *mut u32, pmaxalloweddeltatime: *mut u32) -> u32 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn DhcpV4FailoverGetSystemTime(serveripaddress: ::windows::core::PCWSTR, ptime: *mut u32, pmaxalloweddeltatime: *mut u32) -> u32;
+        fn DhcpV4FailoverGetSystemTime(serveripaddress: ::windows::core::PWSTR, ptime: *mut u32, pmaxalloweddeltatime: *mut u32) -> u32;
     }
-    DhcpV4FailoverGetSystemTime(serveripaddress.into(), ::core::mem::transmute(ptime), ::core::mem::transmute(pmaxalloweddeltatime))
+    DhcpV4FailoverGetSystemTime(::core::mem::transmute(serveripaddress), ::core::mem::transmute(ptime), ::core::mem::transmute(pmaxalloweddeltatime))
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`*"]
 #[inline]
-pub unsafe fn DhcpV4FailoverSetRelationship<'a, P0>(serveripaddress: P0, flags: u32, prelationship: *const DHCP_FAILOVER_RELATIONSHIP) -> u32
-where
-    P0: ::std::convert::Into<::windows::core::PCWSTR>,
-{
+pub unsafe fn DhcpV4FailoverSetRelationship(serveripaddress: ::windows::core::PWSTR, flags: u32, prelationship: *mut DHCP_FAILOVER_RELATIONSHIP) -> u32 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn DhcpV4FailoverSetRelationship(serveripaddress: ::windows::core::PCWSTR, flags: u32, prelationship: *const DHCP_FAILOVER_RELATIONSHIP) -> u32;
+        fn DhcpV4FailoverSetRelationship(serveripaddress: ::windows::core::PWSTR, flags: u32, prelationship: *mut DHCP_FAILOVER_RELATIONSHIP) -> u32;
     }
-    DhcpV4FailoverSetRelationship(serveripaddress.into(), flags, ::core::mem::transmute(prelationship))
+    DhcpV4FailoverSetRelationship(::core::mem::transmute(serveripaddress), flags, ::core::mem::transmute(prelationship))
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`*"]
 #[inline]
-pub unsafe fn DhcpV4FailoverTriggerAddrAllocation<'a, P0, P1>(serveripaddress: P0, pfailrelname: P1) -> u32
-where
-    P0: ::std::convert::Into<::windows::core::PCWSTR>,
-    P1: ::std::convert::Into<::windows::core::PCWSTR>,
-{
+pub unsafe fn DhcpV4FailoverTriggerAddrAllocation(serveripaddress: ::windows::core::PWSTR, pfailrelname: ::windows::core::PWSTR) -> u32 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn DhcpV4FailoverTriggerAddrAllocation(serveripaddress: ::windows::core::PCWSTR, pfailrelname: ::windows::core::PCWSTR) -> u32;
+        fn DhcpV4FailoverTriggerAddrAllocation(serveripaddress: ::windows::core::PWSTR, pfailrelname: ::windows::core::PWSTR) -> u32;
     }
-    DhcpV4FailoverTriggerAddrAllocation(serveripaddress.into(), pfailrelname.into())
+    DhcpV4FailoverTriggerAddrAllocation(::core::mem::transmute(serveripaddress), ::core::mem::transmute(pfailrelname))
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`, `\"Win32_Foundation\"`*"]
 #[cfg(feature = "Win32_Foundation")]
 #[inline]
-pub unsafe fn DhcpV4GetAllOptionValues<'a, P0>(serveripaddress: P0, flags: u32, scopeinfo: *mut DHCP_OPTION_SCOPE_INFO, values: *mut *mut DHCP_ALL_OPTION_VALUES_PB) -> u32
-where
-    P0: ::std::convert::Into<::windows::core::PCWSTR>,
-{
+pub unsafe fn DhcpV4GetAllOptionValues(serveripaddress: ::windows::core::PWSTR, flags: u32, scopeinfo: *mut DHCP_OPTION_SCOPE_INFO, values: *mut *mut DHCP_ALL_OPTION_VALUES_PB) -> u32 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn DhcpV4GetAllOptionValues(serveripaddress: ::windows::core::PCWSTR, flags: u32, scopeinfo: *mut DHCP_OPTION_SCOPE_INFO, values: *mut *mut DHCP_ALL_OPTION_VALUES_PB) -> u32;
+        fn DhcpV4GetAllOptionValues(serveripaddress: ::windows::core::PWSTR, flags: u32, scopeinfo: *mut DHCP_OPTION_SCOPE_INFO, values: *mut *mut DHCP_ALL_OPTION_VALUES_PB) -> u32;
     }
-    DhcpV4GetAllOptionValues(serveripaddress.into(), flags, ::core::mem::transmute(scopeinfo), ::core::mem::transmute(values))
+    DhcpV4GetAllOptionValues(::core::mem::transmute(serveripaddress), flags, ::core::mem::transmute(scopeinfo), ::core::mem::transmute(values))
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`, `\"Win32_Foundation\"`*"]
 #[cfg(feature = "Win32_Foundation")]
@@ -2294,173 +2015,136 @@ where
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`*"]
 #[inline]
-pub unsafe fn DhcpV4GetFreeIPAddress<'a, P0>(serveripaddress: P0, scopeid: u32, startip: u32, endip: u32, numfreeaddrreq: u32, ipaddrlist: *mut *mut DHCP_IP_ARRAY) -> u32
-where
-    P0: ::std::convert::Into<::windows::core::PCWSTR>,
-{
+pub unsafe fn DhcpV4GetFreeIPAddress(serveripaddress: ::windows::core::PWSTR, scopeid: u32, startip: u32, endip: u32, numfreeaddrreq: u32, ipaddrlist: *mut *mut DHCP_IP_ARRAY) -> u32 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn DhcpV4GetFreeIPAddress(serveripaddress: ::windows::core::PCWSTR, scopeid: u32, startip: u32, endip: u32, numfreeaddrreq: u32, ipaddrlist: *mut *mut DHCP_IP_ARRAY) -> u32;
+        fn DhcpV4GetFreeIPAddress(serveripaddress: ::windows::core::PWSTR, scopeid: u32, startip: u32, endip: u32, numfreeaddrreq: u32, ipaddrlist: *mut *mut DHCP_IP_ARRAY) -> u32;
     }
-    DhcpV4GetFreeIPAddress(serveripaddress.into(), scopeid, startip, endip, numfreeaddrreq, ::core::mem::transmute(ipaddrlist))
+    DhcpV4GetFreeIPAddress(::core::mem::transmute(serveripaddress), scopeid, startip, endip, numfreeaddrreq, ::core::mem::transmute(ipaddrlist))
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`*"]
 #[inline]
-pub unsafe fn DhcpV4GetOptionValue<'a, P0, P1, P2>(serveripaddress: P0, flags: u32, optionid: u32, policyname: P1, vendorname: P2, scopeinfo: *mut DHCP_OPTION_SCOPE_INFO, optionvalue: *mut *mut DHCP_OPTION_VALUE) -> u32
-where
-    P0: ::std::convert::Into<::windows::core::PCWSTR>,
-    P1: ::std::convert::Into<::windows::core::PCWSTR>,
-    P2: ::std::convert::Into<::windows::core::PCWSTR>,
-{
+pub unsafe fn DhcpV4GetOptionValue(serveripaddress: ::windows::core::PWSTR, flags: u32, optionid: u32, policyname: ::windows::core::PWSTR, vendorname: ::windows::core::PWSTR, scopeinfo: *mut DHCP_OPTION_SCOPE_INFO, optionvalue: *mut *mut DHCP_OPTION_VALUE) -> u32 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn DhcpV4GetOptionValue(serveripaddress: ::windows::core::PCWSTR, flags: u32, optionid: u32, policyname: ::windows::core::PCWSTR, vendorname: ::windows::core::PCWSTR, scopeinfo: *mut DHCP_OPTION_SCOPE_INFO, optionvalue: *mut *mut DHCP_OPTION_VALUE) -> u32;
+        fn DhcpV4GetOptionValue(serveripaddress: ::windows::core::PWSTR, flags: u32, optionid: u32, policyname: ::windows::core::PWSTR, vendorname: ::windows::core::PWSTR, scopeinfo: *mut DHCP_OPTION_SCOPE_INFO, optionvalue: *mut *mut DHCP_OPTION_VALUE) -> u32;
     }
-    DhcpV4GetOptionValue(serveripaddress.into(), flags, optionid, policyname.into(), vendorname.into(), ::core::mem::transmute(scopeinfo), ::core::mem::transmute(optionvalue))
+    DhcpV4GetOptionValue(::core::mem::transmute(serveripaddress), flags, optionid, ::core::mem::transmute(policyname), ::core::mem::transmute(vendorname), ::core::mem::transmute(scopeinfo), ::core::mem::transmute(optionvalue))
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`, `\"Win32_Foundation\"`*"]
 #[cfg(feature = "Win32_Foundation")]
 #[inline]
-pub unsafe fn DhcpV4GetPolicy<'a, P0, P1, P2>(serveripaddress: P0, fglobalpolicy: P1, subnetaddress: u32, policyname: P2, policy: *mut *mut DHCP_POLICY) -> u32
+pub unsafe fn DhcpV4GetPolicy<'a, P0>(serveripaddress: ::windows::core::PWSTR, fglobalpolicy: P0, subnetaddress: u32, policyname: ::windows::core::PWSTR, policy: *mut *mut DHCP_POLICY) -> u32
 where
-    P0: ::std::convert::Into<::windows::core::PCWSTR>,
-    P1: ::std::convert::Into<super::super::Foundation::BOOL>,
-    P2: ::std::convert::Into<::windows::core::PCWSTR>,
+    P0: ::std::convert::Into<super::super::Foundation::BOOL>,
 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn DhcpV4GetPolicy(serveripaddress: ::windows::core::PCWSTR, fglobalpolicy: super::super::Foundation::BOOL, subnetaddress: u32, policyname: ::windows::core::PCWSTR, policy: *mut *mut DHCP_POLICY) -> u32;
+        fn DhcpV4GetPolicy(serveripaddress: ::windows::core::PWSTR, fglobalpolicy: super::super::Foundation::BOOL, subnetaddress: u32, policyname: ::windows::core::PWSTR, policy: *mut *mut DHCP_POLICY) -> u32;
     }
-    DhcpV4GetPolicy(serveripaddress.into(), fglobalpolicy.into(), subnetaddress, policyname.into(), ::core::mem::transmute(policy))
+    DhcpV4GetPolicy(::core::mem::transmute(serveripaddress), fglobalpolicy.into(), subnetaddress, ::core::mem::transmute(policyname), ::core::mem::transmute(policy))
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`, `\"Win32_Foundation\"`*"]
 #[cfg(feature = "Win32_Foundation")]
 #[inline]
-pub unsafe fn DhcpV4GetPolicyEx<'a, P0, P1, P2>(serveripaddress: P0, globalpolicy: P1, subnetaddress: u32, policyname: P2, policy: *mut *mut DHCP_POLICY_EX) -> u32
+pub unsafe fn DhcpV4GetPolicyEx<'a, P0>(serveripaddress: ::windows::core::PWSTR, globalpolicy: P0, subnetaddress: u32, policyname: ::windows::core::PWSTR, policy: *mut *mut DHCP_POLICY_EX) -> u32
 where
-    P0: ::std::convert::Into<::windows::core::PCWSTR>,
-    P1: ::std::convert::Into<super::super::Foundation::BOOL>,
-    P2: ::std::convert::Into<::windows::core::PCWSTR>,
+    P0: ::std::convert::Into<super::super::Foundation::BOOL>,
 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn DhcpV4GetPolicyEx(serveripaddress: ::windows::core::PCWSTR, globalpolicy: super::super::Foundation::BOOL, subnetaddress: u32, policyname: ::windows::core::PCWSTR, policy: *mut *mut DHCP_POLICY_EX) -> u32;
+        fn DhcpV4GetPolicyEx(serveripaddress: ::windows::core::PWSTR, globalpolicy: super::super::Foundation::BOOL, subnetaddress: u32, policyname: ::windows::core::PWSTR, policy: *mut *mut DHCP_POLICY_EX) -> u32;
     }
-    DhcpV4GetPolicyEx(serveripaddress.into(), globalpolicy.into(), subnetaddress, policyname.into(), ::core::mem::transmute(policy))
+    DhcpV4GetPolicyEx(::core::mem::transmute(serveripaddress), globalpolicy.into(), subnetaddress, ::core::mem::transmute(policyname), ::core::mem::transmute(policy))
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`, `\"Win32_Foundation\"`*"]
 #[cfg(feature = "Win32_Foundation")]
 #[inline]
-pub unsafe fn DhcpV4QueryPolicyEnforcement<'a, P0, P1>(serveripaddress: P0, fglobalpolicy: P1, subnetaddress: u32, enabled: *mut super::super::Foundation::BOOL) -> u32
+pub unsafe fn DhcpV4QueryPolicyEnforcement<'a, P0>(serveripaddress: ::windows::core::PWSTR, fglobalpolicy: P0, subnetaddress: u32, enabled: *mut super::super::Foundation::BOOL) -> u32
 where
-    P0: ::std::convert::Into<::windows::core::PCWSTR>,
-    P1: ::std::convert::Into<super::super::Foundation::BOOL>,
+    P0: ::std::convert::Into<super::super::Foundation::BOOL>,
 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn DhcpV4QueryPolicyEnforcement(serveripaddress: ::windows::core::PCWSTR, fglobalpolicy: super::super::Foundation::BOOL, subnetaddress: u32, enabled: *mut super::super::Foundation::BOOL) -> u32;
+        fn DhcpV4QueryPolicyEnforcement(serveripaddress: ::windows::core::PWSTR, fglobalpolicy: super::super::Foundation::BOOL, subnetaddress: u32, enabled: *mut super::super::Foundation::BOOL) -> u32;
     }
-    DhcpV4QueryPolicyEnforcement(serveripaddress.into(), fglobalpolicy.into(), subnetaddress, ::core::mem::transmute(enabled))
+    DhcpV4QueryPolicyEnforcement(::core::mem::transmute(serveripaddress), fglobalpolicy.into(), subnetaddress, ::core::mem::transmute(enabled))
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`*"]
 #[inline]
-pub unsafe fn DhcpV4RemoveOptionValue<'a, P0, P1, P2>(serveripaddress: P0, flags: u32, optionid: u32, policyname: P1, vendorname: P2, scopeinfo: *mut DHCP_OPTION_SCOPE_INFO) -> u32
-where
-    P0: ::std::convert::Into<::windows::core::PCWSTR>,
-    P1: ::std::convert::Into<::windows::core::PCWSTR>,
-    P2: ::std::convert::Into<::windows::core::PCWSTR>,
-{
+pub unsafe fn DhcpV4RemoveOptionValue(serveripaddress: ::windows::core::PWSTR, flags: u32, optionid: u32, policyname: ::windows::core::PWSTR, vendorname: ::windows::core::PWSTR, scopeinfo: *mut DHCP_OPTION_SCOPE_INFO) -> u32 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn DhcpV4RemoveOptionValue(serveripaddress: ::windows::core::PCWSTR, flags: u32, optionid: u32, policyname: ::windows::core::PCWSTR, vendorname: ::windows::core::PCWSTR, scopeinfo: *mut DHCP_OPTION_SCOPE_INFO) -> u32;
+        fn DhcpV4RemoveOptionValue(serveripaddress: ::windows::core::PWSTR, flags: u32, optionid: u32, policyname: ::windows::core::PWSTR, vendorname: ::windows::core::PWSTR, scopeinfo: *mut DHCP_OPTION_SCOPE_INFO) -> u32;
     }
-    DhcpV4RemoveOptionValue(serveripaddress.into(), flags, optionid, policyname.into(), vendorname.into(), ::core::mem::transmute(scopeinfo))
+    DhcpV4RemoveOptionValue(::core::mem::transmute(serveripaddress), flags, optionid, ::core::mem::transmute(policyname), ::core::mem::transmute(vendorname), ::core::mem::transmute(scopeinfo))
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`*"]
 #[inline]
-pub unsafe fn DhcpV4RemovePolicyRange<'a, P0, P1>(serveripaddress: P0, subnetaddress: u32, policyname: P1, range: *const DHCP_IP_RANGE) -> u32
-where
-    P0: ::std::convert::Into<::windows::core::PCWSTR>,
-    P1: ::std::convert::Into<::windows::core::PCWSTR>,
-{
+pub unsafe fn DhcpV4RemovePolicyRange(serveripaddress: ::windows::core::PWSTR, subnetaddress: u32, policyname: ::windows::core::PWSTR, range: *mut DHCP_IP_RANGE) -> u32 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn DhcpV4RemovePolicyRange(serveripaddress: ::windows::core::PCWSTR, subnetaddress: u32, policyname: ::windows::core::PCWSTR, range: *const DHCP_IP_RANGE) -> u32;
+        fn DhcpV4RemovePolicyRange(serveripaddress: ::windows::core::PWSTR, subnetaddress: u32, policyname: ::windows::core::PWSTR, range: *mut DHCP_IP_RANGE) -> u32;
     }
-    DhcpV4RemovePolicyRange(serveripaddress.into(), subnetaddress, policyname.into(), ::core::mem::transmute(range))
+    DhcpV4RemovePolicyRange(::core::mem::transmute(serveripaddress), subnetaddress, ::core::mem::transmute(policyname), ::core::mem::transmute(range))
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`*"]
 #[inline]
-pub unsafe fn DhcpV4SetOptionValue<'a, P0, P1, P2>(serveripaddress: P0, flags: u32, optionid: u32, policyname: P1, vendorname: P2, scopeinfo: *mut DHCP_OPTION_SCOPE_INFO, optionvalue: *mut DHCP_OPTION_DATA) -> u32
-where
-    P0: ::std::convert::Into<::windows::core::PCWSTR>,
-    P1: ::std::convert::Into<::windows::core::PCWSTR>,
-    P2: ::std::convert::Into<::windows::core::PCWSTR>,
-{
+pub unsafe fn DhcpV4SetOptionValue(serveripaddress: ::windows::core::PWSTR, flags: u32, optionid: u32, policyname: ::windows::core::PWSTR, vendorname: ::windows::core::PWSTR, scopeinfo: *mut DHCP_OPTION_SCOPE_INFO, optionvalue: *mut DHCP_OPTION_DATA) -> u32 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn DhcpV4SetOptionValue(serveripaddress: ::windows::core::PCWSTR, flags: u32, optionid: u32, policyname: ::windows::core::PCWSTR, vendorname: ::windows::core::PCWSTR, scopeinfo: *mut DHCP_OPTION_SCOPE_INFO, optionvalue: *mut DHCP_OPTION_DATA) -> u32;
+        fn DhcpV4SetOptionValue(serveripaddress: ::windows::core::PWSTR, flags: u32, optionid: u32, policyname: ::windows::core::PWSTR, vendorname: ::windows::core::PWSTR, scopeinfo: *mut DHCP_OPTION_SCOPE_INFO, optionvalue: *mut DHCP_OPTION_DATA) -> u32;
     }
-    DhcpV4SetOptionValue(serveripaddress.into(), flags, optionid, policyname.into(), vendorname.into(), ::core::mem::transmute(scopeinfo), ::core::mem::transmute(optionvalue))
+    DhcpV4SetOptionValue(::core::mem::transmute(serveripaddress), flags, optionid, ::core::mem::transmute(policyname), ::core::mem::transmute(vendorname), ::core::mem::transmute(scopeinfo), ::core::mem::transmute(optionvalue))
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`*"]
 #[inline]
-pub unsafe fn DhcpV4SetOptionValues<'a, P0, P1, P2>(serveripaddress: P0, flags: u32, policyname: P1, vendorname: P2, scopeinfo: *mut DHCP_OPTION_SCOPE_INFO, optionvalues: *mut DHCP_OPTION_VALUE_ARRAY) -> u32
-where
-    P0: ::std::convert::Into<::windows::core::PCWSTR>,
-    P1: ::std::convert::Into<::windows::core::PCWSTR>,
-    P2: ::std::convert::Into<::windows::core::PCWSTR>,
-{
+pub unsafe fn DhcpV4SetOptionValues(serveripaddress: ::windows::core::PWSTR, flags: u32, policyname: ::windows::core::PWSTR, vendorname: ::windows::core::PWSTR, scopeinfo: *mut DHCP_OPTION_SCOPE_INFO, optionvalues: *mut DHCP_OPTION_VALUE_ARRAY) -> u32 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn DhcpV4SetOptionValues(serveripaddress: ::windows::core::PCWSTR, flags: u32, policyname: ::windows::core::PCWSTR, vendorname: ::windows::core::PCWSTR, scopeinfo: *mut DHCP_OPTION_SCOPE_INFO, optionvalues: *mut DHCP_OPTION_VALUE_ARRAY) -> u32;
+        fn DhcpV4SetOptionValues(serveripaddress: ::windows::core::PWSTR, flags: u32, policyname: ::windows::core::PWSTR, vendorname: ::windows::core::PWSTR, scopeinfo: *mut DHCP_OPTION_SCOPE_INFO, optionvalues: *mut DHCP_OPTION_VALUE_ARRAY) -> u32;
     }
-    DhcpV4SetOptionValues(serveripaddress.into(), flags, policyname.into(), vendorname.into(), ::core::mem::transmute(scopeinfo), ::core::mem::transmute(optionvalues))
+    DhcpV4SetOptionValues(::core::mem::transmute(serveripaddress), flags, ::core::mem::transmute(policyname), ::core::mem::transmute(vendorname), ::core::mem::transmute(scopeinfo), ::core::mem::transmute(optionvalues))
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`, `\"Win32_Foundation\"`*"]
 #[cfg(feature = "Win32_Foundation")]
 #[inline]
-pub unsafe fn DhcpV4SetPolicy<'a, P0, P1, P2>(serveripaddress: P0, fieldsmodified: u32, fglobalpolicy: P1, subnetaddress: u32, policyname: P2, policy: *const DHCP_POLICY) -> u32
+pub unsafe fn DhcpV4SetPolicy<'a, P0>(serveripaddress: ::windows::core::PWSTR, fieldsmodified: u32, fglobalpolicy: P0, subnetaddress: u32, policyname: ::windows::core::PWSTR, policy: *mut DHCP_POLICY) -> u32
 where
-    P0: ::std::convert::Into<::windows::core::PCWSTR>,
-    P1: ::std::convert::Into<super::super::Foundation::BOOL>,
-    P2: ::std::convert::Into<::windows::core::PCWSTR>,
+    P0: ::std::convert::Into<super::super::Foundation::BOOL>,
 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn DhcpV4SetPolicy(serveripaddress: ::windows::core::PCWSTR, fieldsmodified: u32, fglobalpolicy: super::super::Foundation::BOOL, subnetaddress: u32, policyname: ::windows::core::PCWSTR, policy: *const DHCP_POLICY) -> u32;
+        fn DhcpV4SetPolicy(serveripaddress: ::windows::core::PWSTR, fieldsmodified: u32, fglobalpolicy: super::super::Foundation::BOOL, subnetaddress: u32, policyname: ::windows::core::PWSTR, policy: *mut DHCP_POLICY) -> u32;
     }
-    DhcpV4SetPolicy(serveripaddress.into(), fieldsmodified, fglobalpolicy.into(), subnetaddress, policyname.into(), ::core::mem::transmute(policy))
+    DhcpV4SetPolicy(::core::mem::transmute(serveripaddress), fieldsmodified, fglobalpolicy.into(), subnetaddress, ::core::mem::transmute(policyname), ::core::mem::transmute(policy))
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`, `\"Win32_Foundation\"`*"]
 #[cfg(feature = "Win32_Foundation")]
 #[inline]
-pub unsafe fn DhcpV4SetPolicyEnforcement<'a, P0, P1, P2>(serveripaddress: P0, fglobalpolicy: P1, subnetaddress: u32, enable: P2) -> u32
+pub unsafe fn DhcpV4SetPolicyEnforcement<'a, P0, P1>(serveripaddress: ::windows::core::PWSTR, fglobalpolicy: P0, subnetaddress: u32, enable: P1) -> u32
 where
-    P0: ::std::convert::Into<::windows::core::PCWSTR>,
+    P0: ::std::convert::Into<super::super::Foundation::BOOL>,
     P1: ::std::convert::Into<super::super::Foundation::BOOL>,
-    P2: ::std::convert::Into<super::super::Foundation::BOOL>,
 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn DhcpV4SetPolicyEnforcement(serveripaddress: ::windows::core::PCWSTR, fglobalpolicy: super::super::Foundation::BOOL, subnetaddress: u32, enable: super::super::Foundation::BOOL) -> u32;
+        fn DhcpV4SetPolicyEnforcement(serveripaddress: ::windows::core::PWSTR, fglobalpolicy: super::super::Foundation::BOOL, subnetaddress: u32, enable: super::super::Foundation::BOOL) -> u32;
     }
-    DhcpV4SetPolicyEnforcement(serveripaddress.into(), fglobalpolicy.into(), subnetaddress, enable.into())
+    DhcpV4SetPolicyEnforcement(::core::mem::transmute(serveripaddress), fglobalpolicy.into(), subnetaddress, enable.into())
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`, `\"Win32_Foundation\"`*"]
 #[cfg(feature = "Win32_Foundation")]
 #[inline]
-pub unsafe fn DhcpV4SetPolicyEx<'a, P0, P1, P2>(serveripaddress: P0, fieldsmodified: u32, globalpolicy: P1, subnetaddress: u32, policyname: P2, policy: *const DHCP_POLICY_EX) -> u32
+pub unsafe fn DhcpV4SetPolicyEx<'a, P0>(serveripaddress: ::windows::core::PWSTR, fieldsmodified: u32, globalpolicy: P0, subnetaddress: u32, policyname: ::windows::core::PWSTR, policy: *mut DHCP_POLICY_EX) -> u32
 where
-    P0: ::std::convert::Into<::windows::core::PCWSTR>,
-    P1: ::std::convert::Into<super::super::Foundation::BOOL>,
-    P2: ::std::convert::Into<::windows::core::PCWSTR>,
+    P0: ::std::convert::Into<super::super::Foundation::BOOL>,
 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn DhcpV4SetPolicyEx(serveripaddress: ::windows::core::PCWSTR, fieldsmodified: u32, globalpolicy: super::super::Foundation::BOOL, subnetaddress: u32, policyname: ::windows::core::PCWSTR, policy: *const DHCP_POLICY_EX) -> u32;
+        fn DhcpV4SetPolicyEx(serveripaddress: ::windows::core::PWSTR, fieldsmodified: u32, globalpolicy: super::super::Foundation::BOOL, subnetaddress: u32, policyname: ::windows::core::PWSTR, policy: *mut DHCP_POLICY_EX) -> u32;
     }
-    DhcpV4SetPolicyEx(serveripaddress.into(), fieldsmodified, globalpolicy.into(), subnetaddress, policyname.into(), ::core::mem::transmute(policy))
+    DhcpV4SetPolicyEx(::core::mem::transmute(serveripaddress), fieldsmodified, globalpolicy.into(), subnetaddress, ::core::mem::transmute(policyname), ::core::mem::transmute(policy))
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`*"]
 #[inline]
@@ -2476,55 +2160,47 @@ where
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`*"]
 #[inline]
-pub unsafe fn DhcpV6GetFreeIPAddress<'a, P0>(serveripaddress: P0, scopeid: DHCP_IPV6_ADDRESS, startip: DHCP_IPV6_ADDRESS, endip: DHCP_IPV6_ADDRESS, numfreeaddrreq: u32, ipaddrlist: *mut *mut DHCPV6_IP_ARRAY) -> u32
-where
-    P0: ::std::convert::Into<::windows::core::PCWSTR>,
-{
+pub unsafe fn DhcpV6GetFreeIPAddress(serveripaddress: ::windows::core::PWSTR, scopeid: DHCP_IPV6_ADDRESS, startip: DHCP_IPV6_ADDRESS, endip: DHCP_IPV6_ADDRESS, numfreeaddrreq: u32, ipaddrlist: *mut *mut DHCPV6_IP_ARRAY) -> u32 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn DhcpV6GetFreeIPAddress(serveripaddress: ::windows::core::PCWSTR, scopeid: DHCP_IPV6_ADDRESS, startip: DHCP_IPV6_ADDRESS, endip: DHCP_IPV6_ADDRESS, numfreeaddrreq: u32, ipaddrlist: *mut *mut DHCPV6_IP_ARRAY) -> u32;
+        fn DhcpV6GetFreeIPAddress(serveripaddress: ::windows::core::PWSTR, scopeid: DHCP_IPV6_ADDRESS, startip: DHCP_IPV6_ADDRESS, endip: DHCP_IPV6_ADDRESS, numfreeaddrreq: u32, ipaddrlist: *mut *mut DHCPV6_IP_ARRAY) -> u32;
     }
-    DhcpV6GetFreeIPAddress(serveripaddress.into(), ::core::mem::transmute(scopeid), ::core::mem::transmute(startip), ::core::mem::transmute(endip), numfreeaddrreq, ::core::mem::transmute(ipaddrlist))
+    DhcpV6GetFreeIPAddress(::core::mem::transmute(serveripaddress), ::core::mem::transmute(scopeid), ::core::mem::transmute(startip), ::core::mem::transmute(endip), numfreeaddrreq, ::core::mem::transmute(ipaddrlist))
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`*"]
 #[inline]
-pub unsafe fn DhcpV6GetStatelessStatistics<'a, P0>(serveripaddress: P0, statelessstats: *mut *mut DHCPV6_STATELESS_STATS) -> u32
-where
-    P0: ::std::convert::Into<::windows::core::PCWSTR>,
-{
+pub unsafe fn DhcpV6GetStatelessStatistics(serveripaddress: ::windows::core::PWSTR, statelessstats: *mut *mut DHCPV6_STATELESS_STATS) -> u32 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn DhcpV6GetStatelessStatistics(serveripaddress: ::windows::core::PCWSTR, statelessstats: *mut *mut DHCPV6_STATELESS_STATS) -> u32;
+        fn DhcpV6GetStatelessStatistics(serveripaddress: ::windows::core::PWSTR, statelessstats: *mut *mut DHCPV6_STATELESS_STATS) -> u32;
     }
-    DhcpV6GetStatelessStatistics(serveripaddress.into(), ::core::mem::transmute(statelessstats))
+    DhcpV6GetStatelessStatistics(::core::mem::transmute(serveripaddress), ::core::mem::transmute(statelessstats))
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`, `\"Win32_Foundation\"`*"]
 #[cfg(feature = "Win32_Foundation")]
 #[inline]
-pub unsafe fn DhcpV6GetStatelessStoreParams<'a, P0, P1>(serveripaddress: P0, fserverlevel: P1, subnetaddress: DHCP_IPV6_ADDRESS, params: *mut *mut DHCPV6_STATELESS_PARAMS) -> u32
+pub unsafe fn DhcpV6GetStatelessStoreParams<'a, P0>(serveripaddress: ::windows::core::PWSTR, fserverlevel: P0, subnetaddress: DHCP_IPV6_ADDRESS, params: *mut *mut DHCPV6_STATELESS_PARAMS) -> u32
 where
-    P0: ::std::convert::Into<::windows::core::PCWSTR>,
-    P1: ::std::convert::Into<super::super::Foundation::BOOL>,
+    P0: ::std::convert::Into<super::super::Foundation::BOOL>,
 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn DhcpV6GetStatelessStoreParams(serveripaddress: ::windows::core::PCWSTR, fserverlevel: super::super::Foundation::BOOL, subnetaddress: DHCP_IPV6_ADDRESS, params: *mut *mut DHCPV6_STATELESS_PARAMS) -> u32;
+        fn DhcpV6GetStatelessStoreParams(serveripaddress: ::windows::core::PWSTR, fserverlevel: super::super::Foundation::BOOL, subnetaddress: DHCP_IPV6_ADDRESS, params: *mut *mut DHCPV6_STATELESS_PARAMS) -> u32;
     }
-    DhcpV6GetStatelessStoreParams(serveripaddress.into(), fserverlevel.into(), ::core::mem::transmute(subnetaddress), ::core::mem::transmute(params))
+    DhcpV6GetStatelessStoreParams(::core::mem::transmute(serveripaddress), fserverlevel.into(), ::core::mem::transmute(subnetaddress), ::core::mem::transmute(params))
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`, `\"Win32_Foundation\"`*"]
 #[cfg(feature = "Win32_Foundation")]
 #[inline]
-pub unsafe fn DhcpV6SetStatelessStoreParams<'a, P0, P1>(serveripaddress: P0, fserverlevel: P1, subnetaddress: DHCP_IPV6_ADDRESS, fieldmodified: u32, params: *const DHCPV6_STATELESS_PARAMS) -> u32
+pub unsafe fn DhcpV6SetStatelessStoreParams<'a, P0>(serveripaddress: ::windows::core::PWSTR, fserverlevel: P0, subnetaddress: DHCP_IPV6_ADDRESS, fieldmodified: u32, params: *mut DHCPV6_STATELESS_PARAMS) -> u32
 where
-    P0: ::std::convert::Into<::windows::core::PCWSTR>,
-    P1: ::std::convert::Into<super::super::Foundation::BOOL>,
+    P0: ::std::convert::Into<super::super::Foundation::BOOL>,
 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn DhcpV6SetStatelessStoreParams(serveripaddress: ::windows::core::PCWSTR, fserverlevel: super::super::Foundation::BOOL, subnetaddress: DHCP_IPV6_ADDRESS, fieldmodified: u32, params: *const DHCPV6_STATELESS_PARAMS) -> u32;
+        fn DhcpV6SetStatelessStoreParams(serveripaddress: ::windows::core::PWSTR, fserverlevel: super::super::Foundation::BOOL, subnetaddress: DHCP_IPV6_ADDRESS, fieldmodified: u32, params: *mut DHCPV6_STATELESS_PARAMS) -> u32;
     }
-    DhcpV6SetStatelessStoreParams(serveripaddress.into(), fserverlevel.into(), ::core::mem::transmute(subnetaddress), fieldmodified, ::core::mem::transmute(params))
+    DhcpV6SetStatelessStoreParams(::core::mem::transmute(serveripaddress), fserverlevel.into(), ::core::mem::transmute(subnetaddress), fieldmodified, ::core::mem::transmute(params))
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`*"]
 #[inline]
@@ -2546,53 +2222,43 @@ pub unsafe fn Dhcpv6CApiInitialize(version: *mut u32) {
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`*"]
 #[inline]
-pub unsafe fn Dhcpv6ReleasePrefix<'a, P0>(adaptername: P0, classid: *mut DHCPV6CAPI_CLASSID, leaseinfo: *mut DHCPV6PrefixLeaseInformation) -> u32
-where
-    P0: ::std::convert::Into<::windows::core::PCWSTR>,
-{
+pub unsafe fn Dhcpv6ReleasePrefix(adaptername: ::windows::core::PWSTR, classid: *mut DHCPV6CAPI_CLASSID, leaseinfo: *mut DHCPV6PrefixLeaseInformation) -> u32 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn Dhcpv6ReleasePrefix(adaptername: ::windows::core::PCWSTR, classid: *mut DHCPV6CAPI_CLASSID, leaseinfo: *mut DHCPV6PrefixLeaseInformation) -> u32;
+        fn Dhcpv6ReleasePrefix(adaptername: ::windows::core::PWSTR, classid: *mut DHCPV6CAPI_CLASSID, leaseinfo: *mut DHCPV6PrefixLeaseInformation) -> u32;
     }
-    Dhcpv6ReleasePrefix(adaptername.into(), ::core::mem::transmute(classid), ::core::mem::transmute(leaseinfo))
+    Dhcpv6ReleasePrefix(::core::mem::transmute(adaptername), ::core::mem::transmute(classid), ::core::mem::transmute(leaseinfo))
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`*"]
 #[inline]
-pub unsafe fn Dhcpv6RenewPrefix<'a, P0>(adaptername: P0, pclassid: *mut DHCPV6CAPI_CLASSID, prefixleaseinfo: *mut DHCPV6PrefixLeaseInformation, pdwtimetowait: *mut u32, bvalidateprefix: u32) -> u32
-where
-    P0: ::std::convert::Into<::windows::core::PCWSTR>,
-{
+pub unsafe fn Dhcpv6RenewPrefix(adaptername: ::windows::core::PWSTR, pclassid: *mut DHCPV6CAPI_CLASSID, prefixleaseinfo: *mut DHCPV6PrefixLeaseInformation, pdwtimetowait: *mut u32, bvalidateprefix: u32) -> u32 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn Dhcpv6RenewPrefix(adaptername: ::windows::core::PCWSTR, pclassid: *mut DHCPV6CAPI_CLASSID, prefixleaseinfo: *mut DHCPV6PrefixLeaseInformation, pdwtimetowait: *mut u32, bvalidateprefix: u32) -> u32;
+        fn Dhcpv6RenewPrefix(adaptername: ::windows::core::PWSTR, pclassid: *mut DHCPV6CAPI_CLASSID, prefixleaseinfo: *mut DHCPV6PrefixLeaseInformation, pdwtimetowait: *mut u32, bvalidateprefix: u32) -> u32;
     }
-    Dhcpv6RenewPrefix(adaptername.into(), ::core::mem::transmute(pclassid), ::core::mem::transmute(prefixleaseinfo), ::core::mem::transmute(pdwtimetowait), bvalidateprefix)
+    Dhcpv6RenewPrefix(::core::mem::transmute(adaptername), ::core::mem::transmute(pclassid), ::core::mem::transmute(prefixleaseinfo), ::core::mem::transmute(pdwtimetowait), bvalidateprefix)
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`, `\"Win32_Foundation\"`*"]
 #[cfg(feature = "Win32_Foundation")]
 #[inline]
-pub unsafe fn Dhcpv6RequestParams<'a, P0, P1>(forcenewinform: P0, reserved: *mut ::core::ffi::c_void, adaptername: P1, classid: *mut DHCPV6CAPI_CLASSID, recdparams: DHCPV6CAPI_PARAMS_ARRAY, buffer: *mut u8, psize: *mut u32) -> u32
+pub unsafe fn Dhcpv6RequestParams<'a, P0>(forcenewinform: P0, reserved: *mut ::core::ffi::c_void, adaptername: ::windows::core::PWSTR, classid: *mut DHCPV6CAPI_CLASSID, recdparams: DHCPV6CAPI_PARAMS_ARRAY, buffer: *mut u8, psize: *mut u32) -> u32
 where
     P0: ::std::convert::Into<super::super::Foundation::BOOL>,
-    P1: ::std::convert::Into<::windows::core::PCWSTR>,
 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn Dhcpv6RequestParams(forcenewinform: super::super::Foundation::BOOL, reserved: *mut ::core::ffi::c_void, adaptername: ::windows::core::PCWSTR, classid: *mut DHCPV6CAPI_CLASSID, recdparams: DHCPV6CAPI_PARAMS_ARRAY, buffer: *mut u8, psize: *mut u32) -> u32;
+        fn Dhcpv6RequestParams(forcenewinform: super::super::Foundation::BOOL, reserved: *mut ::core::ffi::c_void, adaptername: ::windows::core::PWSTR, classid: *mut DHCPV6CAPI_CLASSID, recdparams: DHCPV6CAPI_PARAMS_ARRAY, buffer: *mut u8, psize: *mut u32) -> u32;
     }
-    Dhcpv6RequestParams(forcenewinform.into(), ::core::mem::transmute(reserved), adaptername.into(), ::core::mem::transmute(classid), ::core::mem::transmute(recdparams), ::core::mem::transmute(buffer), ::core::mem::transmute(psize))
+    Dhcpv6RequestParams(forcenewinform.into(), ::core::mem::transmute(reserved), ::core::mem::transmute(adaptername), ::core::mem::transmute(classid), ::core::mem::transmute(recdparams), ::core::mem::transmute(buffer), ::core::mem::transmute(psize))
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`*"]
 #[inline]
-pub unsafe fn Dhcpv6RequestPrefix<'a, P0>(adaptername: P0, pclassid: *mut DHCPV6CAPI_CLASSID, prefixleaseinfo: *mut DHCPV6PrefixLeaseInformation, pdwtimetowait: *mut u32) -> u32
-where
-    P0: ::std::convert::Into<::windows::core::PCWSTR>,
-{
+pub unsafe fn Dhcpv6RequestPrefix(adaptername: ::windows::core::PWSTR, pclassid: *mut DHCPV6CAPI_CLASSID, prefixleaseinfo: *mut DHCPV6PrefixLeaseInformation, pdwtimetowait: *mut u32) -> u32 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn Dhcpv6RequestPrefix(adaptername: ::windows::core::PCWSTR, pclassid: *mut DHCPV6CAPI_CLASSID, prefixleaseinfo: *mut DHCPV6PrefixLeaseInformation, pdwtimetowait: *mut u32) -> u32;
+        fn Dhcpv6RequestPrefix(adaptername: ::windows::core::PWSTR, pclassid: *mut DHCPV6CAPI_CLASSID, prefixleaseinfo: *mut DHCPV6PrefixLeaseInformation, pdwtimetowait: *mut u32) -> u32;
     }
-    Dhcpv6RequestPrefix(adaptername.into(), ::core::mem::transmute(pclassid), ::core::mem::transmute(prefixleaseinfo), ::core::mem::transmute(pdwtimetowait))
+    Dhcpv6RequestPrefix(::core::mem::transmute(adaptername), ::core::mem::transmute(pclassid), ::core::mem::transmute(prefixleaseinfo), ::core::mem::transmute(pdwtimetowait))
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`*"]
 pub const ADDRESS_TYPE_IANA: u32 = 0u32;
@@ -9272,7 +8938,7 @@ pub type LPDHCP_DELETE_CLIENT = ::core::option::Option<unsafe extern "system" fn
 pub type LPDHCP_DROP_SEND = ::core::option::Option<unsafe extern "system" fn(packet: *mut *mut u8, packetsize: *mut u32, controlcode: u32, ipaddress: u32, reserved: *mut ::core::ffi::c_void, pktcontext: *mut ::core::ffi::c_void) -> u32>;
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`, `\"Win32_Foundation\"`*"]
 #[cfg(feature = "Win32_Foundation")]
-pub type LPDHCP_ENTRY_POINT_FUNC = ::core::option::Option<unsafe extern "system" fn(chaindlls: ::windows::core::PCWSTR, calloutversion: u32, callouttbl: *mut DHCP_CALLOUT_TABLE) -> u32>;
+pub type LPDHCP_ENTRY_POINT_FUNC = ::core::option::Option<unsafe extern "system" fn(chaindlls: ::windows::core::PWSTR, calloutversion: u32, callouttbl: *mut DHCP_CALLOUT_TABLE) -> u32>;
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`*"]
 pub type LPDHCP_GIVE_ADDRESS = ::core::option::Option<unsafe extern "system" fn(packet: *mut u8, packetsize: u32, controlcode: u32, ipaddress: u32, altaddress: u32, addrtype: u32, leasetime: u32, reserved: *mut ::core::ffi::c_void, pktcontext: *mut ::core::ffi::c_void) -> u32>;
 #[doc = "*Required features: `\"Win32_NetworkManagement_Dhcp\"`, `\"Win32_Foundation\"`*"]

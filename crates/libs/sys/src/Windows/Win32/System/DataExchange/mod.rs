@@ -21,19 +21,19 @@ extern "system" {
     #[doc = "*Required features: `\"Win32_System_DataExchange\"`*"]
     pub fn DdeAccessData(hdata: HDDEDATA, pcbdatasize: *mut u32) -> *mut u8;
     #[doc = "*Required features: `\"Win32_System_DataExchange\"`*"]
-    pub fn DdeAddData(hdata: HDDEDATA, psrc: *const u8, cb: u32, cboff: u32) -> HDDEDATA;
+    pub fn DdeAddData(hdata: HDDEDATA, psrc: *mut u8, cb: u32, cboff: u32) -> HDDEDATA;
     #[doc = "*Required features: `\"Win32_System_DataExchange\"`*"]
-    pub fn DdeClientTransaction(pdata: *const u8, cbdata: u32, hconv: HCONV, hszitem: HSZ, wfmt: u32, wtype: DDE_CLIENT_TRANSACTION_TYPE, dwtimeout: u32, pdwresult: *mut u32) -> HDDEDATA;
+    pub fn DdeClientTransaction(pdata: *mut u8, cbdata: u32, hconv: HCONV, hszitem: HSZ, wfmt: u32, wtype: DDE_CLIENT_TRANSACTION_TYPE, dwtimeout: u32, pdwresult: *mut u32) -> HDDEDATA;
     #[doc = "*Required features: `\"Win32_System_DataExchange\"`*"]
     pub fn DdeCmpStringHandles(hsz1: HSZ, hsz2: HSZ) -> i32;
     #[doc = "*Required features: `\"Win32_System_DataExchange\"`, `\"Win32_Foundation\"`, `\"Win32_Security\"`*"]
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_Security"))]
-    pub fn DdeConnect(idinst: u32, hszservice: HSZ, hsztopic: HSZ, pcc: *const CONVCONTEXT) -> HCONV;
+    pub fn DdeConnect(idinst: u32, hszservice: HSZ, hsztopic: HSZ, pcc: *mut CONVCONTEXT) -> HCONV;
     #[doc = "*Required features: `\"Win32_System_DataExchange\"`, `\"Win32_Foundation\"`, `\"Win32_Security\"`*"]
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_Security"))]
-    pub fn DdeConnectList(idinst: u32, hszservice: HSZ, hsztopic: HSZ, hconvlist: HCONVLIST, pcc: *const CONVCONTEXT) -> HCONVLIST;
+    pub fn DdeConnectList(idinst: u32, hszservice: HSZ, hsztopic: HSZ, hconvlist: HCONVLIST, pcc: *mut CONVCONTEXT) -> HCONVLIST;
     #[doc = "*Required features: `\"Win32_System_DataExchange\"`*"]
-    pub fn DdeCreateDataHandle(idinst: u32, psrc: *const u8, cb: u32, cboff: u32, hszitem: HSZ, wfmt: u32, afcmd: u32) -> HDDEDATA;
+    pub fn DdeCreateDataHandle(idinst: u32, psrc: *mut u8, cb: u32, cboff: u32, hszitem: HSZ, wfmt: u32, afcmd: u32) -> HDDEDATA;
     #[doc = "*Required features: `\"Win32_System_DataExchange\"`*"]
     pub fn DdeCreateStringHandleA(idinst: u32, psz: ::windows_sys::core::PCSTR, icodepage: i32) -> HSZ;
     #[doc = "*Required features: `\"Win32_System_DataExchange\"`*"]
@@ -132,7 +132,7 @@ extern "system" {
     #[cfg(feature = "Win32_Foundation")]
     pub fn GetOpenClipboardWindow() -> super::super::Foundation::HWND;
     #[doc = "*Required features: `\"Win32_System_DataExchange\"`*"]
-    pub fn GetPriorityClipboardFormat(paformatprioritylist: *const u32, cformats: i32) -> i32;
+    pub fn GetPriorityClipboardFormat(paformatprioritylist: *mut u32, cformats: i32) -> i32;
     #[doc = "*Required features: `\"Win32_System_DataExchange\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
     pub fn GetUpdatedClipboardFormats(lpuiformats: *mut u32, cformats: u32, pcformatsout: *mut u32) -> super::super::Foundation::BOOL;

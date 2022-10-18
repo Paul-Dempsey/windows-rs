@@ -2,10 +2,10 @@
 extern "system" {
     #[doc = "*Required features: `\"Win32_System_Services\"`, `\"Win32_Foundation\"`, `\"Win32_Security\"`*"]
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_Security"))]
-    pub fn ChangeServiceConfig2A(hservice: super::super::Security::SC_HANDLE, dwinfolevel: SERVICE_CONFIG, lpinfo: *const ::core::ffi::c_void) -> super::super::Foundation::BOOL;
+    pub fn ChangeServiceConfig2A(hservice: super::super::Security::SC_HANDLE, dwinfolevel: SERVICE_CONFIG, lpinfo: *mut ::core::ffi::c_void) -> super::super::Foundation::BOOL;
     #[doc = "*Required features: `\"Win32_System_Services\"`, `\"Win32_Foundation\"`, `\"Win32_Security\"`*"]
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_Security"))]
-    pub fn ChangeServiceConfig2W(hservice: super::super::Security::SC_HANDLE, dwinfolevel: SERVICE_CONFIG, lpinfo: *const ::core::ffi::c_void) -> super::super::Foundation::BOOL;
+    pub fn ChangeServiceConfig2W(hservice: super::super::Security::SC_HANDLE, dwinfolevel: SERVICE_CONFIG, lpinfo: *mut ::core::ffi::c_void) -> super::super::Foundation::BOOL;
     #[doc = "*Required features: `\"Win32_System_Services\"`, `\"Win32_Foundation\"`, `\"Win32_Security\"`*"]
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_Security"))]
     pub fn ChangeServiceConfigA(hservice: super::super::Security::SC_HANDLE, dwservicetype: u32, dwstarttype: SERVICE_START_TYPE, dwerrorcontrol: SERVICE_ERROR, lpbinarypathname: ::windows_sys::core::PCSTR, lploadordergroup: ::windows_sys::core::PCSTR, lpdwtagid: *mut u32, lpdependencies: ::windows_sys::core::PCSTR, lpservicestartname: ::windows_sys::core::PCSTR, lppassword: ::windows_sys::core::PCSTR, lpdisplayname: ::windows_sys::core::PCSTR) -> super::super::Foundation::BOOL;
@@ -82,10 +82,10 @@ extern "system" {
     pub fn NotifyBootConfigStatus(bootacceptable: super::super::Foundation::BOOL) -> super::super::Foundation::BOOL;
     #[doc = "*Required features: `\"Win32_System_Services\"`, `\"Win32_Security\"`*"]
     #[cfg(feature = "Win32_Security")]
-    pub fn NotifyServiceStatusChangeA(hservice: super::super::Security::SC_HANDLE, dwnotifymask: SERVICE_NOTIFY, pnotifybuffer: *const SERVICE_NOTIFY_2A) -> u32;
+    pub fn NotifyServiceStatusChangeA(hservice: super::super::Security::SC_HANDLE, dwnotifymask: SERVICE_NOTIFY, pnotifybuffer: *mut SERVICE_NOTIFY_2A) -> u32;
     #[doc = "*Required features: `\"Win32_System_Services\"`, `\"Win32_Security\"`*"]
     #[cfg(feature = "Win32_Security")]
-    pub fn NotifyServiceStatusChangeW(hservice: super::super::Security::SC_HANDLE, dwnotifymask: SERVICE_NOTIFY, pnotifybuffer: *const SERVICE_NOTIFY_2W) -> u32;
+    pub fn NotifyServiceStatusChangeW(hservice: super::super::Security::SC_HANDLE, dwnotifymask: SERVICE_NOTIFY, pnotifybuffer: *mut SERVICE_NOTIFY_2W) -> u32;
     #[doc = "*Required features: `\"Win32_System_Services\"`, `\"Win32_Security\"`*"]
     #[cfg(feature = "Win32_Security")]
     pub fn OpenSCManagerA(lpmachinename: ::windows_sys::core::PCSTR, lpdatabasename: ::windows_sys::core::PCSTR, dwdesiredaccess: u32) -> super::super::Security::SC_HANDLE;
@@ -131,9 +131,9 @@ extern "system" {
     #[doc = "*Required features: `\"Win32_System_Services\"`*"]
     pub fn RegisterServiceCtrlHandlerA(lpservicename: ::windows_sys::core::PCSTR, lphandlerproc: LPHANDLER_FUNCTION) -> SERVICE_STATUS_HANDLE;
     #[doc = "*Required features: `\"Win32_System_Services\"`*"]
-    pub fn RegisterServiceCtrlHandlerExA(lpservicename: ::windows_sys::core::PCSTR, lphandlerproc: LPHANDLER_FUNCTION_EX, lpcontext: *const ::core::ffi::c_void) -> SERVICE_STATUS_HANDLE;
+    pub fn RegisterServiceCtrlHandlerExA(lpservicename: ::windows_sys::core::PCSTR, lphandlerproc: LPHANDLER_FUNCTION_EX, lpcontext: *mut ::core::ffi::c_void) -> SERVICE_STATUS_HANDLE;
     #[doc = "*Required features: `\"Win32_System_Services\"`*"]
-    pub fn RegisterServiceCtrlHandlerExW(lpservicename: ::windows_sys::core::PCWSTR, lphandlerproc: LPHANDLER_FUNCTION_EX, lpcontext: *const ::core::ffi::c_void) -> SERVICE_STATUS_HANDLE;
+    pub fn RegisterServiceCtrlHandlerExW(lpservicename: ::windows_sys::core::PCWSTR, lphandlerproc: LPHANDLER_FUNCTION_EX, lpcontext: *mut ::core::ffi::c_void) -> SERVICE_STATUS_HANDLE;
     #[doc = "*Required features: `\"Win32_System_Services\"`*"]
     pub fn RegisterServiceCtrlHandlerW(lpservicename: ::windows_sys::core::PCWSTR, lphandlerproc: LPHANDLER_FUNCTION) -> SERVICE_STATUS_HANDLE;
     #[doc = "*Required features: `\"Win32_System_Services\"`, `\"Win32_Foundation\"`*"]
@@ -144,10 +144,10 @@ extern "system" {
     pub fn SetServiceObjectSecurity(hservice: super::super::Security::SC_HANDLE, dwsecurityinformation: super::super::Security::OBJECT_SECURITY_INFORMATION, lpsecuritydescriptor: super::super::Security::PSECURITY_DESCRIPTOR) -> super::super::Foundation::BOOL;
     #[doc = "*Required features: `\"Win32_System_Services\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub fn SetServiceStatus(hservicestatus: SERVICE_STATUS_HANDLE, lpservicestatus: *const SERVICE_STATUS) -> super::super::Foundation::BOOL;
+    pub fn SetServiceStatus(hservicestatus: SERVICE_STATUS_HANDLE, lpservicestatus: *mut SERVICE_STATUS) -> super::super::Foundation::BOOL;
     #[doc = "*Required features: `\"Win32_System_Services\"`, `\"Win32_Foundation\"`, `\"Win32_Security\"`*"]
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_Security"))]
-    pub fn StartServiceA(hservice: super::super::Security::SC_HANDLE, dwnumserviceargs: u32, lpserviceargvectors: *const ::windows_sys::core::PSTR) -> super::super::Foundation::BOOL;
+    pub fn StartServiceA(hservice: super::super::Security::SC_HANDLE, dwnumserviceargs: u32, lpserviceargvectors: *mut ::windows_sys::core::PSTR) -> super::super::Foundation::BOOL;
     #[doc = "*Required features: `\"Win32_System_Services\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
     pub fn StartServiceCtrlDispatcherA(lpservicestarttable: *const SERVICE_TABLE_ENTRYA) -> super::super::Foundation::BOOL;
@@ -156,10 +156,10 @@ extern "system" {
     pub fn StartServiceCtrlDispatcherW(lpservicestarttable: *const SERVICE_TABLE_ENTRYW) -> super::super::Foundation::BOOL;
     #[doc = "*Required features: `\"Win32_System_Services\"`, `\"Win32_Foundation\"`, `\"Win32_Security\"`*"]
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_Security"))]
-    pub fn StartServiceW(hservice: super::super::Security::SC_HANDLE, dwnumserviceargs: u32, lpserviceargvectors: *const ::windows_sys::core::PWSTR) -> super::super::Foundation::BOOL;
+    pub fn StartServiceW(hservice: super::super::Security::SC_HANDLE, dwnumserviceargs: u32, lpserviceargvectors: *mut ::windows_sys::core::PWSTR) -> super::super::Foundation::BOOL;
     #[doc = "*Required features: `\"Win32_System_Services\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub fn UnlockServiceDatabase(sclock: *const ::core::ffi::c_void) -> super::super::Foundation::BOOL;
+    pub fn UnlockServiceDatabase(sclock: *mut ::core::ffi::c_void) -> super::super::Foundation::BOOL;
     #[doc = "*Required features: `\"Win32_System_Services\"`, `\"Win32_Foundation\"`, `\"Win32_Security\"`*"]
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_Security"))]
     pub fn WaitServiceState(hservice: super::super::Security::SC_HANDLE, dwnotify: u32, dwtimeout: u32, hcancelevent: super::super::Foundation::HANDLE) -> u32;
@@ -1156,9 +1156,9 @@ pub type LPSERVICE_MAIN_FUNCTIONA = ::core::option::Option<unsafe extern "system
 #[doc = "*Required features: `\"Win32_System_Services\"`*"]
 pub type LPSERVICE_MAIN_FUNCTIONW = ::core::option::Option<unsafe extern "system" fn(dwnumservicesargs: u32, lpserviceargvectors: *mut ::windows_sys::core::PWSTR)>;
 #[doc = "*Required features: `\"Win32_System_Services\"`*"]
-pub type PFN_SC_NOTIFY_CALLBACK = ::core::option::Option<unsafe extern "system" fn(pparameter: *const ::core::ffi::c_void)>;
+pub type PFN_SC_NOTIFY_CALLBACK = ::core::option::Option<unsafe extern "system" fn(pparameter: *mut ::core::ffi::c_void)>;
 #[doc = "*Required features: `\"Win32_System_Services\"`*"]
-pub type PSC_NOTIFICATION_CALLBACK = ::core::option::Option<unsafe extern "system" fn(dwnotify: u32, pcallbackcontext: *const ::core::ffi::c_void)>;
+pub type PSC_NOTIFICATION_CALLBACK = ::core::option::Option<unsafe extern "system" fn(dwnotify: u32, pcallbackcontext: *mut ::core::ffi::c_void)>;
 #[doc = "*Required features: `\"Win32_System_Services\"`*"]
 pub type SERVICE_MAIN_FUNCTIONA = ::core::option::Option<unsafe extern "system" fn(dwnumservicesargs: u32, lpserviceargvectors: *mut *mut i8)>;
 #[doc = "*Required features: `\"Win32_System_Services\"`*"]

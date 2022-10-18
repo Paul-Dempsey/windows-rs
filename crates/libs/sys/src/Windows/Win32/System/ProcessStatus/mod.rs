@@ -22,19 +22,19 @@ extern "system" {
     #[cfg(feature = "Win32_Foundation")]
     pub fn K32EnumProcesses(lpidprocess: *mut u32, cb: u32, lpcbneeded: *mut u32) -> super::super::Foundation::BOOL;
     #[doc = "*Required features: `\"Win32_System_ProcessStatus\"`*"]
-    pub fn K32GetDeviceDriverBaseNameA(imagebase: *const ::core::ffi::c_void, lpfilename: ::windows_sys::core::PSTR, nsize: u32) -> u32;
+    pub fn K32GetDeviceDriverBaseNameA(imagebase: *mut ::core::ffi::c_void, lpfilename: ::windows_sys::core::PSTR, nsize: u32) -> u32;
     #[doc = "*Required features: `\"Win32_System_ProcessStatus\"`*"]
-    pub fn K32GetDeviceDriverBaseNameW(imagebase: *const ::core::ffi::c_void, lpbasename: ::windows_sys::core::PWSTR, nsize: u32) -> u32;
+    pub fn K32GetDeviceDriverBaseNameW(imagebase: *mut ::core::ffi::c_void, lpbasename: ::windows_sys::core::PWSTR, nsize: u32) -> u32;
     #[doc = "*Required features: `\"Win32_System_ProcessStatus\"`*"]
-    pub fn K32GetDeviceDriverFileNameA(imagebase: *const ::core::ffi::c_void, lpfilename: ::windows_sys::core::PSTR, nsize: u32) -> u32;
+    pub fn K32GetDeviceDriverFileNameA(imagebase: *mut ::core::ffi::c_void, lpfilename: ::windows_sys::core::PSTR, nsize: u32) -> u32;
     #[doc = "*Required features: `\"Win32_System_ProcessStatus\"`*"]
-    pub fn K32GetDeviceDriverFileNameW(imagebase: *const ::core::ffi::c_void, lpfilename: ::windows_sys::core::PWSTR, nsize: u32) -> u32;
+    pub fn K32GetDeviceDriverFileNameW(imagebase: *mut ::core::ffi::c_void, lpfilename: ::windows_sys::core::PWSTR, nsize: u32) -> u32;
     #[doc = "*Required features: `\"Win32_System_ProcessStatus\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub fn K32GetMappedFileNameA(hprocess: super::super::Foundation::HANDLE, lpv: *const ::core::ffi::c_void, lpfilename: ::windows_sys::core::PSTR, nsize: u32) -> u32;
+    pub fn K32GetMappedFileNameA(hprocess: super::super::Foundation::HANDLE, lpv: *mut ::core::ffi::c_void, lpfilename: ::windows_sys::core::PSTR, nsize: u32) -> u32;
     #[doc = "*Required features: `\"Win32_System_ProcessStatus\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub fn K32GetMappedFileNameW(hprocess: super::super::Foundation::HANDLE, lpv: *const ::core::ffi::c_void, lpfilename: ::windows_sys::core::PWSTR, nsize: u32) -> u32;
+    pub fn K32GetMappedFileNameW(hprocess: super::super::Foundation::HANDLE, lpv: *mut ::core::ffi::c_void, lpfilename: ::windows_sys::core::PWSTR, nsize: u32) -> u32;
     #[doc = "*Required features: `\"Win32_System_ProcessStatus\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
     pub fn K32GetModuleBaseNameA(hprocess: super::super::Foundation::HANDLE, hmodule: super::super::Foundation::HINSTANCE, lpbasename: ::windows_sys::core::PSTR, nsize: u32) -> u32;

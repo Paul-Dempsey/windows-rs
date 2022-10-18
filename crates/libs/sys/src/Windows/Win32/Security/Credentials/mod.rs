@@ -19,7 +19,7 @@ extern "system" {
     #[cfg(feature = "Win32_Foundation")]
     pub fn CredFindBestCredentialW(targetname: ::windows_sys::core::PCWSTR, r#type: u32, flags: u32, credential: *mut *mut CREDENTIALW) -> super::super::Foundation::BOOL;
     #[doc = "*Required features: `\"Win32_Security_Credentials\"`*"]
-    pub fn CredFree(buffer: *const ::core::ffi::c_void);
+    pub fn CredFree(buffer: *mut ::core::ffi::c_void);
     #[doc = "*Required features: `\"Win32_Security_Credentials\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
     pub fn CredGetSessionTypes(maximumpersistcount: u32, maximumpersist: *mut u32) -> super::super::Foundation::BOOL;
@@ -37,37 +37,37 @@ extern "system" {
     pub fn CredIsMarshaledCredentialW(marshaledcredential: ::windows_sys::core::PCWSTR) -> super::super::Foundation::BOOL;
     #[doc = "*Required features: `\"Win32_Security_Credentials\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub fn CredIsProtectedA(pszprotectedcredentials: ::windows_sys::core::PCSTR, pprotectiontype: *mut CRED_PROTECTION_TYPE) -> super::super::Foundation::BOOL;
+    pub fn CredIsProtectedA(pszprotectedcredentials: ::windows_sys::core::PSTR, pprotectiontype: *mut CRED_PROTECTION_TYPE) -> super::super::Foundation::BOOL;
     #[doc = "*Required features: `\"Win32_Security_Credentials\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub fn CredIsProtectedW(pszprotectedcredentials: ::windows_sys::core::PCWSTR, pprotectiontype: *mut CRED_PROTECTION_TYPE) -> super::super::Foundation::BOOL;
+    pub fn CredIsProtectedW(pszprotectedcredentials: ::windows_sys::core::PWSTR, pprotectiontype: *mut CRED_PROTECTION_TYPE) -> super::super::Foundation::BOOL;
     #[doc = "*Required features: `\"Win32_Security_Credentials\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub fn CredMarshalCredentialA(credtype: CRED_MARSHAL_TYPE, credential: *const ::core::ffi::c_void, marshaledcredential: *mut ::windows_sys::core::PSTR) -> super::super::Foundation::BOOL;
+    pub fn CredMarshalCredentialA(credtype: CRED_MARSHAL_TYPE, credential: *mut ::core::ffi::c_void, marshaledcredential: *mut ::windows_sys::core::PSTR) -> super::super::Foundation::BOOL;
     #[doc = "*Required features: `\"Win32_Security_Credentials\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub fn CredMarshalCredentialW(credtype: CRED_MARSHAL_TYPE, credential: *const ::core::ffi::c_void, marshaledcredential: *mut ::windows_sys::core::PWSTR) -> super::super::Foundation::BOOL;
+    pub fn CredMarshalCredentialW(credtype: CRED_MARSHAL_TYPE, credential: *mut ::core::ffi::c_void, marshaledcredential: *mut ::windows_sys::core::PWSTR) -> super::super::Foundation::BOOL;
     #[doc = "*Required features: `\"Win32_Security_Credentials\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub fn CredPackAuthenticationBufferA(dwflags: CRED_PACK_FLAGS, pszusername: ::windows_sys::core::PCSTR, pszpassword: ::windows_sys::core::PCSTR, ppackedcredentials: *mut u8, pcbpackedcredentials: *mut u32) -> super::super::Foundation::BOOL;
+    pub fn CredPackAuthenticationBufferA(dwflags: CRED_PACK_FLAGS, pszusername: ::windows_sys::core::PSTR, pszpassword: ::windows_sys::core::PSTR, ppackedcredentials: *mut u8, pcbpackedcredentials: *mut u32) -> super::super::Foundation::BOOL;
     #[doc = "*Required features: `\"Win32_Security_Credentials\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub fn CredPackAuthenticationBufferW(dwflags: CRED_PACK_FLAGS, pszusername: ::windows_sys::core::PCWSTR, pszpassword: ::windows_sys::core::PCWSTR, ppackedcredentials: *mut u8, pcbpackedcredentials: *mut u32) -> super::super::Foundation::BOOL;
+    pub fn CredPackAuthenticationBufferW(dwflags: CRED_PACK_FLAGS, pszusername: ::windows_sys::core::PWSTR, pszpassword: ::windows_sys::core::PWSTR, ppackedcredentials: *mut u8, pcbpackedcredentials: *mut u32) -> super::super::Foundation::BOOL;
     #[doc = "*Required features: `\"Win32_Security_Credentials\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub fn CredProtectA(fasself: super::super::Foundation::BOOL, pszcredentials: ::windows_sys::core::PCSTR, cchcredentials: u32, pszprotectedcredentials: ::windows_sys::core::PSTR, pcchmaxchars: *mut u32, protectiontype: *mut CRED_PROTECTION_TYPE) -> super::super::Foundation::BOOL;
+    pub fn CredProtectA(fasself: super::super::Foundation::BOOL, pszcredentials: ::windows_sys::core::PSTR, cchcredentials: u32, pszprotectedcredentials: ::windows_sys::core::PSTR, pcchmaxchars: *mut u32, protectiontype: *mut CRED_PROTECTION_TYPE) -> super::super::Foundation::BOOL;
     #[doc = "*Required features: `\"Win32_Security_Credentials\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub fn CredProtectW(fasself: super::super::Foundation::BOOL, pszcredentials: ::windows_sys::core::PCWSTR, cchcredentials: u32, pszprotectedcredentials: ::windows_sys::core::PWSTR, pcchmaxchars: *mut u32, protectiontype: *mut CRED_PROTECTION_TYPE) -> super::super::Foundation::BOOL;
+    pub fn CredProtectW(fasself: super::super::Foundation::BOOL, pszcredentials: ::windows_sys::core::PWSTR, cchcredentials: u32, pszprotectedcredentials: ::windows_sys::core::PWSTR, pcchmaxchars: *mut u32, protectiontype: *mut CRED_PROTECTION_TYPE) -> super::super::Foundation::BOOL;
     #[doc = "*Required features: `\"Win32_Security_Credentials\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
     pub fn CredReadA(targetname: ::windows_sys::core::PCSTR, r#type: u32, flags: u32, credential: *mut *mut CREDENTIALA) -> super::super::Foundation::BOOL;
     #[doc = "*Required features: `\"Win32_Security_Credentials\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub fn CredReadDomainCredentialsA(targetinfo: *const CREDENTIAL_TARGET_INFORMATIONA, flags: u32, count: *mut u32, credential: *mut *mut *mut CREDENTIALA) -> super::super::Foundation::BOOL;
+    pub fn CredReadDomainCredentialsA(targetinfo: *mut CREDENTIAL_TARGET_INFORMATIONA, flags: u32, count: *mut u32, credential: *mut *mut *mut CREDENTIALA) -> super::super::Foundation::BOOL;
     #[doc = "*Required features: `\"Win32_Security_Credentials\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub fn CredReadDomainCredentialsW(targetinfo: *const CREDENTIAL_TARGET_INFORMATIONW, flags: u32, count: *mut u32, credential: *mut *mut *mut CREDENTIALW) -> super::super::Foundation::BOOL;
+    pub fn CredReadDomainCredentialsW(targetinfo: *mut CREDENTIAL_TARGET_INFORMATIONW, flags: u32, count: *mut u32, credential: *mut *mut *mut CREDENTIALW) -> super::super::Foundation::BOOL;
     #[doc = "*Required features: `\"Win32_Security_Credentials\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
     pub fn CredReadW(targetname: ::windows_sys::core::PCWSTR, r#type: u32, flags: u32, credential: *mut *mut CREDENTIALW) -> super::super::Foundation::BOOL;
@@ -95,16 +95,16 @@ extern "system" {
     pub fn CredUIParseUserNameW(username: ::windows_sys::core::PCWSTR, user: ::windows_sys::core::PWSTR, userbuffersize: u32, domain: ::windows_sys::core::PWSTR, domainbuffersize: u32) -> u32;
     #[doc = "*Required features: `\"Win32_Security_Credentials\"`, `\"Win32_Foundation\"`, `\"Win32_Graphics_Gdi\"`*"]
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_Graphics_Gdi"))]
-    pub fn CredUIPromptForCredentialsA(puiinfo: *const CREDUI_INFOA, psztargetname: ::windows_sys::core::PCSTR, pcontext: *mut SecHandle, dwautherror: u32, pszusername: ::windows_sys::core::PSTR, ulusernamebuffersize: u32, pszpassword: ::windows_sys::core::PSTR, ulpasswordbuffersize: u32, save: *mut super::super::Foundation::BOOL, dwflags: CREDUI_FLAGS) -> u32;
+    pub fn CredUIPromptForCredentialsA(puiinfo: *mut CREDUI_INFOA, psztargetname: ::windows_sys::core::PCSTR, pcontext: *mut SecHandle, dwautherror: u32, pszusername: ::windows_sys::core::PSTR, ulusernamebuffersize: u32, pszpassword: ::windows_sys::core::PSTR, ulpasswordbuffersize: u32, save: *mut super::super::Foundation::BOOL, dwflags: CREDUI_FLAGS) -> u32;
     #[doc = "*Required features: `\"Win32_Security_Credentials\"`, `\"Win32_Foundation\"`, `\"Win32_Graphics_Gdi\"`*"]
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_Graphics_Gdi"))]
-    pub fn CredUIPromptForCredentialsW(puiinfo: *const CREDUI_INFOW, psztargetname: ::windows_sys::core::PCWSTR, pcontext: *mut SecHandle, dwautherror: u32, pszusername: ::windows_sys::core::PWSTR, ulusernamebuffersize: u32, pszpassword: ::windows_sys::core::PWSTR, ulpasswordbuffersize: u32, save: *mut super::super::Foundation::BOOL, dwflags: CREDUI_FLAGS) -> u32;
+    pub fn CredUIPromptForCredentialsW(puiinfo: *mut CREDUI_INFOW, psztargetname: ::windows_sys::core::PCWSTR, pcontext: *mut SecHandle, dwautherror: u32, pszusername: ::windows_sys::core::PWSTR, ulusernamebuffersize: u32, pszpassword: ::windows_sys::core::PWSTR, ulpasswordbuffersize: u32, save: *mut super::super::Foundation::BOOL, dwflags: CREDUI_FLAGS) -> u32;
     #[doc = "*Required features: `\"Win32_Security_Credentials\"`, `\"Win32_Foundation\"`, `\"Win32_Graphics_Gdi\"`*"]
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_Graphics_Gdi"))]
-    pub fn CredUIPromptForWindowsCredentialsA(puiinfo: *const CREDUI_INFOA, dwautherror: u32, pulauthpackage: *mut u32, pvinauthbuffer: *const ::core::ffi::c_void, ulinauthbuffersize: u32, ppvoutauthbuffer: *mut *mut ::core::ffi::c_void, puloutauthbuffersize: *mut u32, pfsave: *mut super::super::Foundation::BOOL, dwflags: CREDUIWIN_FLAGS) -> u32;
+    pub fn CredUIPromptForWindowsCredentialsA(puiinfo: *mut CREDUI_INFOA, dwautherror: u32, pulauthpackage: *mut u32, pvinauthbuffer: *const ::core::ffi::c_void, ulinauthbuffersize: u32, ppvoutauthbuffer: *mut *mut ::core::ffi::c_void, puloutauthbuffersize: *mut u32, pfsave: *mut super::super::Foundation::BOOL, dwflags: CREDUIWIN_FLAGS) -> u32;
     #[doc = "*Required features: `\"Win32_Security_Credentials\"`, `\"Win32_Foundation\"`, `\"Win32_Graphics_Gdi\"`*"]
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_Graphics_Gdi"))]
-    pub fn CredUIPromptForWindowsCredentialsW(puiinfo: *const CREDUI_INFOW, dwautherror: u32, pulauthpackage: *mut u32, pvinauthbuffer: *const ::core::ffi::c_void, ulinauthbuffersize: u32, ppvoutauthbuffer: *mut *mut ::core::ffi::c_void, puloutauthbuffersize: *mut u32, pfsave: *mut super::super::Foundation::BOOL, dwflags: CREDUIWIN_FLAGS) -> u32;
+    pub fn CredUIPromptForWindowsCredentialsW(puiinfo: *mut CREDUI_INFOW, dwautherror: u32, pulauthpackage: *mut u32, pvinauthbuffer: *const ::core::ffi::c_void, ulinauthbuffersize: u32, ppvoutauthbuffer: *mut *mut ::core::ffi::c_void, puloutauthbuffersize: *mut u32, pfsave: *mut super::super::Foundation::BOOL, dwflags: CREDUIWIN_FLAGS) -> u32;
     #[doc = "*Required features: `\"Win32_Security_Credentials\"`*"]
     pub fn CredUIReadSSOCredW(pszrealm: ::windows_sys::core::PCWSTR, ppszusername: *mut ::windows_sys::core::PWSTR) -> u32;
     #[doc = "*Required features: `\"Win32_Security_Credentials\"`, `\"Win32_Foundation\"`*"]
@@ -112,10 +112,10 @@ extern "system" {
     pub fn CredUIStoreSSOCredW(pszrealm: ::windows_sys::core::PCWSTR, pszusername: ::windows_sys::core::PCWSTR, pszpassword: ::windows_sys::core::PCWSTR, bpersist: super::super::Foundation::BOOL) -> u32;
     #[doc = "*Required features: `\"Win32_Security_Credentials\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub fn CredUnPackAuthenticationBufferA(dwflags: CRED_PACK_FLAGS, pauthbuffer: *const ::core::ffi::c_void, cbauthbuffer: u32, pszusername: ::windows_sys::core::PSTR, pcchlmaxusername: *mut u32, pszdomainname: ::windows_sys::core::PSTR, pcchmaxdomainname: *mut u32, pszpassword: ::windows_sys::core::PSTR, pcchmaxpassword: *mut u32) -> super::super::Foundation::BOOL;
+    pub fn CredUnPackAuthenticationBufferA(dwflags: CRED_PACK_FLAGS, pauthbuffer: *mut ::core::ffi::c_void, cbauthbuffer: u32, pszusername: ::windows_sys::core::PSTR, pcchlmaxusername: *mut u32, pszdomainname: ::windows_sys::core::PSTR, pcchmaxdomainname: *mut u32, pszpassword: ::windows_sys::core::PSTR, pcchmaxpassword: *mut u32) -> super::super::Foundation::BOOL;
     #[doc = "*Required features: `\"Win32_Security_Credentials\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub fn CredUnPackAuthenticationBufferW(dwflags: CRED_PACK_FLAGS, pauthbuffer: *const ::core::ffi::c_void, cbauthbuffer: u32, pszusername: ::windows_sys::core::PWSTR, pcchmaxusername: *mut u32, pszdomainname: ::windows_sys::core::PWSTR, pcchmaxdomainname: *mut u32, pszpassword: ::windows_sys::core::PWSTR, pcchmaxpassword: *mut u32) -> super::super::Foundation::BOOL;
+    pub fn CredUnPackAuthenticationBufferW(dwflags: CRED_PACK_FLAGS, pauthbuffer: *mut ::core::ffi::c_void, cbauthbuffer: u32, pszusername: ::windows_sys::core::PWSTR, pcchmaxusername: *mut u32, pszdomainname: ::windows_sys::core::PWSTR, pcchmaxdomainname: *mut u32, pszpassword: ::windows_sys::core::PWSTR, pcchmaxpassword: *mut u32) -> super::super::Foundation::BOOL;
     #[doc = "*Required features: `\"Win32_Security_Credentials\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
     pub fn CredUnmarshalCredentialA(marshaledcredential: ::windows_sys::core::PCSTR, credtype: *mut CRED_MARSHAL_TYPE, credential: *mut *mut ::core::ffi::c_void) -> super::super::Foundation::BOOL;
@@ -124,22 +124,22 @@ extern "system" {
     pub fn CredUnmarshalCredentialW(marshaledcredential: ::windows_sys::core::PCWSTR, credtype: *mut CRED_MARSHAL_TYPE, credential: *mut *mut ::core::ffi::c_void) -> super::super::Foundation::BOOL;
     #[doc = "*Required features: `\"Win32_Security_Credentials\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub fn CredUnprotectA(fasself: super::super::Foundation::BOOL, pszprotectedcredentials: ::windows_sys::core::PCSTR, cchprotectedcredentials: u32, pszcredentials: ::windows_sys::core::PSTR, pcchmaxchars: *mut u32) -> super::super::Foundation::BOOL;
+    pub fn CredUnprotectA(fasself: super::super::Foundation::BOOL, pszprotectedcredentials: ::windows_sys::core::PSTR, cchprotectedcredentials: u32, pszcredentials: ::windows_sys::core::PSTR, pcchmaxchars: *mut u32) -> super::super::Foundation::BOOL;
     #[doc = "*Required features: `\"Win32_Security_Credentials\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub fn CredUnprotectW(fasself: super::super::Foundation::BOOL, pszprotectedcredentials: ::windows_sys::core::PCWSTR, cchprotectedcredentials: u32, pszcredentials: ::windows_sys::core::PWSTR, pcchmaxchars: *mut u32) -> super::super::Foundation::BOOL;
+    pub fn CredUnprotectW(fasself: super::super::Foundation::BOOL, pszprotectedcredentials: ::windows_sys::core::PWSTR, cchprotectedcredentials: u32, pszcredentials: ::windows_sys::core::PWSTR, pcchmaxchars: *mut u32) -> super::super::Foundation::BOOL;
     #[doc = "*Required features: `\"Win32_Security_Credentials\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub fn CredWriteA(credential: *const CREDENTIALA, flags: u32) -> super::super::Foundation::BOOL;
+    pub fn CredWriteA(credential: *mut CREDENTIALA, flags: u32) -> super::super::Foundation::BOOL;
     #[doc = "*Required features: `\"Win32_Security_Credentials\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub fn CredWriteDomainCredentialsA(targetinfo: *const CREDENTIAL_TARGET_INFORMATIONA, credential: *const CREDENTIALA, flags: u32) -> super::super::Foundation::BOOL;
+    pub fn CredWriteDomainCredentialsA(targetinfo: *mut CREDENTIAL_TARGET_INFORMATIONA, credential: *mut CREDENTIALA, flags: u32) -> super::super::Foundation::BOOL;
     #[doc = "*Required features: `\"Win32_Security_Credentials\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub fn CredWriteDomainCredentialsW(targetinfo: *const CREDENTIAL_TARGET_INFORMATIONW, credential: *const CREDENTIALW, flags: u32) -> super::super::Foundation::BOOL;
+    pub fn CredWriteDomainCredentialsW(targetinfo: *mut CREDENTIAL_TARGET_INFORMATIONW, credential: *mut CREDENTIALW, flags: u32) -> super::super::Foundation::BOOL;
     #[doc = "*Required features: `\"Win32_Security_Credentials\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub fn CredWriteW(credential: *const CREDENTIALW, flags: u32) -> super::super::Foundation::BOOL;
+    pub fn CredWriteW(credential: *mut CREDENTIALW, flags: u32) -> super::super::Foundation::BOOL;
     #[doc = "*Required features: `\"Win32_Security_Credentials\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
     pub fn GetOpenCardNameA(param0: *mut OPENCARDNAMEA) -> i32;
@@ -147,7 +147,7 @@ extern "system" {
     #[cfg(feature = "Win32_Foundation")]
     pub fn GetOpenCardNameW(param0: *mut OPENCARDNAMEW) -> i32;
     #[doc = "*Required features: `\"Win32_Security_Credentials\"`*"]
-    pub fn KeyCredentialManagerFreeInformation(keycredentialmanagerinfo: *const KeyCredentialManagerInfo);
+    pub fn KeyCredentialManagerFreeInformation(keycredentialmanagerinfo: *mut KeyCredentialManagerInfo);
     #[doc = "*Required features: `\"Win32_Security_Credentials\"`*"]
     pub fn KeyCredentialManagerGetInformation(keycredentialmanagerinfo: *mut *mut KeyCredentialManagerInfo) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_Security_Credentials\"`, `\"Win32_Foundation\"`*"]
@@ -226,9 +226,9 @@ extern "system" {
     #[doc = "*Required features: `\"Win32_Security_Credentials\"`*"]
     pub fn SCardGetTransmitCount(hcard: usize, pctransmitcount: *mut u32) -> i32;
     #[doc = "*Required features: `\"Win32_Security_Credentials\"`*"]
-    pub fn SCardIntroduceCardTypeA(hcontext: usize, szcardname: ::windows_sys::core::PCSTR, pguidprimaryprovider: *const ::windows_sys::core::GUID, rgguidinterfaces: *const ::windows_sys::core::GUID, dwinterfacecount: u32, pbatr: *const u8, pbatrmask: *const u8, cbatrlen: u32) -> i32;
+    pub fn SCardIntroduceCardTypeA(hcontext: usize, szcardname: ::windows_sys::core::PCSTR, pguidprimaryprovider: *const ::windows_sys::core::GUID, rgguidinterfaces: *const ::windows_sys::core::GUID, dwinterfacecount: u32, pbatr: *mut u8, pbatrmask: *mut u8, cbatrlen: u32) -> i32;
     #[doc = "*Required features: `\"Win32_Security_Credentials\"`*"]
-    pub fn SCardIntroduceCardTypeW(hcontext: usize, szcardname: ::windows_sys::core::PCWSTR, pguidprimaryprovider: *const ::windows_sys::core::GUID, rgguidinterfaces: *const ::windows_sys::core::GUID, dwinterfacecount: u32, pbatr: *const u8, pbatrmask: *const u8, cbatrlen: u32) -> i32;
+    pub fn SCardIntroduceCardTypeW(hcontext: usize, szcardname: ::windows_sys::core::PCWSTR, pguidprimaryprovider: *const ::windows_sys::core::GUID, rgguidinterfaces: *const ::windows_sys::core::GUID, dwinterfacecount: u32, pbatr: *mut u8, pbatrmask: *mut u8, cbatrlen: u32) -> i32;
     #[doc = "*Required features: `\"Win32_Security_Credentials\"`*"]
     pub fn SCardIntroduceReaderA(hcontext: usize, szreadername: ::windows_sys::core::PCSTR, szdevicename: ::windows_sys::core::PCSTR) -> i32;
     #[doc = "*Required features: `\"Win32_Security_Credentials\"`*"]
@@ -240,9 +240,9 @@ extern "system" {
     #[doc = "*Required features: `\"Win32_Security_Credentials\"`*"]
     pub fn SCardIsValidContext(hcontext: usize) -> i32;
     #[doc = "*Required features: `\"Win32_Security_Credentials\"`*"]
-    pub fn SCardListCardsA(hcontext: usize, pbatr: *const u8, rgquidinterfaces: *const ::windows_sys::core::GUID, cguidinterfacecount: u32, mszcards: ::windows_sys::core::PSTR, pcchcards: *mut u32) -> i32;
+    pub fn SCardListCardsA(hcontext: usize, pbatr: *mut u8, rgquidinterfaces: *const ::windows_sys::core::GUID, cguidinterfacecount: u32, mszcards: ::windows_sys::core::PSTR, pcchcards: *mut u32) -> i32;
     #[doc = "*Required features: `\"Win32_Security_Credentials\"`*"]
-    pub fn SCardListCardsW(hcontext: usize, pbatr: *const u8, rgquidinterfaces: *const ::windows_sys::core::GUID, cguidinterfacecount: u32, mszcards: ::windows_sys::core::PWSTR, pcchcards: *mut u32) -> i32;
+    pub fn SCardListCardsW(hcontext: usize, pbatr: *mut u8, rgquidinterfaces: *const ::windows_sys::core::GUID, cguidinterfacecount: u32, mszcards: ::windows_sys::core::PWSTR, pcchcards: *mut u32) -> i32;
     #[doc = "*Required features: `\"Win32_Security_Credentials\"`*"]
     pub fn SCardListInterfacesA(hcontext: usize, szcard: ::windows_sys::core::PCSTR, pguidinterfaces: *mut ::windows_sys::core::GUID, pcguidinterfaces: *mut u32) -> i32;
     #[doc = "*Required features: `\"Win32_Security_Credentials\"`*"]
@@ -262,15 +262,15 @@ extern "system" {
     #[doc = "*Required features: `\"Win32_Security_Credentials\"`*"]
     pub fn SCardLocateCardsA(hcontext: usize, mszcards: ::windows_sys::core::PCSTR, rgreaderstates: *mut SCARD_READERSTATEA, creaders: u32) -> i32;
     #[doc = "*Required features: `\"Win32_Security_Credentials\"`*"]
-    pub fn SCardLocateCardsByATRA(hcontext: usize, rgatrmasks: *const SCARD_ATRMASK, catrs: u32, rgreaderstates: *mut SCARD_READERSTATEA, creaders: u32) -> i32;
+    pub fn SCardLocateCardsByATRA(hcontext: usize, rgatrmasks: *mut SCARD_ATRMASK, catrs: u32, rgreaderstates: *mut SCARD_READERSTATEA, creaders: u32) -> i32;
     #[doc = "*Required features: `\"Win32_Security_Credentials\"`*"]
-    pub fn SCardLocateCardsByATRW(hcontext: usize, rgatrmasks: *const SCARD_ATRMASK, catrs: u32, rgreaderstates: *mut SCARD_READERSTATEW, creaders: u32) -> i32;
+    pub fn SCardLocateCardsByATRW(hcontext: usize, rgatrmasks: *mut SCARD_ATRMASK, catrs: u32, rgreaderstates: *mut SCARD_READERSTATEW, creaders: u32) -> i32;
     #[doc = "*Required features: `\"Win32_Security_Credentials\"`*"]
     pub fn SCardLocateCardsW(hcontext: usize, mszcards: ::windows_sys::core::PCWSTR, rgreaderstates: *mut SCARD_READERSTATEW, creaders: u32) -> i32;
     #[doc = "*Required features: `\"Win32_Security_Credentials\"`*"]
-    pub fn SCardReadCacheA(hcontext: usize, cardidentifier: *const ::windows_sys::core::GUID, freshnesscounter: u32, lookupname: ::windows_sys::core::PCSTR, data: *mut u8, datalen: *mut u32) -> i32;
+    pub fn SCardReadCacheA(hcontext: usize, cardidentifier: *mut ::windows_sys::core::GUID, freshnesscounter: u32, lookupname: ::windows_sys::core::PSTR, data: *mut u8, datalen: *mut u32) -> i32;
     #[doc = "*Required features: `\"Win32_Security_Credentials\"`*"]
-    pub fn SCardReadCacheW(hcontext: usize, cardidentifier: *const ::windows_sys::core::GUID, freshnesscounter: u32, lookupname: ::windows_sys::core::PCWSTR, data: *mut u8, datalen: *mut u32) -> i32;
+    pub fn SCardReadCacheW(hcontext: usize, cardidentifier: *mut ::windows_sys::core::GUID, freshnesscounter: u32, lookupname: ::windows_sys::core::PWSTR, data: *mut u8, datalen: *mut u32) -> i32;
     #[doc = "*Required features: `\"Win32_Security_Credentials\"`*"]
     pub fn SCardReconnect(hcard: usize, dwsharemode: u32, dwpreferredprotocols: u32, dwinitialization: u32, pdwactiveprotocol: *mut u32) -> i32;
     #[doc = "*Required features: `\"Win32_Security_Credentials\"`*"]
@@ -282,7 +282,7 @@ extern "system" {
     #[doc = "*Required features: `\"Win32_Security_Credentials\"`*"]
     pub fn SCardRemoveReaderFromGroupW(hcontext: usize, szreadername: ::windows_sys::core::PCWSTR, szgroupname: ::windows_sys::core::PCWSTR) -> i32;
     #[doc = "*Required features: `\"Win32_Security_Credentials\"`*"]
-    pub fn SCardSetAttrib(hcard: usize, dwattrid: u32, pbattr: *const u8, cbattrlen: u32) -> i32;
+    pub fn SCardSetAttrib(hcard: usize, dwattrid: u32, pbattr: *mut u8, cbattrlen: u32) -> i32;
     #[doc = "*Required features: `\"Win32_Security_Credentials\"`*"]
     pub fn SCardSetCardTypeProviderNameA(hcontext: usize, szcardname: ::windows_sys::core::PCSTR, dwproviderid: u32, szprovider: ::windows_sys::core::PCSTR) -> i32;
     #[doc = "*Required features: `\"Win32_Security_Credentials\"`*"]
@@ -294,7 +294,7 @@ extern "system" {
     #[doc = "*Required features: `\"Win32_Security_Credentials\"`*"]
     pub fn SCardStatusW(hcard: usize, mszreadernames: ::windows_sys::core::PWSTR, pcchreaderlen: *mut u32, pdwstate: *mut u32, pdwprotocol: *mut u32, pbatr: *mut u8, pcbatrlen: *mut u32) -> i32;
     #[doc = "*Required features: `\"Win32_Security_Credentials\"`*"]
-    pub fn SCardTransmit(hcard: usize, piosendpci: *const SCARD_IO_REQUEST, pbsendbuffer: *const u8, cbsendlength: u32, piorecvpci: *mut SCARD_IO_REQUEST, pbrecvbuffer: *mut u8, pcbrecvlength: *mut u32) -> i32;
+    pub fn SCardTransmit(hcard: usize, piosendpci: *mut SCARD_IO_REQUEST, pbsendbuffer: *mut u8, cbsendlength: u32, piorecvpci: *mut SCARD_IO_REQUEST, pbrecvbuffer: *mut u8, pcbrecvlength: *mut u32) -> i32;
     #[doc = "*Required features: `\"Win32_Security_Credentials\"`, `\"Win32_Foundation\"`, `\"Win32_UI_WindowsAndMessaging\"`*"]
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_UI_WindowsAndMessaging"))]
     pub fn SCardUIDlgSelectCardA(param0: *mut OPENCARDNAME_EXA) -> i32;
@@ -302,9 +302,9 @@ extern "system" {
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_UI_WindowsAndMessaging"))]
     pub fn SCardUIDlgSelectCardW(param0: *mut OPENCARDNAME_EXW) -> i32;
     #[doc = "*Required features: `\"Win32_Security_Credentials\"`*"]
-    pub fn SCardWriteCacheA(hcontext: usize, cardidentifier: *const ::windows_sys::core::GUID, freshnesscounter: u32, lookupname: ::windows_sys::core::PCSTR, data: *const u8, datalen: u32) -> i32;
+    pub fn SCardWriteCacheA(hcontext: usize, cardidentifier: *mut ::windows_sys::core::GUID, freshnesscounter: u32, lookupname: ::windows_sys::core::PSTR, data: *mut u8, datalen: u32) -> i32;
     #[doc = "*Required features: `\"Win32_Security_Credentials\"`*"]
-    pub fn SCardWriteCacheW(hcontext: usize, cardidentifier: *const ::windows_sys::core::GUID, freshnesscounter: u32, lookupname: ::windows_sys::core::PCWSTR, data: *const u8, datalen: u32) -> i32;
+    pub fn SCardWriteCacheW(hcontext: usize, cardidentifier: *mut ::windows_sys::core::GUID, freshnesscounter: u32, lookupname: ::windows_sys::core::PWSTR, data: *mut u8, datalen: u32) -> i32;
 }
 #[doc = "*Required features: `\"Win32_Security_Credentials\"`*"]
 pub const CERT_HASH_LENGTH: u32 = 20u32;
@@ -1496,10 +1496,10 @@ impl ::core::clone::Clone for USERNAME_TARGET_CREDENTIAL_INFO {
 }
 #[doc = "*Required features: `\"Win32_Security_Credentials\"`, `\"Win32_Foundation\"`*"]
 #[cfg(feature = "Win32_Foundation")]
-pub type LPOCNCHKPROC = ::core::option::Option<unsafe extern "system" fn(param0: usize, param1: usize, param2: *const ::core::ffi::c_void) -> super::super::Foundation::BOOL>;
+pub type LPOCNCHKPROC = ::core::option::Option<unsafe extern "system" fn(param0: usize, param1: usize, param2: *mut ::core::ffi::c_void) -> super::super::Foundation::BOOL>;
 #[doc = "*Required features: `\"Win32_Security_Credentials\"`*"]
-pub type LPOCNCONNPROCA = ::core::option::Option<unsafe extern "system" fn(param0: usize, param1: ::windows_sys::core::PCSTR, param2: ::windows_sys::core::PCSTR, param3: *const ::core::ffi::c_void) -> usize>;
+pub type LPOCNCONNPROCA = ::core::option::Option<unsafe extern "system" fn(param0: usize, param1: ::windows_sys::core::PSTR, param2: ::windows_sys::core::PSTR, param3: *mut ::core::ffi::c_void) -> usize>;
 #[doc = "*Required features: `\"Win32_Security_Credentials\"`*"]
-pub type LPOCNCONNPROCW = ::core::option::Option<unsafe extern "system" fn(param0: usize, param1: ::windows_sys::core::PCWSTR, param2: ::windows_sys::core::PCWSTR, param3: *const ::core::ffi::c_void) -> usize>;
+pub type LPOCNCONNPROCW = ::core::option::Option<unsafe extern "system" fn(param0: usize, param1: ::windows_sys::core::PWSTR, param2: ::windows_sys::core::PWSTR, param3: *mut ::core::ffi::c_void) -> usize>;
 #[doc = "*Required features: `\"Win32_Security_Credentials\"`*"]
-pub type LPOCNDSCPROC = ::core::option::Option<unsafe extern "system" fn(param0: usize, param1: usize, param2: *const ::core::ffi::c_void)>;
+pub type LPOCNDSCPROC = ::core::option::Option<unsafe extern "system" fn(param0: usize, param1: usize, param2: *mut ::core::ffi::c_void)>;

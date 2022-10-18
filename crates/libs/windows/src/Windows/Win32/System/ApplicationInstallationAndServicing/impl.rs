@@ -1635,21 +1635,21 @@ pub trait IPMDeploymentManager_Impl: Sized {
     fn ReportDownloadBegin(&self, productid: &::windows::core::GUID) -> ::windows::core::Result<()>;
     fn ReportDownloadProgress(&self, productid: &::windows::core::GUID, usprogress: u16) -> ::windows::core::Result<()>;
     fn ReportDownloadComplete(&self, productid: &::windows::core::GUID, hrresult: ::windows::core::HRESULT) -> ::windows::core::Result<()>;
-    fn BeginInstall(&self, pinstallinfo: *const PM_INSTALLINFO) -> ::windows::core::Result<()>;
-    fn BeginUpdate(&self, pupdateinfo: *const PM_UPDATEINFO) -> ::windows::core::Result<()>;
-    fn BeginDeployPackage(&self, pinstallinfo: *const PM_INSTALLINFO) -> ::windows::core::Result<()>;
-    fn BeginUpdateDeployedPackageLegacy(&self, pupdateinfo: *const PM_UPDATEINFO_LEGACY) -> ::windows::core::Result<()>;
+    fn BeginInstall(&self, pinstallinfo: *mut PM_INSTALLINFO) -> ::windows::core::Result<()>;
+    fn BeginUpdate(&self, pupdateinfo: *mut PM_UPDATEINFO) -> ::windows::core::Result<()>;
+    fn BeginDeployPackage(&self, pinstallinfo: *mut PM_INSTALLINFO) -> ::windows::core::Result<()>;
+    fn BeginUpdateDeployedPackageLegacy(&self, pupdateinfo: *mut PM_UPDATEINFO_LEGACY) -> ::windows::core::Result<()>;
     fn BeginUninstall(&self, productid: &::windows::core::GUID) -> ::windows::core::Result<()>;
-    fn BeginEnterpriseAppInstall(&self, pinstallinfo: *const PM_INSTALLINFO) -> ::windows::core::Result<()>;
-    fn BeginEnterpriseAppUpdate(&self, pupdateinfo: *const PM_UPDATEINFO) -> ::windows::core::Result<()>;
-    fn BeginUpdateLicense(&self, productid: &::windows::core::GUID, offerid: &::windows::core::GUID, pblicense: *const u8, cblicense: u32) -> ::windows::core::Result<()>;
+    fn BeginEnterpriseAppInstall(&self, pinstallinfo: *mut PM_INSTALLINFO) -> ::windows::core::Result<()>;
+    fn BeginEnterpriseAppUpdate(&self, pupdateinfo: *mut PM_UPDATEINFO) -> ::windows::core::Result<()>;
+    fn BeginUpdateLicense(&self, productid: &::windows::core::GUID, offerid: &::windows::core::GUID, pblicense: *mut u8, cblicense: u32) -> ::windows::core::Result<()>;
     fn GetLicenseChallenge(&self, packagepath: &::windows::core::BSTR, ppbchallenge: *mut *mut u8, pcbchallenge: *mut u32, ppbkid: *mut *mut u8, pcbkid: *mut u32, ppbdeviceid: *mut *mut u8, pcbdeviceid: *mut u32, ppbsaltvalue: *mut *mut u8, pcbsaltvalue: *mut u32, ppbkgvvalue: *mut *mut u8, pcbkgvvalue: *mut u32) -> ::windows::core::Result<()>;
     fn GetLicenseChallengeByProductID(&self, productid: &::windows::core::GUID, ppbchallenge: *mut *mut u8, pcblicense: *mut u32) -> ::windows::core::Result<()>;
     fn GetLicenseChallengeByProductID2(&self, productid: &::windows::core::GUID, ppbchallenge: *mut *mut u8, pcblicense: *mut u32, ppbkid: *mut *mut u8, pcbkid: *mut u32, ppbdeviceid: *mut *mut u8, pcbdeviceid: *mut u32, ppbsaltvalue: *mut *mut u8, pcbsaltvalue: *mut u32, ppbkgvvalue: *mut *mut u8, pcbkgvvalue: *mut u32) -> ::windows::core::Result<()>;
     fn RevokeLicense(&self, productid: &::windows::core::GUID) -> ::windows::core::Result<()>;
-    fn RebindMdilBinaries(&self, productid: &::windows::core::GUID, filenames: *const super::Com::SAFEARRAY) -> ::windows::core::Result<()>;
+    fn RebindMdilBinaries(&self, productid: &::windows::core::GUID, filenames: *mut super::Com::SAFEARRAY) -> ::windows::core::Result<()>;
     fn RebindAllMdilBinaries(&self, productid: &::windows::core::GUID, instanceid: &::windows::core::GUID) -> ::windows::core::Result<()>;
-    fn RegenerateXbf(&self, productid: &::windows::core::GUID, assemblypaths: *const super::Com::SAFEARRAY) -> ::windows::core::Result<()>;
+    fn RegenerateXbf(&self, productid: &::windows::core::GUID, assemblypaths: *mut super::Com::SAFEARRAY) -> ::windows::core::Result<()>;
     fn GenerateXbfForCurrentLocale(&self, productid: &::windows::core::GUID) -> ::windows::core::Result<()>;
     fn BeginProvision(&self, productid: &::windows::core::GUID, xmlpath: &::windows::core::BSTR) -> ::windows::core::Result<()>;
     fn BeginDeprovision(&self, productid: &::windows::core::GUID) -> ::windows::core::Result<()>;
@@ -1657,7 +1657,7 @@ pub trait IPMDeploymentManager_Impl: Sized {
     fn SetApplicationsNeedMaintenance(&self, requiredmaintenanceoperations: u32) -> ::windows::core::Result<u32>;
     fn UpdateChamberProfile(&self, productid: &::windows::core::GUID) -> ::windows::core::Result<()>;
     fn EnterprisePolicyIsApplicationAllowed(&self, productid: &::windows::core::GUID, publishername: &::windows::core::PCWSTR) -> ::windows::core::Result<super::super::Foundation::BOOL>;
-    fn BeginUpdateDeployedPackage(&self, pupdateinfo: *const PM_UPDATEINFO) -> ::windows::core::Result<()>;
+    fn BeginUpdateDeployedPackage(&self, pupdateinfo: *mut PM_UPDATEINFO) -> ::windows::core::Result<()>;
     fn ReportRestoreCancelled(&self, productid: &::windows::core::GUID) -> ::windows::core::Result<()>;
     fn ResolveResourceString(&self, resourcestring: &::windows::core::PCWSTR, presolvedresourcestring: *mut ::windows::core::BSTR) -> ::windows::core::Result<()>;
     fn UpdateCapabilitiesForModernApps(&self) -> ::windows::core::Result<()>;
@@ -1665,7 +1665,7 @@ pub trait IPMDeploymentManager_Impl: Sized {
     fn BeginUninstallWithOptions(&self, productid: &::windows::core::GUID, removaloptions: u32) -> ::windows::core::Result<()>;
     fn BindDeferredMdilBinaries(&self) -> ::windows::core::Result<()>;
     fn GenerateXamlLightupXbfForCurrentLocale(&self, packagefamilyname: &::windows::core::BSTR) -> ::windows::core::Result<()>;
-    fn AddLicenseForAppx(&self, productid: &::windows::core::GUID, pblicense: *const u8, cblicense: u32, pbplayreadyheader: *const u8, cbplayreadyheader: u32) -> ::windows::core::Result<()>;
+    fn AddLicenseForAppx(&self, productid: &::windows::core::GUID, pblicense: *mut u8, cblicense: u32, pbplayreadyheader: *mut u8, cbplayreadyheader: u32) -> ::windows::core::Result<()>;
     fn FixJunctionsForAppsOnSDCard(&self) -> ::windows::core::Result<()>;
 }
 #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com"))]
@@ -1688,22 +1688,22 @@ impl IPMDeploymentManager_Vtbl {
             let this = (*this).get_impl();
             this.ReportDownloadComplete(::core::mem::transmute(&productid), ::core::mem::transmute_copy(&hrresult)).into()
         }
-        unsafe extern "system" fn BeginInstall<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IPMDeploymentManager_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, pinstallinfo: *const ::core::mem::ManuallyDrop<PM_INSTALLINFO>) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn BeginInstall<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IPMDeploymentManager_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, pinstallinfo: *mut ::core::mem::ManuallyDrop<PM_INSTALLINFO>) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.BeginInstall(::core::mem::transmute_copy(&pinstallinfo)).into()
         }
-        unsafe extern "system" fn BeginUpdate<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IPMDeploymentManager_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, pupdateinfo: *const ::core::mem::ManuallyDrop<PM_UPDATEINFO>) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn BeginUpdate<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IPMDeploymentManager_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, pupdateinfo: *mut ::core::mem::ManuallyDrop<PM_UPDATEINFO>) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.BeginUpdate(::core::mem::transmute_copy(&pupdateinfo)).into()
         }
-        unsafe extern "system" fn BeginDeployPackage<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IPMDeploymentManager_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, pinstallinfo: *const ::core::mem::ManuallyDrop<PM_INSTALLINFO>) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn BeginDeployPackage<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IPMDeploymentManager_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, pinstallinfo: *mut ::core::mem::ManuallyDrop<PM_INSTALLINFO>) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.BeginDeployPackage(::core::mem::transmute_copy(&pinstallinfo)).into()
         }
-        unsafe extern "system" fn BeginUpdateDeployedPackageLegacy<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IPMDeploymentManager_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, pupdateinfo: *const ::core::mem::ManuallyDrop<PM_UPDATEINFO_LEGACY>) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn BeginUpdateDeployedPackageLegacy<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IPMDeploymentManager_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, pupdateinfo: *mut ::core::mem::ManuallyDrop<PM_UPDATEINFO_LEGACY>) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.BeginUpdateDeployedPackageLegacy(::core::mem::transmute_copy(&pupdateinfo)).into()
@@ -1713,17 +1713,17 @@ impl IPMDeploymentManager_Vtbl {
             let this = (*this).get_impl();
             this.BeginUninstall(::core::mem::transmute(&productid)).into()
         }
-        unsafe extern "system" fn BeginEnterpriseAppInstall<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IPMDeploymentManager_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, pinstallinfo: *const ::core::mem::ManuallyDrop<PM_INSTALLINFO>) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn BeginEnterpriseAppInstall<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IPMDeploymentManager_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, pinstallinfo: *mut ::core::mem::ManuallyDrop<PM_INSTALLINFO>) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.BeginEnterpriseAppInstall(::core::mem::transmute_copy(&pinstallinfo)).into()
         }
-        unsafe extern "system" fn BeginEnterpriseAppUpdate<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IPMDeploymentManager_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, pupdateinfo: *const ::core::mem::ManuallyDrop<PM_UPDATEINFO>) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn BeginEnterpriseAppUpdate<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IPMDeploymentManager_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, pupdateinfo: *mut ::core::mem::ManuallyDrop<PM_UPDATEINFO>) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.BeginEnterpriseAppUpdate(::core::mem::transmute_copy(&pupdateinfo)).into()
         }
-        unsafe extern "system" fn BeginUpdateLicense<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IPMDeploymentManager_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, productid: ::windows::core::GUID, offerid: ::windows::core::GUID, pblicense: *const u8, cblicense: u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn BeginUpdateLicense<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IPMDeploymentManager_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, productid: ::windows::core::GUID, offerid: ::windows::core::GUID, pblicense: *mut u8, cblicense: u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.BeginUpdateLicense(::core::mem::transmute(&productid), ::core::mem::transmute(&offerid), ::core::mem::transmute_copy(&pblicense), ::core::mem::transmute_copy(&cblicense)).into()
@@ -1750,7 +1750,7 @@ impl IPMDeploymentManager_Vtbl {
             let this = (*this).get_impl();
             this.RevokeLicense(::core::mem::transmute(&productid)).into()
         }
-        unsafe extern "system" fn RebindMdilBinaries<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IPMDeploymentManager_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, productid: ::windows::core::GUID, filenames: *const super::Com::SAFEARRAY) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn RebindMdilBinaries<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IPMDeploymentManager_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, productid: ::windows::core::GUID, filenames: *mut super::Com::SAFEARRAY) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.RebindMdilBinaries(::core::mem::transmute(&productid), ::core::mem::transmute_copy(&filenames)).into()
@@ -1760,7 +1760,7 @@ impl IPMDeploymentManager_Vtbl {
             let this = (*this).get_impl();
             this.RebindAllMdilBinaries(::core::mem::transmute(&productid), ::core::mem::transmute(&instanceid)).into()
         }
-        unsafe extern "system" fn RegenerateXbf<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IPMDeploymentManager_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, productid: ::windows::core::GUID, assemblypaths: *const super::Com::SAFEARRAY) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn RegenerateXbf<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IPMDeploymentManager_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, productid: ::windows::core::GUID, assemblypaths: *mut super::Com::SAFEARRAY) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.RegenerateXbf(::core::mem::transmute(&productid), ::core::mem::transmute_copy(&assemblypaths)).into()
@@ -1812,7 +1812,7 @@ impl IPMDeploymentManager_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn BeginUpdateDeployedPackage<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IPMDeploymentManager_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, pupdateinfo: *const ::core::mem::ManuallyDrop<PM_UPDATEINFO>) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn BeginUpdateDeployedPackage<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IPMDeploymentManager_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, pupdateinfo: *mut ::core::mem::ManuallyDrop<PM_UPDATEINFO>) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.BeginUpdateDeployedPackage(::core::mem::transmute_copy(&pupdateinfo)).into()
@@ -1852,7 +1852,7 @@ impl IPMDeploymentManager_Vtbl {
             let this = (*this).get_impl();
             this.GenerateXamlLightupXbfForCurrentLocale(::core::mem::transmute(&packagefamilyname)).into()
         }
-        unsafe extern "system" fn AddLicenseForAppx<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IPMDeploymentManager_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, productid: ::windows::core::GUID, pblicense: *const u8, cblicense: u32, pbplayreadyheader: *const u8, cbplayreadyheader: u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn AddLicenseForAppx<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IPMDeploymentManager_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, productid: ::windows::core::GUID, pblicense: *mut u8, cblicense: u32, pbplayreadyheader: *mut u8, cbplayreadyheader: u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.AddLicenseForAppx(::core::mem::transmute(&productid), ::core::mem::transmute_copy(&pblicense), ::core::mem::transmute_copy(&cblicense), ::core::mem::transmute_copy(&pbplayreadyheader), ::core::mem::transmute_copy(&cbplayreadyheader)).into()
@@ -2451,9 +2451,9 @@ pub trait IPMLiveTileJobInfo_Impl: Sized {
     fn RecurrenceType(&self) -> ::windows::core::Result<u32>;
     fn set_RecurrenceType(&self, ulrecurrencetype: u32) -> ::windows::core::Result<()>;
     fn get_TileXML(&self, ptilexml: *mut *mut u8, pcbtilexml: *mut u32) -> ::windows::core::Result<()>;
-    fn set_TileXML(&self, ptilexml: *const u8, cbtilexml: u32) -> ::windows::core::Result<()>;
+    fn set_TileXML(&self, ptilexml: *mut u8, cbtilexml: u32) -> ::windows::core::Result<()>;
     fn get_UrlXML(&self, purlxml: *mut *mut u8, pcburlxml: *mut u32) -> ::windows::core::Result<()>;
-    fn set_UrlXML(&self, purlxml: *const u8, cburlxml: u32) -> ::windows::core::Result<()>;
+    fn set_UrlXML(&self, purlxml: *mut u8, cburlxml: u32) -> ::windows::core::Result<()>;
     fn AttemptCount(&self) -> ::windows::core::Result<u32>;
     fn set_AttemptCount(&self, ulattemptcount: u32) -> ::windows::core::Result<()>;
     fn DownloadState(&self) -> ::windows::core::Result<u32>;
@@ -2597,7 +2597,7 @@ impl IPMLiveTileJobInfo_Vtbl {
             let this = (*this).get_impl();
             this.get_TileXML(::core::mem::transmute_copy(&ptilexml), ::core::mem::transmute_copy(&pcbtilexml)).into()
         }
-        unsafe extern "system" fn set_TileXML<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IPMLiveTileJobInfo_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, ptilexml: *const u8, cbtilexml: u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn set_TileXML<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IPMLiveTileJobInfo_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, ptilexml: *mut u8, cbtilexml: u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.set_TileXML(::core::mem::transmute_copy(&ptilexml), ::core::mem::transmute_copy(&cbtilexml)).into()
@@ -2607,7 +2607,7 @@ impl IPMLiveTileJobInfo_Vtbl {
             let this = (*this).get_impl();
             this.get_UrlXML(::core::mem::transmute_copy(&purlxml), ::core::mem::transmute_copy(&pcburlxml)).into()
         }
-        unsafe extern "system" fn set_UrlXML<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IPMLiveTileJobInfo_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, purlxml: *const u8, cburlxml: u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn set_UrlXML<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IPMLiveTileJobInfo_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, purlxml: *mut u8, cburlxml: u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.set_UrlXML(::core::mem::transmute_copy(&purlxml), ::core::mem::transmute_copy(&cburlxml)).into()

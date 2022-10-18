@@ -1483,7 +1483,7 @@ pub trait IDirectInputJoyConfig8_Impl: Sized {
     fn SendNotify(&self) -> ::windows::core::Result<()>;
     fn EnumTypes(&self, param0: &LPDIJOYTYPECALLBACK, param1: *mut ::core::ffi::c_void) -> ::windows::core::Result<()>;
     fn GetTypeInfo(&self, param0: &::windows::core::PCWSTR, param1: *mut DIJOYTYPEINFO, param2: u32) -> ::windows::core::Result<()>;
-    fn SetTypeInfo(&self, param0: &::windows::core::PCWSTR, param1: *mut DIJOYTYPEINFO, param2: u32, param3: &::windows::core::PCWSTR) -> ::windows::core::Result<()>;
+    fn SetTypeInfo(&self, param0: &::windows::core::PCWSTR, param1: *mut DIJOYTYPEINFO, param2: u32, param3: &::windows::core::PWSTR) -> ::windows::core::Result<()>;
     fn DeleteType(&self, param0: &::windows::core::PCWSTR) -> ::windows::core::Result<()>;
     fn GetConfig(&self, param0: u32, param1: *mut DIJOYCONFIG, param2: u32) -> ::windows::core::Result<()>;
     fn SetConfig(&self, param0: u32, param1: *mut DIJOYCONFIG, param2: u32) -> ::windows::core::Result<()>;
@@ -1529,7 +1529,7 @@ impl IDirectInputJoyConfig8_Vtbl {
             let this = (*this).get_impl();
             this.GetTypeInfo(::core::mem::transmute(&param0), ::core::mem::transmute_copy(&param1), ::core::mem::transmute_copy(&param2)).into()
         }
-        unsafe extern "system" fn SetTypeInfo<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDirectInputJoyConfig8_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, param0: ::windows::core::PCWSTR, param1: *mut DIJOYTYPEINFO, param2: u32, param3: ::windows::core::PCWSTR) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn SetTypeInfo<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDirectInputJoyConfig8_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, param0: ::windows::core::PCWSTR, param1: *mut DIJOYTYPEINFO, param2: u32, param3: ::windows::core::PWSTR) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.SetTypeInfo(::core::mem::transmute(&param0), ::core::mem::transmute_copy(&param1), ::core::mem::transmute_copy(&param2), ::core::mem::transmute(&param3)).into()

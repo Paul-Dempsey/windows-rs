@@ -14,7 +14,7 @@ extern "system" {
     #[doc = "*Required features: `\"Win32_UI_Input_XboxController\"`*"]
     pub fn XInputGetState(dwuserindex: u32, pstate: *mut XINPUT_STATE) -> u32;
     #[doc = "*Required features: `\"Win32_UI_Input_XboxController\"`*"]
-    pub fn XInputSetState(dwuserindex: u32, pvibration: *const XINPUT_VIBRATION) -> u32;
+    pub fn XInputSetState(dwuserindex: u32, pvibration: *mut XINPUT_VIBRATION) -> u32;
 }
 #[doc = "*Required features: `\"Win32_UI_Input_XboxController\"`*"]
 pub const XINPUT_DLL: ::windows_sys::core::PCWSTR = ::windows_sys::w!("xinput1_4.dll");

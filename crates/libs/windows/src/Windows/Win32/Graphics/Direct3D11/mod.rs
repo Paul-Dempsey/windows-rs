@@ -3479,7 +3479,7 @@ impl ID3D11DeviceContext {
     {
         (::windows::core::Vtable::vtable(self).IASetInputLayout)(::windows::core::Vtable::as_raw(self), pinputlayout.into().abi())
     }
-    pub unsafe fn IASetVertexBuffers(&self, startslot: u32, numbuffers: u32, ppvertexbuffers: ::core::option::Option<*const ::core::option::Option<ID3D11Buffer>>, pstrides: ::core::option::Option<*const u32>, poffsets: ::core::option::Option<*const u32>) {
+    pub unsafe fn IASetVertexBuffers(&self, startslot: u32, numbuffers: u32, ppvertexbuffers: ::core::option::Option<*mut ::core::option::Option<ID3D11Buffer>>, pstrides: ::core::option::Option<*const u32>, poffsets: ::core::option::Option<*const u32>) {
         (::windows::core::Vtable::vtable(self).IASetVertexBuffers)(::windows::core::Vtable::as_raw(self), startslot, numbuffers, ::core::mem::transmute(ppvertexbuffers.unwrap_or(::std::ptr::null())), ::core::mem::transmute(pstrides.unwrap_or(::std::ptr::null())), ::core::mem::transmute(poffsets.unwrap_or(::std::ptr::null())))
     }
     #[doc = "*Required features: `\"Win32_Graphics_Dxgi_Common\"`*"]
@@ -3555,7 +3555,7 @@ impl ID3D11DeviceContext {
     {
         (::windows::core::Vtable::vtable(self).OMSetRenderTargets)(::windows::core::Vtable::as_raw(self), pprendertargetviews.as_deref().map_or(0, |slice| slice.len() as _), ::core::mem::transmute(pprendertargetviews.as_deref().map_or(::core::ptr::null(), |slice| slice.as_ptr())), pdepthstencilview.into().abi())
     }
-    pub unsafe fn OMSetRenderTargetsAndUnorderedAccessViews<'a, P0>(&self, pprendertargetviews: ::core::option::Option<&[::core::option::Option<ID3D11RenderTargetView>]>, pdepthstencilview: P0, uavstartslot: u32, numuavs: u32, ppunorderedaccessviews: ::core::option::Option<*const ::core::option::Option<ID3D11UnorderedAccessView>>, puavinitialcounts: ::core::option::Option<*const u32>)
+    pub unsafe fn OMSetRenderTargetsAndUnorderedAccessViews<'a, P0>(&self, pprendertargetviews: ::core::option::Option<&[::core::option::Option<ID3D11RenderTargetView>]>, pdepthstencilview: P0, uavstartslot: u32, numuavs: u32, ppunorderedaccessviews: ::core::option::Option<*mut ::core::option::Option<ID3D11UnorderedAccessView>>, puavinitialcounts: ::core::option::Option<*const u32>)
     where
         P0: ::std::convert::Into<::windows::core::InParam<'a, ID3D11DepthStencilView>>,
     {
@@ -3573,7 +3573,7 @@ impl ID3D11DeviceContext {
     {
         (::windows::core::Vtable::vtable(self).OMSetDepthStencilState)(::windows::core::Vtable::as_raw(self), pdepthstencilstate.into().abi(), stencilref)
     }
-    pub unsafe fn SOSetTargets(&self, numbuffers: u32, ppsotargets: ::core::option::Option<*const ::core::option::Option<ID3D11Buffer>>, poffsets: ::core::option::Option<*const u32>) {
+    pub unsafe fn SOSetTargets(&self, numbuffers: u32, ppsotargets: ::core::option::Option<*mut ::core::option::Option<ID3D11Buffer>>, poffsets: ::core::option::Option<*const u32>) {
         (::windows::core::Vtable::vtable(self).SOSetTargets)(::windows::core::Vtable::as_raw(self), numbuffers, ::core::mem::transmute(ppsotargets.unwrap_or(::std::ptr::null())), ::core::mem::transmute(poffsets.unwrap_or(::std::ptr::null())))
     }
     pub unsafe fn DrawAuto(&self) {
@@ -3734,7 +3734,7 @@ impl ID3D11DeviceContext {
     pub unsafe fn CSSetShaderResources(&self, startslot: u32, ppshaderresourceviews: ::core::option::Option<&[::core::option::Option<ID3D11ShaderResourceView>]>) {
         (::windows::core::Vtable::vtable(self).CSSetShaderResources)(::windows::core::Vtable::as_raw(self), startslot, ppshaderresourceviews.as_deref().map_or(0, |slice| slice.len() as _), ::core::mem::transmute(ppshaderresourceviews.as_deref().map_or(::core::ptr::null(), |slice| slice.as_ptr())))
     }
-    pub unsafe fn CSSetUnorderedAccessViews(&self, startslot: u32, numuavs: u32, ppunorderedaccessviews: ::core::option::Option<*const ::core::option::Option<ID3D11UnorderedAccessView>>, puavinitialcounts: ::core::option::Option<*const u32>) {
+    pub unsafe fn CSSetUnorderedAccessViews(&self, startslot: u32, numuavs: u32, ppunorderedaccessviews: ::core::option::Option<*mut ::core::option::Option<ID3D11UnorderedAccessView>>, puavinitialcounts: ::core::option::Option<*const u32>) {
         (::windows::core::Vtable::vtable(self).CSSetUnorderedAccessViews)(::windows::core::Vtable::as_raw(self), startslot, numuavs, ::core::mem::transmute(ppunorderedaccessviews.unwrap_or(::std::ptr::null())), ::core::mem::transmute(puavinitialcounts.unwrap_or(::std::ptr::null())))
     }
     pub unsafe fn CSSetShader<'a, P0>(&self, pcomputeshader: P0, ppclassinstances: ::core::option::Option<&[::core::option::Option<ID3D11ClassInstance>]>)
@@ -3930,32 +3930,32 @@ unsafe impl ::windows::core::Interface for ID3D11DeviceContext {
 #[doc(hidden)]
 pub struct ID3D11DeviceContext_Vtbl {
     pub base__: ID3D11DeviceChild_Vtbl,
-    pub VSSetConstantBuffers: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, startslot: u32, numbuffers: u32, ppconstantbuffers: *const *mut ::core::ffi::c_void),
-    pub PSSetShaderResources: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, startslot: u32, numviews: u32, ppshaderresourceviews: *const *mut ::core::ffi::c_void),
-    pub PSSetShader: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, ppixelshader: *mut ::core::ffi::c_void, ppclassinstances: *const *mut ::core::ffi::c_void, numclassinstances: u32),
-    pub PSSetSamplers: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, startslot: u32, numsamplers: u32, ppsamplers: *const *mut ::core::ffi::c_void),
-    pub VSSetShader: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pvertexshader: *mut ::core::ffi::c_void, ppclassinstances: *const *mut ::core::ffi::c_void, numclassinstances: u32),
+    pub VSSetConstantBuffers: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, startslot: u32, numbuffers: u32, ppconstantbuffers: *mut *mut ::core::ffi::c_void),
+    pub PSSetShaderResources: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, startslot: u32, numviews: u32, ppshaderresourceviews: *mut *mut ::core::ffi::c_void),
+    pub PSSetShader: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, ppixelshader: *mut ::core::ffi::c_void, ppclassinstances: *mut *mut ::core::ffi::c_void, numclassinstances: u32),
+    pub PSSetSamplers: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, startslot: u32, numsamplers: u32, ppsamplers: *mut *mut ::core::ffi::c_void),
+    pub VSSetShader: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pvertexshader: *mut ::core::ffi::c_void, ppclassinstances: *mut *mut ::core::ffi::c_void, numclassinstances: u32),
     pub DrawIndexed: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, indexcount: u32, startindexlocation: u32, basevertexlocation: i32),
     pub Draw: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, vertexcount: u32, startvertexlocation: u32),
     pub Map: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, presource: *mut ::core::ffi::c_void, subresource: u32, maptype: D3D11_MAP, mapflags: u32, pmappedresource: *mut D3D11_MAPPED_SUBRESOURCE) -> ::windows::core::HRESULT,
     pub Unmap: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, presource: *mut ::core::ffi::c_void, subresource: u32),
-    pub PSSetConstantBuffers: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, startslot: u32, numbuffers: u32, ppconstantbuffers: *const *mut ::core::ffi::c_void),
+    pub PSSetConstantBuffers: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, startslot: u32, numbuffers: u32, ppconstantbuffers: *mut *mut ::core::ffi::c_void),
     pub IASetInputLayout: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pinputlayout: *mut ::core::ffi::c_void),
-    pub IASetVertexBuffers: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, startslot: u32, numbuffers: u32, ppvertexbuffers: *const *mut ::core::ffi::c_void, pstrides: *const u32, poffsets: *const u32),
+    pub IASetVertexBuffers: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, startslot: u32, numbuffers: u32, ppvertexbuffers: *mut *mut ::core::ffi::c_void, pstrides: *const u32, poffsets: *const u32),
     #[cfg(feature = "Win32_Graphics_Dxgi_Common")]
     pub IASetIndexBuffer: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pindexbuffer: *mut ::core::ffi::c_void, format: super::Dxgi::Common::DXGI_FORMAT, offset: u32),
     #[cfg(not(feature = "Win32_Graphics_Dxgi_Common"))]
     IASetIndexBuffer: usize,
     pub DrawIndexedInstanced: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, indexcountperinstance: u32, instancecount: u32, startindexlocation: u32, basevertexlocation: i32, startinstancelocation: u32),
     pub DrawInstanced: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, vertexcountperinstance: u32, instancecount: u32, startvertexlocation: u32, startinstancelocation: u32),
-    pub GSSetConstantBuffers: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, startslot: u32, numbuffers: u32, ppconstantbuffers: *const *mut ::core::ffi::c_void),
-    pub GSSetShader: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pshader: *mut ::core::ffi::c_void, ppclassinstances: *const *mut ::core::ffi::c_void, numclassinstances: u32),
+    pub GSSetConstantBuffers: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, startslot: u32, numbuffers: u32, ppconstantbuffers: *mut *mut ::core::ffi::c_void),
+    pub GSSetShader: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pshader: *mut ::core::ffi::c_void, ppclassinstances: *mut *mut ::core::ffi::c_void, numclassinstances: u32),
     #[cfg(feature = "Win32_Graphics_Direct3D")]
     pub IASetPrimitiveTopology: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, topology: super::Direct3D::D3D_PRIMITIVE_TOPOLOGY),
     #[cfg(not(feature = "Win32_Graphics_Direct3D"))]
     IASetPrimitiveTopology: usize,
-    pub VSSetShaderResources: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, startslot: u32, numviews: u32, ppshaderresourceviews: *const *mut ::core::ffi::c_void),
-    pub VSSetSamplers: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, startslot: u32, numsamplers: u32, ppsamplers: *const *mut ::core::ffi::c_void),
+    pub VSSetShaderResources: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, startslot: u32, numviews: u32, ppshaderresourceviews: *mut *mut ::core::ffi::c_void),
+    pub VSSetSamplers: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, startslot: u32, numsamplers: u32, ppsamplers: *mut *mut ::core::ffi::c_void),
     pub Begin: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pasync: *mut ::core::ffi::c_void),
     pub End: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pasync: *mut ::core::ffi::c_void),
     pub GetData: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pasync: *mut ::core::ffi::c_void, pdata: *mut ::core::ffi::c_void, datasize: u32, getdataflags: u32) -> ::windows::core::HRESULT,
@@ -3963,13 +3963,13 @@ pub struct ID3D11DeviceContext_Vtbl {
     pub SetPredication: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, ppredicate: *mut ::core::ffi::c_void, predicatevalue: super::super::Foundation::BOOL),
     #[cfg(not(feature = "Win32_Foundation"))]
     SetPredication: usize,
-    pub GSSetShaderResources: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, startslot: u32, numviews: u32, ppshaderresourceviews: *const *mut ::core::ffi::c_void),
-    pub GSSetSamplers: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, startslot: u32, numsamplers: u32, ppsamplers: *const *mut ::core::ffi::c_void),
-    pub OMSetRenderTargets: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, numviews: u32, pprendertargetviews: *const *mut ::core::ffi::c_void, pdepthstencilview: *mut ::core::ffi::c_void),
-    pub OMSetRenderTargetsAndUnorderedAccessViews: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, numrtvs: u32, pprendertargetviews: *const *mut ::core::ffi::c_void, pdepthstencilview: *mut ::core::ffi::c_void, uavstartslot: u32, numuavs: u32, ppunorderedaccessviews: *const *mut ::core::ffi::c_void, puavinitialcounts: *const u32),
+    pub GSSetShaderResources: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, startslot: u32, numviews: u32, ppshaderresourceviews: *mut *mut ::core::ffi::c_void),
+    pub GSSetSamplers: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, startslot: u32, numsamplers: u32, ppsamplers: *mut *mut ::core::ffi::c_void),
+    pub OMSetRenderTargets: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, numviews: u32, pprendertargetviews: *mut *mut ::core::ffi::c_void, pdepthstencilview: *mut ::core::ffi::c_void),
+    pub OMSetRenderTargetsAndUnorderedAccessViews: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, numrtvs: u32, pprendertargetviews: *mut *mut ::core::ffi::c_void, pdepthstencilview: *mut ::core::ffi::c_void, uavstartslot: u32, numuavs: u32, ppunorderedaccessviews: *mut *mut ::core::ffi::c_void, puavinitialcounts: *const u32),
     pub OMSetBlendState: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pblendstate: *mut ::core::ffi::c_void, blendfactor: *const f32, samplemask: u32),
     pub OMSetDepthStencilState: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pdepthstencilstate: *mut ::core::ffi::c_void, stencilref: u32),
-    pub SOSetTargets: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, numbuffers: u32, ppsotargets: *const *mut ::core::ffi::c_void, poffsets: *const u32),
+    pub SOSetTargets: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, numbuffers: u32, ppsotargets: *mut *mut ::core::ffi::c_void, poffsets: *const u32),
     pub DrawAuto: unsafe extern "system" fn(this: *mut ::core::ffi::c_void),
     pub DrawIndexedInstancedIndirect: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pbufferforargs: *mut ::core::ffi::c_void, alignedbyteoffsetforargs: u32),
     pub DrawInstancedIndirect: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pbufferforargs: *mut ::core::ffi::c_void, alignedbyteoffsetforargs: u32),
@@ -4000,19 +4000,19 @@ pub struct ID3D11DeviceContext_Vtbl {
     pub ExecuteCommandList: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pcommandlist: *mut ::core::ffi::c_void, restorecontextstate: super::super::Foundation::BOOL),
     #[cfg(not(feature = "Win32_Foundation"))]
     ExecuteCommandList: usize,
-    pub HSSetShaderResources: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, startslot: u32, numviews: u32, ppshaderresourceviews: *const *mut ::core::ffi::c_void),
-    pub HSSetShader: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, phullshader: *mut ::core::ffi::c_void, ppclassinstances: *const *mut ::core::ffi::c_void, numclassinstances: u32),
-    pub HSSetSamplers: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, startslot: u32, numsamplers: u32, ppsamplers: *const *mut ::core::ffi::c_void),
-    pub HSSetConstantBuffers: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, startslot: u32, numbuffers: u32, ppconstantbuffers: *const *mut ::core::ffi::c_void),
-    pub DSSetShaderResources: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, startslot: u32, numviews: u32, ppshaderresourceviews: *const *mut ::core::ffi::c_void),
-    pub DSSetShader: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pdomainshader: *mut ::core::ffi::c_void, ppclassinstances: *const *mut ::core::ffi::c_void, numclassinstances: u32),
-    pub DSSetSamplers: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, startslot: u32, numsamplers: u32, ppsamplers: *const *mut ::core::ffi::c_void),
-    pub DSSetConstantBuffers: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, startslot: u32, numbuffers: u32, ppconstantbuffers: *const *mut ::core::ffi::c_void),
-    pub CSSetShaderResources: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, startslot: u32, numviews: u32, ppshaderresourceviews: *const *mut ::core::ffi::c_void),
-    pub CSSetUnorderedAccessViews: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, startslot: u32, numuavs: u32, ppunorderedaccessviews: *const *mut ::core::ffi::c_void, puavinitialcounts: *const u32),
-    pub CSSetShader: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pcomputeshader: *mut ::core::ffi::c_void, ppclassinstances: *const *mut ::core::ffi::c_void, numclassinstances: u32),
-    pub CSSetSamplers: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, startslot: u32, numsamplers: u32, ppsamplers: *const *mut ::core::ffi::c_void),
-    pub CSSetConstantBuffers: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, startslot: u32, numbuffers: u32, ppconstantbuffers: *const *mut ::core::ffi::c_void),
+    pub HSSetShaderResources: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, startslot: u32, numviews: u32, ppshaderresourceviews: *mut *mut ::core::ffi::c_void),
+    pub HSSetShader: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, phullshader: *mut ::core::ffi::c_void, ppclassinstances: *mut *mut ::core::ffi::c_void, numclassinstances: u32),
+    pub HSSetSamplers: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, startslot: u32, numsamplers: u32, ppsamplers: *mut *mut ::core::ffi::c_void),
+    pub HSSetConstantBuffers: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, startslot: u32, numbuffers: u32, ppconstantbuffers: *mut *mut ::core::ffi::c_void),
+    pub DSSetShaderResources: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, startslot: u32, numviews: u32, ppshaderresourceviews: *mut *mut ::core::ffi::c_void),
+    pub DSSetShader: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pdomainshader: *mut ::core::ffi::c_void, ppclassinstances: *mut *mut ::core::ffi::c_void, numclassinstances: u32),
+    pub DSSetSamplers: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, startslot: u32, numsamplers: u32, ppsamplers: *mut *mut ::core::ffi::c_void),
+    pub DSSetConstantBuffers: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, startslot: u32, numbuffers: u32, ppconstantbuffers: *mut *mut ::core::ffi::c_void),
+    pub CSSetShaderResources: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, startslot: u32, numviews: u32, ppshaderresourceviews: *mut *mut ::core::ffi::c_void),
+    pub CSSetUnorderedAccessViews: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, startslot: u32, numuavs: u32, ppunorderedaccessviews: *mut *mut ::core::ffi::c_void, puavinitialcounts: *const u32),
+    pub CSSetShader: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pcomputeshader: *mut ::core::ffi::c_void, ppclassinstances: *mut *mut ::core::ffi::c_void, numclassinstances: u32),
+    pub CSSetSamplers: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, startslot: u32, numsamplers: u32, ppsamplers: *mut *mut ::core::ffi::c_void),
+    pub CSSetConstantBuffers: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, startslot: u32, numbuffers: u32, ppconstantbuffers: *mut *mut ::core::ffi::c_void),
     pub VSGetConstantBuffers: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, startslot: u32, numbuffers: u32, ppconstantbuffers: *mut *mut ::core::ffi::c_void),
     pub PSGetShaderResources: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, startslot: u32, numviews: u32, ppshaderresourceviews: *mut *mut ::core::ffi::c_void),
     pub PSGetShader: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pppixelshader: *mut *mut ::core::ffi::c_void, ppclassinstances: *mut *mut ::core::ffi::c_void, pnumclassinstances: *mut u32),
@@ -4140,7 +4140,7 @@ impl ID3D11DeviceContext1 {
     {
         (::windows::core::Vtable::vtable(self).base__.IASetInputLayout)(::windows::core::Vtable::as_raw(self), pinputlayout.into().abi())
     }
-    pub unsafe fn IASetVertexBuffers(&self, startslot: u32, numbuffers: u32, ppvertexbuffers: ::core::option::Option<*const ::core::option::Option<ID3D11Buffer>>, pstrides: ::core::option::Option<*const u32>, poffsets: ::core::option::Option<*const u32>) {
+    pub unsafe fn IASetVertexBuffers(&self, startslot: u32, numbuffers: u32, ppvertexbuffers: ::core::option::Option<*mut ::core::option::Option<ID3D11Buffer>>, pstrides: ::core::option::Option<*const u32>, poffsets: ::core::option::Option<*const u32>) {
         (::windows::core::Vtable::vtable(self).base__.IASetVertexBuffers)(::windows::core::Vtable::as_raw(self), startslot, numbuffers, ::core::mem::transmute(ppvertexbuffers.unwrap_or(::std::ptr::null())), ::core::mem::transmute(pstrides.unwrap_or(::std::ptr::null())), ::core::mem::transmute(poffsets.unwrap_or(::std::ptr::null())))
     }
     #[doc = "*Required features: `\"Win32_Graphics_Dxgi_Common\"`*"]
@@ -4216,7 +4216,7 @@ impl ID3D11DeviceContext1 {
     {
         (::windows::core::Vtable::vtable(self).base__.OMSetRenderTargets)(::windows::core::Vtable::as_raw(self), pprendertargetviews.as_deref().map_or(0, |slice| slice.len() as _), ::core::mem::transmute(pprendertargetviews.as_deref().map_or(::core::ptr::null(), |slice| slice.as_ptr())), pdepthstencilview.into().abi())
     }
-    pub unsafe fn OMSetRenderTargetsAndUnorderedAccessViews<'a, P0>(&self, pprendertargetviews: ::core::option::Option<&[::core::option::Option<ID3D11RenderTargetView>]>, pdepthstencilview: P0, uavstartslot: u32, numuavs: u32, ppunorderedaccessviews: ::core::option::Option<*const ::core::option::Option<ID3D11UnorderedAccessView>>, puavinitialcounts: ::core::option::Option<*const u32>)
+    pub unsafe fn OMSetRenderTargetsAndUnorderedAccessViews<'a, P0>(&self, pprendertargetviews: ::core::option::Option<&[::core::option::Option<ID3D11RenderTargetView>]>, pdepthstencilview: P0, uavstartslot: u32, numuavs: u32, ppunorderedaccessviews: ::core::option::Option<*mut ::core::option::Option<ID3D11UnorderedAccessView>>, puavinitialcounts: ::core::option::Option<*const u32>)
     where
         P0: ::std::convert::Into<::windows::core::InParam<'a, ID3D11DepthStencilView>>,
     {
@@ -4234,7 +4234,7 @@ impl ID3D11DeviceContext1 {
     {
         (::windows::core::Vtable::vtable(self).base__.OMSetDepthStencilState)(::windows::core::Vtable::as_raw(self), pdepthstencilstate.into().abi(), stencilref)
     }
-    pub unsafe fn SOSetTargets(&self, numbuffers: u32, ppsotargets: ::core::option::Option<*const ::core::option::Option<ID3D11Buffer>>, poffsets: ::core::option::Option<*const u32>) {
+    pub unsafe fn SOSetTargets(&self, numbuffers: u32, ppsotargets: ::core::option::Option<*mut ::core::option::Option<ID3D11Buffer>>, poffsets: ::core::option::Option<*const u32>) {
         (::windows::core::Vtable::vtable(self).base__.SOSetTargets)(::windows::core::Vtable::as_raw(self), numbuffers, ::core::mem::transmute(ppsotargets.unwrap_or(::std::ptr::null())), ::core::mem::transmute(poffsets.unwrap_or(::std::ptr::null())))
     }
     pub unsafe fn DrawAuto(&self) {
@@ -4395,7 +4395,7 @@ impl ID3D11DeviceContext1 {
     pub unsafe fn CSSetShaderResources(&self, startslot: u32, ppshaderresourceviews: ::core::option::Option<&[::core::option::Option<ID3D11ShaderResourceView>]>) {
         (::windows::core::Vtable::vtable(self).base__.CSSetShaderResources)(::windows::core::Vtable::as_raw(self), startslot, ppshaderresourceviews.as_deref().map_or(0, |slice| slice.len() as _), ::core::mem::transmute(ppshaderresourceviews.as_deref().map_or(::core::ptr::null(), |slice| slice.as_ptr())))
     }
-    pub unsafe fn CSSetUnorderedAccessViews(&self, startslot: u32, numuavs: u32, ppunorderedaccessviews: ::core::option::Option<*const ::core::option::Option<ID3D11UnorderedAccessView>>, puavinitialcounts: ::core::option::Option<*const u32>) {
+    pub unsafe fn CSSetUnorderedAccessViews(&self, startslot: u32, numuavs: u32, ppunorderedaccessviews: ::core::option::Option<*mut ::core::option::Option<ID3D11UnorderedAccessView>>, puavinitialcounts: ::core::option::Option<*const u32>) {
         (::windows::core::Vtable::vtable(self).base__.CSSetUnorderedAccessViews)(::windows::core::Vtable::as_raw(self), startslot, numuavs, ::core::mem::transmute(ppunorderedaccessviews.unwrap_or(::std::ptr::null())), ::core::mem::transmute(puavinitialcounts.unwrap_or(::std::ptr::null())))
     }
     pub unsafe fn CSSetShader<'a, P0>(&self, pcomputeshader: P0, ppclassinstances: ::core::option::Option<&[::core::option::Option<ID3D11ClassInstance>]>)
@@ -4586,22 +4586,22 @@ impl ID3D11DeviceContext1 {
     {
         (::windows::core::Vtable::vtable(self).DiscardView)(::windows::core::Vtable::as_raw(self), presourceview.into().abi())
     }
-    pub unsafe fn VSSetConstantBuffers1(&self, startslot: u32, numbuffers: u32, ppconstantbuffers: ::core::option::Option<*const ::core::option::Option<ID3D11Buffer>>, pfirstconstant: ::core::option::Option<*const u32>, pnumconstants: ::core::option::Option<*const u32>) {
+    pub unsafe fn VSSetConstantBuffers1(&self, startslot: u32, numbuffers: u32, ppconstantbuffers: ::core::option::Option<*mut ::core::option::Option<ID3D11Buffer>>, pfirstconstant: ::core::option::Option<*const u32>, pnumconstants: ::core::option::Option<*const u32>) {
         (::windows::core::Vtable::vtable(self).VSSetConstantBuffers1)(::windows::core::Vtable::as_raw(self), startslot, numbuffers, ::core::mem::transmute(ppconstantbuffers.unwrap_or(::std::ptr::null())), ::core::mem::transmute(pfirstconstant.unwrap_or(::std::ptr::null())), ::core::mem::transmute(pnumconstants.unwrap_or(::std::ptr::null())))
     }
-    pub unsafe fn HSSetConstantBuffers1(&self, startslot: u32, numbuffers: u32, ppconstantbuffers: ::core::option::Option<*const ::core::option::Option<ID3D11Buffer>>, pfirstconstant: ::core::option::Option<*const u32>, pnumconstants: ::core::option::Option<*const u32>) {
+    pub unsafe fn HSSetConstantBuffers1(&self, startslot: u32, numbuffers: u32, ppconstantbuffers: ::core::option::Option<*mut ::core::option::Option<ID3D11Buffer>>, pfirstconstant: ::core::option::Option<*const u32>, pnumconstants: ::core::option::Option<*const u32>) {
         (::windows::core::Vtable::vtable(self).HSSetConstantBuffers1)(::windows::core::Vtable::as_raw(self), startslot, numbuffers, ::core::mem::transmute(ppconstantbuffers.unwrap_or(::std::ptr::null())), ::core::mem::transmute(pfirstconstant.unwrap_or(::std::ptr::null())), ::core::mem::transmute(pnumconstants.unwrap_or(::std::ptr::null())))
     }
-    pub unsafe fn DSSetConstantBuffers1(&self, startslot: u32, numbuffers: u32, ppconstantbuffers: ::core::option::Option<*const ::core::option::Option<ID3D11Buffer>>, pfirstconstant: ::core::option::Option<*const u32>, pnumconstants: ::core::option::Option<*const u32>) {
+    pub unsafe fn DSSetConstantBuffers1(&self, startslot: u32, numbuffers: u32, ppconstantbuffers: ::core::option::Option<*mut ::core::option::Option<ID3D11Buffer>>, pfirstconstant: ::core::option::Option<*const u32>, pnumconstants: ::core::option::Option<*const u32>) {
         (::windows::core::Vtable::vtable(self).DSSetConstantBuffers1)(::windows::core::Vtable::as_raw(self), startslot, numbuffers, ::core::mem::transmute(ppconstantbuffers.unwrap_or(::std::ptr::null())), ::core::mem::transmute(pfirstconstant.unwrap_or(::std::ptr::null())), ::core::mem::transmute(pnumconstants.unwrap_or(::std::ptr::null())))
     }
-    pub unsafe fn GSSetConstantBuffers1(&self, startslot: u32, numbuffers: u32, ppconstantbuffers: ::core::option::Option<*const ::core::option::Option<ID3D11Buffer>>, pfirstconstant: ::core::option::Option<*const u32>, pnumconstants: ::core::option::Option<*const u32>) {
+    pub unsafe fn GSSetConstantBuffers1(&self, startslot: u32, numbuffers: u32, ppconstantbuffers: ::core::option::Option<*mut ::core::option::Option<ID3D11Buffer>>, pfirstconstant: ::core::option::Option<*const u32>, pnumconstants: ::core::option::Option<*const u32>) {
         (::windows::core::Vtable::vtable(self).GSSetConstantBuffers1)(::windows::core::Vtable::as_raw(self), startslot, numbuffers, ::core::mem::transmute(ppconstantbuffers.unwrap_or(::std::ptr::null())), ::core::mem::transmute(pfirstconstant.unwrap_or(::std::ptr::null())), ::core::mem::transmute(pnumconstants.unwrap_or(::std::ptr::null())))
     }
-    pub unsafe fn PSSetConstantBuffers1(&self, startslot: u32, numbuffers: u32, ppconstantbuffers: ::core::option::Option<*const ::core::option::Option<ID3D11Buffer>>, pfirstconstant: ::core::option::Option<*const u32>, pnumconstants: ::core::option::Option<*const u32>) {
+    pub unsafe fn PSSetConstantBuffers1(&self, startslot: u32, numbuffers: u32, ppconstantbuffers: ::core::option::Option<*mut ::core::option::Option<ID3D11Buffer>>, pfirstconstant: ::core::option::Option<*const u32>, pnumconstants: ::core::option::Option<*const u32>) {
         (::windows::core::Vtable::vtable(self).PSSetConstantBuffers1)(::windows::core::Vtable::as_raw(self), startslot, numbuffers, ::core::mem::transmute(ppconstantbuffers.unwrap_or(::std::ptr::null())), ::core::mem::transmute(pfirstconstant.unwrap_or(::std::ptr::null())), ::core::mem::transmute(pnumconstants.unwrap_or(::std::ptr::null())))
     }
-    pub unsafe fn CSSetConstantBuffers1(&self, startslot: u32, numbuffers: u32, ppconstantbuffers: ::core::option::Option<*const ::core::option::Option<ID3D11Buffer>>, pfirstconstant: ::core::option::Option<*const u32>, pnumconstants: ::core::option::Option<*const u32>) {
+    pub unsafe fn CSSetConstantBuffers1(&self, startslot: u32, numbuffers: u32, ppconstantbuffers: ::core::option::Option<*mut ::core::option::Option<ID3D11Buffer>>, pfirstconstant: ::core::option::Option<*const u32>, pnumconstants: ::core::option::Option<*const u32>) {
         (::windows::core::Vtable::vtable(self).CSSetConstantBuffers1)(::windows::core::Vtable::as_raw(self), startslot, numbuffers, ::core::mem::transmute(ppconstantbuffers.unwrap_or(::std::ptr::null())), ::core::mem::transmute(pfirstconstant.unwrap_or(::std::ptr::null())), ::core::mem::transmute(pnumconstants.unwrap_or(::std::ptr::null())))
     }
     pub unsafe fn VSGetConstantBuffers1(&self, startslot: u32, numbuffers: u32, ppconstantbuffers: ::core::option::Option<*mut ::core::option::Option<ID3D11Buffer>>, pfirstconstant: ::core::option::Option<*mut u32>, pnumconstants: ::core::option::Option<*mut u32>) {
@@ -4678,12 +4678,12 @@ pub struct ID3D11DeviceContext1_Vtbl {
     pub UpdateSubresource1: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pdstresource: *mut ::core::ffi::c_void, dstsubresource: u32, pdstbox: *const D3D11_BOX, psrcdata: *const ::core::ffi::c_void, srcrowpitch: u32, srcdepthpitch: u32, copyflags: u32),
     pub DiscardResource: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, presource: *mut ::core::ffi::c_void),
     pub DiscardView: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, presourceview: *mut ::core::ffi::c_void),
-    pub VSSetConstantBuffers1: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, startslot: u32, numbuffers: u32, ppconstantbuffers: *const *mut ::core::ffi::c_void, pfirstconstant: *const u32, pnumconstants: *const u32),
-    pub HSSetConstantBuffers1: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, startslot: u32, numbuffers: u32, ppconstantbuffers: *const *mut ::core::ffi::c_void, pfirstconstant: *const u32, pnumconstants: *const u32),
-    pub DSSetConstantBuffers1: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, startslot: u32, numbuffers: u32, ppconstantbuffers: *const *mut ::core::ffi::c_void, pfirstconstant: *const u32, pnumconstants: *const u32),
-    pub GSSetConstantBuffers1: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, startslot: u32, numbuffers: u32, ppconstantbuffers: *const *mut ::core::ffi::c_void, pfirstconstant: *const u32, pnumconstants: *const u32),
-    pub PSSetConstantBuffers1: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, startslot: u32, numbuffers: u32, ppconstantbuffers: *const *mut ::core::ffi::c_void, pfirstconstant: *const u32, pnumconstants: *const u32),
-    pub CSSetConstantBuffers1: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, startslot: u32, numbuffers: u32, ppconstantbuffers: *const *mut ::core::ffi::c_void, pfirstconstant: *const u32, pnumconstants: *const u32),
+    pub VSSetConstantBuffers1: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, startslot: u32, numbuffers: u32, ppconstantbuffers: *mut *mut ::core::ffi::c_void, pfirstconstant: *const u32, pnumconstants: *const u32),
+    pub HSSetConstantBuffers1: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, startslot: u32, numbuffers: u32, ppconstantbuffers: *mut *mut ::core::ffi::c_void, pfirstconstant: *const u32, pnumconstants: *const u32),
+    pub DSSetConstantBuffers1: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, startslot: u32, numbuffers: u32, ppconstantbuffers: *mut *mut ::core::ffi::c_void, pfirstconstant: *const u32, pnumconstants: *const u32),
+    pub GSSetConstantBuffers1: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, startslot: u32, numbuffers: u32, ppconstantbuffers: *mut *mut ::core::ffi::c_void, pfirstconstant: *const u32, pnumconstants: *const u32),
+    pub PSSetConstantBuffers1: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, startslot: u32, numbuffers: u32, ppconstantbuffers: *mut *mut ::core::ffi::c_void, pfirstconstant: *const u32, pnumconstants: *const u32),
+    pub CSSetConstantBuffers1: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, startslot: u32, numbuffers: u32, ppconstantbuffers: *mut *mut ::core::ffi::c_void, pfirstconstant: *const u32, pnumconstants: *const u32),
     pub VSGetConstantBuffers1: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, startslot: u32, numbuffers: u32, ppconstantbuffers: *mut *mut ::core::ffi::c_void, pfirstconstant: *mut u32, pnumconstants: *mut u32),
     pub HSGetConstantBuffers1: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, startslot: u32, numbuffers: u32, ppconstantbuffers: *mut *mut ::core::ffi::c_void, pfirstconstant: *mut u32, pnumconstants: *mut u32),
     pub DSGetConstantBuffers1: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, startslot: u32, numbuffers: u32, ppconstantbuffers: *mut *mut ::core::ffi::c_void, pfirstconstant: *mut u32, pnumconstants: *mut u32),
@@ -4768,7 +4768,7 @@ impl ID3D11DeviceContext2 {
     {
         (::windows::core::Vtable::vtable(self).base__.base__.IASetInputLayout)(::windows::core::Vtable::as_raw(self), pinputlayout.into().abi())
     }
-    pub unsafe fn IASetVertexBuffers(&self, startslot: u32, numbuffers: u32, ppvertexbuffers: ::core::option::Option<*const ::core::option::Option<ID3D11Buffer>>, pstrides: ::core::option::Option<*const u32>, poffsets: ::core::option::Option<*const u32>) {
+    pub unsafe fn IASetVertexBuffers(&self, startslot: u32, numbuffers: u32, ppvertexbuffers: ::core::option::Option<*mut ::core::option::Option<ID3D11Buffer>>, pstrides: ::core::option::Option<*const u32>, poffsets: ::core::option::Option<*const u32>) {
         (::windows::core::Vtable::vtable(self).base__.base__.IASetVertexBuffers)(::windows::core::Vtable::as_raw(self), startslot, numbuffers, ::core::mem::transmute(ppvertexbuffers.unwrap_or(::std::ptr::null())), ::core::mem::transmute(pstrides.unwrap_or(::std::ptr::null())), ::core::mem::transmute(poffsets.unwrap_or(::std::ptr::null())))
     }
     #[doc = "*Required features: `\"Win32_Graphics_Dxgi_Common\"`*"]
@@ -4844,7 +4844,7 @@ impl ID3D11DeviceContext2 {
     {
         (::windows::core::Vtable::vtable(self).base__.base__.OMSetRenderTargets)(::windows::core::Vtable::as_raw(self), pprendertargetviews.as_deref().map_or(0, |slice| slice.len() as _), ::core::mem::transmute(pprendertargetviews.as_deref().map_or(::core::ptr::null(), |slice| slice.as_ptr())), pdepthstencilview.into().abi())
     }
-    pub unsafe fn OMSetRenderTargetsAndUnorderedAccessViews<'a, P0>(&self, pprendertargetviews: ::core::option::Option<&[::core::option::Option<ID3D11RenderTargetView>]>, pdepthstencilview: P0, uavstartslot: u32, numuavs: u32, ppunorderedaccessviews: ::core::option::Option<*const ::core::option::Option<ID3D11UnorderedAccessView>>, puavinitialcounts: ::core::option::Option<*const u32>)
+    pub unsafe fn OMSetRenderTargetsAndUnorderedAccessViews<'a, P0>(&self, pprendertargetviews: ::core::option::Option<&[::core::option::Option<ID3D11RenderTargetView>]>, pdepthstencilview: P0, uavstartslot: u32, numuavs: u32, ppunorderedaccessviews: ::core::option::Option<*mut ::core::option::Option<ID3D11UnorderedAccessView>>, puavinitialcounts: ::core::option::Option<*const u32>)
     where
         P0: ::std::convert::Into<::windows::core::InParam<'a, ID3D11DepthStencilView>>,
     {
@@ -4862,7 +4862,7 @@ impl ID3D11DeviceContext2 {
     {
         (::windows::core::Vtable::vtable(self).base__.base__.OMSetDepthStencilState)(::windows::core::Vtable::as_raw(self), pdepthstencilstate.into().abi(), stencilref)
     }
-    pub unsafe fn SOSetTargets(&self, numbuffers: u32, ppsotargets: ::core::option::Option<*const ::core::option::Option<ID3D11Buffer>>, poffsets: ::core::option::Option<*const u32>) {
+    pub unsafe fn SOSetTargets(&self, numbuffers: u32, ppsotargets: ::core::option::Option<*mut ::core::option::Option<ID3D11Buffer>>, poffsets: ::core::option::Option<*const u32>) {
         (::windows::core::Vtable::vtable(self).base__.base__.SOSetTargets)(::windows::core::Vtable::as_raw(self), numbuffers, ::core::mem::transmute(ppsotargets.unwrap_or(::std::ptr::null())), ::core::mem::transmute(poffsets.unwrap_or(::std::ptr::null())))
     }
     pub unsafe fn DrawAuto(&self) {
@@ -5023,7 +5023,7 @@ impl ID3D11DeviceContext2 {
     pub unsafe fn CSSetShaderResources(&self, startslot: u32, ppshaderresourceviews: ::core::option::Option<&[::core::option::Option<ID3D11ShaderResourceView>]>) {
         (::windows::core::Vtable::vtable(self).base__.base__.CSSetShaderResources)(::windows::core::Vtable::as_raw(self), startslot, ppshaderresourceviews.as_deref().map_or(0, |slice| slice.len() as _), ::core::mem::transmute(ppshaderresourceviews.as_deref().map_or(::core::ptr::null(), |slice| slice.as_ptr())))
     }
-    pub unsafe fn CSSetUnorderedAccessViews(&self, startslot: u32, numuavs: u32, ppunorderedaccessviews: ::core::option::Option<*const ::core::option::Option<ID3D11UnorderedAccessView>>, puavinitialcounts: ::core::option::Option<*const u32>) {
+    pub unsafe fn CSSetUnorderedAccessViews(&self, startslot: u32, numuavs: u32, ppunorderedaccessviews: ::core::option::Option<*mut ::core::option::Option<ID3D11UnorderedAccessView>>, puavinitialcounts: ::core::option::Option<*const u32>) {
         (::windows::core::Vtable::vtable(self).base__.base__.CSSetUnorderedAccessViews)(::windows::core::Vtable::as_raw(self), startslot, numuavs, ::core::mem::transmute(ppunorderedaccessviews.unwrap_or(::std::ptr::null())), ::core::mem::transmute(puavinitialcounts.unwrap_or(::std::ptr::null())))
     }
     pub unsafe fn CSSetShader<'a, P0>(&self, pcomputeshader: P0, ppclassinstances: ::core::option::Option<&[::core::option::Option<ID3D11ClassInstance>]>)
@@ -5214,22 +5214,22 @@ impl ID3D11DeviceContext2 {
     {
         (::windows::core::Vtable::vtable(self).base__.DiscardView)(::windows::core::Vtable::as_raw(self), presourceview.into().abi())
     }
-    pub unsafe fn VSSetConstantBuffers1(&self, startslot: u32, numbuffers: u32, ppconstantbuffers: ::core::option::Option<*const ::core::option::Option<ID3D11Buffer>>, pfirstconstant: ::core::option::Option<*const u32>, pnumconstants: ::core::option::Option<*const u32>) {
+    pub unsafe fn VSSetConstantBuffers1(&self, startslot: u32, numbuffers: u32, ppconstantbuffers: ::core::option::Option<*mut ::core::option::Option<ID3D11Buffer>>, pfirstconstant: ::core::option::Option<*const u32>, pnumconstants: ::core::option::Option<*const u32>) {
         (::windows::core::Vtable::vtable(self).base__.VSSetConstantBuffers1)(::windows::core::Vtable::as_raw(self), startslot, numbuffers, ::core::mem::transmute(ppconstantbuffers.unwrap_or(::std::ptr::null())), ::core::mem::transmute(pfirstconstant.unwrap_or(::std::ptr::null())), ::core::mem::transmute(pnumconstants.unwrap_or(::std::ptr::null())))
     }
-    pub unsafe fn HSSetConstantBuffers1(&self, startslot: u32, numbuffers: u32, ppconstantbuffers: ::core::option::Option<*const ::core::option::Option<ID3D11Buffer>>, pfirstconstant: ::core::option::Option<*const u32>, pnumconstants: ::core::option::Option<*const u32>) {
+    pub unsafe fn HSSetConstantBuffers1(&self, startslot: u32, numbuffers: u32, ppconstantbuffers: ::core::option::Option<*mut ::core::option::Option<ID3D11Buffer>>, pfirstconstant: ::core::option::Option<*const u32>, pnumconstants: ::core::option::Option<*const u32>) {
         (::windows::core::Vtable::vtable(self).base__.HSSetConstantBuffers1)(::windows::core::Vtable::as_raw(self), startslot, numbuffers, ::core::mem::transmute(ppconstantbuffers.unwrap_or(::std::ptr::null())), ::core::mem::transmute(pfirstconstant.unwrap_or(::std::ptr::null())), ::core::mem::transmute(pnumconstants.unwrap_or(::std::ptr::null())))
     }
-    pub unsafe fn DSSetConstantBuffers1(&self, startslot: u32, numbuffers: u32, ppconstantbuffers: ::core::option::Option<*const ::core::option::Option<ID3D11Buffer>>, pfirstconstant: ::core::option::Option<*const u32>, pnumconstants: ::core::option::Option<*const u32>) {
+    pub unsafe fn DSSetConstantBuffers1(&self, startslot: u32, numbuffers: u32, ppconstantbuffers: ::core::option::Option<*mut ::core::option::Option<ID3D11Buffer>>, pfirstconstant: ::core::option::Option<*const u32>, pnumconstants: ::core::option::Option<*const u32>) {
         (::windows::core::Vtable::vtable(self).base__.DSSetConstantBuffers1)(::windows::core::Vtable::as_raw(self), startslot, numbuffers, ::core::mem::transmute(ppconstantbuffers.unwrap_or(::std::ptr::null())), ::core::mem::transmute(pfirstconstant.unwrap_or(::std::ptr::null())), ::core::mem::transmute(pnumconstants.unwrap_or(::std::ptr::null())))
     }
-    pub unsafe fn GSSetConstantBuffers1(&self, startslot: u32, numbuffers: u32, ppconstantbuffers: ::core::option::Option<*const ::core::option::Option<ID3D11Buffer>>, pfirstconstant: ::core::option::Option<*const u32>, pnumconstants: ::core::option::Option<*const u32>) {
+    pub unsafe fn GSSetConstantBuffers1(&self, startslot: u32, numbuffers: u32, ppconstantbuffers: ::core::option::Option<*mut ::core::option::Option<ID3D11Buffer>>, pfirstconstant: ::core::option::Option<*const u32>, pnumconstants: ::core::option::Option<*const u32>) {
         (::windows::core::Vtable::vtable(self).base__.GSSetConstantBuffers1)(::windows::core::Vtable::as_raw(self), startslot, numbuffers, ::core::mem::transmute(ppconstantbuffers.unwrap_or(::std::ptr::null())), ::core::mem::transmute(pfirstconstant.unwrap_or(::std::ptr::null())), ::core::mem::transmute(pnumconstants.unwrap_or(::std::ptr::null())))
     }
-    pub unsafe fn PSSetConstantBuffers1(&self, startslot: u32, numbuffers: u32, ppconstantbuffers: ::core::option::Option<*const ::core::option::Option<ID3D11Buffer>>, pfirstconstant: ::core::option::Option<*const u32>, pnumconstants: ::core::option::Option<*const u32>) {
+    pub unsafe fn PSSetConstantBuffers1(&self, startslot: u32, numbuffers: u32, ppconstantbuffers: ::core::option::Option<*mut ::core::option::Option<ID3D11Buffer>>, pfirstconstant: ::core::option::Option<*const u32>, pnumconstants: ::core::option::Option<*const u32>) {
         (::windows::core::Vtable::vtable(self).base__.PSSetConstantBuffers1)(::windows::core::Vtable::as_raw(self), startslot, numbuffers, ::core::mem::transmute(ppconstantbuffers.unwrap_or(::std::ptr::null())), ::core::mem::transmute(pfirstconstant.unwrap_or(::std::ptr::null())), ::core::mem::transmute(pnumconstants.unwrap_or(::std::ptr::null())))
     }
-    pub unsafe fn CSSetConstantBuffers1(&self, startslot: u32, numbuffers: u32, ppconstantbuffers: ::core::option::Option<*const ::core::option::Option<ID3D11Buffer>>, pfirstconstant: ::core::option::Option<*const u32>, pnumconstants: ::core::option::Option<*const u32>) {
+    pub unsafe fn CSSetConstantBuffers1(&self, startslot: u32, numbuffers: u32, ppconstantbuffers: ::core::option::Option<*mut ::core::option::Option<ID3D11Buffer>>, pfirstconstant: ::core::option::Option<*const u32>, pnumconstants: ::core::option::Option<*const u32>) {
         (::windows::core::Vtable::vtable(self).base__.CSSetConstantBuffers1)(::windows::core::Vtable::as_raw(self), startslot, numbuffers, ::core::mem::transmute(ppconstantbuffers.unwrap_or(::std::ptr::null())), ::core::mem::transmute(pfirstconstant.unwrap_or(::std::ptr::null())), ::core::mem::transmute(pnumconstants.unwrap_or(::std::ptr::null())))
     }
     pub unsafe fn VSGetConstantBuffers1(&self, startslot: u32, numbuffers: u32, ppconstantbuffers: ::core::option::Option<*mut ::core::option::Option<ID3D11Buffer>>, pfirstconstant: ::core::option::Option<*mut u32>, pnumconstants: ::core::option::Option<*mut u32>) {
@@ -5477,7 +5477,7 @@ impl ID3D11DeviceContext3 {
     {
         (::windows::core::Vtable::vtable(self).base__.base__.base__.IASetInputLayout)(::windows::core::Vtable::as_raw(self), pinputlayout.into().abi())
     }
-    pub unsafe fn IASetVertexBuffers(&self, startslot: u32, numbuffers: u32, ppvertexbuffers: ::core::option::Option<*const ::core::option::Option<ID3D11Buffer>>, pstrides: ::core::option::Option<*const u32>, poffsets: ::core::option::Option<*const u32>) {
+    pub unsafe fn IASetVertexBuffers(&self, startslot: u32, numbuffers: u32, ppvertexbuffers: ::core::option::Option<*mut ::core::option::Option<ID3D11Buffer>>, pstrides: ::core::option::Option<*const u32>, poffsets: ::core::option::Option<*const u32>) {
         (::windows::core::Vtable::vtable(self).base__.base__.base__.IASetVertexBuffers)(::windows::core::Vtable::as_raw(self), startslot, numbuffers, ::core::mem::transmute(ppvertexbuffers.unwrap_or(::std::ptr::null())), ::core::mem::transmute(pstrides.unwrap_or(::std::ptr::null())), ::core::mem::transmute(poffsets.unwrap_or(::std::ptr::null())))
     }
     #[doc = "*Required features: `\"Win32_Graphics_Dxgi_Common\"`*"]
@@ -5553,7 +5553,7 @@ impl ID3D11DeviceContext3 {
     {
         (::windows::core::Vtable::vtable(self).base__.base__.base__.OMSetRenderTargets)(::windows::core::Vtable::as_raw(self), pprendertargetviews.as_deref().map_or(0, |slice| slice.len() as _), ::core::mem::transmute(pprendertargetviews.as_deref().map_or(::core::ptr::null(), |slice| slice.as_ptr())), pdepthstencilview.into().abi())
     }
-    pub unsafe fn OMSetRenderTargetsAndUnorderedAccessViews<'a, P0>(&self, pprendertargetviews: ::core::option::Option<&[::core::option::Option<ID3D11RenderTargetView>]>, pdepthstencilview: P0, uavstartslot: u32, numuavs: u32, ppunorderedaccessviews: ::core::option::Option<*const ::core::option::Option<ID3D11UnorderedAccessView>>, puavinitialcounts: ::core::option::Option<*const u32>)
+    pub unsafe fn OMSetRenderTargetsAndUnorderedAccessViews<'a, P0>(&self, pprendertargetviews: ::core::option::Option<&[::core::option::Option<ID3D11RenderTargetView>]>, pdepthstencilview: P0, uavstartslot: u32, numuavs: u32, ppunorderedaccessviews: ::core::option::Option<*mut ::core::option::Option<ID3D11UnorderedAccessView>>, puavinitialcounts: ::core::option::Option<*const u32>)
     where
         P0: ::std::convert::Into<::windows::core::InParam<'a, ID3D11DepthStencilView>>,
     {
@@ -5571,7 +5571,7 @@ impl ID3D11DeviceContext3 {
     {
         (::windows::core::Vtable::vtable(self).base__.base__.base__.OMSetDepthStencilState)(::windows::core::Vtable::as_raw(self), pdepthstencilstate.into().abi(), stencilref)
     }
-    pub unsafe fn SOSetTargets(&self, numbuffers: u32, ppsotargets: ::core::option::Option<*const ::core::option::Option<ID3D11Buffer>>, poffsets: ::core::option::Option<*const u32>) {
+    pub unsafe fn SOSetTargets(&self, numbuffers: u32, ppsotargets: ::core::option::Option<*mut ::core::option::Option<ID3D11Buffer>>, poffsets: ::core::option::Option<*const u32>) {
         (::windows::core::Vtable::vtable(self).base__.base__.base__.SOSetTargets)(::windows::core::Vtable::as_raw(self), numbuffers, ::core::mem::transmute(ppsotargets.unwrap_or(::std::ptr::null())), ::core::mem::transmute(poffsets.unwrap_or(::std::ptr::null())))
     }
     pub unsafe fn DrawAuto(&self) {
@@ -5732,7 +5732,7 @@ impl ID3D11DeviceContext3 {
     pub unsafe fn CSSetShaderResources(&self, startslot: u32, ppshaderresourceviews: ::core::option::Option<&[::core::option::Option<ID3D11ShaderResourceView>]>) {
         (::windows::core::Vtable::vtable(self).base__.base__.base__.CSSetShaderResources)(::windows::core::Vtable::as_raw(self), startslot, ppshaderresourceviews.as_deref().map_or(0, |slice| slice.len() as _), ::core::mem::transmute(ppshaderresourceviews.as_deref().map_or(::core::ptr::null(), |slice| slice.as_ptr())))
     }
-    pub unsafe fn CSSetUnorderedAccessViews(&self, startslot: u32, numuavs: u32, ppunorderedaccessviews: ::core::option::Option<*const ::core::option::Option<ID3D11UnorderedAccessView>>, puavinitialcounts: ::core::option::Option<*const u32>) {
+    pub unsafe fn CSSetUnorderedAccessViews(&self, startslot: u32, numuavs: u32, ppunorderedaccessviews: ::core::option::Option<*mut ::core::option::Option<ID3D11UnorderedAccessView>>, puavinitialcounts: ::core::option::Option<*const u32>) {
         (::windows::core::Vtable::vtable(self).base__.base__.base__.CSSetUnorderedAccessViews)(::windows::core::Vtable::as_raw(self), startslot, numuavs, ::core::mem::transmute(ppunorderedaccessviews.unwrap_or(::std::ptr::null())), ::core::mem::transmute(puavinitialcounts.unwrap_or(::std::ptr::null())))
     }
     pub unsafe fn CSSetShader<'a, P0>(&self, pcomputeshader: P0, ppclassinstances: ::core::option::Option<&[::core::option::Option<ID3D11ClassInstance>]>)
@@ -5923,22 +5923,22 @@ impl ID3D11DeviceContext3 {
     {
         (::windows::core::Vtable::vtable(self).base__.base__.DiscardView)(::windows::core::Vtable::as_raw(self), presourceview.into().abi())
     }
-    pub unsafe fn VSSetConstantBuffers1(&self, startslot: u32, numbuffers: u32, ppconstantbuffers: ::core::option::Option<*const ::core::option::Option<ID3D11Buffer>>, pfirstconstant: ::core::option::Option<*const u32>, pnumconstants: ::core::option::Option<*const u32>) {
+    pub unsafe fn VSSetConstantBuffers1(&self, startslot: u32, numbuffers: u32, ppconstantbuffers: ::core::option::Option<*mut ::core::option::Option<ID3D11Buffer>>, pfirstconstant: ::core::option::Option<*const u32>, pnumconstants: ::core::option::Option<*const u32>) {
         (::windows::core::Vtable::vtable(self).base__.base__.VSSetConstantBuffers1)(::windows::core::Vtable::as_raw(self), startslot, numbuffers, ::core::mem::transmute(ppconstantbuffers.unwrap_or(::std::ptr::null())), ::core::mem::transmute(pfirstconstant.unwrap_or(::std::ptr::null())), ::core::mem::transmute(pnumconstants.unwrap_or(::std::ptr::null())))
     }
-    pub unsafe fn HSSetConstantBuffers1(&self, startslot: u32, numbuffers: u32, ppconstantbuffers: ::core::option::Option<*const ::core::option::Option<ID3D11Buffer>>, pfirstconstant: ::core::option::Option<*const u32>, pnumconstants: ::core::option::Option<*const u32>) {
+    pub unsafe fn HSSetConstantBuffers1(&self, startslot: u32, numbuffers: u32, ppconstantbuffers: ::core::option::Option<*mut ::core::option::Option<ID3D11Buffer>>, pfirstconstant: ::core::option::Option<*const u32>, pnumconstants: ::core::option::Option<*const u32>) {
         (::windows::core::Vtable::vtable(self).base__.base__.HSSetConstantBuffers1)(::windows::core::Vtable::as_raw(self), startslot, numbuffers, ::core::mem::transmute(ppconstantbuffers.unwrap_or(::std::ptr::null())), ::core::mem::transmute(pfirstconstant.unwrap_or(::std::ptr::null())), ::core::mem::transmute(pnumconstants.unwrap_or(::std::ptr::null())))
     }
-    pub unsafe fn DSSetConstantBuffers1(&self, startslot: u32, numbuffers: u32, ppconstantbuffers: ::core::option::Option<*const ::core::option::Option<ID3D11Buffer>>, pfirstconstant: ::core::option::Option<*const u32>, pnumconstants: ::core::option::Option<*const u32>) {
+    pub unsafe fn DSSetConstantBuffers1(&self, startslot: u32, numbuffers: u32, ppconstantbuffers: ::core::option::Option<*mut ::core::option::Option<ID3D11Buffer>>, pfirstconstant: ::core::option::Option<*const u32>, pnumconstants: ::core::option::Option<*const u32>) {
         (::windows::core::Vtable::vtable(self).base__.base__.DSSetConstantBuffers1)(::windows::core::Vtable::as_raw(self), startslot, numbuffers, ::core::mem::transmute(ppconstantbuffers.unwrap_or(::std::ptr::null())), ::core::mem::transmute(pfirstconstant.unwrap_or(::std::ptr::null())), ::core::mem::transmute(pnumconstants.unwrap_or(::std::ptr::null())))
     }
-    pub unsafe fn GSSetConstantBuffers1(&self, startslot: u32, numbuffers: u32, ppconstantbuffers: ::core::option::Option<*const ::core::option::Option<ID3D11Buffer>>, pfirstconstant: ::core::option::Option<*const u32>, pnumconstants: ::core::option::Option<*const u32>) {
+    pub unsafe fn GSSetConstantBuffers1(&self, startslot: u32, numbuffers: u32, ppconstantbuffers: ::core::option::Option<*mut ::core::option::Option<ID3D11Buffer>>, pfirstconstant: ::core::option::Option<*const u32>, pnumconstants: ::core::option::Option<*const u32>) {
         (::windows::core::Vtable::vtable(self).base__.base__.GSSetConstantBuffers1)(::windows::core::Vtable::as_raw(self), startslot, numbuffers, ::core::mem::transmute(ppconstantbuffers.unwrap_or(::std::ptr::null())), ::core::mem::transmute(pfirstconstant.unwrap_or(::std::ptr::null())), ::core::mem::transmute(pnumconstants.unwrap_or(::std::ptr::null())))
     }
-    pub unsafe fn PSSetConstantBuffers1(&self, startslot: u32, numbuffers: u32, ppconstantbuffers: ::core::option::Option<*const ::core::option::Option<ID3D11Buffer>>, pfirstconstant: ::core::option::Option<*const u32>, pnumconstants: ::core::option::Option<*const u32>) {
+    pub unsafe fn PSSetConstantBuffers1(&self, startslot: u32, numbuffers: u32, ppconstantbuffers: ::core::option::Option<*mut ::core::option::Option<ID3D11Buffer>>, pfirstconstant: ::core::option::Option<*const u32>, pnumconstants: ::core::option::Option<*const u32>) {
         (::windows::core::Vtable::vtable(self).base__.base__.PSSetConstantBuffers1)(::windows::core::Vtable::as_raw(self), startslot, numbuffers, ::core::mem::transmute(ppconstantbuffers.unwrap_or(::std::ptr::null())), ::core::mem::transmute(pfirstconstant.unwrap_or(::std::ptr::null())), ::core::mem::transmute(pnumconstants.unwrap_or(::std::ptr::null())))
     }
-    pub unsafe fn CSSetConstantBuffers1(&self, startslot: u32, numbuffers: u32, ppconstantbuffers: ::core::option::Option<*const ::core::option::Option<ID3D11Buffer>>, pfirstconstant: ::core::option::Option<*const u32>, pnumconstants: ::core::option::Option<*const u32>) {
+    pub unsafe fn CSSetConstantBuffers1(&self, startslot: u32, numbuffers: u32, ppconstantbuffers: ::core::option::Option<*mut ::core::option::Option<ID3D11Buffer>>, pfirstconstant: ::core::option::Option<*const u32>, pnumconstants: ::core::option::Option<*const u32>) {
         (::windows::core::Vtable::vtable(self).base__.base__.CSSetConstantBuffers1)(::windows::core::Vtable::as_raw(self), startslot, numbuffers, ::core::mem::transmute(ppconstantbuffers.unwrap_or(::std::ptr::null())), ::core::mem::transmute(pfirstconstant.unwrap_or(::std::ptr::null())), ::core::mem::transmute(pnumconstants.unwrap_or(::std::ptr::null())))
     }
     pub unsafe fn VSGetConstantBuffers1(&self, startslot: u32, numbuffers: u32, ppconstantbuffers: ::core::option::Option<*mut ::core::option::Option<ID3D11Buffer>>, pfirstconstant: ::core::option::Option<*mut u32>, pnumconstants: ::core::option::Option<*mut u32>) {
@@ -6194,7 +6194,7 @@ impl ID3D11DeviceContext4 {
     {
         (::windows::core::Vtable::vtable(self).base__.base__.base__.base__.IASetInputLayout)(::windows::core::Vtable::as_raw(self), pinputlayout.into().abi())
     }
-    pub unsafe fn IASetVertexBuffers(&self, startslot: u32, numbuffers: u32, ppvertexbuffers: ::core::option::Option<*const ::core::option::Option<ID3D11Buffer>>, pstrides: ::core::option::Option<*const u32>, poffsets: ::core::option::Option<*const u32>) {
+    pub unsafe fn IASetVertexBuffers(&self, startslot: u32, numbuffers: u32, ppvertexbuffers: ::core::option::Option<*mut ::core::option::Option<ID3D11Buffer>>, pstrides: ::core::option::Option<*const u32>, poffsets: ::core::option::Option<*const u32>) {
         (::windows::core::Vtable::vtable(self).base__.base__.base__.base__.IASetVertexBuffers)(::windows::core::Vtable::as_raw(self), startslot, numbuffers, ::core::mem::transmute(ppvertexbuffers.unwrap_or(::std::ptr::null())), ::core::mem::transmute(pstrides.unwrap_or(::std::ptr::null())), ::core::mem::transmute(poffsets.unwrap_or(::std::ptr::null())))
     }
     #[doc = "*Required features: `\"Win32_Graphics_Dxgi_Common\"`*"]
@@ -6270,7 +6270,7 @@ impl ID3D11DeviceContext4 {
     {
         (::windows::core::Vtable::vtable(self).base__.base__.base__.base__.OMSetRenderTargets)(::windows::core::Vtable::as_raw(self), pprendertargetviews.as_deref().map_or(0, |slice| slice.len() as _), ::core::mem::transmute(pprendertargetviews.as_deref().map_or(::core::ptr::null(), |slice| slice.as_ptr())), pdepthstencilview.into().abi())
     }
-    pub unsafe fn OMSetRenderTargetsAndUnorderedAccessViews<'a, P0>(&self, pprendertargetviews: ::core::option::Option<&[::core::option::Option<ID3D11RenderTargetView>]>, pdepthstencilview: P0, uavstartslot: u32, numuavs: u32, ppunorderedaccessviews: ::core::option::Option<*const ::core::option::Option<ID3D11UnorderedAccessView>>, puavinitialcounts: ::core::option::Option<*const u32>)
+    pub unsafe fn OMSetRenderTargetsAndUnorderedAccessViews<'a, P0>(&self, pprendertargetviews: ::core::option::Option<&[::core::option::Option<ID3D11RenderTargetView>]>, pdepthstencilview: P0, uavstartslot: u32, numuavs: u32, ppunorderedaccessviews: ::core::option::Option<*mut ::core::option::Option<ID3D11UnorderedAccessView>>, puavinitialcounts: ::core::option::Option<*const u32>)
     where
         P0: ::std::convert::Into<::windows::core::InParam<'a, ID3D11DepthStencilView>>,
     {
@@ -6288,7 +6288,7 @@ impl ID3D11DeviceContext4 {
     {
         (::windows::core::Vtable::vtable(self).base__.base__.base__.base__.OMSetDepthStencilState)(::windows::core::Vtable::as_raw(self), pdepthstencilstate.into().abi(), stencilref)
     }
-    pub unsafe fn SOSetTargets(&self, numbuffers: u32, ppsotargets: ::core::option::Option<*const ::core::option::Option<ID3D11Buffer>>, poffsets: ::core::option::Option<*const u32>) {
+    pub unsafe fn SOSetTargets(&self, numbuffers: u32, ppsotargets: ::core::option::Option<*mut ::core::option::Option<ID3D11Buffer>>, poffsets: ::core::option::Option<*const u32>) {
         (::windows::core::Vtable::vtable(self).base__.base__.base__.base__.SOSetTargets)(::windows::core::Vtable::as_raw(self), numbuffers, ::core::mem::transmute(ppsotargets.unwrap_or(::std::ptr::null())), ::core::mem::transmute(poffsets.unwrap_or(::std::ptr::null())))
     }
     pub unsafe fn DrawAuto(&self) {
@@ -6449,7 +6449,7 @@ impl ID3D11DeviceContext4 {
     pub unsafe fn CSSetShaderResources(&self, startslot: u32, ppshaderresourceviews: ::core::option::Option<&[::core::option::Option<ID3D11ShaderResourceView>]>) {
         (::windows::core::Vtable::vtable(self).base__.base__.base__.base__.CSSetShaderResources)(::windows::core::Vtable::as_raw(self), startslot, ppshaderresourceviews.as_deref().map_or(0, |slice| slice.len() as _), ::core::mem::transmute(ppshaderresourceviews.as_deref().map_or(::core::ptr::null(), |slice| slice.as_ptr())))
     }
-    pub unsafe fn CSSetUnorderedAccessViews(&self, startslot: u32, numuavs: u32, ppunorderedaccessviews: ::core::option::Option<*const ::core::option::Option<ID3D11UnorderedAccessView>>, puavinitialcounts: ::core::option::Option<*const u32>) {
+    pub unsafe fn CSSetUnorderedAccessViews(&self, startslot: u32, numuavs: u32, ppunorderedaccessviews: ::core::option::Option<*mut ::core::option::Option<ID3D11UnorderedAccessView>>, puavinitialcounts: ::core::option::Option<*const u32>) {
         (::windows::core::Vtable::vtable(self).base__.base__.base__.base__.CSSetUnorderedAccessViews)(::windows::core::Vtable::as_raw(self), startslot, numuavs, ::core::mem::transmute(ppunorderedaccessviews.unwrap_or(::std::ptr::null())), ::core::mem::transmute(puavinitialcounts.unwrap_or(::std::ptr::null())))
     }
     pub unsafe fn CSSetShader<'a, P0>(&self, pcomputeshader: P0, ppclassinstances: ::core::option::Option<&[::core::option::Option<ID3D11ClassInstance>]>)
@@ -6640,22 +6640,22 @@ impl ID3D11DeviceContext4 {
     {
         (::windows::core::Vtable::vtable(self).base__.base__.base__.DiscardView)(::windows::core::Vtable::as_raw(self), presourceview.into().abi())
     }
-    pub unsafe fn VSSetConstantBuffers1(&self, startslot: u32, numbuffers: u32, ppconstantbuffers: ::core::option::Option<*const ::core::option::Option<ID3D11Buffer>>, pfirstconstant: ::core::option::Option<*const u32>, pnumconstants: ::core::option::Option<*const u32>) {
+    pub unsafe fn VSSetConstantBuffers1(&self, startslot: u32, numbuffers: u32, ppconstantbuffers: ::core::option::Option<*mut ::core::option::Option<ID3D11Buffer>>, pfirstconstant: ::core::option::Option<*const u32>, pnumconstants: ::core::option::Option<*const u32>) {
         (::windows::core::Vtable::vtable(self).base__.base__.base__.VSSetConstantBuffers1)(::windows::core::Vtable::as_raw(self), startslot, numbuffers, ::core::mem::transmute(ppconstantbuffers.unwrap_or(::std::ptr::null())), ::core::mem::transmute(pfirstconstant.unwrap_or(::std::ptr::null())), ::core::mem::transmute(pnumconstants.unwrap_or(::std::ptr::null())))
     }
-    pub unsafe fn HSSetConstantBuffers1(&self, startslot: u32, numbuffers: u32, ppconstantbuffers: ::core::option::Option<*const ::core::option::Option<ID3D11Buffer>>, pfirstconstant: ::core::option::Option<*const u32>, pnumconstants: ::core::option::Option<*const u32>) {
+    pub unsafe fn HSSetConstantBuffers1(&self, startslot: u32, numbuffers: u32, ppconstantbuffers: ::core::option::Option<*mut ::core::option::Option<ID3D11Buffer>>, pfirstconstant: ::core::option::Option<*const u32>, pnumconstants: ::core::option::Option<*const u32>) {
         (::windows::core::Vtable::vtable(self).base__.base__.base__.HSSetConstantBuffers1)(::windows::core::Vtable::as_raw(self), startslot, numbuffers, ::core::mem::transmute(ppconstantbuffers.unwrap_or(::std::ptr::null())), ::core::mem::transmute(pfirstconstant.unwrap_or(::std::ptr::null())), ::core::mem::transmute(pnumconstants.unwrap_or(::std::ptr::null())))
     }
-    pub unsafe fn DSSetConstantBuffers1(&self, startslot: u32, numbuffers: u32, ppconstantbuffers: ::core::option::Option<*const ::core::option::Option<ID3D11Buffer>>, pfirstconstant: ::core::option::Option<*const u32>, pnumconstants: ::core::option::Option<*const u32>) {
+    pub unsafe fn DSSetConstantBuffers1(&self, startslot: u32, numbuffers: u32, ppconstantbuffers: ::core::option::Option<*mut ::core::option::Option<ID3D11Buffer>>, pfirstconstant: ::core::option::Option<*const u32>, pnumconstants: ::core::option::Option<*const u32>) {
         (::windows::core::Vtable::vtable(self).base__.base__.base__.DSSetConstantBuffers1)(::windows::core::Vtable::as_raw(self), startslot, numbuffers, ::core::mem::transmute(ppconstantbuffers.unwrap_or(::std::ptr::null())), ::core::mem::transmute(pfirstconstant.unwrap_or(::std::ptr::null())), ::core::mem::transmute(pnumconstants.unwrap_or(::std::ptr::null())))
     }
-    pub unsafe fn GSSetConstantBuffers1(&self, startslot: u32, numbuffers: u32, ppconstantbuffers: ::core::option::Option<*const ::core::option::Option<ID3D11Buffer>>, pfirstconstant: ::core::option::Option<*const u32>, pnumconstants: ::core::option::Option<*const u32>) {
+    pub unsafe fn GSSetConstantBuffers1(&self, startslot: u32, numbuffers: u32, ppconstantbuffers: ::core::option::Option<*mut ::core::option::Option<ID3D11Buffer>>, pfirstconstant: ::core::option::Option<*const u32>, pnumconstants: ::core::option::Option<*const u32>) {
         (::windows::core::Vtable::vtable(self).base__.base__.base__.GSSetConstantBuffers1)(::windows::core::Vtable::as_raw(self), startslot, numbuffers, ::core::mem::transmute(ppconstantbuffers.unwrap_or(::std::ptr::null())), ::core::mem::transmute(pfirstconstant.unwrap_or(::std::ptr::null())), ::core::mem::transmute(pnumconstants.unwrap_or(::std::ptr::null())))
     }
-    pub unsafe fn PSSetConstantBuffers1(&self, startslot: u32, numbuffers: u32, ppconstantbuffers: ::core::option::Option<*const ::core::option::Option<ID3D11Buffer>>, pfirstconstant: ::core::option::Option<*const u32>, pnumconstants: ::core::option::Option<*const u32>) {
+    pub unsafe fn PSSetConstantBuffers1(&self, startslot: u32, numbuffers: u32, ppconstantbuffers: ::core::option::Option<*mut ::core::option::Option<ID3D11Buffer>>, pfirstconstant: ::core::option::Option<*const u32>, pnumconstants: ::core::option::Option<*const u32>) {
         (::windows::core::Vtable::vtable(self).base__.base__.base__.PSSetConstantBuffers1)(::windows::core::Vtable::as_raw(self), startslot, numbuffers, ::core::mem::transmute(ppconstantbuffers.unwrap_or(::std::ptr::null())), ::core::mem::transmute(pfirstconstant.unwrap_or(::std::ptr::null())), ::core::mem::transmute(pnumconstants.unwrap_or(::std::ptr::null())))
     }
-    pub unsafe fn CSSetConstantBuffers1(&self, startslot: u32, numbuffers: u32, ppconstantbuffers: ::core::option::Option<*const ::core::option::Option<ID3D11Buffer>>, pfirstconstant: ::core::option::Option<*const u32>, pnumconstants: ::core::option::Option<*const u32>) {
+    pub unsafe fn CSSetConstantBuffers1(&self, startslot: u32, numbuffers: u32, ppconstantbuffers: ::core::option::Option<*mut ::core::option::Option<ID3D11Buffer>>, pfirstconstant: ::core::option::Option<*const u32>, pnumconstants: ::core::option::Option<*const u32>) {
         (::windows::core::Vtable::vtable(self).base__.base__.base__.CSSetConstantBuffers1)(::windows::core::Vtable::as_raw(self), startslot, numbuffers, ::core::mem::transmute(ppconstantbuffers.unwrap_or(::std::ptr::null())), ::core::mem::transmute(pfirstconstant.unwrap_or(::std::ptr::null())), ::core::mem::transmute(pnumconstants.unwrap_or(::std::ptr::null())))
     }
     pub unsafe fn VSGetConstantBuffers1(&self, startslot: u32, numbuffers: u32, ppconstantbuffers: ::core::option::Option<*mut ::core::option::Option<ID3D11Buffer>>, pfirstconstant: ::core::option::Option<*mut u32>, pnumconstants: ::core::option::Option<*mut u32>) {
@@ -7360,7 +7360,7 @@ impl ID3D11InfoQueue {
     pub unsafe fn GetMessageCountLimit(&self) -> u64 {
         (::windows::core::Vtable::vtable(self).GetMessageCountLimit)(::windows::core::Vtable::as_raw(self))
     }
-    pub unsafe fn AddStorageFilterEntries(&self, pfilter: *const D3D11_INFO_QUEUE_FILTER) -> ::windows::core::Result<()> {
+    pub unsafe fn AddStorageFilterEntries(&self, pfilter: *mut D3D11_INFO_QUEUE_FILTER) -> ::windows::core::Result<()> {
         (::windows::core::Vtable::vtable(self).AddStorageFilterEntries)(::windows::core::Vtable::as_raw(self), ::core::mem::transmute(pfilter)).ok()
     }
     pub unsafe fn GetStorageFilter(&self, pfilter: ::core::option::Option<*mut D3D11_INFO_QUEUE_FILTER>, pfilterbytelength: *mut usize) -> ::windows::core::Result<()> {
@@ -7375,7 +7375,7 @@ impl ID3D11InfoQueue {
     pub unsafe fn PushCopyOfStorageFilter(&self) -> ::windows::core::Result<()> {
         (::windows::core::Vtable::vtable(self).PushCopyOfStorageFilter)(::windows::core::Vtable::as_raw(self)).ok()
     }
-    pub unsafe fn PushStorageFilter(&self, pfilter: *const D3D11_INFO_QUEUE_FILTER) -> ::windows::core::Result<()> {
+    pub unsafe fn PushStorageFilter(&self, pfilter: *mut D3D11_INFO_QUEUE_FILTER) -> ::windows::core::Result<()> {
         (::windows::core::Vtable::vtable(self).PushStorageFilter)(::windows::core::Vtable::as_raw(self), ::core::mem::transmute(pfilter)).ok()
     }
     pub unsafe fn PopStorageFilter(&self) {
@@ -7384,7 +7384,7 @@ impl ID3D11InfoQueue {
     pub unsafe fn GetStorageFilterStackSize(&self) -> u32 {
         (::windows::core::Vtable::vtable(self).GetStorageFilterStackSize)(::windows::core::Vtable::as_raw(self))
     }
-    pub unsafe fn AddRetrievalFilterEntries(&self, pfilter: *const D3D11_INFO_QUEUE_FILTER) -> ::windows::core::Result<()> {
+    pub unsafe fn AddRetrievalFilterEntries(&self, pfilter: *mut D3D11_INFO_QUEUE_FILTER) -> ::windows::core::Result<()> {
         (::windows::core::Vtable::vtable(self).AddRetrievalFilterEntries)(::windows::core::Vtable::as_raw(self), ::core::mem::transmute(pfilter)).ok()
     }
     pub unsafe fn GetRetrievalFilter(&self, pfilter: ::core::option::Option<*mut D3D11_INFO_QUEUE_FILTER>, pfilterbytelength: *mut usize) -> ::windows::core::Result<()> {
@@ -7399,7 +7399,7 @@ impl ID3D11InfoQueue {
     pub unsafe fn PushCopyOfRetrievalFilter(&self) -> ::windows::core::Result<()> {
         (::windows::core::Vtable::vtable(self).PushCopyOfRetrievalFilter)(::windows::core::Vtable::as_raw(self)).ok()
     }
-    pub unsafe fn PushRetrievalFilter(&self, pfilter: *const D3D11_INFO_QUEUE_FILTER) -> ::windows::core::Result<()> {
+    pub unsafe fn PushRetrievalFilter(&self, pfilter: *mut D3D11_INFO_QUEUE_FILTER) -> ::windows::core::Result<()> {
         (::windows::core::Vtable::vtable(self).PushRetrievalFilter)(::windows::core::Vtable::as_raw(self), ::core::mem::transmute(pfilter)).ok()
     }
     pub unsafe fn PopRetrievalFilter(&self) {
@@ -7511,20 +7511,20 @@ pub struct ID3D11InfoQueue_Vtbl {
     pub GetNumStoredMessagesAllowedByRetrievalFilter: unsafe extern "system" fn(this: *mut ::core::ffi::c_void) -> u64,
     pub GetNumMessagesDiscardedByMessageCountLimit: unsafe extern "system" fn(this: *mut ::core::ffi::c_void) -> u64,
     pub GetMessageCountLimit: unsafe extern "system" fn(this: *mut ::core::ffi::c_void) -> u64,
-    pub AddStorageFilterEntries: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pfilter: *const D3D11_INFO_QUEUE_FILTER) -> ::windows::core::HRESULT,
+    pub AddStorageFilterEntries: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pfilter: *mut D3D11_INFO_QUEUE_FILTER) -> ::windows::core::HRESULT,
     pub GetStorageFilter: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pfilter: *mut D3D11_INFO_QUEUE_FILTER, pfilterbytelength: *mut usize) -> ::windows::core::HRESULT,
     pub ClearStorageFilter: unsafe extern "system" fn(this: *mut ::core::ffi::c_void),
     pub PushEmptyStorageFilter: unsafe extern "system" fn(this: *mut ::core::ffi::c_void) -> ::windows::core::HRESULT,
     pub PushCopyOfStorageFilter: unsafe extern "system" fn(this: *mut ::core::ffi::c_void) -> ::windows::core::HRESULT,
-    pub PushStorageFilter: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pfilter: *const D3D11_INFO_QUEUE_FILTER) -> ::windows::core::HRESULT,
+    pub PushStorageFilter: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pfilter: *mut D3D11_INFO_QUEUE_FILTER) -> ::windows::core::HRESULT,
     pub PopStorageFilter: unsafe extern "system" fn(this: *mut ::core::ffi::c_void),
     pub GetStorageFilterStackSize: unsafe extern "system" fn(this: *mut ::core::ffi::c_void) -> u32,
-    pub AddRetrievalFilterEntries: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pfilter: *const D3D11_INFO_QUEUE_FILTER) -> ::windows::core::HRESULT,
+    pub AddRetrievalFilterEntries: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pfilter: *mut D3D11_INFO_QUEUE_FILTER) -> ::windows::core::HRESULT,
     pub GetRetrievalFilter: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pfilter: *mut D3D11_INFO_QUEUE_FILTER, pfilterbytelength: *mut usize) -> ::windows::core::HRESULT,
     pub ClearRetrievalFilter: unsafe extern "system" fn(this: *mut ::core::ffi::c_void),
     pub PushEmptyRetrievalFilter: unsafe extern "system" fn(this: *mut ::core::ffi::c_void) -> ::windows::core::HRESULT,
     pub PushCopyOfRetrievalFilter: unsafe extern "system" fn(this: *mut ::core::ffi::c_void) -> ::windows::core::HRESULT,
-    pub PushRetrievalFilter: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pfilter: *const D3D11_INFO_QUEUE_FILTER) -> ::windows::core::HRESULT,
+    pub PushRetrievalFilter: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pfilter: *mut D3D11_INFO_QUEUE_FILTER) -> ::windows::core::HRESULT,
     pub PopRetrievalFilter: unsafe extern "system" fn(this: *mut ::core::ffi::c_void),
     pub GetRetrievalFilterStackSize: unsafe extern "system" fn(this: *mut ::core::ffi::c_void) -> u32,
     pub AddMessage: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, category: D3D11_MESSAGE_CATEGORY, severity: D3D11_MESSAGE_SEVERITY, id: D3D11_MESSAGE_ID, pdescription: ::windows::core::PCSTR) -> ::windows::core::HRESULT,
@@ -9222,7 +9222,7 @@ impl ID3D11ShaderTrace {
     pub unsafe fn PSSelectStamp(&self, stampindex: u32) -> ::windows::core::Result<()> {
         (::windows::core::Vtable::vtable(self).PSSelectStamp)(::windows::core::Vtable::as_raw(self), stampindex).ok()
     }
-    pub unsafe fn GetInitialRegisterContents(&self, pregister: *const D3D11_TRACE_REGISTER) -> ::windows::core::Result<D3D11_TRACE_VALUE> {
+    pub unsafe fn GetInitialRegisterContents(&self, pregister: *mut D3D11_TRACE_REGISTER) -> ::windows::core::Result<D3D11_TRACE_VALUE> {
         let mut result__ = ::core::mem::MaybeUninit::zeroed();
         (::windows::core::Vtable::vtable(self).GetInitialRegisterContents)(::windows::core::Vtable::as_raw(self), ::core::mem::transmute(pregister), ::core::mem::transmute(result__.as_mut_ptr())).from_abi::<D3D11_TRACE_VALUE>(result__)
     }
@@ -9275,7 +9275,7 @@ pub struct ID3D11ShaderTrace_Vtbl {
     #[cfg(not(feature = "Win32_Foundation"))]
     GetTraceStats: usize,
     pub PSSelectStamp: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, stampindex: u32) -> ::windows::core::HRESULT,
-    pub GetInitialRegisterContents: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pregister: *const D3D11_TRACE_REGISTER, pvalue: *mut D3D11_TRACE_VALUE) -> ::windows::core::HRESULT,
+    pub GetInitialRegisterContents: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pregister: *mut D3D11_TRACE_REGISTER, pvalue: *mut D3D11_TRACE_VALUE) -> ::windows::core::HRESULT,
     #[cfg(feature = "Win32_Foundation")]
     pub GetStep: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, stepindex: u32, ptracestep: *mut D3D11_TRACE_STEP) -> ::windows::core::HRESULT,
     #[cfg(not(feature = "Win32_Foundation"))]
@@ -9287,7 +9287,7 @@ pub struct ID3D11ShaderTrace_Vtbl {
 #[repr(transparent)]
 pub struct ID3D11ShaderTraceFactory(::windows::core::IUnknown);
 impl ID3D11ShaderTraceFactory {
-    pub unsafe fn CreateShaderTrace<'a, P0>(&self, pshader: P0, ptracedesc: *const D3D11_SHADER_TRACE_DESC) -> ::windows::core::Result<ID3D11ShaderTrace>
+    pub unsafe fn CreateShaderTrace<'a, P0>(&self, pshader: P0, ptracedesc: *mut D3D11_SHADER_TRACE_DESC) -> ::windows::core::Result<ID3D11ShaderTrace>
     where
         P0: ::std::convert::Into<::windows::core::InParam<'a, ::windows::core::IUnknown>>,
     {
@@ -9324,7 +9324,7 @@ unsafe impl ::windows::core::Interface for ID3D11ShaderTraceFactory {
 #[doc(hidden)]
 pub struct ID3D11ShaderTraceFactory_Vtbl {
     pub base__: ::windows::core::IUnknown_Vtbl,
-    pub CreateShaderTrace: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pshader: *mut ::core::ffi::c_void, ptracedesc: *const D3D11_SHADER_TRACE_DESC, ppshadertrace: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT,
+    pub CreateShaderTrace: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pshader: *mut ::core::ffi::c_void, ptracedesc: *mut D3D11_SHADER_TRACE_DESC, ppshadertrace: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT,
 }
 #[doc = "*Required features: `\"Win32_Graphics_Direct3D11\"`*"]
 #[repr(transparent)]
@@ -10063,7 +10063,7 @@ impl ID3D11VideoContext {
     {
         (::windows::core::Vtable::vtable(self).VideoProcessorSetOutputStereoMode)(::windows::core::Vtable::as_raw(self), pvideoprocessor.into().abi(), enable.into())
     }
-    pub unsafe fn VideoProcessorSetOutputExtension<'a, P0>(&self, pvideoprocessor: P0, pextensionguid: *const ::windows::core::GUID, datasize: u32, pdata: *const ::core::ffi::c_void) -> i32
+    pub unsafe fn VideoProcessorSetOutputExtension<'a, P0>(&self, pvideoprocessor: P0, pextensionguid: *const ::windows::core::GUID, datasize: u32, pdata: *mut ::core::ffi::c_void) -> i32
     where
         P0: ::std::convert::Into<::windows::core::InParam<'a, ID3D11VideoProcessor>>,
     {
@@ -10220,7 +10220,7 @@ impl ID3D11VideoContext {
     {
         (::windows::core::Vtable::vtable(self).VideoProcessorSetStreamFilter)(::windows::core::Vtable::as_raw(self), pvideoprocessor.into().abi(), streamindex, filter, enable.into(), level)
     }
-    pub unsafe fn VideoProcessorSetStreamExtension<'a, P0>(&self, pvideoprocessor: P0, streamindex: u32, pextensionguid: *const ::windows::core::GUID, datasize: u32, pdata: *const ::core::ffi::c_void) -> i32
+    pub unsafe fn VideoProcessorSetStreamExtension<'a, P0>(&self, pvideoprocessor: P0, streamindex: u32, pextensionguid: *const ::windows::core::GUID, datasize: u32, pdata: *mut ::core::ffi::c_void) -> i32
     where
         P0: ::std::convert::Into<::windows::core::InParam<'a, ID3D11VideoProcessor>>,
     {
@@ -10345,7 +10345,7 @@ impl ID3D11VideoContext {
     {
         (::windows::core::Vtable::vtable(self).EncryptionBlt)(::windows::core::Vtable::as_raw(self), pcryptosession.into().abi(), psrcsurface.into().abi(), pdstsurface.into().abi(), ivsize, ::core::mem::transmute(piv.unwrap_or(::std::ptr::null_mut())))
     }
-    pub unsafe fn DecryptionBlt<'a, P0, P1, P2>(&self, pcryptosession: P0, psrcsurface: P1, pdstsurface: P2, pencryptedblockinfo: ::core::option::Option<*const D3D11_ENCRYPTED_BLOCK_INFO>, contentkeysize: u32, pcontentkey: ::core::option::Option<*const ::core::ffi::c_void>, ivsize: u32, piv: ::core::option::Option<*mut ::core::ffi::c_void>)
+    pub unsafe fn DecryptionBlt<'a, P0, P1, P2>(&self, pcryptosession: P0, psrcsurface: P1, pdstsurface: P2, pencryptedblockinfo: ::core::option::Option<*mut D3D11_ENCRYPTED_BLOCK_INFO>, contentkeysize: u32, pcontentkey: ::core::option::Option<*const ::core::ffi::c_void>, ivsize: u32, piv: ::core::option::Option<*mut ::core::ffi::c_void>)
     where
         P0: ::std::convert::Into<::windows::core::InParam<'a, ID3D11CryptoSession>>,
         P1: ::std::convert::Into<::windows::core::InParam<'a, ID3D11Texture2D>>,
@@ -10466,7 +10466,7 @@ pub struct ID3D11VideoContext_Vtbl {
     pub VideoProcessorSetOutputStereoMode: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pvideoprocessor: *mut ::core::ffi::c_void, enable: super::super::Foundation::BOOL),
     #[cfg(not(feature = "Win32_Foundation"))]
     VideoProcessorSetOutputStereoMode: usize,
-    pub VideoProcessorSetOutputExtension: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pvideoprocessor: *mut ::core::ffi::c_void, pextensionguid: *const ::windows::core::GUID, datasize: u32, pdata: *const ::core::ffi::c_void) -> i32,
+    pub VideoProcessorSetOutputExtension: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pvideoprocessor: *mut ::core::ffi::c_void, pextensionguid: *const ::windows::core::GUID, datasize: u32, pdata: *mut ::core::ffi::c_void) -> i32,
     #[cfg(feature = "Win32_Foundation")]
     pub VideoProcessorGetOutputTargetRect: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pvideoprocessor: *mut ::core::ffi::c_void, enabled: *mut super::super::Foundation::BOOL, prect: *mut super::super::Foundation::RECT),
     #[cfg(not(feature = "Win32_Foundation"))]
@@ -10525,7 +10525,7 @@ pub struct ID3D11VideoContext_Vtbl {
     pub VideoProcessorSetStreamFilter: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pvideoprocessor: *mut ::core::ffi::c_void, streamindex: u32, filter: D3D11_VIDEO_PROCESSOR_FILTER, enable: super::super::Foundation::BOOL, level: i32),
     #[cfg(not(feature = "Win32_Foundation"))]
     VideoProcessorSetStreamFilter: usize,
-    pub VideoProcessorSetStreamExtension: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pvideoprocessor: *mut ::core::ffi::c_void, streamindex: u32, pextensionguid: *const ::windows::core::GUID, datasize: u32, pdata: *const ::core::ffi::c_void) -> i32,
+    pub VideoProcessorSetStreamExtension: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pvideoprocessor: *mut ::core::ffi::c_void, streamindex: u32, pextensionguid: *const ::windows::core::GUID, datasize: u32, pdata: *mut ::core::ffi::c_void) -> i32,
     pub VideoProcessorGetStreamFrameFormat: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pvideoprocessor: *mut ::core::ffi::c_void, streamindex: u32, pframeformat: *mut D3D11_VIDEO_FRAME_FORMAT),
     pub VideoProcessorGetStreamColorSpace: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pvideoprocessor: *mut ::core::ffi::c_void, streamindex: u32, pcolorspace: *mut D3D11_VIDEO_PROCESSOR_COLOR_SPACE),
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_Graphics_Dxgi_Common"))]
@@ -10572,7 +10572,7 @@ pub struct ID3D11VideoContext_Vtbl {
     VideoProcessorBlt: usize,
     pub NegotiateCryptoSessionKeyExchange: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pcryptosession: *mut ::core::ffi::c_void, datasize: u32, pdata: *mut ::core::ffi::c_void) -> ::windows::core::HRESULT,
     pub EncryptionBlt: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pcryptosession: *mut ::core::ffi::c_void, psrcsurface: *mut ::core::ffi::c_void, pdstsurface: *mut ::core::ffi::c_void, ivsize: u32, piv: *mut ::core::ffi::c_void),
-    pub DecryptionBlt: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pcryptosession: *mut ::core::ffi::c_void, psrcsurface: *mut ::core::ffi::c_void, pdstsurface: *mut ::core::ffi::c_void, pencryptedblockinfo: *const D3D11_ENCRYPTED_BLOCK_INFO, contentkeysize: u32, pcontentkey: *const ::core::ffi::c_void, ivsize: u32, piv: *mut ::core::ffi::c_void),
+    pub DecryptionBlt: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pcryptosession: *mut ::core::ffi::c_void, psrcsurface: *mut ::core::ffi::c_void, pdstsurface: *mut ::core::ffi::c_void, pencryptedblockinfo: *mut D3D11_ENCRYPTED_BLOCK_INFO, contentkeysize: u32, pcontentkey: *const ::core::ffi::c_void, ivsize: u32, piv: *mut ::core::ffi::c_void),
     pub StartSessionKeyRefresh: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pcryptosession: *mut ::core::ffi::c_void, randomnumbersize: u32, prandomnumber: *mut ::core::ffi::c_void),
     pub FinishSessionKeyRefresh: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pcryptosession: *mut ::core::ffi::c_void),
     pub GetEncryptionBltKey: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pcryptosession: *mut ::core::ffi::c_void, keysize: u32, preadbackkey: *mut ::core::ffi::c_void) -> ::windows::core::HRESULT,
@@ -10697,7 +10697,7 @@ impl ID3D11VideoContext1 {
     {
         (::windows::core::Vtable::vtable(self).base__.VideoProcessorSetOutputStereoMode)(::windows::core::Vtable::as_raw(self), pvideoprocessor.into().abi(), enable.into())
     }
-    pub unsafe fn VideoProcessorSetOutputExtension<'a, P0>(&self, pvideoprocessor: P0, pextensionguid: *const ::windows::core::GUID, datasize: u32, pdata: *const ::core::ffi::c_void) -> i32
+    pub unsafe fn VideoProcessorSetOutputExtension<'a, P0>(&self, pvideoprocessor: P0, pextensionguid: *const ::windows::core::GUID, datasize: u32, pdata: *mut ::core::ffi::c_void) -> i32
     where
         P0: ::std::convert::Into<::windows::core::InParam<'a, ID3D11VideoProcessor>>,
     {
@@ -10854,7 +10854,7 @@ impl ID3D11VideoContext1 {
     {
         (::windows::core::Vtable::vtable(self).base__.VideoProcessorSetStreamFilter)(::windows::core::Vtable::as_raw(self), pvideoprocessor.into().abi(), streamindex, filter, enable.into(), level)
     }
-    pub unsafe fn VideoProcessorSetStreamExtension<'a, P0>(&self, pvideoprocessor: P0, streamindex: u32, pextensionguid: *const ::windows::core::GUID, datasize: u32, pdata: *const ::core::ffi::c_void) -> i32
+    pub unsafe fn VideoProcessorSetStreamExtension<'a, P0>(&self, pvideoprocessor: P0, streamindex: u32, pextensionguid: *const ::windows::core::GUID, datasize: u32, pdata: *mut ::core::ffi::c_void) -> i32
     where
         P0: ::std::convert::Into<::windows::core::InParam<'a, ID3D11VideoProcessor>>,
     {
@@ -10979,7 +10979,7 @@ impl ID3D11VideoContext1 {
     {
         (::windows::core::Vtable::vtable(self).base__.EncryptionBlt)(::windows::core::Vtable::as_raw(self), pcryptosession.into().abi(), psrcsurface.into().abi(), pdstsurface.into().abi(), ivsize, ::core::mem::transmute(piv.unwrap_or(::std::ptr::null_mut())))
     }
-    pub unsafe fn DecryptionBlt<'a, P0, P1, P2>(&self, pcryptosession: P0, psrcsurface: P1, pdstsurface: P2, pencryptedblockinfo: ::core::option::Option<*const D3D11_ENCRYPTED_BLOCK_INFO>, contentkeysize: u32, pcontentkey: ::core::option::Option<*const ::core::ffi::c_void>, ivsize: u32, piv: ::core::option::Option<*mut ::core::ffi::c_void>)
+    pub unsafe fn DecryptionBlt<'a, P0, P1, P2>(&self, pcryptosession: P0, psrcsurface: P1, pdstsurface: P2, pencryptedblockinfo: ::core::option::Option<*mut D3D11_ENCRYPTED_BLOCK_INFO>, contentkeysize: u32, pcontentkey: ::core::option::Option<*const ::core::ffi::c_void>, ivsize: u32, piv: ::core::option::Option<*mut ::core::ffi::c_void>)
     where
         P0: ::std::convert::Into<::windows::core::InParam<'a, ID3D11CryptoSession>>,
         P1: ::std::convert::Into<::windows::core::InParam<'a, ID3D11Texture2D>>,
@@ -11340,7 +11340,7 @@ impl ID3D11VideoContext2 {
     {
         (::windows::core::Vtable::vtable(self).base__.base__.VideoProcessorSetOutputStereoMode)(::windows::core::Vtable::as_raw(self), pvideoprocessor.into().abi(), enable.into())
     }
-    pub unsafe fn VideoProcessorSetOutputExtension<'a, P0>(&self, pvideoprocessor: P0, pextensionguid: *const ::windows::core::GUID, datasize: u32, pdata: *const ::core::ffi::c_void) -> i32
+    pub unsafe fn VideoProcessorSetOutputExtension<'a, P0>(&self, pvideoprocessor: P0, pextensionguid: *const ::windows::core::GUID, datasize: u32, pdata: *mut ::core::ffi::c_void) -> i32
     where
         P0: ::std::convert::Into<::windows::core::InParam<'a, ID3D11VideoProcessor>>,
     {
@@ -11497,7 +11497,7 @@ impl ID3D11VideoContext2 {
     {
         (::windows::core::Vtable::vtable(self).base__.base__.VideoProcessorSetStreamFilter)(::windows::core::Vtable::as_raw(self), pvideoprocessor.into().abi(), streamindex, filter, enable.into(), level)
     }
-    pub unsafe fn VideoProcessorSetStreamExtension<'a, P0>(&self, pvideoprocessor: P0, streamindex: u32, pextensionguid: *const ::windows::core::GUID, datasize: u32, pdata: *const ::core::ffi::c_void) -> i32
+    pub unsafe fn VideoProcessorSetStreamExtension<'a, P0>(&self, pvideoprocessor: P0, streamindex: u32, pextensionguid: *const ::windows::core::GUID, datasize: u32, pdata: *mut ::core::ffi::c_void) -> i32
     where
         P0: ::std::convert::Into<::windows::core::InParam<'a, ID3D11VideoProcessor>>,
     {
@@ -11622,7 +11622,7 @@ impl ID3D11VideoContext2 {
     {
         (::windows::core::Vtable::vtable(self).base__.base__.EncryptionBlt)(::windows::core::Vtable::as_raw(self), pcryptosession.into().abi(), psrcsurface.into().abi(), pdstsurface.into().abi(), ivsize, ::core::mem::transmute(piv.unwrap_or(::std::ptr::null_mut())))
     }
-    pub unsafe fn DecryptionBlt<'a, P0, P1, P2>(&self, pcryptosession: P0, psrcsurface: P1, pdstsurface: P2, pencryptedblockinfo: ::core::option::Option<*const D3D11_ENCRYPTED_BLOCK_INFO>, contentkeysize: u32, pcontentkey: ::core::option::Option<*const ::core::ffi::c_void>, ivsize: u32, piv: ::core::option::Option<*mut ::core::ffi::c_void>)
+    pub unsafe fn DecryptionBlt<'a, P0, P1, P2>(&self, pcryptosession: P0, psrcsurface: P1, pdstsurface: P2, pencryptedblockinfo: ::core::option::Option<*mut D3D11_ENCRYPTED_BLOCK_INFO>, contentkeysize: u32, pcontentkey: ::core::option::Option<*const ::core::ffi::c_void>, ivsize: u32, piv: ::core::option::Option<*mut ::core::ffi::c_void>)
     where
         P0: ::std::convert::Into<::windows::core::InParam<'a, ID3D11CryptoSession>>,
         P1: ::std::convert::Into<::windows::core::InParam<'a, ID3D11Texture2D>>,
@@ -11984,7 +11984,7 @@ impl ID3D11VideoContext3 {
     {
         (::windows::core::Vtable::vtable(self).base__.base__.base__.VideoProcessorSetOutputStereoMode)(::windows::core::Vtable::as_raw(self), pvideoprocessor.into().abi(), enable.into())
     }
-    pub unsafe fn VideoProcessorSetOutputExtension<'a, P0>(&self, pvideoprocessor: P0, pextensionguid: *const ::windows::core::GUID, datasize: u32, pdata: *const ::core::ffi::c_void) -> i32
+    pub unsafe fn VideoProcessorSetOutputExtension<'a, P0>(&self, pvideoprocessor: P0, pextensionguid: *const ::windows::core::GUID, datasize: u32, pdata: *mut ::core::ffi::c_void) -> i32
     where
         P0: ::std::convert::Into<::windows::core::InParam<'a, ID3D11VideoProcessor>>,
     {
@@ -12141,7 +12141,7 @@ impl ID3D11VideoContext3 {
     {
         (::windows::core::Vtable::vtable(self).base__.base__.base__.VideoProcessorSetStreamFilter)(::windows::core::Vtable::as_raw(self), pvideoprocessor.into().abi(), streamindex, filter, enable.into(), level)
     }
-    pub unsafe fn VideoProcessorSetStreamExtension<'a, P0>(&self, pvideoprocessor: P0, streamindex: u32, pextensionguid: *const ::windows::core::GUID, datasize: u32, pdata: *const ::core::ffi::c_void) -> i32
+    pub unsafe fn VideoProcessorSetStreamExtension<'a, P0>(&self, pvideoprocessor: P0, streamindex: u32, pextensionguid: *const ::windows::core::GUID, datasize: u32, pdata: *mut ::core::ffi::c_void) -> i32
     where
         P0: ::std::convert::Into<::windows::core::InParam<'a, ID3D11VideoProcessor>>,
     {
@@ -12266,7 +12266,7 @@ impl ID3D11VideoContext3 {
     {
         (::windows::core::Vtable::vtable(self).base__.base__.base__.EncryptionBlt)(::windows::core::Vtable::as_raw(self), pcryptosession.into().abi(), psrcsurface.into().abi(), pdstsurface.into().abi(), ivsize, ::core::mem::transmute(piv.unwrap_or(::std::ptr::null_mut())))
     }
-    pub unsafe fn DecryptionBlt<'a, P0, P1, P2>(&self, pcryptosession: P0, psrcsurface: P1, pdstsurface: P2, pencryptedblockinfo: ::core::option::Option<*const D3D11_ENCRYPTED_BLOCK_INFO>, contentkeysize: u32, pcontentkey: ::core::option::Option<*const ::core::ffi::c_void>, ivsize: u32, piv: ::core::option::Option<*mut ::core::ffi::c_void>)
+    pub unsafe fn DecryptionBlt<'a, P0, P1, P2>(&self, pcryptosession: P0, psrcsurface: P1, pdstsurface: P2, pencryptedblockinfo: ::core::option::Option<*mut D3D11_ENCRYPTED_BLOCK_INFO>, contentkeysize: u32, pcontentkey: ::core::option::Option<*const ::core::ffi::c_void>, ivsize: u32, piv: ::core::option::Option<*mut ::core::ffi::c_void>)
     where
         P0: ::std::convert::Into<::windows::core::InParam<'a, ID3D11CryptoSession>>,
         P1: ::std::convert::Into<::windows::core::InParam<'a, ID3D11Texture2D>>,
@@ -12475,7 +12475,7 @@ impl ID3D11VideoContext3 {
     {
         (::windows::core::Vtable::vtable(self).base__.VideoProcessorGetStreamHDRMetaData)(::windows::core::Vtable::as_raw(self), pvideoprocessor.into().abi(), streamindex, ::core::mem::transmute(ptype), size, ::core::mem::transmute(pmetadata.unwrap_or(::std::ptr::null_mut())))
     }
-    pub unsafe fn DecoderBeginFrame1<'a, P0, P1>(&self, pdecoder: P0, pview: P1, contentkeysize: u32, pcontentkey: ::core::option::Option<*const ::core::ffi::c_void>, numcomponenthistograms: u32, phistogramoffsets: ::core::option::Option<*const u32>, pphistogrambuffers: ::core::option::Option<*const ::core::option::Option<ID3D11Buffer>>) -> ::windows::core::Result<()>
+    pub unsafe fn DecoderBeginFrame1<'a, P0, P1>(&self, pdecoder: P0, pview: P1, contentkeysize: u32, pcontentkey: ::core::option::Option<*const ::core::ffi::c_void>, numcomponenthistograms: u32, phistogramoffsets: ::core::option::Option<*const u32>, pphistogrambuffers: ::core::option::Option<*mut ::core::option::Option<ID3D11Buffer>>) -> ::windows::core::Result<()>
     where
         P0: ::std::convert::Into<::windows::core::InParam<'a, ID3D11VideoDecoder>>,
         P1: ::std::convert::Into<::windows::core::InParam<'a, ID3D11VideoDecoderOutputView>>,
@@ -12518,7 +12518,7 @@ unsafe impl ::windows::core::Interface for ID3D11VideoContext3 {
 #[doc(hidden)]
 pub struct ID3D11VideoContext3_Vtbl {
     pub base__: ID3D11VideoContext2_Vtbl,
-    pub DecoderBeginFrame1: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pdecoder: *mut ::core::ffi::c_void, pview: *mut ::core::ffi::c_void, contentkeysize: u32, pcontentkey: *const ::core::ffi::c_void, numcomponenthistograms: u32, phistogramoffsets: *const u32, pphistogrambuffers: *const *mut ::core::ffi::c_void) -> ::windows::core::HRESULT,
+    pub DecoderBeginFrame1: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pdecoder: *mut ::core::ffi::c_void, pview: *mut ::core::ffi::c_void, contentkeysize: u32, pcontentkey: *const ::core::ffi::c_void, numcomponenthistograms: u32, phistogramoffsets: *const u32, pphistogrambuffers: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT,
     pub SubmitDecoderBuffers2: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pdecoder: *mut ::core::ffi::c_void, numbuffers: u32, pbufferdesc: *const D3D11_VIDEO_DECODER_BUFFER_DESC2) -> ::windows::core::HRESULT,
 }
 #[doc = "*Required features: `\"Win32_Graphics_Direct3D11\"`*"]
@@ -13717,7 +13717,7 @@ pub struct ID3DX11FFT_Vtbl {
     pub GetForwardScale: unsafe extern "system" fn(this: *mut ::core::ffi::c_void) -> f32,
     pub SetInverseScale: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, inversescale: f32) -> ::windows::core::HRESULT,
     pub GetInverseScale: unsafe extern "system" fn(this: *mut ::core::ffi::c_void) -> f32,
-    pub AttachBuffersAndPrecompute: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, numtempbuffers: u32, pptempbuffers: *const *mut ::core::ffi::c_void, numprecomputebuffers: u32, ppprecomputebuffersizes: *const *mut ::core::ffi::c_void) -> ::windows::core::HRESULT,
+    pub AttachBuffersAndPrecompute: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, numtempbuffers: u32, pptempbuffers: *mut *mut ::core::ffi::c_void, numprecomputebuffers: u32, ppprecomputebuffersizes: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT,
     pub ForwardTransform: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pinputbuffer: *mut ::core::ffi::c_void, ppoutputbuffer: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT,
     pub InverseTransform: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pinputbuffer: *mut ::core::ffi::c_void, ppoutputbuffer: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT,
 }

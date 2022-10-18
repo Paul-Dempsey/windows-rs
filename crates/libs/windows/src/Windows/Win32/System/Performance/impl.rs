@@ -66,7 +66,7 @@ impl DISystemMonitorInternal_Vtbl {
 #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
 pub trait IAlertDataCollector_Impl: Sized + IDataCollector_Impl {
     fn AlertThresholds(&self) -> ::windows::core::Result<*mut super::Com::SAFEARRAY>;
-    fn SetAlertThresholds(&self, alerts: *const super::Com::SAFEARRAY) -> ::windows::core::Result<()>;
+    fn SetAlertThresholds(&self, alerts: *mut super::Com::SAFEARRAY) -> ::windows::core::Result<()>;
     fn EventLog(&self) -> ::windows::core::Result<i16>;
     fn SetEventLog(&self, log: i16) -> ::windows::core::Result<()>;
     fn SampleInterval(&self) -> ::windows::core::Result<u32>;
@@ -98,7 +98,7 @@ impl IAlertDataCollector_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn SetAlertThresholds<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IAlertDataCollector_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, alerts: *const super::Com::SAFEARRAY) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn SetAlertThresholds<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IAlertDataCollector_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, alerts: *mut super::Com::SAFEARRAY) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.SetAlertThresholds(::core::mem::transmute_copy(&alerts)).into()
@@ -250,11 +250,11 @@ pub trait IApiTracingDataCollector_Impl: Sized + IDataCollector_Impl {
     fn LogFilePath(&self) -> ::windows::core::Result<::windows::core::BSTR>;
     fn SetLogFilePath(&self, logfilepath: &::windows::core::BSTR) -> ::windows::core::Result<()>;
     fn IncludeModules(&self) -> ::windows::core::Result<*mut super::Com::SAFEARRAY>;
-    fn SetIncludeModules(&self, includemodules: *const super::Com::SAFEARRAY) -> ::windows::core::Result<()>;
+    fn SetIncludeModules(&self, includemodules: *mut super::Com::SAFEARRAY) -> ::windows::core::Result<()>;
     fn IncludeApis(&self) -> ::windows::core::Result<*mut super::Com::SAFEARRAY>;
-    fn SetIncludeApis(&self, includeapis: *const super::Com::SAFEARRAY) -> ::windows::core::Result<()>;
+    fn SetIncludeApis(&self, includeapis: *mut super::Com::SAFEARRAY) -> ::windows::core::Result<()>;
     fn ExcludeApis(&self) -> ::windows::core::Result<*mut super::Com::SAFEARRAY>;
-    fn SetExcludeApis(&self, excludeapis: *const super::Com::SAFEARRAY) -> ::windows::core::Result<()>;
+    fn SetExcludeApis(&self, excludeapis: *mut super::Com::SAFEARRAY) -> ::windows::core::Result<()>;
 }
 #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
 impl ::windows::core::RuntimeName for IApiTracingDataCollector {}
@@ -336,7 +336,7 @@ impl IApiTracingDataCollector_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn SetIncludeModules<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IApiTracingDataCollector_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, includemodules: *const super::Com::SAFEARRAY) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn SetIncludeModules<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IApiTracingDataCollector_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, includemodules: *mut super::Com::SAFEARRAY) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.SetIncludeModules(::core::mem::transmute_copy(&includemodules)).into()
@@ -352,7 +352,7 @@ impl IApiTracingDataCollector_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn SetIncludeApis<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IApiTracingDataCollector_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, includeapis: *const super::Com::SAFEARRAY) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn SetIncludeApis<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IApiTracingDataCollector_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, includeapis: *mut super::Com::SAFEARRAY) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.SetIncludeApis(::core::mem::transmute_copy(&includeapis)).into()
@@ -368,7 +368,7 @@ impl IApiTracingDataCollector_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn SetExcludeApis<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IApiTracingDataCollector_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, excludeapis: *const super::Com::SAFEARRAY) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn SetExcludeApis<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IApiTracingDataCollector_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, excludeapis: *mut super::Com::SAFEARRAY) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.SetExcludeApis(::core::mem::transmute_copy(&excludeapis)).into()
@@ -404,13 +404,13 @@ pub trait IConfigurationDataCollector_Impl: Sized + IDataCollector_Impl {
     fn FileMaxTotalSize(&self) -> ::windows::core::Result<u32>;
     fn SetFileMaxTotalSize(&self, size: u32) -> ::windows::core::Result<()>;
     fn Files(&self) -> ::windows::core::Result<*mut super::Com::SAFEARRAY>;
-    fn SetFiles(&self, files: *const super::Com::SAFEARRAY) -> ::windows::core::Result<()>;
+    fn SetFiles(&self, files: *mut super::Com::SAFEARRAY) -> ::windows::core::Result<()>;
     fn ManagementQueries(&self) -> ::windows::core::Result<*mut super::Com::SAFEARRAY>;
-    fn SetManagementQueries(&self, queries: *const super::Com::SAFEARRAY) -> ::windows::core::Result<()>;
+    fn SetManagementQueries(&self, queries: *mut super::Com::SAFEARRAY) -> ::windows::core::Result<()>;
     fn QueryNetworkAdapters(&self) -> ::windows::core::Result<i16>;
     fn SetQueryNetworkAdapters(&self, network: i16) -> ::windows::core::Result<()>;
     fn RegistryKeys(&self) -> ::windows::core::Result<*mut super::Com::SAFEARRAY>;
-    fn SetRegistryKeys(&self, query: *const super::Com::SAFEARRAY) -> ::windows::core::Result<()>;
+    fn SetRegistryKeys(&self, query: *mut super::Com::SAFEARRAY) -> ::windows::core::Result<()>;
     fn RegistryMaxRecursiveDepth(&self) -> ::windows::core::Result<u32>;
     fn SetRegistryMaxRecursiveDepth(&self, depth: u32) -> ::windows::core::Result<()>;
     fn SystemStateFile(&self) -> ::windows::core::Result<::windows::core::BSTR>;
@@ -480,7 +480,7 @@ impl IConfigurationDataCollector_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn SetFiles<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IConfigurationDataCollector_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, files: *const super::Com::SAFEARRAY) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn SetFiles<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IConfigurationDataCollector_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, files: *mut super::Com::SAFEARRAY) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.SetFiles(::core::mem::transmute_copy(&files)).into()
@@ -496,7 +496,7 @@ impl IConfigurationDataCollector_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn SetManagementQueries<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IConfigurationDataCollector_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, queries: *const super::Com::SAFEARRAY) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn SetManagementQueries<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IConfigurationDataCollector_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, queries: *mut super::Com::SAFEARRAY) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.SetManagementQueries(::core::mem::transmute_copy(&queries)).into()
@@ -528,7 +528,7 @@ impl IConfigurationDataCollector_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn SetRegistryKeys<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IConfigurationDataCollector_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, query: *const super::Com::SAFEARRAY) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn SetRegistryKeys<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IConfigurationDataCollector_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, query: *mut super::Com::SAFEARRAY) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.SetRegistryKeys(::core::mem::transmute_copy(&query)).into()
@@ -1264,7 +1264,7 @@ pub trait IDataCollectorSet_Impl: Sized + super::Com::IDispatch_Impl {
     fn SetDisplayName(&self, displayname: &::windows::core::BSTR) -> ::windows::core::Result<()>;
     fn DisplayNameUnresolved(&self) -> ::windows::core::Result<::windows::core::BSTR>;
     fn Keywords(&self) -> ::windows::core::Result<*mut super::Com::SAFEARRAY>;
-    fn SetKeywords(&self, keywords: *const super::Com::SAFEARRAY) -> ::windows::core::Result<()>;
+    fn SetKeywords(&self, keywords: *mut super::Com::SAFEARRAY) -> ::windows::core::Result<()>;
     fn LatestOutputLocation(&self) -> ::windows::core::Result<::windows::core::BSTR>;
     fn SetLatestOutputLocation(&self, path: &::windows::core::BSTR) -> ::windows::core::Result<()>;
     fn Name(&self) -> ::windows::core::Result<::windows::core::BSTR>;
@@ -1412,7 +1412,7 @@ impl IDataCollectorSet_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn SetKeywords<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDataCollectorSet_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, keywords: *const super::Com::SAFEARRAY) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn SetKeywords<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDataCollectorSet_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, keywords: *mut super::Com::SAFEARRAY) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.SetKeywords(::core::mem::transmute_copy(&keywords)).into()
@@ -2546,7 +2546,7 @@ pub trait IPerformanceCounterDataCollector_Impl: Sized + IDataCollector_Impl {
     fn DataSourceName(&self) -> ::windows::core::Result<::windows::core::BSTR>;
     fn SetDataSourceName(&self, dsn: &::windows::core::BSTR) -> ::windows::core::Result<()>;
     fn PerformanceCounters(&self) -> ::windows::core::Result<*mut super::Com::SAFEARRAY>;
-    fn SetPerformanceCounters(&self, counters: *const super::Com::SAFEARRAY) -> ::windows::core::Result<()>;
+    fn SetPerformanceCounters(&self, counters: *mut super::Com::SAFEARRAY) -> ::windows::core::Result<()>;
     fn LogFileFormat(&self) -> ::windows::core::Result<FileFormat>;
     fn SetLogFileFormat(&self, format: FileFormat) -> ::windows::core::Result<()>;
     fn SampleInterval(&self) -> ::windows::core::Result<u32>;
@@ -2586,7 +2586,7 @@ impl IPerformanceCounterDataCollector_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn SetPerformanceCounters<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IPerformanceCounterDataCollector_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, counters: *const super::Com::SAFEARRAY) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn SetPerformanceCounters<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IPerformanceCounterDataCollector_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, counters: *mut super::Com::SAFEARRAY) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.SetPerformanceCounters(::core::mem::transmute_copy(&counters)).into()
@@ -4296,7 +4296,7 @@ pub trait ITraceDataProvider_Impl: Sized + super::Com::IDispatch_Impl {
     fn FilterType(&self) -> ::windows::core::Result<u32>;
     fn SetFilterType(&self, ultype: u32) -> ::windows::core::Result<()>;
     fn FilterData(&self) -> ::windows::core::Result<*mut super::Com::SAFEARRAY>;
-    fn SetFilterData(&self, pdata: *const super::Com::SAFEARRAY) -> ::windows::core::Result<()>;
+    fn SetFilterData(&self, pdata: *mut super::Com::SAFEARRAY) -> ::windows::core::Result<()>;
     fn Query(&self, bstrname: &::windows::core::BSTR, bstrserver: &::windows::core::BSTR) -> ::windows::core::Result<()>;
     fn Resolve(&self, pfrom: &::core::option::Option<super::Com::IDispatch>) -> ::windows::core::Result<()>;
     fn SetSecurity(&self, sddl: &::windows::core::BSTR) -> ::windows::core::Result<()>;
@@ -4427,7 +4427,7 @@ impl ITraceDataProvider_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn SetFilterData<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: ITraceDataProvider_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, pdata: *const super::Com::SAFEARRAY) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn SetFilterData<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: ITraceDataProvider_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, pdata: *mut super::Com::SAFEARRAY) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.SetFilterData(::core::mem::transmute_copy(&pdata)).into()

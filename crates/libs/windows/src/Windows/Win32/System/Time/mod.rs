@@ -51,10 +51,10 @@ pub unsafe fn GetTimeZoneInformation(lptimezoneinformation: *mut TIME_ZONE_INFOR
 #[doc = "*Required features: `\"Win32_System_Time\"`, `\"Win32_Foundation\"`*"]
 #[cfg(feature = "Win32_Foundation")]
 #[inline]
-pub unsafe fn GetTimeZoneInformationForYear(wyear: u16, pdtzi: ::core::option::Option<*const DYNAMIC_TIME_ZONE_INFORMATION>, ptzi: *mut TIME_ZONE_INFORMATION) -> super::super::Foundation::BOOL {
+pub unsafe fn GetTimeZoneInformationForYear(wyear: u16, pdtzi: ::core::option::Option<*mut DYNAMIC_TIME_ZONE_INFORMATION>, ptzi: *mut TIME_ZONE_INFORMATION) -> super::super::Foundation::BOOL {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn GetTimeZoneInformationForYear(wyear: u16, pdtzi: *const DYNAMIC_TIME_ZONE_INFORMATION, ptzi: *mut TIME_ZONE_INFORMATION) -> super::super::Foundation::BOOL;
+        fn GetTimeZoneInformationForYear(wyear: u16, pdtzi: *mut DYNAMIC_TIME_ZONE_INFORMATION, ptzi: *mut TIME_ZONE_INFORMATION) -> super::super::Foundation::BOOL;
     }
     GetTimeZoneInformationForYear(wyear, ::core::mem::transmute(pdtzi.unwrap_or(::std::ptr::null())), ::core::mem::transmute(ptzi))
 }

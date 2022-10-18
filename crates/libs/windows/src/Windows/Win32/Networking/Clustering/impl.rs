@@ -4389,12 +4389,12 @@ impl IWCContextMenuCallback_Vtbl {
     }
 }
 pub trait IWCPropertySheetCallback_Impl: Sized {
-    fn AddPropertySheetPage(&self, hpage: *const i32) -> ::windows::core::Result<()>;
+    fn AddPropertySheetPage(&self, hpage: *mut i32) -> ::windows::core::Result<()>;
 }
 impl ::windows::core::RuntimeName for IWCPropertySheetCallback {}
 impl IWCPropertySheetCallback_Vtbl {
     pub const fn new<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IWCPropertySheetCallback_Impl, const OFFSET: isize>() -> IWCPropertySheetCallback_Vtbl {
-        unsafe extern "system" fn AddPropertySheetPage<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IWCPropertySheetCallback_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, hpage: *const i32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn AddPropertySheetPage<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IWCPropertySheetCallback_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, hpage: *mut i32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.AddPropertySheetPage(::core::mem::transmute_copy(&hpage)).into()
@@ -4407,20 +4407,20 @@ impl IWCPropertySheetCallback_Vtbl {
 }
 #[cfg(feature = "Win32_Foundation")]
 pub trait IWCWizard97Callback_Impl: Sized {
-    fn AddWizard97Page(&self, hpage: *const i32) -> ::windows::core::Result<()>;
-    fn EnableNext(&self, hpage: *const i32, benable: super::super::Foundation::BOOL) -> ::windows::core::Result<()>;
+    fn AddWizard97Page(&self, hpage: *mut i32) -> ::windows::core::Result<()>;
+    fn EnableNext(&self, hpage: *mut i32, benable: super::super::Foundation::BOOL) -> ::windows::core::Result<()>;
 }
 #[cfg(feature = "Win32_Foundation")]
 impl ::windows::core::RuntimeName for IWCWizard97Callback {}
 #[cfg(feature = "Win32_Foundation")]
 impl IWCWizard97Callback_Vtbl {
     pub const fn new<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IWCWizard97Callback_Impl, const OFFSET: isize>() -> IWCWizard97Callback_Vtbl {
-        unsafe extern "system" fn AddWizard97Page<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IWCWizard97Callback_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, hpage: *const i32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn AddWizard97Page<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IWCWizard97Callback_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, hpage: *mut i32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.AddWizard97Page(::core::mem::transmute_copy(&hpage)).into()
         }
-        unsafe extern "system" fn EnableNext<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IWCWizard97Callback_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, hpage: *const i32, benable: super::super::Foundation::BOOL) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn EnableNext<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IWCWizard97Callback_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, hpage: *mut i32, benable: super::super::Foundation::BOOL) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.EnableNext(::core::mem::transmute_copy(&hpage), ::core::mem::transmute_copy(&benable)).into()
@@ -4437,20 +4437,20 @@ impl IWCWizard97Callback_Vtbl {
 }
 #[cfg(feature = "Win32_Foundation")]
 pub trait IWCWizardCallback_Impl: Sized {
-    fn AddWizardPage(&self, hpage: *const i32) -> ::windows::core::Result<()>;
-    fn EnableNext(&self, hpage: *const i32, benable: super::super::Foundation::BOOL) -> ::windows::core::Result<()>;
+    fn AddWizardPage(&self, hpage: *mut i32) -> ::windows::core::Result<()>;
+    fn EnableNext(&self, hpage: *mut i32, benable: super::super::Foundation::BOOL) -> ::windows::core::Result<()>;
 }
 #[cfg(feature = "Win32_Foundation")]
 impl ::windows::core::RuntimeName for IWCWizardCallback {}
 #[cfg(feature = "Win32_Foundation")]
 impl IWCWizardCallback_Vtbl {
     pub const fn new<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IWCWizardCallback_Impl, const OFFSET: isize>() -> IWCWizardCallback_Vtbl {
-        unsafe extern "system" fn AddWizardPage<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IWCWizardCallback_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, hpage: *const i32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn AddWizardPage<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IWCWizardCallback_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, hpage: *mut i32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.AddWizardPage(::core::mem::transmute_copy(&hpage)).into()
         }
-        unsafe extern "system" fn EnableNext<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IWCWizardCallback_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, hpage: *const i32, benable: super::super::Foundation::BOOL) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn EnableNext<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IWCWizardCallback_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, hpage: *mut i32, benable: super::super::Foundation::BOOL) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.EnableNext(::core::mem::transmute_copy(&hpage), ::core::mem::transmute_copy(&benable)).into()

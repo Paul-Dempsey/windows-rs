@@ -1,20 +1,20 @@
 #[doc = "*Required features: `\"Win32_Storage_OperationRecorder\"`, `\"Win32_Foundation\"`*"]
 #[cfg(feature = "Win32_Foundation")]
 #[inline]
-pub unsafe fn OperationEnd(operationendparams: *const OPERATION_END_PARAMETERS) -> super::super::Foundation::BOOL {
+pub unsafe fn OperationEnd(operationendparams: *mut OPERATION_END_PARAMETERS) -> super::super::Foundation::BOOL {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn OperationEnd(operationendparams: *const OPERATION_END_PARAMETERS) -> super::super::Foundation::BOOL;
+        fn OperationEnd(operationendparams: *mut OPERATION_END_PARAMETERS) -> super::super::Foundation::BOOL;
     }
     OperationEnd(::core::mem::transmute(operationendparams))
 }
 #[doc = "*Required features: `\"Win32_Storage_OperationRecorder\"`, `\"Win32_Foundation\"`*"]
 #[cfg(feature = "Win32_Foundation")]
 #[inline]
-pub unsafe fn OperationStart(operationstartparams: *const OPERATION_START_PARAMETERS) -> super::super::Foundation::BOOL {
+pub unsafe fn OperationStart(operationstartparams: *mut OPERATION_START_PARAMETERS) -> super::super::Foundation::BOOL {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn OperationStart(operationstartparams: *const OPERATION_START_PARAMETERS) -> super::super::Foundation::BOOL;
+        fn OperationStart(operationstartparams: *mut OPERATION_START_PARAMETERS) -> super::super::Foundation::BOOL;
     }
     OperationStart(::core::mem::transmute(operationstartparams))
 }

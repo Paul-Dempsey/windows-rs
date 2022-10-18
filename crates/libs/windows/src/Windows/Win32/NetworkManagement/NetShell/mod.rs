@@ -657,13 +657,13 @@ impl ::core::default::Default for TOKEN_VALUE {
 #[cfg(feature = "Win32_Foundation")]
 pub type PFN_HANDLE_CMD = ::core::option::Option<unsafe extern "system" fn(pwszmachine: ::windows::core::PCWSTR, ppwcarguments: *mut ::windows::core::PWSTR, dwcurrentindex: u32, dwargcount: u32, dwflags: u32, pvdata: *const ::core::ffi::c_void, pbdone: *mut super::super::Foundation::BOOL) -> u32>;
 #[doc = "*Required features: `\"Win32_NetworkManagement_NetShell\"`*"]
-pub type PGET_RESOURCE_STRING_FN = ::core::option::Option<unsafe extern "system" fn(dwmsgid: u32, lpbuffer: ::windows::core::PCWSTR, nbuffermax: u32) -> u32>;
+pub type PGET_RESOURCE_STRING_FN = ::core::option::Option<unsafe extern "system" fn(dwmsgid: u32, lpbuffer: ::windows::core::PWSTR, nbuffermax: u32) -> u32>;
 #[doc = "*Required features: `\"Win32_NetworkManagement_NetShell\"`*"]
 pub type PNS_CONTEXT_COMMIT_FN = ::core::option::Option<unsafe extern "system" fn(dwaction: u32) -> u32>;
 #[doc = "*Required features: `\"Win32_NetworkManagement_NetShell\"`*"]
 pub type PNS_CONTEXT_CONNECT_FN = ::core::option::Option<unsafe extern "system" fn(pwszmachine: ::windows::core::PCWSTR) -> u32>;
 #[doc = "*Required features: `\"Win32_NetworkManagement_NetShell\"`*"]
-pub type PNS_CONTEXT_DUMP_FN = ::core::option::Option<unsafe extern "system" fn(pwszrouter: ::windows::core::PCWSTR, ppwcarguments: *const ::windows::core::PWSTR, dwargcount: u32, pvdata: *const ::core::ffi::c_void) -> u32>;
+pub type PNS_CONTEXT_DUMP_FN = ::core::option::Option<unsafe extern "system" fn(pwszrouter: ::windows::core::PCWSTR, ppwcarguments: *mut ::windows::core::PWSTR, dwargcount: u32, pvdata: *const ::core::ffi::c_void) -> u32>;
 #[doc = "*Required features: `\"Win32_NetworkManagement_NetShell\"`*"]
 pub type PNS_DLL_INIT_FN = ::core::option::Option<unsafe extern "system" fn(dwnetshversion: u32, preserved: *mut ::core::ffi::c_void) -> u32>;
 #[doc = "*Required features: `\"Win32_NetworkManagement_NetShell\"`*"]

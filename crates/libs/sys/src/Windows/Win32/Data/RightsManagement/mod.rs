@@ -1,20 +1,20 @@
 #[cfg_attr(windows, link(name = "windows"))]
 extern "system" {
     #[doc = "*Required features: `\"Win32_Data_RightsManagement\"`*"]
-    pub fn DRMAcquireAdvisories(hlicensestorage: u32, wszlicense: ::windows_sys::core::PCWSTR, wszurl: ::windows_sys::core::PCWSTR, pvcontext: *mut ::core::ffi::c_void) -> ::windows_sys::core::HRESULT;
+    pub fn DRMAcquireAdvisories(hlicensestorage: u32, wszlicense: ::windows_sys::core::PWSTR, wszurl: ::windows_sys::core::PWSTR, pvcontext: *mut ::core::ffi::c_void) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_Data_RightsManagement\"`*"]
-    pub fn DRMAcquireIssuanceLicenseTemplate(hclient: u32, uflags: u32, pvreserved: *mut ::core::ffi::c_void, ctemplates: u32, pwsztemplateids: *const ::windows_sys::core::PWSTR, wszurl: ::windows_sys::core::PCWSTR, pvcontext: *mut ::core::ffi::c_void) -> ::windows_sys::core::HRESULT;
+    pub fn DRMAcquireIssuanceLicenseTemplate(hclient: u32, uflags: u32, pvreserved: *mut ::core::ffi::c_void, ctemplates: u32, pwsztemplateids: *mut ::windows_sys::core::PWSTR, wszurl: ::windows_sys::core::PWSTR, pvcontext: *mut ::core::ffi::c_void) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_Data_RightsManagement\"`*"]
-    pub fn DRMAcquireLicense(hsession: u32, uflags: u32, wszgroupidentitycredential: ::windows_sys::core::PCWSTR, wszrequestedrights: ::windows_sys::core::PCWSTR, wszcustomdata: ::windows_sys::core::PCWSTR, wszurl: ::windows_sys::core::PCWSTR, pvcontext: *mut ::core::ffi::c_void) -> ::windows_sys::core::HRESULT;
+    pub fn DRMAcquireLicense(hsession: u32, uflags: u32, wszgroupidentitycredential: ::windows_sys::core::PWSTR, wszrequestedrights: ::windows_sys::core::PWSTR, wszcustomdata: ::windows_sys::core::PWSTR, wszurl: ::windows_sys::core::PWSTR, pvcontext: *mut ::core::ffi::c_void) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_Data_RightsManagement\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
     pub fn DRMActivate(hclient: u32, uflags: u32, ulangid: u32, pactservinfo: *mut DRM_ACTSERV_INFO, pvcontext: *mut ::core::ffi::c_void, hparentwnd: super::super::Foundation::HWND) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_Data_RightsManagement\"`*"]
-    pub fn DRMAddLicense(hlicensestorage: u32, uflags: u32, wszlicense: ::windows_sys::core::PCWSTR) -> ::windows_sys::core::HRESULT;
+    pub fn DRMAddLicense(hlicensestorage: u32, uflags: u32, wszlicense: ::windows_sys::core::PWSTR) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_Data_RightsManagement\"`*"]
     pub fn DRMAddRightWithUser(hissuancelicense: u32, hright: u32, huser: u32) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_Data_RightsManagement\"`*"]
-    pub fn DRMAttest(henablingprincipal: u32, wszdata: ::windows_sys::core::PCWSTR, etype: DRMATTESTTYPE, pcattestedblob: *mut u32, wszattestedblob: ::windows_sys::core::PWSTR) -> ::windows_sys::core::HRESULT;
+    pub fn DRMAttest(henablingprincipal: u32, wszdata: ::windows_sys::core::PWSTR, etype: DRMATTESTTYPE, pcattestedblob: *mut u32, wszattestedblob: ::windows_sys::core::PWSTR) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_Data_RightsManagement\"`*"]
     pub fn DRMCheckSecurity(henv: u32, clevel: u32) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_Data_RightsManagement\"`*"]
@@ -30,35 +30,35 @@ extern "system" {
     #[doc = "*Required features: `\"Win32_Data_RightsManagement\"`*"]
     pub fn DRMCloseSession(hsession: u32) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_Data_RightsManagement\"`*"]
-    pub fn DRMConstructCertificateChain(ccertificates: u32, rgwszcertificates: *const ::windows_sys::core::PWSTR, pcchain: *mut u32, wszchain: ::windows_sys::core::PWSTR) -> ::windows_sys::core::HRESULT;
+    pub fn DRMConstructCertificateChain(ccertificates: u32, rgwszcertificates: *mut ::windows_sys::core::PWSTR, pcchain: *mut u32, wszchain: ::windows_sys::core::PWSTR) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_Data_RightsManagement\"`*"]
-    pub fn DRMCreateBoundLicense(henv: u32, pparams: *mut DRMBOUNDLICENSEPARAMS, wszlicensechain: ::windows_sys::core::PCWSTR, phboundlicense: *mut u32, pherrorlog: *mut u32) -> ::windows_sys::core::HRESULT;
+    pub fn DRMCreateBoundLicense(henv: u32, pparams: *mut DRMBOUNDLICENSEPARAMS, wszlicensechain: ::windows_sys::core::PWSTR, phboundlicense: *mut u32, pherrorlog: *mut u32) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_Data_RightsManagement\"`*"]
-    pub fn DRMCreateClientSession(pfncallback: DRMCALLBACK, ucallbackversion: u32, wszgroupidprovidertype: ::windows_sys::core::PCWSTR, wszgroupid: ::windows_sys::core::PCWSTR, phclient: *mut u32) -> ::windows_sys::core::HRESULT;
+    pub fn DRMCreateClientSession(pfncallback: DRMCALLBACK, ucallbackversion: u32, wszgroupidprovidertype: ::windows_sys::core::PWSTR, wszgroupid: ::windows_sys::core::PWSTR, phclient: *mut u32) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_Data_RightsManagement\"`*"]
-    pub fn DRMCreateEnablingBitsDecryptor(hboundlicense: u32, wszright: ::windows_sys::core::PCWSTR, hauxlib: u32, wszauxplug: ::windows_sys::core::PCWSTR, phdecryptor: *mut u32) -> ::windows_sys::core::HRESULT;
+    pub fn DRMCreateEnablingBitsDecryptor(hboundlicense: u32, wszright: ::windows_sys::core::PWSTR, hauxlib: u32, wszauxplug: ::windows_sys::core::PWSTR, phdecryptor: *mut u32) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_Data_RightsManagement\"`*"]
-    pub fn DRMCreateEnablingBitsEncryptor(hboundlicense: u32, wszright: ::windows_sys::core::PCWSTR, hauxlib: u32, wszauxplug: ::windows_sys::core::PCWSTR, phencryptor: *mut u32) -> ::windows_sys::core::HRESULT;
+    pub fn DRMCreateEnablingBitsEncryptor(hboundlicense: u32, wszright: ::windows_sys::core::PWSTR, hauxlib: u32, wszauxplug: ::windows_sys::core::PWSTR, phencryptor: *mut u32) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_Data_RightsManagement\"`*"]
-    pub fn DRMCreateEnablingPrincipal(henv: u32, hlibrary: u32, wszobject: ::windows_sys::core::PCWSTR, pidprincipal: *mut DRMID, wszcredentials: ::windows_sys::core::PCWSTR, phenablingprincipal: *mut u32) -> ::windows_sys::core::HRESULT;
+    pub fn DRMCreateEnablingPrincipal(henv: u32, hlibrary: u32, wszobject: ::windows_sys::core::PWSTR, pidprincipal: *mut DRMID, wszcredentials: ::windows_sys::core::PWSTR, phenablingprincipal: *mut u32) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_Data_RightsManagement\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub fn DRMCreateIssuanceLicense(psttimefrom: *mut super::super::Foundation::SYSTEMTIME, psttimeuntil: *mut super::super::Foundation::SYSTEMTIME, wszreferralinfoname: ::windows_sys::core::PCWSTR, wszreferralinfourl: ::windows_sys::core::PCWSTR, howner: u32, wszissuancelicense: ::windows_sys::core::PCWSTR, hboundlicense: u32, phissuancelicense: *mut u32) -> ::windows_sys::core::HRESULT;
+    pub fn DRMCreateIssuanceLicense(psttimefrom: *mut super::super::Foundation::SYSTEMTIME, psttimeuntil: *mut super::super::Foundation::SYSTEMTIME, wszreferralinfoname: ::windows_sys::core::PWSTR, wszreferralinfourl: ::windows_sys::core::PWSTR, howner: u32, wszissuancelicense: ::windows_sys::core::PWSTR, hboundlicense: u32, phissuancelicense: *mut u32) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_Data_RightsManagement\"`*"]
-    pub fn DRMCreateLicenseStorageSession(henv: u32, hdefaultlibrary: u32, hclient: u32, uflags: u32, wszissuancelicense: ::windows_sys::core::PCWSTR, phlicensestorage: *mut u32) -> ::windows_sys::core::HRESULT;
+    pub fn DRMCreateLicenseStorageSession(henv: u32, hdefaultlibrary: u32, hclient: u32, uflags: u32, wszissuancelicense: ::windows_sys::core::PWSTR, phlicensestorage: *mut u32) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_Data_RightsManagement\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub fn DRMCreateRight(wszrightname: ::windows_sys::core::PCWSTR, pstfrom: *mut super::super::Foundation::SYSTEMTIME, pstuntil: *mut super::super::Foundation::SYSTEMTIME, cextendedinfo: u32, pwszextendedinfoname: *const ::windows_sys::core::PWSTR, pwszextendedinfovalue: *const ::windows_sys::core::PWSTR, phright: *mut u32) -> ::windows_sys::core::HRESULT;
+    pub fn DRMCreateRight(wszrightname: ::windows_sys::core::PWSTR, pstfrom: *mut super::super::Foundation::SYSTEMTIME, pstuntil: *mut super::super::Foundation::SYSTEMTIME, cextendedinfo: u32, pwszextendedinfoname: *mut ::windows_sys::core::PWSTR, pwszextendedinfovalue: *mut ::windows_sys::core::PWSTR, phright: *mut u32) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_Data_RightsManagement\"`*"]
-    pub fn DRMCreateUser(wszusername: ::windows_sys::core::PCWSTR, wszuserid: ::windows_sys::core::PCWSTR, wszuseridtype: ::windows_sys::core::PCWSTR, phuser: *mut u32) -> ::windows_sys::core::HRESULT;
+    pub fn DRMCreateUser(wszusername: ::windows_sys::core::PWSTR, wszuserid: ::windows_sys::core::PWSTR, wszuseridtype: ::windows_sys::core::PWSTR, phuser: *mut u32) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_Data_RightsManagement\"`*"]
-    pub fn DRMDecode(wszalgid: ::windows_sys::core::PCWSTR, wszencodedstring: ::windows_sys::core::PCWSTR, pudecodeddatalen: *mut u32, pbdecodeddata: *mut u8) -> ::windows_sys::core::HRESULT;
+    pub fn DRMDecode(wszalgid: ::windows_sys::core::PWSTR, wszencodedstring: ::windows_sys::core::PWSTR, pudecodeddatalen: *mut u32, pbdecodeddata: *mut u8) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_Data_RightsManagement\"`*"]
-    pub fn DRMDeconstructCertificateChain(wszchain: ::windows_sys::core::PCWSTR, iwhich: u32, pccert: *mut u32, wszcert: ::windows_sys::core::PWSTR) -> ::windows_sys::core::HRESULT;
+    pub fn DRMDeconstructCertificateChain(wszchain: ::windows_sys::core::PWSTR, iwhich: u32, pccert: *mut u32, wszcert: ::windows_sys::core::PWSTR) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_Data_RightsManagement\"`*"]
     pub fn DRMDecrypt(hcryptoprovider: u32, iposition: u32, cnuminbytes: u32, pbindata: *mut u8, pcnumoutbytes: *mut u32, pboutdata: *mut u8) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_Data_RightsManagement\"`*"]
-    pub fn DRMDeleteLicense(hsession: u32, wszlicenseid: ::windows_sys::core::PCWSTR) -> ::windows_sys::core::HRESULT;
+    pub fn DRMDeleteLicense(hsession: u32, wszlicenseid: ::windows_sys::core::PWSTR) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_Data_RightsManagement\"`*"]
     pub fn DRMDuplicateEnvironmentHandle(htocopy: u32, phcopy: *mut u32) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_Data_RightsManagement\"`*"]
@@ -68,7 +68,7 @@ extern "system" {
     #[doc = "*Required features: `\"Win32_Data_RightsManagement\"`*"]
     pub fn DRMDuplicateSession(hsessionin: u32, phsessionout: *mut u32) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_Data_RightsManagement\"`*"]
-    pub fn DRMEncode(wszalgid: ::windows_sys::core::PCWSTR, udatalen: u32, pbdecodeddata: *mut u8, puencodedstringlen: *mut u32, wszencodedstring: ::windows_sys::core::PWSTR) -> ::windows_sys::core::HRESULT;
+    pub fn DRMEncode(wszalgid: ::windows_sys::core::PWSTR, udatalen: u32, pbdecodeddata: *mut u8, puencodedstringlen: *mut u32, wszencodedstring: ::windows_sys::core::PWSTR) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_Data_RightsManagement\"`*"]
     pub fn DRMEncrypt(hcryptoprovider: u32, iposition: u32, cnuminbytes: u32, pbindata: *mut u8, pcnumoutbytes: *mut u32, pboutdata: *mut u8) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_Data_RightsManagement\"`, `\"Win32_Foundation\"`*"]
@@ -77,21 +77,21 @@ extern "system" {
     #[doc = "*Required features: `\"Win32_Data_RightsManagement\"`*"]
     pub fn DRMGetApplicationSpecificData(hissuancelicense: u32, uindex: u32, punamelength: *mut u32, wszname: ::windows_sys::core::PWSTR, puvaluelength: *mut u32, wszvalue: ::windows_sys::core::PWSTR) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_Data_RightsManagement\"`*"]
-    pub fn DRMGetBoundLicenseAttribute(hqueryroot: u32, wszattribute: ::windows_sys::core::PCWSTR, iwhich: u32, peencoding: *mut DRMENCODINGTYPE, pcbuffer: *mut u32, pbbuffer: *mut u8) -> ::windows_sys::core::HRESULT;
+    pub fn DRMGetBoundLicenseAttribute(hqueryroot: u32, wszattribute: ::windows_sys::core::PWSTR, iwhich: u32, peencoding: *mut DRMENCODINGTYPE, pcbuffer: *mut u32, pbbuffer: *mut u8) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_Data_RightsManagement\"`*"]
-    pub fn DRMGetBoundLicenseAttributeCount(hqueryroot: u32, wszattribute: ::windows_sys::core::PCWSTR, pcattributes: *mut u32) -> ::windows_sys::core::HRESULT;
+    pub fn DRMGetBoundLicenseAttributeCount(hqueryroot: u32, wszattribute: ::windows_sys::core::PWSTR, pcattributes: *mut u32) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_Data_RightsManagement\"`*"]
-    pub fn DRMGetBoundLicenseObject(hqueryroot: u32, wszsubobjecttype: ::windows_sys::core::PCWSTR, iwhich: u32, phsubobject: *mut u32) -> ::windows_sys::core::HRESULT;
+    pub fn DRMGetBoundLicenseObject(hqueryroot: u32, wszsubobjecttype: ::windows_sys::core::PWSTR, iwhich: u32, phsubobject: *mut u32) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_Data_RightsManagement\"`*"]
-    pub fn DRMGetBoundLicenseObjectCount(hqueryroot: u32, wszsubobjecttype: ::windows_sys::core::PCWSTR, pcsubobjects: *mut u32) -> ::windows_sys::core::HRESULT;
+    pub fn DRMGetBoundLicenseObjectCount(hqueryroot: u32, wszsubobjecttype: ::windows_sys::core::PWSTR, pcsubobjects: *mut u32) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_Data_RightsManagement\"`*"]
-    pub fn DRMGetCertificateChainCount(wszchain: ::windows_sys::core::PCWSTR, pccertcount: *mut u32) -> ::windows_sys::core::HRESULT;
+    pub fn DRMGetCertificateChainCount(wszchain: ::windows_sys::core::PWSTR, pccertcount: *mut u32) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_Data_RightsManagement\"`*"]
     pub fn DRMGetClientVersion(pdrmclientversioninfo: *mut DRM_CLIENT_VERSION_INFO) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_Data_RightsManagement\"`*"]
-    pub fn DRMGetEnvironmentInfo(handle: u32, wszattribute: ::windows_sys::core::PCWSTR, peencoding: *mut DRMENCODINGTYPE, pcbuffer: *mut u32, pbbuffer: *mut u8) -> ::windows_sys::core::HRESULT;
+    pub fn DRMGetEnvironmentInfo(handle: u32, wszattribute: ::windows_sys::core::PWSTR, peencoding: *mut DRMENCODINGTYPE, pcbuffer: *mut u32, pbbuffer: *mut u8) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_Data_RightsManagement\"`*"]
-    pub fn DRMGetInfo(handle: u32, wszattribute: ::windows_sys::core::PCWSTR, peencoding: *const DRMENCODINGTYPE, pcbuffer: *mut u32, pbbuffer: *mut u8) -> ::windows_sys::core::HRESULT;
+    pub fn DRMGetInfo(handle: u32, wszattribute: ::windows_sys::core::PWSTR, peencoding: *mut DRMENCODINGTYPE, pcbuffer: *mut u32, pbbuffer: *mut u8) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_Data_RightsManagement\"`*"]
     pub fn DRMGetIntervalTime(hissuancelicense: u32, pcdays: *mut u32) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_Data_RightsManagement\"`, `\"Win32_Foundation\"`*"]
@@ -107,7 +107,7 @@ extern "system" {
     pub fn DRMGetOwnerLicense(hissuancelicense: u32, puownerlicenselength: *mut u32, wszownerlicense: ::windows_sys::core::PWSTR) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_Data_RightsManagement\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub fn DRMGetProcAddress(hlibrary: u32, wszprocname: ::windows_sys::core::PCWSTR, ppfnprocaddress: *mut super::super::Foundation::FARPROC) -> ::windows_sys::core::HRESULT;
+    pub fn DRMGetProcAddress(hlibrary: u32, wszprocname: ::windows_sys::core::PWSTR, ppfnprocaddress: *mut super::super::Foundation::FARPROC) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_Data_RightsManagement\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
     pub fn DRMGetRevocationPoint(hissuancelicense: u32, puidlength: *mut u32, wszid: ::windows_sys::core::PWSTR, puidtypelength: *mut u32, wszidtype: ::windows_sys::core::PWSTR, puurllength: *mut u32, wszrl: ::windows_sys::core::PWSTR, pstfrequency: *mut super::super::Foundation::SYSTEMTIME, punamelength: *mut u32, wszname: ::windows_sys::core::PWSTR, pupublickeylength: *mut u32, wszpublickey: ::windows_sys::core::PWSTR) -> ::windows_sys::core::HRESULT;
@@ -119,22 +119,22 @@ extern "system" {
     #[doc = "*Required features: `\"Win32_Data_RightsManagement\"`*"]
     pub fn DRMGetSecurityProvider(uflags: u32, putypelen: *mut u32, wsztype: ::windows_sys::core::PWSTR, pupathlen: *mut u32, wszpath: ::windows_sys::core::PWSTR) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_Data_RightsManagement\"`*"]
-    pub fn DRMGetServiceLocation(hclient: u32, uservicetype: u32, uservicelocation: u32, wszissuancelicense: ::windows_sys::core::PCWSTR, puserviceurllength: *mut u32, wszserviceurl: ::windows_sys::core::PWSTR) -> ::windows_sys::core::HRESULT;
+    pub fn DRMGetServiceLocation(hclient: u32, uservicetype: u32, uservicelocation: u32, wszissuancelicense: ::windows_sys::core::PWSTR, puserviceurllength: *mut u32, wszserviceurl: ::windows_sys::core::PWSTR) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_Data_RightsManagement\"`*"]
-    pub fn DRMGetSignedIssuanceLicense(henv: u32, hissuancelicense: u32, uflags: u32, pbsymkey: *mut u8, cbsymkey: u32, wszsymkeytype: ::windows_sys::core::PCWSTR, wszclientlicensorcertificate: ::windows_sys::core::PCWSTR, pfncallback: DRMCALLBACK, wszurl: ::windows_sys::core::PCWSTR, pvcontext: *mut ::core::ffi::c_void) -> ::windows_sys::core::HRESULT;
+    pub fn DRMGetSignedIssuanceLicense(henv: u32, hissuancelicense: u32, uflags: u32, pbsymkey: *mut u8, cbsymkey: u32, wszsymkeytype: ::windows_sys::core::PWSTR, wszclientlicensorcertificate: ::windows_sys::core::PWSTR, pfncallback: DRMCALLBACK, wszurl: ::windows_sys::core::PWSTR, pvcontext: *mut ::core::ffi::c_void) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_Data_RightsManagement\"`*"]
-    pub fn DRMGetSignedIssuanceLicenseEx(henv: u32, hissuancelicense: u32, uflags: u32, pbsymkey: *const u8, cbsymkey: u32, wszsymkeytype: ::windows_sys::core::PCWSTR, pvreserved: *const ::core::ffi::c_void, henablingprincipal: u32, hboundlicenseclc: u32, pfncallback: DRMCALLBACK, pvcontext: *const ::core::ffi::c_void) -> ::windows_sys::core::HRESULT;
+    pub fn DRMGetSignedIssuanceLicenseEx(henv: u32, hissuancelicense: u32, uflags: u32, pbsymkey: *mut u8, cbsymkey: u32, wszsymkeytype: ::windows_sys::core::PWSTR, pvreserved: *mut ::core::ffi::c_void, henablingprincipal: u32, hboundlicenseclc: u32, pfncallback: DRMCALLBACK, pvcontext: *mut ::core::ffi::c_void) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_Data_RightsManagement\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
     pub fn DRMGetTime(henv: u32, etimeridtype: DRMTIMETYPE, potimeobject: *mut super::super::Foundation::SYSTEMTIME) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_Data_RightsManagement\"`*"]
-    pub fn DRMGetUnboundLicenseAttribute(hqueryroot: u32, wszattributetype: ::windows_sys::core::PCWSTR, iwhich: u32, peencoding: *mut DRMENCODINGTYPE, pcbuffer: *mut u32, pbbuffer: *mut u8) -> ::windows_sys::core::HRESULT;
+    pub fn DRMGetUnboundLicenseAttribute(hqueryroot: u32, wszattributetype: ::windows_sys::core::PWSTR, iwhich: u32, peencoding: *mut DRMENCODINGTYPE, pcbuffer: *mut u32, pbbuffer: *mut u8) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_Data_RightsManagement\"`*"]
-    pub fn DRMGetUnboundLicenseAttributeCount(hqueryroot: u32, wszattributetype: ::windows_sys::core::PCWSTR, pcattributes: *mut u32) -> ::windows_sys::core::HRESULT;
+    pub fn DRMGetUnboundLicenseAttributeCount(hqueryroot: u32, wszattributetype: ::windows_sys::core::PWSTR, pcattributes: *mut u32) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_Data_RightsManagement\"`*"]
-    pub fn DRMGetUnboundLicenseObject(hqueryroot: u32, wszsubobjecttype: ::windows_sys::core::PCWSTR, iindex: u32, phsubquery: *mut u32) -> ::windows_sys::core::HRESULT;
+    pub fn DRMGetUnboundLicenseObject(hqueryroot: u32, wszsubobjecttype: ::windows_sys::core::PWSTR, iindex: u32, phsubquery: *mut u32) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_Data_RightsManagement\"`*"]
-    pub fn DRMGetUnboundLicenseObjectCount(hqueryroot: u32, wszsubobjecttype: ::windows_sys::core::PCWSTR, pcsubobjects: *mut u32) -> ::windows_sys::core::HRESULT;
+    pub fn DRMGetUnboundLicenseObjectCount(hqueryroot: u32, wszsubobjecttype: ::windows_sys::core::PWSTR, pcsubobjects: *mut u32) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_Data_RightsManagement\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
     pub fn DRMGetUsagePolicy(hissuancelicense: u32, uindex: u32, peusagepolicytype: *mut DRM_USAGEPOLICY_TYPE, pfexclusion: *mut super::super::Foundation::BOOL, punamelength: *mut u32, wszname: ::windows_sys::core::PWSTR, puminversionlength: *mut u32, wszminversion: ::windows_sys::core::PWSTR, pumaxversionlength: *mut u32, wszmaxversion: ::windows_sys::core::PWSTR, pupublickeylength: *mut u32, wszpublickey: ::windows_sys::core::PWSTR, pudigestalgorithmlength: *mut u32, wszdigestalgorithm: ::windows_sys::core::PWSTR, pcbdigest: *mut u32, pbdigest: *mut u8) -> ::windows_sys::core::HRESULT;
@@ -145,16 +145,16 @@ extern "system" {
     #[doc = "*Required features: `\"Win32_Data_RightsManagement\"`*"]
     pub fn DRMGetUsers(hissuancelicense: u32, uindex: u32, phuser: *mut u32) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_Data_RightsManagement\"`*"]
-    pub fn DRMInitEnvironment(esecurityprovidertype: DRMSECURITYPROVIDERTYPE, especification: DRMSPECTYPE, wszsecurityprovider: ::windows_sys::core::PCWSTR, wszmanifestcredentials: ::windows_sys::core::PCWSTR, wszmachinecredentials: ::windows_sys::core::PCWSTR, phenv: *mut u32, phdefaultlibrary: *mut u32) -> ::windows_sys::core::HRESULT;
+    pub fn DRMInitEnvironment(esecurityprovidertype: DRMSECURITYPROVIDERTYPE, especification: DRMSPECTYPE, wszsecurityprovider: ::windows_sys::core::PWSTR, wszmanifestcredentials: ::windows_sys::core::PWSTR, wszmachinecredentials: ::windows_sys::core::PWSTR, phenv: *mut u32, phdefaultlibrary: *mut u32) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_Data_RightsManagement\"`*"]
     pub fn DRMIsActivated(hclient: u32, uflags: u32, pactservinfo: *mut DRM_ACTSERV_INFO) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_Data_RightsManagement\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
     pub fn DRMIsWindowProtected(hwnd: super::super::Foundation::HWND, pfprotected: *mut super::super::Foundation::BOOL) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_Data_RightsManagement\"`*"]
-    pub fn DRMLoadLibrary(henv: u32, especification: DRMSPECTYPE, wszlibraryprovider: ::windows_sys::core::PCWSTR, wszcredentials: ::windows_sys::core::PCWSTR, phlibrary: *mut u32) -> ::windows_sys::core::HRESULT;
+    pub fn DRMLoadLibrary(henv: u32, especification: DRMSPECTYPE, wszlibraryprovider: ::windows_sys::core::PWSTR, wszcredentials: ::windows_sys::core::PWSTR, phlibrary: *mut u32) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_Data_RightsManagement\"`*"]
-    pub fn DRMParseUnboundLicense(wszcertificate: ::windows_sys::core::PCWSTR, phqueryroot: *mut u32) -> ::windows_sys::core::HRESULT;
+    pub fn DRMParseUnboundLicense(wszcertificate: ::windows_sys::core::PWSTR, phqueryroot: *mut u32) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_Data_RightsManagement\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
     pub fn DRMRegisterContent(fregister: super::super::Foundation::BOOL) -> ::windows_sys::core::HRESULT;
@@ -162,29 +162,29 @@ extern "system" {
     #[cfg(feature = "Win32_Foundation")]
     pub fn DRMRegisterProtectedWindow(henv: u32, hwnd: super::super::Foundation::HWND) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_Data_RightsManagement\"`*"]
-    pub fn DRMRegisterRevocationList(henv: u32, wszrevocationlist: ::windows_sys::core::PCWSTR) -> ::windows_sys::core::HRESULT;
+    pub fn DRMRegisterRevocationList(henv: u32, wszrevocationlist: ::windows_sys::core::PWSTR) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_Data_RightsManagement\"`*"]
     pub fn DRMRepair() -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_Data_RightsManagement\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub fn DRMSetApplicationSpecificData(hissuancelicense: u32, fdelete: super::super::Foundation::BOOL, wszname: ::windows_sys::core::PCWSTR, wszvalue: ::windows_sys::core::PCWSTR) -> ::windows_sys::core::HRESULT;
+    pub fn DRMSetApplicationSpecificData(hissuancelicense: u32, fdelete: super::super::Foundation::BOOL, wszname: ::windows_sys::core::PWSTR, wszvalue: ::windows_sys::core::PWSTR) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_Data_RightsManagement\"`*"]
     pub fn DRMSetGlobalOptions(eglobaloptions: DRMGLOBALOPTIONS, pvdata: *mut ::core::ffi::c_void, dwlen: u32) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_Data_RightsManagement\"`*"]
     pub fn DRMSetIntervalTime(hissuancelicense: u32, cdays: u32) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_Data_RightsManagement\"`*"]
-    pub fn DRMSetMetaData(hissuancelicense: u32, wszcontentid: ::windows_sys::core::PCWSTR, wszcontentidtype: ::windows_sys::core::PCWSTR, wszskuid: ::windows_sys::core::PCWSTR, wszskuidtype: ::windows_sys::core::PCWSTR, wszcontenttype: ::windows_sys::core::PCWSTR, wszcontentname: ::windows_sys::core::PCWSTR) -> ::windows_sys::core::HRESULT;
+    pub fn DRMSetMetaData(hissuancelicense: u32, wszcontentid: ::windows_sys::core::PWSTR, wszcontentidtype: ::windows_sys::core::PWSTR, wszskuid: ::windows_sys::core::PWSTR, wszskuidtype: ::windows_sys::core::PWSTR, wszcontenttype: ::windows_sys::core::PWSTR, wszcontentname: ::windows_sys::core::PWSTR) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_Data_RightsManagement\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub fn DRMSetNameAndDescription(hissuancelicense: u32, fdelete: super::super::Foundation::BOOL, lcid: u32, wszname: ::windows_sys::core::PCWSTR, wszdescription: ::windows_sys::core::PCWSTR) -> ::windows_sys::core::HRESULT;
+    pub fn DRMSetNameAndDescription(hissuancelicense: u32, fdelete: super::super::Foundation::BOOL, lcid: u32, wszname: ::windows_sys::core::PWSTR, wszdescription: ::windows_sys::core::PWSTR) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_Data_RightsManagement\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub fn DRMSetRevocationPoint(hissuancelicense: u32, fdelete: super::super::Foundation::BOOL, wszid: ::windows_sys::core::PCWSTR, wszidtype: ::windows_sys::core::PCWSTR, wszurl: ::windows_sys::core::PCWSTR, pstfrequency: *mut super::super::Foundation::SYSTEMTIME, wszname: ::windows_sys::core::PCWSTR, wszpublickey: ::windows_sys::core::PCWSTR) -> ::windows_sys::core::HRESULT;
+    pub fn DRMSetRevocationPoint(hissuancelicense: u32, fdelete: super::super::Foundation::BOOL, wszid: ::windows_sys::core::PWSTR, wszidtype: ::windows_sys::core::PWSTR, wszurl: ::windows_sys::core::PWSTR, pstfrequency: *mut super::super::Foundation::SYSTEMTIME, wszname: ::windows_sys::core::PWSTR, wszpublickey: ::windows_sys::core::PWSTR) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_Data_RightsManagement\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub fn DRMSetUsagePolicy(hissuancelicense: u32, eusagepolicytype: DRM_USAGEPOLICY_TYPE, fdelete: super::super::Foundation::BOOL, fexclusion: super::super::Foundation::BOOL, wszname: ::windows_sys::core::PCWSTR, wszminversion: ::windows_sys::core::PCWSTR, wszmaxversion: ::windows_sys::core::PCWSTR, wszpublickey: ::windows_sys::core::PCWSTR, wszdigestalgorithm: ::windows_sys::core::PCWSTR, pbdigest: *mut u8, cbdigest: u32) -> ::windows_sys::core::HRESULT;
+    pub fn DRMSetUsagePolicy(hissuancelicense: u32, eusagepolicytype: DRM_USAGEPOLICY_TYPE, fdelete: super::super::Foundation::BOOL, fexclusion: super::super::Foundation::BOOL, wszname: ::windows_sys::core::PWSTR, wszminversion: ::windows_sys::core::PWSTR, wszmaxversion: ::windows_sys::core::PWSTR, wszpublickey: ::windows_sys::core::PWSTR, wszdigestalgorithm: ::windows_sys::core::PWSTR, pbdigest: *mut u8, cbdigest: u32) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_Data_RightsManagement\"`*"]
-    pub fn DRMVerify(wszdata: ::windows_sys::core::PCWSTR, pcattesteddata: *mut u32, wszattesteddata: ::windows_sys::core::PWSTR, petype: *mut DRMATTESTTYPE, pcprincipal: *mut u32, wszprincipal: ::windows_sys::core::PWSTR, pcmanifest: *mut u32, wszmanifest: ::windows_sys::core::PWSTR) -> ::windows_sys::core::HRESULT;
+    pub fn DRMVerify(wszdata: ::windows_sys::core::PWSTR, pcattesteddata: *mut u32, wszattesteddata: ::windows_sys::core::PWSTR, petype: *mut DRMATTESTTYPE, pcprincipal: *mut u32, wszprincipal: ::windows_sys::core::PWSTR, pcmanifest: *mut u32, wszmanifest: ::windows_sys::core::PWSTR) -> ::windows_sys::core::HRESULT;
 }
 #[doc = "*Required features: `\"Win32_Data_RightsManagement\"`*"]
 pub const DRMACTSERVINFOVERSION: u32 = 0u32;

@@ -1445,8 +1445,8 @@ impl IRecoverableError_Vtbl {
 }
 pub trait IRecoverableErrorData_Impl: Sized {
     fn Initialize(&self, pcszitemdisplayname: &::windows::core::PCWSTR, pcszerrordescription: &::windows::core::PCWSTR) -> ::windows::core::Result<()>;
-    fn GetItemDisplayName(&self, pszitemdisplayname: &::windows::core::PCWSTR, pcchitemdisplayname: *mut u32) -> ::windows::core::Result<()>;
-    fn GetErrorDescription(&self, pszerrordescription: &::windows::core::PCWSTR, pccherrordescription: *mut u32) -> ::windows::core::Result<()>;
+    fn GetItemDisplayName(&self, pszitemdisplayname: &::windows::core::PWSTR, pcchitemdisplayname: *mut u32) -> ::windows::core::Result<()>;
+    fn GetErrorDescription(&self, pszerrordescription: &::windows::core::PWSTR, pccherrordescription: *mut u32) -> ::windows::core::Result<()>;
 }
 impl ::windows::core::RuntimeName for IRecoverableErrorData {}
 impl IRecoverableErrorData_Vtbl {
@@ -1456,12 +1456,12 @@ impl IRecoverableErrorData_Vtbl {
             let this = (*this).get_impl();
             this.Initialize(::core::mem::transmute(&pcszitemdisplayname), ::core::mem::transmute(&pcszerrordescription)).into()
         }
-        unsafe extern "system" fn GetItemDisplayName<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IRecoverableErrorData_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, pszitemdisplayname: ::windows::core::PCWSTR, pcchitemdisplayname: *mut u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn GetItemDisplayName<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IRecoverableErrorData_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, pszitemdisplayname: ::windows::core::PWSTR, pcchitemdisplayname: *mut u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.GetItemDisplayName(::core::mem::transmute(&pszitemdisplayname), ::core::mem::transmute_copy(&pcchitemdisplayname)).into()
         }
-        unsafe extern "system" fn GetErrorDescription<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IRecoverableErrorData_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, pszerrordescription: ::windows::core::PCWSTR, pccherrordescription: *mut u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn GetErrorDescription<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IRecoverableErrorData_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, pszerrordescription: ::windows::core::PWSTR, pccherrordescription: *mut u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.GetErrorDescription(::core::mem::transmute(&pszerrordescription), ::core::mem::transmute_copy(&pccherrordescription)).into()

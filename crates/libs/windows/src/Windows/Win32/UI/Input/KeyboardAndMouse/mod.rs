@@ -207,10 +207,10 @@ pub unsafe fn GetLastInputInfo(plii: *mut LASTINPUTINFO) -> super::super::super:
 }
 #[doc = "*Required features: `\"Win32_UI_Input_KeyboardAndMouse\"`*"]
 #[inline]
-pub unsafe fn GetMouseMovePointsEx(cbsize: u32, lppt: *const MOUSEMOVEPOINT, lpptbuf: &mut [MOUSEMOVEPOINT], resolution: GET_MOUSE_MOVE_POINTS_EX_RESOLUTION) -> i32 {
+pub unsafe fn GetMouseMovePointsEx(cbsize: u32, lppt: *mut MOUSEMOVEPOINT, lpptbuf: &mut [MOUSEMOVEPOINT], resolution: GET_MOUSE_MOVE_POINTS_EX_RESOLUTION) -> i32 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn GetMouseMovePointsEx(cbsize: u32, lppt: *const MOUSEMOVEPOINT, lpptbuf: *mut MOUSEMOVEPOINT, nbufpoints: i32, resolution: GET_MOUSE_MOVE_POINTS_EX_RESOLUTION) -> i32;
+        fn GetMouseMovePointsEx(cbsize: u32, lppt: *mut MOUSEMOVEPOINT, lpptbuf: *mut MOUSEMOVEPOINT, nbufpoints: i32, resolution: GET_MOUSE_MOVE_POINTS_EX_RESOLUTION) -> i32;
     }
     GetMouseMovePointsEx(cbsize, ::core::mem::transmute(lppt), ::core::mem::transmute(lpptbuf.as_ptr()), lpptbuf.len() as _, resolution)
 }
@@ -336,7 +336,7 @@ pub unsafe fn ReleaseCapture() -> super::super::super::Foundation::BOOL {
 pub unsafe fn SendInput(pinputs: &[INPUT], cbsize: i32) -> u32 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn SendInput(cinputs: u32, pinputs: *const INPUT, cbsize: i32) -> u32;
+        fn SendInput(cinputs: u32, pinputs: *mut INPUT, cbsize: i32) -> u32;
     }
     SendInput(pinputs.len() as _, ::core::mem::transmute(pinputs.as_ptr()), cbsize)
 }
@@ -395,7 +395,7 @@ where
 pub unsafe fn SetKeyboardState(lpkeystate: &[u8; 256]) -> super::super::super::Foundation::BOOL {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn SetKeyboardState(lpkeystate: *const u8) -> super::super::super::Foundation::BOOL;
+        fn SetKeyboardState(lpkeystate: *mut u8) -> super::super::super::Foundation::BOOL;
     }
     SetKeyboardState(::core::mem::transmute(lpkeystate.as_ptr()))
 }

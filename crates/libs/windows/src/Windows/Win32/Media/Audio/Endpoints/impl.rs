@@ -120,7 +120,7 @@ impl IAudioEndpointOffloadStreamMute_Vtbl {
 #[cfg(feature = "Win32_Media_KernelStreaming")]
 pub trait IAudioEndpointOffloadStreamVolume_Impl: Sized {
     fn GetVolumeChannelCount(&self) -> ::windows::core::Result<u32>;
-    fn SetChannelVolumes(&self, u32channelcount: u32, pf32volumes: *const f32, u32curvetype: super::super::KernelStreaming::AUDIO_CURVE_TYPE, pcurveduration: *const i64) -> ::windows::core::Result<()>;
+    fn SetChannelVolumes(&self, u32channelcount: u32, pf32volumes: *mut f32, u32curvetype: super::super::KernelStreaming::AUDIO_CURVE_TYPE, pcurveduration: *mut i64) -> ::windows::core::Result<()>;
     fn GetChannelVolumes(&self, u32channelcount: u32) -> ::windows::core::Result<f32>;
 }
 #[cfg(feature = "Win32_Media_KernelStreaming")]
@@ -139,7 +139,7 @@ impl IAudioEndpointOffloadStreamVolume_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn SetChannelVolumes<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IAudioEndpointOffloadStreamVolume_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, u32channelcount: u32, pf32volumes: *const f32, u32curvetype: super::super::KernelStreaming::AUDIO_CURVE_TYPE, pcurveduration: *const i64) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn SetChannelVolumes<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IAudioEndpointOffloadStreamVolume_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, u32channelcount: u32, pf32volumes: *mut f32, u32curvetype: super::super::KernelStreaming::AUDIO_CURVE_TYPE, pcurveduration: *mut i64) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.SetChannelVolumes(::core::mem::transmute_copy(&u32channelcount), ::core::mem::transmute_copy(&pf32volumes), ::core::mem::transmute_copy(&u32curvetype), ::core::mem::transmute_copy(&pcurveduration)).into()
@@ -487,7 +487,7 @@ impl IAudioMeterInformation_Vtbl {
 }
 #[cfg(feature = "Win32_Foundation")]
 pub trait IHardwareAudioEngineBase_Impl: Sized {
-    fn GetAvailableOffloadConnectorCount(&self, _pwstrdeviceid: &::windows::core::PCWSTR, _uconnectorid: u32) -> ::windows::core::Result<u32>;
+    fn GetAvailableOffloadConnectorCount(&self, _pwstrdeviceid: &::windows::core::PWSTR, _uconnectorid: u32) -> ::windows::core::Result<u32>;
     fn GetEngineFormat(&self, pdevice: &::core::option::Option<super::IMMDevice>, _brequestdeviceformat: super::super::super::Foundation::BOOL, _ppwfxformat: *mut *mut super::WAVEFORMATEX) -> ::windows::core::Result<()>;
     fn SetEngineDeviceFormat(&self, pdevice: &::core::option::Option<super::IMMDevice>, _pwfxformat: *mut super::WAVEFORMATEX) -> ::windows::core::Result<()>;
     fn SetGfxState(&self, pdevice: &::core::option::Option<super::IMMDevice>, _benable: super::super::super::Foundation::BOOL) -> ::windows::core::Result<()>;
@@ -498,7 +498,7 @@ impl ::windows::core::RuntimeName for IHardwareAudioEngineBase {}
 #[cfg(feature = "Win32_Foundation")]
 impl IHardwareAudioEngineBase_Vtbl {
     pub const fn new<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IHardwareAudioEngineBase_Impl, const OFFSET: isize>() -> IHardwareAudioEngineBase_Vtbl {
-        unsafe extern "system" fn GetAvailableOffloadConnectorCount<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IHardwareAudioEngineBase_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, _pwstrdeviceid: ::windows::core::PCWSTR, _uconnectorid: u32, _pavailableconnectorinstancecount: *mut u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn GetAvailableOffloadConnectorCount<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IHardwareAudioEngineBase_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, _pwstrdeviceid: ::windows::core::PWSTR, _uconnectorid: u32, _pavailableconnectorinstancecount: *mut u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.GetAvailableOffloadConnectorCount(::core::mem::transmute(&_pwstrdeviceid), ::core::mem::transmute_copy(&_uconnectorid)) {

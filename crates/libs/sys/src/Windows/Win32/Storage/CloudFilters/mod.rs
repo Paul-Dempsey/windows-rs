@@ -74,7 +74,7 @@ extern "system" {
     #[doc = "*Required features: `\"Win32_Storage_CloudFilters\"`*"]
     pub fn CfReportProviderProgress2(connectionkey: CF_CONNECTION_KEY, transferkey: i64, requestkey: i64, providerprogresstotal: i64, providerprogresscompleted: i64, targetsessionid: u32) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_Storage_CloudFilters\"`*"]
-    pub fn CfReportSyncStatus(syncrootpath: ::windows_sys::core::PCWSTR, syncstatus: *const CF_SYNC_STATUS) -> ::windows_sys::core::HRESULT;
+    pub fn CfReportSyncStatus(syncrootpath: ::windows_sys::core::PCWSTR, syncstatus: *mut CF_SYNC_STATUS) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_Storage_CloudFilters\"`, `\"Win32_Foundation\"`, `\"Win32_System_IO\"`*"]
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_IO"))]
     pub fn CfRevertPlaceholder(filehandle: super::super::Foundation::HANDLE, revertflags: CF_REVERT_FLAGS, overlapped: *mut super::super::System::IO::OVERLAPPED) -> ::windows_sys::core::HRESULT;

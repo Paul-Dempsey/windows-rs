@@ -1871,7 +1871,7 @@ pub trait IScheduledWorkItem_Impl: Sized {
     fn GetComment(&self) -> ::windows::core::Result<::windows::core::PWSTR>;
     fn SetCreator(&self, pwszcreator: &::windows::core::PCWSTR) -> ::windows::core::Result<()>;
     fn GetCreator(&self) -> ::windows::core::Result<::windows::core::PWSTR>;
-    fn SetWorkItemData(&self, cbdata: u16, rgbdata: *const u8) -> ::windows::core::Result<()>;
+    fn SetWorkItemData(&self, cbdata: u16, rgbdata: *mut u8) -> ::windows::core::Result<()>;
     fn GetWorkItemData(&self, pcbdata: *mut u16, prgbdata: *mut *mut u8) -> ::windows::core::Result<()>;
     fn SetErrorRetryCount(&self, wretrycount: u16) -> ::windows::core::Result<()>;
     fn GetErrorRetryCount(&self) -> ::windows::core::Result<u16>;
@@ -2030,7 +2030,7 @@ impl IScheduledWorkItem_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn SetWorkItemData<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IScheduledWorkItem_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, cbdata: u16, rgbdata: *const u8) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn SetWorkItemData<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IScheduledWorkItem_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, cbdata: u16, rgbdata: *mut u8) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.SetWorkItemData(::core::mem::transmute_copy(&cbdata), ::core::mem::transmute_copy(&rgbdata)).into()

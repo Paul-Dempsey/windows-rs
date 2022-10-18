@@ -2,14 +2,14 @@ pub trait ITraceEvent_Impl: Sized {
     fn Clone(&self) -> ::windows::core::Result<ITraceEvent>;
     fn GetUserContext(&self) -> ::windows::core::Result<*mut ::core::ffi::c_void>;
     fn GetEventRecord(&self) -> ::windows::core::Result<*mut EVENT_RECORD>;
-    fn SetPayload(&self, payload: *const u8, payloadsize: u32) -> ::windows::core::Result<()>;
+    fn SetPayload(&self, payload: *mut u8, payloadsize: u32) -> ::windows::core::Result<()>;
     fn SetEventDescriptor(&self, eventdescriptor: *const EVENT_DESCRIPTOR) -> ::windows::core::Result<()>;
     fn SetProcessId(&self, processid: u32) -> ::windows::core::Result<()>;
     fn SetProcessorIndex(&self, processorindex: u32) -> ::windows::core::Result<()>;
     fn SetThreadId(&self, threadid: u32) -> ::windows::core::Result<()>;
     fn SetThreadTimes(&self, kerneltime: u32, usertime: u32) -> ::windows::core::Result<()>;
     fn SetActivityId(&self, activityid: *const ::windows::core::GUID) -> ::windows::core::Result<()>;
-    fn SetTimeStamp(&self, timestamp: *const i64) -> ::windows::core::Result<()>;
+    fn SetTimeStamp(&self, timestamp: *mut i64) -> ::windows::core::Result<()>;
     fn SetProviderId(&self, providerid: *const ::windows::core::GUID) -> ::windows::core::Result<()>;
 }
 impl ::windows::core::RuntimeName for ITraceEvent {}
@@ -48,7 +48,7 @@ impl ITraceEvent_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn SetPayload<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: ITraceEvent_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, payload: *const u8, payloadsize: u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn SetPayload<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: ITraceEvent_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, payload: *mut u8, payloadsize: u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.SetPayload(::core::mem::transmute_copy(&payload), ::core::mem::transmute_copy(&payloadsize)).into()
@@ -83,7 +83,7 @@ impl ITraceEvent_Vtbl {
             let this = (*this).get_impl();
             this.SetActivityId(::core::mem::transmute_copy(&activityid)).into()
         }
-        unsafe extern "system" fn SetTimeStamp<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: ITraceEvent_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, timestamp: *const i64) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn SetTimeStamp<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: ITraceEvent_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, timestamp: *mut i64) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.SetTimeStamp(::core::mem::transmute_copy(&timestamp)).into()
@@ -149,8 +149,8 @@ impl ITraceEventCallback_Vtbl {
 }
 #[cfg(feature = "Win32_Foundation")]
 pub trait ITraceRelogger_Impl: Sized {
-    fn AddLogfileTraceStream(&self, logfilename: &::windows::core::BSTR, usercontext: *const ::core::ffi::c_void) -> ::windows::core::Result<RELOGSTREAM_HANDLE>;
-    fn AddRealtimeTraceStream(&self, loggername: &::windows::core::BSTR, usercontext: *const ::core::ffi::c_void) -> ::windows::core::Result<RELOGSTREAM_HANDLE>;
+    fn AddLogfileTraceStream(&self, logfilename: &::windows::core::BSTR, usercontext: *mut ::core::ffi::c_void) -> ::windows::core::Result<RELOGSTREAM_HANDLE>;
+    fn AddRealtimeTraceStream(&self, loggername: &::windows::core::BSTR, usercontext: *mut ::core::ffi::c_void) -> ::windows::core::Result<RELOGSTREAM_HANDLE>;
     fn RegisterCallback(&self, callback: &::core::option::Option<ITraceEventCallback>) -> ::windows::core::Result<()>;
     fn Inject(&self, event: &::core::option::Option<ITraceEvent>) -> ::windows::core::Result<()>;
     fn CreateEventInstance(&self, tracehandle: RELOGSTREAM_HANDLE, flags: u32) -> ::windows::core::Result<ITraceEvent>;
@@ -164,7 +164,7 @@ impl ::windows::core::RuntimeName for ITraceRelogger {}
 #[cfg(feature = "Win32_Foundation")]
 impl ITraceRelogger_Vtbl {
     pub const fn new<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: ITraceRelogger_Impl, const OFFSET: isize>() -> ITraceRelogger_Vtbl {
-        unsafe extern "system" fn AddLogfileTraceStream<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: ITraceRelogger_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, logfilename: ::core::mem::ManuallyDrop<::windows::core::BSTR>, usercontext: *const ::core::ffi::c_void, tracehandle: *mut RELOGSTREAM_HANDLE) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn AddLogfileTraceStream<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: ITraceRelogger_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, logfilename: ::core::mem::ManuallyDrop<::windows::core::BSTR>, usercontext: *mut ::core::ffi::c_void, tracehandle: *mut RELOGSTREAM_HANDLE) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.AddLogfileTraceStream(::core::mem::transmute(&logfilename), ::core::mem::transmute_copy(&usercontext)) {
@@ -175,7 +175,7 @@ impl ITraceRelogger_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn AddRealtimeTraceStream<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: ITraceRelogger_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, loggername: ::core::mem::ManuallyDrop<::windows::core::BSTR>, usercontext: *const ::core::ffi::c_void, tracehandle: *mut RELOGSTREAM_HANDLE) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn AddRealtimeTraceStream<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: ITraceRelogger_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, loggername: ::core::mem::ManuallyDrop<::windows::core::BSTR>, usercontext: *mut ::core::ffi::c_void, tracehandle: *mut RELOGSTREAM_HANDLE) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.AddRealtimeTraceStream(::core::mem::transmute(&loggername), ::core::mem::transmute_copy(&usercontext)) {

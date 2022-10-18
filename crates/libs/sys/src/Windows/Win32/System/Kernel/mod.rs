@@ -13,7 +13,7 @@ extern "system" {
     #[doc = "*Required features: `\"Win32_System_Kernel\"`*"]
     pub fn RtlInterlockedPushListSListEx(listhead: *mut SLIST_HEADER, list: *mut SLIST_ENTRY, listend: *mut SLIST_ENTRY, count: u32) -> *mut SLIST_ENTRY;
     #[doc = "*Required features: `\"Win32_System_Kernel\"`*"]
-    pub fn RtlQueryDepthSList(listhead: *const SLIST_HEADER) -> u16;
+    pub fn RtlQueryDepthSList(listhead: *mut SLIST_HEADER) -> u16;
 }
 #[doc = "*Required features: `\"Win32_System_Kernel\"`*"]
 pub const MAXUCHAR: u32 = 255u32;
@@ -614,4 +614,4 @@ impl ::core::clone::Clone for WNF_STATE_NAME {
 }
 #[doc = "*Required features: `\"Win32_System_Kernel\"`, `\"Win32_Foundation\"`, `\"Win32_System_Diagnostics_Debug\"`*"]
 #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Diagnostics_Debug"))]
-pub type EXCEPTION_ROUTINE = ::core::option::Option<unsafe extern "system" fn(exceptionrecord: *mut super::Diagnostics::Debug::EXCEPTION_RECORD, establisherframe: *const ::core::ffi::c_void, contextrecord: *mut super::Diagnostics::Debug::CONTEXT, dispatchercontext: *const ::core::ffi::c_void) -> EXCEPTION_DISPOSITION>;
+pub type EXCEPTION_ROUTINE = ::core::option::Option<unsafe extern "system" fn(exceptionrecord: *mut super::Diagnostics::Debug::EXCEPTION_RECORD, establisherframe: *mut ::core::ffi::c_void, contextrecord: *mut super::Diagnostics::Debug::CONTEXT, dispatchercontext: *mut ::core::ffi::c_void) -> EXCEPTION_DISPOSITION>;

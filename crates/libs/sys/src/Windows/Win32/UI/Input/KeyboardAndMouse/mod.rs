@@ -54,7 +54,7 @@ extern "system" {
     #[cfg(feature = "Win32_Foundation")]
     pub fn GetLastInputInfo(plii: *mut LASTINPUTINFO) -> super::super::super::Foundation::BOOL;
     #[doc = "*Required features: `\"Win32_UI_Input_KeyboardAndMouse\"`*"]
-    pub fn GetMouseMovePointsEx(cbsize: u32, lppt: *const MOUSEMOVEPOINT, lpptbuf: *mut MOUSEMOVEPOINT, nbufpoints: i32, resolution: GET_MOUSE_MOVE_POINTS_EX_RESOLUTION) -> i32;
+    pub fn GetMouseMovePointsEx(cbsize: u32, lppt: *mut MOUSEMOVEPOINT, lpptbuf: *mut MOUSEMOVEPOINT, nbufpoints: i32, resolution: GET_MOUSE_MOVE_POINTS_EX_RESOLUTION) -> i32;
     #[doc = "*Required features: `\"Win32_UI_Input_KeyboardAndMouse\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
     pub fn IsWindowEnabled(hwnd: super::super::super::Foundation::HWND) -> super::super::super::Foundation::BOOL;
@@ -83,7 +83,7 @@ extern "system" {
     #[cfg(feature = "Win32_Foundation")]
     pub fn ReleaseCapture() -> super::super::super::Foundation::BOOL;
     #[doc = "*Required features: `\"Win32_UI_Input_KeyboardAndMouse\"`*"]
-    pub fn SendInput(cinputs: u32, pinputs: *const INPUT, cbsize: i32) -> u32;
+    pub fn SendInput(cinputs: u32, pinputs: *mut INPUT, cbsize: i32) -> u32;
     #[doc = "*Required features: `\"Win32_UI_Input_KeyboardAndMouse\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
     pub fn SetActiveWindow(hwnd: super::super::super::Foundation::HWND) -> super::super::super::Foundation::HWND;
@@ -98,7 +98,7 @@ extern "system" {
     pub fn SetFocus(hwnd: super::super::super::Foundation::HWND) -> super::super::super::Foundation::HWND;
     #[doc = "*Required features: `\"Win32_UI_Input_KeyboardAndMouse\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub fn SetKeyboardState(lpkeystate: *const u8) -> super::super::super::Foundation::BOOL;
+    pub fn SetKeyboardState(lpkeystate: *mut u8) -> super::super::super::Foundation::BOOL;
     #[doc = "*Required features: `\"Win32_UI_Input_KeyboardAndMouse\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
     pub fn SwapMouseButton(fswap: super::super::super::Foundation::BOOL) -> super::super::super::Foundation::BOOL;

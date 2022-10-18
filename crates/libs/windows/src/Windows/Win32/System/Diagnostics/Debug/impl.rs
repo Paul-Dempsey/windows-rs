@@ -1114,8 +1114,8 @@ impl IActiveScriptProfilerControl5_Vtbl {
 }
 pub trait IActiveScriptProfilerHeapEnum_Impl: Sized {
     fn Next(&self, celt: u32, heapobjects: *mut *mut PROFILER_HEAP_OBJECT, pceltfetched: *mut u32) -> ::windows::core::Result<()>;
-    fn GetOptionalInfo(&self, heapobject: *const PROFILER_HEAP_OBJECT, celt: u32, optionalinfo: *mut PROFILER_HEAP_OBJECT_OPTIONAL_INFO) -> ::windows::core::Result<()>;
-    fn FreeObjectAndOptionalInfo(&self, celt: u32, heapobjects: *const *const PROFILER_HEAP_OBJECT) -> ::windows::core::Result<()>;
+    fn GetOptionalInfo(&self, heapobject: *mut PROFILER_HEAP_OBJECT, celt: u32, optionalinfo: *mut PROFILER_HEAP_OBJECT_OPTIONAL_INFO) -> ::windows::core::Result<()>;
+    fn FreeObjectAndOptionalInfo(&self, celt: u32, heapobjects: *mut *mut PROFILER_HEAP_OBJECT) -> ::windows::core::Result<()>;
     fn GetNameIdMap(&self, pnamelist: *mut *mut *mut ::windows::core::PWSTR, pcelt: *mut u32) -> ::windows::core::Result<()>;
 }
 impl ::windows::core::RuntimeName for IActiveScriptProfilerHeapEnum {}
@@ -1126,12 +1126,12 @@ impl IActiveScriptProfilerHeapEnum_Vtbl {
             let this = (*this).get_impl();
             this.Next(::core::mem::transmute_copy(&celt), ::core::mem::transmute_copy(&heapobjects), ::core::mem::transmute_copy(&pceltfetched)).into()
         }
-        unsafe extern "system" fn GetOptionalInfo<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IActiveScriptProfilerHeapEnum_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, heapobject: *const PROFILER_HEAP_OBJECT, celt: u32, optionalinfo: *mut PROFILER_HEAP_OBJECT_OPTIONAL_INFO) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn GetOptionalInfo<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IActiveScriptProfilerHeapEnum_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, heapobject: *mut PROFILER_HEAP_OBJECT, celt: u32, optionalinfo: *mut PROFILER_HEAP_OBJECT_OPTIONAL_INFO) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.GetOptionalInfo(::core::mem::transmute_copy(&heapobject), ::core::mem::transmute_copy(&celt), ::core::mem::transmute_copy(&optionalinfo)).into()
         }
-        unsafe extern "system" fn FreeObjectAndOptionalInfo<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IActiveScriptProfilerHeapEnum_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, celt: u32, heapobjects: *const *const PROFILER_HEAP_OBJECT) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn FreeObjectAndOptionalInfo<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IActiveScriptProfilerHeapEnum_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, celt: u32, heapobjects: *mut *mut PROFILER_HEAP_OBJECT) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.FreeObjectAndOptionalInfo(::core::mem::transmute_copy(&celt), ::core::mem::transmute_copy(&heapobjects)).into()
@@ -1155,15 +1155,15 @@ impl IActiveScriptProfilerHeapEnum_Vtbl {
 }
 #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
 pub trait IActiveScriptProperty_Impl: Sized {
-    fn GetProperty(&self, dwproperty: u32, pvarindex: *const super::super::Com::VARIANT) -> ::windows::core::Result<super::super::Com::VARIANT>;
-    fn SetProperty(&self, dwproperty: u32, pvarindex: *const super::super::Com::VARIANT, pvarvalue: *const super::super::Com::VARIANT) -> ::windows::core::Result<()>;
+    fn GetProperty(&self, dwproperty: u32, pvarindex: *mut super::super::Com::VARIANT) -> ::windows::core::Result<super::super::Com::VARIANT>;
+    fn SetProperty(&self, dwproperty: u32, pvarindex: *mut super::super::Com::VARIANT, pvarvalue: *mut super::super::Com::VARIANT) -> ::windows::core::Result<()>;
 }
 #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
 impl ::windows::core::RuntimeName for IActiveScriptProperty {}
 #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
 impl IActiveScriptProperty_Vtbl {
     pub const fn new<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IActiveScriptProperty_Impl, const OFFSET: isize>() -> IActiveScriptProperty_Vtbl {
-        unsafe extern "system" fn GetProperty<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IActiveScriptProperty_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, dwproperty: u32, pvarindex: *const ::core::mem::ManuallyDrop<super::super::Com::VARIANT>, pvarvalue: *mut ::core::mem::ManuallyDrop<super::super::Com::VARIANT>) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn GetProperty<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IActiveScriptProperty_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, dwproperty: u32, pvarindex: *mut ::core::mem::ManuallyDrop<super::super::Com::VARIANT>, pvarvalue: *mut ::core::mem::ManuallyDrop<super::super::Com::VARIANT>) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.GetProperty(::core::mem::transmute_copy(&dwproperty), ::core::mem::transmute_copy(&pvarindex)) {
@@ -1174,7 +1174,7 @@ impl IActiveScriptProperty_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn SetProperty<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IActiveScriptProperty_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, dwproperty: u32, pvarindex: *const ::core::mem::ManuallyDrop<super::super::Com::VARIANT>, pvarvalue: *const ::core::mem::ManuallyDrop<super::super::Com::VARIANT>) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn SetProperty<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IActiveScriptProperty_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, dwproperty: u32, pvarindex: *mut ::core::mem::ManuallyDrop<super::super::Com::VARIANT>, pvarvalue: *mut ::core::mem::ManuallyDrop<super::super::Com::VARIANT>) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.SetProperty(::core::mem::transmute_copy(&dwproperty), ::core::mem::transmute_copy(&pvarindex), ::core::mem::transmute_copy(&pvarvalue)).into()
@@ -1877,8 +1877,8 @@ pub trait IDataModelManager_Impl: Sized {
     fn CreateTypedObjectReference(&self, context: &::core::option::Option<IDebugHostContext>, objectlocation: &Location, objecttype: &::core::option::Option<IDebugHostType>) -> ::windows::core::Result<IModelObject>;
     fn CreateSyntheticObject(&self, context: &::core::option::Option<IDebugHostContext>) -> ::windows::core::Result<IModelObject>;
     fn CreateDataModelObject(&self, datamodel: &::core::option::Option<IDataModelConcept>) -> ::windows::core::Result<IModelObject>;
-    fn CreateIntrinsicObject(&self, objectkind: ModelObjectKind, intrinsicdata: *const super::super::Com::VARIANT) -> ::windows::core::Result<IModelObject>;
-    fn CreateTypedIntrinsicObject(&self, intrinsicdata: *const super::super::Com::VARIANT, r#type: &::core::option::Option<IDebugHostType>) -> ::windows::core::Result<IModelObject>;
+    fn CreateIntrinsicObject(&self, objectkind: ModelObjectKind, intrinsicdata: *mut super::super::Com::VARIANT) -> ::windows::core::Result<IModelObject>;
+    fn CreateTypedIntrinsicObject(&self, intrinsicdata: *mut super::super::Com::VARIANT, r#type: &::core::option::Option<IDebugHostType>) -> ::windows::core::Result<IModelObject>;
     fn GetModelForTypeSignature(&self, typesignature: &::core::option::Option<IDebugHostTypeSignature>) -> ::windows::core::Result<IModelObject>;
     fn GetModelForType(&self, r#type: &::core::option::Option<IDebugHostType>, datamodel: *mut ::core::option::Option<IModelObject>, typesignature: *mut ::core::option::Option<IDebugHostTypeSignature>, wildcardmatches: *mut ::core::option::Option<IDebugHostSymbolEnumerator>) -> ::windows::core::Result<()>;
     fn RegisterModelForTypeSignature(&self, typesignature: &::core::option::Option<IDebugHostTypeSignature>, datamodel: &::core::option::Option<IModelObject>) -> ::windows::core::Result<()>;
@@ -1967,7 +1967,7 @@ impl IDataModelManager_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn CreateIntrinsicObject<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDataModelManager_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, objectkind: ModelObjectKind, intrinsicdata: *const ::core::mem::ManuallyDrop<super::super::Com::VARIANT>, object: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn CreateIntrinsicObject<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDataModelManager_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, objectkind: ModelObjectKind, intrinsicdata: *mut ::core::mem::ManuallyDrop<super::super::Com::VARIANT>, object: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.CreateIntrinsicObject(::core::mem::transmute_copy(&objectkind), ::core::mem::transmute_copy(&intrinsicdata)) {
@@ -1978,7 +1978,7 @@ impl IDataModelManager_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn CreateTypedIntrinsicObject<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDataModelManager_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, intrinsicdata: *const ::core::mem::ManuallyDrop<super::super::Com::VARIANT>, r#type: *mut ::core::ffi::c_void, object: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn CreateTypedIntrinsicObject<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDataModelManager_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, intrinsicdata: *mut ::core::mem::ManuallyDrop<super::super::Com::VARIANT>, r#type: *mut ::core::ffi::c_void, object: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.CreateTypedIntrinsicObject(::core::mem::transmute_copy(&intrinsicdata), ::core::mem::transmute(&r#type)) {
@@ -2099,7 +2099,7 @@ impl IDataModelManager_Vtbl {
 #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
 pub trait IDataModelManager2_Impl: Sized + IDataModelManager_Impl {
     fn AcquireSubNamespace(&self, modelname: &::windows::core::PCWSTR, subnamespacemodelname: &::windows::core::PCWSTR, accessname: &::windows::core::PCWSTR, metadata: &::core::option::Option<IKeyStore>) -> ::windows::core::Result<IModelObject>;
-    fn CreateTypedIntrinsicObjectEx(&self, context: &::core::option::Option<IDebugHostContext>, intrinsicdata: *const super::super::Com::VARIANT, r#type: &::core::option::Option<IDebugHostType>) -> ::windows::core::Result<IModelObject>;
+    fn CreateTypedIntrinsicObjectEx(&self, context: &::core::option::Option<IDebugHostContext>, intrinsicdata: *mut super::super::Com::VARIANT, r#type: &::core::option::Option<IDebugHostType>) -> ::windows::core::Result<IModelObject>;
 }
 #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
 impl ::windows::core::RuntimeName for IDataModelManager2 {}
@@ -2117,7 +2117,7 @@ impl IDataModelManager2_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn CreateTypedIntrinsicObjectEx<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDataModelManager2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, context: *mut ::core::ffi::c_void, intrinsicdata: *const ::core::mem::ManuallyDrop<super::super::Com::VARIANT>, r#type: *mut ::core::ffi::c_void, object: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn CreateTypedIntrinsicObjectEx<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDataModelManager2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, context: *mut ::core::ffi::c_void, intrinsicdata: *mut ::core::mem::ManuallyDrop<super::super::Com::VARIANT>, r#type: *mut ::core::ffi::c_void, object: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.CreateTypedIntrinsicObjectEx(::core::mem::transmute(&context), ::core::mem::transmute_copy(&intrinsicdata), ::core::mem::transmute(&r#type)) {
@@ -2510,12 +2510,12 @@ impl IDataModelScriptDebugBreakpointEnumerator_Vtbl {
     }
 }
 pub trait IDataModelScriptDebugClient_Impl: Sized {
-    fn NotifyDebugEvent(&self, peventinfo: *const ScriptDebugEventInformation, pscript: &::core::option::Option<IDataModelScript>, peventdataobject: &::core::option::Option<IModelObject>, resumeeventkind: *mut ScriptExecutionKind) -> ::windows::core::Result<()>;
+    fn NotifyDebugEvent(&self, peventinfo: *mut ScriptDebugEventInformation, pscript: &::core::option::Option<IDataModelScript>, peventdataobject: &::core::option::Option<IModelObject>, resumeeventkind: *mut ScriptExecutionKind) -> ::windows::core::Result<()>;
 }
 impl ::windows::core::RuntimeName for IDataModelScriptDebugClient {}
 impl IDataModelScriptDebugClient_Vtbl {
     pub const fn new<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDataModelScriptDebugClient_Impl, const OFFSET: isize>() -> IDataModelScriptDebugClient_Vtbl {
-        unsafe extern "system" fn NotifyDebugEvent<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDataModelScriptDebugClient_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, peventinfo: *const ScriptDebugEventInformation, pscript: *mut ::core::ffi::c_void, peventdataobject: *mut ::core::ffi::c_void, resumeeventkind: *mut ScriptExecutionKind) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn NotifyDebugEvent<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDataModelScriptDebugClient_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, peventinfo: *mut ScriptDebugEventInformation, pscript: *mut ::core::ffi::c_void, peventdataobject: *mut ::core::ffi::c_void, resumeeventkind: *mut ScriptExecutionKind) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.NotifyDebugEvent(::core::mem::transmute_copy(&peventinfo), ::core::mem::transmute(&pscript), ::core::mem::transmute(&peventdataobject), ::core::mem::transmute_copy(&resumeeventkind)).into()
@@ -2991,7 +2991,7 @@ impl IDataModelScriptTemplateEnumerator_Vtbl {
 }
 pub trait IDebugAdvanced_Impl: Sized {
     fn GetThreadContext(&self, context: *mut ::core::ffi::c_void, contextsize: u32) -> ::windows::core::Result<()>;
-    fn SetThreadContext(&self, context: *const ::core::ffi::c_void, contextsize: u32) -> ::windows::core::Result<()>;
+    fn SetThreadContext(&self, context: *mut ::core::ffi::c_void, contextsize: u32) -> ::windows::core::Result<()>;
 }
 impl ::windows::core::RuntimeName for IDebugAdvanced {}
 impl IDebugAdvanced_Vtbl {
@@ -3001,7 +3001,7 @@ impl IDebugAdvanced_Vtbl {
             let this = (*this).get_impl();
             this.GetThreadContext(::core::mem::transmute_copy(&context), ::core::mem::transmute_copy(&contextsize)).into()
         }
-        unsafe extern "system" fn SetThreadContext<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugAdvanced_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, context: *const ::core::ffi::c_void, contextsize: u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn SetThreadContext<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugAdvanced_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, context: *mut ::core::ffi::c_void, contextsize: u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.SetThreadContext(::core::mem::transmute_copy(&context), ::core::mem::transmute_copy(&contextsize)).into()
@@ -3018,10 +3018,10 @@ impl IDebugAdvanced_Vtbl {
 }
 pub trait IDebugAdvanced2_Impl: Sized {
     fn GetThreadContext(&self, context: *mut ::core::ffi::c_void, contextsize: u32) -> ::windows::core::Result<()>;
-    fn SetThreadContext(&self, context: *const ::core::ffi::c_void, contextsize: u32) -> ::windows::core::Result<()>;
-    fn Request(&self, request: u32, inbuffer: *const ::core::ffi::c_void, inbuffersize: u32, outbuffer: *mut ::core::ffi::c_void, outbuffersize: u32, outsize: *mut u32) -> ::windows::core::Result<()>;
-    fn GetSourceFileInformation(&self, which: u32, sourcefile: &::windows::core::PCSTR, arg64: u64, arg32: u32, buffer: *mut ::core::ffi::c_void, buffersize: u32, infosize: *mut u32) -> ::windows::core::Result<()>;
-    fn FindSourceFileAndToken(&self, startelement: u32, modaddr: u64, file: &::windows::core::PCSTR, flags: u32, filetoken: *const ::core::ffi::c_void, filetokensize: u32, foundelement: *mut u32, buffer: ::windows::core::PSTR, buffersize: u32, foundsize: *mut u32) -> ::windows::core::Result<()>;
+    fn SetThreadContext(&self, context: *mut ::core::ffi::c_void, contextsize: u32) -> ::windows::core::Result<()>;
+    fn Request(&self, request: u32, inbuffer: *mut ::core::ffi::c_void, inbuffersize: u32, outbuffer: *mut ::core::ffi::c_void, outbuffersize: u32, outsize: *mut u32) -> ::windows::core::Result<()>;
+    fn GetSourceFileInformation(&self, which: u32, sourcefile: &::windows::core::PSTR, arg64: u64, arg32: u32, buffer: *mut ::core::ffi::c_void, buffersize: u32, infosize: *mut u32) -> ::windows::core::Result<()>;
+    fn FindSourceFileAndToken(&self, startelement: u32, modaddr: u64, file: &::windows::core::PCSTR, flags: u32, filetoken: *mut ::core::ffi::c_void, filetokensize: u32, foundelement: *mut u32, buffer: ::windows::core::PSTR, buffersize: u32, foundsize: *mut u32) -> ::windows::core::Result<()>;
     fn GetSymbolInformation(&self, which: u32, arg64: u64, arg32: u32, buffer: *mut ::core::ffi::c_void, buffersize: u32, infosize: *mut u32, stringbuffer: ::windows::core::PSTR, stringbuffersize: u32, stringsize: *mut u32) -> ::windows::core::Result<()>;
     fn GetSystemObjectInformation(&self, which: u32, arg64: u64, arg32: u32, buffer: *mut ::core::ffi::c_void, buffersize: u32, infosize: *mut u32) -> ::windows::core::Result<()>;
 }
@@ -3033,22 +3033,22 @@ impl IDebugAdvanced2_Vtbl {
             let this = (*this).get_impl();
             this.GetThreadContext(::core::mem::transmute_copy(&context), ::core::mem::transmute_copy(&contextsize)).into()
         }
-        unsafe extern "system" fn SetThreadContext<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugAdvanced2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, context: *const ::core::ffi::c_void, contextsize: u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn SetThreadContext<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugAdvanced2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, context: *mut ::core::ffi::c_void, contextsize: u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.SetThreadContext(::core::mem::transmute_copy(&context), ::core::mem::transmute_copy(&contextsize)).into()
         }
-        unsafe extern "system" fn Request<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugAdvanced2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, request: u32, inbuffer: *const ::core::ffi::c_void, inbuffersize: u32, outbuffer: *mut ::core::ffi::c_void, outbuffersize: u32, outsize: *mut u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn Request<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugAdvanced2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, request: u32, inbuffer: *mut ::core::ffi::c_void, inbuffersize: u32, outbuffer: *mut ::core::ffi::c_void, outbuffersize: u32, outsize: *mut u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.Request(::core::mem::transmute_copy(&request), ::core::mem::transmute_copy(&inbuffer), ::core::mem::transmute_copy(&inbuffersize), ::core::mem::transmute_copy(&outbuffer), ::core::mem::transmute_copy(&outbuffersize), ::core::mem::transmute_copy(&outsize)).into()
         }
-        unsafe extern "system" fn GetSourceFileInformation<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugAdvanced2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, which: u32, sourcefile: ::windows::core::PCSTR, arg64: u64, arg32: u32, buffer: *mut ::core::ffi::c_void, buffersize: u32, infosize: *mut u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn GetSourceFileInformation<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugAdvanced2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, which: u32, sourcefile: ::windows::core::PSTR, arg64: u64, arg32: u32, buffer: *mut ::core::ffi::c_void, buffersize: u32, infosize: *mut u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.GetSourceFileInformation(::core::mem::transmute_copy(&which), ::core::mem::transmute(&sourcefile), ::core::mem::transmute_copy(&arg64), ::core::mem::transmute_copy(&arg32), ::core::mem::transmute_copy(&buffer), ::core::mem::transmute_copy(&buffersize), ::core::mem::transmute_copy(&infosize)).into()
         }
-        unsafe extern "system" fn FindSourceFileAndToken<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugAdvanced2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, startelement: u32, modaddr: u64, file: ::windows::core::PCSTR, flags: u32, filetoken: *const ::core::ffi::c_void, filetokensize: u32, foundelement: *mut u32, buffer: ::windows::core::PSTR, buffersize: u32, foundsize: *mut u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn FindSourceFileAndToken<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugAdvanced2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, startelement: u32, modaddr: u64, file: ::windows::core::PCSTR, flags: u32, filetoken: *mut ::core::ffi::c_void, filetokensize: u32, foundelement: *mut u32, buffer: ::windows::core::PSTR, buffersize: u32, foundsize: *mut u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.FindSourceFileAndToken(::core::mem::transmute_copy(&startelement), ::core::mem::transmute_copy(&modaddr), ::core::mem::transmute(&file), ::core::mem::transmute_copy(&flags), ::core::mem::transmute_copy(&filetoken), ::core::mem::transmute_copy(&filetokensize), ::core::mem::transmute_copy(&foundelement), ::core::mem::transmute_copy(&buffer), ::core::mem::transmute_copy(&buffersize), ::core::mem::transmute_copy(&foundsize)).into()
@@ -3080,14 +3080,14 @@ impl IDebugAdvanced2_Vtbl {
 }
 pub trait IDebugAdvanced3_Impl: Sized {
     fn GetThreadContext(&self, context: *mut ::core::ffi::c_void, contextsize: u32) -> ::windows::core::Result<()>;
-    fn SetThreadContext(&self, context: *const ::core::ffi::c_void, contextsize: u32) -> ::windows::core::Result<()>;
-    fn Request(&self, request: u32, inbuffer: *const ::core::ffi::c_void, inbuffersize: u32, outbuffer: *mut ::core::ffi::c_void, outbuffersize: u32, outsize: *mut u32) -> ::windows::core::Result<()>;
-    fn GetSourceFileInformation(&self, which: u32, sourcefile: &::windows::core::PCSTR, arg64: u64, arg32: u32, buffer: *mut ::core::ffi::c_void, buffersize: u32, infosize: *mut u32) -> ::windows::core::Result<()>;
-    fn FindSourceFileAndToken(&self, startelement: u32, modaddr: u64, file: &::windows::core::PCSTR, flags: u32, filetoken: *const ::core::ffi::c_void, filetokensize: u32, foundelement: *mut u32, buffer: ::windows::core::PSTR, buffersize: u32, foundsize: *mut u32) -> ::windows::core::Result<()>;
+    fn SetThreadContext(&self, context: *mut ::core::ffi::c_void, contextsize: u32) -> ::windows::core::Result<()>;
+    fn Request(&self, request: u32, inbuffer: *mut ::core::ffi::c_void, inbuffersize: u32, outbuffer: *mut ::core::ffi::c_void, outbuffersize: u32, outsize: *mut u32) -> ::windows::core::Result<()>;
+    fn GetSourceFileInformation(&self, which: u32, sourcefile: &::windows::core::PSTR, arg64: u64, arg32: u32, buffer: *mut ::core::ffi::c_void, buffersize: u32, infosize: *mut u32) -> ::windows::core::Result<()>;
+    fn FindSourceFileAndToken(&self, startelement: u32, modaddr: u64, file: &::windows::core::PCSTR, flags: u32, filetoken: *mut ::core::ffi::c_void, filetokensize: u32, foundelement: *mut u32, buffer: ::windows::core::PSTR, buffersize: u32, foundsize: *mut u32) -> ::windows::core::Result<()>;
     fn GetSymbolInformation(&self, which: u32, arg64: u64, arg32: u32, buffer: *mut ::core::ffi::c_void, buffersize: u32, infosize: *mut u32, stringbuffer: ::windows::core::PSTR, stringbuffersize: u32, stringsize: *mut u32) -> ::windows::core::Result<()>;
     fn GetSystemObjectInformation(&self, which: u32, arg64: u64, arg32: u32, buffer: *mut ::core::ffi::c_void, buffersize: u32, infosize: *mut u32) -> ::windows::core::Result<()>;
-    fn GetSourceFileInformationWide(&self, which: u32, sourcefile: &::windows::core::PCWSTR, arg64: u64, arg32: u32, buffer: *mut ::core::ffi::c_void, buffersize: u32, infosize: *mut u32) -> ::windows::core::Result<()>;
-    fn FindSourceFileAndTokenWide(&self, startelement: u32, modaddr: u64, file: &::windows::core::PCWSTR, flags: u32, filetoken: *const ::core::ffi::c_void, filetokensize: u32, foundelement: *mut u32, buffer: ::windows::core::PWSTR, buffersize: u32, foundsize: *mut u32) -> ::windows::core::Result<()>;
+    fn GetSourceFileInformationWide(&self, which: u32, sourcefile: &::windows::core::PWSTR, arg64: u64, arg32: u32, buffer: *mut ::core::ffi::c_void, buffersize: u32, infosize: *mut u32) -> ::windows::core::Result<()>;
+    fn FindSourceFileAndTokenWide(&self, startelement: u32, modaddr: u64, file: &::windows::core::PCWSTR, flags: u32, filetoken: *mut ::core::ffi::c_void, filetokensize: u32, foundelement: *mut u32, buffer: ::windows::core::PWSTR, buffersize: u32, foundsize: *mut u32) -> ::windows::core::Result<()>;
     fn GetSymbolInformationWide(&self, which: u32, arg64: u64, arg32: u32, buffer: *mut ::core::ffi::c_void, buffersize: u32, infosize: *mut u32, stringbuffer: ::windows::core::PWSTR, stringbuffersize: u32, stringsize: *mut u32) -> ::windows::core::Result<()>;
 }
 impl ::windows::core::RuntimeName for IDebugAdvanced3 {}
@@ -3098,22 +3098,22 @@ impl IDebugAdvanced3_Vtbl {
             let this = (*this).get_impl();
             this.GetThreadContext(::core::mem::transmute_copy(&context), ::core::mem::transmute_copy(&contextsize)).into()
         }
-        unsafe extern "system" fn SetThreadContext<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugAdvanced3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, context: *const ::core::ffi::c_void, contextsize: u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn SetThreadContext<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugAdvanced3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, context: *mut ::core::ffi::c_void, contextsize: u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.SetThreadContext(::core::mem::transmute_copy(&context), ::core::mem::transmute_copy(&contextsize)).into()
         }
-        unsafe extern "system" fn Request<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugAdvanced3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, request: u32, inbuffer: *const ::core::ffi::c_void, inbuffersize: u32, outbuffer: *mut ::core::ffi::c_void, outbuffersize: u32, outsize: *mut u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn Request<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugAdvanced3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, request: u32, inbuffer: *mut ::core::ffi::c_void, inbuffersize: u32, outbuffer: *mut ::core::ffi::c_void, outbuffersize: u32, outsize: *mut u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.Request(::core::mem::transmute_copy(&request), ::core::mem::transmute_copy(&inbuffer), ::core::mem::transmute_copy(&inbuffersize), ::core::mem::transmute_copy(&outbuffer), ::core::mem::transmute_copy(&outbuffersize), ::core::mem::transmute_copy(&outsize)).into()
         }
-        unsafe extern "system" fn GetSourceFileInformation<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugAdvanced3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, which: u32, sourcefile: ::windows::core::PCSTR, arg64: u64, arg32: u32, buffer: *mut ::core::ffi::c_void, buffersize: u32, infosize: *mut u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn GetSourceFileInformation<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugAdvanced3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, which: u32, sourcefile: ::windows::core::PSTR, arg64: u64, arg32: u32, buffer: *mut ::core::ffi::c_void, buffersize: u32, infosize: *mut u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.GetSourceFileInformation(::core::mem::transmute_copy(&which), ::core::mem::transmute(&sourcefile), ::core::mem::transmute_copy(&arg64), ::core::mem::transmute_copy(&arg32), ::core::mem::transmute_copy(&buffer), ::core::mem::transmute_copy(&buffersize), ::core::mem::transmute_copy(&infosize)).into()
         }
-        unsafe extern "system" fn FindSourceFileAndToken<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugAdvanced3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, startelement: u32, modaddr: u64, file: ::windows::core::PCSTR, flags: u32, filetoken: *const ::core::ffi::c_void, filetokensize: u32, foundelement: *mut u32, buffer: ::windows::core::PSTR, buffersize: u32, foundsize: *mut u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn FindSourceFileAndToken<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugAdvanced3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, startelement: u32, modaddr: u64, file: ::windows::core::PCSTR, flags: u32, filetoken: *mut ::core::ffi::c_void, filetokensize: u32, foundelement: *mut u32, buffer: ::windows::core::PSTR, buffersize: u32, foundsize: *mut u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.FindSourceFileAndToken(::core::mem::transmute_copy(&startelement), ::core::mem::transmute_copy(&modaddr), ::core::mem::transmute(&file), ::core::mem::transmute_copy(&flags), ::core::mem::transmute_copy(&filetoken), ::core::mem::transmute_copy(&filetokensize), ::core::mem::transmute_copy(&foundelement), ::core::mem::transmute_copy(&buffer), ::core::mem::transmute_copy(&buffersize), ::core::mem::transmute_copy(&foundsize)).into()
@@ -3128,12 +3128,12 @@ impl IDebugAdvanced3_Vtbl {
             let this = (*this).get_impl();
             this.GetSystemObjectInformation(::core::mem::transmute_copy(&which), ::core::mem::transmute_copy(&arg64), ::core::mem::transmute_copy(&arg32), ::core::mem::transmute_copy(&buffer), ::core::mem::transmute_copy(&buffersize), ::core::mem::transmute_copy(&infosize)).into()
         }
-        unsafe extern "system" fn GetSourceFileInformationWide<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugAdvanced3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, which: u32, sourcefile: ::windows::core::PCWSTR, arg64: u64, arg32: u32, buffer: *mut ::core::ffi::c_void, buffersize: u32, infosize: *mut u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn GetSourceFileInformationWide<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugAdvanced3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, which: u32, sourcefile: ::windows::core::PWSTR, arg64: u64, arg32: u32, buffer: *mut ::core::ffi::c_void, buffersize: u32, infosize: *mut u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.GetSourceFileInformationWide(::core::mem::transmute_copy(&which), ::core::mem::transmute(&sourcefile), ::core::mem::transmute_copy(&arg64), ::core::mem::transmute_copy(&arg32), ::core::mem::transmute_copy(&buffer), ::core::mem::transmute_copy(&buffersize), ::core::mem::transmute_copy(&infosize)).into()
         }
-        unsafe extern "system" fn FindSourceFileAndTokenWide<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugAdvanced3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, startelement: u32, modaddr: u64, file: ::windows::core::PCWSTR, flags: u32, filetoken: *const ::core::ffi::c_void, filetokensize: u32, foundelement: *mut u32, buffer: ::windows::core::PWSTR, buffersize: u32, foundsize: *mut u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn FindSourceFileAndTokenWide<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugAdvanced3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, startelement: u32, modaddr: u64, file: ::windows::core::PCWSTR, flags: u32, filetoken: *mut ::core::ffi::c_void, filetokensize: u32, foundelement: *mut u32, buffer: ::windows::core::PWSTR, buffersize: u32, foundsize: *mut u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.FindSourceFileAndTokenWide(::core::mem::transmute_copy(&startelement), ::core::mem::transmute_copy(&modaddr), ::core::mem::transmute(&file), ::core::mem::transmute_copy(&flags), ::core::mem::transmute_copy(&filetoken), ::core::mem::transmute_copy(&filetokensize), ::core::mem::transmute_copy(&foundelement), ::core::mem::transmute_copy(&buffer), ::core::mem::transmute_copy(&buffersize), ::core::mem::transmute_copy(&foundsize)).into()
@@ -3163,14 +3163,14 @@ impl IDebugAdvanced3_Vtbl {
 }
 pub trait IDebugAdvanced4_Impl: Sized {
     fn GetThreadContext(&self, context: *mut ::core::ffi::c_void, contextsize: u32) -> ::windows::core::Result<()>;
-    fn SetThreadContext(&self, context: *const ::core::ffi::c_void, contextsize: u32) -> ::windows::core::Result<()>;
-    fn Request(&self, request: u32, inbuffer: *const ::core::ffi::c_void, inbuffersize: u32, outbuffer: *mut ::core::ffi::c_void, outbuffersize: u32, outsize: *mut u32) -> ::windows::core::Result<()>;
-    fn GetSourceFileInformation(&self, which: u32, sourcefile: &::windows::core::PCSTR, arg64: u64, arg32: u32, buffer: *mut ::core::ffi::c_void, buffersize: u32, infosize: *mut u32) -> ::windows::core::Result<()>;
-    fn FindSourceFileAndToken(&self, startelement: u32, modaddr: u64, file: &::windows::core::PCSTR, flags: u32, filetoken: *const ::core::ffi::c_void, filetokensize: u32, foundelement: *mut u32, buffer: ::windows::core::PSTR, buffersize: u32, foundsize: *mut u32) -> ::windows::core::Result<()>;
+    fn SetThreadContext(&self, context: *mut ::core::ffi::c_void, contextsize: u32) -> ::windows::core::Result<()>;
+    fn Request(&self, request: u32, inbuffer: *mut ::core::ffi::c_void, inbuffersize: u32, outbuffer: *mut ::core::ffi::c_void, outbuffersize: u32, outsize: *mut u32) -> ::windows::core::Result<()>;
+    fn GetSourceFileInformation(&self, which: u32, sourcefile: &::windows::core::PSTR, arg64: u64, arg32: u32, buffer: *mut ::core::ffi::c_void, buffersize: u32, infosize: *mut u32) -> ::windows::core::Result<()>;
+    fn FindSourceFileAndToken(&self, startelement: u32, modaddr: u64, file: &::windows::core::PCSTR, flags: u32, filetoken: *mut ::core::ffi::c_void, filetokensize: u32, foundelement: *mut u32, buffer: ::windows::core::PSTR, buffersize: u32, foundsize: *mut u32) -> ::windows::core::Result<()>;
     fn GetSymbolInformation(&self, which: u32, arg64: u64, arg32: u32, buffer: *mut ::core::ffi::c_void, buffersize: u32, infosize: *mut u32, stringbuffer: ::windows::core::PSTR, stringbuffersize: u32, stringsize: *mut u32) -> ::windows::core::Result<()>;
     fn GetSystemObjectInformation(&self, which: u32, arg64: u64, arg32: u32, buffer: *mut ::core::ffi::c_void, buffersize: u32, infosize: *mut u32) -> ::windows::core::Result<()>;
-    fn GetSourceFileInformationWide(&self, which: u32, sourcefile: &::windows::core::PCWSTR, arg64: u64, arg32: u32, buffer: *mut ::core::ffi::c_void, buffersize: u32, infosize: *mut u32) -> ::windows::core::Result<()>;
-    fn FindSourceFileAndTokenWide(&self, startelement: u32, modaddr: u64, file: &::windows::core::PCWSTR, flags: u32, filetoken: *const ::core::ffi::c_void, filetokensize: u32, foundelement: *mut u32, buffer: ::windows::core::PWSTR, buffersize: u32, foundsize: *mut u32) -> ::windows::core::Result<()>;
+    fn GetSourceFileInformationWide(&self, which: u32, sourcefile: &::windows::core::PWSTR, arg64: u64, arg32: u32, buffer: *mut ::core::ffi::c_void, buffersize: u32, infosize: *mut u32) -> ::windows::core::Result<()>;
+    fn FindSourceFileAndTokenWide(&self, startelement: u32, modaddr: u64, file: &::windows::core::PCWSTR, flags: u32, filetoken: *mut ::core::ffi::c_void, filetokensize: u32, foundelement: *mut u32, buffer: ::windows::core::PWSTR, buffersize: u32, foundsize: *mut u32) -> ::windows::core::Result<()>;
     fn GetSymbolInformationWide(&self, which: u32, arg64: u64, arg32: u32, buffer: *mut ::core::ffi::c_void, buffersize: u32, infosize: *mut u32, stringbuffer: ::windows::core::PWSTR, stringbuffersize: u32, stringsize: *mut u32) -> ::windows::core::Result<()>;
     fn GetSymbolInformationWideEx(&self, which: u32, arg64: u64, arg32: u32, buffer: *mut ::core::ffi::c_void, buffersize: u32, infosize: *mut u32, stringbuffer: ::windows::core::PWSTR, stringbuffersize: u32, stringsize: *mut u32, pinfoex: *mut SYMBOL_INFO_EX) -> ::windows::core::Result<()>;
 }
@@ -3182,22 +3182,22 @@ impl IDebugAdvanced4_Vtbl {
             let this = (*this).get_impl();
             this.GetThreadContext(::core::mem::transmute_copy(&context), ::core::mem::transmute_copy(&contextsize)).into()
         }
-        unsafe extern "system" fn SetThreadContext<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugAdvanced4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, context: *const ::core::ffi::c_void, contextsize: u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn SetThreadContext<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugAdvanced4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, context: *mut ::core::ffi::c_void, contextsize: u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.SetThreadContext(::core::mem::transmute_copy(&context), ::core::mem::transmute_copy(&contextsize)).into()
         }
-        unsafe extern "system" fn Request<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugAdvanced4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, request: u32, inbuffer: *const ::core::ffi::c_void, inbuffersize: u32, outbuffer: *mut ::core::ffi::c_void, outbuffersize: u32, outsize: *mut u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn Request<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugAdvanced4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, request: u32, inbuffer: *mut ::core::ffi::c_void, inbuffersize: u32, outbuffer: *mut ::core::ffi::c_void, outbuffersize: u32, outsize: *mut u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.Request(::core::mem::transmute_copy(&request), ::core::mem::transmute_copy(&inbuffer), ::core::mem::transmute_copy(&inbuffersize), ::core::mem::transmute_copy(&outbuffer), ::core::mem::transmute_copy(&outbuffersize), ::core::mem::transmute_copy(&outsize)).into()
         }
-        unsafe extern "system" fn GetSourceFileInformation<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugAdvanced4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, which: u32, sourcefile: ::windows::core::PCSTR, arg64: u64, arg32: u32, buffer: *mut ::core::ffi::c_void, buffersize: u32, infosize: *mut u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn GetSourceFileInformation<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugAdvanced4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, which: u32, sourcefile: ::windows::core::PSTR, arg64: u64, arg32: u32, buffer: *mut ::core::ffi::c_void, buffersize: u32, infosize: *mut u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.GetSourceFileInformation(::core::mem::transmute_copy(&which), ::core::mem::transmute(&sourcefile), ::core::mem::transmute_copy(&arg64), ::core::mem::transmute_copy(&arg32), ::core::mem::transmute_copy(&buffer), ::core::mem::transmute_copy(&buffersize), ::core::mem::transmute_copy(&infosize)).into()
         }
-        unsafe extern "system" fn FindSourceFileAndToken<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugAdvanced4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, startelement: u32, modaddr: u64, file: ::windows::core::PCSTR, flags: u32, filetoken: *const ::core::ffi::c_void, filetokensize: u32, foundelement: *mut u32, buffer: ::windows::core::PSTR, buffersize: u32, foundsize: *mut u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn FindSourceFileAndToken<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugAdvanced4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, startelement: u32, modaddr: u64, file: ::windows::core::PCSTR, flags: u32, filetoken: *mut ::core::ffi::c_void, filetokensize: u32, foundelement: *mut u32, buffer: ::windows::core::PSTR, buffersize: u32, foundsize: *mut u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.FindSourceFileAndToken(::core::mem::transmute_copy(&startelement), ::core::mem::transmute_copy(&modaddr), ::core::mem::transmute(&file), ::core::mem::transmute_copy(&flags), ::core::mem::transmute_copy(&filetoken), ::core::mem::transmute_copy(&filetokensize), ::core::mem::transmute_copy(&foundelement), ::core::mem::transmute_copy(&buffer), ::core::mem::transmute_copy(&buffersize), ::core::mem::transmute_copy(&foundsize)).into()
@@ -3212,12 +3212,12 @@ impl IDebugAdvanced4_Vtbl {
             let this = (*this).get_impl();
             this.GetSystemObjectInformation(::core::mem::transmute_copy(&which), ::core::mem::transmute_copy(&arg64), ::core::mem::transmute_copy(&arg32), ::core::mem::transmute_copy(&buffer), ::core::mem::transmute_copy(&buffersize), ::core::mem::transmute_copy(&infosize)).into()
         }
-        unsafe extern "system" fn GetSourceFileInformationWide<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugAdvanced4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, which: u32, sourcefile: ::windows::core::PCWSTR, arg64: u64, arg32: u32, buffer: *mut ::core::ffi::c_void, buffersize: u32, infosize: *mut u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn GetSourceFileInformationWide<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugAdvanced4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, which: u32, sourcefile: ::windows::core::PWSTR, arg64: u64, arg32: u32, buffer: *mut ::core::ffi::c_void, buffersize: u32, infosize: *mut u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.GetSourceFileInformationWide(::core::mem::transmute_copy(&which), ::core::mem::transmute(&sourcefile), ::core::mem::transmute_copy(&arg64), ::core::mem::transmute_copy(&arg32), ::core::mem::transmute_copy(&buffer), ::core::mem::transmute_copy(&buffersize), ::core::mem::transmute_copy(&infosize)).into()
         }
-        unsafe extern "system" fn FindSourceFileAndTokenWide<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugAdvanced4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, startelement: u32, modaddr: u64, file: ::windows::core::PCWSTR, flags: u32, filetoken: *const ::core::ffi::c_void, filetokensize: u32, foundelement: *mut u32, buffer: ::windows::core::PWSTR, buffersize: u32, foundsize: *mut u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn FindSourceFileAndTokenWide<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugAdvanced4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, startelement: u32, modaddr: u64, file: ::windows::core::PCWSTR, flags: u32, filetoken: *mut ::core::ffi::c_void, filetokensize: u32, foundelement: *mut u32, buffer: ::windows::core::PWSTR, buffersize: u32, foundsize: *mut u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.FindSourceFileAndTokenWide(::core::mem::transmute_copy(&startelement), ::core::mem::transmute_copy(&modaddr), ::core::mem::transmute(&file), ::core::mem::transmute_copy(&flags), ::core::mem::transmute_copy(&filetoken), ::core::mem::transmute_copy(&filetokensize), ::core::mem::transmute_copy(&foundelement), ::core::mem::transmute_copy(&buffer), ::core::mem::transmute_copy(&buffersize), ::core::mem::transmute_copy(&foundsize)).into()
@@ -4870,15 +4870,15 @@ pub trait IDebugClient_Impl: Sized {
     fn AttachKernel(&self, flags: u32, connectoptions: &::windows::core::PCSTR) -> ::windows::core::Result<()>;
     fn GetKernelConnectionOptions(&self, buffer: ::windows::core::PSTR, buffersize: u32, optionssize: *mut u32) -> ::windows::core::Result<()>;
     fn SetKernelConnectionOptions(&self, options: &::windows::core::PCSTR) -> ::windows::core::Result<()>;
-    fn StartProcessServer(&self, flags: u32, options: &::windows::core::PCSTR, reserved: *const ::core::ffi::c_void) -> ::windows::core::Result<()>;
+    fn StartProcessServer(&self, flags: u32, options: &::windows::core::PCSTR, reserved: *mut ::core::ffi::c_void) -> ::windows::core::Result<()>;
     fn ConnectProcessServer(&self, remoteoptions: &::windows::core::PCSTR) -> ::windows::core::Result<u64>;
     fn DisconnectProcessServer(&self, server: u64) -> ::windows::core::Result<()>;
     fn GetRunningProcessSystemIds(&self, server: u64, ids: *mut u32, count: u32, actualcount: *mut u32) -> ::windows::core::Result<()>;
     fn GetRunningProcessSystemIdByExecutableName(&self, server: u64, exename: &::windows::core::PCSTR, flags: u32) -> ::windows::core::Result<u32>;
     fn GetRunningProcessDescription(&self, server: u64, systemid: u32, flags: u32, exename: ::windows::core::PSTR, exenamesize: u32, actualexenamesize: *mut u32, description: ::windows::core::PSTR, descriptionsize: u32, actualdescriptionsize: *mut u32) -> ::windows::core::Result<()>;
     fn AttachProcess(&self, server: u64, processid: u32, attachflags: u32) -> ::windows::core::Result<()>;
-    fn CreateProcessA(&self, server: u64, commandline: &::windows::core::PCSTR, createflags: u32) -> ::windows::core::Result<()>;
-    fn CreateProcessAndAttach(&self, server: u64, commandline: &::windows::core::PCSTR, createflags: u32, processid: u32, attachflags: u32) -> ::windows::core::Result<()>;
+    fn CreateProcessA(&self, server: u64, commandline: &::windows::core::PSTR, createflags: u32) -> ::windows::core::Result<()>;
+    fn CreateProcessAndAttach(&self, server: u64, commandline: &::windows::core::PSTR, createflags: u32, processid: u32, attachflags: u32) -> ::windows::core::Result<()>;
     fn GetProcessOptions(&self) -> ::windows::core::Result<u32>;
     fn AddProcessOptions(&self, options: u32) -> ::windows::core::Result<()>;
     fn RemoveProcessOptions(&self, options: u32) -> ::windows::core::Result<()>;
@@ -4931,7 +4931,7 @@ impl IDebugClient_Vtbl {
             let this = (*this).get_impl();
             this.SetKernelConnectionOptions(::core::mem::transmute(&options)).into()
         }
-        unsafe extern "system" fn StartProcessServer<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, flags: u32, options: ::windows::core::PCSTR, reserved: *const ::core::ffi::c_void) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn StartProcessServer<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, flags: u32, options: ::windows::core::PCSTR, reserved: *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.StartProcessServer(::core::mem::transmute_copy(&flags), ::core::mem::transmute(&options), ::core::mem::transmute_copy(&reserved)).into()
@@ -4978,12 +4978,12 @@ impl IDebugClient_Vtbl {
             let this = (*this).get_impl();
             this.AttachProcess(::core::mem::transmute_copy(&server), ::core::mem::transmute_copy(&processid), ::core::mem::transmute_copy(&attachflags)).into()
         }
-        unsafe extern "system" fn CreateProcessA<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, server: u64, commandline: ::windows::core::PCSTR, createflags: u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn CreateProcessA<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, server: u64, commandline: ::windows::core::PSTR, createflags: u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.CreateProcessA(::core::mem::transmute_copy(&server), ::core::mem::transmute(&commandline), ::core::mem::transmute_copy(&createflags)).into()
         }
-        unsafe extern "system" fn CreateProcessAndAttach<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, server: u64, commandline: ::windows::core::PCSTR, createflags: u32, processid: u32, attachflags: u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn CreateProcessAndAttach<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, server: u64, commandline: ::windows::core::PSTR, createflags: u32, processid: u32, attachflags: u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.CreateProcessAndAttach(::core::mem::transmute_copy(&server), ::core::mem::transmute(&commandline), ::core::mem::transmute_copy(&createflags), ::core::mem::transmute_copy(&processid), ::core::mem::transmute_copy(&attachflags)).into()
@@ -5264,15 +5264,15 @@ pub trait IDebugClient2_Impl: Sized {
     fn AttachKernel(&self, flags: u32, connectoptions: &::windows::core::PCSTR) -> ::windows::core::Result<()>;
     fn GetKernelConnectionOptions(&self, buffer: ::windows::core::PSTR, buffersize: u32, optionssize: *mut u32) -> ::windows::core::Result<()>;
     fn SetKernelConnectionOptions(&self, options: &::windows::core::PCSTR) -> ::windows::core::Result<()>;
-    fn StartProcessServer(&self, flags: u32, options: &::windows::core::PCSTR, reserved: *const ::core::ffi::c_void) -> ::windows::core::Result<()>;
+    fn StartProcessServer(&self, flags: u32, options: &::windows::core::PCSTR, reserved: *mut ::core::ffi::c_void) -> ::windows::core::Result<()>;
     fn ConnectProcessServer(&self, remoteoptions: &::windows::core::PCSTR) -> ::windows::core::Result<u64>;
     fn DisconnectProcessServer(&self, server: u64) -> ::windows::core::Result<()>;
     fn GetRunningProcessSystemIds(&self, server: u64, ids: *mut u32, count: u32, actualcount: *mut u32) -> ::windows::core::Result<()>;
     fn GetRunningProcessSystemIdByExecutableName(&self, server: u64, exename: &::windows::core::PCSTR, flags: u32) -> ::windows::core::Result<u32>;
     fn GetRunningProcessDescription(&self, server: u64, systemid: u32, flags: u32, exename: ::windows::core::PSTR, exenamesize: u32, actualexenamesize: *mut u32, description: ::windows::core::PSTR, descriptionsize: u32, actualdescriptionsize: *mut u32) -> ::windows::core::Result<()>;
     fn AttachProcess(&self, server: u64, processid: u32, attachflags: u32) -> ::windows::core::Result<()>;
-    fn CreateProcessA(&self, server: u64, commandline: &::windows::core::PCSTR, createflags: u32) -> ::windows::core::Result<()>;
-    fn CreateProcessAndAttach(&self, server: u64, commandline: &::windows::core::PCSTR, createflags: u32, processid: u32, attachflags: u32) -> ::windows::core::Result<()>;
+    fn CreateProcessA(&self, server: u64, commandline: &::windows::core::PSTR, createflags: u32) -> ::windows::core::Result<()>;
+    fn CreateProcessAndAttach(&self, server: u64, commandline: &::windows::core::PSTR, createflags: u32, processid: u32, attachflags: u32) -> ::windows::core::Result<()>;
     fn GetProcessOptions(&self) -> ::windows::core::Result<u32>;
     fn AddProcessOptions(&self, options: u32) -> ::windows::core::Result<()>;
     fn RemoveProcessOptions(&self, options: u32) -> ::windows::core::Result<()>;
@@ -5333,7 +5333,7 @@ impl IDebugClient2_Vtbl {
             let this = (*this).get_impl();
             this.SetKernelConnectionOptions(::core::mem::transmute(&options)).into()
         }
-        unsafe extern "system" fn StartProcessServer<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, flags: u32, options: ::windows::core::PCSTR, reserved: *const ::core::ffi::c_void) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn StartProcessServer<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, flags: u32, options: ::windows::core::PCSTR, reserved: *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.StartProcessServer(::core::mem::transmute_copy(&flags), ::core::mem::transmute(&options), ::core::mem::transmute_copy(&reserved)).into()
@@ -5380,12 +5380,12 @@ impl IDebugClient2_Vtbl {
             let this = (*this).get_impl();
             this.AttachProcess(::core::mem::transmute_copy(&server), ::core::mem::transmute_copy(&processid), ::core::mem::transmute_copy(&attachflags)).into()
         }
-        unsafe extern "system" fn CreateProcessA<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, server: u64, commandline: ::windows::core::PCSTR, createflags: u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn CreateProcessA<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, server: u64, commandline: ::windows::core::PSTR, createflags: u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.CreateProcessA(::core::mem::transmute_copy(&server), ::core::mem::transmute(&commandline), ::core::mem::transmute_copy(&createflags)).into()
         }
-        unsafe extern "system" fn CreateProcessAndAttach<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, server: u64, commandline: ::windows::core::PCSTR, createflags: u32, processid: u32, attachflags: u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn CreateProcessAndAttach<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, server: u64, commandline: ::windows::core::PSTR, createflags: u32, processid: u32, attachflags: u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.CreateProcessAndAttach(::core::mem::transmute_copy(&server), ::core::mem::transmute(&commandline), ::core::mem::transmute_copy(&createflags), ::core::mem::transmute_copy(&processid), ::core::mem::transmute_copy(&attachflags)).into()
@@ -5714,15 +5714,15 @@ pub trait IDebugClient3_Impl: Sized {
     fn AttachKernel(&self, flags: u32, connectoptions: &::windows::core::PCSTR) -> ::windows::core::Result<()>;
     fn GetKernelConnectionOptions(&self, buffer: ::windows::core::PSTR, buffersize: u32, optionssize: *mut u32) -> ::windows::core::Result<()>;
     fn SetKernelConnectionOptions(&self, options: &::windows::core::PCSTR) -> ::windows::core::Result<()>;
-    fn StartProcessServer(&self, flags: u32, options: &::windows::core::PCSTR, reserved: *const ::core::ffi::c_void) -> ::windows::core::Result<()>;
+    fn StartProcessServer(&self, flags: u32, options: &::windows::core::PCSTR, reserved: *mut ::core::ffi::c_void) -> ::windows::core::Result<()>;
     fn ConnectProcessServer(&self, remoteoptions: &::windows::core::PCSTR) -> ::windows::core::Result<u64>;
     fn DisconnectProcessServer(&self, server: u64) -> ::windows::core::Result<()>;
     fn GetRunningProcessSystemIds(&self, server: u64, ids: *mut u32, count: u32, actualcount: *mut u32) -> ::windows::core::Result<()>;
     fn GetRunningProcessSystemIdByExecutableName(&self, server: u64, exename: &::windows::core::PCSTR, flags: u32) -> ::windows::core::Result<u32>;
     fn GetRunningProcessDescription(&self, server: u64, systemid: u32, flags: u32, exename: ::windows::core::PSTR, exenamesize: u32, actualexenamesize: *mut u32, description: ::windows::core::PSTR, descriptionsize: u32, actualdescriptionsize: *mut u32) -> ::windows::core::Result<()>;
     fn AttachProcess(&self, server: u64, processid: u32, attachflags: u32) -> ::windows::core::Result<()>;
-    fn CreateProcessA(&self, server: u64, commandline: &::windows::core::PCSTR, createflags: u32) -> ::windows::core::Result<()>;
-    fn CreateProcessAndAttach(&self, server: u64, commandline: &::windows::core::PCSTR, createflags: u32, processid: u32, attachflags: u32) -> ::windows::core::Result<()>;
+    fn CreateProcessA(&self, server: u64, commandline: &::windows::core::PSTR, createflags: u32) -> ::windows::core::Result<()>;
+    fn CreateProcessAndAttach(&self, server: u64, commandline: &::windows::core::PSTR, createflags: u32, processid: u32, attachflags: u32) -> ::windows::core::Result<()>;
     fn GetProcessOptions(&self) -> ::windows::core::Result<u32>;
     fn AddProcessOptions(&self, options: u32) -> ::windows::core::Result<()>;
     fn RemoveProcessOptions(&self, options: u32) -> ::windows::core::Result<()>;
@@ -5766,8 +5766,8 @@ pub trait IDebugClient3_Impl: Sized {
     fn AbandonCurrentProcess(&self) -> ::windows::core::Result<()>;
     fn GetRunningProcessSystemIdByExecutableNameWide(&self, server: u64, exename: &::windows::core::PCWSTR, flags: u32) -> ::windows::core::Result<u32>;
     fn GetRunningProcessDescriptionWide(&self, server: u64, systemid: u32, flags: u32, exename: ::windows::core::PWSTR, exenamesize: u32, actualexenamesize: *mut u32, description: ::windows::core::PWSTR, descriptionsize: u32, actualdescriptionsize: *mut u32) -> ::windows::core::Result<()>;
-    fn CreateProcessWide(&self, server: u64, commandline: &::windows::core::PCWSTR, createflags: u32) -> ::windows::core::Result<()>;
-    fn CreateProcessAndAttachWide(&self, server: u64, commandline: &::windows::core::PCWSTR, createflags: u32, processid: u32, attachflags: u32) -> ::windows::core::Result<()>;
+    fn CreateProcessWide(&self, server: u64, commandline: &::windows::core::PWSTR, createflags: u32) -> ::windows::core::Result<()>;
+    fn CreateProcessAndAttachWide(&self, server: u64, commandline: &::windows::core::PWSTR, createflags: u32, processid: u32, attachflags: u32) -> ::windows::core::Result<()>;
 }
 impl ::windows::core::RuntimeName for IDebugClient3 {}
 impl IDebugClient3_Vtbl {
@@ -5787,7 +5787,7 @@ impl IDebugClient3_Vtbl {
             let this = (*this).get_impl();
             this.SetKernelConnectionOptions(::core::mem::transmute(&options)).into()
         }
-        unsafe extern "system" fn StartProcessServer<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, flags: u32, options: ::windows::core::PCSTR, reserved: *const ::core::ffi::c_void) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn StartProcessServer<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, flags: u32, options: ::windows::core::PCSTR, reserved: *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.StartProcessServer(::core::mem::transmute_copy(&flags), ::core::mem::transmute(&options), ::core::mem::transmute_copy(&reserved)).into()
@@ -5834,12 +5834,12 @@ impl IDebugClient3_Vtbl {
             let this = (*this).get_impl();
             this.AttachProcess(::core::mem::transmute_copy(&server), ::core::mem::transmute_copy(&processid), ::core::mem::transmute_copy(&attachflags)).into()
         }
-        unsafe extern "system" fn CreateProcessA<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, server: u64, commandline: ::windows::core::PCSTR, createflags: u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn CreateProcessA<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, server: u64, commandline: ::windows::core::PSTR, createflags: u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.CreateProcessA(::core::mem::transmute_copy(&server), ::core::mem::transmute(&commandline), ::core::mem::transmute_copy(&createflags)).into()
         }
-        unsafe extern "system" fn CreateProcessAndAttach<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, server: u64, commandline: ::windows::core::PCSTR, createflags: u32, processid: u32, attachflags: u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn CreateProcessAndAttach<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, server: u64, commandline: ::windows::core::PSTR, createflags: u32, processid: u32, attachflags: u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.CreateProcessAndAttach(::core::mem::transmute_copy(&server), ::core::mem::transmute(&commandline), ::core::mem::transmute_copy(&createflags), ::core::mem::transmute_copy(&processid), ::core::mem::transmute_copy(&attachflags)).into()
@@ -6119,12 +6119,12 @@ impl IDebugClient3_Vtbl {
             let this = (*this).get_impl();
             this.GetRunningProcessDescriptionWide(::core::mem::transmute_copy(&server), ::core::mem::transmute_copy(&systemid), ::core::mem::transmute_copy(&flags), ::core::mem::transmute_copy(&exename), ::core::mem::transmute_copy(&exenamesize), ::core::mem::transmute_copy(&actualexenamesize), ::core::mem::transmute_copy(&description), ::core::mem::transmute_copy(&descriptionsize), ::core::mem::transmute_copy(&actualdescriptionsize)).into()
         }
-        unsafe extern "system" fn CreateProcessWide<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, server: u64, commandline: ::windows::core::PCWSTR, createflags: u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn CreateProcessWide<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, server: u64, commandline: ::windows::core::PWSTR, createflags: u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.CreateProcessWide(::core::mem::transmute_copy(&server), ::core::mem::transmute(&commandline), ::core::mem::transmute_copy(&createflags)).into()
         }
-        unsafe extern "system" fn CreateProcessAndAttachWide<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, server: u64, commandline: ::windows::core::PCWSTR, createflags: u32, processid: u32, attachflags: u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn CreateProcessAndAttachWide<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, server: u64, commandline: ::windows::core::PWSTR, createflags: u32, processid: u32, attachflags: u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.CreateProcessAndAttachWide(::core::mem::transmute_copy(&server), ::core::mem::transmute(&commandline), ::core::mem::transmute_copy(&createflags), ::core::mem::transmute_copy(&processid), ::core::mem::transmute_copy(&attachflags)).into()
@@ -6198,15 +6198,15 @@ pub trait IDebugClient4_Impl: Sized {
     fn AttachKernel(&self, flags: u32, connectoptions: &::windows::core::PCSTR) -> ::windows::core::Result<()>;
     fn GetKernelConnectionOptions(&self, buffer: ::windows::core::PSTR, buffersize: u32, optionssize: *mut u32) -> ::windows::core::Result<()>;
     fn SetKernelConnectionOptions(&self, options: &::windows::core::PCSTR) -> ::windows::core::Result<()>;
-    fn StartProcessServer(&self, flags: u32, options: &::windows::core::PCSTR, reserved: *const ::core::ffi::c_void) -> ::windows::core::Result<()>;
+    fn StartProcessServer(&self, flags: u32, options: &::windows::core::PCSTR, reserved: *mut ::core::ffi::c_void) -> ::windows::core::Result<()>;
     fn ConnectProcessServer(&self, remoteoptions: &::windows::core::PCSTR) -> ::windows::core::Result<u64>;
     fn DisconnectProcessServer(&self, server: u64) -> ::windows::core::Result<()>;
     fn GetRunningProcessSystemIds(&self, server: u64, ids: *mut u32, count: u32, actualcount: *mut u32) -> ::windows::core::Result<()>;
     fn GetRunningProcessSystemIdByExecutableName(&self, server: u64, exename: &::windows::core::PCSTR, flags: u32) -> ::windows::core::Result<u32>;
     fn GetRunningProcessDescription(&self, server: u64, systemid: u32, flags: u32, exename: ::windows::core::PSTR, exenamesize: u32, actualexenamesize: *mut u32, description: ::windows::core::PSTR, descriptionsize: u32, actualdescriptionsize: *mut u32) -> ::windows::core::Result<()>;
     fn AttachProcess(&self, server: u64, processid: u32, attachflags: u32) -> ::windows::core::Result<()>;
-    fn CreateProcessA(&self, server: u64, commandline: &::windows::core::PCSTR, createflags: u32) -> ::windows::core::Result<()>;
-    fn CreateProcessAndAttach(&self, server: u64, commandline: &::windows::core::PCSTR, createflags: u32, processid: u32, attachflags: u32) -> ::windows::core::Result<()>;
+    fn CreateProcessA(&self, server: u64, commandline: &::windows::core::PSTR, createflags: u32) -> ::windows::core::Result<()>;
+    fn CreateProcessAndAttach(&self, server: u64, commandline: &::windows::core::PSTR, createflags: u32, processid: u32, attachflags: u32) -> ::windows::core::Result<()>;
     fn GetProcessOptions(&self) -> ::windows::core::Result<u32>;
     fn AddProcessOptions(&self, options: u32) -> ::windows::core::Result<()>;
     fn RemoveProcessOptions(&self, options: u32) -> ::windows::core::Result<()>;
@@ -6250,8 +6250,8 @@ pub trait IDebugClient4_Impl: Sized {
     fn AbandonCurrentProcess(&self) -> ::windows::core::Result<()>;
     fn GetRunningProcessSystemIdByExecutableNameWide(&self, server: u64, exename: &::windows::core::PCWSTR, flags: u32) -> ::windows::core::Result<u32>;
     fn GetRunningProcessDescriptionWide(&self, server: u64, systemid: u32, flags: u32, exename: ::windows::core::PWSTR, exenamesize: u32, actualexenamesize: *mut u32, description: ::windows::core::PWSTR, descriptionsize: u32, actualdescriptionsize: *mut u32) -> ::windows::core::Result<()>;
-    fn CreateProcessWide(&self, server: u64, commandline: &::windows::core::PCWSTR, createflags: u32) -> ::windows::core::Result<()>;
-    fn CreateProcessAndAttachWide(&self, server: u64, commandline: &::windows::core::PCWSTR, createflags: u32, processid: u32, attachflags: u32) -> ::windows::core::Result<()>;
+    fn CreateProcessWide(&self, server: u64, commandline: &::windows::core::PWSTR, createflags: u32) -> ::windows::core::Result<()>;
+    fn CreateProcessAndAttachWide(&self, server: u64, commandline: &::windows::core::PWSTR, createflags: u32, processid: u32, attachflags: u32) -> ::windows::core::Result<()>;
     fn OpenDumpFileWide(&self, filename: &::windows::core::PCWSTR, filehandle: u64) -> ::windows::core::Result<()>;
     fn WriteDumpFileWide(&self, filename: &::windows::core::PCWSTR, filehandle: u64, qualifier: u32, formatflags: u32, comment: &::windows::core::PCWSTR) -> ::windows::core::Result<()>;
     fn AddDumpInformationFileWide(&self, filename: &::windows::core::PCWSTR, filehandle: u64, r#type: u32) -> ::windows::core::Result<()>;
@@ -6277,7 +6277,7 @@ impl IDebugClient4_Vtbl {
             let this = (*this).get_impl();
             this.SetKernelConnectionOptions(::core::mem::transmute(&options)).into()
         }
-        unsafe extern "system" fn StartProcessServer<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, flags: u32, options: ::windows::core::PCSTR, reserved: *const ::core::ffi::c_void) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn StartProcessServer<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, flags: u32, options: ::windows::core::PCSTR, reserved: *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.StartProcessServer(::core::mem::transmute_copy(&flags), ::core::mem::transmute(&options), ::core::mem::transmute_copy(&reserved)).into()
@@ -6324,12 +6324,12 @@ impl IDebugClient4_Vtbl {
             let this = (*this).get_impl();
             this.AttachProcess(::core::mem::transmute_copy(&server), ::core::mem::transmute_copy(&processid), ::core::mem::transmute_copy(&attachflags)).into()
         }
-        unsafe extern "system" fn CreateProcessA<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, server: u64, commandline: ::windows::core::PCSTR, createflags: u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn CreateProcessA<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, server: u64, commandline: ::windows::core::PSTR, createflags: u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.CreateProcessA(::core::mem::transmute_copy(&server), ::core::mem::transmute(&commandline), ::core::mem::transmute_copy(&createflags)).into()
         }
-        unsafe extern "system" fn CreateProcessAndAttach<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, server: u64, commandline: ::windows::core::PCSTR, createflags: u32, processid: u32, attachflags: u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn CreateProcessAndAttach<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, server: u64, commandline: ::windows::core::PSTR, createflags: u32, processid: u32, attachflags: u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.CreateProcessAndAttach(::core::mem::transmute_copy(&server), ::core::mem::transmute(&commandline), ::core::mem::transmute_copy(&createflags), ::core::mem::transmute_copy(&processid), ::core::mem::transmute_copy(&attachflags)).into()
@@ -6609,12 +6609,12 @@ impl IDebugClient4_Vtbl {
             let this = (*this).get_impl();
             this.GetRunningProcessDescriptionWide(::core::mem::transmute_copy(&server), ::core::mem::transmute_copy(&systemid), ::core::mem::transmute_copy(&flags), ::core::mem::transmute_copy(&exename), ::core::mem::transmute_copy(&exenamesize), ::core::mem::transmute_copy(&actualexenamesize), ::core::mem::transmute_copy(&description), ::core::mem::transmute_copy(&descriptionsize), ::core::mem::transmute_copy(&actualdescriptionsize)).into()
         }
-        unsafe extern "system" fn CreateProcessWide<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, server: u64, commandline: ::windows::core::PCWSTR, createflags: u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn CreateProcessWide<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, server: u64, commandline: ::windows::core::PWSTR, createflags: u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.CreateProcessWide(::core::mem::transmute_copy(&server), ::core::mem::transmute(&commandline), ::core::mem::transmute_copy(&createflags)).into()
         }
-        unsafe extern "system" fn CreateProcessAndAttachWide<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, server: u64, commandline: ::windows::core::PCWSTR, createflags: u32, processid: u32, attachflags: u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn CreateProcessAndAttachWide<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, server: u64, commandline: ::windows::core::PWSTR, createflags: u32, processid: u32, attachflags: u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.CreateProcessAndAttachWide(::core::mem::transmute_copy(&server), ::core::mem::transmute(&commandline), ::core::mem::transmute_copy(&createflags), ::core::mem::transmute_copy(&processid), ::core::mem::transmute_copy(&attachflags)).into()
@@ -6730,15 +6730,15 @@ pub trait IDebugClient5_Impl: Sized {
     fn AttachKernel(&self, flags: u32, connectoptions: &::windows::core::PCSTR) -> ::windows::core::Result<()>;
     fn GetKernelConnectionOptions(&self, buffer: ::windows::core::PSTR, buffersize: u32, optionssize: *mut u32) -> ::windows::core::Result<()>;
     fn SetKernelConnectionOptions(&self, options: &::windows::core::PCSTR) -> ::windows::core::Result<()>;
-    fn StartProcessServer(&self, flags: u32, options: &::windows::core::PCSTR, reserved: *const ::core::ffi::c_void) -> ::windows::core::Result<()>;
+    fn StartProcessServer(&self, flags: u32, options: &::windows::core::PCSTR, reserved: *mut ::core::ffi::c_void) -> ::windows::core::Result<()>;
     fn ConnectProcessServer(&self, remoteoptions: &::windows::core::PCSTR) -> ::windows::core::Result<u64>;
     fn DisconnectProcessServer(&self, server: u64) -> ::windows::core::Result<()>;
     fn GetRunningProcessSystemIds(&self, server: u64, ids: *mut u32, count: u32, actualcount: *mut u32) -> ::windows::core::Result<()>;
     fn GetRunningProcessSystemIdByExecutableName(&self, server: u64, exename: &::windows::core::PCSTR, flags: u32) -> ::windows::core::Result<u32>;
     fn GetRunningProcessDescription(&self, server: u64, systemid: u32, flags: u32, exename: ::windows::core::PSTR, exenamesize: u32, actualexenamesize: *mut u32, description: ::windows::core::PSTR, descriptionsize: u32, actualdescriptionsize: *mut u32) -> ::windows::core::Result<()>;
     fn AttachProcess(&self, server: u64, processid: u32, attachflags: u32) -> ::windows::core::Result<()>;
-    fn CreateProcessA(&self, server: u64, commandline: &::windows::core::PCSTR, createflags: u32) -> ::windows::core::Result<()>;
-    fn CreateProcessAndAttach(&self, server: u64, commandline: &::windows::core::PCSTR, createflags: u32, processid: u32, attachflags: u32) -> ::windows::core::Result<()>;
+    fn CreateProcessA(&self, server: u64, commandline: &::windows::core::PSTR, createflags: u32) -> ::windows::core::Result<()>;
+    fn CreateProcessAndAttach(&self, server: u64, commandline: &::windows::core::PSTR, createflags: u32, processid: u32, attachflags: u32) -> ::windows::core::Result<()>;
     fn GetProcessOptions(&self) -> ::windows::core::Result<u32>;
     fn AddProcessOptions(&self, options: u32) -> ::windows::core::Result<()>;
     fn RemoveProcessOptions(&self, options: u32) -> ::windows::core::Result<()>;
@@ -6782,8 +6782,8 @@ pub trait IDebugClient5_Impl: Sized {
     fn AbandonCurrentProcess(&self) -> ::windows::core::Result<()>;
     fn GetRunningProcessSystemIdByExecutableNameWide(&self, server: u64, exename: &::windows::core::PCWSTR, flags: u32) -> ::windows::core::Result<u32>;
     fn GetRunningProcessDescriptionWide(&self, server: u64, systemid: u32, flags: u32, exename: ::windows::core::PWSTR, exenamesize: u32, actualexenamesize: *mut u32, description: ::windows::core::PWSTR, descriptionsize: u32, actualdescriptionsize: *mut u32) -> ::windows::core::Result<()>;
-    fn CreateProcessWide(&self, server: u64, commandline: &::windows::core::PCWSTR, createflags: u32) -> ::windows::core::Result<()>;
-    fn CreateProcessAndAttachWide(&self, server: u64, commandline: &::windows::core::PCWSTR, createflags: u32, processid: u32, attachflags: u32) -> ::windows::core::Result<()>;
+    fn CreateProcessWide(&self, server: u64, commandline: &::windows::core::PWSTR, createflags: u32) -> ::windows::core::Result<()>;
+    fn CreateProcessAndAttachWide(&self, server: u64, commandline: &::windows::core::PWSTR, createflags: u32, processid: u32, attachflags: u32) -> ::windows::core::Result<()>;
     fn OpenDumpFileWide(&self, filename: &::windows::core::PCWSTR, filehandle: u64) -> ::windows::core::Result<()>;
     fn WriteDumpFileWide(&self, filename: &::windows::core::PCWSTR, filehandle: u64, qualifier: u32, formatflags: u32, comment: &::windows::core::PCWSTR) -> ::windows::core::Result<()>;
     fn AddDumpInformationFileWide(&self, filename: &::windows::core::PCWSTR, filehandle: u64, r#type: u32) -> ::windows::core::Result<()>;
@@ -6793,7 +6793,7 @@ pub trait IDebugClient5_Impl: Sized {
     fn AttachKernelWide(&self, flags: u32, connectoptions: &::windows::core::PCWSTR) -> ::windows::core::Result<()>;
     fn GetKernelConnectionOptionsWide(&self, buffer: ::windows::core::PWSTR, buffersize: u32, optionssize: *mut u32) -> ::windows::core::Result<()>;
     fn SetKernelConnectionOptionsWide(&self, options: &::windows::core::PCWSTR) -> ::windows::core::Result<()>;
-    fn StartProcessServerWide(&self, flags: u32, options: &::windows::core::PCWSTR, reserved: *const ::core::ffi::c_void) -> ::windows::core::Result<()>;
+    fn StartProcessServerWide(&self, flags: u32, options: &::windows::core::PCWSTR, reserved: *mut ::core::ffi::c_void) -> ::windows::core::Result<()>;
     fn ConnectProcessServerWide(&self, remoteoptions: &::windows::core::PCWSTR) -> ::windows::core::Result<u64>;
     fn StartServerWide(&self, options: &::windows::core::PCWSTR) -> ::windows::core::Result<()>;
     fn OutputServersWide(&self, outputcontrol: u32, machine: &::windows::core::PCWSTR, flags: u32) -> ::windows::core::Result<()>;
@@ -6805,10 +6805,10 @@ pub trait IDebugClient5_Impl: Sized {
     fn OutputIdentityWide(&self, outputcontrol: u32, flags: u32, format: &::windows::core::PCWSTR) -> ::windows::core::Result<()>;
     fn GetEventCallbacksWide(&self) -> ::windows::core::Result<IDebugEventCallbacksWide>;
     fn SetEventCallbacksWide(&self, callbacks: &::core::option::Option<IDebugEventCallbacksWide>) -> ::windows::core::Result<()>;
-    fn CreateProcess2(&self, server: u64, commandline: &::windows::core::PCSTR, optionsbuffer: *const ::core::ffi::c_void, optionsbuffersize: u32, initialdirectory: &::windows::core::PCSTR, environment: &::windows::core::PCSTR) -> ::windows::core::Result<()>;
-    fn CreateProcess2Wide(&self, server: u64, commandline: &::windows::core::PCWSTR, optionsbuffer: *const ::core::ffi::c_void, optionsbuffersize: u32, initialdirectory: &::windows::core::PCWSTR, environment: &::windows::core::PCWSTR) -> ::windows::core::Result<()>;
-    fn CreateProcessAndAttach2(&self, server: u64, commandline: &::windows::core::PCSTR, optionsbuffer: *const ::core::ffi::c_void, optionsbuffersize: u32, initialdirectory: &::windows::core::PCSTR, environment: &::windows::core::PCSTR, processid: u32, attachflags: u32) -> ::windows::core::Result<()>;
-    fn CreateProcessAndAttach2Wide(&self, server: u64, commandline: &::windows::core::PCWSTR, optionsbuffer: *const ::core::ffi::c_void, optionsbuffersize: u32, initialdirectory: &::windows::core::PCWSTR, environment: &::windows::core::PCWSTR, processid: u32, attachflags: u32) -> ::windows::core::Result<()>;
+    fn CreateProcess2(&self, server: u64, commandline: &::windows::core::PSTR, optionsbuffer: *mut ::core::ffi::c_void, optionsbuffersize: u32, initialdirectory: &::windows::core::PCSTR, environment: &::windows::core::PCSTR) -> ::windows::core::Result<()>;
+    fn CreateProcess2Wide(&self, server: u64, commandline: &::windows::core::PWSTR, optionsbuffer: *mut ::core::ffi::c_void, optionsbuffersize: u32, initialdirectory: &::windows::core::PCWSTR, environment: &::windows::core::PCWSTR) -> ::windows::core::Result<()>;
+    fn CreateProcessAndAttach2(&self, server: u64, commandline: &::windows::core::PSTR, optionsbuffer: *mut ::core::ffi::c_void, optionsbuffersize: u32, initialdirectory: &::windows::core::PCSTR, environment: &::windows::core::PCSTR, processid: u32, attachflags: u32) -> ::windows::core::Result<()>;
+    fn CreateProcessAndAttach2Wide(&self, server: u64, commandline: &::windows::core::PWSTR, optionsbuffer: *mut ::core::ffi::c_void, optionsbuffersize: u32, initialdirectory: &::windows::core::PCWSTR, environment: &::windows::core::PCWSTR, processid: u32, attachflags: u32) -> ::windows::core::Result<()>;
     fn PushOutputLinePrefix(&self, newprefix: &::windows::core::PCSTR) -> ::windows::core::Result<u64>;
     fn PushOutputLinePrefixWide(&self, newprefix: &::windows::core::PCWSTR) -> ::windows::core::Result<u64>;
     fn PopOutputLinePrefix(&self, handle: u64) -> ::windows::core::Result<()>;
@@ -6838,7 +6838,7 @@ impl IDebugClient5_Vtbl {
             let this = (*this).get_impl();
             this.SetKernelConnectionOptions(::core::mem::transmute(&options)).into()
         }
-        unsafe extern "system" fn StartProcessServer<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient5_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, flags: u32, options: ::windows::core::PCSTR, reserved: *const ::core::ffi::c_void) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn StartProcessServer<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient5_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, flags: u32, options: ::windows::core::PCSTR, reserved: *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.StartProcessServer(::core::mem::transmute_copy(&flags), ::core::mem::transmute(&options), ::core::mem::transmute_copy(&reserved)).into()
@@ -6885,12 +6885,12 @@ impl IDebugClient5_Vtbl {
             let this = (*this).get_impl();
             this.AttachProcess(::core::mem::transmute_copy(&server), ::core::mem::transmute_copy(&processid), ::core::mem::transmute_copy(&attachflags)).into()
         }
-        unsafe extern "system" fn CreateProcessA<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient5_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, server: u64, commandline: ::windows::core::PCSTR, createflags: u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn CreateProcessA<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient5_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, server: u64, commandline: ::windows::core::PSTR, createflags: u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.CreateProcessA(::core::mem::transmute_copy(&server), ::core::mem::transmute(&commandline), ::core::mem::transmute_copy(&createflags)).into()
         }
-        unsafe extern "system" fn CreateProcessAndAttach<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient5_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, server: u64, commandline: ::windows::core::PCSTR, createflags: u32, processid: u32, attachflags: u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn CreateProcessAndAttach<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient5_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, server: u64, commandline: ::windows::core::PSTR, createflags: u32, processid: u32, attachflags: u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.CreateProcessAndAttach(::core::mem::transmute_copy(&server), ::core::mem::transmute(&commandline), ::core::mem::transmute_copy(&createflags), ::core::mem::transmute_copy(&processid), ::core::mem::transmute_copy(&attachflags)).into()
@@ -7170,12 +7170,12 @@ impl IDebugClient5_Vtbl {
             let this = (*this).get_impl();
             this.GetRunningProcessDescriptionWide(::core::mem::transmute_copy(&server), ::core::mem::transmute_copy(&systemid), ::core::mem::transmute_copy(&flags), ::core::mem::transmute_copy(&exename), ::core::mem::transmute_copy(&exenamesize), ::core::mem::transmute_copy(&actualexenamesize), ::core::mem::transmute_copy(&description), ::core::mem::transmute_copy(&descriptionsize), ::core::mem::transmute_copy(&actualdescriptionsize)).into()
         }
-        unsafe extern "system" fn CreateProcessWide<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient5_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, server: u64, commandline: ::windows::core::PCWSTR, createflags: u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn CreateProcessWide<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient5_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, server: u64, commandline: ::windows::core::PWSTR, createflags: u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.CreateProcessWide(::core::mem::transmute_copy(&server), ::core::mem::transmute(&commandline), ::core::mem::transmute_copy(&createflags)).into()
         }
-        unsafe extern "system" fn CreateProcessAndAttachWide<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient5_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, server: u64, commandline: ::windows::core::PCWSTR, createflags: u32, processid: u32, attachflags: u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn CreateProcessAndAttachWide<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient5_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, server: u64, commandline: ::windows::core::PWSTR, createflags: u32, processid: u32, attachflags: u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.CreateProcessAndAttachWide(::core::mem::transmute_copy(&server), ::core::mem::transmute(&commandline), ::core::mem::transmute_copy(&createflags), ::core::mem::transmute_copy(&processid), ::core::mem::transmute_copy(&attachflags)).into()
@@ -7231,7 +7231,7 @@ impl IDebugClient5_Vtbl {
             let this = (*this).get_impl();
             this.SetKernelConnectionOptionsWide(::core::mem::transmute(&options)).into()
         }
-        unsafe extern "system" fn StartProcessServerWide<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient5_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, flags: u32, options: ::windows::core::PCWSTR, reserved: *const ::core::ffi::c_void) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn StartProcessServerWide<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient5_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, flags: u32, options: ::windows::core::PCWSTR, reserved: *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.StartProcessServerWide(::core::mem::transmute_copy(&flags), ::core::mem::transmute(&options), ::core::mem::transmute_copy(&reserved)).into()
@@ -7309,22 +7309,22 @@ impl IDebugClient5_Vtbl {
             let this = (*this).get_impl();
             this.SetEventCallbacksWide(::core::mem::transmute(&callbacks)).into()
         }
-        unsafe extern "system" fn CreateProcess2<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient5_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, server: u64, commandline: ::windows::core::PCSTR, optionsbuffer: *const ::core::ffi::c_void, optionsbuffersize: u32, initialdirectory: ::windows::core::PCSTR, environment: ::windows::core::PCSTR) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn CreateProcess2<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient5_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, server: u64, commandline: ::windows::core::PSTR, optionsbuffer: *mut ::core::ffi::c_void, optionsbuffersize: u32, initialdirectory: ::windows::core::PCSTR, environment: ::windows::core::PCSTR) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.CreateProcess2(::core::mem::transmute_copy(&server), ::core::mem::transmute(&commandline), ::core::mem::transmute_copy(&optionsbuffer), ::core::mem::transmute_copy(&optionsbuffersize), ::core::mem::transmute(&initialdirectory), ::core::mem::transmute(&environment)).into()
         }
-        unsafe extern "system" fn CreateProcess2Wide<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient5_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, server: u64, commandline: ::windows::core::PCWSTR, optionsbuffer: *const ::core::ffi::c_void, optionsbuffersize: u32, initialdirectory: ::windows::core::PCWSTR, environment: ::windows::core::PCWSTR) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn CreateProcess2Wide<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient5_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, server: u64, commandline: ::windows::core::PWSTR, optionsbuffer: *mut ::core::ffi::c_void, optionsbuffersize: u32, initialdirectory: ::windows::core::PCWSTR, environment: ::windows::core::PCWSTR) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.CreateProcess2Wide(::core::mem::transmute_copy(&server), ::core::mem::transmute(&commandline), ::core::mem::transmute_copy(&optionsbuffer), ::core::mem::transmute_copy(&optionsbuffersize), ::core::mem::transmute(&initialdirectory), ::core::mem::transmute(&environment)).into()
         }
-        unsafe extern "system" fn CreateProcessAndAttach2<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient5_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, server: u64, commandline: ::windows::core::PCSTR, optionsbuffer: *const ::core::ffi::c_void, optionsbuffersize: u32, initialdirectory: ::windows::core::PCSTR, environment: ::windows::core::PCSTR, processid: u32, attachflags: u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn CreateProcessAndAttach2<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient5_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, server: u64, commandline: ::windows::core::PSTR, optionsbuffer: *mut ::core::ffi::c_void, optionsbuffersize: u32, initialdirectory: ::windows::core::PCSTR, environment: ::windows::core::PCSTR, processid: u32, attachflags: u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.CreateProcessAndAttach2(::core::mem::transmute_copy(&server), ::core::mem::transmute(&commandline), ::core::mem::transmute_copy(&optionsbuffer), ::core::mem::transmute_copy(&optionsbuffersize), ::core::mem::transmute(&initialdirectory), ::core::mem::transmute(&environment), ::core::mem::transmute_copy(&processid), ::core::mem::transmute_copy(&attachflags)).into()
         }
-        unsafe extern "system" fn CreateProcessAndAttach2Wide<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient5_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, server: u64, commandline: ::windows::core::PCWSTR, optionsbuffer: *const ::core::ffi::c_void, optionsbuffersize: u32, initialdirectory: ::windows::core::PCWSTR, environment: ::windows::core::PCWSTR, processid: u32, attachflags: u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn CreateProcessAndAttach2Wide<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient5_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, server: u64, commandline: ::windows::core::PWSTR, optionsbuffer: *mut ::core::ffi::c_void, optionsbuffersize: u32, initialdirectory: ::windows::core::PCWSTR, environment: ::windows::core::PCWSTR, processid: u32, attachflags: u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.CreateProcessAndAttach2Wide(::core::mem::transmute_copy(&server), ::core::mem::transmute(&commandline), ::core::mem::transmute_copy(&optionsbuffer), ::core::mem::transmute_copy(&optionsbuffersize), ::core::mem::transmute(&initialdirectory), ::core::mem::transmute(&environment), ::core::mem::transmute_copy(&processid), ::core::mem::transmute_copy(&attachflags)).into()
@@ -7513,15 +7513,15 @@ pub trait IDebugClient6_Impl: Sized {
     fn AttachKernel(&self, flags: u32, connectoptions: &::windows::core::PCSTR) -> ::windows::core::Result<()>;
     fn GetKernelConnectionOptions(&self, buffer: ::windows::core::PSTR, buffersize: u32, optionssize: *mut u32) -> ::windows::core::Result<()>;
     fn SetKernelConnectionOptions(&self, options: &::windows::core::PCSTR) -> ::windows::core::Result<()>;
-    fn StartProcessServer(&self, flags: u32, options: &::windows::core::PCSTR, reserved: *const ::core::ffi::c_void) -> ::windows::core::Result<()>;
+    fn StartProcessServer(&self, flags: u32, options: &::windows::core::PCSTR, reserved: *mut ::core::ffi::c_void) -> ::windows::core::Result<()>;
     fn ConnectProcessServer(&self, remoteoptions: &::windows::core::PCSTR) -> ::windows::core::Result<u64>;
     fn DisconnectProcessServer(&self, server: u64) -> ::windows::core::Result<()>;
     fn GetRunningProcessSystemIds(&self, server: u64, ids: *mut u32, count: u32, actualcount: *mut u32) -> ::windows::core::Result<()>;
     fn GetRunningProcessSystemIdByExecutableName(&self, server: u64, exename: &::windows::core::PCSTR, flags: u32) -> ::windows::core::Result<u32>;
     fn GetRunningProcessDescription(&self, server: u64, systemid: u32, flags: u32, exename: ::windows::core::PSTR, exenamesize: u32, actualexenamesize: *mut u32, description: ::windows::core::PSTR, descriptionsize: u32, actualdescriptionsize: *mut u32) -> ::windows::core::Result<()>;
     fn AttachProcess(&self, server: u64, processid: u32, attachflags: u32) -> ::windows::core::Result<()>;
-    fn CreateProcessA(&self, server: u64, commandline: &::windows::core::PCSTR, createflags: u32) -> ::windows::core::Result<()>;
-    fn CreateProcessAndAttach(&self, server: u64, commandline: &::windows::core::PCSTR, createflags: u32, processid: u32, attachflags: u32) -> ::windows::core::Result<()>;
+    fn CreateProcessA(&self, server: u64, commandline: &::windows::core::PSTR, createflags: u32) -> ::windows::core::Result<()>;
+    fn CreateProcessAndAttach(&self, server: u64, commandline: &::windows::core::PSTR, createflags: u32, processid: u32, attachflags: u32) -> ::windows::core::Result<()>;
     fn GetProcessOptions(&self) -> ::windows::core::Result<u32>;
     fn AddProcessOptions(&self, options: u32) -> ::windows::core::Result<()>;
     fn RemoveProcessOptions(&self, options: u32) -> ::windows::core::Result<()>;
@@ -7565,8 +7565,8 @@ pub trait IDebugClient6_Impl: Sized {
     fn AbandonCurrentProcess(&self) -> ::windows::core::Result<()>;
     fn GetRunningProcessSystemIdByExecutableNameWide(&self, server: u64, exename: &::windows::core::PCWSTR, flags: u32) -> ::windows::core::Result<u32>;
     fn GetRunningProcessDescriptionWide(&self, server: u64, systemid: u32, flags: u32, exename: ::windows::core::PWSTR, exenamesize: u32, actualexenamesize: *mut u32, description: ::windows::core::PWSTR, descriptionsize: u32, actualdescriptionsize: *mut u32) -> ::windows::core::Result<()>;
-    fn CreateProcessWide(&self, server: u64, commandline: &::windows::core::PCWSTR, createflags: u32) -> ::windows::core::Result<()>;
-    fn CreateProcessAndAttachWide(&self, server: u64, commandline: &::windows::core::PCWSTR, createflags: u32, processid: u32, attachflags: u32) -> ::windows::core::Result<()>;
+    fn CreateProcessWide(&self, server: u64, commandline: &::windows::core::PWSTR, createflags: u32) -> ::windows::core::Result<()>;
+    fn CreateProcessAndAttachWide(&self, server: u64, commandline: &::windows::core::PWSTR, createflags: u32, processid: u32, attachflags: u32) -> ::windows::core::Result<()>;
     fn OpenDumpFileWide(&self, filename: &::windows::core::PCWSTR, filehandle: u64) -> ::windows::core::Result<()>;
     fn WriteDumpFileWide(&self, filename: &::windows::core::PCWSTR, filehandle: u64, qualifier: u32, formatflags: u32, comment: &::windows::core::PCWSTR) -> ::windows::core::Result<()>;
     fn AddDumpInformationFileWide(&self, filename: &::windows::core::PCWSTR, filehandle: u64, r#type: u32) -> ::windows::core::Result<()>;
@@ -7576,7 +7576,7 @@ pub trait IDebugClient6_Impl: Sized {
     fn AttachKernelWide(&self, flags: u32, connectoptions: &::windows::core::PCWSTR) -> ::windows::core::Result<()>;
     fn GetKernelConnectionOptionsWide(&self, buffer: ::windows::core::PWSTR, buffersize: u32, optionssize: *mut u32) -> ::windows::core::Result<()>;
     fn SetKernelConnectionOptionsWide(&self, options: &::windows::core::PCWSTR) -> ::windows::core::Result<()>;
-    fn StartProcessServerWide(&self, flags: u32, options: &::windows::core::PCWSTR, reserved: *const ::core::ffi::c_void) -> ::windows::core::Result<()>;
+    fn StartProcessServerWide(&self, flags: u32, options: &::windows::core::PCWSTR, reserved: *mut ::core::ffi::c_void) -> ::windows::core::Result<()>;
     fn ConnectProcessServerWide(&self, remoteoptions: &::windows::core::PCWSTR) -> ::windows::core::Result<u64>;
     fn StartServerWide(&self, options: &::windows::core::PCWSTR) -> ::windows::core::Result<()>;
     fn OutputServersWide(&self, outputcontrol: u32, machine: &::windows::core::PCWSTR, flags: u32) -> ::windows::core::Result<()>;
@@ -7588,10 +7588,10 @@ pub trait IDebugClient6_Impl: Sized {
     fn OutputIdentityWide(&self, outputcontrol: u32, flags: u32, format: &::windows::core::PCWSTR) -> ::windows::core::Result<()>;
     fn GetEventCallbacksWide(&self) -> ::windows::core::Result<IDebugEventCallbacksWide>;
     fn SetEventCallbacksWide(&self, callbacks: &::core::option::Option<IDebugEventCallbacksWide>) -> ::windows::core::Result<()>;
-    fn CreateProcess2(&self, server: u64, commandline: &::windows::core::PCSTR, optionsbuffer: *const ::core::ffi::c_void, optionsbuffersize: u32, initialdirectory: &::windows::core::PCSTR, environment: &::windows::core::PCSTR) -> ::windows::core::Result<()>;
-    fn CreateProcess2Wide(&self, server: u64, commandline: &::windows::core::PCWSTR, optionsbuffer: *const ::core::ffi::c_void, optionsbuffersize: u32, initialdirectory: &::windows::core::PCWSTR, environment: &::windows::core::PCWSTR) -> ::windows::core::Result<()>;
-    fn CreateProcessAndAttach2(&self, server: u64, commandline: &::windows::core::PCSTR, optionsbuffer: *const ::core::ffi::c_void, optionsbuffersize: u32, initialdirectory: &::windows::core::PCSTR, environment: &::windows::core::PCSTR, processid: u32, attachflags: u32) -> ::windows::core::Result<()>;
-    fn CreateProcessAndAttach2Wide(&self, server: u64, commandline: &::windows::core::PCWSTR, optionsbuffer: *const ::core::ffi::c_void, optionsbuffersize: u32, initialdirectory: &::windows::core::PCWSTR, environment: &::windows::core::PCWSTR, processid: u32, attachflags: u32) -> ::windows::core::Result<()>;
+    fn CreateProcess2(&self, server: u64, commandline: &::windows::core::PSTR, optionsbuffer: *mut ::core::ffi::c_void, optionsbuffersize: u32, initialdirectory: &::windows::core::PCSTR, environment: &::windows::core::PCSTR) -> ::windows::core::Result<()>;
+    fn CreateProcess2Wide(&self, server: u64, commandline: &::windows::core::PWSTR, optionsbuffer: *mut ::core::ffi::c_void, optionsbuffersize: u32, initialdirectory: &::windows::core::PCWSTR, environment: &::windows::core::PCWSTR) -> ::windows::core::Result<()>;
+    fn CreateProcessAndAttach2(&self, server: u64, commandline: &::windows::core::PSTR, optionsbuffer: *mut ::core::ffi::c_void, optionsbuffersize: u32, initialdirectory: &::windows::core::PCSTR, environment: &::windows::core::PCSTR, processid: u32, attachflags: u32) -> ::windows::core::Result<()>;
+    fn CreateProcessAndAttach2Wide(&self, server: u64, commandline: &::windows::core::PWSTR, optionsbuffer: *mut ::core::ffi::c_void, optionsbuffersize: u32, initialdirectory: &::windows::core::PCWSTR, environment: &::windows::core::PCWSTR, processid: u32, attachflags: u32) -> ::windows::core::Result<()>;
     fn PushOutputLinePrefix(&self, newprefix: &::windows::core::PCSTR) -> ::windows::core::Result<u64>;
     fn PushOutputLinePrefixWide(&self, newprefix: &::windows::core::PCWSTR) -> ::windows::core::Result<u64>;
     fn PopOutputLinePrefix(&self, handle: u64) -> ::windows::core::Result<()>;
@@ -7622,7 +7622,7 @@ impl IDebugClient6_Vtbl {
             let this = (*this).get_impl();
             this.SetKernelConnectionOptions(::core::mem::transmute(&options)).into()
         }
-        unsafe extern "system" fn StartProcessServer<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient6_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, flags: u32, options: ::windows::core::PCSTR, reserved: *const ::core::ffi::c_void) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn StartProcessServer<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient6_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, flags: u32, options: ::windows::core::PCSTR, reserved: *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.StartProcessServer(::core::mem::transmute_copy(&flags), ::core::mem::transmute(&options), ::core::mem::transmute_copy(&reserved)).into()
@@ -7669,12 +7669,12 @@ impl IDebugClient6_Vtbl {
             let this = (*this).get_impl();
             this.AttachProcess(::core::mem::transmute_copy(&server), ::core::mem::transmute_copy(&processid), ::core::mem::transmute_copy(&attachflags)).into()
         }
-        unsafe extern "system" fn CreateProcessA<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient6_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, server: u64, commandline: ::windows::core::PCSTR, createflags: u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn CreateProcessA<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient6_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, server: u64, commandline: ::windows::core::PSTR, createflags: u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.CreateProcessA(::core::mem::transmute_copy(&server), ::core::mem::transmute(&commandline), ::core::mem::transmute_copy(&createflags)).into()
         }
-        unsafe extern "system" fn CreateProcessAndAttach<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient6_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, server: u64, commandline: ::windows::core::PCSTR, createflags: u32, processid: u32, attachflags: u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn CreateProcessAndAttach<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient6_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, server: u64, commandline: ::windows::core::PSTR, createflags: u32, processid: u32, attachflags: u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.CreateProcessAndAttach(::core::mem::transmute_copy(&server), ::core::mem::transmute(&commandline), ::core::mem::transmute_copy(&createflags), ::core::mem::transmute_copy(&processid), ::core::mem::transmute_copy(&attachflags)).into()
@@ -7954,12 +7954,12 @@ impl IDebugClient6_Vtbl {
             let this = (*this).get_impl();
             this.GetRunningProcessDescriptionWide(::core::mem::transmute_copy(&server), ::core::mem::transmute_copy(&systemid), ::core::mem::transmute_copy(&flags), ::core::mem::transmute_copy(&exename), ::core::mem::transmute_copy(&exenamesize), ::core::mem::transmute_copy(&actualexenamesize), ::core::mem::transmute_copy(&description), ::core::mem::transmute_copy(&descriptionsize), ::core::mem::transmute_copy(&actualdescriptionsize)).into()
         }
-        unsafe extern "system" fn CreateProcessWide<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient6_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, server: u64, commandline: ::windows::core::PCWSTR, createflags: u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn CreateProcessWide<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient6_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, server: u64, commandline: ::windows::core::PWSTR, createflags: u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.CreateProcessWide(::core::mem::transmute_copy(&server), ::core::mem::transmute(&commandline), ::core::mem::transmute_copy(&createflags)).into()
         }
-        unsafe extern "system" fn CreateProcessAndAttachWide<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient6_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, server: u64, commandline: ::windows::core::PCWSTR, createflags: u32, processid: u32, attachflags: u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn CreateProcessAndAttachWide<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient6_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, server: u64, commandline: ::windows::core::PWSTR, createflags: u32, processid: u32, attachflags: u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.CreateProcessAndAttachWide(::core::mem::transmute_copy(&server), ::core::mem::transmute(&commandline), ::core::mem::transmute_copy(&createflags), ::core::mem::transmute_copy(&processid), ::core::mem::transmute_copy(&attachflags)).into()
@@ -8015,7 +8015,7 @@ impl IDebugClient6_Vtbl {
             let this = (*this).get_impl();
             this.SetKernelConnectionOptionsWide(::core::mem::transmute(&options)).into()
         }
-        unsafe extern "system" fn StartProcessServerWide<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient6_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, flags: u32, options: ::windows::core::PCWSTR, reserved: *const ::core::ffi::c_void) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn StartProcessServerWide<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient6_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, flags: u32, options: ::windows::core::PCWSTR, reserved: *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.StartProcessServerWide(::core::mem::transmute_copy(&flags), ::core::mem::transmute(&options), ::core::mem::transmute_copy(&reserved)).into()
@@ -8093,22 +8093,22 @@ impl IDebugClient6_Vtbl {
             let this = (*this).get_impl();
             this.SetEventCallbacksWide(::core::mem::transmute(&callbacks)).into()
         }
-        unsafe extern "system" fn CreateProcess2<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient6_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, server: u64, commandline: ::windows::core::PCSTR, optionsbuffer: *const ::core::ffi::c_void, optionsbuffersize: u32, initialdirectory: ::windows::core::PCSTR, environment: ::windows::core::PCSTR) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn CreateProcess2<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient6_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, server: u64, commandline: ::windows::core::PSTR, optionsbuffer: *mut ::core::ffi::c_void, optionsbuffersize: u32, initialdirectory: ::windows::core::PCSTR, environment: ::windows::core::PCSTR) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.CreateProcess2(::core::mem::transmute_copy(&server), ::core::mem::transmute(&commandline), ::core::mem::transmute_copy(&optionsbuffer), ::core::mem::transmute_copy(&optionsbuffersize), ::core::mem::transmute(&initialdirectory), ::core::mem::transmute(&environment)).into()
         }
-        unsafe extern "system" fn CreateProcess2Wide<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient6_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, server: u64, commandline: ::windows::core::PCWSTR, optionsbuffer: *const ::core::ffi::c_void, optionsbuffersize: u32, initialdirectory: ::windows::core::PCWSTR, environment: ::windows::core::PCWSTR) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn CreateProcess2Wide<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient6_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, server: u64, commandline: ::windows::core::PWSTR, optionsbuffer: *mut ::core::ffi::c_void, optionsbuffersize: u32, initialdirectory: ::windows::core::PCWSTR, environment: ::windows::core::PCWSTR) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.CreateProcess2Wide(::core::mem::transmute_copy(&server), ::core::mem::transmute(&commandline), ::core::mem::transmute_copy(&optionsbuffer), ::core::mem::transmute_copy(&optionsbuffersize), ::core::mem::transmute(&initialdirectory), ::core::mem::transmute(&environment)).into()
         }
-        unsafe extern "system" fn CreateProcessAndAttach2<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient6_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, server: u64, commandline: ::windows::core::PCSTR, optionsbuffer: *const ::core::ffi::c_void, optionsbuffersize: u32, initialdirectory: ::windows::core::PCSTR, environment: ::windows::core::PCSTR, processid: u32, attachflags: u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn CreateProcessAndAttach2<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient6_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, server: u64, commandline: ::windows::core::PSTR, optionsbuffer: *mut ::core::ffi::c_void, optionsbuffersize: u32, initialdirectory: ::windows::core::PCSTR, environment: ::windows::core::PCSTR, processid: u32, attachflags: u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.CreateProcessAndAttach2(::core::mem::transmute_copy(&server), ::core::mem::transmute(&commandline), ::core::mem::transmute_copy(&optionsbuffer), ::core::mem::transmute_copy(&optionsbuffersize), ::core::mem::transmute(&initialdirectory), ::core::mem::transmute(&environment), ::core::mem::transmute_copy(&processid), ::core::mem::transmute_copy(&attachflags)).into()
         }
-        unsafe extern "system" fn CreateProcessAndAttach2Wide<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient6_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, server: u64, commandline: ::windows::core::PCWSTR, optionsbuffer: *const ::core::ffi::c_void, optionsbuffersize: u32, initialdirectory: ::windows::core::PCWSTR, environment: ::windows::core::PCWSTR, processid: u32, attachflags: u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn CreateProcessAndAttach2Wide<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient6_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, server: u64, commandline: ::windows::core::PWSTR, optionsbuffer: *mut ::core::ffi::c_void, optionsbuffersize: u32, initialdirectory: ::windows::core::PCWSTR, environment: ::windows::core::PCWSTR, processid: u32, attachflags: u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.CreateProcessAndAttach2Wide(::core::mem::transmute_copy(&server), ::core::mem::transmute(&commandline), ::core::mem::transmute_copy(&optionsbuffer), ::core::mem::transmute_copy(&optionsbuffersize), ::core::mem::transmute(&initialdirectory), ::core::mem::transmute(&environment), ::core::mem::transmute_copy(&processid), ::core::mem::transmute_copy(&attachflags)).into()
@@ -8303,15 +8303,15 @@ pub trait IDebugClient7_Impl: Sized {
     fn AttachKernel(&self, flags: u32, connectoptions: &::windows::core::PCSTR) -> ::windows::core::Result<()>;
     fn GetKernelConnectionOptions(&self, buffer: ::windows::core::PSTR, buffersize: u32, optionssize: *mut u32) -> ::windows::core::Result<()>;
     fn SetKernelConnectionOptions(&self, options: &::windows::core::PCSTR) -> ::windows::core::Result<()>;
-    fn StartProcessServer(&self, flags: u32, options: &::windows::core::PCSTR, reserved: *const ::core::ffi::c_void) -> ::windows::core::Result<()>;
+    fn StartProcessServer(&self, flags: u32, options: &::windows::core::PCSTR, reserved: *mut ::core::ffi::c_void) -> ::windows::core::Result<()>;
     fn ConnectProcessServer(&self, remoteoptions: &::windows::core::PCSTR) -> ::windows::core::Result<u64>;
     fn DisconnectProcessServer(&self, server: u64) -> ::windows::core::Result<()>;
     fn GetRunningProcessSystemIds(&self, server: u64, ids: *mut u32, count: u32, actualcount: *mut u32) -> ::windows::core::Result<()>;
     fn GetRunningProcessSystemIdByExecutableName(&self, server: u64, exename: &::windows::core::PCSTR, flags: u32) -> ::windows::core::Result<u32>;
     fn GetRunningProcessDescription(&self, server: u64, systemid: u32, flags: u32, exename: ::windows::core::PSTR, exenamesize: u32, actualexenamesize: *mut u32, description: ::windows::core::PSTR, descriptionsize: u32, actualdescriptionsize: *mut u32) -> ::windows::core::Result<()>;
     fn AttachProcess(&self, server: u64, processid: u32, attachflags: u32) -> ::windows::core::Result<()>;
-    fn CreateProcessA(&self, server: u64, commandline: &::windows::core::PCSTR, createflags: u32) -> ::windows::core::Result<()>;
-    fn CreateProcessAndAttach(&self, server: u64, commandline: &::windows::core::PCSTR, createflags: u32, processid: u32, attachflags: u32) -> ::windows::core::Result<()>;
+    fn CreateProcessA(&self, server: u64, commandline: &::windows::core::PSTR, createflags: u32) -> ::windows::core::Result<()>;
+    fn CreateProcessAndAttach(&self, server: u64, commandline: &::windows::core::PSTR, createflags: u32, processid: u32, attachflags: u32) -> ::windows::core::Result<()>;
     fn GetProcessOptions(&self) -> ::windows::core::Result<u32>;
     fn AddProcessOptions(&self, options: u32) -> ::windows::core::Result<()>;
     fn RemoveProcessOptions(&self, options: u32) -> ::windows::core::Result<()>;
@@ -8355,8 +8355,8 @@ pub trait IDebugClient7_Impl: Sized {
     fn AbandonCurrentProcess(&self) -> ::windows::core::Result<()>;
     fn GetRunningProcessSystemIdByExecutableNameWide(&self, server: u64, exename: &::windows::core::PCWSTR, flags: u32) -> ::windows::core::Result<u32>;
     fn GetRunningProcessDescriptionWide(&self, server: u64, systemid: u32, flags: u32, exename: ::windows::core::PWSTR, exenamesize: u32, actualexenamesize: *mut u32, description: ::windows::core::PWSTR, descriptionsize: u32, actualdescriptionsize: *mut u32) -> ::windows::core::Result<()>;
-    fn CreateProcessWide(&self, server: u64, commandline: &::windows::core::PCWSTR, createflags: u32) -> ::windows::core::Result<()>;
-    fn CreateProcessAndAttachWide(&self, server: u64, commandline: &::windows::core::PCWSTR, createflags: u32, processid: u32, attachflags: u32) -> ::windows::core::Result<()>;
+    fn CreateProcessWide(&self, server: u64, commandline: &::windows::core::PWSTR, createflags: u32) -> ::windows::core::Result<()>;
+    fn CreateProcessAndAttachWide(&self, server: u64, commandline: &::windows::core::PWSTR, createflags: u32, processid: u32, attachflags: u32) -> ::windows::core::Result<()>;
     fn OpenDumpFileWide(&self, filename: &::windows::core::PCWSTR, filehandle: u64) -> ::windows::core::Result<()>;
     fn WriteDumpFileWide(&self, filename: &::windows::core::PCWSTR, filehandle: u64, qualifier: u32, formatflags: u32, comment: &::windows::core::PCWSTR) -> ::windows::core::Result<()>;
     fn AddDumpInformationFileWide(&self, filename: &::windows::core::PCWSTR, filehandle: u64, r#type: u32) -> ::windows::core::Result<()>;
@@ -8366,7 +8366,7 @@ pub trait IDebugClient7_Impl: Sized {
     fn AttachKernelWide(&self, flags: u32, connectoptions: &::windows::core::PCWSTR) -> ::windows::core::Result<()>;
     fn GetKernelConnectionOptionsWide(&self, buffer: ::windows::core::PWSTR, buffersize: u32, optionssize: *mut u32) -> ::windows::core::Result<()>;
     fn SetKernelConnectionOptionsWide(&self, options: &::windows::core::PCWSTR) -> ::windows::core::Result<()>;
-    fn StartProcessServerWide(&self, flags: u32, options: &::windows::core::PCWSTR, reserved: *const ::core::ffi::c_void) -> ::windows::core::Result<()>;
+    fn StartProcessServerWide(&self, flags: u32, options: &::windows::core::PCWSTR, reserved: *mut ::core::ffi::c_void) -> ::windows::core::Result<()>;
     fn ConnectProcessServerWide(&self, remoteoptions: &::windows::core::PCWSTR) -> ::windows::core::Result<u64>;
     fn StartServerWide(&self, options: &::windows::core::PCWSTR) -> ::windows::core::Result<()>;
     fn OutputServersWide(&self, outputcontrol: u32, machine: &::windows::core::PCWSTR, flags: u32) -> ::windows::core::Result<()>;
@@ -8378,10 +8378,10 @@ pub trait IDebugClient7_Impl: Sized {
     fn OutputIdentityWide(&self, outputcontrol: u32, flags: u32, format: &::windows::core::PCWSTR) -> ::windows::core::Result<()>;
     fn GetEventCallbacksWide(&self) -> ::windows::core::Result<IDebugEventCallbacksWide>;
     fn SetEventCallbacksWide(&self, callbacks: &::core::option::Option<IDebugEventCallbacksWide>) -> ::windows::core::Result<()>;
-    fn CreateProcess2(&self, server: u64, commandline: &::windows::core::PCSTR, optionsbuffer: *const ::core::ffi::c_void, optionsbuffersize: u32, initialdirectory: &::windows::core::PCSTR, environment: &::windows::core::PCSTR) -> ::windows::core::Result<()>;
-    fn CreateProcess2Wide(&self, server: u64, commandline: &::windows::core::PCWSTR, optionsbuffer: *const ::core::ffi::c_void, optionsbuffersize: u32, initialdirectory: &::windows::core::PCWSTR, environment: &::windows::core::PCWSTR) -> ::windows::core::Result<()>;
-    fn CreateProcessAndAttach2(&self, server: u64, commandline: &::windows::core::PCSTR, optionsbuffer: *const ::core::ffi::c_void, optionsbuffersize: u32, initialdirectory: &::windows::core::PCSTR, environment: &::windows::core::PCSTR, processid: u32, attachflags: u32) -> ::windows::core::Result<()>;
-    fn CreateProcessAndAttach2Wide(&self, server: u64, commandline: &::windows::core::PCWSTR, optionsbuffer: *const ::core::ffi::c_void, optionsbuffersize: u32, initialdirectory: &::windows::core::PCWSTR, environment: &::windows::core::PCWSTR, processid: u32, attachflags: u32) -> ::windows::core::Result<()>;
+    fn CreateProcess2(&self, server: u64, commandline: &::windows::core::PSTR, optionsbuffer: *mut ::core::ffi::c_void, optionsbuffersize: u32, initialdirectory: &::windows::core::PCSTR, environment: &::windows::core::PCSTR) -> ::windows::core::Result<()>;
+    fn CreateProcess2Wide(&self, server: u64, commandline: &::windows::core::PWSTR, optionsbuffer: *mut ::core::ffi::c_void, optionsbuffersize: u32, initialdirectory: &::windows::core::PCWSTR, environment: &::windows::core::PCWSTR) -> ::windows::core::Result<()>;
+    fn CreateProcessAndAttach2(&self, server: u64, commandline: &::windows::core::PSTR, optionsbuffer: *mut ::core::ffi::c_void, optionsbuffersize: u32, initialdirectory: &::windows::core::PCSTR, environment: &::windows::core::PCSTR, processid: u32, attachflags: u32) -> ::windows::core::Result<()>;
+    fn CreateProcessAndAttach2Wide(&self, server: u64, commandline: &::windows::core::PWSTR, optionsbuffer: *mut ::core::ffi::c_void, optionsbuffersize: u32, initialdirectory: &::windows::core::PCWSTR, environment: &::windows::core::PCWSTR, processid: u32, attachflags: u32) -> ::windows::core::Result<()>;
     fn PushOutputLinePrefix(&self, newprefix: &::windows::core::PCSTR) -> ::windows::core::Result<u64>;
     fn PushOutputLinePrefixWide(&self, newprefix: &::windows::core::PCWSTR) -> ::windows::core::Result<u64>;
     fn PopOutputLinePrefix(&self, handle: u64) -> ::windows::core::Result<()>;
@@ -8393,7 +8393,7 @@ pub trait IDebugClient7_Impl: Sized {
     fn GetQuitLockStringWide(&self, buffer: ::windows::core::PWSTR, buffersize: u32, stringsize: *mut u32) -> ::windows::core::Result<()>;
     fn SetQuitLockStringWide(&self, string: &::windows::core::PCWSTR) -> ::windows::core::Result<()>;
     fn SetEventContextCallbacks(&self, callbacks: &::core::option::Option<IDebugEventContextCallbacks>) -> ::windows::core::Result<()>;
-    fn SetClientContext(&self, context: *const ::core::ffi::c_void, contextsize: u32) -> ::windows::core::Result<()>;
+    fn SetClientContext(&self, context: *mut ::core::ffi::c_void, contextsize: u32) -> ::windows::core::Result<()>;
 }
 impl ::windows::core::RuntimeName for IDebugClient7 {}
 impl IDebugClient7_Vtbl {
@@ -8413,7 +8413,7 @@ impl IDebugClient7_Vtbl {
             let this = (*this).get_impl();
             this.SetKernelConnectionOptions(::core::mem::transmute(&options)).into()
         }
-        unsafe extern "system" fn StartProcessServer<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient7_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, flags: u32, options: ::windows::core::PCSTR, reserved: *const ::core::ffi::c_void) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn StartProcessServer<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient7_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, flags: u32, options: ::windows::core::PCSTR, reserved: *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.StartProcessServer(::core::mem::transmute_copy(&flags), ::core::mem::transmute(&options), ::core::mem::transmute_copy(&reserved)).into()
@@ -8460,12 +8460,12 @@ impl IDebugClient7_Vtbl {
             let this = (*this).get_impl();
             this.AttachProcess(::core::mem::transmute_copy(&server), ::core::mem::transmute_copy(&processid), ::core::mem::transmute_copy(&attachflags)).into()
         }
-        unsafe extern "system" fn CreateProcessA<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient7_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, server: u64, commandline: ::windows::core::PCSTR, createflags: u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn CreateProcessA<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient7_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, server: u64, commandline: ::windows::core::PSTR, createflags: u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.CreateProcessA(::core::mem::transmute_copy(&server), ::core::mem::transmute(&commandline), ::core::mem::transmute_copy(&createflags)).into()
         }
-        unsafe extern "system" fn CreateProcessAndAttach<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient7_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, server: u64, commandline: ::windows::core::PCSTR, createflags: u32, processid: u32, attachflags: u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn CreateProcessAndAttach<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient7_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, server: u64, commandline: ::windows::core::PSTR, createflags: u32, processid: u32, attachflags: u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.CreateProcessAndAttach(::core::mem::transmute_copy(&server), ::core::mem::transmute(&commandline), ::core::mem::transmute_copy(&createflags), ::core::mem::transmute_copy(&processid), ::core::mem::transmute_copy(&attachflags)).into()
@@ -8745,12 +8745,12 @@ impl IDebugClient7_Vtbl {
             let this = (*this).get_impl();
             this.GetRunningProcessDescriptionWide(::core::mem::transmute_copy(&server), ::core::mem::transmute_copy(&systemid), ::core::mem::transmute_copy(&flags), ::core::mem::transmute_copy(&exename), ::core::mem::transmute_copy(&exenamesize), ::core::mem::transmute_copy(&actualexenamesize), ::core::mem::transmute_copy(&description), ::core::mem::transmute_copy(&descriptionsize), ::core::mem::transmute_copy(&actualdescriptionsize)).into()
         }
-        unsafe extern "system" fn CreateProcessWide<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient7_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, server: u64, commandline: ::windows::core::PCWSTR, createflags: u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn CreateProcessWide<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient7_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, server: u64, commandline: ::windows::core::PWSTR, createflags: u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.CreateProcessWide(::core::mem::transmute_copy(&server), ::core::mem::transmute(&commandline), ::core::mem::transmute_copy(&createflags)).into()
         }
-        unsafe extern "system" fn CreateProcessAndAttachWide<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient7_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, server: u64, commandline: ::windows::core::PCWSTR, createflags: u32, processid: u32, attachflags: u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn CreateProcessAndAttachWide<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient7_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, server: u64, commandline: ::windows::core::PWSTR, createflags: u32, processid: u32, attachflags: u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.CreateProcessAndAttachWide(::core::mem::transmute_copy(&server), ::core::mem::transmute(&commandline), ::core::mem::transmute_copy(&createflags), ::core::mem::transmute_copy(&processid), ::core::mem::transmute_copy(&attachflags)).into()
@@ -8806,7 +8806,7 @@ impl IDebugClient7_Vtbl {
             let this = (*this).get_impl();
             this.SetKernelConnectionOptionsWide(::core::mem::transmute(&options)).into()
         }
-        unsafe extern "system" fn StartProcessServerWide<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient7_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, flags: u32, options: ::windows::core::PCWSTR, reserved: *const ::core::ffi::c_void) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn StartProcessServerWide<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient7_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, flags: u32, options: ::windows::core::PCWSTR, reserved: *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.StartProcessServerWide(::core::mem::transmute_copy(&flags), ::core::mem::transmute(&options), ::core::mem::transmute_copy(&reserved)).into()
@@ -8884,22 +8884,22 @@ impl IDebugClient7_Vtbl {
             let this = (*this).get_impl();
             this.SetEventCallbacksWide(::core::mem::transmute(&callbacks)).into()
         }
-        unsafe extern "system" fn CreateProcess2<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient7_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, server: u64, commandline: ::windows::core::PCSTR, optionsbuffer: *const ::core::ffi::c_void, optionsbuffersize: u32, initialdirectory: ::windows::core::PCSTR, environment: ::windows::core::PCSTR) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn CreateProcess2<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient7_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, server: u64, commandline: ::windows::core::PSTR, optionsbuffer: *mut ::core::ffi::c_void, optionsbuffersize: u32, initialdirectory: ::windows::core::PCSTR, environment: ::windows::core::PCSTR) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.CreateProcess2(::core::mem::transmute_copy(&server), ::core::mem::transmute(&commandline), ::core::mem::transmute_copy(&optionsbuffer), ::core::mem::transmute_copy(&optionsbuffersize), ::core::mem::transmute(&initialdirectory), ::core::mem::transmute(&environment)).into()
         }
-        unsafe extern "system" fn CreateProcess2Wide<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient7_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, server: u64, commandline: ::windows::core::PCWSTR, optionsbuffer: *const ::core::ffi::c_void, optionsbuffersize: u32, initialdirectory: ::windows::core::PCWSTR, environment: ::windows::core::PCWSTR) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn CreateProcess2Wide<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient7_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, server: u64, commandline: ::windows::core::PWSTR, optionsbuffer: *mut ::core::ffi::c_void, optionsbuffersize: u32, initialdirectory: ::windows::core::PCWSTR, environment: ::windows::core::PCWSTR) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.CreateProcess2Wide(::core::mem::transmute_copy(&server), ::core::mem::transmute(&commandline), ::core::mem::transmute_copy(&optionsbuffer), ::core::mem::transmute_copy(&optionsbuffersize), ::core::mem::transmute(&initialdirectory), ::core::mem::transmute(&environment)).into()
         }
-        unsafe extern "system" fn CreateProcessAndAttach2<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient7_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, server: u64, commandline: ::windows::core::PCSTR, optionsbuffer: *const ::core::ffi::c_void, optionsbuffersize: u32, initialdirectory: ::windows::core::PCSTR, environment: ::windows::core::PCSTR, processid: u32, attachflags: u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn CreateProcessAndAttach2<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient7_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, server: u64, commandline: ::windows::core::PSTR, optionsbuffer: *mut ::core::ffi::c_void, optionsbuffersize: u32, initialdirectory: ::windows::core::PCSTR, environment: ::windows::core::PCSTR, processid: u32, attachflags: u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.CreateProcessAndAttach2(::core::mem::transmute_copy(&server), ::core::mem::transmute(&commandline), ::core::mem::transmute_copy(&optionsbuffer), ::core::mem::transmute_copy(&optionsbuffersize), ::core::mem::transmute(&initialdirectory), ::core::mem::transmute(&environment), ::core::mem::transmute_copy(&processid), ::core::mem::transmute_copy(&attachflags)).into()
         }
-        unsafe extern "system" fn CreateProcessAndAttach2Wide<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient7_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, server: u64, commandline: ::windows::core::PCWSTR, optionsbuffer: *const ::core::ffi::c_void, optionsbuffersize: u32, initialdirectory: ::windows::core::PCWSTR, environment: ::windows::core::PCWSTR, processid: u32, attachflags: u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn CreateProcessAndAttach2Wide<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient7_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, server: u64, commandline: ::windows::core::PWSTR, optionsbuffer: *mut ::core::ffi::c_void, optionsbuffersize: u32, initialdirectory: ::windows::core::PCWSTR, environment: ::windows::core::PCWSTR, processid: u32, attachflags: u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.CreateProcessAndAttach2Wide(::core::mem::transmute_copy(&server), ::core::mem::transmute(&commandline), ::core::mem::transmute_copy(&optionsbuffer), ::core::mem::transmute_copy(&optionsbuffersize), ::core::mem::transmute(&initialdirectory), ::core::mem::transmute(&environment), ::core::mem::transmute_copy(&processid), ::core::mem::transmute_copy(&attachflags)).into()
@@ -8989,7 +8989,7 @@ impl IDebugClient7_Vtbl {
             let this = (*this).get_impl();
             this.SetEventContextCallbacks(::core::mem::transmute(&callbacks)).into()
         }
-        unsafe extern "system" fn SetClientContext<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient7_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, context: *const ::core::ffi::c_void, contextsize: u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn SetClientContext<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient7_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, context: *mut ::core::ffi::c_void, contextsize: u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.SetClientContext(::core::mem::transmute_copy(&context), ::core::mem::transmute_copy(&contextsize)).into()
@@ -9100,15 +9100,15 @@ pub trait IDebugClient8_Impl: Sized {
     fn AttachKernel(&self, flags: u32, connectoptions: &::windows::core::PCSTR) -> ::windows::core::Result<()>;
     fn GetKernelConnectionOptions(&self, buffer: ::windows::core::PSTR, buffersize: u32, optionssize: *mut u32) -> ::windows::core::Result<()>;
     fn SetKernelConnectionOptions(&self, options: &::windows::core::PCSTR) -> ::windows::core::Result<()>;
-    fn StartProcessServer(&self, flags: u32, options: &::windows::core::PCSTR, reserved: *const ::core::ffi::c_void) -> ::windows::core::Result<()>;
+    fn StartProcessServer(&self, flags: u32, options: &::windows::core::PCSTR, reserved: *mut ::core::ffi::c_void) -> ::windows::core::Result<()>;
     fn ConnectProcessServer(&self, remoteoptions: &::windows::core::PCSTR) -> ::windows::core::Result<u64>;
     fn DisconnectProcessServer(&self, server: u64) -> ::windows::core::Result<()>;
     fn GetRunningProcessSystemIds(&self, server: u64, ids: *mut u32, count: u32, actualcount: *mut u32) -> ::windows::core::Result<()>;
     fn GetRunningProcessSystemIdByExecutableName(&self, server: u64, exename: &::windows::core::PCSTR, flags: u32) -> ::windows::core::Result<u32>;
     fn GetRunningProcessDescription(&self, server: u64, systemid: u32, flags: u32, exename: ::windows::core::PSTR, exenamesize: u32, actualexenamesize: *mut u32, description: ::windows::core::PSTR, descriptionsize: u32, actualdescriptionsize: *mut u32) -> ::windows::core::Result<()>;
     fn AttachProcess(&self, server: u64, processid: u32, attachflags: u32) -> ::windows::core::Result<()>;
-    fn CreateProcessA(&self, server: u64, commandline: &::windows::core::PCSTR, createflags: u32) -> ::windows::core::Result<()>;
-    fn CreateProcessAndAttach(&self, server: u64, commandline: &::windows::core::PCSTR, createflags: u32, processid: u32, attachflags: u32) -> ::windows::core::Result<()>;
+    fn CreateProcessA(&self, server: u64, commandline: &::windows::core::PSTR, createflags: u32) -> ::windows::core::Result<()>;
+    fn CreateProcessAndAttach(&self, server: u64, commandline: &::windows::core::PSTR, createflags: u32, processid: u32, attachflags: u32) -> ::windows::core::Result<()>;
     fn GetProcessOptions(&self) -> ::windows::core::Result<u32>;
     fn AddProcessOptions(&self, options: u32) -> ::windows::core::Result<()>;
     fn RemoveProcessOptions(&self, options: u32) -> ::windows::core::Result<()>;
@@ -9152,8 +9152,8 @@ pub trait IDebugClient8_Impl: Sized {
     fn AbandonCurrentProcess(&self) -> ::windows::core::Result<()>;
     fn GetRunningProcessSystemIdByExecutableNameWide(&self, server: u64, exename: &::windows::core::PCWSTR, flags: u32) -> ::windows::core::Result<u32>;
     fn GetRunningProcessDescriptionWide(&self, server: u64, systemid: u32, flags: u32, exename: ::windows::core::PWSTR, exenamesize: u32, actualexenamesize: *mut u32, description: ::windows::core::PWSTR, descriptionsize: u32, actualdescriptionsize: *mut u32) -> ::windows::core::Result<()>;
-    fn CreateProcessWide(&self, server: u64, commandline: &::windows::core::PCWSTR, createflags: u32) -> ::windows::core::Result<()>;
-    fn CreateProcessAndAttachWide(&self, server: u64, commandline: &::windows::core::PCWSTR, createflags: u32, processid: u32, attachflags: u32) -> ::windows::core::Result<()>;
+    fn CreateProcessWide(&self, server: u64, commandline: &::windows::core::PWSTR, createflags: u32) -> ::windows::core::Result<()>;
+    fn CreateProcessAndAttachWide(&self, server: u64, commandline: &::windows::core::PWSTR, createflags: u32, processid: u32, attachflags: u32) -> ::windows::core::Result<()>;
     fn OpenDumpFileWide(&self, filename: &::windows::core::PCWSTR, filehandle: u64) -> ::windows::core::Result<()>;
     fn WriteDumpFileWide(&self, filename: &::windows::core::PCWSTR, filehandle: u64, qualifier: u32, formatflags: u32, comment: &::windows::core::PCWSTR) -> ::windows::core::Result<()>;
     fn AddDumpInformationFileWide(&self, filename: &::windows::core::PCWSTR, filehandle: u64, r#type: u32) -> ::windows::core::Result<()>;
@@ -9163,7 +9163,7 @@ pub trait IDebugClient8_Impl: Sized {
     fn AttachKernelWide(&self, flags: u32, connectoptions: &::windows::core::PCWSTR) -> ::windows::core::Result<()>;
     fn GetKernelConnectionOptionsWide(&self, buffer: ::windows::core::PWSTR, buffersize: u32, optionssize: *mut u32) -> ::windows::core::Result<()>;
     fn SetKernelConnectionOptionsWide(&self, options: &::windows::core::PCWSTR) -> ::windows::core::Result<()>;
-    fn StartProcessServerWide(&self, flags: u32, options: &::windows::core::PCWSTR, reserved: *const ::core::ffi::c_void) -> ::windows::core::Result<()>;
+    fn StartProcessServerWide(&self, flags: u32, options: &::windows::core::PCWSTR, reserved: *mut ::core::ffi::c_void) -> ::windows::core::Result<()>;
     fn ConnectProcessServerWide(&self, remoteoptions: &::windows::core::PCWSTR) -> ::windows::core::Result<u64>;
     fn StartServerWide(&self, options: &::windows::core::PCWSTR) -> ::windows::core::Result<()>;
     fn OutputServersWide(&self, outputcontrol: u32, machine: &::windows::core::PCWSTR, flags: u32) -> ::windows::core::Result<()>;
@@ -9175,10 +9175,10 @@ pub trait IDebugClient8_Impl: Sized {
     fn OutputIdentityWide(&self, outputcontrol: u32, flags: u32, format: &::windows::core::PCWSTR) -> ::windows::core::Result<()>;
     fn GetEventCallbacksWide(&self) -> ::windows::core::Result<IDebugEventCallbacksWide>;
     fn SetEventCallbacksWide(&self, callbacks: &::core::option::Option<IDebugEventCallbacksWide>) -> ::windows::core::Result<()>;
-    fn CreateProcess2(&self, server: u64, commandline: &::windows::core::PCSTR, optionsbuffer: *const ::core::ffi::c_void, optionsbuffersize: u32, initialdirectory: &::windows::core::PCSTR, environment: &::windows::core::PCSTR) -> ::windows::core::Result<()>;
-    fn CreateProcess2Wide(&self, server: u64, commandline: &::windows::core::PCWSTR, optionsbuffer: *const ::core::ffi::c_void, optionsbuffersize: u32, initialdirectory: &::windows::core::PCWSTR, environment: &::windows::core::PCWSTR) -> ::windows::core::Result<()>;
-    fn CreateProcessAndAttach2(&self, server: u64, commandline: &::windows::core::PCSTR, optionsbuffer: *const ::core::ffi::c_void, optionsbuffersize: u32, initialdirectory: &::windows::core::PCSTR, environment: &::windows::core::PCSTR, processid: u32, attachflags: u32) -> ::windows::core::Result<()>;
-    fn CreateProcessAndAttach2Wide(&self, server: u64, commandline: &::windows::core::PCWSTR, optionsbuffer: *const ::core::ffi::c_void, optionsbuffersize: u32, initialdirectory: &::windows::core::PCWSTR, environment: &::windows::core::PCWSTR, processid: u32, attachflags: u32) -> ::windows::core::Result<()>;
+    fn CreateProcess2(&self, server: u64, commandline: &::windows::core::PSTR, optionsbuffer: *mut ::core::ffi::c_void, optionsbuffersize: u32, initialdirectory: &::windows::core::PCSTR, environment: &::windows::core::PCSTR) -> ::windows::core::Result<()>;
+    fn CreateProcess2Wide(&self, server: u64, commandline: &::windows::core::PWSTR, optionsbuffer: *mut ::core::ffi::c_void, optionsbuffersize: u32, initialdirectory: &::windows::core::PCWSTR, environment: &::windows::core::PCWSTR) -> ::windows::core::Result<()>;
+    fn CreateProcessAndAttach2(&self, server: u64, commandline: &::windows::core::PSTR, optionsbuffer: *mut ::core::ffi::c_void, optionsbuffersize: u32, initialdirectory: &::windows::core::PCSTR, environment: &::windows::core::PCSTR, processid: u32, attachflags: u32) -> ::windows::core::Result<()>;
+    fn CreateProcessAndAttach2Wide(&self, server: u64, commandline: &::windows::core::PWSTR, optionsbuffer: *mut ::core::ffi::c_void, optionsbuffersize: u32, initialdirectory: &::windows::core::PCWSTR, environment: &::windows::core::PCWSTR, processid: u32, attachflags: u32) -> ::windows::core::Result<()>;
     fn PushOutputLinePrefix(&self, newprefix: &::windows::core::PCSTR) -> ::windows::core::Result<u64>;
     fn PushOutputLinePrefixWide(&self, newprefix: &::windows::core::PCWSTR) -> ::windows::core::Result<u64>;
     fn PopOutputLinePrefix(&self, handle: u64) -> ::windows::core::Result<()>;
@@ -9190,7 +9190,7 @@ pub trait IDebugClient8_Impl: Sized {
     fn GetQuitLockStringWide(&self, buffer: ::windows::core::PWSTR, buffersize: u32, stringsize: *mut u32) -> ::windows::core::Result<()>;
     fn SetQuitLockStringWide(&self, string: &::windows::core::PCWSTR) -> ::windows::core::Result<()>;
     fn SetEventContextCallbacks(&self, callbacks: &::core::option::Option<IDebugEventContextCallbacks>) -> ::windows::core::Result<()>;
-    fn SetClientContext(&self, context: *const ::core::ffi::c_void, contextsize: u32) -> ::windows::core::Result<()>;
+    fn SetClientContext(&self, context: *mut ::core::ffi::c_void, contextsize: u32) -> ::windows::core::Result<()>;
     fn OpenDumpFileWide2(&self, filename: &::windows::core::PCWSTR, filehandle: u64, alternatearch: u32) -> ::windows::core::Result<()>;
 }
 impl ::windows::core::RuntimeName for IDebugClient8 {}
@@ -9211,7 +9211,7 @@ impl IDebugClient8_Vtbl {
             let this = (*this).get_impl();
             this.SetKernelConnectionOptions(::core::mem::transmute(&options)).into()
         }
-        unsafe extern "system" fn StartProcessServer<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient8_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, flags: u32, options: ::windows::core::PCSTR, reserved: *const ::core::ffi::c_void) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn StartProcessServer<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient8_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, flags: u32, options: ::windows::core::PCSTR, reserved: *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.StartProcessServer(::core::mem::transmute_copy(&flags), ::core::mem::transmute(&options), ::core::mem::transmute_copy(&reserved)).into()
@@ -9258,12 +9258,12 @@ impl IDebugClient8_Vtbl {
             let this = (*this).get_impl();
             this.AttachProcess(::core::mem::transmute_copy(&server), ::core::mem::transmute_copy(&processid), ::core::mem::transmute_copy(&attachflags)).into()
         }
-        unsafe extern "system" fn CreateProcessA<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient8_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, server: u64, commandline: ::windows::core::PCSTR, createflags: u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn CreateProcessA<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient8_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, server: u64, commandline: ::windows::core::PSTR, createflags: u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.CreateProcessA(::core::mem::transmute_copy(&server), ::core::mem::transmute(&commandline), ::core::mem::transmute_copy(&createflags)).into()
         }
-        unsafe extern "system" fn CreateProcessAndAttach<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient8_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, server: u64, commandline: ::windows::core::PCSTR, createflags: u32, processid: u32, attachflags: u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn CreateProcessAndAttach<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient8_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, server: u64, commandline: ::windows::core::PSTR, createflags: u32, processid: u32, attachflags: u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.CreateProcessAndAttach(::core::mem::transmute_copy(&server), ::core::mem::transmute(&commandline), ::core::mem::transmute_copy(&createflags), ::core::mem::transmute_copy(&processid), ::core::mem::transmute_copy(&attachflags)).into()
@@ -9543,12 +9543,12 @@ impl IDebugClient8_Vtbl {
             let this = (*this).get_impl();
             this.GetRunningProcessDescriptionWide(::core::mem::transmute_copy(&server), ::core::mem::transmute_copy(&systemid), ::core::mem::transmute_copy(&flags), ::core::mem::transmute_copy(&exename), ::core::mem::transmute_copy(&exenamesize), ::core::mem::transmute_copy(&actualexenamesize), ::core::mem::transmute_copy(&description), ::core::mem::transmute_copy(&descriptionsize), ::core::mem::transmute_copy(&actualdescriptionsize)).into()
         }
-        unsafe extern "system" fn CreateProcessWide<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient8_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, server: u64, commandline: ::windows::core::PCWSTR, createflags: u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn CreateProcessWide<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient8_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, server: u64, commandline: ::windows::core::PWSTR, createflags: u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.CreateProcessWide(::core::mem::transmute_copy(&server), ::core::mem::transmute(&commandline), ::core::mem::transmute_copy(&createflags)).into()
         }
-        unsafe extern "system" fn CreateProcessAndAttachWide<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient8_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, server: u64, commandline: ::windows::core::PCWSTR, createflags: u32, processid: u32, attachflags: u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn CreateProcessAndAttachWide<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient8_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, server: u64, commandline: ::windows::core::PWSTR, createflags: u32, processid: u32, attachflags: u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.CreateProcessAndAttachWide(::core::mem::transmute_copy(&server), ::core::mem::transmute(&commandline), ::core::mem::transmute_copy(&createflags), ::core::mem::transmute_copy(&processid), ::core::mem::transmute_copy(&attachflags)).into()
@@ -9604,7 +9604,7 @@ impl IDebugClient8_Vtbl {
             let this = (*this).get_impl();
             this.SetKernelConnectionOptionsWide(::core::mem::transmute(&options)).into()
         }
-        unsafe extern "system" fn StartProcessServerWide<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient8_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, flags: u32, options: ::windows::core::PCWSTR, reserved: *const ::core::ffi::c_void) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn StartProcessServerWide<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient8_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, flags: u32, options: ::windows::core::PCWSTR, reserved: *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.StartProcessServerWide(::core::mem::transmute_copy(&flags), ::core::mem::transmute(&options), ::core::mem::transmute_copy(&reserved)).into()
@@ -9682,22 +9682,22 @@ impl IDebugClient8_Vtbl {
             let this = (*this).get_impl();
             this.SetEventCallbacksWide(::core::mem::transmute(&callbacks)).into()
         }
-        unsafe extern "system" fn CreateProcess2<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient8_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, server: u64, commandline: ::windows::core::PCSTR, optionsbuffer: *const ::core::ffi::c_void, optionsbuffersize: u32, initialdirectory: ::windows::core::PCSTR, environment: ::windows::core::PCSTR) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn CreateProcess2<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient8_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, server: u64, commandline: ::windows::core::PSTR, optionsbuffer: *mut ::core::ffi::c_void, optionsbuffersize: u32, initialdirectory: ::windows::core::PCSTR, environment: ::windows::core::PCSTR) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.CreateProcess2(::core::mem::transmute_copy(&server), ::core::mem::transmute(&commandline), ::core::mem::transmute_copy(&optionsbuffer), ::core::mem::transmute_copy(&optionsbuffersize), ::core::mem::transmute(&initialdirectory), ::core::mem::transmute(&environment)).into()
         }
-        unsafe extern "system" fn CreateProcess2Wide<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient8_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, server: u64, commandline: ::windows::core::PCWSTR, optionsbuffer: *const ::core::ffi::c_void, optionsbuffersize: u32, initialdirectory: ::windows::core::PCWSTR, environment: ::windows::core::PCWSTR) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn CreateProcess2Wide<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient8_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, server: u64, commandline: ::windows::core::PWSTR, optionsbuffer: *mut ::core::ffi::c_void, optionsbuffersize: u32, initialdirectory: ::windows::core::PCWSTR, environment: ::windows::core::PCWSTR) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.CreateProcess2Wide(::core::mem::transmute_copy(&server), ::core::mem::transmute(&commandline), ::core::mem::transmute_copy(&optionsbuffer), ::core::mem::transmute_copy(&optionsbuffersize), ::core::mem::transmute(&initialdirectory), ::core::mem::transmute(&environment)).into()
         }
-        unsafe extern "system" fn CreateProcessAndAttach2<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient8_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, server: u64, commandline: ::windows::core::PCSTR, optionsbuffer: *const ::core::ffi::c_void, optionsbuffersize: u32, initialdirectory: ::windows::core::PCSTR, environment: ::windows::core::PCSTR, processid: u32, attachflags: u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn CreateProcessAndAttach2<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient8_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, server: u64, commandline: ::windows::core::PSTR, optionsbuffer: *mut ::core::ffi::c_void, optionsbuffersize: u32, initialdirectory: ::windows::core::PCSTR, environment: ::windows::core::PCSTR, processid: u32, attachflags: u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.CreateProcessAndAttach2(::core::mem::transmute_copy(&server), ::core::mem::transmute(&commandline), ::core::mem::transmute_copy(&optionsbuffer), ::core::mem::transmute_copy(&optionsbuffersize), ::core::mem::transmute(&initialdirectory), ::core::mem::transmute(&environment), ::core::mem::transmute_copy(&processid), ::core::mem::transmute_copy(&attachflags)).into()
         }
-        unsafe extern "system" fn CreateProcessAndAttach2Wide<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient8_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, server: u64, commandline: ::windows::core::PCWSTR, optionsbuffer: *const ::core::ffi::c_void, optionsbuffersize: u32, initialdirectory: ::windows::core::PCWSTR, environment: ::windows::core::PCWSTR, processid: u32, attachflags: u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn CreateProcessAndAttach2Wide<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient8_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, server: u64, commandline: ::windows::core::PWSTR, optionsbuffer: *mut ::core::ffi::c_void, optionsbuffersize: u32, initialdirectory: ::windows::core::PCWSTR, environment: ::windows::core::PCWSTR, processid: u32, attachflags: u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.CreateProcessAndAttach2Wide(::core::mem::transmute_copy(&server), ::core::mem::transmute(&commandline), ::core::mem::transmute_copy(&optionsbuffer), ::core::mem::transmute_copy(&optionsbuffersize), ::core::mem::transmute(&initialdirectory), ::core::mem::transmute(&environment), ::core::mem::transmute_copy(&processid), ::core::mem::transmute_copy(&attachflags)).into()
@@ -9787,7 +9787,7 @@ impl IDebugClient8_Vtbl {
             let this = (*this).get_impl();
             this.SetEventContextCallbacks(::core::mem::transmute(&callbacks)).into()
         }
-        unsafe extern "system" fn SetClientContext<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient8_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, context: *const ::core::ffi::c_void, contextsize: u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn SetClientContext<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugClient8_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, context: *mut ::core::ffi::c_void, contextsize: u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.SetClientContext(::core::mem::transmute_copy(&context), ::core::mem::transmute_copy(&contextsize)).into()
@@ -9947,11 +9947,11 @@ pub trait IDebugControl_Impl: Sized {
     fn Input(&self, buffer: ::windows::core::PSTR, buffersize: u32, inputsize: *mut u32) -> ::windows::core::Result<()>;
     fn ReturnInput(&self, buffer: &::windows::core::PCSTR) -> ::windows::core::Result<()>;
     fn Output(&self, mask: u32, format: &::windows::core::PCSTR) -> ::windows::core::Result<()>;
-    fn OutputVaList(&self, mask: u32, format: &::windows::core::PCSTR, args: *const i8) -> ::windows::core::Result<()>;
+    fn OutputVaList(&self, mask: u32, format: &::windows::core::PCSTR, args: *mut i8) -> ::windows::core::Result<()>;
     fn ControlledOutput(&self, outputcontrol: u32, mask: u32, format: &::windows::core::PCSTR) -> ::windows::core::Result<()>;
-    fn ControlledOutputVaList(&self, outputcontrol: u32, mask: u32, format: &::windows::core::PCSTR, args: *const i8) -> ::windows::core::Result<()>;
+    fn ControlledOutputVaList(&self, outputcontrol: u32, mask: u32, format: &::windows::core::PCSTR, args: *mut i8) -> ::windows::core::Result<()>;
     fn OutputPrompt(&self, outputcontrol: u32, format: &::windows::core::PCSTR) -> ::windows::core::Result<()>;
-    fn OutputPromptVaList(&self, outputcontrol: u32, format: &::windows::core::PCSTR, args: *const i8) -> ::windows::core::Result<()>;
+    fn OutputPromptVaList(&self, outputcontrol: u32, format: &::windows::core::PCSTR, args: *mut i8) -> ::windows::core::Result<()>;
     fn GetPromptText(&self, buffer: ::windows::core::PSTR, buffersize: u32, textsize: *mut u32) -> ::windows::core::Result<()>;
     fn OutputCurrentState(&self, outputcontrol: u32, flags: u32) -> ::windows::core::Result<()>;
     fn OutputVersionInformation(&self, outputcontrol: u32) -> ::windows::core::Result<()>;
@@ -9965,7 +9965,7 @@ pub trait IDebugControl_Impl: Sized {
     fn GetNearInstruction(&self, offset: u64, delta: i32) -> ::windows::core::Result<u64>;
     fn GetStackTrace(&self, frameoffset: u64, stackoffset: u64, instructionoffset: u64, frames: *mut DEBUG_STACK_FRAME, framessize: u32, framesfilled: *mut u32) -> ::windows::core::Result<()>;
     fn GetReturnOffset(&self) -> ::windows::core::Result<u64>;
-    fn OutputStackTrace(&self, outputcontrol: u32, frames: *const DEBUG_STACK_FRAME, framessize: u32, flags: u32) -> ::windows::core::Result<()>;
+    fn OutputStackTrace(&self, outputcontrol: u32, frames: *mut DEBUG_STACK_FRAME, framessize: u32, flags: u32) -> ::windows::core::Result<()>;
     fn GetDebuggeeType(&self, class: *mut u32, qualifier: *mut u32) -> ::windows::core::Result<()>;
     fn GetActualProcessorType(&self) -> ::windows::core::Result<u32>;
     fn GetExecutingProcessorType(&self) -> ::windows::core::Result<u32>;
@@ -9996,14 +9996,14 @@ pub trait IDebugControl_Impl: Sized {
     fn GetRadix(&self) -> ::windows::core::Result<u32>;
     fn SetRadix(&self, radix: u32) -> ::windows::core::Result<()>;
     fn Evaluate(&self, expression: &::windows::core::PCSTR, desiredtype: u32, value: *mut DEBUG_VALUE, remainderindex: *mut u32) -> ::windows::core::Result<()>;
-    fn CoerceValue(&self, r#in: *const DEBUG_VALUE, outtype: u32) -> ::windows::core::Result<DEBUG_VALUE>;
-    fn CoerceValues(&self, count: u32, r#in: *const DEBUG_VALUE, outtypes: *const u32) -> ::windows::core::Result<DEBUG_VALUE>;
+    fn CoerceValue(&self, r#in: *mut DEBUG_VALUE, outtype: u32) -> ::windows::core::Result<DEBUG_VALUE>;
+    fn CoerceValues(&self, count: u32, r#in: *mut DEBUG_VALUE, outtypes: *mut u32) -> ::windows::core::Result<DEBUG_VALUE>;
     fn Execute(&self, outputcontrol: u32, command: &::windows::core::PCSTR, flags: u32) -> ::windows::core::Result<()>;
     fn ExecuteCommandFile(&self, outputcontrol: u32, commandfile: &::windows::core::PCSTR, flags: u32) -> ::windows::core::Result<()>;
     fn GetNumberBreakpoints(&self) -> ::windows::core::Result<u32>;
     fn GetBreakpointByIndex(&self, index: u32) -> ::windows::core::Result<IDebugBreakpoint>;
     fn GetBreakpointById(&self, id: u32) -> ::windows::core::Result<IDebugBreakpoint>;
-    fn GetBreakpointParameters(&self, count: u32, ids: *const u32, start: u32) -> ::windows::core::Result<DEBUG_BREAKPOINT_PARAMETERS>;
+    fn GetBreakpointParameters(&self, count: u32, ids: *mut u32, start: u32) -> ::windows::core::Result<DEBUG_BREAKPOINT_PARAMETERS>;
     fn AddBreakpoint(&self, r#type: u32, desiredid: u32) -> ::windows::core::Result<IDebugBreakpoint>;
     fn RemoveBreakpoint(&self, bp: &::core::option::Option<IDebugBreakpoint>) -> ::windows::core::Result<()>;
     fn AddExtension(&self, path: &::windows::core::PCSTR, flags: u32) -> ::windows::core::Result<u64>;
@@ -10018,11 +10018,11 @@ pub trait IDebugControl_Impl: Sized {
     fn GetEventFilterCommand(&self, index: u32, buffer: ::windows::core::PSTR, buffersize: u32, commandsize: *mut u32) -> ::windows::core::Result<()>;
     fn SetEventFilterCommand(&self, index: u32, command: &::windows::core::PCSTR) -> ::windows::core::Result<()>;
     fn GetSpecificFilterParameters(&self, start: u32, count: u32, params: *mut DEBUG_SPECIFIC_FILTER_PARAMETERS) -> ::windows::core::Result<()>;
-    fn SetSpecificFilterParameters(&self, start: u32, count: u32, params: *const DEBUG_SPECIFIC_FILTER_PARAMETERS) -> ::windows::core::Result<()>;
+    fn SetSpecificFilterParameters(&self, start: u32, count: u32, params: *mut DEBUG_SPECIFIC_FILTER_PARAMETERS) -> ::windows::core::Result<()>;
     fn GetSpecificFilterArgument(&self, index: u32, buffer: ::windows::core::PSTR, buffersize: u32, argumentsize: *mut u32) -> ::windows::core::Result<()>;
     fn SetSpecificFilterArgument(&self, index: u32, argument: &::windows::core::PCSTR) -> ::windows::core::Result<()>;
-    fn GetExceptionFilterParameters(&self, count: u32, codes: *const u32, start: u32) -> ::windows::core::Result<DEBUG_EXCEPTION_FILTER_PARAMETERS>;
-    fn SetExceptionFilterParameters(&self, count: u32, params: *const DEBUG_EXCEPTION_FILTER_PARAMETERS) -> ::windows::core::Result<()>;
+    fn GetExceptionFilterParameters(&self, count: u32, codes: *mut u32, start: u32) -> ::windows::core::Result<DEBUG_EXCEPTION_FILTER_PARAMETERS>;
+    fn SetExceptionFilterParameters(&self, count: u32, params: *mut DEBUG_EXCEPTION_FILTER_PARAMETERS) -> ::windows::core::Result<()>;
     fn GetExceptionFilterSecondCommand(&self, index: u32, buffer: ::windows::core::PSTR, buffersize: u32, commandsize: *mut u32) -> ::windows::core::Result<()>;
     fn SetExceptionFilterSecondCommand(&self, index: u32, command: &::windows::core::PCSTR) -> ::windows::core::Result<()>;
     fn WaitForEvent(&self, flags: u32, timeout: u32) -> ::windows::core::Result<()>;
@@ -10105,7 +10105,7 @@ impl IDebugControl_Vtbl {
             let this = (*this).get_impl();
             this.Output(::core::mem::transmute_copy(&mask), ::core::mem::transmute(&format)).into()
         }
-        unsafe extern "system" fn OutputVaList<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, mask: u32, format: ::windows::core::PCSTR, args: *const i8) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn OutputVaList<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, mask: u32, format: ::windows::core::PCSTR, args: *mut i8) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.OutputVaList(::core::mem::transmute_copy(&mask), ::core::mem::transmute(&format), ::core::mem::transmute_copy(&args)).into()
@@ -10115,7 +10115,7 @@ impl IDebugControl_Vtbl {
             let this = (*this).get_impl();
             this.ControlledOutput(::core::mem::transmute_copy(&outputcontrol), ::core::mem::transmute_copy(&mask), ::core::mem::transmute(&format)).into()
         }
-        unsafe extern "system" fn ControlledOutputVaList<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, outputcontrol: u32, mask: u32, format: ::windows::core::PCSTR, args: *const i8) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn ControlledOutputVaList<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, outputcontrol: u32, mask: u32, format: ::windows::core::PCSTR, args: *mut i8) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.ControlledOutputVaList(::core::mem::transmute_copy(&outputcontrol), ::core::mem::transmute_copy(&mask), ::core::mem::transmute(&format), ::core::mem::transmute_copy(&args)).into()
@@ -10125,7 +10125,7 @@ impl IDebugControl_Vtbl {
             let this = (*this).get_impl();
             this.OutputPrompt(::core::mem::transmute_copy(&outputcontrol), ::core::mem::transmute(&format)).into()
         }
-        unsafe extern "system" fn OutputPromptVaList<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, outputcontrol: u32, format: ::windows::core::PCSTR, args: *const i8) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn OutputPromptVaList<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, outputcontrol: u32, format: ::windows::core::PCSTR, args: *mut i8) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.OutputPromptVaList(::core::mem::transmute_copy(&outputcontrol), ::core::mem::transmute(&format), ::core::mem::transmute_copy(&args)).into()
@@ -10231,7 +10231,7 @@ impl IDebugControl_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn OutputStackTrace<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, outputcontrol: u32, frames: *const DEBUG_STACK_FRAME, framessize: u32, flags: u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn OutputStackTrace<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, outputcontrol: u32, frames: *mut DEBUG_STACK_FRAME, framessize: u32, flags: u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.OutputStackTrace(::core::mem::transmute_copy(&outputcontrol), ::core::mem::transmute_copy(&frames), ::core::mem::transmute_copy(&framessize), ::core::mem::transmute_copy(&flags)).into()
@@ -10453,7 +10453,7 @@ impl IDebugControl_Vtbl {
             let this = (*this).get_impl();
             this.Evaluate(::core::mem::transmute(&expression), ::core::mem::transmute_copy(&desiredtype), ::core::mem::transmute_copy(&value), ::core::mem::transmute_copy(&remainderindex)).into()
         }
-        unsafe extern "system" fn CoerceValue<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, r#in: *const DEBUG_VALUE, outtype: u32, out: *mut DEBUG_VALUE) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn CoerceValue<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, r#in: *mut DEBUG_VALUE, outtype: u32, out: *mut DEBUG_VALUE) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.CoerceValue(::core::mem::transmute_copy(&r#in), ::core::mem::transmute_copy(&outtype)) {
@@ -10464,7 +10464,7 @@ impl IDebugControl_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn CoerceValues<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, count: u32, r#in: *const DEBUG_VALUE, outtypes: *const u32, out: *mut DEBUG_VALUE) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn CoerceValues<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, count: u32, r#in: *mut DEBUG_VALUE, outtypes: *mut u32, out: *mut DEBUG_VALUE) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.CoerceValues(::core::mem::transmute_copy(&count), ::core::mem::transmute_copy(&r#in), ::core::mem::transmute_copy(&outtypes)) {
@@ -10518,7 +10518,7 @@ impl IDebugControl_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn GetBreakpointParameters<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, count: u32, ids: *const u32, start: u32, params: *mut DEBUG_BREAKPOINT_PARAMETERS) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn GetBreakpointParameters<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, count: u32, ids: *mut u32, start: u32, params: *mut DEBUG_BREAKPOINT_PARAMETERS) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.GetBreakpointParameters(::core::mem::transmute_copy(&count), ::core::mem::transmute_copy(&ids), ::core::mem::transmute_copy(&start)) {
@@ -10617,7 +10617,7 @@ impl IDebugControl_Vtbl {
             let this = (*this).get_impl();
             this.GetSpecificFilterParameters(::core::mem::transmute_copy(&start), ::core::mem::transmute_copy(&count), ::core::mem::transmute_copy(&params)).into()
         }
-        unsafe extern "system" fn SetSpecificFilterParameters<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, start: u32, count: u32, params: *const DEBUG_SPECIFIC_FILTER_PARAMETERS) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn SetSpecificFilterParameters<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, start: u32, count: u32, params: *mut DEBUG_SPECIFIC_FILTER_PARAMETERS) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.SetSpecificFilterParameters(::core::mem::transmute_copy(&start), ::core::mem::transmute_copy(&count), ::core::mem::transmute_copy(&params)).into()
@@ -10632,7 +10632,7 @@ impl IDebugControl_Vtbl {
             let this = (*this).get_impl();
             this.SetSpecificFilterArgument(::core::mem::transmute_copy(&index), ::core::mem::transmute(&argument)).into()
         }
-        unsafe extern "system" fn GetExceptionFilterParameters<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, count: u32, codes: *const u32, start: u32, params: *mut DEBUG_EXCEPTION_FILTER_PARAMETERS) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn GetExceptionFilterParameters<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, count: u32, codes: *mut u32, start: u32, params: *mut DEBUG_EXCEPTION_FILTER_PARAMETERS) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.GetExceptionFilterParameters(::core::mem::transmute_copy(&count), ::core::mem::transmute_copy(&codes), ::core::mem::transmute_copy(&start)) {
@@ -10643,7 +10643,7 @@ impl IDebugControl_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn SetExceptionFilterParameters<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, count: u32, params: *const DEBUG_EXCEPTION_FILTER_PARAMETERS) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn SetExceptionFilterParameters<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, count: u32, params: *mut DEBUG_EXCEPTION_FILTER_PARAMETERS) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.SetExceptionFilterParameters(::core::mem::transmute_copy(&count), ::core::mem::transmute_copy(&params)).into()
@@ -10782,11 +10782,11 @@ pub trait IDebugControl2_Impl: Sized {
     fn Input(&self, buffer: ::windows::core::PSTR, buffersize: u32, inputsize: *mut u32) -> ::windows::core::Result<()>;
     fn ReturnInput(&self, buffer: &::windows::core::PCSTR) -> ::windows::core::Result<()>;
     fn Output(&self, mask: u32, format: &::windows::core::PCSTR) -> ::windows::core::Result<()>;
-    fn OutputVaList(&self, mask: u32, format: &::windows::core::PCSTR, args: *const i8) -> ::windows::core::Result<()>;
+    fn OutputVaList(&self, mask: u32, format: &::windows::core::PCSTR, args: *mut i8) -> ::windows::core::Result<()>;
     fn ControlledOutput(&self, outputcontrol: u32, mask: u32, format: &::windows::core::PCSTR) -> ::windows::core::Result<()>;
-    fn ControlledOutputVaList(&self, outputcontrol: u32, mask: u32, format: &::windows::core::PCSTR, args: *const i8) -> ::windows::core::Result<()>;
+    fn ControlledOutputVaList(&self, outputcontrol: u32, mask: u32, format: &::windows::core::PCSTR, args: *mut i8) -> ::windows::core::Result<()>;
     fn OutputPrompt(&self, outputcontrol: u32, format: &::windows::core::PCSTR) -> ::windows::core::Result<()>;
-    fn OutputPromptVaList(&self, outputcontrol: u32, format: &::windows::core::PCSTR, args: *const i8) -> ::windows::core::Result<()>;
+    fn OutputPromptVaList(&self, outputcontrol: u32, format: &::windows::core::PCSTR, args: *mut i8) -> ::windows::core::Result<()>;
     fn GetPromptText(&self, buffer: ::windows::core::PSTR, buffersize: u32, textsize: *mut u32) -> ::windows::core::Result<()>;
     fn OutputCurrentState(&self, outputcontrol: u32, flags: u32) -> ::windows::core::Result<()>;
     fn OutputVersionInformation(&self, outputcontrol: u32) -> ::windows::core::Result<()>;
@@ -10800,7 +10800,7 @@ pub trait IDebugControl2_Impl: Sized {
     fn GetNearInstruction(&self, offset: u64, delta: i32) -> ::windows::core::Result<u64>;
     fn GetStackTrace(&self, frameoffset: u64, stackoffset: u64, instructionoffset: u64, frames: *mut DEBUG_STACK_FRAME, framessize: u32, framesfilled: *mut u32) -> ::windows::core::Result<()>;
     fn GetReturnOffset(&self) -> ::windows::core::Result<u64>;
-    fn OutputStackTrace(&self, outputcontrol: u32, frames: *const DEBUG_STACK_FRAME, framessize: u32, flags: u32) -> ::windows::core::Result<()>;
+    fn OutputStackTrace(&self, outputcontrol: u32, frames: *mut DEBUG_STACK_FRAME, framessize: u32, flags: u32) -> ::windows::core::Result<()>;
     fn GetDebuggeeType(&self, class: *mut u32, qualifier: *mut u32) -> ::windows::core::Result<()>;
     fn GetActualProcessorType(&self) -> ::windows::core::Result<u32>;
     fn GetExecutingProcessorType(&self) -> ::windows::core::Result<u32>;
@@ -10831,14 +10831,14 @@ pub trait IDebugControl2_Impl: Sized {
     fn GetRadix(&self) -> ::windows::core::Result<u32>;
     fn SetRadix(&self, radix: u32) -> ::windows::core::Result<()>;
     fn Evaluate(&self, expression: &::windows::core::PCSTR, desiredtype: u32, value: *mut DEBUG_VALUE, remainderindex: *mut u32) -> ::windows::core::Result<()>;
-    fn CoerceValue(&self, r#in: *const DEBUG_VALUE, outtype: u32) -> ::windows::core::Result<DEBUG_VALUE>;
-    fn CoerceValues(&self, count: u32, r#in: *const DEBUG_VALUE, outtypes: *const u32) -> ::windows::core::Result<DEBUG_VALUE>;
+    fn CoerceValue(&self, r#in: *mut DEBUG_VALUE, outtype: u32) -> ::windows::core::Result<DEBUG_VALUE>;
+    fn CoerceValues(&self, count: u32, r#in: *mut DEBUG_VALUE, outtypes: *mut u32) -> ::windows::core::Result<DEBUG_VALUE>;
     fn Execute(&self, outputcontrol: u32, command: &::windows::core::PCSTR, flags: u32) -> ::windows::core::Result<()>;
     fn ExecuteCommandFile(&self, outputcontrol: u32, commandfile: &::windows::core::PCSTR, flags: u32) -> ::windows::core::Result<()>;
     fn GetNumberBreakpoints(&self) -> ::windows::core::Result<u32>;
     fn GetBreakpointByIndex(&self, index: u32) -> ::windows::core::Result<IDebugBreakpoint>;
     fn GetBreakpointById(&self, id: u32) -> ::windows::core::Result<IDebugBreakpoint>;
-    fn GetBreakpointParameters(&self, count: u32, ids: *const u32, start: u32) -> ::windows::core::Result<DEBUG_BREAKPOINT_PARAMETERS>;
+    fn GetBreakpointParameters(&self, count: u32, ids: *mut u32, start: u32) -> ::windows::core::Result<DEBUG_BREAKPOINT_PARAMETERS>;
     fn AddBreakpoint(&self, r#type: u32, desiredid: u32) -> ::windows::core::Result<IDebugBreakpoint>;
     fn RemoveBreakpoint(&self, bp: &::core::option::Option<IDebugBreakpoint>) -> ::windows::core::Result<()>;
     fn AddExtension(&self, path: &::windows::core::PCSTR, flags: u32) -> ::windows::core::Result<u64>;
@@ -10853,11 +10853,11 @@ pub trait IDebugControl2_Impl: Sized {
     fn GetEventFilterCommand(&self, index: u32, buffer: ::windows::core::PSTR, buffersize: u32, commandsize: *mut u32) -> ::windows::core::Result<()>;
     fn SetEventFilterCommand(&self, index: u32, command: &::windows::core::PCSTR) -> ::windows::core::Result<()>;
     fn GetSpecificFilterParameters(&self, start: u32, count: u32, params: *mut DEBUG_SPECIFIC_FILTER_PARAMETERS) -> ::windows::core::Result<()>;
-    fn SetSpecificFilterParameters(&self, start: u32, count: u32, params: *const DEBUG_SPECIFIC_FILTER_PARAMETERS) -> ::windows::core::Result<()>;
+    fn SetSpecificFilterParameters(&self, start: u32, count: u32, params: *mut DEBUG_SPECIFIC_FILTER_PARAMETERS) -> ::windows::core::Result<()>;
     fn GetSpecificFilterArgument(&self, index: u32, buffer: ::windows::core::PSTR, buffersize: u32, argumentsize: *mut u32) -> ::windows::core::Result<()>;
     fn SetSpecificFilterArgument(&self, index: u32, argument: &::windows::core::PCSTR) -> ::windows::core::Result<()>;
-    fn GetExceptionFilterParameters(&self, count: u32, codes: *const u32, start: u32) -> ::windows::core::Result<DEBUG_EXCEPTION_FILTER_PARAMETERS>;
-    fn SetExceptionFilterParameters(&self, count: u32, params: *const DEBUG_EXCEPTION_FILTER_PARAMETERS) -> ::windows::core::Result<()>;
+    fn GetExceptionFilterParameters(&self, count: u32, codes: *mut u32, start: u32) -> ::windows::core::Result<DEBUG_EXCEPTION_FILTER_PARAMETERS>;
+    fn SetExceptionFilterParameters(&self, count: u32, params: *mut DEBUG_EXCEPTION_FILTER_PARAMETERS) -> ::windows::core::Result<()>;
     fn GetExceptionFilterSecondCommand(&self, index: u32, buffer: ::windows::core::PSTR, buffersize: u32, commandsize: *mut u32) -> ::windows::core::Result<()>;
     fn SetExceptionFilterSecondCommand(&self, index: u32, command: &::windows::core::PCSTR) -> ::windows::core::Result<()>;
     fn WaitForEvent(&self, flags: u32, timeout: u32) -> ::windows::core::Result<()>;
@@ -10948,7 +10948,7 @@ impl IDebugControl2_Vtbl {
             let this = (*this).get_impl();
             this.Output(::core::mem::transmute_copy(&mask), ::core::mem::transmute(&format)).into()
         }
-        unsafe extern "system" fn OutputVaList<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, mask: u32, format: ::windows::core::PCSTR, args: *const i8) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn OutputVaList<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, mask: u32, format: ::windows::core::PCSTR, args: *mut i8) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.OutputVaList(::core::mem::transmute_copy(&mask), ::core::mem::transmute(&format), ::core::mem::transmute_copy(&args)).into()
@@ -10958,7 +10958,7 @@ impl IDebugControl2_Vtbl {
             let this = (*this).get_impl();
             this.ControlledOutput(::core::mem::transmute_copy(&outputcontrol), ::core::mem::transmute_copy(&mask), ::core::mem::transmute(&format)).into()
         }
-        unsafe extern "system" fn ControlledOutputVaList<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, outputcontrol: u32, mask: u32, format: ::windows::core::PCSTR, args: *const i8) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn ControlledOutputVaList<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, outputcontrol: u32, mask: u32, format: ::windows::core::PCSTR, args: *mut i8) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.ControlledOutputVaList(::core::mem::transmute_copy(&outputcontrol), ::core::mem::transmute_copy(&mask), ::core::mem::transmute(&format), ::core::mem::transmute_copy(&args)).into()
@@ -10968,7 +10968,7 @@ impl IDebugControl2_Vtbl {
             let this = (*this).get_impl();
             this.OutputPrompt(::core::mem::transmute_copy(&outputcontrol), ::core::mem::transmute(&format)).into()
         }
-        unsafe extern "system" fn OutputPromptVaList<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, outputcontrol: u32, format: ::windows::core::PCSTR, args: *const i8) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn OutputPromptVaList<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, outputcontrol: u32, format: ::windows::core::PCSTR, args: *mut i8) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.OutputPromptVaList(::core::mem::transmute_copy(&outputcontrol), ::core::mem::transmute(&format), ::core::mem::transmute_copy(&args)).into()
@@ -11074,7 +11074,7 @@ impl IDebugControl2_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn OutputStackTrace<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, outputcontrol: u32, frames: *const DEBUG_STACK_FRAME, framessize: u32, flags: u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn OutputStackTrace<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, outputcontrol: u32, frames: *mut DEBUG_STACK_FRAME, framessize: u32, flags: u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.OutputStackTrace(::core::mem::transmute_copy(&outputcontrol), ::core::mem::transmute_copy(&frames), ::core::mem::transmute_copy(&framessize), ::core::mem::transmute_copy(&flags)).into()
@@ -11296,7 +11296,7 @@ impl IDebugControl2_Vtbl {
             let this = (*this).get_impl();
             this.Evaluate(::core::mem::transmute(&expression), ::core::mem::transmute_copy(&desiredtype), ::core::mem::transmute_copy(&value), ::core::mem::transmute_copy(&remainderindex)).into()
         }
-        unsafe extern "system" fn CoerceValue<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, r#in: *const DEBUG_VALUE, outtype: u32, out: *mut DEBUG_VALUE) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn CoerceValue<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, r#in: *mut DEBUG_VALUE, outtype: u32, out: *mut DEBUG_VALUE) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.CoerceValue(::core::mem::transmute_copy(&r#in), ::core::mem::transmute_copy(&outtype)) {
@@ -11307,7 +11307,7 @@ impl IDebugControl2_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn CoerceValues<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, count: u32, r#in: *const DEBUG_VALUE, outtypes: *const u32, out: *mut DEBUG_VALUE) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn CoerceValues<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, count: u32, r#in: *mut DEBUG_VALUE, outtypes: *mut u32, out: *mut DEBUG_VALUE) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.CoerceValues(::core::mem::transmute_copy(&count), ::core::mem::transmute_copy(&r#in), ::core::mem::transmute_copy(&outtypes)) {
@@ -11361,7 +11361,7 @@ impl IDebugControl2_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn GetBreakpointParameters<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, count: u32, ids: *const u32, start: u32, params: *mut DEBUG_BREAKPOINT_PARAMETERS) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn GetBreakpointParameters<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, count: u32, ids: *mut u32, start: u32, params: *mut DEBUG_BREAKPOINT_PARAMETERS) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.GetBreakpointParameters(::core::mem::transmute_copy(&count), ::core::mem::transmute_copy(&ids), ::core::mem::transmute_copy(&start)) {
@@ -11460,7 +11460,7 @@ impl IDebugControl2_Vtbl {
             let this = (*this).get_impl();
             this.GetSpecificFilterParameters(::core::mem::transmute_copy(&start), ::core::mem::transmute_copy(&count), ::core::mem::transmute_copy(&params)).into()
         }
-        unsafe extern "system" fn SetSpecificFilterParameters<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, start: u32, count: u32, params: *const DEBUG_SPECIFIC_FILTER_PARAMETERS) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn SetSpecificFilterParameters<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, start: u32, count: u32, params: *mut DEBUG_SPECIFIC_FILTER_PARAMETERS) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.SetSpecificFilterParameters(::core::mem::transmute_copy(&start), ::core::mem::transmute_copy(&count), ::core::mem::transmute_copy(&params)).into()
@@ -11475,7 +11475,7 @@ impl IDebugControl2_Vtbl {
             let this = (*this).get_impl();
             this.SetSpecificFilterArgument(::core::mem::transmute_copy(&index), ::core::mem::transmute(&argument)).into()
         }
-        unsafe extern "system" fn GetExceptionFilterParameters<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, count: u32, codes: *const u32, start: u32, params: *mut DEBUG_EXCEPTION_FILTER_PARAMETERS) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn GetExceptionFilterParameters<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, count: u32, codes: *mut u32, start: u32, params: *mut DEBUG_EXCEPTION_FILTER_PARAMETERS) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.GetExceptionFilterParameters(::core::mem::transmute_copy(&count), ::core::mem::transmute_copy(&codes), ::core::mem::transmute_copy(&start)) {
@@ -11486,7 +11486,7 @@ impl IDebugControl2_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn SetExceptionFilterParameters<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, count: u32, params: *const DEBUG_EXCEPTION_FILTER_PARAMETERS) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn SetExceptionFilterParameters<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, count: u32, params: *mut DEBUG_EXCEPTION_FILTER_PARAMETERS) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.SetExceptionFilterParameters(::core::mem::transmute_copy(&count), ::core::mem::transmute_copy(&params)).into()
@@ -11697,11 +11697,11 @@ pub trait IDebugControl3_Impl: Sized {
     fn Input(&self, buffer: ::windows::core::PSTR, buffersize: u32, inputsize: *mut u32) -> ::windows::core::Result<()>;
     fn ReturnInput(&self, buffer: &::windows::core::PCSTR) -> ::windows::core::Result<()>;
     fn Output(&self, mask: u32, format: &::windows::core::PCSTR) -> ::windows::core::Result<()>;
-    fn OutputVaList(&self, mask: u32, format: &::windows::core::PCSTR, args: *const i8) -> ::windows::core::Result<()>;
+    fn OutputVaList(&self, mask: u32, format: &::windows::core::PCSTR, args: *mut i8) -> ::windows::core::Result<()>;
     fn ControlledOutput(&self, outputcontrol: u32, mask: u32, format: &::windows::core::PCSTR) -> ::windows::core::Result<()>;
-    fn ControlledOutputVaList(&self, outputcontrol: u32, mask: u32, format: &::windows::core::PCSTR, args: *const i8) -> ::windows::core::Result<()>;
+    fn ControlledOutputVaList(&self, outputcontrol: u32, mask: u32, format: &::windows::core::PCSTR, args: *mut i8) -> ::windows::core::Result<()>;
     fn OutputPrompt(&self, outputcontrol: u32, format: &::windows::core::PCSTR) -> ::windows::core::Result<()>;
-    fn OutputPromptVaList(&self, outputcontrol: u32, format: &::windows::core::PCSTR, args: *const i8) -> ::windows::core::Result<()>;
+    fn OutputPromptVaList(&self, outputcontrol: u32, format: &::windows::core::PCSTR, args: *mut i8) -> ::windows::core::Result<()>;
     fn GetPromptText(&self, buffer: ::windows::core::PSTR, buffersize: u32, textsize: *mut u32) -> ::windows::core::Result<()>;
     fn OutputCurrentState(&self, outputcontrol: u32, flags: u32) -> ::windows::core::Result<()>;
     fn OutputVersionInformation(&self, outputcontrol: u32) -> ::windows::core::Result<()>;
@@ -11715,7 +11715,7 @@ pub trait IDebugControl3_Impl: Sized {
     fn GetNearInstruction(&self, offset: u64, delta: i32) -> ::windows::core::Result<u64>;
     fn GetStackTrace(&self, frameoffset: u64, stackoffset: u64, instructionoffset: u64, frames: *mut DEBUG_STACK_FRAME, framessize: u32, framesfilled: *mut u32) -> ::windows::core::Result<()>;
     fn GetReturnOffset(&self) -> ::windows::core::Result<u64>;
-    fn OutputStackTrace(&self, outputcontrol: u32, frames: *const DEBUG_STACK_FRAME, framessize: u32, flags: u32) -> ::windows::core::Result<()>;
+    fn OutputStackTrace(&self, outputcontrol: u32, frames: *mut DEBUG_STACK_FRAME, framessize: u32, flags: u32) -> ::windows::core::Result<()>;
     fn GetDebuggeeType(&self, class: *mut u32, qualifier: *mut u32) -> ::windows::core::Result<()>;
     fn GetActualProcessorType(&self) -> ::windows::core::Result<u32>;
     fn GetExecutingProcessorType(&self) -> ::windows::core::Result<u32>;
@@ -11746,14 +11746,14 @@ pub trait IDebugControl3_Impl: Sized {
     fn GetRadix(&self) -> ::windows::core::Result<u32>;
     fn SetRadix(&self, radix: u32) -> ::windows::core::Result<()>;
     fn Evaluate(&self, expression: &::windows::core::PCSTR, desiredtype: u32, value: *mut DEBUG_VALUE, remainderindex: *mut u32) -> ::windows::core::Result<()>;
-    fn CoerceValue(&self, r#in: *const DEBUG_VALUE, outtype: u32) -> ::windows::core::Result<DEBUG_VALUE>;
-    fn CoerceValues(&self, count: u32, r#in: *const DEBUG_VALUE, outtypes: *const u32) -> ::windows::core::Result<DEBUG_VALUE>;
+    fn CoerceValue(&self, r#in: *mut DEBUG_VALUE, outtype: u32) -> ::windows::core::Result<DEBUG_VALUE>;
+    fn CoerceValues(&self, count: u32, r#in: *mut DEBUG_VALUE, outtypes: *mut u32) -> ::windows::core::Result<DEBUG_VALUE>;
     fn Execute(&self, outputcontrol: u32, command: &::windows::core::PCSTR, flags: u32) -> ::windows::core::Result<()>;
     fn ExecuteCommandFile(&self, outputcontrol: u32, commandfile: &::windows::core::PCSTR, flags: u32) -> ::windows::core::Result<()>;
     fn GetNumberBreakpoints(&self) -> ::windows::core::Result<u32>;
     fn GetBreakpointByIndex(&self, index: u32) -> ::windows::core::Result<IDebugBreakpoint>;
     fn GetBreakpointById(&self, id: u32) -> ::windows::core::Result<IDebugBreakpoint>;
-    fn GetBreakpointParameters(&self, count: u32, ids: *const u32, start: u32) -> ::windows::core::Result<DEBUG_BREAKPOINT_PARAMETERS>;
+    fn GetBreakpointParameters(&self, count: u32, ids: *mut u32, start: u32) -> ::windows::core::Result<DEBUG_BREAKPOINT_PARAMETERS>;
     fn AddBreakpoint(&self, r#type: u32, desiredid: u32) -> ::windows::core::Result<IDebugBreakpoint>;
     fn RemoveBreakpoint(&self, bp: &::core::option::Option<IDebugBreakpoint>) -> ::windows::core::Result<()>;
     fn AddExtension(&self, path: &::windows::core::PCSTR, flags: u32) -> ::windows::core::Result<u64>;
@@ -11768,11 +11768,11 @@ pub trait IDebugControl3_Impl: Sized {
     fn GetEventFilterCommand(&self, index: u32, buffer: ::windows::core::PSTR, buffersize: u32, commandsize: *mut u32) -> ::windows::core::Result<()>;
     fn SetEventFilterCommand(&self, index: u32, command: &::windows::core::PCSTR) -> ::windows::core::Result<()>;
     fn GetSpecificFilterParameters(&self, start: u32, count: u32, params: *mut DEBUG_SPECIFIC_FILTER_PARAMETERS) -> ::windows::core::Result<()>;
-    fn SetSpecificFilterParameters(&self, start: u32, count: u32, params: *const DEBUG_SPECIFIC_FILTER_PARAMETERS) -> ::windows::core::Result<()>;
+    fn SetSpecificFilterParameters(&self, start: u32, count: u32, params: *mut DEBUG_SPECIFIC_FILTER_PARAMETERS) -> ::windows::core::Result<()>;
     fn GetSpecificFilterArgument(&self, index: u32, buffer: ::windows::core::PSTR, buffersize: u32, argumentsize: *mut u32) -> ::windows::core::Result<()>;
     fn SetSpecificFilterArgument(&self, index: u32, argument: &::windows::core::PCSTR) -> ::windows::core::Result<()>;
-    fn GetExceptionFilterParameters(&self, count: u32, codes: *const u32, start: u32) -> ::windows::core::Result<DEBUG_EXCEPTION_FILTER_PARAMETERS>;
-    fn SetExceptionFilterParameters(&self, count: u32, params: *const DEBUG_EXCEPTION_FILTER_PARAMETERS) -> ::windows::core::Result<()>;
+    fn GetExceptionFilterParameters(&self, count: u32, codes: *mut u32, start: u32) -> ::windows::core::Result<DEBUG_EXCEPTION_FILTER_PARAMETERS>;
+    fn SetExceptionFilterParameters(&self, count: u32, params: *mut DEBUG_EXCEPTION_FILTER_PARAMETERS) -> ::windows::core::Result<()>;
     fn GetExceptionFilterSecondCommand(&self, index: u32, buffer: ::windows::core::PSTR, buffersize: u32, commandsize: *mut u32) -> ::windows::core::Result<()>;
     fn SetExceptionFilterSecondCommand(&self, index: u32, command: &::windows::core::PCSTR) -> ::windows::core::Result<()>;
     fn WaitForEvent(&self, flags: u32, timeout: u32) -> ::windows::core::Result<()>;
@@ -11795,7 +11795,7 @@ pub trait IDebugControl3_Impl: Sized {
     fn GetNumberExpressionSyntaxes(&self) -> ::windows::core::Result<u32>;
     fn GetExpressionSyntaxNames(&self, index: u32, fullnamebuffer: ::windows::core::PSTR, fullnamebuffersize: u32, fullnamesize: *mut u32, abbrevnamebuffer: ::windows::core::PSTR, abbrevnamebuffersize: u32, abbrevnamesize: *mut u32) -> ::windows::core::Result<()>;
     fn GetNumberEvents(&self) -> ::windows::core::Result<u32>;
-    fn GetEventIndexDescription(&self, index: u32, which: u32, buffer: &::windows::core::PCSTR, buffersize: u32) -> ::windows::core::Result<u32>;
+    fn GetEventIndexDescription(&self, index: u32, which: u32, buffer: &::windows::core::PSTR, buffersize: u32) -> ::windows::core::Result<u32>;
     fn GetCurrentEventIndex(&self) -> ::windows::core::Result<u32>;
     fn SetNextEventIndex(&self, relation: u32, value: u32) -> ::windows::core::Result<u32>;
 }
@@ -11876,7 +11876,7 @@ impl IDebugControl3_Vtbl {
             let this = (*this).get_impl();
             this.Output(::core::mem::transmute_copy(&mask), ::core::mem::transmute(&format)).into()
         }
-        unsafe extern "system" fn OutputVaList<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, mask: u32, format: ::windows::core::PCSTR, args: *const i8) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn OutputVaList<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, mask: u32, format: ::windows::core::PCSTR, args: *mut i8) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.OutputVaList(::core::mem::transmute_copy(&mask), ::core::mem::transmute(&format), ::core::mem::transmute_copy(&args)).into()
@@ -11886,7 +11886,7 @@ impl IDebugControl3_Vtbl {
             let this = (*this).get_impl();
             this.ControlledOutput(::core::mem::transmute_copy(&outputcontrol), ::core::mem::transmute_copy(&mask), ::core::mem::transmute(&format)).into()
         }
-        unsafe extern "system" fn ControlledOutputVaList<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, outputcontrol: u32, mask: u32, format: ::windows::core::PCSTR, args: *const i8) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn ControlledOutputVaList<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, outputcontrol: u32, mask: u32, format: ::windows::core::PCSTR, args: *mut i8) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.ControlledOutputVaList(::core::mem::transmute_copy(&outputcontrol), ::core::mem::transmute_copy(&mask), ::core::mem::transmute(&format), ::core::mem::transmute_copy(&args)).into()
@@ -11896,7 +11896,7 @@ impl IDebugControl3_Vtbl {
             let this = (*this).get_impl();
             this.OutputPrompt(::core::mem::transmute_copy(&outputcontrol), ::core::mem::transmute(&format)).into()
         }
-        unsafe extern "system" fn OutputPromptVaList<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, outputcontrol: u32, format: ::windows::core::PCSTR, args: *const i8) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn OutputPromptVaList<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, outputcontrol: u32, format: ::windows::core::PCSTR, args: *mut i8) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.OutputPromptVaList(::core::mem::transmute_copy(&outputcontrol), ::core::mem::transmute(&format), ::core::mem::transmute_copy(&args)).into()
@@ -12002,7 +12002,7 @@ impl IDebugControl3_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn OutputStackTrace<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, outputcontrol: u32, frames: *const DEBUG_STACK_FRAME, framessize: u32, flags: u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn OutputStackTrace<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, outputcontrol: u32, frames: *mut DEBUG_STACK_FRAME, framessize: u32, flags: u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.OutputStackTrace(::core::mem::transmute_copy(&outputcontrol), ::core::mem::transmute_copy(&frames), ::core::mem::transmute_copy(&framessize), ::core::mem::transmute_copy(&flags)).into()
@@ -12224,7 +12224,7 @@ impl IDebugControl3_Vtbl {
             let this = (*this).get_impl();
             this.Evaluate(::core::mem::transmute(&expression), ::core::mem::transmute_copy(&desiredtype), ::core::mem::transmute_copy(&value), ::core::mem::transmute_copy(&remainderindex)).into()
         }
-        unsafe extern "system" fn CoerceValue<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, r#in: *const DEBUG_VALUE, outtype: u32, out: *mut DEBUG_VALUE) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn CoerceValue<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, r#in: *mut DEBUG_VALUE, outtype: u32, out: *mut DEBUG_VALUE) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.CoerceValue(::core::mem::transmute_copy(&r#in), ::core::mem::transmute_copy(&outtype)) {
@@ -12235,7 +12235,7 @@ impl IDebugControl3_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn CoerceValues<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, count: u32, r#in: *const DEBUG_VALUE, outtypes: *const u32, out: *mut DEBUG_VALUE) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn CoerceValues<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, count: u32, r#in: *mut DEBUG_VALUE, outtypes: *mut u32, out: *mut DEBUG_VALUE) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.CoerceValues(::core::mem::transmute_copy(&count), ::core::mem::transmute_copy(&r#in), ::core::mem::transmute_copy(&outtypes)) {
@@ -12289,7 +12289,7 @@ impl IDebugControl3_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn GetBreakpointParameters<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, count: u32, ids: *const u32, start: u32, params: *mut DEBUG_BREAKPOINT_PARAMETERS) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn GetBreakpointParameters<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, count: u32, ids: *mut u32, start: u32, params: *mut DEBUG_BREAKPOINT_PARAMETERS) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.GetBreakpointParameters(::core::mem::transmute_copy(&count), ::core::mem::transmute_copy(&ids), ::core::mem::transmute_copy(&start)) {
@@ -12388,7 +12388,7 @@ impl IDebugControl3_Vtbl {
             let this = (*this).get_impl();
             this.GetSpecificFilterParameters(::core::mem::transmute_copy(&start), ::core::mem::transmute_copy(&count), ::core::mem::transmute_copy(&params)).into()
         }
-        unsafe extern "system" fn SetSpecificFilterParameters<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, start: u32, count: u32, params: *const DEBUG_SPECIFIC_FILTER_PARAMETERS) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn SetSpecificFilterParameters<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, start: u32, count: u32, params: *mut DEBUG_SPECIFIC_FILTER_PARAMETERS) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.SetSpecificFilterParameters(::core::mem::transmute_copy(&start), ::core::mem::transmute_copy(&count), ::core::mem::transmute_copy(&params)).into()
@@ -12403,7 +12403,7 @@ impl IDebugControl3_Vtbl {
             let this = (*this).get_impl();
             this.SetSpecificFilterArgument(::core::mem::transmute_copy(&index), ::core::mem::transmute(&argument)).into()
         }
-        unsafe extern "system" fn GetExceptionFilterParameters<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, count: u32, codes: *const u32, start: u32, params: *mut DEBUG_EXCEPTION_FILTER_PARAMETERS) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn GetExceptionFilterParameters<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, count: u32, codes: *mut u32, start: u32, params: *mut DEBUG_EXCEPTION_FILTER_PARAMETERS) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.GetExceptionFilterParameters(::core::mem::transmute_copy(&count), ::core::mem::transmute_copy(&codes), ::core::mem::transmute_copy(&start)) {
@@ -12414,7 +12414,7 @@ impl IDebugControl3_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn SetExceptionFilterParameters<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, count: u32, params: *const DEBUG_EXCEPTION_FILTER_PARAMETERS) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn SetExceptionFilterParameters<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, count: u32, params: *mut DEBUG_EXCEPTION_FILTER_PARAMETERS) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.SetExceptionFilterParameters(::core::mem::transmute_copy(&count), ::core::mem::transmute_copy(&params)).into()
@@ -12577,7 +12577,7 @@ impl IDebugControl3_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn GetEventIndexDescription<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, index: u32, which: u32, buffer: ::windows::core::PCSTR, buffersize: u32, descsize: *mut u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn GetEventIndexDescription<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, index: u32, which: u32, buffer: ::windows::core::PSTR, buffersize: u32, descsize: *mut u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.GetEventIndexDescription(::core::mem::transmute_copy(&index), ::core::mem::transmute_copy(&which), ::core::mem::transmute(&buffer), ::core::mem::transmute_copy(&buffersize)) {
@@ -12745,11 +12745,11 @@ pub trait IDebugControl4_Impl: Sized {
     fn Input(&self, buffer: ::windows::core::PSTR, buffersize: u32, inputsize: *mut u32) -> ::windows::core::Result<()>;
     fn ReturnInput(&self, buffer: &::windows::core::PCSTR) -> ::windows::core::Result<()>;
     fn Output(&self, mask: u32, format: &::windows::core::PCSTR) -> ::windows::core::Result<()>;
-    fn OutputVaList(&self, mask: u32, format: &::windows::core::PCSTR, args: *const i8) -> ::windows::core::Result<()>;
+    fn OutputVaList(&self, mask: u32, format: &::windows::core::PCSTR, args: *mut i8) -> ::windows::core::Result<()>;
     fn ControlledOutput(&self, outputcontrol: u32, mask: u32, format: &::windows::core::PCSTR) -> ::windows::core::Result<()>;
-    fn ControlledOutputVaList(&self, outputcontrol: u32, mask: u32, format: &::windows::core::PCSTR, args: *const i8) -> ::windows::core::Result<()>;
+    fn ControlledOutputVaList(&self, outputcontrol: u32, mask: u32, format: &::windows::core::PCSTR, args: *mut i8) -> ::windows::core::Result<()>;
     fn OutputPrompt(&self, outputcontrol: u32, format: &::windows::core::PCSTR) -> ::windows::core::Result<()>;
-    fn OutputPromptVaList(&self, outputcontrol: u32, format: &::windows::core::PCSTR, args: *const i8) -> ::windows::core::Result<()>;
+    fn OutputPromptVaList(&self, outputcontrol: u32, format: &::windows::core::PCSTR, args: *mut i8) -> ::windows::core::Result<()>;
     fn GetPromptText(&self, buffer: ::windows::core::PSTR, buffersize: u32, textsize: *mut u32) -> ::windows::core::Result<()>;
     fn OutputCurrentState(&self, outputcontrol: u32, flags: u32) -> ::windows::core::Result<()>;
     fn OutputVersionInformation(&self, outputcontrol: u32) -> ::windows::core::Result<()>;
@@ -12763,7 +12763,7 @@ pub trait IDebugControl4_Impl: Sized {
     fn GetNearInstruction(&self, offset: u64, delta: i32) -> ::windows::core::Result<u64>;
     fn GetStackTrace(&self, frameoffset: u64, stackoffset: u64, instructionoffset: u64, frames: *mut DEBUG_STACK_FRAME, framessize: u32, framesfilled: *mut u32) -> ::windows::core::Result<()>;
     fn GetReturnOffset(&self) -> ::windows::core::Result<u64>;
-    fn OutputStackTrace(&self, outputcontrol: u32, frames: *const DEBUG_STACK_FRAME, framessize: u32, flags: u32) -> ::windows::core::Result<()>;
+    fn OutputStackTrace(&self, outputcontrol: u32, frames: *mut DEBUG_STACK_FRAME, framessize: u32, flags: u32) -> ::windows::core::Result<()>;
     fn GetDebuggeeType(&self, class: *mut u32, qualifier: *mut u32) -> ::windows::core::Result<()>;
     fn GetActualProcessorType(&self) -> ::windows::core::Result<u32>;
     fn GetExecutingProcessorType(&self) -> ::windows::core::Result<u32>;
@@ -12794,14 +12794,14 @@ pub trait IDebugControl4_Impl: Sized {
     fn GetRadix(&self) -> ::windows::core::Result<u32>;
     fn SetRadix(&self, radix: u32) -> ::windows::core::Result<()>;
     fn Evaluate(&self, expression: &::windows::core::PCSTR, desiredtype: u32, value: *mut DEBUG_VALUE, remainderindex: *mut u32) -> ::windows::core::Result<()>;
-    fn CoerceValue(&self, r#in: *const DEBUG_VALUE, outtype: u32) -> ::windows::core::Result<DEBUG_VALUE>;
-    fn CoerceValues(&self, count: u32, r#in: *const DEBUG_VALUE, outtypes: *const u32) -> ::windows::core::Result<DEBUG_VALUE>;
+    fn CoerceValue(&self, r#in: *mut DEBUG_VALUE, outtype: u32) -> ::windows::core::Result<DEBUG_VALUE>;
+    fn CoerceValues(&self, count: u32, r#in: *mut DEBUG_VALUE, outtypes: *mut u32) -> ::windows::core::Result<DEBUG_VALUE>;
     fn Execute(&self, outputcontrol: u32, command: &::windows::core::PCSTR, flags: u32) -> ::windows::core::Result<()>;
     fn ExecuteCommandFile(&self, outputcontrol: u32, commandfile: &::windows::core::PCSTR, flags: u32) -> ::windows::core::Result<()>;
     fn GetNumberBreakpoints(&self) -> ::windows::core::Result<u32>;
     fn GetBreakpointByIndex(&self, index: u32) -> ::windows::core::Result<IDebugBreakpoint>;
     fn GetBreakpointById(&self, id: u32) -> ::windows::core::Result<IDebugBreakpoint>;
-    fn GetBreakpointParameters(&self, count: u32, ids: *const u32, start: u32) -> ::windows::core::Result<DEBUG_BREAKPOINT_PARAMETERS>;
+    fn GetBreakpointParameters(&self, count: u32, ids: *mut u32, start: u32) -> ::windows::core::Result<DEBUG_BREAKPOINT_PARAMETERS>;
     fn AddBreakpoint(&self, r#type: u32, desiredid: u32) -> ::windows::core::Result<IDebugBreakpoint>;
     fn RemoveBreakpoint(&self, bp: &::core::option::Option<IDebugBreakpoint>) -> ::windows::core::Result<()>;
     fn AddExtension(&self, path: &::windows::core::PCSTR, flags: u32) -> ::windows::core::Result<u64>;
@@ -12816,11 +12816,11 @@ pub trait IDebugControl4_Impl: Sized {
     fn GetEventFilterCommand(&self, index: u32, buffer: ::windows::core::PSTR, buffersize: u32, commandsize: *mut u32) -> ::windows::core::Result<()>;
     fn SetEventFilterCommand(&self, index: u32, command: &::windows::core::PCSTR) -> ::windows::core::Result<()>;
     fn GetSpecificFilterParameters(&self, start: u32, count: u32, params: *mut DEBUG_SPECIFIC_FILTER_PARAMETERS) -> ::windows::core::Result<()>;
-    fn SetSpecificFilterParameters(&self, start: u32, count: u32, params: *const DEBUG_SPECIFIC_FILTER_PARAMETERS) -> ::windows::core::Result<()>;
+    fn SetSpecificFilterParameters(&self, start: u32, count: u32, params: *mut DEBUG_SPECIFIC_FILTER_PARAMETERS) -> ::windows::core::Result<()>;
     fn GetSpecificFilterArgument(&self, index: u32, buffer: ::windows::core::PSTR, buffersize: u32, argumentsize: *mut u32) -> ::windows::core::Result<()>;
     fn SetSpecificFilterArgument(&self, index: u32, argument: &::windows::core::PCSTR) -> ::windows::core::Result<()>;
-    fn GetExceptionFilterParameters(&self, count: u32, codes: *const u32, start: u32) -> ::windows::core::Result<DEBUG_EXCEPTION_FILTER_PARAMETERS>;
-    fn SetExceptionFilterParameters(&self, count: u32, params: *const DEBUG_EXCEPTION_FILTER_PARAMETERS) -> ::windows::core::Result<()>;
+    fn GetExceptionFilterParameters(&self, count: u32, codes: *mut u32, start: u32) -> ::windows::core::Result<DEBUG_EXCEPTION_FILTER_PARAMETERS>;
+    fn SetExceptionFilterParameters(&self, count: u32, params: *mut DEBUG_EXCEPTION_FILTER_PARAMETERS) -> ::windows::core::Result<()>;
     fn GetExceptionFilterSecondCommand(&self, index: u32, buffer: ::windows::core::PSTR, buffersize: u32, commandsize: *mut u32) -> ::windows::core::Result<()>;
     fn SetExceptionFilterSecondCommand(&self, index: u32, command: &::windows::core::PCSTR) -> ::windows::core::Result<()>;
     fn WaitForEvent(&self, flags: u32, timeout: u32) -> ::windows::core::Result<()>;
@@ -12843,7 +12843,7 @@ pub trait IDebugControl4_Impl: Sized {
     fn GetNumberExpressionSyntaxes(&self) -> ::windows::core::Result<u32>;
     fn GetExpressionSyntaxNames(&self, index: u32, fullnamebuffer: ::windows::core::PSTR, fullnamebuffersize: u32, fullnamesize: *mut u32, abbrevnamebuffer: ::windows::core::PSTR, abbrevnamebuffersize: u32, abbrevnamesize: *mut u32) -> ::windows::core::Result<()>;
     fn GetNumberEvents(&self) -> ::windows::core::Result<u32>;
-    fn GetEventIndexDescription(&self, index: u32, which: u32, buffer: &::windows::core::PCSTR, buffersize: u32) -> ::windows::core::Result<u32>;
+    fn GetEventIndexDescription(&self, index: u32, which: u32, buffer: &::windows::core::PSTR, buffersize: u32) -> ::windows::core::Result<u32>;
     fn GetCurrentEventIndex(&self) -> ::windows::core::Result<u32>;
     fn SetNextEventIndex(&self, relation: u32, value: u32) -> ::windows::core::Result<u32>;
     fn GetLogFileWide(&self, buffer: ::windows::core::PWSTR, buffersize: u32, filesize: *mut u32, append: *mut super::super::super::Foundation::BOOL) -> ::windows::core::Result<()>;
@@ -12851,11 +12851,11 @@ pub trait IDebugControl4_Impl: Sized {
     fn InputWide(&self, buffer: ::windows::core::PWSTR, buffersize: u32, inputsize: *mut u32) -> ::windows::core::Result<()>;
     fn ReturnInputWide(&self, buffer: &::windows::core::PCWSTR) -> ::windows::core::Result<()>;
     fn OutputWide(&self, mask: u32, format: &::windows::core::PCWSTR) -> ::windows::core::Result<()>;
-    fn OutputVaListWide(&self, mask: u32, format: &::windows::core::PCWSTR, args: *const i8) -> ::windows::core::Result<()>;
+    fn OutputVaListWide(&self, mask: u32, format: &::windows::core::PCWSTR, args: *mut i8) -> ::windows::core::Result<()>;
     fn ControlledOutputWide(&self, outputcontrol: u32, mask: u32, format: &::windows::core::PCWSTR) -> ::windows::core::Result<()>;
-    fn ControlledOutputVaListWide(&self, outputcontrol: u32, mask: u32, format: &::windows::core::PCWSTR, args: *const i8) -> ::windows::core::Result<()>;
+    fn ControlledOutputVaListWide(&self, outputcontrol: u32, mask: u32, format: &::windows::core::PCWSTR, args: *mut i8) -> ::windows::core::Result<()>;
     fn OutputPromptWide(&self, outputcontrol: u32, format: &::windows::core::PCWSTR) -> ::windows::core::Result<()>;
-    fn OutputPromptVaListWide(&self, outputcontrol: u32, format: &::windows::core::PCWSTR, args: *const i8) -> ::windows::core::Result<()>;
+    fn OutputPromptVaListWide(&self, outputcontrol: u32, format: &::windows::core::PCWSTR, args: *mut i8) -> ::windows::core::Result<()>;
     fn GetPromptTextWide(&self, buffer: ::windows::core::PWSTR, buffersize: u32, textsize: *mut u32) -> ::windows::core::Result<()>;
     fn AssembleWide(&self, offset: u64, instr: &::windows::core::PCWSTR) -> ::windows::core::Result<u64>;
     fn DisassembleWide(&self, offset: u64, flags: u32, buffer: ::windows::core::PWSTR, buffersize: u32, disassemblysize: *mut u32, endoffset: *mut u64) -> ::windows::core::Result<()>;
@@ -12885,7 +12885,7 @@ pub trait IDebugControl4_Impl: Sized {
     fn SetTextReplacementWide(&self, srctext: &::windows::core::PCWSTR, dsttext: &::windows::core::PCWSTR) -> ::windows::core::Result<()>;
     fn SetExpressionSyntaxByNameWide(&self, abbrevname: &::windows::core::PCWSTR) -> ::windows::core::Result<()>;
     fn GetExpressionSyntaxNamesWide(&self, index: u32, fullnamebuffer: ::windows::core::PWSTR, fullnamebuffersize: u32, fullnamesize: *mut u32, abbrevnamebuffer: ::windows::core::PWSTR, abbrevnamebuffersize: u32, abbrevnamesize: *mut u32) -> ::windows::core::Result<()>;
-    fn GetEventIndexDescriptionWide(&self, index: u32, which: u32, buffer: &::windows::core::PCWSTR, buffersize: u32) -> ::windows::core::Result<u32>;
+    fn GetEventIndexDescriptionWide(&self, index: u32, which: u32, buffer: &::windows::core::PWSTR, buffersize: u32) -> ::windows::core::Result<u32>;
     fn GetLogFile2(&self, buffer: ::windows::core::PSTR, buffersize: u32, filesize: *mut u32, flags: *mut u32) -> ::windows::core::Result<()>;
     fn OpenLogFile2(&self, file: &::windows::core::PCSTR, flags: u32) -> ::windows::core::Result<()>;
     fn GetLogFile2Wide(&self, buffer: ::windows::core::PWSTR, buffersize: u32, filesize: *mut u32, flags: *mut u32) -> ::windows::core::Result<()>;
@@ -12893,8 +12893,8 @@ pub trait IDebugControl4_Impl: Sized {
     fn GetSystemVersionValues(&self, platformid: *mut u32, win32major: *mut u32, win32minor: *mut u32, kdmajor: *mut u32, kdminor: *mut u32) -> ::windows::core::Result<()>;
     fn GetSystemVersionString(&self, which: u32, buffer: ::windows::core::PSTR, buffersize: u32, stringsize: *mut u32) -> ::windows::core::Result<()>;
     fn GetSystemVersionStringWide(&self, which: u32, buffer: ::windows::core::PWSTR, buffersize: u32, stringsize: *mut u32) -> ::windows::core::Result<()>;
-    fn GetContextStackTrace(&self, startcontext: *const ::core::ffi::c_void, startcontextsize: u32, frames: *mut DEBUG_STACK_FRAME, framessize: u32, framecontexts: *mut ::core::ffi::c_void, framecontextssize: u32, framecontextsentrysize: u32, framesfilled: *mut u32) -> ::windows::core::Result<()>;
-    fn OutputContextStackTrace(&self, outputcontrol: u32, frames: *const DEBUG_STACK_FRAME, framessize: u32, framecontexts: *const ::core::ffi::c_void, framecontextssize: u32, framecontextsentrysize: u32, flags: u32) -> ::windows::core::Result<()>;
+    fn GetContextStackTrace(&self, startcontext: *mut ::core::ffi::c_void, startcontextsize: u32, frames: *mut DEBUG_STACK_FRAME, framessize: u32, framecontexts: *mut ::core::ffi::c_void, framecontextssize: u32, framecontextsentrysize: u32, framesfilled: *mut u32) -> ::windows::core::Result<()>;
+    fn OutputContextStackTrace(&self, outputcontrol: u32, frames: *mut DEBUG_STACK_FRAME, framessize: u32, framecontexts: *mut ::core::ffi::c_void, framecontextssize: u32, framecontextsentrysize: u32, flags: u32) -> ::windows::core::Result<()>;
     fn GetStoredEventInformation(&self, r#type: *mut u32, processid: *mut u32, threadid: *mut u32, context: *mut ::core::ffi::c_void, contextsize: u32, contextused: *mut u32, extrainformation: *mut ::core::ffi::c_void, extrainformationsize: u32, extrainformationused: *mut u32) -> ::windows::core::Result<()>;
     fn GetManagedStatus(&self, flags: *mut u32, whichstring: u32, string: ::windows::core::PSTR, stringsize: u32, stringneeded: *mut u32) -> ::windows::core::Result<()>;
     fn GetManagedStatusWide(&self, flags: *mut u32, whichstring: u32, string: ::windows::core::PWSTR, stringsize: u32, stringneeded: *mut u32) -> ::windows::core::Result<()>;
@@ -12977,7 +12977,7 @@ impl IDebugControl4_Vtbl {
             let this = (*this).get_impl();
             this.Output(::core::mem::transmute_copy(&mask), ::core::mem::transmute(&format)).into()
         }
-        unsafe extern "system" fn OutputVaList<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, mask: u32, format: ::windows::core::PCSTR, args: *const i8) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn OutputVaList<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, mask: u32, format: ::windows::core::PCSTR, args: *mut i8) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.OutputVaList(::core::mem::transmute_copy(&mask), ::core::mem::transmute(&format), ::core::mem::transmute_copy(&args)).into()
@@ -12987,7 +12987,7 @@ impl IDebugControl4_Vtbl {
             let this = (*this).get_impl();
             this.ControlledOutput(::core::mem::transmute_copy(&outputcontrol), ::core::mem::transmute_copy(&mask), ::core::mem::transmute(&format)).into()
         }
-        unsafe extern "system" fn ControlledOutputVaList<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, outputcontrol: u32, mask: u32, format: ::windows::core::PCSTR, args: *const i8) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn ControlledOutputVaList<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, outputcontrol: u32, mask: u32, format: ::windows::core::PCSTR, args: *mut i8) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.ControlledOutputVaList(::core::mem::transmute_copy(&outputcontrol), ::core::mem::transmute_copy(&mask), ::core::mem::transmute(&format), ::core::mem::transmute_copy(&args)).into()
@@ -12997,7 +12997,7 @@ impl IDebugControl4_Vtbl {
             let this = (*this).get_impl();
             this.OutputPrompt(::core::mem::transmute_copy(&outputcontrol), ::core::mem::transmute(&format)).into()
         }
-        unsafe extern "system" fn OutputPromptVaList<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, outputcontrol: u32, format: ::windows::core::PCSTR, args: *const i8) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn OutputPromptVaList<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, outputcontrol: u32, format: ::windows::core::PCSTR, args: *mut i8) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.OutputPromptVaList(::core::mem::transmute_copy(&outputcontrol), ::core::mem::transmute(&format), ::core::mem::transmute_copy(&args)).into()
@@ -13103,7 +13103,7 @@ impl IDebugControl4_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn OutputStackTrace<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, outputcontrol: u32, frames: *const DEBUG_STACK_FRAME, framessize: u32, flags: u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn OutputStackTrace<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, outputcontrol: u32, frames: *mut DEBUG_STACK_FRAME, framessize: u32, flags: u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.OutputStackTrace(::core::mem::transmute_copy(&outputcontrol), ::core::mem::transmute_copy(&frames), ::core::mem::transmute_copy(&framessize), ::core::mem::transmute_copy(&flags)).into()
@@ -13325,7 +13325,7 @@ impl IDebugControl4_Vtbl {
             let this = (*this).get_impl();
             this.Evaluate(::core::mem::transmute(&expression), ::core::mem::transmute_copy(&desiredtype), ::core::mem::transmute_copy(&value), ::core::mem::transmute_copy(&remainderindex)).into()
         }
-        unsafe extern "system" fn CoerceValue<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, r#in: *const DEBUG_VALUE, outtype: u32, out: *mut DEBUG_VALUE) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn CoerceValue<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, r#in: *mut DEBUG_VALUE, outtype: u32, out: *mut DEBUG_VALUE) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.CoerceValue(::core::mem::transmute_copy(&r#in), ::core::mem::transmute_copy(&outtype)) {
@@ -13336,7 +13336,7 @@ impl IDebugControl4_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn CoerceValues<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, count: u32, r#in: *const DEBUG_VALUE, outtypes: *const u32, out: *mut DEBUG_VALUE) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn CoerceValues<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, count: u32, r#in: *mut DEBUG_VALUE, outtypes: *mut u32, out: *mut DEBUG_VALUE) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.CoerceValues(::core::mem::transmute_copy(&count), ::core::mem::transmute_copy(&r#in), ::core::mem::transmute_copy(&outtypes)) {
@@ -13390,7 +13390,7 @@ impl IDebugControl4_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn GetBreakpointParameters<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, count: u32, ids: *const u32, start: u32, params: *mut DEBUG_BREAKPOINT_PARAMETERS) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn GetBreakpointParameters<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, count: u32, ids: *mut u32, start: u32, params: *mut DEBUG_BREAKPOINT_PARAMETERS) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.GetBreakpointParameters(::core::mem::transmute_copy(&count), ::core::mem::transmute_copy(&ids), ::core::mem::transmute_copy(&start)) {
@@ -13489,7 +13489,7 @@ impl IDebugControl4_Vtbl {
             let this = (*this).get_impl();
             this.GetSpecificFilterParameters(::core::mem::transmute_copy(&start), ::core::mem::transmute_copy(&count), ::core::mem::transmute_copy(&params)).into()
         }
-        unsafe extern "system" fn SetSpecificFilterParameters<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, start: u32, count: u32, params: *const DEBUG_SPECIFIC_FILTER_PARAMETERS) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn SetSpecificFilterParameters<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, start: u32, count: u32, params: *mut DEBUG_SPECIFIC_FILTER_PARAMETERS) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.SetSpecificFilterParameters(::core::mem::transmute_copy(&start), ::core::mem::transmute_copy(&count), ::core::mem::transmute_copy(&params)).into()
@@ -13504,7 +13504,7 @@ impl IDebugControl4_Vtbl {
             let this = (*this).get_impl();
             this.SetSpecificFilterArgument(::core::mem::transmute_copy(&index), ::core::mem::transmute(&argument)).into()
         }
-        unsafe extern "system" fn GetExceptionFilterParameters<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, count: u32, codes: *const u32, start: u32, params: *mut DEBUG_EXCEPTION_FILTER_PARAMETERS) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn GetExceptionFilterParameters<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, count: u32, codes: *mut u32, start: u32, params: *mut DEBUG_EXCEPTION_FILTER_PARAMETERS) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.GetExceptionFilterParameters(::core::mem::transmute_copy(&count), ::core::mem::transmute_copy(&codes), ::core::mem::transmute_copy(&start)) {
@@ -13515,7 +13515,7 @@ impl IDebugControl4_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn SetExceptionFilterParameters<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, count: u32, params: *const DEBUG_EXCEPTION_FILTER_PARAMETERS) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn SetExceptionFilterParameters<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, count: u32, params: *mut DEBUG_EXCEPTION_FILTER_PARAMETERS) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.SetExceptionFilterParameters(::core::mem::transmute_copy(&count), ::core::mem::transmute_copy(&params)).into()
@@ -13678,7 +13678,7 @@ impl IDebugControl4_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn GetEventIndexDescription<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, index: u32, which: u32, buffer: ::windows::core::PCSTR, buffersize: u32, descsize: *mut u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn GetEventIndexDescription<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, index: u32, which: u32, buffer: ::windows::core::PSTR, buffersize: u32, descsize: *mut u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.GetEventIndexDescription(::core::mem::transmute_copy(&index), ::core::mem::transmute_copy(&which), ::core::mem::transmute(&buffer), ::core::mem::transmute_copy(&buffersize)) {
@@ -13736,7 +13736,7 @@ impl IDebugControl4_Vtbl {
             let this = (*this).get_impl();
             this.OutputWide(::core::mem::transmute_copy(&mask), ::core::mem::transmute(&format)).into()
         }
-        unsafe extern "system" fn OutputVaListWide<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, mask: u32, format: ::windows::core::PCWSTR, args: *const i8) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn OutputVaListWide<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, mask: u32, format: ::windows::core::PCWSTR, args: *mut i8) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.OutputVaListWide(::core::mem::transmute_copy(&mask), ::core::mem::transmute(&format), ::core::mem::transmute_copy(&args)).into()
@@ -13746,7 +13746,7 @@ impl IDebugControl4_Vtbl {
             let this = (*this).get_impl();
             this.ControlledOutputWide(::core::mem::transmute_copy(&outputcontrol), ::core::mem::transmute_copy(&mask), ::core::mem::transmute(&format)).into()
         }
-        unsafe extern "system" fn ControlledOutputVaListWide<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, outputcontrol: u32, mask: u32, format: ::windows::core::PCWSTR, args: *const i8) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn ControlledOutputVaListWide<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, outputcontrol: u32, mask: u32, format: ::windows::core::PCWSTR, args: *mut i8) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.ControlledOutputVaListWide(::core::mem::transmute_copy(&outputcontrol), ::core::mem::transmute_copy(&mask), ::core::mem::transmute(&format), ::core::mem::transmute_copy(&args)).into()
@@ -13756,7 +13756,7 @@ impl IDebugControl4_Vtbl {
             let this = (*this).get_impl();
             this.OutputPromptWide(::core::mem::transmute_copy(&outputcontrol), ::core::mem::transmute(&format)).into()
         }
-        unsafe extern "system" fn OutputPromptVaListWide<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, outputcontrol: u32, format: ::windows::core::PCWSTR, args: *const i8) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn OutputPromptVaListWide<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, outputcontrol: u32, format: ::windows::core::PCWSTR, args: *mut i8) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.OutputPromptVaListWide(::core::mem::transmute_copy(&outputcontrol), ::core::mem::transmute(&format), ::core::mem::transmute_copy(&args)).into()
@@ -13942,7 +13942,7 @@ impl IDebugControl4_Vtbl {
             let this = (*this).get_impl();
             this.GetExpressionSyntaxNamesWide(::core::mem::transmute_copy(&index), ::core::mem::transmute_copy(&fullnamebuffer), ::core::mem::transmute_copy(&fullnamebuffersize), ::core::mem::transmute_copy(&fullnamesize), ::core::mem::transmute_copy(&abbrevnamebuffer), ::core::mem::transmute_copy(&abbrevnamebuffersize), ::core::mem::transmute_copy(&abbrevnamesize)).into()
         }
-        unsafe extern "system" fn GetEventIndexDescriptionWide<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, index: u32, which: u32, buffer: ::windows::core::PCWSTR, buffersize: u32, descsize: *mut u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn GetEventIndexDescriptionWide<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, index: u32, which: u32, buffer: ::windows::core::PWSTR, buffersize: u32, descsize: *mut u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.GetEventIndexDescriptionWide(::core::mem::transmute_copy(&index), ::core::mem::transmute_copy(&which), ::core::mem::transmute(&buffer), ::core::mem::transmute_copy(&buffersize)) {
@@ -13988,12 +13988,12 @@ impl IDebugControl4_Vtbl {
             let this = (*this).get_impl();
             this.GetSystemVersionStringWide(::core::mem::transmute_copy(&which), ::core::mem::transmute_copy(&buffer), ::core::mem::transmute_copy(&buffersize), ::core::mem::transmute_copy(&stringsize)).into()
         }
-        unsafe extern "system" fn GetContextStackTrace<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, startcontext: *const ::core::ffi::c_void, startcontextsize: u32, frames: *mut DEBUG_STACK_FRAME, framessize: u32, framecontexts: *mut ::core::ffi::c_void, framecontextssize: u32, framecontextsentrysize: u32, framesfilled: *mut u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn GetContextStackTrace<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, startcontext: *mut ::core::ffi::c_void, startcontextsize: u32, frames: *mut DEBUG_STACK_FRAME, framessize: u32, framecontexts: *mut ::core::ffi::c_void, framecontextssize: u32, framecontextsentrysize: u32, framesfilled: *mut u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.GetContextStackTrace(::core::mem::transmute_copy(&startcontext), ::core::mem::transmute_copy(&startcontextsize), ::core::mem::transmute_copy(&frames), ::core::mem::transmute_copy(&framessize), ::core::mem::transmute_copy(&framecontexts), ::core::mem::transmute_copy(&framecontextssize), ::core::mem::transmute_copy(&framecontextsentrysize), ::core::mem::transmute_copy(&framesfilled)).into()
         }
-        unsafe extern "system" fn OutputContextStackTrace<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, outputcontrol: u32, frames: *const DEBUG_STACK_FRAME, framessize: u32, framecontexts: *const ::core::ffi::c_void, framecontextssize: u32, framecontextsentrysize: u32, flags: u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn OutputContextStackTrace<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, outputcontrol: u32, frames: *mut DEBUG_STACK_FRAME, framessize: u32, framecontexts: *mut ::core::ffi::c_void, framecontextssize: u32, framecontextsentrysize: u32, flags: u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.OutputContextStackTrace(::core::mem::transmute_copy(&outputcontrol), ::core::mem::transmute_copy(&frames), ::core::mem::transmute_copy(&framessize), ::core::mem::transmute_copy(&framecontexts), ::core::mem::transmute_copy(&framecontextssize), ::core::mem::transmute_copy(&framecontextsentrysize), ::core::mem::transmute_copy(&flags)).into()
@@ -14206,11 +14206,11 @@ pub trait IDebugControl5_Impl: Sized {
     fn Input(&self, buffer: ::windows::core::PSTR, buffersize: u32, inputsize: *mut u32) -> ::windows::core::Result<()>;
     fn ReturnInput(&self, buffer: &::windows::core::PCSTR) -> ::windows::core::Result<()>;
     fn Output(&self, mask: u32, format: &::windows::core::PCSTR) -> ::windows::core::Result<()>;
-    fn OutputVaList(&self, mask: u32, format: &::windows::core::PCSTR, args: *const i8) -> ::windows::core::Result<()>;
+    fn OutputVaList(&self, mask: u32, format: &::windows::core::PCSTR, args: *mut i8) -> ::windows::core::Result<()>;
     fn ControlledOutput(&self, outputcontrol: u32, mask: u32, format: &::windows::core::PCSTR) -> ::windows::core::Result<()>;
-    fn ControlledOutputVaList(&self, outputcontrol: u32, mask: u32, format: &::windows::core::PCSTR, args: *const i8) -> ::windows::core::Result<()>;
+    fn ControlledOutputVaList(&self, outputcontrol: u32, mask: u32, format: &::windows::core::PCSTR, args: *mut i8) -> ::windows::core::Result<()>;
     fn OutputPrompt(&self, outputcontrol: u32, format: &::windows::core::PCSTR) -> ::windows::core::Result<()>;
-    fn OutputPromptVaList(&self, outputcontrol: u32, format: &::windows::core::PCSTR, args: *const i8) -> ::windows::core::Result<()>;
+    fn OutputPromptVaList(&self, outputcontrol: u32, format: &::windows::core::PCSTR, args: *mut i8) -> ::windows::core::Result<()>;
     fn GetPromptText(&self, buffer: ::windows::core::PSTR, buffersize: u32, textsize: *mut u32) -> ::windows::core::Result<()>;
     fn OutputCurrentState(&self, outputcontrol: u32, flags: u32) -> ::windows::core::Result<()>;
     fn OutputVersionInformation(&self, outputcontrol: u32) -> ::windows::core::Result<()>;
@@ -14224,7 +14224,7 @@ pub trait IDebugControl5_Impl: Sized {
     fn GetNearInstruction(&self, offset: u64, delta: i32) -> ::windows::core::Result<u64>;
     fn GetStackTrace(&self, frameoffset: u64, stackoffset: u64, instructionoffset: u64, frames: *mut DEBUG_STACK_FRAME, framessize: u32, framesfilled: *mut u32) -> ::windows::core::Result<()>;
     fn GetReturnOffset(&self) -> ::windows::core::Result<u64>;
-    fn OutputStackTrace(&self, outputcontrol: u32, frames: *const DEBUG_STACK_FRAME, framessize: u32, flags: u32) -> ::windows::core::Result<()>;
+    fn OutputStackTrace(&self, outputcontrol: u32, frames: *mut DEBUG_STACK_FRAME, framessize: u32, flags: u32) -> ::windows::core::Result<()>;
     fn GetDebuggeeType(&self, class: *mut u32, qualifier: *mut u32) -> ::windows::core::Result<()>;
     fn GetActualProcessorType(&self) -> ::windows::core::Result<u32>;
     fn GetExecutingProcessorType(&self) -> ::windows::core::Result<u32>;
@@ -14255,14 +14255,14 @@ pub trait IDebugControl5_Impl: Sized {
     fn GetRadix(&self) -> ::windows::core::Result<u32>;
     fn SetRadix(&self, radix: u32) -> ::windows::core::Result<()>;
     fn Evaluate(&self, expression: &::windows::core::PCSTR, desiredtype: u32, value: *mut DEBUG_VALUE, remainderindex: *mut u32) -> ::windows::core::Result<()>;
-    fn CoerceValue(&self, r#in: *const DEBUG_VALUE, outtype: u32) -> ::windows::core::Result<DEBUG_VALUE>;
-    fn CoerceValues(&self, count: u32, r#in: *const DEBUG_VALUE, outtypes: *const u32) -> ::windows::core::Result<DEBUG_VALUE>;
+    fn CoerceValue(&self, r#in: *mut DEBUG_VALUE, outtype: u32) -> ::windows::core::Result<DEBUG_VALUE>;
+    fn CoerceValues(&self, count: u32, r#in: *mut DEBUG_VALUE, outtypes: *mut u32) -> ::windows::core::Result<DEBUG_VALUE>;
     fn Execute(&self, outputcontrol: u32, command: &::windows::core::PCSTR, flags: u32) -> ::windows::core::Result<()>;
     fn ExecuteCommandFile(&self, outputcontrol: u32, commandfile: &::windows::core::PCSTR, flags: u32) -> ::windows::core::Result<()>;
     fn GetNumberBreakpoints(&self) -> ::windows::core::Result<u32>;
     fn GetBreakpointByIndex(&self, index: u32) -> ::windows::core::Result<IDebugBreakpoint>;
     fn GetBreakpointById(&self, id: u32) -> ::windows::core::Result<IDebugBreakpoint>;
-    fn GetBreakpointParameters(&self, count: u32, ids: *const u32, start: u32) -> ::windows::core::Result<DEBUG_BREAKPOINT_PARAMETERS>;
+    fn GetBreakpointParameters(&self, count: u32, ids: *mut u32, start: u32) -> ::windows::core::Result<DEBUG_BREAKPOINT_PARAMETERS>;
     fn AddBreakpoint(&self, r#type: u32, desiredid: u32) -> ::windows::core::Result<IDebugBreakpoint>;
     fn RemoveBreakpoint(&self, bp: &::core::option::Option<IDebugBreakpoint>) -> ::windows::core::Result<()>;
     fn AddExtension(&self, path: &::windows::core::PCSTR, flags: u32) -> ::windows::core::Result<u64>;
@@ -14277,11 +14277,11 @@ pub trait IDebugControl5_Impl: Sized {
     fn GetEventFilterCommand(&self, index: u32, buffer: ::windows::core::PSTR, buffersize: u32, commandsize: *mut u32) -> ::windows::core::Result<()>;
     fn SetEventFilterCommand(&self, index: u32, command: &::windows::core::PCSTR) -> ::windows::core::Result<()>;
     fn GetSpecificFilterParameters(&self, start: u32, count: u32, params: *mut DEBUG_SPECIFIC_FILTER_PARAMETERS) -> ::windows::core::Result<()>;
-    fn SetSpecificFilterParameters(&self, start: u32, count: u32, params: *const DEBUG_SPECIFIC_FILTER_PARAMETERS) -> ::windows::core::Result<()>;
+    fn SetSpecificFilterParameters(&self, start: u32, count: u32, params: *mut DEBUG_SPECIFIC_FILTER_PARAMETERS) -> ::windows::core::Result<()>;
     fn GetSpecificFilterArgument(&self, index: u32, buffer: ::windows::core::PSTR, buffersize: u32, argumentsize: *mut u32) -> ::windows::core::Result<()>;
     fn SetSpecificFilterArgument(&self, index: u32, argument: &::windows::core::PCSTR) -> ::windows::core::Result<()>;
-    fn GetExceptionFilterParameters(&self, count: u32, codes: *const u32, start: u32) -> ::windows::core::Result<DEBUG_EXCEPTION_FILTER_PARAMETERS>;
-    fn SetExceptionFilterParameters(&self, count: u32, params: *const DEBUG_EXCEPTION_FILTER_PARAMETERS) -> ::windows::core::Result<()>;
+    fn GetExceptionFilterParameters(&self, count: u32, codes: *mut u32, start: u32) -> ::windows::core::Result<DEBUG_EXCEPTION_FILTER_PARAMETERS>;
+    fn SetExceptionFilterParameters(&self, count: u32, params: *mut DEBUG_EXCEPTION_FILTER_PARAMETERS) -> ::windows::core::Result<()>;
     fn GetExceptionFilterSecondCommand(&self, index: u32, buffer: ::windows::core::PSTR, buffersize: u32, commandsize: *mut u32) -> ::windows::core::Result<()>;
     fn SetExceptionFilterSecondCommand(&self, index: u32, command: &::windows::core::PCSTR) -> ::windows::core::Result<()>;
     fn WaitForEvent(&self, flags: u32, timeout: u32) -> ::windows::core::Result<()>;
@@ -14304,7 +14304,7 @@ pub trait IDebugControl5_Impl: Sized {
     fn GetNumberExpressionSyntaxes(&self) -> ::windows::core::Result<u32>;
     fn GetExpressionSyntaxNames(&self, index: u32, fullnamebuffer: ::windows::core::PSTR, fullnamebuffersize: u32, fullnamesize: *mut u32, abbrevnamebuffer: ::windows::core::PSTR, abbrevnamebuffersize: u32, abbrevnamesize: *mut u32) -> ::windows::core::Result<()>;
     fn GetNumberEvents(&self) -> ::windows::core::Result<u32>;
-    fn GetEventIndexDescription(&self, index: u32, which: u32, buffer: &::windows::core::PCSTR, buffersize: u32) -> ::windows::core::Result<u32>;
+    fn GetEventIndexDescription(&self, index: u32, which: u32, buffer: &::windows::core::PSTR, buffersize: u32) -> ::windows::core::Result<u32>;
     fn GetCurrentEventIndex(&self) -> ::windows::core::Result<u32>;
     fn SetNextEventIndex(&self, relation: u32, value: u32) -> ::windows::core::Result<u32>;
     fn GetLogFileWide(&self, buffer: ::windows::core::PWSTR, buffersize: u32, filesize: *mut u32, append: *mut super::super::super::Foundation::BOOL) -> ::windows::core::Result<()>;
@@ -14312,11 +14312,11 @@ pub trait IDebugControl5_Impl: Sized {
     fn InputWide(&self, buffer: ::windows::core::PWSTR, buffersize: u32, inputsize: *mut u32) -> ::windows::core::Result<()>;
     fn ReturnInputWide(&self, buffer: &::windows::core::PCWSTR) -> ::windows::core::Result<()>;
     fn OutputWide(&self, mask: u32, format: &::windows::core::PCWSTR) -> ::windows::core::Result<()>;
-    fn OutputVaListWide(&self, mask: u32, format: &::windows::core::PCWSTR, args: *const i8) -> ::windows::core::Result<()>;
+    fn OutputVaListWide(&self, mask: u32, format: &::windows::core::PCWSTR, args: *mut i8) -> ::windows::core::Result<()>;
     fn ControlledOutputWide(&self, outputcontrol: u32, mask: u32, format: &::windows::core::PCWSTR) -> ::windows::core::Result<()>;
-    fn ControlledOutputVaListWide(&self, outputcontrol: u32, mask: u32, format: &::windows::core::PCWSTR, args: *const i8) -> ::windows::core::Result<()>;
+    fn ControlledOutputVaListWide(&self, outputcontrol: u32, mask: u32, format: &::windows::core::PCWSTR, args: *mut i8) -> ::windows::core::Result<()>;
     fn OutputPromptWide(&self, outputcontrol: u32, format: &::windows::core::PCWSTR) -> ::windows::core::Result<()>;
-    fn OutputPromptVaListWide(&self, outputcontrol: u32, format: &::windows::core::PCWSTR, args: *const i8) -> ::windows::core::Result<()>;
+    fn OutputPromptVaListWide(&self, outputcontrol: u32, format: &::windows::core::PCWSTR, args: *mut i8) -> ::windows::core::Result<()>;
     fn GetPromptTextWide(&self, buffer: ::windows::core::PWSTR, buffersize: u32, textsize: *mut u32) -> ::windows::core::Result<()>;
     fn AssembleWide(&self, offset: u64, instr: &::windows::core::PCWSTR) -> ::windows::core::Result<u64>;
     fn DisassembleWide(&self, offset: u64, flags: u32, buffer: ::windows::core::PWSTR, buffersize: u32, disassemblysize: *mut u32, endoffset: *mut u64) -> ::windows::core::Result<()>;
@@ -14346,7 +14346,7 @@ pub trait IDebugControl5_Impl: Sized {
     fn SetTextReplacementWide(&self, srctext: &::windows::core::PCWSTR, dsttext: &::windows::core::PCWSTR) -> ::windows::core::Result<()>;
     fn SetExpressionSyntaxByNameWide(&self, abbrevname: &::windows::core::PCWSTR) -> ::windows::core::Result<()>;
     fn GetExpressionSyntaxNamesWide(&self, index: u32, fullnamebuffer: ::windows::core::PWSTR, fullnamebuffersize: u32, fullnamesize: *mut u32, abbrevnamebuffer: ::windows::core::PWSTR, abbrevnamebuffersize: u32, abbrevnamesize: *mut u32) -> ::windows::core::Result<()>;
-    fn GetEventIndexDescriptionWide(&self, index: u32, which: u32, buffer: &::windows::core::PCWSTR, buffersize: u32) -> ::windows::core::Result<u32>;
+    fn GetEventIndexDescriptionWide(&self, index: u32, which: u32, buffer: &::windows::core::PWSTR, buffersize: u32) -> ::windows::core::Result<u32>;
     fn GetLogFile2(&self, buffer: ::windows::core::PSTR, buffersize: u32, filesize: *mut u32, flags: *mut u32) -> ::windows::core::Result<()>;
     fn OpenLogFile2(&self, file: &::windows::core::PCSTR, flags: u32) -> ::windows::core::Result<()>;
     fn GetLogFile2Wide(&self, buffer: ::windows::core::PWSTR, buffersize: u32, filesize: *mut u32, flags: *mut u32) -> ::windows::core::Result<()>;
@@ -14354,17 +14354,17 @@ pub trait IDebugControl5_Impl: Sized {
     fn GetSystemVersionValues(&self, platformid: *mut u32, win32major: *mut u32, win32minor: *mut u32, kdmajor: *mut u32, kdminor: *mut u32) -> ::windows::core::Result<()>;
     fn GetSystemVersionString(&self, which: u32, buffer: ::windows::core::PSTR, buffersize: u32, stringsize: *mut u32) -> ::windows::core::Result<()>;
     fn GetSystemVersionStringWide(&self, which: u32, buffer: ::windows::core::PWSTR, buffersize: u32, stringsize: *mut u32) -> ::windows::core::Result<()>;
-    fn GetContextStackTrace(&self, startcontext: *const ::core::ffi::c_void, startcontextsize: u32, frames: *mut DEBUG_STACK_FRAME, framessize: u32, framecontexts: *mut ::core::ffi::c_void, framecontextssize: u32, framecontextsentrysize: u32, framesfilled: *mut u32) -> ::windows::core::Result<()>;
-    fn OutputContextStackTrace(&self, outputcontrol: u32, frames: *const DEBUG_STACK_FRAME, framessize: u32, framecontexts: *const ::core::ffi::c_void, framecontextssize: u32, framecontextsentrysize: u32, flags: u32) -> ::windows::core::Result<()>;
+    fn GetContextStackTrace(&self, startcontext: *mut ::core::ffi::c_void, startcontextsize: u32, frames: *mut DEBUG_STACK_FRAME, framessize: u32, framecontexts: *mut ::core::ffi::c_void, framecontextssize: u32, framecontextsentrysize: u32, framesfilled: *mut u32) -> ::windows::core::Result<()>;
+    fn OutputContextStackTrace(&self, outputcontrol: u32, frames: *mut DEBUG_STACK_FRAME, framessize: u32, framecontexts: *mut ::core::ffi::c_void, framecontextssize: u32, framecontextsentrysize: u32, flags: u32) -> ::windows::core::Result<()>;
     fn GetStoredEventInformation(&self, r#type: *mut u32, processid: *mut u32, threadid: *mut u32, context: *mut ::core::ffi::c_void, contextsize: u32, contextused: *mut u32, extrainformation: *mut ::core::ffi::c_void, extrainformationsize: u32, extrainformationused: *mut u32) -> ::windows::core::Result<()>;
     fn GetManagedStatus(&self, flags: *mut u32, whichstring: u32, string: ::windows::core::PSTR, stringsize: u32, stringneeded: *mut u32) -> ::windows::core::Result<()>;
     fn GetManagedStatusWide(&self, flags: *mut u32, whichstring: u32, string: ::windows::core::PWSTR, stringsize: u32, stringneeded: *mut u32) -> ::windows::core::Result<()>;
     fn ResetManagedStatus(&self, flags: u32) -> ::windows::core::Result<()>;
     fn GetStackTraceEx(&self, frameoffset: u64, stackoffset: u64, instructionoffset: u64, frames: *mut DEBUG_STACK_FRAME_EX, framessize: u32, framesfilled: *mut u32) -> ::windows::core::Result<()>;
-    fn OutputStackTraceEx(&self, outputcontrol: u32, frames: *const DEBUG_STACK_FRAME_EX, framessize: u32, flags: u32) -> ::windows::core::Result<()>;
-    fn GetContextStackTraceEx(&self, startcontext: *const ::core::ffi::c_void, startcontextsize: u32, frames: *mut DEBUG_STACK_FRAME_EX, framessize: u32, framecontexts: *mut ::core::ffi::c_void, framecontextssize: u32, framecontextsentrysize: u32, framesfilled: *mut u32) -> ::windows::core::Result<()>;
-    fn OutputContextStackTraceEx(&self, outputcontrol: u32, frames: *const DEBUG_STACK_FRAME_EX, framessize: u32, framecontexts: *const ::core::ffi::c_void, framecontextssize: u32, framecontextsentrysize: u32, flags: u32) -> ::windows::core::Result<()>;
-    fn GetBreakpointByGuid(&self, guid: *const ::windows::core::GUID) -> ::windows::core::Result<IDebugBreakpoint3>;
+    fn OutputStackTraceEx(&self, outputcontrol: u32, frames: *mut DEBUG_STACK_FRAME_EX, framessize: u32, flags: u32) -> ::windows::core::Result<()>;
+    fn GetContextStackTraceEx(&self, startcontext: *mut ::core::ffi::c_void, startcontextsize: u32, frames: *mut DEBUG_STACK_FRAME_EX, framessize: u32, framecontexts: *mut ::core::ffi::c_void, framecontextssize: u32, framecontextsentrysize: u32, framesfilled: *mut u32) -> ::windows::core::Result<()>;
+    fn OutputContextStackTraceEx(&self, outputcontrol: u32, frames: *mut DEBUG_STACK_FRAME_EX, framessize: u32, framecontexts: *mut ::core::ffi::c_void, framecontextssize: u32, framecontextsentrysize: u32, flags: u32) -> ::windows::core::Result<()>;
+    fn GetBreakpointByGuid(&self, guid: *mut ::windows::core::GUID) -> ::windows::core::Result<IDebugBreakpoint3>;
 }
 #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Kernel"))]
 impl ::windows::core::RuntimeName for IDebugControl5 {}
@@ -14443,7 +14443,7 @@ impl IDebugControl5_Vtbl {
             let this = (*this).get_impl();
             this.Output(::core::mem::transmute_copy(&mask), ::core::mem::transmute(&format)).into()
         }
-        unsafe extern "system" fn OutputVaList<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl5_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, mask: u32, format: ::windows::core::PCSTR, args: *const i8) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn OutputVaList<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl5_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, mask: u32, format: ::windows::core::PCSTR, args: *mut i8) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.OutputVaList(::core::mem::transmute_copy(&mask), ::core::mem::transmute(&format), ::core::mem::transmute_copy(&args)).into()
@@ -14453,7 +14453,7 @@ impl IDebugControl5_Vtbl {
             let this = (*this).get_impl();
             this.ControlledOutput(::core::mem::transmute_copy(&outputcontrol), ::core::mem::transmute_copy(&mask), ::core::mem::transmute(&format)).into()
         }
-        unsafe extern "system" fn ControlledOutputVaList<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl5_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, outputcontrol: u32, mask: u32, format: ::windows::core::PCSTR, args: *const i8) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn ControlledOutputVaList<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl5_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, outputcontrol: u32, mask: u32, format: ::windows::core::PCSTR, args: *mut i8) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.ControlledOutputVaList(::core::mem::transmute_copy(&outputcontrol), ::core::mem::transmute_copy(&mask), ::core::mem::transmute(&format), ::core::mem::transmute_copy(&args)).into()
@@ -14463,7 +14463,7 @@ impl IDebugControl5_Vtbl {
             let this = (*this).get_impl();
             this.OutputPrompt(::core::mem::transmute_copy(&outputcontrol), ::core::mem::transmute(&format)).into()
         }
-        unsafe extern "system" fn OutputPromptVaList<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl5_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, outputcontrol: u32, format: ::windows::core::PCSTR, args: *const i8) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn OutputPromptVaList<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl5_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, outputcontrol: u32, format: ::windows::core::PCSTR, args: *mut i8) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.OutputPromptVaList(::core::mem::transmute_copy(&outputcontrol), ::core::mem::transmute(&format), ::core::mem::transmute_copy(&args)).into()
@@ -14569,7 +14569,7 @@ impl IDebugControl5_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn OutputStackTrace<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl5_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, outputcontrol: u32, frames: *const DEBUG_STACK_FRAME, framessize: u32, flags: u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn OutputStackTrace<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl5_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, outputcontrol: u32, frames: *mut DEBUG_STACK_FRAME, framessize: u32, flags: u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.OutputStackTrace(::core::mem::transmute_copy(&outputcontrol), ::core::mem::transmute_copy(&frames), ::core::mem::transmute_copy(&framessize), ::core::mem::transmute_copy(&flags)).into()
@@ -14791,7 +14791,7 @@ impl IDebugControl5_Vtbl {
             let this = (*this).get_impl();
             this.Evaluate(::core::mem::transmute(&expression), ::core::mem::transmute_copy(&desiredtype), ::core::mem::transmute_copy(&value), ::core::mem::transmute_copy(&remainderindex)).into()
         }
-        unsafe extern "system" fn CoerceValue<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl5_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, r#in: *const DEBUG_VALUE, outtype: u32, out: *mut DEBUG_VALUE) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn CoerceValue<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl5_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, r#in: *mut DEBUG_VALUE, outtype: u32, out: *mut DEBUG_VALUE) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.CoerceValue(::core::mem::transmute_copy(&r#in), ::core::mem::transmute_copy(&outtype)) {
@@ -14802,7 +14802,7 @@ impl IDebugControl5_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn CoerceValues<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl5_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, count: u32, r#in: *const DEBUG_VALUE, outtypes: *const u32, out: *mut DEBUG_VALUE) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn CoerceValues<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl5_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, count: u32, r#in: *mut DEBUG_VALUE, outtypes: *mut u32, out: *mut DEBUG_VALUE) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.CoerceValues(::core::mem::transmute_copy(&count), ::core::mem::transmute_copy(&r#in), ::core::mem::transmute_copy(&outtypes)) {
@@ -14856,7 +14856,7 @@ impl IDebugControl5_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn GetBreakpointParameters<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl5_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, count: u32, ids: *const u32, start: u32, params: *mut DEBUG_BREAKPOINT_PARAMETERS) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn GetBreakpointParameters<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl5_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, count: u32, ids: *mut u32, start: u32, params: *mut DEBUG_BREAKPOINT_PARAMETERS) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.GetBreakpointParameters(::core::mem::transmute_copy(&count), ::core::mem::transmute_copy(&ids), ::core::mem::transmute_copy(&start)) {
@@ -14955,7 +14955,7 @@ impl IDebugControl5_Vtbl {
             let this = (*this).get_impl();
             this.GetSpecificFilterParameters(::core::mem::transmute_copy(&start), ::core::mem::transmute_copy(&count), ::core::mem::transmute_copy(&params)).into()
         }
-        unsafe extern "system" fn SetSpecificFilterParameters<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl5_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, start: u32, count: u32, params: *const DEBUG_SPECIFIC_FILTER_PARAMETERS) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn SetSpecificFilterParameters<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl5_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, start: u32, count: u32, params: *mut DEBUG_SPECIFIC_FILTER_PARAMETERS) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.SetSpecificFilterParameters(::core::mem::transmute_copy(&start), ::core::mem::transmute_copy(&count), ::core::mem::transmute_copy(&params)).into()
@@ -14970,7 +14970,7 @@ impl IDebugControl5_Vtbl {
             let this = (*this).get_impl();
             this.SetSpecificFilterArgument(::core::mem::transmute_copy(&index), ::core::mem::transmute(&argument)).into()
         }
-        unsafe extern "system" fn GetExceptionFilterParameters<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl5_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, count: u32, codes: *const u32, start: u32, params: *mut DEBUG_EXCEPTION_FILTER_PARAMETERS) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn GetExceptionFilterParameters<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl5_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, count: u32, codes: *mut u32, start: u32, params: *mut DEBUG_EXCEPTION_FILTER_PARAMETERS) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.GetExceptionFilterParameters(::core::mem::transmute_copy(&count), ::core::mem::transmute_copy(&codes), ::core::mem::transmute_copy(&start)) {
@@ -14981,7 +14981,7 @@ impl IDebugControl5_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn SetExceptionFilterParameters<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl5_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, count: u32, params: *const DEBUG_EXCEPTION_FILTER_PARAMETERS) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn SetExceptionFilterParameters<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl5_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, count: u32, params: *mut DEBUG_EXCEPTION_FILTER_PARAMETERS) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.SetExceptionFilterParameters(::core::mem::transmute_copy(&count), ::core::mem::transmute_copy(&params)).into()
@@ -15144,7 +15144,7 @@ impl IDebugControl5_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn GetEventIndexDescription<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl5_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, index: u32, which: u32, buffer: ::windows::core::PCSTR, buffersize: u32, descsize: *mut u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn GetEventIndexDescription<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl5_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, index: u32, which: u32, buffer: ::windows::core::PSTR, buffersize: u32, descsize: *mut u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.GetEventIndexDescription(::core::mem::transmute_copy(&index), ::core::mem::transmute_copy(&which), ::core::mem::transmute(&buffer), ::core::mem::transmute_copy(&buffersize)) {
@@ -15202,7 +15202,7 @@ impl IDebugControl5_Vtbl {
             let this = (*this).get_impl();
             this.OutputWide(::core::mem::transmute_copy(&mask), ::core::mem::transmute(&format)).into()
         }
-        unsafe extern "system" fn OutputVaListWide<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl5_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, mask: u32, format: ::windows::core::PCWSTR, args: *const i8) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn OutputVaListWide<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl5_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, mask: u32, format: ::windows::core::PCWSTR, args: *mut i8) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.OutputVaListWide(::core::mem::transmute_copy(&mask), ::core::mem::transmute(&format), ::core::mem::transmute_copy(&args)).into()
@@ -15212,7 +15212,7 @@ impl IDebugControl5_Vtbl {
             let this = (*this).get_impl();
             this.ControlledOutputWide(::core::mem::transmute_copy(&outputcontrol), ::core::mem::transmute_copy(&mask), ::core::mem::transmute(&format)).into()
         }
-        unsafe extern "system" fn ControlledOutputVaListWide<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl5_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, outputcontrol: u32, mask: u32, format: ::windows::core::PCWSTR, args: *const i8) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn ControlledOutputVaListWide<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl5_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, outputcontrol: u32, mask: u32, format: ::windows::core::PCWSTR, args: *mut i8) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.ControlledOutputVaListWide(::core::mem::transmute_copy(&outputcontrol), ::core::mem::transmute_copy(&mask), ::core::mem::transmute(&format), ::core::mem::transmute_copy(&args)).into()
@@ -15222,7 +15222,7 @@ impl IDebugControl5_Vtbl {
             let this = (*this).get_impl();
             this.OutputPromptWide(::core::mem::transmute_copy(&outputcontrol), ::core::mem::transmute(&format)).into()
         }
-        unsafe extern "system" fn OutputPromptVaListWide<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl5_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, outputcontrol: u32, format: ::windows::core::PCWSTR, args: *const i8) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn OutputPromptVaListWide<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl5_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, outputcontrol: u32, format: ::windows::core::PCWSTR, args: *mut i8) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.OutputPromptVaListWide(::core::mem::transmute_copy(&outputcontrol), ::core::mem::transmute(&format), ::core::mem::transmute_copy(&args)).into()
@@ -15408,7 +15408,7 @@ impl IDebugControl5_Vtbl {
             let this = (*this).get_impl();
             this.GetExpressionSyntaxNamesWide(::core::mem::transmute_copy(&index), ::core::mem::transmute_copy(&fullnamebuffer), ::core::mem::transmute_copy(&fullnamebuffersize), ::core::mem::transmute_copy(&fullnamesize), ::core::mem::transmute_copy(&abbrevnamebuffer), ::core::mem::transmute_copy(&abbrevnamebuffersize), ::core::mem::transmute_copy(&abbrevnamesize)).into()
         }
-        unsafe extern "system" fn GetEventIndexDescriptionWide<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl5_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, index: u32, which: u32, buffer: ::windows::core::PCWSTR, buffersize: u32, descsize: *mut u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn GetEventIndexDescriptionWide<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl5_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, index: u32, which: u32, buffer: ::windows::core::PWSTR, buffersize: u32, descsize: *mut u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.GetEventIndexDescriptionWide(::core::mem::transmute_copy(&index), ::core::mem::transmute_copy(&which), ::core::mem::transmute(&buffer), ::core::mem::transmute_copy(&buffersize)) {
@@ -15454,12 +15454,12 @@ impl IDebugControl5_Vtbl {
             let this = (*this).get_impl();
             this.GetSystemVersionStringWide(::core::mem::transmute_copy(&which), ::core::mem::transmute_copy(&buffer), ::core::mem::transmute_copy(&buffersize), ::core::mem::transmute_copy(&stringsize)).into()
         }
-        unsafe extern "system" fn GetContextStackTrace<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl5_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, startcontext: *const ::core::ffi::c_void, startcontextsize: u32, frames: *mut DEBUG_STACK_FRAME, framessize: u32, framecontexts: *mut ::core::ffi::c_void, framecontextssize: u32, framecontextsentrysize: u32, framesfilled: *mut u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn GetContextStackTrace<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl5_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, startcontext: *mut ::core::ffi::c_void, startcontextsize: u32, frames: *mut DEBUG_STACK_FRAME, framessize: u32, framecontexts: *mut ::core::ffi::c_void, framecontextssize: u32, framecontextsentrysize: u32, framesfilled: *mut u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.GetContextStackTrace(::core::mem::transmute_copy(&startcontext), ::core::mem::transmute_copy(&startcontextsize), ::core::mem::transmute_copy(&frames), ::core::mem::transmute_copy(&framessize), ::core::mem::transmute_copy(&framecontexts), ::core::mem::transmute_copy(&framecontextssize), ::core::mem::transmute_copy(&framecontextsentrysize), ::core::mem::transmute_copy(&framesfilled)).into()
         }
-        unsafe extern "system" fn OutputContextStackTrace<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl5_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, outputcontrol: u32, frames: *const DEBUG_STACK_FRAME, framessize: u32, framecontexts: *const ::core::ffi::c_void, framecontextssize: u32, framecontextsentrysize: u32, flags: u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn OutputContextStackTrace<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl5_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, outputcontrol: u32, frames: *mut DEBUG_STACK_FRAME, framessize: u32, framecontexts: *mut ::core::ffi::c_void, framecontextssize: u32, framecontextsentrysize: u32, flags: u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.OutputContextStackTrace(::core::mem::transmute_copy(&outputcontrol), ::core::mem::transmute_copy(&frames), ::core::mem::transmute_copy(&framessize), ::core::mem::transmute_copy(&framecontexts), ::core::mem::transmute_copy(&framecontextssize), ::core::mem::transmute_copy(&framecontextsentrysize), ::core::mem::transmute_copy(&flags)).into()
@@ -15489,22 +15489,22 @@ impl IDebugControl5_Vtbl {
             let this = (*this).get_impl();
             this.GetStackTraceEx(::core::mem::transmute_copy(&frameoffset), ::core::mem::transmute_copy(&stackoffset), ::core::mem::transmute_copy(&instructionoffset), ::core::mem::transmute_copy(&frames), ::core::mem::transmute_copy(&framessize), ::core::mem::transmute_copy(&framesfilled)).into()
         }
-        unsafe extern "system" fn OutputStackTraceEx<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl5_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, outputcontrol: u32, frames: *const DEBUG_STACK_FRAME_EX, framessize: u32, flags: u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn OutputStackTraceEx<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl5_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, outputcontrol: u32, frames: *mut DEBUG_STACK_FRAME_EX, framessize: u32, flags: u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.OutputStackTraceEx(::core::mem::transmute_copy(&outputcontrol), ::core::mem::transmute_copy(&frames), ::core::mem::transmute_copy(&framessize), ::core::mem::transmute_copy(&flags)).into()
         }
-        unsafe extern "system" fn GetContextStackTraceEx<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl5_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, startcontext: *const ::core::ffi::c_void, startcontextsize: u32, frames: *mut DEBUG_STACK_FRAME_EX, framessize: u32, framecontexts: *mut ::core::ffi::c_void, framecontextssize: u32, framecontextsentrysize: u32, framesfilled: *mut u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn GetContextStackTraceEx<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl5_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, startcontext: *mut ::core::ffi::c_void, startcontextsize: u32, frames: *mut DEBUG_STACK_FRAME_EX, framessize: u32, framecontexts: *mut ::core::ffi::c_void, framecontextssize: u32, framecontextsentrysize: u32, framesfilled: *mut u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.GetContextStackTraceEx(::core::mem::transmute_copy(&startcontext), ::core::mem::transmute_copy(&startcontextsize), ::core::mem::transmute_copy(&frames), ::core::mem::transmute_copy(&framessize), ::core::mem::transmute_copy(&framecontexts), ::core::mem::transmute_copy(&framecontextssize), ::core::mem::transmute_copy(&framecontextsentrysize), ::core::mem::transmute_copy(&framesfilled)).into()
         }
-        unsafe extern "system" fn OutputContextStackTraceEx<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl5_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, outputcontrol: u32, frames: *const DEBUG_STACK_FRAME_EX, framessize: u32, framecontexts: *const ::core::ffi::c_void, framecontextssize: u32, framecontextsentrysize: u32, flags: u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn OutputContextStackTraceEx<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl5_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, outputcontrol: u32, frames: *mut DEBUG_STACK_FRAME_EX, framessize: u32, framecontexts: *mut ::core::ffi::c_void, framecontextssize: u32, framecontextsentrysize: u32, flags: u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.OutputContextStackTraceEx(::core::mem::transmute_copy(&outputcontrol), ::core::mem::transmute_copy(&frames), ::core::mem::transmute_copy(&framessize), ::core::mem::transmute_copy(&framecontexts), ::core::mem::transmute_copy(&framecontextssize), ::core::mem::transmute_copy(&framecontextsentrysize), ::core::mem::transmute_copy(&flags)).into()
         }
-        unsafe extern "system" fn GetBreakpointByGuid<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl5_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, guid: *const ::windows::core::GUID, bp: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn GetBreakpointByGuid<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl5_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, guid: *mut ::windows::core::GUID, bp: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.GetBreakpointByGuid(::core::mem::transmute_copy(&guid)) {
@@ -15708,11 +15708,11 @@ pub trait IDebugControl6_Impl: Sized {
     fn Input(&self, buffer: ::windows::core::PSTR, buffersize: u32, inputsize: *mut u32) -> ::windows::core::Result<()>;
     fn ReturnInput(&self, buffer: &::windows::core::PCSTR) -> ::windows::core::Result<()>;
     fn Output(&self, mask: u32, format: &::windows::core::PCSTR) -> ::windows::core::Result<()>;
-    fn OutputVaList(&self, mask: u32, format: &::windows::core::PCSTR, args: *const i8) -> ::windows::core::Result<()>;
+    fn OutputVaList(&self, mask: u32, format: &::windows::core::PCSTR, args: *mut i8) -> ::windows::core::Result<()>;
     fn ControlledOutput(&self, outputcontrol: u32, mask: u32, format: &::windows::core::PCSTR) -> ::windows::core::Result<()>;
-    fn ControlledOutputVaList(&self, outputcontrol: u32, mask: u32, format: &::windows::core::PCSTR, args: *const i8) -> ::windows::core::Result<()>;
+    fn ControlledOutputVaList(&self, outputcontrol: u32, mask: u32, format: &::windows::core::PCSTR, args: *mut i8) -> ::windows::core::Result<()>;
     fn OutputPrompt(&self, outputcontrol: u32, format: &::windows::core::PCSTR) -> ::windows::core::Result<()>;
-    fn OutputPromptVaList(&self, outputcontrol: u32, format: &::windows::core::PCSTR, args: *const i8) -> ::windows::core::Result<()>;
+    fn OutputPromptVaList(&self, outputcontrol: u32, format: &::windows::core::PCSTR, args: *mut i8) -> ::windows::core::Result<()>;
     fn GetPromptText(&self, buffer: ::windows::core::PSTR, buffersize: u32, textsize: *mut u32) -> ::windows::core::Result<()>;
     fn OutputCurrentState(&self, outputcontrol: u32, flags: u32) -> ::windows::core::Result<()>;
     fn OutputVersionInformation(&self, outputcontrol: u32) -> ::windows::core::Result<()>;
@@ -15726,7 +15726,7 @@ pub trait IDebugControl6_Impl: Sized {
     fn GetNearInstruction(&self, offset: u64, delta: i32) -> ::windows::core::Result<u64>;
     fn GetStackTrace(&self, frameoffset: u64, stackoffset: u64, instructionoffset: u64, frames: *mut DEBUG_STACK_FRAME, framessize: u32, framesfilled: *mut u32) -> ::windows::core::Result<()>;
     fn GetReturnOffset(&self) -> ::windows::core::Result<u64>;
-    fn OutputStackTrace(&self, outputcontrol: u32, frames: *const DEBUG_STACK_FRAME, framessize: u32, flags: u32) -> ::windows::core::Result<()>;
+    fn OutputStackTrace(&self, outputcontrol: u32, frames: *mut DEBUG_STACK_FRAME, framessize: u32, flags: u32) -> ::windows::core::Result<()>;
     fn GetDebuggeeType(&self, class: *mut u32, qualifier: *mut u32) -> ::windows::core::Result<()>;
     fn GetActualProcessorType(&self) -> ::windows::core::Result<u32>;
     fn GetExecutingProcessorType(&self) -> ::windows::core::Result<u32>;
@@ -15757,14 +15757,14 @@ pub trait IDebugControl6_Impl: Sized {
     fn GetRadix(&self) -> ::windows::core::Result<u32>;
     fn SetRadix(&self, radix: u32) -> ::windows::core::Result<()>;
     fn Evaluate(&self, expression: &::windows::core::PCSTR, desiredtype: u32, value: *mut DEBUG_VALUE, remainderindex: *mut u32) -> ::windows::core::Result<()>;
-    fn CoerceValue(&self, r#in: *const DEBUG_VALUE, outtype: u32) -> ::windows::core::Result<DEBUG_VALUE>;
-    fn CoerceValues(&self, count: u32, r#in: *const DEBUG_VALUE, outtypes: *const u32) -> ::windows::core::Result<DEBUG_VALUE>;
+    fn CoerceValue(&self, r#in: *mut DEBUG_VALUE, outtype: u32) -> ::windows::core::Result<DEBUG_VALUE>;
+    fn CoerceValues(&self, count: u32, r#in: *mut DEBUG_VALUE, outtypes: *mut u32) -> ::windows::core::Result<DEBUG_VALUE>;
     fn Execute(&self, outputcontrol: u32, command: &::windows::core::PCSTR, flags: u32) -> ::windows::core::Result<()>;
     fn ExecuteCommandFile(&self, outputcontrol: u32, commandfile: &::windows::core::PCSTR, flags: u32) -> ::windows::core::Result<()>;
     fn GetNumberBreakpoints(&self) -> ::windows::core::Result<u32>;
     fn GetBreakpointByIndex(&self, index: u32) -> ::windows::core::Result<IDebugBreakpoint>;
     fn GetBreakpointById(&self, id: u32) -> ::windows::core::Result<IDebugBreakpoint>;
-    fn GetBreakpointParameters(&self, count: u32, ids: *const u32, start: u32) -> ::windows::core::Result<DEBUG_BREAKPOINT_PARAMETERS>;
+    fn GetBreakpointParameters(&self, count: u32, ids: *mut u32, start: u32) -> ::windows::core::Result<DEBUG_BREAKPOINT_PARAMETERS>;
     fn AddBreakpoint(&self, r#type: u32, desiredid: u32) -> ::windows::core::Result<IDebugBreakpoint>;
     fn RemoveBreakpoint(&self, bp: &::core::option::Option<IDebugBreakpoint>) -> ::windows::core::Result<()>;
     fn AddExtension(&self, path: &::windows::core::PCSTR, flags: u32) -> ::windows::core::Result<u64>;
@@ -15779,11 +15779,11 @@ pub trait IDebugControl6_Impl: Sized {
     fn GetEventFilterCommand(&self, index: u32, buffer: ::windows::core::PSTR, buffersize: u32, commandsize: *mut u32) -> ::windows::core::Result<()>;
     fn SetEventFilterCommand(&self, index: u32, command: &::windows::core::PCSTR) -> ::windows::core::Result<()>;
     fn GetSpecificFilterParameters(&self, start: u32, count: u32, params: *mut DEBUG_SPECIFIC_FILTER_PARAMETERS) -> ::windows::core::Result<()>;
-    fn SetSpecificFilterParameters(&self, start: u32, count: u32, params: *const DEBUG_SPECIFIC_FILTER_PARAMETERS) -> ::windows::core::Result<()>;
+    fn SetSpecificFilterParameters(&self, start: u32, count: u32, params: *mut DEBUG_SPECIFIC_FILTER_PARAMETERS) -> ::windows::core::Result<()>;
     fn GetSpecificFilterArgument(&self, index: u32, buffer: ::windows::core::PSTR, buffersize: u32, argumentsize: *mut u32) -> ::windows::core::Result<()>;
     fn SetSpecificFilterArgument(&self, index: u32, argument: &::windows::core::PCSTR) -> ::windows::core::Result<()>;
-    fn GetExceptionFilterParameters(&self, count: u32, codes: *const u32, start: u32) -> ::windows::core::Result<DEBUG_EXCEPTION_FILTER_PARAMETERS>;
-    fn SetExceptionFilterParameters(&self, count: u32, params: *const DEBUG_EXCEPTION_FILTER_PARAMETERS) -> ::windows::core::Result<()>;
+    fn GetExceptionFilterParameters(&self, count: u32, codes: *mut u32, start: u32) -> ::windows::core::Result<DEBUG_EXCEPTION_FILTER_PARAMETERS>;
+    fn SetExceptionFilterParameters(&self, count: u32, params: *mut DEBUG_EXCEPTION_FILTER_PARAMETERS) -> ::windows::core::Result<()>;
     fn GetExceptionFilterSecondCommand(&self, index: u32, buffer: ::windows::core::PSTR, buffersize: u32, commandsize: *mut u32) -> ::windows::core::Result<()>;
     fn SetExceptionFilterSecondCommand(&self, index: u32, command: &::windows::core::PCSTR) -> ::windows::core::Result<()>;
     fn WaitForEvent(&self, flags: u32, timeout: u32) -> ::windows::core::Result<()>;
@@ -15806,7 +15806,7 @@ pub trait IDebugControl6_Impl: Sized {
     fn GetNumberExpressionSyntaxes(&self) -> ::windows::core::Result<u32>;
     fn GetExpressionSyntaxNames(&self, index: u32, fullnamebuffer: ::windows::core::PSTR, fullnamebuffersize: u32, fullnamesize: *mut u32, abbrevnamebuffer: ::windows::core::PSTR, abbrevnamebuffersize: u32, abbrevnamesize: *mut u32) -> ::windows::core::Result<()>;
     fn GetNumberEvents(&self) -> ::windows::core::Result<u32>;
-    fn GetEventIndexDescription(&self, index: u32, which: u32, buffer: &::windows::core::PCSTR, buffersize: u32) -> ::windows::core::Result<u32>;
+    fn GetEventIndexDescription(&self, index: u32, which: u32, buffer: &::windows::core::PSTR, buffersize: u32) -> ::windows::core::Result<u32>;
     fn GetCurrentEventIndex(&self) -> ::windows::core::Result<u32>;
     fn SetNextEventIndex(&self, relation: u32, value: u32) -> ::windows::core::Result<u32>;
     fn GetLogFileWide(&self, buffer: ::windows::core::PWSTR, buffersize: u32, filesize: *mut u32, append: *mut super::super::super::Foundation::BOOL) -> ::windows::core::Result<()>;
@@ -15814,11 +15814,11 @@ pub trait IDebugControl6_Impl: Sized {
     fn InputWide(&self, buffer: ::windows::core::PWSTR, buffersize: u32, inputsize: *mut u32) -> ::windows::core::Result<()>;
     fn ReturnInputWide(&self, buffer: &::windows::core::PCWSTR) -> ::windows::core::Result<()>;
     fn OutputWide(&self, mask: u32, format: &::windows::core::PCWSTR) -> ::windows::core::Result<()>;
-    fn OutputVaListWide(&self, mask: u32, format: &::windows::core::PCWSTR, args: *const i8) -> ::windows::core::Result<()>;
+    fn OutputVaListWide(&self, mask: u32, format: &::windows::core::PCWSTR, args: *mut i8) -> ::windows::core::Result<()>;
     fn ControlledOutputWide(&self, outputcontrol: u32, mask: u32, format: &::windows::core::PCWSTR) -> ::windows::core::Result<()>;
-    fn ControlledOutputVaListWide(&self, outputcontrol: u32, mask: u32, format: &::windows::core::PCWSTR, args: *const i8) -> ::windows::core::Result<()>;
+    fn ControlledOutputVaListWide(&self, outputcontrol: u32, mask: u32, format: &::windows::core::PCWSTR, args: *mut i8) -> ::windows::core::Result<()>;
     fn OutputPromptWide(&self, outputcontrol: u32, format: &::windows::core::PCWSTR) -> ::windows::core::Result<()>;
-    fn OutputPromptVaListWide(&self, outputcontrol: u32, format: &::windows::core::PCWSTR, args: *const i8) -> ::windows::core::Result<()>;
+    fn OutputPromptVaListWide(&self, outputcontrol: u32, format: &::windows::core::PCWSTR, args: *mut i8) -> ::windows::core::Result<()>;
     fn GetPromptTextWide(&self, buffer: ::windows::core::PWSTR, buffersize: u32, textsize: *mut u32) -> ::windows::core::Result<()>;
     fn AssembleWide(&self, offset: u64, instr: &::windows::core::PCWSTR) -> ::windows::core::Result<u64>;
     fn DisassembleWide(&self, offset: u64, flags: u32, buffer: ::windows::core::PWSTR, buffersize: u32, disassemblysize: *mut u32, endoffset: *mut u64) -> ::windows::core::Result<()>;
@@ -15848,7 +15848,7 @@ pub trait IDebugControl6_Impl: Sized {
     fn SetTextReplacementWide(&self, srctext: &::windows::core::PCWSTR, dsttext: &::windows::core::PCWSTR) -> ::windows::core::Result<()>;
     fn SetExpressionSyntaxByNameWide(&self, abbrevname: &::windows::core::PCWSTR) -> ::windows::core::Result<()>;
     fn GetExpressionSyntaxNamesWide(&self, index: u32, fullnamebuffer: ::windows::core::PWSTR, fullnamebuffersize: u32, fullnamesize: *mut u32, abbrevnamebuffer: ::windows::core::PWSTR, abbrevnamebuffersize: u32, abbrevnamesize: *mut u32) -> ::windows::core::Result<()>;
-    fn GetEventIndexDescriptionWide(&self, index: u32, which: u32, buffer: &::windows::core::PCWSTR, buffersize: u32) -> ::windows::core::Result<u32>;
+    fn GetEventIndexDescriptionWide(&self, index: u32, which: u32, buffer: &::windows::core::PWSTR, buffersize: u32) -> ::windows::core::Result<u32>;
     fn GetLogFile2(&self, buffer: ::windows::core::PSTR, buffersize: u32, filesize: *mut u32, flags: *mut u32) -> ::windows::core::Result<()>;
     fn OpenLogFile2(&self, file: &::windows::core::PCSTR, flags: u32) -> ::windows::core::Result<()>;
     fn GetLogFile2Wide(&self, buffer: ::windows::core::PWSTR, buffersize: u32, filesize: *mut u32, flags: *mut u32) -> ::windows::core::Result<()>;
@@ -15856,17 +15856,17 @@ pub trait IDebugControl6_Impl: Sized {
     fn GetSystemVersionValues(&self, platformid: *mut u32, win32major: *mut u32, win32minor: *mut u32, kdmajor: *mut u32, kdminor: *mut u32) -> ::windows::core::Result<()>;
     fn GetSystemVersionString(&self, which: u32, buffer: ::windows::core::PSTR, buffersize: u32, stringsize: *mut u32) -> ::windows::core::Result<()>;
     fn GetSystemVersionStringWide(&self, which: u32, buffer: ::windows::core::PWSTR, buffersize: u32, stringsize: *mut u32) -> ::windows::core::Result<()>;
-    fn GetContextStackTrace(&self, startcontext: *const ::core::ffi::c_void, startcontextsize: u32, frames: *mut DEBUG_STACK_FRAME, framessize: u32, framecontexts: *mut ::core::ffi::c_void, framecontextssize: u32, framecontextsentrysize: u32, framesfilled: *mut u32) -> ::windows::core::Result<()>;
-    fn OutputContextStackTrace(&self, outputcontrol: u32, frames: *const DEBUG_STACK_FRAME, framessize: u32, framecontexts: *const ::core::ffi::c_void, framecontextssize: u32, framecontextsentrysize: u32, flags: u32) -> ::windows::core::Result<()>;
+    fn GetContextStackTrace(&self, startcontext: *mut ::core::ffi::c_void, startcontextsize: u32, frames: *mut DEBUG_STACK_FRAME, framessize: u32, framecontexts: *mut ::core::ffi::c_void, framecontextssize: u32, framecontextsentrysize: u32, framesfilled: *mut u32) -> ::windows::core::Result<()>;
+    fn OutputContextStackTrace(&self, outputcontrol: u32, frames: *mut DEBUG_STACK_FRAME, framessize: u32, framecontexts: *mut ::core::ffi::c_void, framecontextssize: u32, framecontextsentrysize: u32, flags: u32) -> ::windows::core::Result<()>;
     fn GetStoredEventInformation(&self, r#type: *mut u32, processid: *mut u32, threadid: *mut u32, context: *mut ::core::ffi::c_void, contextsize: u32, contextused: *mut u32, extrainformation: *mut ::core::ffi::c_void, extrainformationsize: u32, extrainformationused: *mut u32) -> ::windows::core::Result<()>;
     fn GetManagedStatus(&self, flags: *mut u32, whichstring: u32, string: ::windows::core::PSTR, stringsize: u32, stringneeded: *mut u32) -> ::windows::core::Result<()>;
     fn GetManagedStatusWide(&self, flags: *mut u32, whichstring: u32, string: ::windows::core::PWSTR, stringsize: u32, stringneeded: *mut u32) -> ::windows::core::Result<()>;
     fn ResetManagedStatus(&self, flags: u32) -> ::windows::core::Result<()>;
     fn GetStackTraceEx(&self, frameoffset: u64, stackoffset: u64, instructionoffset: u64, frames: *mut DEBUG_STACK_FRAME_EX, framessize: u32, framesfilled: *mut u32) -> ::windows::core::Result<()>;
-    fn OutputStackTraceEx(&self, outputcontrol: u32, frames: *const DEBUG_STACK_FRAME_EX, framessize: u32, flags: u32) -> ::windows::core::Result<()>;
-    fn GetContextStackTraceEx(&self, startcontext: *const ::core::ffi::c_void, startcontextsize: u32, frames: *mut DEBUG_STACK_FRAME_EX, framessize: u32, framecontexts: *mut ::core::ffi::c_void, framecontextssize: u32, framecontextsentrysize: u32, framesfilled: *mut u32) -> ::windows::core::Result<()>;
-    fn OutputContextStackTraceEx(&self, outputcontrol: u32, frames: *const DEBUG_STACK_FRAME_EX, framessize: u32, framecontexts: *const ::core::ffi::c_void, framecontextssize: u32, framecontextsentrysize: u32, flags: u32) -> ::windows::core::Result<()>;
-    fn GetBreakpointByGuid(&self, guid: *const ::windows::core::GUID) -> ::windows::core::Result<IDebugBreakpoint3>;
+    fn OutputStackTraceEx(&self, outputcontrol: u32, frames: *mut DEBUG_STACK_FRAME_EX, framessize: u32, flags: u32) -> ::windows::core::Result<()>;
+    fn GetContextStackTraceEx(&self, startcontext: *mut ::core::ffi::c_void, startcontextsize: u32, frames: *mut DEBUG_STACK_FRAME_EX, framessize: u32, framecontexts: *mut ::core::ffi::c_void, framecontextssize: u32, framecontextsentrysize: u32, framesfilled: *mut u32) -> ::windows::core::Result<()>;
+    fn OutputContextStackTraceEx(&self, outputcontrol: u32, frames: *mut DEBUG_STACK_FRAME_EX, framessize: u32, framecontexts: *mut ::core::ffi::c_void, framecontextssize: u32, framecontextsentrysize: u32, flags: u32) -> ::windows::core::Result<()>;
+    fn GetBreakpointByGuid(&self, guid: *mut ::windows::core::GUID) -> ::windows::core::Result<IDebugBreakpoint3>;
     fn GetExecutionStatusEx(&self) -> ::windows::core::Result<u32>;
     fn GetSynchronizationStatus(&self, sendsattempted: *mut u32, secondssincelastresponse: *mut u32) -> ::windows::core::Result<()>;
 }
@@ -15947,7 +15947,7 @@ impl IDebugControl6_Vtbl {
             let this = (*this).get_impl();
             this.Output(::core::mem::transmute_copy(&mask), ::core::mem::transmute(&format)).into()
         }
-        unsafe extern "system" fn OutputVaList<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl6_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, mask: u32, format: ::windows::core::PCSTR, args: *const i8) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn OutputVaList<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl6_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, mask: u32, format: ::windows::core::PCSTR, args: *mut i8) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.OutputVaList(::core::mem::transmute_copy(&mask), ::core::mem::transmute(&format), ::core::mem::transmute_copy(&args)).into()
@@ -15957,7 +15957,7 @@ impl IDebugControl6_Vtbl {
             let this = (*this).get_impl();
             this.ControlledOutput(::core::mem::transmute_copy(&outputcontrol), ::core::mem::transmute_copy(&mask), ::core::mem::transmute(&format)).into()
         }
-        unsafe extern "system" fn ControlledOutputVaList<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl6_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, outputcontrol: u32, mask: u32, format: ::windows::core::PCSTR, args: *const i8) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn ControlledOutputVaList<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl6_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, outputcontrol: u32, mask: u32, format: ::windows::core::PCSTR, args: *mut i8) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.ControlledOutputVaList(::core::mem::transmute_copy(&outputcontrol), ::core::mem::transmute_copy(&mask), ::core::mem::transmute(&format), ::core::mem::transmute_copy(&args)).into()
@@ -15967,7 +15967,7 @@ impl IDebugControl6_Vtbl {
             let this = (*this).get_impl();
             this.OutputPrompt(::core::mem::transmute_copy(&outputcontrol), ::core::mem::transmute(&format)).into()
         }
-        unsafe extern "system" fn OutputPromptVaList<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl6_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, outputcontrol: u32, format: ::windows::core::PCSTR, args: *const i8) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn OutputPromptVaList<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl6_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, outputcontrol: u32, format: ::windows::core::PCSTR, args: *mut i8) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.OutputPromptVaList(::core::mem::transmute_copy(&outputcontrol), ::core::mem::transmute(&format), ::core::mem::transmute_copy(&args)).into()
@@ -16073,7 +16073,7 @@ impl IDebugControl6_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn OutputStackTrace<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl6_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, outputcontrol: u32, frames: *const DEBUG_STACK_FRAME, framessize: u32, flags: u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn OutputStackTrace<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl6_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, outputcontrol: u32, frames: *mut DEBUG_STACK_FRAME, framessize: u32, flags: u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.OutputStackTrace(::core::mem::transmute_copy(&outputcontrol), ::core::mem::transmute_copy(&frames), ::core::mem::transmute_copy(&framessize), ::core::mem::transmute_copy(&flags)).into()
@@ -16295,7 +16295,7 @@ impl IDebugControl6_Vtbl {
             let this = (*this).get_impl();
             this.Evaluate(::core::mem::transmute(&expression), ::core::mem::transmute_copy(&desiredtype), ::core::mem::transmute_copy(&value), ::core::mem::transmute_copy(&remainderindex)).into()
         }
-        unsafe extern "system" fn CoerceValue<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl6_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, r#in: *const DEBUG_VALUE, outtype: u32, out: *mut DEBUG_VALUE) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn CoerceValue<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl6_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, r#in: *mut DEBUG_VALUE, outtype: u32, out: *mut DEBUG_VALUE) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.CoerceValue(::core::mem::transmute_copy(&r#in), ::core::mem::transmute_copy(&outtype)) {
@@ -16306,7 +16306,7 @@ impl IDebugControl6_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn CoerceValues<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl6_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, count: u32, r#in: *const DEBUG_VALUE, outtypes: *const u32, out: *mut DEBUG_VALUE) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn CoerceValues<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl6_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, count: u32, r#in: *mut DEBUG_VALUE, outtypes: *mut u32, out: *mut DEBUG_VALUE) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.CoerceValues(::core::mem::transmute_copy(&count), ::core::mem::transmute_copy(&r#in), ::core::mem::transmute_copy(&outtypes)) {
@@ -16360,7 +16360,7 @@ impl IDebugControl6_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn GetBreakpointParameters<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl6_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, count: u32, ids: *const u32, start: u32, params: *mut DEBUG_BREAKPOINT_PARAMETERS) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn GetBreakpointParameters<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl6_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, count: u32, ids: *mut u32, start: u32, params: *mut DEBUG_BREAKPOINT_PARAMETERS) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.GetBreakpointParameters(::core::mem::transmute_copy(&count), ::core::mem::transmute_copy(&ids), ::core::mem::transmute_copy(&start)) {
@@ -16459,7 +16459,7 @@ impl IDebugControl6_Vtbl {
             let this = (*this).get_impl();
             this.GetSpecificFilterParameters(::core::mem::transmute_copy(&start), ::core::mem::transmute_copy(&count), ::core::mem::transmute_copy(&params)).into()
         }
-        unsafe extern "system" fn SetSpecificFilterParameters<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl6_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, start: u32, count: u32, params: *const DEBUG_SPECIFIC_FILTER_PARAMETERS) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn SetSpecificFilterParameters<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl6_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, start: u32, count: u32, params: *mut DEBUG_SPECIFIC_FILTER_PARAMETERS) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.SetSpecificFilterParameters(::core::mem::transmute_copy(&start), ::core::mem::transmute_copy(&count), ::core::mem::transmute_copy(&params)).into()
@@ -16474,7 +16474,7 @@ impl IDebugControl6_Vtbl {
             let this = (*this).get_impl();
             this.SetSpecificFilterArgument(::core::mem::transmute_copy(&index), ::core::mem::transmute(&argument)).into()
         }
-        unsafe extern "system" fn GetExceptionFilterParameters<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl6_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, count: u32, codes: *const u32, start: u32, params: *mut DEBUG_EXCEPTION_FILTER_PARAMETERS) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn GetExceptionFilterParameters<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl6_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, count: u32, codes: *mut u32, start: u32, params: *mut DEBUG_EXCEPTION_FILTER_PARAMETERS) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.GetExceptionFilterParameters(::core::mem::transmute_copy(&count), ::core::mem::transmute_copy(&codes), ::core::mem::transmute_copy(&start)) {
@@ -16485,7 +16485,7 @@ impl IDebugControl6_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn SetExceptionFilterParameters<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl6_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, count: u32, params: *const DEBUG_EXCEPTION_FILTER_PARAMETERS) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn SetExceptionFilterParameters<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl6_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, count: u32, params: *mut DEBUG_EXCEPTION_FILTER_PARAMETERS) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.SetExceptionFilterParameters(::core::mem::transmute_copy(&count), ::core::mem::transmute_copy(&params)).into()
@@ -16648,7 +16648,7 @@ impl IDebugControl6_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn GetEventIndexDescription<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl6_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, index: u32, which: u32, buffer: ::windows::core::PCSTR, buffersize: u32, descsize: *mut u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn GetEventIndexDescription<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl6_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, index: u32, which: u32, buffer: ::windows::core::PSTR, buffersize: u32, descsize: *mut u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.GetEventIndexDescription(::core::mem::transmute_copy(&index), ::core::mem::transmute_copy(&which), ::core::mem::transmute(&buffer), ::core::mem::transmute_copy(&buffersize)) {
@@ -16706,7 +16706,7 @@ impl IDebugControl6_Vtbl {
             let this = (*this).get_impl();
             this.OutputWide(::core::mem::transmute_copy(&mask), ::core::mem::transmute(&format)).into()
         }
-        unsafe extern "system" fn OutputVaListWide<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl6_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, mask: u32, format: ::windows::core::PCWSTR, args: *const i8) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn OutputVaListWide<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl6_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, mask: u32, format: ::windows::core::PCWSTR, args: *mut i8) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.OutputVaListWide(::core::mem::transmute_copy(&mask), ::core::mem::transmute(&format), ::core::mem::transmute_copy(&args)).into()
@@ -16716,7 +16716,7 @@ impl IDebugControl6_Vtbl {
             let this = (*this).get_impl();
             this.ControlledOutputWide(::core::mem::transmute_copy(&outputcontrol), ::core::mem::transmute_copy(&mask), ::core::mem::transmute(&format)).into()
         }
-        unsafe extern "system" fn ControlledOutputVaListWide<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl6_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, outputcontrol: u32, mask: u32, format: ::windows::core::PCWSTR, args: *const i8) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn ControlledOutputVaListWide<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl6_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, outputcontrol: u32, mask: u32, format: ::windows::core::PCWSTR, args: *mut i8) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.ControlledOutputVaListWide(::core::mem::transmute_copy(&outputcontrol), ::core::mem::transmute_copy(&mask), ::core::mem::transmute(&format), ::core::mem::transmute_copy(&args)).into()
@@ -16726,7 +16726,7 @@ impl IDebugControl6_Vtbl {
             let this = (*this).get_impl();
             this.OutputPromptWide(::core::mem::transmute_copy(&outputcontrol), ::core::mem::transmute(&format)).into()
         }
-        unsafe extern "system" fn OutputPromptVaListWide<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl6_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, outputcontrol: u32, format: ::windows::core::PCWSTR, args: *const i8) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn OutputPromptVaListWide<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl6_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, outputcontrol: u32, format: ::windows::core::PCWSTR, args: *mut i8) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.OutputPromptVaListWide(::core::mem::transmute_copy(&outputcontrol), ::core::mem::transmute(&format), ::core::mem::transmute_copy(&args)).into()
@@ -16912,7 +16912,7 @@ impl IDebugControl6_Vtbl {
             let this = (*this).get_impl();
             this.GetExpressionSyntaxNamesWide(::core::mem::transmute_copy(&index), ::core::mem::transmute_copy(&fullnamebuffer), ::core::mem::transmute_copy(&fullnamebuffersize), ::core::mem::transmute_copy(&fullnamesize), ::core::mem::transmute_copy(&abbrevnamebuffer), ::core::mem::transmute_copy(&abbrevnamebuffersize), ::core::mem::transmute_copy(&abbrevnamesize)).into()
         }
-        unsafe extern "system" fn GetEventIndexDescriptionWide<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl6_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, index: u32, which: u32, buffer: ::windows::core::PCWSTR, buffersize: u32, descsize: *mut u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn GetEventIndexDescriptionWide<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl6_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, index: u32, which: u32, buffer: ::windows::core::PWSTR, buffersize: u32, descsize: *mut u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.GetEventIndexDescriptionWide(::core::mem::transmute_copy(&index), ::core::mem::transmute_copy(&which), ::core::mem::transmute(&buffer), ::core::mem::transmute_copy(&buffersize)) {
@@ -16958,12 +16958,12 @@ impl IDebugControl6_Vtbl {
             let this = (*this).get_impl();
             this.GetSystemVersionStringWide(::core::mem::transmute_copy(&which), ::core::mem::transmute_copy(&buffer), ::core::mem::transmute_copy(&buffersize), ::core::mem::transmute_copy(&stringsize)).into()
         }
-        unsafe extern "system" fn GetContextStackTrace<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl6_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, startcontext: *const ::core::ffi::c_void, startcontextsize: u32, frames: *mut DEBUG_STACK_FRAME, framessize: u32, framecontexts: *mut ::core::ffi::c_void, framecontextssize: u32, framecontextsentrysize: u32, framesfilled: *mut u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn GetContextStackTrace<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl6_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, startcontext: *mut ::core::ffi::c_void, startcontextsize: u32, frames: *mut DEBUG_STACK_FRAME, framessize: u32, framecontexts: *mut ::core::ffi::c_void, framecontextssize: u32, framecontextsentrysize: u32, framesfilled: *mut u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.GetContextStackTrace(::core::mem::transmute_copy(&startcontext), ::core::mem::transmute_copy(&startcontextsize), ::core::mem::transmute_copy(&frames), ::core::mem::transmute_copy(&framessize), ::core::mem::transmute_copy(&framecontexts), ::core::mem::transmute_copy(&framecontextssize), ::core::mem::transmute_copy(&framecontextsentrysize), ::core::mem::transmute_copy(&framesfilled)).into()
         }
-        unsafe extern "system" fn OutputContextStackTrace<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl6_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, outputcontrol: u32, frames: *const DEBUG_STACK_FRAME, framessize: u32, framecontexts: *const ::core::ffi::c_void, framecontextssize: u32, framecontextsentrysize: u32, flags: u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn OutputContextStackTrace<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl6_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, outputcontrol: u32, frames: *mut DEBUG_STACK_FRAME, framessize: u32, framecontexts: *mut ::core::ffi::c_void, framecontextssize: u32, framecontextsentrysize: u32, flags: u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.OutputContextStackTrace(::core::mem::transmute_copy(&outputcontrol), ::core::mem::transmute_copy(&frames), ::core::mem::transmute_copy(&framessize), ::core::mem::transmute_copy(&framecontexts), ::core::mem::transmute_copy(&framecontextssize), ::core::mem::transmute_copy(&framecontextsentrysize), ::core::mem::transmute_copy(&flags)).into()
@@ -16993,22 +16993,22 @@ impl IDebugControl6_Vtbl {
             let this = (*this).get_impl();
             this.GetStackTraceEx(::core::mem::transmute_copy(&frameoffset), ::core::mem::transmute_copy(&stackoffset), ::core::mem::transmute_copy(&instructionoffset), ::core::mem::transmute_copy(&frames), ::core::mem::transmute_copy(&framessize), ::core::mem::transmute_copy(&framesfilled)).into()
         }
-        unsafe extern "system" fn OutputStackTraceEx<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl6_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, outputcontrol: u32, frames: *const DEBUG_STACK_FRAME_EX, framessize: u32, flags: u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn OutputStackTraceEx<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl6_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, outputcontrol: u32, frames: *mut DEBUG_STACK_FRAME_EX, framessize: u32, flags: u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.OutputStackTraceEx(::core::mem::transmute_copy(&outputcontrol), ::core::mem::transmute_copy(&frames), ::core::mem::transmute_copy(&framessize), ::core::mem::transmute_copy(&flags)).into()
         }
-        unsafe extern "system" fn GetContextStackTraceEx<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl6_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, startcontext: *const ::core::ffi::c_void, startcontextsize: u32, frames: *mut DEBUG_STACK_FRAME_EX, framessize: u32, framecontexts: *mut ::core::ffi::c_void, framecontextssize: u32, framecontextsentrysize: u32, framesfilled: *mut u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn GetContextStackTraceEx<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl6_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, startcontext: *mut ::core::ffi::c_void, startcontextsize: u32, frames: *mut DEBUG_STACK_FRAME_EX, framessize: u32, framecontexts: *mut ::core::ffi::c_void, framecontextssize: u32, framecontextsentrysize: u32, framesfilled: *mut u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.GetContextStackTraceEx(::core::mem::transmute_copy(&startcontext), ::core::mem::transmute_copy(&startcontextsize), ::core::mem::transmute_copy(&frames), ::core::mem::transmute_copy(&framessize), ::core::mem::transmute_copy(&framecontexts), ::core::mem::transmute_copy(&framecontextssize), ::core::mem::transmute_copy(&framecontextsentrysize), ::core::mem::transmute_copy(&framesfilled)).into()
         }
-        unsafe extern "system" fn OutputContextStackTraceEx<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl6_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, outputcontrol: u32, frames: *const DEBUG_STACK_FRAME_EX, framessize: u32, framecontexts: *const ::core::ffi::c_void, framecontextssize: u32, framecontextsentrysize: u32, flags: u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn OutputContextStackTraceEx<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl6_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, outputcontrol: u32, frames: *mut DEBUG_STACK_FRAME_EX, framessize: u32, framecontexts: *mut ::core::ffi::c_void, framecontextssize: u32, framecontextsentrysize: u32, flags: u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.OutputContextStackTraceEx(::core::mem::transmute_copy(&outputcontrol), ::core::mem::transmute_copy(&frames), ::core::mem::transmute_copy(&framessize), ::core::mem::transmute_copy(&framecontexts), ::core::mem::transmute_copy(&framecontextssize), ::core::mem::transmute_copy(&framecontextsentrysize), ::core::mem::transmute_copy(&flags)).into()
         }
-        unsafe extern "system" fn GetBreakpointByGuid<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl6_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, guid: *const ::windows::core::GUID, bp: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn GetBreakpointByGuid<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl6_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, guid: *mut ::windows::core::GUID, bp: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.GetBreakpointByGuid(::core::mem::transmute_copy(&guid)) {
@@ -17230,11 +17230,11 @@ pub trait IDebugControl7_Impl: Sized {
     fn Input(&self, buffer: ::windows::core::PSTR, buffersize: u32, inputsize: *mut u32) -> ::windows::core::Result<()>;
     fn ReturnInput(&self, buffer: &::windows::core::PCSTR) -> ::windows::core::Result<()>;
     fn Output(&self, mask: u32, format: &::windows::core::PCSTR) -> ::windows::core::Result<()>;
-    fn OutputVaList(&self, mask: u32, format: &::windows::core::PCSTR, args: *const i8) -> ::windows::core::Result<()>;
+    fn OutputVaList(&self, mask: u32, format: &::windows::core::PCSTR, args: *mut i8) -> ::windows::core::Result<()>;
     fn ControlledOutput(&self, outputcontrol: u32, mask: u32, format: &::windows::core::PCSTR) -> ::windows::core::Result<()>;
-    fn ControlledOutputVaList(&self, outputcontrol: u32, mask: u32, format: &::windows::core::PCSTR, args: *const i8) -> ::windows::core::Result<()>;
+    fn ControlledOutputVaList(&self, outputcontrol: u32, mask: u32, format: &::windows::core::PCSTR, args: *mut i8) -> ::windows::core::Result<()>;
     fn OutputPrompt(&self, outputcontrol: u32, format: &::windows::core::PCSTR) -> ::windows::core::Result<()>;
-    fn OutputPromptVaList(&self, outputcontrol: u32, format: &::windows::core::PCSTR, args: *const i8) -> ::windows::core::Result<()>;
+    fn OutputPromptVaList(&self, outputcontrol: u32, format: &::windows::core::PCSTR, args: *mut i8) -> ::windows::core::Result<()>;
     fn GetPromptText(&self, buffer: ::windows::core::PSTR, buffersize: u32, textsize: *mut u32) -> ::windows::core::Result<()>;
     fn OutputCurrentState(&self, outputcontrol: u32, flags: u32) -> ::windows::core::Result<()>;
     fn OutputVersionInformation(&self, outputcontrol: u32) -> ::windows::core::Result<()>;
@@ -17248,7 +17248,7 @@ pub trait IDebugControl7_Impl: Sized {
     fn GetNearInstruction(&self, offset: u64, delta: i32) -> ::windows::core::Result<u64>;
     fn GetStackTrace(&self, frameoffset: u64, stackoffset: u64, instructionoffset: u64, frames: *mut DEBUG_STACK_FRAME, framessize: u32, framesfilled: *mut u32) -> ::windows::core::Result<()>;
     fn GetReturnOffset(&self) -> ::windows::core::Result<u64>;
-    fn OutputStackTrace(&self, outputcontrol: u32, frames: *const DEBUG_STACK_FRAME, framessize: u32, flags: u32) -> ::windows::core::Result<()>;
+    fn OutputStackTrace(&self, outputcontrol: u32, frames: *mut DEBUG_STACK_FRAME, framessize: u32, flags: u32) -> ::windows::core::Result<()>;
     fn GetDebuggeeType(&self, class: *mut u32, qualifier: *mut u32) -> ::windows::core::Result<()>;
     fn GetActualProcessorType(&self) -> ::windows::core::Result<u32>;
     fn GetExecutingProcessorType(&self) -> ::windows::core::Result<u32>;
@@ -17279,14 +17279,14 @@ pub trait IDebugControl7_Impl: Sized {
     fn GetRadix(&self) -> ::windows::core::Result<u32>;
     fn SetRadix(&self, radix: u32) -> ::windows::core::Result<()>;
     fn Evaluate(&self, expression: &::windows::core::PCSTR, desiredtype: u32, value: *mut DEBUG_VALUE, remainderindex: *mut u32) -> ::windows::core::Result<()>;
-    fn CoerceValue(&self, r#in: *const DEBUG_VALUE, outtype: u32) -> ::windows::core::Result<DEBUG_VALUE>;
-    fn CoerceValues(&self, count: u32, r#in: *const DEBUG_VALUE, outtypes: *const u32) -> ::windows::core::Result<DEBUG_VALUE>;
+    fn CoerceValue(&self, r#in: *mut DEBUG_VALUE, outtype: u32) -> ::windows::core::Result<DEBUG_VALUE>;
+    fn CoerceValues(&self, count: u32, r#in: *mut DEBUG_VALUE, outtypes: *mut u32) -> ::windows::core::Result<DEBUG_VALUE>;
     fn Execute(&self, outputcontrol: u32, command: &::windows::core::PCSTR, flags: u32) -> ::windows::core::Result<()>;
     fn ExecuteCommandFile(&self, outputcontrol: u32, commandfile: &::windows::core::PCSTR, flags: u32) -> ::windows::core::Result<()>;
     fn GetNumberBreakpoints(&self) -> ::windows::core::Result<u32>;
     fn GetBreakpointByIndex(&self, index: u32) -> ::windows::core::Result<IDebugBreakpoint>;
     fn GetBreakpointById(&self, id: u32) -> ::windows::core::Result<IDebugBreakpoint>;
-    fn GetBreakpointParameters(&self, count: u32, ids: *const u32, start: u32) -> ::windows::core::Result<DEBUG_BREAKPOINT_PARAMETERS>;
+    fn GetBreakpointParameters(&self, count: u32, ids: *mut u32, start: u32) -> ::windows::core::Result<DEBUG_BREAKPOINT_PARAMETERS>;
     fn AddBreakpoint(&self, r#type: u32, desiredid: u32) -> ::windows::core::Result<IDebugBreakpoint>;
     fn RemoveBreakpoint(&self, bp: &::core::option::Option<IDebugBreakpoint>) -> ::windows::core::Result<()>;
     fn AddExtension(&self, path: &::windows::core::PCSTR, flags: u32) -> ::windows::core::Result<u64>;
@@ -17301,11 +17301,11 @@ pub trait IDebugControl7_Impl: Sized {
     fn GetEventFilterCommand(&self, index: u32, buffer: ::windows::core::PSTR, buffersize: u32, commandsize: *mut u32) -> ::windows::core::Result<()>;
     fn SetEventFilterCommand(&self, index: u32, command: &::windows::core::PCSTR) -> ::windows::core::Result<()>;
     fn GetSpecificFilterParameters(&self, start: u32, count: u32, params: *mut DEBUG_SPECIFIC_FILTER_PARAMETERS) -> ::windows::core::Result<()>;
-    fn SetSpecificFilterParameters(&self, start: u32, count: u32, params: *const DEBUG_SPECIFIC_FILTER_PARAMETERS) -> ::windows::core::Result<()>;
+    fn SetSpecificFilterParameters(&self, start: u32, count: u32, params: *mut DEBUG_SPECIFIC_FILTER_PARAMETERS) -> ::windows::core::Result<()>;
     fn GetSpecificFilterArgument(&self, index: u32, buffer: ::windows::core::PSTR, buffersize: u32, argumentsize: *mut u32) -> ::windows::core::Result<()>;
     fn SetSpecificFilterArgument(&self, index: u32, argument: &::windows::core::PCSTR) -> ::windows::core::Result<()>;
-    fn GetExceptionFilterParameters(&self, count: u32, codes: *const u32, start: u32) -> ::windows::core::Result<DEBUG_EXCEPTION_FILTER_PARAMETERS>;
-    fn SetExceptionFilterParameters(&self, count: u32, params: *const DEBUG_EXCEPTION_FILTER_PARAMETERS) -> ::windows::core::Result<()>;
+    fn GetExceptionFilterParameters(&self, count: u32, codes: *mut u32, start: u32) -> ::windows::core::Result<DEBUG_EXCEPTION_FILTER_PARAMETERS>;
+    fn SetExceptionFilterParameters(&self, count: u32, params: *mut DEBUG_EXCEPTION_FILTER_PARAMETERS) -> ::windows::core::Result<()>;
     fn GetExceptionFilterSecondCommand(&self, index: u32, buffer: ::windows::core::PSTR, buffersize: u32, commandsize: *mut u32) -> ::windows::core::Result<()>;
     fn SetExceptionFilterSecondCommand(&self, index: u32, command: &::windows::core::PCSTR) -> ::windows::core::Result<()>;
     fn WaitForEvent(&self, flags: u32, timeout: u32) -> ::windows::core::Result<()>;
@@ -17328,7 +17328,7 @@ pub trait IDebugControl7_Impl: Sized {
     fn GetNumberExpressionSyntaxes(&self) -> ::windows::core::Result<u32>;
     fn GetExpressionSyntaxNames(&self, index: u32, fullnamebuffer: ::windows::core::PSTR, fullnamebuffersize: u32, fullnamesize: *mut u32, abbrevnamebuffer: ::windows::core::PSTR, abbrevnamebuffersize: u32, abbrevnamesize: *mut u32) -> ::windows::core::Result<()>;
     fn GetNumberEvents(&self) -> ::windows::core::Result<u32>;
-    fn GetEventIndexDescription(&self, index: u32, which: u32, buffer: &::windows::core::PCSTR, buffersize: u32) -> ::windows::core::Result<u32>;
+    fn GetEventIndexDescription(&self, index: u32, which: u32, buffer: &::windows::core::PSTR, buffersize: u32) -> ::windows::core::Result<u32>;
     fn GetCurrentEventIndex(&self) -> ::windows::core::Result<u32>;
     fn SetNextEventIndex(&self, relation: u32, value: u32) -> ::windows::core::Result<u32>;
     fn GetLogFileWide(&self, buffer: ::windows::core::PWSTR, buffersize: u32, filesize: *mut u32, append: *mut super::super::super::Foundation::BOOL) -> ::windows::core::Result<()>;
@@ -17336,11 +17336,11 @@ pub trait IDebugControl7_Impl: Sized {
     fn InputWide(&self, buffer: ::windows::core::PWSTR, buffersize: u32, inputsize: *mut u32) -> ::windows::core::Result<()>;
     fn ReturnInputWide(&self, buffer: &::windows::core::PCWSTR) -> ::windows::core::Result<()>;
     fn OutputWide(&self, mask: u32, format: &::windows::core::PCWSTR) -> ::windows::core::Result<()>;
-    fn OutputVaListWide(&self, mask: u32, format: &::windows::core::PCWSTR, args: *const i8) -> ::windows::core::Result<()>;
+    fn OutputVaListWide(&self, mask: u32, format: &::windows::core::PCWSTR, args: *mut i8) -> ::windows::core::Result<()>;
     fn ControlledOutputWide(&self, outputcontrol: u32, mask: u32, format: &::windows::core::PCWSTR) -> ::windows::core::Result<()>;
-    fn ControlledOutputVaListWide(&self, outputcontrol: u32, mask: u32, format: &::windows::core::PCWSTR, args: *const i8) -> ::windows::core::Result<()>;
+    fn ControlledOutputVaListWide(&self, outputcontrol: u32, mask: u32, format: &::windows::core::PCWSTR, args: *mut i8) -> ::windows::core::Result<()>;
     fn OutputPromptWide(&self, outputcontrol: u32, format: &::windows::core::PCWSTR) -> ::windows::core::Result<()>;
-    fn OutputPromptVaListWide(&self, outputcontrol: u32, format: &::windows::core::PCWSTR, args: *const i8) -> ::windows::core::Result<()>;
+    fn OutputPromptVaListWide(&self, outputcontrol: u32, format: &::windows::core::PCWSTR, args: *mut i8) -> ::windows::core::Result<()>;
     fn GetPromptTextWide(&self, buffer: ::windows::core::PWSTR, buffersize: u32, textsize: *mut u32) -> ::windows::core::Result<()>;
     fn AssembleWide(&self, offset: u64, instr: &::windows::core::PCWSTR) -> ::windows::core::Result<u64>;
     fn DisassembleWide(&self, offset: u64, flags: u32, buffer: ::windows::core::PWSTR, buffersize: u32, disassemblysize: *mut u32, endoffset: *mut u64) -> ::windows::core::Result<()>;
@@ -17370,7 +17370,7 @@ pub trait IDebugControl7_Impl: Sized {
     fn SetTextReplacementWide(&self, srctext: &::windows::core::PCWSTR, dsttext: &::windows::core::PCWSTR) -> ::windows::core::Result<()>;
     fn SetExpressionSyntaxByNameWide(&self, abbrevname: &::windows::core::PCWSTR) -> ::windows::core::Result<()>;
     fn GetExpressionSyntaxNamesWide(&self, index: u32, fullnamebuffer: ::windows::core::PWSTR, fullnamebuffersize: u32, fullnamesize: *mut u32, abbrevnamebuffer: ::windows::core::PWSTR, abbrevnamebuffersize: u32, abbrevnamesize: *mut u32) -> ::windows::core::Result<()>;
-    fn GetEventIndexDescriptionWide(&self, index: u32, which: u32, buffer: &::windows::core::PCWSTR, buffersize: u32) -> ::windows::core::Result<u32>;
+    fn GetEventIndexDescriptionWide(&self, index: u32, which: u32, buffer: &::windows::core::PWSTR, buffersize: u32) -> ::windows::core::Result<u32>;
     fn GetLogFile2(&self, buffer: ::windows::core::PSTR, buffersize: u32, filesize: *mut u32, flags: *mut u32) -> ::windows::core::Result<()>;
     fn OpenLogFile2(&self, file: &::windows::core::PCSTR, flags: u32) -> ::windows::core::Result<()>;
     fn GetLogFile2Wide(&self, buffer: ::windows::core::PWSTR, buffersize: u32, filesize: *mut u32, flags: *mut u32) -> ::windows::core::Result<()>;
@@ -17378,17 +17378,17 @@ pub trait IDebugControl7_Impl: Sized {
     fn GetSystemVersionValues(&self, platformid: *mut u32, win32major: *mut u32, win32minor: *mut u32, kdmajor: *mut u32, kdminor: *mut u32) -> ::windows::core::Result<()>;
     fn GetSystemVersionString(&self, which: u32, buffer: ::windows::core::PSTR, buffersize: u32, stringsize: *mut u32) -> ::windows::core::Result<()>;
     fn GetSystemVersionStringWide(&self, which: u32, buffer: ::windows::core::PWSTR, buffersize: u32, stringsize: *mut u32) -> ::windows::core::Result<()>;
-    fn GetContextStackTrace(&self, startcontext: *const ::core::ffi::c_void, startcontextsize: u32, frames: *mut DEBUG_STACK_FRAME, framessize: u32, framecontexts: *mut ::core::ffi::c_void, framecontextssize: u32, framecontextsentrysize: u32, framesfilled: *mut u32) -> ::windows::core::Result<()>;
-    fn OutputContextStackTrace(&self, outputcontrol: u32, frames: *const DEBUG_STACK_FRAME, framessize: u32, framecontexts: *const ::core::ffi::c_void, framecontextssize: u32, framecontextsentrysize: u32, flags: u32) -> ::windows::core::Result<()>;
+    fn GetContextStackTrace(&self, startcontext: *mut ::core::ffi::c_void, startcontextsize: u32, frames: *mut DEBUG_STACK_FRAME, framessize: u32, framecontexts: *mut ::core::ffi::c_void, framecontextssize: u32, framecontextsentrysize: u32, framesfilled: *mut u32) -> ::windows::core::Result<()>;
+    fn OutputContextStackTrace(&self, outputcontrol: u32, frames: *mut DEBUG_STACK_FRAME, framessize: u32, framecontexts: *mut ::core::ffi::c_void, framecontextssize: u32, framecontextsentrysize: u32, flags: u32) -> ::windows::core::Result<()>;
     fn GetStoredEventInformation(&self, r#type: *mut u32, processid: *mut u32, threadid: *mut u32, context: *mut ::core::ffi::c_void, contextsize: u32, contextused: *mut u32, extrainformation: *mut ::core::ffi::c_void, extrainformationsize: u32, extrainformationused: *mut u32) -> ::windows::core::Result<()>;
     fn GetManagedStatus(&self, flags: *mut u32, whichstring: u32, string: ::windows::core::PSTR, stringsize: u32, stringneeded: *mut u32) -> ::windows::core::Result<()>;
     fn GetManagedStatusWide(&self, flags: *mut u32, whichstring: u32, string: ::windows::core::PWSTR, stringsize: u32, stringneeded: *mut u32) -> ::windows::core::Result<()>;
     fn ResetManagedStatus(&self, flags: u32) -> ::windows::core::Result<()>;
     fn GetStackTraceEx(&self, frameoffset: u64, stackoffset: u64, instructionoffset: u64, frames: *mut DEBUG_STACK_FRAME_EX, framessize: u32, framesfilled: *mut u32) -> ::windows::core::Result<()>;
-    fn OutputStackTraceEx(&self, outputcontrol: u32, frames: *const DEBUG_STACK_FRAME_EX, framessize: u32, flags: u32) -> ::windows::core::Result<()>;
-    fn GetContextStackTraceEx(&self, startcontext: *const ::core::ffi::c_void, startcontextsize: u32, frames: *mut DEBUG_STACK_FRAME_EX, framessize: u32, framecontexts: *mut ::core::ffi::c_void, framecontextssize: u32, framecontextsentrysize: u32, framesfilled: *mut u32) -> ::windows::core::Result<()>;
-    fn OutputContextStackTraceEx(&self, outputcontrol: u32, frames: *const DEBUG_STACK_FRAME_EX, framessize: u32, framecontexts: *const ::core::ffi::c_void, framecontextssize: u32, framecontextsentrysize: u32, flags: u32) -> ::windows::core::Result<()>;
-    fn GetBreakpointByGuid(&self, guid: *const ::windows::core::GUID) -> ::windows::core::Result<IDebugBreakpoint3>;
+    fn OutputStackTraceEx(&self, outputcontrol: u32, frames: *mut DEBUG_STACK_FRAME_EX, framessize: u32, flags: u32) -> ::windows::core::Result<()>;
+    fn GetContextStackTraceEx(&self, startcontext: *mut ::core::ffi::c_void, startcontextsize: u32, frames: *mut DEBUG_STACK_FRAME_EX, framessize: u32, framecontexts: *mut ::core::ffi::c_void, framecontextssize: u32, framecontextsentrysize: u32, framesfilled: *mut u32) -> ::windows::core::Result<()>;
+    fn OutputContextStackTraceEx(&self, outputcontrol: u32, frames: *mut DEBUG_STACK_FRAME_EX, framessize: u32, framecontexts: *mut ::core::ffi::c_void, framecontextssize: u32, framecontextsentrysize: u32, flags: u32) -> ::windows::core::Result<()>;
+    fn GetBreakpointByGuid(&self, guid: *mut ::windows::core::GUID) -> ::windows::core::Result<IDebugBreakpoint3>;
     fn GetExecutionStatusEx(&self) -> ::windows::core::Result<u32>;
     fn GetSynchronizationStatus(&self, sendsattempted: *mut u32, secondssincelastresponse: *mut u32) -> ::windows::core::Result<()>;
     fn GetDebuggeeType2(&self, flags: u32, class: *mut u32, qualifier: *mut u32) -> ::windows::core::Result<()>;
@@ -17470,7 +17470,7 @@ impl IDebugControl7_Vtbl {
             let this = (*this).get_impl();
             this.Output(::core::mem::transmute_copy(&mask), ::core::mem::transmute(&format)).into()
         }
-        unsafe extern "system" fn OutputVaList<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl7_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, mask: u32, format: ::windows::core::PCSTR, args: *const i8) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn OutputVaList<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl7_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, mask: u32, format: ::windows::core::PCSTR, args: *mut i8) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.OutputVaList(::core::mem::transmute_copy(&mask), ::core::mem::transmute(&format), ::core::mem::transmute_copy(&args)).into()
@@ -17480,7 +17480,7 @@ impl IDebugControl7_Vtbl {
             let this = (*this).get_impl();
             this.ControlledOutput(::core::mem::transmute_copy(&outputcontrol), ::core::mem::transmute_copy(&mask), ::core::mem::transmute(&format)).into()
         }
-        unsafe extern "system" fn ControlledOutputVaList<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl7_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, outputcontrol: u32, mask: u32, format: ::windows::core::PCSTR, args: *const i8) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn ControlledOutputVaList<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl7_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, outputcontrol: u32, mask: u32, format: ::windows::core::PCSTR, args: *mut i8) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.ControlledOutputVaList(::core::mem::transmute_copy(&outputcontrol), ::core::mem::transmute_copy(&mask), ::core::mem::transmute(&format), ::core::mem::transmute_copy(&args)).into()
@@ -17490,7 +17490,7 @@ impl IDebugControl7_Vtbl {
             let this = (*this).get_impl();
             this.OutputPrompt(::core::mem::transmute_copy(&outputcontrol), ::core::mem::transmute(&format)).into()
         }
-        unsafe extern "system" fn OutputPromptVaList<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl7_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, outputcontrol: u32, format: ::windows::core::PCSTR, args: *const i8) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn OutputPromptVaList<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl7_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, outputcontrol: u32, format: ::windows::core::PCSTR, args: *mut i8) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.OutputPromptVaList(::core::mem::transmute_copy(&outputcontrol), ::core::mem::transmute(&format), ::core::mem::transmute_copy(&args)).into()
@@ -17596,7 +17596,7 @@ impl IDebugControl7_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn OutputStackTrace<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl7_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, outputcontrol: u32, frames: *const DEBUG_STACK_FRAME, framessize: u32, flags: u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn OutputStackTrace<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl7_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, outputcontrol: u32, frames: *mut DEBUG_STACK_FRAME, framessize: u32, flags: u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.OutputStackTrace(::core::mem::transmute_copy(&outputcontrol), ::core::mem::transmute_copy(&frames), ::core::mem::transmute_copy(&framessize), ::core::mem::transmute_copy(&flags)).into()
@@ -17818,7 +17818,7 @@ impl IDebugControl7_Vtbl {
             let this = (*this).get_impl();
             this.Evaluate(::core::mem::transmute(&expression), ::core::mem::transmute_copy(&desiredtype), ::core::mem::transmute_copy(&value), ::core::mem::transmute_copy(&remainderindex)).into()
         }
-        unsafe extern "system" fn CoerceValue<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl7_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, r#in: *const DEBUG_VALUE, outtype: u32, out: *mut DEBUG_VALUE) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn CoerceValue<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl7_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, r#in: *mut DEBUG_VALUE, outtype: u32, out: *mut DEBUG_VALUE) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.CoerceValue(::core::mem::transmute_copy(&r#in), ::core::mem::transmute_copy(&outtype)) {
@@ -17829,7 +17829,7 @@ impl IDebugControl7_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn CoerceValues<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl7_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, count: u32, r#in: *const DEBUG_VALUE, outtypes: *const u32, out: *mut DEBUG_VALUE) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn CoerceValues<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl7_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, count: u32, r#in: *mut DEBUG_VALUE, outtypes: *mut u32, out: *mut DEBUG_VALUE) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.CoerceValues(::core::mem::transmute_copy(&count), ::core::mem::transmute_copy(&r#in), ::core::mem::transmute_copy(&outtypes)) {
@@ -17883,7 +17883,7 @@ impl IDebugControl7_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn GetBreakpointParameters<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl7_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, count: u32, ids: *const u32, start: u32, params: *mut DEBUG_BREAKPOINT_PARAMETERS) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn GetBreakpointParameters<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl7_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, count: u32, ids: *mut u32, start: u32, params: *mut DEBUG_BREAKPOINT_PARAMETERS) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.GetBreakpointParameters(::core::mem::transmute_copy(&count), ::core::mem::transmute_copy(&ids), ::core::mem::transmute_copy(&start)) {
@@ -17982,7 +17982,7 @@ impl IDebugControl7_Vtbl {
             let this = (*this).get_impl();
             this.GetSpecificFilterParameters(::core::mem::transmute_copy(&start), ::core::mem::transmute_copy(&count), ::core::mem::transmute_copy(&params)).into()
         }
-        unsafe extern "system" fn SetSpecificFilterParameters<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl7_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, start: u32, count: u32, params: *const DEBUG_SPECIFIC_FILTER_PARAMETERS) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn SetSpecificFilterParameters<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl7_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, start: u32, count: u32, params: *mut DEBUG_SPECIFIC_FILTER_PARAMETERS) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.SetSpecificFilterParameters(::core::mem::transmute_copy(&start), ::core::mem::transmute_copy(&count), ::core::mem::transmute_copy(&params)).into()
@@ -17997,7 +17997,7 @@ impl IDebugControl7_Vtbl {
             let this = (*this).get_impl();
             this.SetSpecificFilterArgument(::core::mem::transmute_copy(&index), ::core::mem::transmute(&argument)).into()
         }
-        unsafe extern "system" fn GetExceptionFilterParameters<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl7_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, count: u32, codes: *const u32, start: u32, params: *mut DEBUG_EXCEPTION_FILTER_PARAMETERS) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn GetExceptionFilterParameters<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl7_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, count: u32, codes: *mut u32, start: u32, params: *mut DEBUG_EXCEPTION_FILTER_PARAMETERS) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.GetExceptionFilterParameters(::core::mem::transmute_copy(&count), ::core::mem::transmute_copy(&codes), ::core::mem::transmute_copy(&start)) {
@@ -18008,7 +18008,7 @@ impl IDebugControl7_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn SetExceptionFilterParameters<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl7_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, count: u32, params: *const DEBUG_EXCEPTION_FILTER_PARAMETERS) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn SetExceptionFilterParameters<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl7_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, count: u32, params: *mut DEBUG_EXCEPTION_FILTER_PARAMETERS) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.SetExceptionFilterParameters(::core::mem::transmute_copy(&count), ::core::mem::transmute_copy(&params)).into()
@@ -18171,7 +18171,7 @@ impl IDebugControl7_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn GetEventIndexDescription<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl7_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, index: u32, which: u32, buffer: ::windows::core::PCSTR, buffersize: u32, descsize: *mut u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn GetEventIndexDescription<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl7_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, index: u32, which: u32, buffer: ::windows::core::PSTR, buffersize: u32, descsize: *mut u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.GetEventIndexDescription(::core::mem::transmute_copy(&index), ::core::mem::transmute_copy(&which), ::core::mem::transmute(&buffer), ::core::mem::transmute_copy(&buffersize)) {
@@ -18229,7 +18229,7 @@ impl IDebugControl7_Vtbl {
             let this = (*this).get_impl();
             this.OutputWide(::core::mem::transmute_copy(&mask), ::core::mem::transmute(&format)).into()
         }
-        unsafe extern "system" fn OutputVaListWide<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl7_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, mask: u32, format: ::windows::core::PCWSTR, args: *const i8) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn OutputVaListWide<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl7_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, mask: u32, format: ::windows::core::PCWSTR, args: *mut i8) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.OutputVaListWide(::core::mem::transmute_copy(&mask), ::core::mem::transmute(&format), ::core::mem::transmute_copy(&args)).into()
@@ -18239,7 +18239,7 @@ impl IDebugControl7_Vtbl {
             let this = (*this).get_impl();
             this.ControlledOutputWide(::core::mem::transmute_copy(&outputcontrol), ::core::mem::transmute_copy(&mask), ::core::mem::transmute(&format)).into()
         }
-        unsafe extern "system" fn ControlledOutputVaListWide<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl7_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, outputcontrol: u32, mask: u32, format: ::windows::core::PCWSTR, args: *const i8) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn ControlledOutputVaListWide<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl7_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, outputcontrol: u32, mask: u32, format: ::windows::core::PCWSTR, args: *mut i8) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.ControlledOutputVaListWide(::core::mem::transmute_copy(&outputcontrol), ::core::mem::transmute_copy(&mask), ::core::mem::transmute(&format), ::core::mem::transmute_copy(&args)).into()
@@ -18249,7 +18249,7 @@ impl IDebugControl7_Vtbl {
             let this = (*this).get_impl();
             this.OutputPromptWide(::core::mem::transmute_copy(&outputcontrol), ::core::mem::transmute(&format)).into()
         }
-        unsafe extern "system" fn OutputPromptVaListWide<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl7_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, outputcontrol: u32, format: ::windows::core::PCWSTR, args: *const i8) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn OutputPromptVaListWide<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl7_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, outputcontrol: u32, format: ::windows::core::PCWSTR, args: *mut i8) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.OutputPromptVaListWide(::core::mem::transmute_copy(&outputcontrol), ::core::mem::transmute(&format), ::core::mem::transmute_copy(&args)).into()
@@ -18435,7 +18435,7 @@ impl IDebugControl7_Vtbl {
             let this = (*this).get_impl();
             this.GetExpressionSyntaxNamesWide(::core::mem::transmute_copy(&index), ::core::mem::transmute_copy(&fullnamebuffer), ::core::mem::transmute_copy(&fullnamebuffersize), ::core::mem::transmute_copy(&fullnamesize), ::core::mem::transmute_copy(&abbrevnamebuffer), ::core::mem::transmute_copy(&abbrevnamebuffersize), ::core::mem::transmute_copy(&abbrevnamesize)).into()
         }
-        unsafe extern "system" fn GetEventIndexDescriptionWide<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl7_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, index: u32, which: u32, buffer: ::windows::core::PCWSTR, buffersize: u32, descsize: *mut u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn GetEventIndexDescriptionWide<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl7_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, index: u32, which: u32, buffer: ::windows::core::PWSTR, buffersize: u32, descsize: *mut u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.GetEventIndexDescriptionWide(::core::mem::transmute_copy(&index), ::core::mem::transmute_copy(&which), ::core::mem::transmute(&buffer), ::core::mem::transmute_copy(&buffersize)) {
@@ -18481,12 +18481,12 @@ impl IDebugControl7_Vtbl {
             let this = (*this).get_impl();
             this.GetSystemVersionStringWide(::core::mem::transmute_copy(&which), ::core::mem::transmute_copy(&buffer), ::core::mem::transmute_copy(&buffersize), ::core::mem::transmute_copy(&stringsize)).into()
         }
-        unsafe extern "system" fn GetContextStackTrace<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl7_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, startcontext: *const ::core::ffi::c_void, startcontextsize: u32, frames: *mut DEBUG_STACK_FRAME, framessize: u32, framecontexts: *mut ::core::ffi::c_void, framecontextssize: u32, framecontextsentrysize: u32, framesfilled: *mut u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn GetContextStackTrace<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl7_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, startcontext: *mut ::core::ffi::c_void, startcontextsize: u32, frames: *mut DEBUG_STACK_FRAME, framessize: u32, framecontexts: *mut ::core::ffi::c_void, framecontextssize: u32, framecontextsentrysize: u32, framesfilled: *mut u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.GetContextStackTrace(::core::mem::transmute_copy(&startcontext), ::core::mem::transmute_copy(&startcontextsize), ::core::mem::transmute_copy(&frames), ::core::mem::transmute_copy(&framessize), ::core::mem::transmute_copy(&framecontexts), ::core::mem::transmute_copy(&framecontextssize), ::core::mem::transmute_copy(&framecontextsentrysize), ::core::mem::transmute_copy(&framesfilled)).into()
         }
-        unsafe extern "system" fn OutputContextStackTrace<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl7_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, outputcontrol: u32, frames: *const DEBUG_STACK_FRAME, framessize: u32, framecontexts: *const ::core::ffi::c_void, framecontextssize: u32, framecontextsentrysize: u32, flags: u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn OutputContextStackTrace<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl7_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, outputcontrol: u32, frames: *mut DEBUG_STACK_FRAME, framessize: u32, framecontexts: *mut ::core::ffi::c_void, framecontextssize: u32, framecontextsentrysize: u32, flags: u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.OutputContextStackTrace(::core::mem::transmute_copy(&outputcontrol), ::core::mem::transmute_copy(&frames), ::core::mem::transmute_copy(&framessize), ::core::mem::transmute_copy(&framecontexts), ::core::mem::transmute_copy(&framecontextssize), ::core::mem::transmute_copy(&framecontextsentrysize), ::core::mem::transmute_copy(&flags)).into()
@@ -18516,22 +18516,22 @@ impl IDebugControl7_Vtbl {
             let this = (*this).get_impl();
             this.GetStackTraceEx(::core::mem::transmute_copy(&frameoffset), ::core::mem::transmute_copy(&stackoffset), ::core::mem::transmute_copy(&instructionoffset), ::core::mem::transmute_copy(&frames), ::core::mem::transmute_copy(&framessize), ::core::mem::transmute_copy(&framesfilled)).into()
         }
-        unsafe extern "system" fn OutputStackTraceEx<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl7_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, outputcontrol: u32, frames: *const DEBUG_STACK_FRAME_EX, framessize: u32, flags: u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn OutputStackTraceEx<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl7_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, outputcontrol: u32, frames: *mut DEBUG_STACK_FRAME_EX, framessize: u32, flags: u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.OutputStackTraceEx(::core::mem::transmute_copy(&outputcontrol), ::core::mem::transmute_copy(&frames), ::core::mem::transmute_copy(&framessize), ::core::mem::transmute_copy(&flags)).into()
         }
-        unsafe extern "system" fn GetContextStackTraceEx<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl7_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, startcontext: *const ::core::ffi::c_void, startcontextsize: u32, frames: *mut DEBUG_STACK_FRAME_EX, framessize: u32, framecontexts: *mut ::core::ffi::c_void, framecontextssize: u32, framecontextsentrysize: u32, framesfilled: *mut u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn GetContextStackTraceEx<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl7_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, startcontext: *mut ::core::ffi::c_void, startcontextsize: u32, frames: *mut DEBUG_STACK_FRAME_EX, framessize: u32, framecontexts: *mut ::core::ffi::c_void, framecontextssize: u32, framecontextsentrysize: u32, framesfilled: *mut u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.GetContextStackTraceEx(::core::mem::transmute_copy(&startcontext), ::core::mem::transmute_copy(&startcontextsize), ::core::mem::transmute_copy(&frames), ::core::mem::transmute_copy(&framessize), ::core::mem::transmute_copy(&framecontexts), ::core::mem::transmute_copy(&framecontextssize), ::core::mem::transmute_copy(&framecontextsentrysize), ::core::mem::transmute_copy(&framesfilled)).into()
         }
-        unsafe extern "system" fn OutputContextStackTraceEx<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl7_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, outputcontrol: u32, frames: *const DEBUG_STACK_FRAME_EX, framessize: u32, framecontexts: *const ::core::ffi::c_void, framecontextssize: u32, framecontextsentrysize: u32, flags: u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn OutputContextStackTraceEx<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl7_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, outputcontrol: u32, frames: *mut DEBUG_STACK_FRAME_EX, framessize: u32, framecontexts: *mut ::core::ffi::c_void, framecontextssize: u32, framecontextsentrysize: u32, flags: u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.OutputContextStackTraceEx(::core::mem::transmute_copy(&outputcontrol), ::core::mem::transmute_copy(&frames), ::core::mem::transmute_copy(&framessize), ::core::mem::transmute_copy(&framecontexts), ::core::mem::transmute_copy(&framecontextssize), ::core::mem::transmute_copy(&framecontextsentrysize), ::core::mem::transmute_copy(&flags)).into()
         }
-        unsafe extern "system" fn GetBreakpointByGuid<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl7_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, guid: *const ::windows::core::GUID, bp: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn GetBreakpointByGuid<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugControl7_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, guid: *mut ::windows::core::GUID, bp: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.GetBreakpointByGuid(::core::mem::transmute_copy(&guid)) {
@@ -18764,22 +18764,22 @@ impl IDebugCookie_Vtbl {
 }
 pub trait IDebugDataSpaces_Impl: Sized {
     fn ReadVirtual(&self, offset: u64, buffer: *mut ::core::ffi::c_void, buffersize: u32, bytesread: *mut u32) -> ::windows::core::Result<()>;
-    fn WriteVirtual(&self, offset: u64, buffer: *const ::core::ffi::c_void, buffersize: u32) -> ::windows::core::Result<u32>;
-    fn SearchVirtual(&self, offset: u64, length: u64, pattern: *const ::core::ffi::c_void, patternsize: u32, patterngranularity: u32) -> ::windows::core::Result<u64>;
+    fn WriteVirtual(&self, offset: u64, buffer: *mut ::core::ffi::c_void, buffersize: u32) -> ::windows::core::Result<u32>;
+    fn SearchVirtual(&self, offset: u64, length: u64, pattern: *mut ::core::ffi::c_void, patternsize: u32, patterngranularity: u32) -> ::windows::core::Result<u64>;
     fn ReadVirtualUncached(&self, offset: u64, buffer: *mut ::core::ffi::c_void, buffersize: u32, bytesread: *mut u32) -> ::windows::core::Result<()>;
-    fn WriteVirtualUncached(&self, offset: u64, buffer: *const ::core::ffi::c_void, buffersize: u32) -> ::windows::core::Result<u32>;
+    fn WriteVirtualUncached(&self, offset: u64, buffer: *mut ::core::ffi::c_void, buffersize: u32) -> ::windows::core::Result<u32>;
     fn ReadPointersVirtual(&self, count: u32, offset: u64, ptrs: *mut u64) -> ::windows::core::Result<()>;
-    fn WritePointersVirtual(&self, count: u32, offset: u64, ptrs: *const u64) -> ::windows::core::Result<()>;
+    fn WritePointersVirtual(&self, count: u32, offset: u64, ptrs: *mut u64) -> ::windows::core::Result<()>;
     fn ReadPhysical(&self, offset: u64, buffer: *mut ::core::ffi::c_void, buffersize: u32, bytesread: *mut u32) -> ::windows::core::Result<()>;
-    fn WritePhysical(&self, offset: u64, buffer: *const ::core::ffi::c_void, buffersize: u32) -> ::windows::core::Result<u32>;
+    fn WritePhysical(&self, offset: u64, buffer: *mut ::core::ffi::c_void, buffersize: u32) -> ::windows::core::Result<u32>;
     fn ReadControl(&self, processor: u32, offset: u64, buffer: *mut ::core::ffi::c_void, buffersize: u32, bytesread: *mut u32) -> ::windows::core::Result<()>;
-    fn WriteControl(&self, processor: u32, offset: u64, buffer: *const ::core::ffi::c_void, buffersize: u32) -> ::windows::core::Result<u32>;
+    fn WriteControl(&self, processor: u32, offset: u64, buffer: *mut ::core::ffi::c_void, buffersize: u32) -> ::windows::core::Result<u32>;
     fn ReadIo(&self, interfacetype: u32, busnumber: u32, addressspace: u32, offset: u64, buffer: *mut ::core::ffi::c_void, buffersize: u32, bytesread: *mut u32) -> ::windows::core::Result<()>;
-    fn WriteIo(&self, interfacetype: u32, busnumber: u32, addressspace: u32, offset: u64, buffer: *const ::core::ffi::c_void, buffersize: u32) -> ::windows::core::Result<u32>;
+    fn WriteIo(&self, interfacetype: u32, busnumber: u32, addressspace: u32, offset: u64, buffer: *mut ::core::ffi::c_void, buffersize: u32) -> ::windows::core::Result<u32>;
     fn ReadMsr(&self, msr: u32) -> ::windows::core::Result<u64>;
     fn WriteMsr(&self, msr: u32, value: u64) -> ::windows::core::Result<()>;
     fn ReadBusData(&self, busdatatype: u32, busnumber: u32, slotnumber: u32, offset: u32, buffer: *mut ::core::ffi::c_void, buffersize: u32, bytesread: *mut u32) -> ::windows::core::Result<()>;
-    fn WriteBusData(&self, busdatatype: u32, busnumber: u32, slotnumber: u32, offset: u32, buffer: *const ::core::ffi::c_void, buffersize: u32) -> ::windows::core::Result<u32>;
+    fn WriteBusData(&self, busdatatype: u32, busnumber: u32, slotnumber: u32, offset: u32, buffer: *mut ::core::ffi::c_void, buffersize: u32) -> ::windows::core::Result<u32>;
     fn CheckLowMemory(&self) -> ::windows::core::Result<()>;
     fn ReadDebuggerData(&self, index: u32, buffer: *mut ::core::ffi::c_void, buffersize: u32, datasize: *mut u32) -> ::windows::core::Result<()>;
     fn ReadProcessorSystemData(&self, processor: u32, index: u32, buffer: *mut ::core::ffi::c_void, buffersize: u32, datasize: *mut u32) -> ::windows::core::Result<()>;
@@ -18792,7 +18792,7 @@ impl IDebugDataSpaces_Vtbl {
             let this = (*this).get_impl();
             this.ReadVirtual(::core::mem::transmute_copy(&offset), ::core::mem::transmute_copy(&buffer), ::core::mem::transmute_copy(&buffersize), ::core::mem::transmute_copy(&bytesread)).into()
         }
-        unsafe extern "system" fn WriteVirtual<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugDataSpaces_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, offset: u64, buffer: *const ::core::ffi::c_void, buffersize: u32, byteswritten: *mut u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn WriteVirtual<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugDataSpaces_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, offset: u64, buffer: *mut ::core::ffi::c_void, buffersize: u32, byteswritten: *mut u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.WriteVirtual(::core::mem::transmute_copy(&offset), ::core::mem::transmute_copy(&buffer), ::core::mem::transmute_copy(&buffersize)) {
@@ -18803,7 +18803,7 @@ impl IDebugDataSpaces_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn SearchVirtual<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugDataSpaces_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, offset: u64, length: u64, pattern: *const ::core::ffi::c_void, patternsize: u32, patterngranularity: u32, matchoffset: *mut u64) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn SearchVirtual<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugDataSpaces_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, offset: u64, length: u64, pattern: *mut ::core::ffi::c_void, patternsize: u32, patterngranularity: u32, matchoffset: *mut u64) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.SearchVirtual(::core::mem::transmute_copy(&offset), ::core::mem::transmute_copy(&length), ::core::mem::transmute_copy(&pattern), ::core::mem::transmute_copy(&patternsize), ::core::mem::transmute_copy(&patterngranularity)) {
@@ -18819,7 +18819,7 @@ impl IDebugDataSpaces_Vtbl {
             let this = (*this).get_impl();
             this.ReadVirtualUncached(::core::mem::transmute_copy(&offset), ::core::mem::transmute_copy(&buffer), ::core::mem::transmute_copy(&buffersize), ::core::mem::transmute_copy(&bytesread)).into()
         }
-        unsafe extern "system" fn WriteVirtualUncached<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugDataSpaces_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, offset: u64, buffer: *const ::core::ffi::c_void, buffersize: u32, byteswritten: *mut u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn WriteVirtualUncached<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugDataSpaces_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, offset: u64, buffer: *mut ::core::ffi::c_void, buffersize: u32, byteswritten: *mut u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.WriteVirtualUncached(::core::mem::transmute_copy(&offset), ::core::mem::transmute_copy(&buffer), ::core::mem::transmute_copy(&buffersize)) {
@@ -18835,7 +18835,7 @@ impl IDebugDataSpaces_Vtbl {
             let this = (*this).get_impl();
             this.ReadPointersVirtual(::core::mem::transmute_copy(&count), ::core::mem::transmute_copy(&offset), ::core::mem::transmute_copy(&ptrs)).into()
         }
-        unsafe extern "system" fn WritePointersVirtual<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugDataSpaces_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, count: u32, offset: u64, ptrs: *const u64) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn WritePointersVirtual<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugDataSpaces_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, count: u32, offset: u64, ptrs: *mut u64) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.WritePointersVirtual(::core::mem::transmute_copy(&count), ::core::mem::transmute_copy(&offset), ::core::mem::transmute_copy(&ptrs)).into()
@@ -18845,7 +18845,7 @@ impl IDebugDataSpaces_Vtbl {
             let this = (*this).get_impl();
             this.ReadPhysical(::core::mem::transmute_copy(&offset), ::core::mem::transmute_copy(&buffer), ::core::mem::transmute_copy(&buffersize), ::core::mem::transmute_copy(&bytesread)).into()
         }
-        unsafe extern "system" fn WritePhysical<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugDataSpaces_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, offset: u64, buffer: *const ::core::ffi::c_void, buffersize: u32, byteswritten: *mut u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn WritePhysical<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugDataSpaces_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, offset: u64, buffer: *mut ::core::ffi::c_void, buffersize: u32, byteswritten: *mut u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.WritePhysical(::core::mem::transmute_copy(&offset), ::core::mem::transmute_copy(&buffer), ::core::mem::transmute_copy(&buffersize)) {
@@ -18861,7 +18861,7 @@ impl IDebugDataSpaces_Vtbl {
             let this = (*this).get_impl();
             this.ReadControl(::core::mem::transmute_copy(&processor), ::core::mem::transmute_copy(&offset), ::core::mem::transmute_copy(&buffer), ::core::mem::transmute_copy(&buffersize), ::core::mem::transmute_copy(&bytesread)).into()
         }
-        unsafe extern "system" fn WriteControl<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugDataSpaces_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, processor: u32, offset: u64, buffer: *const ::core::ffi::c_void, buffersize: u32, byteswritten: *mut u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn WriteControl<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugDataSpaces_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, processor: u32, offset: u64, buffer: *mut ::core::ffi::c_void, buffersize: u32, byteswritten: *mut u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.WriteControl(::core::mem::transmute_copy(&processor), ::core::mem::transmute_copy(&offset), ::core::mem::transmute_copy(&buffer), ::core::mem::transmute_copy(&buffersize)) {
@@ -18877,7 +18877,7 @@ impl IDebugDataSpaces_Vtbl {
             let this = (*this).get_impl();
             this.ReadIo(::core::mem::transmute_copy(&interfacetype), ::core::mem::transmute_copy(&busnumber), ::core::mem::transmute_copy(&addressspace), ::core::mem::transmute_copy(&offset), ::core::mem::transmute_copy(&buffer), ::core::mem::transmute_copy(&buffersize), ::core::mem::transmute_copy(&bytesread)).into()
         }
-        unsafe extern "system" fn WriteIo<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugDataSpaces_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, interfacetype: u32, busnumber: u32, addressspace: u32, offset: u64, buffer: *const ::core::ffi::c_void, buffersize: u32, byteswritten: *mut u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn WriteIo<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugDataSpaces_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, interfacetype: u32, busnumber: u32, addressspace: u32, offset: u64, buffer: *mut ::core::ffi::c_void, buffersize: u32, byteswritten: *mut u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.WriteIo(::core::mem::transmute_copy(&interfacetype), ::core::mem::transmute_copy(&busnumber), ::core::mem::transmute_copy(&addressspace), ::core::mem::transmute_copy(&offset), ::core::mem::transmute_copy(&buffer), ::core::mem::transmute_copy(&buffersize)) {
@@ -18909,7 +18909,7 @@ impl IDebugDataSpaces_Vtbl {
             let this = (*this).get_impl();
             this.ReadBusData(::core::mem::transmute_copy(&busdatatype), ::core::mem::transmute_copy(&busnumber), ::core::mem::transmute_copy(&slotnumber), ::core::mem::transmute_copy(&offset), ::core::mem::transmute_copy(&buffer), ::core::mem::transmute_copy(&buffersize), ::core::mem::transmute_copy(&bytesread)).into()
         }
-        unsafe extern "system" fn WriteBusData<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugDataSpaces_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, busdatatype: u32, busnumber: u32, slotnumber: u32, offset: u32, buffer: *const ::core::ffi::c_void, buffersize: u32, byteswritten: *mut u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn WriteBusData<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugDataSpaces_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, busdatatype: u32, busnumber: u32, slotnumber: u32, offset: u32, buffer: *mut ::core::ffi::c_void, buffersize: u32, byteswritten: *mut u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.WriteBusData(::core::mem::transmute_copy(&busdatatype), ::core::mem::transmute_copy(&busnumber), ::core::mem::transmute_copy(&slotnumber), ::core::mem::transmute_copy(&offset), ::core::mem::transmute_copy(&buffer), ::core::mem::transmute_copy(&buffersize)) {
@@ -18966,30 +18966,30 @@ impl IDebugDataSpaces_Vtbl {
 #[cfg(feature = "Win32_System_Memory")]
 pub trait IDebugDataSpaces2_Impl: Sized {
     fn ReadVirtual(&self, offset: u64, buffer: *mut ::core::ffi::c_void, buffersize: u32, bytesread: *mut u32) -> ::windows::core::Result<()>;
-    fn WriteVirtual(&self, offset: u64, buffer: *const ::core::ffi::c_void, buffersize: u32) -> ::windows::core::Result<u32>;
-    fn SearchVirtual(&self, offset: u64, length: u64, pattern: *const ::core::ffi::c_void, patternsize: u32, patterngranularity: u32) -> ::windows::core::Result<u64>;
+    fn WriteVirtual(&self, offset: u64, buffer: *mut ::core::ffi::c_void, buffersize: u32) -> ::windows::core::Result<u32>;
+    fn SearchVirtual(&self, offset: u64, length: u64, pattern: *mut ::core::ffi::c_void, patternsize: u32, patterngranularity: u32) -> ::windows::core::Result<u64>;
     fn ReadVirtualUncached(&self, offset: u64, buffer: *mut ::core::ffi::c_void, buffersize: u32, bytesread: *mut u32) -> ::windows::core::Result<()>;
-    fn WriteVirtualUncached(&self, offset: u64, buffer: *const ::core::ffi::c_void, buffersize: u32) -> ::windows::core::Result<u32>;
+    fn WriteVirtualUncached(&self, offset: u64, buffer: *mut ::core::ffi::c_void, buffersize: u32) -> ::windows::core::Result<u32>;
     fn ReadPointersVirtual(&self, count: u32, offset: u64, ptrs: *mut u64) -> ::windows::core::Result<()>;
-    fn WritePointersVirtual(&self, count: u32, offset: u64, ptrs: *const u64) -> ::windows::core::Result<()>;
+    fn WritePointersVirtual(&self, count: u32, offset: u64, ptrs: *mut u64) -> ::windows::core::Result<()>;
     fn ReadPhysical(&self, offset: u64, buffer: *mut ::core::ffi::c_void, buffersize: u32, bytesread: *mut u32) -> ::windows::core::Result<()>;
-    fn WritePhysical(&self, offset: u64, buffer: *const ::core::ffi::c_void, buffersize: u32) -> ::windows::core::Result<u32>;
+    fn WritePhysical(&self, offset: u64, buffer: *mut ::core::ffi::c_void, buffersize: u32) -> ::windows::core::Result<u32>;
     fn ReadControl(&self, processor: u32, offset: u64, buffer: *mut ::core::ffi::c_void, buffersize: u32, bytesread: *mut u32) -> ::windows::core::Result<()>;
-    fn WriteControl(&self, processor: u32, offset: u64, buffer: *const ::core::ffi::c_void, buffersize: u32) -> ::windows::core::Result<u32>;
+    fn WriteControl(&self, processor: u32, offset: u64, buffer: *mut ::core::ffi::c_void, buffersize: u32) -> ::windows::core::Result<u32>;
     fn ReadIo(&self, interfacetype: u32, busnumber: u32, addressspace: u32, offset: u64, buffer: *mut ::core::ffi::c_void, buffersize: u32, bytesread: *mut u32) -> ::windows::core::Result<()>;
-    fn WriteIo(&self, interfacetype: u32, busnumber: u32, addressspace: u32, offset: u64, buffer: *const ::core::ffi::c_void, buffersize: u32) -> ::windows::core::Result<u32>;
+    fn WriteIo(&self, interfacetype: u32, busnumber: u32, addressspace: u32, offset: u64, buffer: *mut ::core::ffi::c_void, buffersize: u32) -> ::windows::core::Result<u32>;
     fn ReadMsr(&self, msr: u32) -> ::windows::core::Result<u64>;
     fn WriteMsr(&self, msr: u32, value: u64) -> ::windows::core::Result<()>;
     fn ReadBusData(&self, busdatatype: u32, busnumber: u32, slotnumber: u32, offset: u32, buffer: *mut ::core::ffi::c_void, buffersize: u32, bytesread: *mut u32) -> ::windows::core::Result<()>;
-    fn WriteBusData(&self, busdatatype: u32, busnumber: u32, slotnumber: u32, offset: u32, buffer: *const ::core::ffi::c_void, buffersize: u32) -> ::windows::core::Result<u32>;
+    fn WriteBusData(&self, busdatatype: u32, busnumber: u32, slotnumber: u32, offset: u32, buffer: *mut ::core::ffi::c_void, buffersize: u32) -> ::windows::core::Result<u32>;
     fn CheckLowMemory(&self) -> ::windows::core::Result<()>;
     fn ReadDebuggerData(&self, index: u32, buffer: *mut ::core::ffi::c_void, buffersize: u32, datasize: *mut u32) -> ::windows::core::Result<()>;
     fn ReadProcessorSystemData(&self, processor: u32, index: u32, buffer: *mut ::core::ffi::c_void, buffersize: u32, datasize: *mut u32) -> ::windows::core::Result<()>;
     fn VirtualToPhysical(&self, r#virtual: u64) -> ::windows::core::Result<u64>;
     fn GetVirtualTranslationPhysicalOffsets(&self, r#virtual: u64, offsets: *mut u64, offsetssize: u32, levels: *mut u32) -> ::windows::core::Result<()>;
     fn ReadHandleData(&self, handle: u64, datatype: u32, buffer: *mut ::core::ffi::c_void, buffersize: u32, datasize: *mut u32) -> ::windows::core::Result<()>;
-    fn FillVirtual(&self, start: u64, size: u32, pattern: *const ::core::ffi::c_void, patternsize: u32) -> ::windows::core::Result<u32>;
-    fn FillPhysical(&self, start: u64, size: u32, pattern: *const ::core::ffi::c_void, patternsize: u32) -> ::windows::core::Result<u32>;
+    fn FillVirtual(&self, start: u64, size: u32, pattern: *mut ::core::ffi::c_void, patternsize: u32) -> ::windows::core::Result<u32>;
+    fn FillPhysical(&self, start: u64, size: u32, pattern: *mut ::core::ffi::c_void, patternsize: u32) -> ::windows::core::Result<u32>;
     fn QueryVirtual(&self, offset: u64) -> ::windows::core::Result<super::super::Memory::MEMORY_BASIC_INFORMATION64>;
 }
 #[cfg(feature = "Win32_System_Memory")]
@@ -19002,7 +19002,7 @@ impl IDebugDataSpaces2_Vtbl {
             let this = (*this).get_impl();
             this.ReadVirtual(::core::mem::transmute_copy(&offset), ::core::mem::transmute_copy(&buffer), ::core::mem::transmute_copy(&buffersize), ::core::mem::transmute_copy(&bytesread)).into()
         }
-        unsafe extern "system" fn WriteVirtual<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugDataSpaces2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, offset: u64, buffer: *const ::core::ffi::c_void, buffersize: u32, byteswritten: *mut u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn WriteVirtual<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugDataSpaces2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, offset: u64, buffer: *mut ::core::ffi::c_void, buffersize: u32, byteswritten: *mut u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.WriteVirtual(::core::mem::transmute_copy(&offset), ::core::mem::transmute_copy(&buffer), ::core::mem::transmute_copy(&buffersize)) {
@@ -19013,7 +19013,7 @@ impl IDebugDataSpaces2_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn SearchVirtual<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugDataSpaces2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, offset: u64, length: u64, pattern: *const ::core::ffi::c_void, patternsize: u32, patterngranularity: u32, matchoffset: *mut u64) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn SearchVirtual<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugDataSpaces2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, offset: u64, length: u64, pattern: *mut ::core::ffi::c_void, patternsize: u32, patterngranularity: u32, matchoffset: *mut u64) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.SearchVirtual(::core::mem::transmute_copy(&offset), ::core::mem::transmute_copy(&length), ::core::mem::transmute_copy(&pattern), ::core::mem::transmute_copy(&patternsize), ::core::mem::transmute_copy(&patterngranularity)) {
@@ -19029,7 +19029,7 @@ impl IDebugDataSpaces2_Vtbl {
             let this = (*this).get_impl();
             this.ReadVirtualUncached(::core::mem::transmute_copy(&offset), ::core::mem::transmute_copy(&buffer), ::core::mem::transmute_copy(&buffersize), ::core::mem::transmute_copy(&bytesread)).into()
         }
-        unsafe extern "system" fn WriteVirtualUncached<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugDataSpaces2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, offset: u64, buffer: *const ::core::ffi::c_void, buffersize: u32, byteswritten: *mut u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn WriteVirtualUncached<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugDataSpaces2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, offset: u64, buffer: *mut ::core::ffi::c_void, buffersize: u32, byteswritten: *mut u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.WriteVirtualUncached(::core::mem::transmute_copy(&offset), ::core::mem::transmute_copy(&buffer), ::core::mem::transmute_copy(&buffersize)) {
@@ -19045,7 +19045,7 @@ impl IDebugDataSpaces2_Vtbl {
             let this = (*this).get_impl();
             this.ReadPointersVirtual(::core::mem::transmute_copy(&count), ::core::mem::transmute_copy(&offset), ::core::mem::transmute_copy(&ptrs)).into()
         }
-        unsafe extern "system" fn WritePointersVirtual<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugDataSpaces2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, count: u32, offset: u64, ptrs: *const u64) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn WritePointersVirtual<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugDataSpaces2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, count: u32, offset: u64, ptrs: *mut u64) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.WritePointersVirtual(::core::mem::transmute_copy(&count), ::core::mem::transmute_copy(&offset), ::core::mem::transmute_copy(&ptrs)).into()
@@ -19055,7 +19055,7 @@ impl IDebugDataSpaces2_Vtbl {
             let this = (*this).get_impl();
             this.ReadPhysical(::core::mem::transmute_copy(&offset), ::core::mem::transmute_copy(&buffer), ::core::mem::transmute_copy(&buffersize), ::core::mem::transmute_copy(&bytesread)).into()
         }
-        unsafe extern "system" fn WritePhysical<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugDataSpaces2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, offset: u64, buffer: *const ::core::ffi::c_void, buffersize: u32, byteswritten: *mut u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn WritePhysical<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugDataSpaces2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, offset: u64, buffer: *mut ::core::ffi::c_void, buffersize: u32, byteswritten: *mut u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.WritePhysical(::core::mem::transmute_copy(&offset), ::core::mem::transmute_copy(&buffer), ::core::mem::transmute_copy(&buffersize)) {
@@ -19071,7 +19071,7 @@ impl IDebugDataSpaces2_Vtbl {
             let this = (*this).get_impl();
             this.ReadControl(::core::mem::transmute_copy(&processor), ::core::mem::transmute_copy(&offset), ::core::mem::transmute_copy(&buffer), ::core::mem::transmute_copy(&buffersize), ::core::mem::transmute_copy(&bytesread)).into()
         }
-        unsafe extern "system" fn WriteControl<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugDataSpaces2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, processor: u32, offset: u64, buffer: *const ::core::ffi::c_void, buffersize: u32, byteswritten: *mut u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn WriteControl<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugDataSpaces2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, processor: u32, offset: u64, buffer: *mut ::core::ffi::c_void, buffersize: u32, byteswritten: *mut u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.WriteControl(::core::mem::transmute_copy(&processor), ::core::mem::transmute_copy(&offset), ::core::mem::transmute_copy(&buffer), ::core::mem::transmute_copy(&buffersize)) {
@@ -19087,7 +19087,7 @@ impl IDebugDataSpaces2_Vtbl {
             let this = (*this).get_impl();
             this.ReadIo(::core::mem::transmute_copy(&interfacetype), ::core::mem::transmute_copy(&busnumber), ::core::mem::transmute_copy(&addressspace), ::core::mem::transmute_copy(&offset), ::core::mem::transmute_copy(&buffer), ::core::mem::transmute_copy(&buffersize), ::core::mem::transmute_copy(&bytesread)).into()
         }
-        unsafe extern "system" fn WriteIo<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugDataSpaces2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, interfacetype: u32, busnumber: u32, addressspace: u32, offset: u64, buffer: *const ::core::ffi::c_void, buffersize: u32, byteswritten: *mut u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn WriteIo<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugDataSpaces2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, interfacetype: u32, busnumber: u32, addressspace: u32, offset: u64, buffer: *mut ::core::ffi::c_void, buffersize: u32, byteswritten: *mut u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.WriteIo(::core::mem::transmute_copy(&interfacetype), ::core::mem::transmute_copy(&busnumber), ::core::mem::transmute_copy(&addressspace), ::core::mem::transmute_copy(&offset), ::core::mem::transmute_copy(&buffer), ::core::mem::transmute_copy(&buffersize)) {
@@ -19119,7 +19119,7 @@ impl IDebugDataSpaces2_Vtbl {
             let this = (*this).get_impl();
             this.ReadBusData(::core::mem::transmute_copy(&busdatatype), ::core::mem::transmute_copy(&busnumber), ::core::mem::transmute_copy(&slotnumber), ::core::mem::transmute_copy(&offset), ::core::mem::transmute_copy(&buffer), ::core::mem::transmute_copy(&buffersize), ::core::mem::transmute_copy(&bytesread)).into()
         }
-        unsafe extern "system" fn WriteBusData<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugDataSpaces2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, busdatatype: u32, busnumber: u32, slotnumber: u32, offset: u32, buffer: *const ::core::ffi::c_void, buffersize: u32, byteswritten: *mut u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn WriteBusData<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugDataSpaces2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, busdatatype: u32, busnumber: u32, slotnumber: u32, offset: u32, buffer: *mut ::core::ffi::c_void, buffersize: u32, byteswritten: *mut u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.WriteBusData(::core::mem::transmute_copy(&busdatatype), ::core::mem::transmute_copy(&busnumber), ::core::mem::transmute_copy(&slotnumber), ::core::mem::transmute_copy(&offset), ::core::mem::transmute_copy(&buffer), ::core::mem::transmute_copy(&buffersize)) {
@@ -19166,7 +19166,7 @@ impl IDebugDataSpaces2_Vtbl {
             let this = (*this).get_impl();
             this.ReadHandleData(::core::mem::transmute_copy(&handle), ::core::mem::transmute_copy(&datatype), ::core::mem::transmute_copy(&buffer), ::core::mem::transmute_copy(&buffersize), ::core::mem::transmute_copy(&datasize)).into()
         }
-        unsafe extern "system" fn FillVirtual<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugDataSpaces2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, start: u64, size: u32, pattern: *const ::core::ffi::c_void, patternsize: u32, filled: *mut u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn FillVirtual<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugDataSpaces2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, start: u64, size: u32, pattern: *mut ::core::ffi::c_void, patternsize: u32, filled: *mut u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.FillVirtual(::core::mem::transmute_copy(&start), ::core::mem::transmute_copy(&size), ::core::mem::transmute_copy(&pattern), ::core::mem::transmute_copy(&patternsize)) {
@@ -19177,7 +19177,7 @@ impl IDebugDataSpaces2_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn FillPhysical<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugDataSpaces2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, start: u64, size: u32, pattern: *const ::core::ffi::c_void, patternsize: u32, filled: *mut u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn FillPhysical<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugDataSpaces2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, start: u64, size: u32, pattern: *mut ::core::ffi::c_void, patternsize: u32, filled: *mut u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.FillPhysical(::core::mem::transmute_copy(&start), ::core::mem::transmute_copy(&size), ::core::mem::transmute_copy(&pattern), ::core::mem::transmute_copy(&patternsize)) {
@@ -19236,33 +19236,33 @@ impl IDebugDataSpaces2_Vtbl {
 #[cfg(all(feature = "Win32_System_Memory", feature = "Win32_System_SystemInformation"))]
 pub trait IDebugDataSpaces3_Impl: Sized {
     fn ReadVirtual(&self, offset: u64, buffer: *mut ::core::ffi::c_void, buffersize: u32, bytesread: *mut u32) -> ::windows::core::Result<()>;
-    fn WriteVirtual(&self, offset: u64, buffer: *const ::core::ffi::c_void, buffersize: u32) -> ::windows::core::Result<u32>;
-    fn SearchVirtual(&self, offset: u64, length: u64, pattern: *const ::core::ffi::c_void, patternsize: u32, patterngranularity: u32) -> ::windows::core::Result<u64>;
+    fn WriteVirtual(&self, offset: u64, buffer: *mut ::core::ffi::c_void, buffersize: u32) -> ::windows::core::Result<u32>;
+    fn SearchVirtual(&self, offset: u64, length: u64, pattern: *mut ::core::ffi::c_void, patternsize: u32, patterngranularity: u32) -> ::windows::core::Result<u64>;
     fn ReadVirtualUncached(&self, offset: u64, buffer: *mut ::core::ffi::c_void, buffersize: u32, bytesread: *mut u32) -> ::windows::core::Result<()>;
-    fn WriteVirtualUncached(&self, offset: u64, buffer: *const ::core::ffi::c_void, buffersize: u32) -> ::windows::core::Result<u32>;
+    fn WriteVirtualUncached(&self, offset: u64, buffer: *mut ::core::ffi::c_void, buffersize: u32) -> ::windows::core::Result<u32>;
     fn ReadPointersVirtual(&self, count: u32, offset: u64, ptrs: *mut u64) -> ::windows::core::Result<()>;
-    fn WritePointersVirtual(&self, count: u32, offset: u64, ptrs: *const u64) -> ::windows::core::Result<()>;
+    fn WritePointersVirtual(&self, count: u32, offset: u64, ptrs: *mut u64) -> ::windows::core::Result<()>;
     fn ReadPhysical(&self, offset: u64, buffer: *mut ::core::ffi::c_void, buffersize: u32, bytesread: *mut u32) -> ::windows::core::Result<()>;
-    fn WritePhysical(&self, offset: u64, buffer: *const ::core::ffi::c_void, buffersize: u32) -> ::windows::core::Result<u32>;
+    fn WritePhysical(&self, offset: u64, buffer: *mut ::core::ffi::c_void, buffersize: u32) -> ::windows::core::Result<u32>;
     fn ReadControl(&self, processor: u32, offset: u64, buffer: *mut ::core::ffi::c_void, buffersize: u32, bytesread: *mut u32) -> ::windows::core::Result<()>;
-    fn WriteControl(&self, processor: u32, offset: u64, buffer: *const ::core::ffi::c_void, buffersize: u32) -> ::windows::core::Result<u32>;
+    fn WriteControl(&self, processor: u32, offset: u64, buffer: *mut ::core::ffi::c_void, buffersize: u32) -> ::windows::core::Result<u32>;
     fn ReadIo(&self, interfacetype: u32, busnumber: u32, addressspace: u32, offset: u64, buffer: *mut ::core::ffi::c_void, buffersize: u32, bytesread: *mut u32) -> ::windows::core::Result<()>;
-    fn WriteIo(&self, interfacetype: u32, busnumber: u32, addressspace: u32, offset: u64, buffer: *const ::core::ffi::c_void, buffersize: u32) -> ::windows::core::Result<u32>;
+    fn WriteIo(&self, interfacetype: u32, busnumber: u32, addressspace: u32, offset: u64, buffer: *mut ::core::ffi::c_void, buffersize: u32) -> ::windows::core::Result<u32>;
     fn ReadMsr(&self, msr: u32) -> ::windows::core::Result<u64>;
     fn WriteMsr(&self, msr: u32, value: u64) -> ::windows::core::Result<()>;
     fn ReadBusData(&self, busdatatype: u32, busnumber: u32, slotnumber: u32, offset: u32, buffer: *mut ::core::ffi::c_void, buffersize: u32, bytesread: *mut u32) -> ::windows::core::Result<()>;
-    fn WriteBusData(&self, busdatatype: u32, busnumber: u32, slotnumber: u32, offset: u32, buffer: *const ::core::ffi::c_void, buffersize: u32) -> ::windows::core::Result<u32>;
+    fn WriteBusData(&self, busdatatype: u32, busnumber: u32, slotnumber: u32, offset: u32, buffer: *mut ::core::ffi::c_void, buffersize: u32) -> ::windows::core::Result<u32>;
     fn CheckLowMemory(&self) -> ::windows::core::Result<()>;
     fn ReadDebuggerData(&self, index: u32, buffer: *mut ::core::ffi::c_void, buffersize: u32, datasize: *mut u32) -> ::windows::core::Result<()>;
     fn ReadProcessorSystemData(&self, processor: u32, index: u32, buffer: *mut ::core::ffi::c_void, buffersize: u32, datasize: *mut u32) -> ::windows::core::Result<()>;
     fn VirtualToPhysical(&self, r#virtual: u64) -> ::windows::core::Result<u64>;
     fn GetVirtualTranslationPhysicalOffsets(&self, r#virtual: u64, offsets: *mut u64, offsetssize: u32, levels: *mut u32) -> ::windows::core::Result<()>;
     fn ReadHandleData(&self, handle: u64, datatype: u32, buffer: *mut ::core::ffi::c_void, buffersize: u32, datasize: *mut u32) -> ::windows::core::Result<()>;
-    fn FillVirtual(&self, start: u64, size: u32, pattern: *const ::core::ffi::c_void, patternsize: u32) -> ::windows::core::Result<u32>;
-    fn FillPhysical(&self, start: u64, size: u32, pattern: *const ::core::ffi::c_void, patternsize: u32) -> ::windows::core::Result<u32>;
+    fn FillVirtual(&self, start: u64, size: u32, pattern: *mut ::core::ffi::c_void, patternsize: u32) -> ::windows::core::Result<u32>;
+    fn FillPhysical(&self, start: u64, size: u32, pattern: *mut ::core::ffi::c_void, patternsize: u32) -> ::windows::core::Result<u32>;
     fn QueryVirtual(&self, offset: u64) -> ::windows::core::Result<super::super::Memory::MEMORY_BASIC_INFORMATION64>;
     fn ReadImageNtHeaders(&self, imagebase: u64) -> ::windows::core::Result<IMAGE_NT_HEADERS64>;
-    fn ReadTagged(&self, tag: *const ::windows::core::GUID, offset: u32, buffer: *mut ::core::ffi::c_void, buffersize: u32, totalsize: *mut u32) -> ::windows::core::Result<()>;
+    fn ReadTagged(&self, tag: *mut ::windows::core::GUID, offset: u32, buffer: *mut ::core::ffi::c_void, buffersize: u32, totalsize: *mut u32) -> ::windows::core::Result<()>;
     fn StartEnumTagged(&self) -> ::windows::core::Result<u64>;
     fn GetNextTagged(&self, handle: u64, tag: *mut ::windows::core::GUID, size: *mut u32) -> ::windows::core::Result<()>;
     fn EndEnumTagged(&self, handle: u64) -> ::windows::core::Result<()>;
@@ -19277,7 +19277,7 @@ impl IDebugDataSpaces3_Vtbl {
             let this = (*this).get_impl();
             this.ReadVirtual(::core::mem::transmute_copy(&offset), ::core::mem::transmute_copy(&buffer), ::core::mem::transmute_copy(&buffersize), ::core::mem::transmute_copy(&bytesread)).into()
         }
-        unsafe extern "system" fn WriteVirtual<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugDataSpaces3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, offset: u64, buffer: *const ::core::ffi::c_void, buffersize: u32, byteswritten: *mut u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn WriteVirtual<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugDataSpaces3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, offset: u64, buffer: *mut ::core::ffi::c_void, buffersize: u32, byteswritten: *mut u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.WriteVirtual(::core::mem::transmute_copy(&offset), ::core::mem::transmute_copy(&buffer), ::core::mem::transmute_copy(&buffersize)) {
@@ -19288,7 +19288,7 @@ impl IDebugDataSpaces3_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn SearchVirtual<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugDataSpaces3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, offset: u64, length: u64, pattern: *const ::core::ffi::c_void, patternsize: u32, patterngranularity: u32, matchoffset: *mut u64) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn SearchVirtual<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugDataSpaces3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, offset: u64, length: u64, pattern: *mut ::core::ffi::c_void, patternsize: u32, patterngranularity: u32, matchoffset: *mut u64) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.SearchVirtual(::core::mem::transmute_copy(&offset), ::core::mem::transmute_copy(&length), ::core::mem::transmute_copy(&pattern), ::core::mem::transmute_copy(&patternsize), ::core::mem::transmute_copy(&patterngranularity)) {
@@ -19304,7 +19304,7 @@ impl IDebugDataSpaces3_Vtbl {
             let this = (*this).get_impl();
             this.ReadVirtualUncached(::core::mem::transmute_copy(&offset), ::core::mem::transmute_copy(&buffer), ::core::mem::transmute_copy(&buffersize), ::core::mem::transmute_copy(&bytesread)).into()
         }
-        unsafe extern "system" fn WriteVirtualUncached<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugDataSpaces3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, offset: u64, buffer: *const ::core::ffi::c_void, buffersize: u32, byteswritten: *mut u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn WriteVirtualUncached<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugDataSpaces3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, offset: u64, buffer: *mut ::core::ffi::c_void, buffersize: u32, byteswritten: *mut u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.WriteVirtualUncached(::core::mem::transmute_copy(&offset), ::core::mem::transmute_copy(&buffer), ::core::mem::transmute_copy(&buffersize)) {
@@ -19320,7 +19320,7 @@ impl IDebugDataSpaces3_Vtbl {
             let this = (*this).get_impl();
             this.ReadPointersVirtual(::core::mem::transmute_copy(&count), ::core::mem::transmute_copy(&offset), ::core::mem::transmute_copy(&ptrs)).into()
         }
-        unsafe extern "system" fn WritePointersVirtual<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugDataSpaces3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, count: u32, offset: u64, ptrs: *const u64) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn WritePointersVirtual<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugDataSpaces3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, count: u32, offset: u64, ptrs: *mut u64) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.WritePointersVirtual(::core::mem::transmute_copy(&count), ::core::mem::transmute_copy(&offset), ::core::mem::transmute_copy(&ptrs)).into()
@@ -19330,7 +19330,7 @@ impl IDebugDataSpaces3_Vtbl {
             let this = (*this).get_impl();
             this.ReadPhysical(::core::mem::transmute_copy(&offset), ::core::mem::transmute_copy(&buffer), ::core::mem::transmute_copy(&buffersize), ::core::mem::transmute_copy(&bytesread)).into()
         }
-        unsafe extern "system" fn WritePhysical<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugDataSpaces3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, offset: u64, buffer: *const ::core::ffi::c_void, buffersize: u32, byteswritten: *mut u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn WritePhysical<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugDataSpaces3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, offset: u64, buffer: *mut ::core::ffi::c_void, buffersize: u32, byteswritten: *mut u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.WritePhysical(::core::mem::transmute_copy(&offset), ::core::mem::transmute_copy(&buffer), ::core::mem::transmute_copy(&buffersize)) {
@@ -19346,7 +19346,7 @@ impl IDebugDataSpaces3_Vtbl {
             let this = (*this).get_impl();
             this.ReadControl(::core::mem::transmute_copy(&processor), ::core::mem::transmute_copy(&offset), ::core::mem::transmute_copy(&buffer), ::core::mem::transmute_copy(&buffersize), ::core::mem::transmute_copy(&bytesread)).into()
         }
-        unsafe extern "system" fn WriteControl<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugDataSpaces3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, processor: u32, offset: u64, buffer: *const ::core::ffi::c_void, buffersize: u32, byteswritten: *mut u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn WriteControl<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugDataSpaces3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, processor: u32, offset: u64, buffer: *mut ::core::ffi::c_void, buffersize: u32, byteswritten: *mut u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.WriteControl(::core::mem::transmute_copy(&processor), ::core::mem::transmute_copy(&offset), ::core::mem::transmute_copy(&buffer), ::core::mem::transmute_copy(&buffersize)) {
@@ -19362,7 +19362,7 @@ impl IDebugDataSpaces3_Vtbl {
             let this = (*this).get_impl();
             this.ReadIo(::core::mem::transmute_copy(&interfacetype), ::core::mem::transmute_copy(&busnumber), ::core::mem::transmute_copy(&addressspace), ::core::mem::transmute_copy(&offset), ::core::mem::transmute_copy(&buffer), ::core::mem::transmute_copy(&buffersize), ::core::mem::transmute_copy(&bytesread)).into()
         }
-        unsafe extern "system" fn WriteIo<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugDataSpaces3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, interfacetype: u32, busnumber: u32, addressspace: u32, offset: u64, buffer: *const ::core::ffi::c_void, buffersize: u32, byteswritten: *mut u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn WriteIo<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugDataSpaces3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, interfacetype: u32, busnumber: u32, addressspace: u32, offset: u64, buffer: *mut ::core::ffi::c_void, buffersize: u32, byteswritten: *mut u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.WriteIo(::core::mem::transmute_copy(&interfacetype), ::core::mem::transmute_copy(&busnumber), ::core::mem::transmute_copy(&addressspace), ::core::mem::transmute_copy(&offset), ::core::mem::transmute_copy(&buffer), ::core::mem::transmute_copy(&buffersize)) {
@@ -19394,7 +19394,7 @@ impl IDebugDataSpaces3_Vtbl {
             let this = (*this).get_impl();
             this.ReadBusData(::core::mem::transmute_copy(&busdatatype), ::core::mem::transmute_copy(&busnumber), ::core::mem::transmute_copy(&slotnumber), ::core::mem::transmute_copy(&offset), ::core::mem::transmute_copy(&buffer), ::core::mem::transmute_copy(&buffersize), ::core::mem::transmute_copy(&bytesread)).into()
         }
-        unsafe extern "system" fn WriteBusData<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugDataSpaces3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, busdatatype: u32, busnumber: u32, slotnumber: u32, offset: u32, buffer: *const ::core::ffi::c_void, buffersize: u32, byteswritten: *mut u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn WriteBusData<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugDataSpaces3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, busdatatype: u32, busnumber: u32, slotnumber: u32, offset: u32, buffer: *mut ::core::ffi::c_void, buffersize: u32, byteswritten: *mut u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.WriteBusData(::core::mem::transmute_copy(&busdatatype), ::core::mem::transmute_copy(&busnumber), ::core::mem::transmute_copy(&slotnumber), ::core::mem::transmute_copy(&offset), ::core::mem::transmute_copy(&buffer), ::core::mem::transmute_copy(&buffersize)) {
@@ -19441,7 +19441,7 @@ impl IDebugDataSpaces3_Vtbl {
             let this = (*this).get_impl();
             this.ReadHandleData(::core::mem::transmute_copy(&handle), ::core::mem::transmute_copy(&datatype), ::core::mem::transmute_copy(&buffer), ::core::mem::transmute_copy(&buffersize), ::core::mem::transmute_copy(&datasize)).into()
         }
-        unsafe extern "system" fn FillVirtual<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugDataSpaces3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, start: u64, size: u32, pattern: *const ::core::ffi::c_void, patternsize: u32, filled: *mut u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn FillVirtual<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugDataSpaces3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, start: u64, size: u32, pattern: *mut ::core::ffi::c_void, patternsize: u32, filled: *mut u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.FillVirtual(::core::mem::transmute_copy(&start), ::core::mem::transmute_copy(&size), ::core::mem::transmute_copy(&pattern), ::core::mem::transmute_copy(&patternsize)) {
@@ -19452,7 +19452,7 @@ impl IDebugDataSpaces3_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn FillPhysical<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugDataSpaces3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, start: u64, size: u32, pattern: *const ::core::ffi::c_void, patternsize: u32, filled: *mut u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn FillPhysical<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugDataSpaces3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, start: u64, size: u32, pattern: *mut ::core::ffi::c_void, patternsize: u32, filled: *mut u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.FillPhysical(::core::mem::transmute_copy(&start), ::core::mem::transmute_copy(&size), ::core::mem::transmute_copy(&pattern), ::core::mem::transmute_copy(&patternsize)) {
@@ -19485,7 +19485,7 @@ impl IDebugDataSpaces3_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn ReadTagged<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugDataSpaces3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, tag: *const ::windows::core::GUID, offset: u32, buffer: *mut ::core::ffi::c_void, buffersize: u32, totalsize: *mut u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn ReadTagged<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugDataSpaces3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, tag: *mut ::windows::core::GUID, offset: u32, buffer: *mut ::core::ffi::c_void, buffersize: u32, totalsize: *mut u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.ReadTagged(::core::mem::transmute_copy(&tag), ::core::mem::transmute_copy(&offset), ::core::mem::transmute_copy(&buffer), ::core::mem::transmute_copy(&buffersize), ::core::mem::transmute_copy(&totalsize)).into()
@@ -19553,46 +19553,46 @@ impl IDebugDataSpaces3_Vtbl {
 #[cfg(all(feature = "Win32_System_Memory", feature = "Win32_System_SystemInformation"))]
 pub trait IDebugDataSpaces4_Impl: Sized {
     fn ReadVirtual(&self, offset: u64, buffer: *mut ::core::ffi::c_void, buffersize: u32, bytesread: *mut u32) -> ::windows::core::Result<()>;
-    fn WriteVirtual(&self, offset: u64, buffer: *const ::core::ffi::c_void, buffersize: u32) -> ::windows::core::Result<u32>;
-    fn SearchVirtual(&self, offset: u64, length: u64, pattern: *const ::core::ffi::c_void, patternsize: u32, patterngranularity: u32) -> ::windows::core::Result<u64>;
+    fn WriteVirtual(&self, offset: u64, buffer: *mut ::core::ffi::c_void, buffersize: u32) -> ::windows::core::Result<u32>;
+    fn SearchVirtual(&self, offset: u64, length: u64, pattern: *mut ::core::ffi::c_void, patternsize: u32, patterngranularity: u32) -> ::windows::core::Result<u64>;
     fn ReadVirtualUncached(&self, offset: u64, buffer: *mut ::core::ffi::c_void, buffersize: u32, bytesread: *mut u32) -> ::windows::core::Result<()>;
-    fn WriteVirtualUncached(&self, offset: u64, buffer: *const ::core::ffi::c_void, buffersize: u32) -> ::windows::core::Result<u32>;
+    fn WriteVirtualUncached(&self, offset: u64, buffer: *mut ::core::ffi::c_void, buffersize: u32) -> ::windows::core::Result<u32>;
     fn ReadPointersVirtual(&self, count: u32, offset: u64, ptrs: *mut u64) -> ::windows::core::Result<()>;
-    fn WritePointersVirtual(&self, count: u32, offset: u64, ptrs: *const u64) -> ::windows::core::Result<()>;
+    fn WritePointersVirtual(&self, count: u32, offset: u64, ptrs: *mut u64) -> ::windows::core::Result<()>;
     fn ReadPhysical(&self, offset: u64, buffer: *mut ::core::ffi::c_void, buffersize: u32, bytesread: *mut u32) -> ::windows::core::Result<()>;
-    fn WritePhysical(&self, offset: u64, buffer: *const ::core::ffi::c_void, buffersize: u32) -> ::windows::core::Result<u32>;
+    fn WritePhysical(&self, offset: u64, buffer: *mut ::core::ffi::c_void, buffersize: u32) -> ::windows::core::Result<u32>;
     fn ReadControl(&self, processor: u32, offset: u64, buffer: *mut ::core::ffi::c_void, buffersize: u32, bytesread: *mut u32) -> ::windows::core::Result<()>;
-    fn WriteControl(&self, processor: u32, offset: u64, buffer: *const ::core::ffi::c_void, buffersize: u32) -> ::windows::core::Result<u32>;
+    fn WriteControl(&self, processor: u32, offset: u64, buffer: *mut ::core::ffi::c_void, buffersize: u32) -> ::windows::core::Result<u32>;
     fn ReadIo(&self, interfacetype: u32, busnumber: u32, addressspace: u32, offset: u64, buffer: *mut ::core::ffi::c_void, buffersize: u32, bytesread: *mut u32) -> ::windows::core::Result<()>;
-    fn WriteIo(&self, interfacetype: u32, busnumber: u32, addressspace: u32, offset: u64, buffer: *const ::core::ffi::c_void, buffersize: u32) -> ::windows::core::Result<u32>;
+    fn WriteIo(&self, interfacetype: u32, busnumber: u32, addressspace: u32, offset: u64, buffer: *mut ::core::ffi::c_void, buffersize: u32) -> ::windows::core::Result<u32>;
     fn ReadMsr(&self, msr: u32) -> ::windows::core::Result<u64>;
     fn WriteMsr(&self, msr: u32, value: u64) -> ::windows::core::Result<()>;
     fn ReadBusData(&self, busdatatype: u32, busnumber: u32, slotnumber: u32, offset: u32, buffer: *mut ::core::ffi::c_void, buffersize: u32, bytesread: *mut u32) -> ::windows::core::Result<()>;
-    fn WriteBusData(&self, busdatatype: u32, busnumber: u32, slotnumber: u32, offset: u32, buffer: *const ::core::ffi::c_void, buffersize: u32) -> ::windows::core::Result<u32>;
+    fn WriteBusData(&self, busdatatype: u32, busnumber: u32, slotnumber: u32, offset: u32, buffer: *mut ::core::ffi::c_void, buffersize: u32) -> ::windows::core::Result<u32>;
     fn CheckLowMemory(&self) -> ::windows::core::Result<()>;
     fn ReadDebuggerData(&self, index: u32, buffer: *mut ::core::ffi::c_void, buffersize: u32, datasize: *mut u32) -> ::windows::core::Result<()>;
     fn ReadProcessorSystemData(&self, processor: u32, index: u32, buffer: *mut ::core::ffi::c_void, buffersize: u32, datasize: *mut u32) -> ::windows::core::Result<()>;
     fn VirtualToPhysical(&self, r#virtual: u64) -> ::windows::core::Result<u64>;
     fn GetVirtualTranslationPhysicalOffsets(&self, r#virtual: u64, offsets: *mut u64, offsetssize: u32, levels: *mut u32) -> ::windows::core::Result<()>;
     fn ReadHandleData(&self, handle: u64, datatype: u32, buffer: *mut ::core::ffi::c_void, buffersize: u32, datasize: *mut u32) -> ::windows::core::Result<()>;
-    fn FillVirtual(&self, start: u64, size: u32, pattern: *const ::core::ffi::c_void, patternsize: u32) -> ::windows::core::Result<u32>;
-    fn FillPhysical(&self, start: u64, size: u32, pattern: *const ::core::ffi::c_void, patternsize: u32) -> ::windows::core::Result<u32>;
+    fn FillVirtual(&self, start: u64, size: u32, pattern: *mut ::core::ffi::c_void, patternsize: u32) -> ::windows::core::Result<u32>;
+    fn FillPhysical(&self, start: u64, size: u32, pattern: *mut ::core::ffi::c_void, patternsize: u32) -> ::windows::core::Result<u32>;
     fn QueryVirtual(&self, offset: u64) -> ::windows::core::Result<super::super::Memory::MEMORY_BASIC_INFORMATION64>;
     fn ReadImageNtHeaders(&self, imagebase: u64) -> ::windows::core::Result<IMAGE_NT_HEADERS64>;
-    fn ReadTagged(&self, tag: *const ::windows::core::GUID, offset: u32, buffer: *mut ::core::ffi::c_void, buffersize: u32, totalsize: *mut u32) -> ::windows::core::Result<()>;
+    fn ReadTagged(&self, tag: *mut ::windows::core::GUID, offset: u32, buffer: *mut ::core::ffi::c_void, buffersize: u32, totalsize: *mut u32) -> ::windows::core::Result<()>;
     fn StartEnumTagged(&self) -> ::windows::core::Result<u64>;
     fn GetNextTagged(&self, handle: u64, tag: *mut ::windows::core::GUID, size: *mut u32) -> ::windows::core::Result<()>;
     fn EndEnumTagged(&self, handle: u64) -> ::windows::core::Result<()>;
     fn GetOffsetInformation(&self, space: u32, which: u32, offset: u64, buffer: *mut ::core::ffi::c_void, buffersize: u32, infosize: *mut u32) -> ::windows::core::Result<()>;
     fn GetNextDifferentlyValidOffsetVirtual(&self, offset: u64) -> ::windows::core::Result<u64>;
     fn GetValidRegionVirtual(&self, base: u64, size: u32, validbase: *mut u64, validsize: *mut u32) -> ::windows::core::Result<()>;
-    fn SearchVirtual2(&self, offset: u64, length: u64, flags: u32, pattern: *const ::core::ffi::c_void, patternsize: u32, patterngranularity: u32) -> ::windows::core::Result<u64>;
+    fn SearchVirtual2(&self, offset: u64, length: u64, flags: u32, pattern: *mut ::core::ffi::c_void, patternsize: u32, patterngranularity: u32) -> ::windows::core::Result<u64>;
     fn ReadMultiByteStringVirtual(&self, offset: u64, maxbytes: u32, buffer: ::windows::core::PSTR, buffersize: u32, stringbytes: *mut u32) -> ::windows::core::Result<()>;
     fn ReadMultiByteStringVirtualWide(&self, offset: u64, maxbytes: u32, codepage: u32, buffer: ::windows::core::PWSTR, buffersize: u32, stringbytes: *mut u32) -> ::windows::core::Result<()>;
     fn ReadUnicodeStringVirtual(&self, offset: u64, maxbytes: u32, codepage: u32, buffer: ::windows::core::PSTR, buffersize: u32, stringbytes: *mut u32) -> ::windows::core::Result<()>;
     fn ReadUnicodeStringVirtualWide(&self, offset: u64, maxbytes: u32, buffer: ::windows::core::PWSTR, buffersize: u32, stringbytes: *mut u32) -> ::windows::core::Result<()>;
     fn ReadPhysical2(&self, offset: u64, flags: u32, buffer: *mut ::core::ffi::c_void, buffersize: u32, bytesread: *mut u32) -> ::windows::core::Result<()>;
-    fn WritePhysical2(&self, offset: u64, flags: u32, buffer: *const ::core::ffi::c_void, buffersize: u32) -> ::windows::core::Result<u32>;
+    fn WritePhysical2(&self, offset: u64, flags: u32, buffer: *mut ::core::ffi::c_void, buffersize: u32) -> ::windows::core::Result<u32>;
 }
 #[cfg(all(feature = "Win32_System_Memory", feature = "Win32_System_SystemInformation"))]
 impl ::windows::core::RuntimeName for IDebugDataSpaces4 {}
@@ -19604,7 +19604,7 @@ impl IDebugDataSpaces4_Vtbl {
             let this = (*this).get_impl();
             this.ReadVirtual(::core::mem::transmute_copy(&offset), ::core::mem::transmute_copy(&buffer), ::core::mem::transmute_copy(&buffersize), ::core::mem::transmute_copy(&bytesread)).into()
         }
-        unsafe extern "system" fn WriteVirtual<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugDataSpaces4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, offset: u64, buffer: *const ::core::ffi::c_void, buffersize: u32, byteswritten: *mut u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn WriteVirtual<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugDataSpaces4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, offset: u64, buffer: *mut ::core::ffi::c_void, buffersize: u32, byteswritten: *mut u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.WriteVirtual(::core::mem::transmute_copy(&offset), ::core::mem::transmute_copy(&buffer), ::core::mem::transmute_copy(&buffersize)) {
@@ -19615,7 +19615,7 @@ impl IDebugDataSpaces4_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn SearchVirtual<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugDataSpaces4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, offset: u64, length: u64, pattern: *const ::core::ffi::c_void, patternsize: u32, patterngranularity: u32, matchoffset: *mut u64) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn SearchVirtual<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugDataSpaces4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, offset: u64, length: u64, pattern: *mut ::core::ffi::c_void, patternsize: u32, patterngranularity: u32, matchoffset: *mut u64) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.SearchVirtual(::core::mem::transmute_copy(&offset), ::core::mem::transmute_copy(&length), ::core::mem::transmute_copy(&pattern), ::core::mem::transmute_copy(&patternsize), ::core::mem::transmute_copy(&patterngranularity)) {
@@ -19631,7 +19631,7 @@ impl IDebugDataSpaces4_Vtbl {
             let this = (*this).get_impl();
             this.ReadVirtualUncached(::core::mem::transmute_copy(&offset), ::core::mem::transmute_copy(&buffer), ::core::mem::transmute_copy(&buffersize), ::core::mem::transmute_copy(&bytesread)).into()
         }
-        unsafe extern "system" fn WriteVirtualUncached<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugDataSpaces4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, offset: u64, buffer: *const ::core::ffi::c_void, buffersize: u32, byteswritten: *mut u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn WriteVirtualUncached<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugDataSpaces4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, offset: u64, buffer: *mut ::core::ffi::c_void, buffersize: u32, byteswritten: *mut u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.WriteVirtualUncached(::core::mem::transmute_copy(&offset), ::core::mem::transmute_copy(&buffer), ::core::mem::transmute_copy(&buffersize)) {
@@ -19647,7 +19647,7 @@ impl IDebugDataSpaces4_Vtbl {
             let this = (*this).get_impl();
             this.ReadPointersVirtual(::core::mem::transmute_copy(&count), ::core::mem::transmute_copy(&offset), ::core::mem::transmute_copy(&ptrs)).into()
         }
-        unsafe extern "system" fn WritePointersVirtual<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugDataSpaces4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, count: u32, offset: u64, ptrs: *const u64) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn WritePointersVirtual<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugDataSpaces4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, count: u32, offset: u64, ptrs: *mut u64) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.WritePointersVirtual(::core::mem::transmute_copy(&count), ::core::mem::transmute_copy(&offset), ::core::mem::transmute_copy(&ptrs)).into()
@@ -19657,7 +19657,7 @@ impl IDebugDataSpaces4_Vtbl {
             let this = (*this).get_impl();
             this.ReadPhysical(::core::mem::transmute_copy(&offset), ::core::mem::transmute_copy(&buffer), ::core::mem::transmute_copy(&buffersize), ::core::mem::transmute_copy(&bytesread)).into()
         }
-        unsafe extern "system" fn WritePhysical<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugDataSpaces4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, offset: u64, buffer: *const ::core::ffi::c_void, buffersize: u32, byteswritten: *mut u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn WritePhysical<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugDataSpaces4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, offset: u64, buffer: *mut ::core::ffi::c_void, buffersize: u32, byteswritten: *mut u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.WritePhysical(::core::mem::transmute_copy(&offset), ::core::mem::transmute_copy(&buffer), ::core::mem::transmute_copy(&buffersize)) {
@@ -19673,7 +19673,7 @@ impl IDebugDataSpaces4_Vtbl {
             let this = (*this).get_impl();
             this.ReadControl(::core::mem::transmute_copy(&processor), ::core::mem::transmute_copy(&offset), ::core::mem::transmute_copy(&buffer), ::core::mem::transmute_copy(&buffersize), ::core::mem::transmute_copy(&bytesread)).into()
         }
-        unsafe extern "system" fn WriteControl<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugDataSpaces4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, processor: u32, offset: u64, buffer: *const ::core::ffi::c_void, buffersize: u32, byteswritten: *mut u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn WriteControl<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugDataSpaces4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, processor: u32, offset: u64, buffer: *mut ::core::ffi::c_void, buffersize: u32, byteswritten: *mut u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.WriteControl(::core::mem::transmute_copy(&processor), ::core::mem::transmute_copy(&offset), ::core::mem::transmute_copy(&buffer), ::core::mem::transmute_copy(&buffersize)) {
@@ -19689,7 +19689,7 @@ impl IDebugDataSpaces4_Vtbl {
             let this = (*this).get_impl();
             this.ReadIo(::core::mem::transmute_copy(&interfacetype), ::core::mem::transmute_copy(&busnumber), ::core::mem::transmute_copy(&addressspace), ::core::mem::transmute_copy(&offset), ::core::mem::transmute_copy(&buffer), ::core::mem::transmute_copy(&buffersize), ::core::mem::transmute_copy(&bytesread)).into()
         }
-        unsafe extern "system" fn WriteIo<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugDataSpaces4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, interfacetype: u32, busnumber: u32, addressspace: u32, offset: u64, buffer: *const ::core::ffi::c_void, buffersize: u32, byteswritten: *mut u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn WriteIo<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugDataSpaces4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, interfacetype: u32, busnumber: u32, addressspace: u32, offset: u64, buffer: *mut ::core::ffi::c_void, buffersize: u32, byteswritten: *mut u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.WriteIo(::core::mem::transmute_copy(&interfacetype), ::core::mem::transmute_copy(&busnumber), ::core::mem::transmute_copy(&addressspace), ::core::mem::transmute_copy(&offset), ::core::mem::transmute_copy(&buffer), ::core::mem::transmute_copy(&buffersize)) {
@@ -19721,7 +19721,7 @@ impl IDebugDataSpaces4_Vtbl {
             let this = (*this).get_impl();
             this.ReadBusData(::core::mem::transmute_copy(&busdatatype), ::core::mem::transmute_copy(&busnumber), ::core::mem::transmute_copy(&slotnumber), ::core::mem::transmute_copy(&offset), ::core::mem::transmute_copy(&buffer), ::core::mem::transmute_copy(&buffersize), ::core::mem::transmute_copy(&bytesread)).into()
         }
-        unsafe extern "system" fn WriteBusData<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugDataSpaces4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, busdatatype: u32, busnumber: u32, slotnumber: u32, offset: u32, buffer: *const ::core::ffi::c_void, buffersize: u32, byteswritten: *mut u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn WriteBusData<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugDataSpaces4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, busdatatype: u32, busnumber: u32, slotnumber: u32, offset: u32, buffer: *mut ::core::ffi::c_void, buffersize: u32, byteswritten: *mut u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.WriteBusData(::core::mem::transmute_copy(&busdatatype), ::core::mem::transmute_copy(&busnumber), ::core::mem::transmute_copy(&slotnumber), ::core::mem::transmute_copy(&offset), ::core::mem::transmute_copy(&buffer), ::core::mem::transmute_copy(&buffersize)) {
@@ -19768,7 +19768,7 @@ impl IDebugDataSpaces4_Vtbl {
             let this = (*this).get_impl();
             this.ReadHandleData(::core::mem::transmute_copy(&handle), ::core::mem::transmute_copy(&datatype), ::core::mem::transmute_copy(&buffer), ::core::mem::transmute_copy(&buffersize), ::core::mem::transmute_copy(&datasize)).into()
         }
-        unsafe extern "system" fn FillVirtual<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugDataSpaces4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, start: u64, size: u32, pattern: *const ::core::ffi::c_void, patternsize: u32, filled: *mut u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn FillVirtual<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugDataSpaces4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, start: u64, size: u32, pattern: *mut ::core::ffi::c_void, patternsize: u32, filled: *mut u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.FillVirtual(::core::mem::transmute_copy(&start), ::core::mem::transmute_copy(&size), ::core::mem::transmute_copy(&pattern), ::core::mem::transmute_copy(&patternsize)) {
@@ -19779,7 +19779,7 @@ impl IDebugDataSpaces4_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn FillPhysical<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugDataSpaces4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, start: u64, size: u32, pattern: *const ::core::ffi::c_void, patternsize: u32, filled: *mut u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn FillPhysical<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugDataSpaces4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, start: u64, size: u32, pattern: *mut ::core::ffi::c_void, patternsize: u32, filled: *mut u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.FillPhysical(::core::mem::transmute_copy(&start), ::core::mem::transmute_copy(&size), ::core::mem::transmute_copy(&pattern), ::core::mem::transmute_copy(&patternsize)) {
@@ -19812,7 +19812,7 @@ impl IDebugDataSpaces4_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn ReadTagged<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugDataSpaces4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, tag: *const ::windows::core::GUID, offset: u32, buffer: *mut ::core::ffi::c_void, buffersize: u32, totalsize: *mut u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn ReadTagged<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugDataSpaces4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, tag: *mut ::windows::core::GUID, offset: u32, buffer: *mut ::core::ffi::c_void, buffersize: u32, totalsize: *mut u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.ReadTagged(::core::mem::transmute_copy(&tag), ::core::mem::transmute_copy(&offset), ::core::mem::transmute_copy(&buffer), ::core::mem::transmute_copy(&buffersize), ::core::mem::transmute_copy(&totalsize)).into()
@@ -19859,7 +19859,7 @@ impl IDebugDataSpaces4_Vtbl {
             let this = (*this).get_impl();
             this.GetValidRegionVirtual(::core::mem::transmute_copy(&base), ::core::mem::transmute_copy(&size), ::core::mem::transmute_copy(&validbase), ::core::mem::transmute_copy(&validsize)).into()
         }
-        unsafe extern "system" fn SearchVirtual2<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugDataSpaces4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, offset: u64, length: u64, flags: u32, pattern: *const ::core::ffi::c_void, patternsize: u32, patterngranularity: u32, matchoffset: *mut u64) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn SearchVirtual2<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugDataSpaces4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, offset: u64, length: u64, flags: u32, pattern: *mut ::core::ffi::c_void, patternsize: u32, patterngranularity: u32, matchoffset: *mut u64) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.SearchVirtual2(::core::mem::transmute_copy(&offset), ::core::mem::transmute_copy(&length), ::core::mem::transmute_copy(&flags), ::core::mem::transmute_copy(&pattern), ::core::mem::transmute_copy(&patternsize), ::core::mem::transmute_copy(&patterngranularity)) {
@@ -19895,7 +19895,7 @@ impl IDebugDataSpaces4_Vtbl {
             let this = (*this).get_impl();
             this.ReadPhysical2(::core::mem::transmute_copy(&offset), ::core::mem::transmute_copy(&flags), ::core::mem::transmute_copy(&buffer), ::core::mem::transmute_copy(&buffersize), ::core::mem::transmute_copy(&bytesread)).into()
         }
-        unsafe extern "system" fn WritePhysical2<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugDataSpaces4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, offset: u64, flags: u32, buffer: *const ::core::ffi::c_void, buffersize: u32, byteswritten: *mut u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn WritePhysical2<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugDataSpaces4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, offset: u64, flags: u32, buffer: *mut ::core::ffi::c_void, buffersize: u32, byteswritten: *mut u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.WritePhysical2(::core::mem::transmute_copy(&offset), ::core::mem::transmute_copy(&flags), ::core::mem::transmute_copy(&buffer), ::core::mem::transmute_copy(&buffersize)) {
@@ -20015,7 +20015,7 @@ pub trait IDebugDocumentHelper32_Impl: Sized {
     fn AddDeferredText(&self, cchars: u32, dwtextstartcookie: u32) -> ::windows::core::Result<()>;
     fn DefineScriptBlock(&self, ulcharoffset: u32, cchars: u32, pas: &::core::option::Option<IActiveScript>, fscriptlet: super::super::super::Foundation::BOOL) -> ::windows::core::Result<u32>;
     fn SetDefaultTextAttr(&self, statextattr: u16) -> ::windows::core::Result<()>;
-    fn SetTextAttributes(&self, ulcharoffset: u32, cchars: u32, pstatextattr: *const u16) -> ::windows::core::Result<()>;
+    fn SetTextAttributes(&self, ulcharoffset: u32, cchars: u32, pstatextattr: *mut u16) -> ::windows::core::Result<()>;
     fn SetLongName(&self, pszlongname: &::windows::core::PCWSTR) -> ::windows::core::Result<()>;
     fn SetShortName(&self, pszshortname: &::windows::core::PCWSTR) -> ::windows::core::Result<()>;
     fn SetDocumentAttr(&self, pszattributes: u32) -> ::windows::core::Result<()>;
@@ -20081,7 +20081,7 @@ impl IDebugDocumentHelper32_Vtbl {
             let this = (*this).get_impl();
             this.SetDefaultTextAttr(::core::mem::transmute_copy(&statextattr)).into()
         }
-        unsafe extern "system" fn SetTextAttributes<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugDocumentHelper32_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, ulcharoffset: u32, cchars: u32, pstatextattr: *const u16) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn SetTextAttributes<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugDocumentHelper32_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, ulcharoffset: u32, cchars: u32, pstatextattr: *mut u16) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.SetTextAttributes(::core::mem::transmute_copy(&ulcharoffset), ::core::mem::transmute_copy(&cchars), ::core::mem::transmute_copy(&pstatextattr)).into()
@@ -20175,7 +20175,7 @@ pub trait IDebugDocumentHelper64_Impl: Sized {
     fn AddDeferredText(&self, cchars: u32, dwtextstartcookie: u32) -> ::windows::core::Result<()>;
     fn DefineScriptBlock(&self, ulcharoffset: u32, cchars: u32, pas: &::core::option::Option<IActiveScript>, fscriptlet: super::super::super::Foundation::BOOL) -> ::windows::core::Result<u64>;
     fn SetDefaultTextAttr(&self, statextattr: u16) -> ::windows::core::Result<()>;
-    fn SetTextAttributes(&self, ulcharoffset: u32, cchars: u32, pstatextattr: *const u16) -> ::windows::core::Result<()>;
+    fn SetTextAttributes(&self, ulcharoffset: u32, cchars: u32, pstatextattr: *mut u16) -> ::windows::core::Result<()>;
     fn SetLongName(&self, pszlongname: &::windows::core::PCWSTR) -> ::windows::core::Result<()>;
     fn SetShortName(&self, pszshortname: &::windows::core::PCWSTR) -> ::windows::core::Result<()>;
     fn SetDocumentAttr(&self, pszattributes: u32) -> ::windows::core::Result<()>;
@@ -20241,7 +20241,7 @@ impl IDebugDocumentHelper64_Vtbl {
             let this = (*this).get_impl();
             this.SetDefaultTextAttr(::core::mem::transmute_copy(&statextattr)).into()
         }
-        unsafe extern "system" fn SetTextAttributes<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugDocumentHelper64_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, ulcharoffset: u32, cchars: u32, pstatextattr: *const u16) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn SetTextAttributes<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugDocumentHelper64_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, ulcharoffset: u32, cchars: u32, pstatextattr: *mut u16) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.SetTextAttributes(::core::mem::transmute_copy(&ulcharoffset), ::core::mem::transmute_copy(&cchars), ::core::mem::transmute_copy(&pstatextattr)).into()
@@ -20537,14 +20537,14 @@ impl IDebugDocumentText_Vtbl {
     }
 }
 pub trait IDebugDocumentTextAuthor_Impl: Sized + IDebugDocumentText_Impl {
-    fn InsertText(&self, ccharacterposition: u32, cnumtoinsert: u32, pchartext: &::windows::core::PCWSTR) -> ::windows::core::Result<()>;
+    fn InsertText(&self, ccharacterposition: u32, cnumtoinsert: u32, pchartext: &::windows::core::PWSTR) -> ::windows::core::Result<()>;
     fn RemoveText(&self, ccharacterposition: u32, cnumtoremove: u32) -> ::windows::core::Result<()>;
-    fn ReplaceText(&self, ccharacterposition: u32, cnumtoreplace: u32, pchartext: &::windows::core::PCWSTR) -> ::windows::core::Result<()>;
+    fn ReplaceText(&self, ccharacterposition: u32, cnumtoreplace: u32, pchartext: &::windows::core::PWSTR) -> ::windows::core::Result<()>;
 }
 impl ::windows::core::RuntimeName for IDebugDocumentTextAuthor {}
 impl IDebugDocumentTextAuthor_Vtbl {
     pub const fn new<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugDocumentTextAuthor_Impl, const OFFSET: isize>() -> IDebugDocumentTextAuthor_Vtbl {
-        unsafe extern "system" fn InsertText<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugDocumentTextAuthor_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, ccharacterposition: u32, cnumtoinsert: u32, pchartext: ::windows::core::PCWSTR) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn InsertText<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugDocumentTextAuthor_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, ccharacterposition: u32, cnumtoinsert: u32, pchartext: ::windows::core::PWSTR) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.InsertText(::core::mem::transmute_copy(&ccharacterposition), ::core::mem::transmute_copy(&cnumtoinsert), ::core::mem::transmute(&pchartext)).into()
@@ -20554,7 +20554,7 @@ impl IDebugDocumentTextAuthor_Vtbl {
             let this = (*this).get_impl();
             this.RemoveText(::core::mem::transmute_copy(&ccharacterposition), ::core::mem::transmute_copy(&cnumtoremove)).into()
         }
-        unsafe extern "system" fn ReplaceText<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugDocumentTextAuthor_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, ccharacterposition: u32, cnumtoreplace: u32, pchartext: ::windows::core::PCWSTR) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn ReplaceText<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugDocumentTextAuthor_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, ccharacterposition: u32, cnumtoreplace: u32, pchartext: ::windows::core::PWSTR) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.ReplaceText(::core::mem::transmute_copy(&ccharacterposition), ::core::mem::transmute_copy(&cnumtoreplace), ::core::mem::transmute(&pchartext)).into()
@@ -20672,7 +20672,7 @@ impl IDebugDocumentTextExternalAuthor_Vtbl {
 pub trait IDebugEventCallbacks_Impl: Sized {
     fn GetInterestMask(&self) -> ::windows::core::Result<u32>;
     fn Breakpoint(&self, bp: &::core::option::Option<IDebugBreakpoint>) -> ::windows::core::Result<()>;
-    fn Exception(&self, exception: *const EXCEPTION_RECORD64, firstchance: u32) -> ::windows::core::Result<()>;
+    fn Exception(&self, exception: *mut EXCEPTION_RECORD64, firstchance: u32) -> ::windows::core::Result<()>;
     fn CreateThread(&self, handle: u64, dataoffset: u64, startoffset: u64) -> ::windows::core::Result<()>;
     fn ExitThread(&self, exitcode: u32) -> ::windows::core::Result<()>;
     fn CreateProcessA(&self, imagefilehandle: u64, handle: u64, baseoffset: u64, modulesize: u32, modulename: &::windows::core::PCSTR, imagename: &::windows::core::PCSTR, checksum: u32, timedatestamp: u32, initialthreadhandle: u64, threaddataoffset: u64, startoffset: u64) -> ::windows::core::Result<()>;
@@ -20706,7 +20706,7 @@ impl IDebugEventCallbacks_Vtbl {
             let this = (*this).get_impl();
             this.Breakpoint(::core::mem::transmute(&bp)).into()
         }
-        unsafe extern "system" fn Exception<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugEventCallbacks_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, exception: *const EXCEPTION_RECORD64, firstchance: u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn Exception<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugEventCallbacks_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, exception: *mut EXCEPTION_RECORD64, firstchance: u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.Exception(::core::mem::transmute_copy(&exception), ::core::mem::transmute_copy(&firstchance)).into()
@@ -20793,7 +20793,7 @@ impl IDebugEventCallbacks_Vtbl {
 pub trait IDebugEventCallbacksWide_Impl: Sized {
     fn GetInterestMask(&self) -> ::windows::core::Result<u32>;
     fn Breakpoint(&self, bp: &::core::option::Option<IDebugBreakpoint2>) -> ::windows::core::Result<()>;
-    fn Exception(&self, exception: *const EXCEPTION_RECORD64, firstchance: u32) -> ::windows::core::Result<()>;
+    fn Exception(&self, exception: *mut EXCEPTION_RECORD64, firstchance: u32) -> ::windows::core::Result<()>;
     fn CreateThread(&self, handle: u64, dataoffset: u64, startoffset: u64) -> ::windows::core::Result<()>;
     fn ExitThread(&self, exitcode: u32) -> ::windows::core::Result<()>;
     fn CreateProcessA(&self, imagefilehandle: u64, handle: u64, baseoffset: u64, modulesize: u32, modulename: &::windows::core::PCWSTR, imagename: &::windows::core::PCWSTR, checksum: u32, timedatestamp: u32, initialthreadhandle: u64, threaddataoffset: u64, startoffset: u64) -> ::windows::core::Result<()>;
@@ -20827,7 +20827,7 @@ impl IDebugEventCallbacksWide_Vtbl {
             let this = (*this).get_impl();
             this.Breakpoint(::core::mem::transmute(&bp)).into()
         }
-        unsafe extern "system" fn Exception<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugEventCallbacksWide_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, exception: *const EXCEPTION_RECORD64, firstchance: u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn Exception<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugEventCallbacksWide_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, exception: *mut EXCEPTION_RECORD64, firstchance: u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.Exception(::core::mem::transmute_copy(&exception), ::core::mem::transmute_copy(&firstchance)).into()
@@ -20913,18 +20913,18 @@ impl IDebugEventCallbacksWide_Vtbl {
 #[cfg(feature = "Win32_Foundation")]
 pub trait IDebugEventContextCallbacks_Impl: Sized {
     fn GetInterestMask(&self) -> ::windows::core::Result<u32>;
-    fn Breakpoint(&self, bp: &::core::option::Option<IDebugBreakpoint2>, context: *const ::core::ffi::c_void, contextsize: u32) -> ::windows::core::Result<()>;
-    fn Exception(&self, exception: *const EXCEPTION_RECORD64, firstchance: u32, context: *const ::core::ffi::c_void, contextsize: u32) -> ::windows::core::Result<()>;
-    fn CreateThread(&self, handle: u64, dataoffset: u64, startoffset: u64, context: *const ::core::ffi::c_void, contextsize: u32) -> ::windows::core::Result<()>;
-    fn ExitThread(&self, exitcode: u32, context: *const ::core::ffi::c_void, contextsize: u32) -> ::windows::core::Result<()>;
-    fn CreateProcessA(&self, imagefilehandle: u64, handle: u64, baseoffset: u64, modulesize: u32, modulename: &::windows::core::PCWSTR, imagename: &::windows::core::PCWSTR, checksum: u32, timedatestamp: u32, initialthreadhandle: u64, threaddataoffset: u64, startoffset: u64, context: *const ::core::ffi::c_void, contextsize: u32) -> ::windows::core::Result<()>;
-    fn ExitProcess(&self, exitcode: u32, context: *const ::core::ffi::c_void, contextsize: u32) -> ::windows::core::Result<()>;
-    fn LoadModule(&self, imagefilehandle: u64, baseoffset: u64, modulesize: u32, modulename: &::windows::core::PCWSTR, imagename: &::windows::core::PCWSTR, checksum: u32, timedatestamp: u32, context: *const ::core::ffi::c_void, contextsize: u32) -> ::windows::core::Result<()>;
-    fn UnloadModule(&self, imagebasename: &::windows::core::PCWSTR, baseoffset: u64, context: *const ::core::ffi::c_void, contextsize: u32) -> ::windows::core::Result<()>;
-    fn SystemError(&self, error: u32, level: u32, context: *const ::core::ffi::c_void, contextsize: u32) -> ::windows::core::Result<()>;
+    fn Breakpoint(&self, bp: &::core::option::Option<IDebugBreakpoint2>, context: *mut ::core::ffi::c_void, contextsize: u32) -> ::windows::core::Result<()>;
+    fn Exception(&self, exception: *mut EXCEPTION_RECORD64, firstchance: u32, context: *mut ::core::ffi::c_void, contextsize: u32) -> ::windows::core::Result<()>;
+    fn CreateThread(&self, handle: u64, dataoffset: u64, startoffset: u64, context: *mut ::core::ffi::c_void, contextsize: u32) -> ::windows::core::Result<()>;
+    fn ExitThread(&self, exitcode: u32, context: *mut ::core::ffi::c_void, contextsize: u32) -> ::windows::core::Result<()>;
+    fn CreateProcessA(&self, imagefilehandle: u64, handle: u64, baseoffset: u64, modulesize: u32, modulename: &::windows::core::PCWSTR, imagename: &::windows::core::PCWSTR, checksum: u32, timedatestamp: u32, initialthreadhandle: u64, threaddataoffset: u64, startoffset: u64, context: *mut ::core::ffi::c_void, contextsize: u32) -> ::windows::core::Result<()>;
+    fn ExitProcess(&self, exitcode: u32, context: *mut ::core::ffi::c_void, contextsize: u32) -> ::windows::core::Result<()>;
+    fn LoadModule(&self, imagefilehandle: u64, baseoffset: u64, modulesize: u32, modulename: &::windows::core::PCWSTR, imagename: &::windows::core::PCWSTR, checksum: u32, timedatestamp: u32, context: *mut ::core::ffi::c_void, contextsize: u32) -> ::windows::core::Result<()>;
+    fn UnloadModule(&self, imagebasename: &::windows::core::PCWSTR, baseoffset: u64, context: *mut ::core::ffi::c_void, contextsize: u32) -> ::windows::core::Result<()>;
+    fn SystemError(&self, error: u32, level: u32, context: *mut ::core::ffi::c_void, contextsize: u32) -> ::windows::core::Result<()>;
     fn SessionStatus(&self, status: u32) -> ::windows::core::Result<()>;
-    fn ChangeDebuggeeState(&self, flags: u32, argument: u64, context: *const ::core::ffi::c_void, contextsize: u32) -> ::windows::core::Result<()>;
-    fn ChangeEngineState(&self, flags: u32, argument: u64, context: *const ::core::ffi::c_void, contextsize: u32) -> ::windows::core::Result<()>;
+    fn ChangeDebuggeeState(&self, flags: u32, argument: u64, context: *mut ::core::ffi::c_void, contextsize: u32) -> ::windows::core::Result<()>;
+    fn ChangeEngineState(&self, flags: u32, argument: u64, context: *mut ::core::ffi::c_void, contextsize: u32) -> ::windows::core::Result<()>;
     fn ChangeSymbolState(&self, flags: u32, argument: u64) -> ::windows::core::Result<()>;
 }
 #[cfg(feature = "Win32_Foundation")]
@@ -20943,27 +20943,27 @@ impl IDebugEventContextCallbacks_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn Breakpoint<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugEventContextCallbacks_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, bp: *mut ::core::ffi::c_void, context: *const ::core::ffi::c_void, contextsize: u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn Breakpoint<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugEventContextCallbacks_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, bp: *mut ::core::ffi::c_void, context: *mut ::core::ffi::c_void, contextsize: u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.Breakpoint(::core::mem::transmute(&bp), ::core::mem::transmute_copy(&context), ::core::mem::transmute_copy(&contextsize)).into()
         }
-        unsafe extern "system" fn Exception<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugEventContextCallbacks_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, exception: *const EXCEPTION_RECORD64, firstchance: u32, context: *const ::core::ffi::c_void, contextsize: u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn Exception<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugEventContextCallbacks_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, exception: *mut EXCEPTION_RECORD64, firstchance: u32, context: *mut ::core::ffi::c_void, contextsize: u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.Exception(::core::mem::transmute_copy(&exception), ::core::mem::transmute_copy(&firstchance), ::core::mem::transmute_copy(&context), ::core::mem::transmute_copy(&contextsize)).into()
         }
-        unsafe extern "system" fn CreateThread<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugEventContextCallbacks_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, handle: u64, dataoffset: u64, startoffset: u64, context: *const ::core::ffi::c_void, contextsize: u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn CreateThread<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugEventContextCallbacks_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, handle: u64, dataoffset: u64, startoffset: u64, context: *mut ::core::ffi::c_void, contextsize: u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.CreateThread(::core::mem::transmute_copy(&handle), ::core::mem::transmute_copy(&dataoffset), ::core::mem::transmute_copy(&startoffset), ::core::mem::transmute_copy(&context), ::core::mem::transmute_copy(&contextsize)).into()
         }
-        unsafe extern "system" fn ExitThread<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugEventContextCallbacks_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, exitcode: u32, context: *const ::core::ffi::c_void, contextsize: u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn ExitThread<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugEventContextCallbacks_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, exitcode: u32, context: *mut ::core::ffi::c_void, contextsize: u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.ExitThread(::core::mem::transmute_copy(&exitcode), ::core::mem::transmute_copy(&context), ::core::mem::transmute_copy(&contextsize)).into()
         }
-        unsafe extern "system" fn CreateProcessA<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugEventContextCallbacks_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, imagefilehandle: u64, handle: u64, baseoffset: u64, modulesize: u32, modulename: ::windows::core::PCWSTR, imagename: ::windows::core::PCWSTR, checksum: u32, timedatestamp: u32, initialthreadhandle: u64, threaddataoffset: u64, startoffset: u64, context: *const ::core::ffi::c_void, contextsize: u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn CreateProcessA<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugEventContextCallbacks_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, imagefilehandle: u64, handle: u64, baseoffset: u64, modulesize: u32, modulename: ::windows::core::PCWSTR, imagename: ::windows::core::PCWSTR, checksum: u32, timedatestamp: u32, initialthreadhandle: u64, threaddataoffset: u64, startoffset: u64, context: *mut ::core::ffi::c_void, contextsize: u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.CreateProcessA(
@@ -20983,22 +20983,22 @@ impl IDebugEventContextCallbacks_Vtbl {
             )
             .into()
         }
-        unsafe extern "system" fn ExitProcess<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugEventContextCallbacks_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, exitcode: u32, context: *const ::core::ffi::c_void, contextsize: u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn ExitProcess<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugEventContextCallbacks_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, exitcode: u32, context: *mut ::core::ffi::c_void, contextsize: u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.ExitProcess(::core::mem::transmute_copy(&exitcode), ::core::mem::transmute_copy(&context), ::core::mem::transmute_copy(&contextsize)).into()
         }
-        unsafe extern "system" fn LoadModule<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugEventContextCallbacks_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, imagefilehandle: u64, baseoffset: u64, modulesize: u32, modulename: ::windows::core::PCWSTR, imagename: ::windows::core::PCWSTR, checksum: u32, timedatestamp: u32, context: *const ::core::ffi::c_void, contextsize: u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn LoadModule<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugEventContextCallbacks_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, imagefilehandle: u64, baseoffset: u64, modulesize: u32, modulename: ::windows::core::PCWSTR, imagename: ::windows::core::PCWSTR, checksum: u32, timedatestamp: u32, context: *mut ::core::ffi::c_void, contextsize: u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.LoadModule(::core::mem::transmute_copy(&imagefilehandle), ::core::mem::transmute_copy(&baseoffset), ::core::mem::transmute_copy(&modulesize), ::core::mem::transmute(&modulename), ::core::mem::transmute(&imagename), ::core::mem::transmute_copy(&checksum), ::core::mem::transmute_copy(&timedatestamp), ::core::mem::transmute_copy(&context), ::core::mem::transmute_copy(&contextsize)).into()
         }
-        unsafe extern "system" fn UnloadModule<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugEventContextCallbacks_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, imagebasename: ::windows::core::PCWSTR, baseoffset: u64, context: *const ::core::ffi::c_void, contextsize: u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn UnloadModule<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugEventContextCallbacks_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, imagebasename: ::windows::core::PCWSTR, baseoffset: u64, context: *mut ::core::ffi::c_void, contextsize: u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.UnloadModule(::core::mem::transmute(&imagebasename), ::core::mem::transmute_copy(&baseoffset), ::core::mem::transmute_copy(&context), ::core::mem::transmute_copy(&contextsize)).into()
         }
-        unsafe extern "system" fn SystemError<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugEventContextCallbacks_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, error: u32, level: u32, context: *const ::core::ffi::c_void, contextsize: u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn SystemError<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugEventContextCallbacks_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, error: u32, level: u32, context: *mut ::core::ffi::c_void, contextsize: u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.SystemError(::core::mem::transmute_copy(&error), ::core::mem::transmute_copy(&level), ::core::mem::transmute_copy(&context), ::core::mem::transmute_copy(&contextsize)).into()
@@ -21008,12 +21008,12 @@ impl IDebugEventContextCallbacks_Vtbl {
             let this = (*this).get_impl();
             this.SessionStatus(::core::mem::transmute_copy(&status)).into()
         }
-        unsafe extern "system" fn ChangeDebuggeeState<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugEventContextCallbacks_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, flags: u32, argument: u64, context: *const ::core::ffi::c_void, contextsize: u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn ChangeDebuggeeState<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugEventContextCallbacks_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, flags: u32, argument: u64, context: *mut ::core::ffi::c_void, contextsize: u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.ChangeDebuggeeState(::core::mem::transmute_copy(&flags), ::core::mem::transmute_copy(&argument), ::core::mem::transmute_copy(&context), ::core::mem::transmute_copy(&contextsize)).into()
         }
-        unsafe extern "system" fn ChangeEngineState<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugEventContextCallbacks_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, flags: u32, argument: u64, context: *const ::core::ffi::c_void, contextsize: u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn ChangeEngineState<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugEventContextCallbacks_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, flags: u32, argument: u64, context: *mut ::core::ffi::c_void, contextsize: u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.ChangeEngineState(::core::mem::transmute_copy(&flags), ::core::mem::transmute_copy(&argument), ::core::mem::transmute_copy(&context), ::core::mem::transmute_copy(&contextsize)).into()
@@ -21187,16 +21187,16 @@ impl IDebugExtendedProperty_Vtbl {
 }
 #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
 pub trait IDebugFormatter_Impl: Sized {
-    fn GetStringForVariant(&self, pvar: *const super::super::Com::VARIANT, nradix: u32) -> ::windows::core::Result<::windows::core::BSTR>;
+    fn GetStringForVariant(&self, pvar: *mut super::super::Com::VARIANT, nradix: u32) -> ::windows::core::Result<::windows::core::BSTR>;
     fn GetVariantForString(&self, pwstrvalue: &::windows::core::PCWSTR) -> ::windows::core::Result<super::super::Com::VARIANT>;
-    fn GetStringForVarType(&self, vt: super::super::Com::VARENUM, ptdescarraytype: *const super::super::Com::TYPEDESC) -> ::windows::core::Result<::windows::core::BSTR>;
+    fn GetStringForVarType(&self, vt: super::super::Com::VARENUM, ptdescarraytype: *mut super::super::Com::TYPEDESC) -> ::windows::core::Result<::windows::core::BSTR>;
 }
 #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
 impl ::windows::core::RuntimeName for IDebugFormatter {}
 #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
 impl IDebugFormatter_Vtbl {
     pub const fn new<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugFormatter_Impl, const OFFSET: isize>() -> IDebugFormatter_Vtbl {
-        unsafe extern "system" fn GetStringForVariant<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugFormatter_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, pvar: *const ::core::mem::ManuallyDrop<super::super::Com::VARIANT>, nradix: u32, pbstrvalue: *mut ::core::mem::ManuallyDrop<::windows::core::BSTR>) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn GetStringForVariant<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugFormatter_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, pvar: *mut ::core::mem::ManuallyDrop<super::super::Com::VARIANT>, nradix: u32, pbstrvalue: *mut ::core::mem::ManuallyDrop<::windows::core::BSTR>) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.GetStringForVariant(::core::mem::transmute_copy(&pvar), ::core::mem::transmute_copy(&nradix)) {
@@ -21218,7 +21218,7 @@ impl IDebugFormatter_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn GetStringForVarType<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugFormatter_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, vt: super::super::Com::VARENUM, ptdescarraytype: *const super::super::Com::TYPEDESC, pbstr: *mut ::core::mem::ManuallyDrop<::windows::core::BSTR>) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn GetStringForVarType<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugFormatter_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, vt: super::super::Com::VARENUM, ptdescarraytype: *mut super::super::Com::TYPEDESC, pbstr: *mut ::core::mem::ManuallyDrop<::windows::core::BSTR>) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.GetStringForVarType(::core::mem::transmute_copy(&vt), ::core::mem::transmute_copy(&ptdescarraytype)) {
@@ -21242,8 +21242,8 @@ impl IDebugFormatter_Vtbl {
 }
 #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
 pub trait IDebugHelper_Impl: Sized {
-    fn CreatePropertyBrowser(&self, pvar: *const super::super::Com::VARIANT, bstrname: &::windows::core::PCWSTR, pdat: &::core::option::Option<IDebugApplicationThread>) -> ::windows::core::Result<IDebugProperty>;
-    fn CreatePropertyBrowserEx(&self, pvar: *const super::super::Com::VARIANT, bstrname: &::windows::core::PCWSTR, pdat: &::core::option::Option<IDebugApplicationThread>, pdf: &::core::option::Option<IDebugFormatter>) -> ::windows::core::Result<IDebugProperty>;
+    fn CreatePropertyBrowser(&self, pvar: *mut super::super::Com::VARIANT, bstrname: &::windows::core::PCWSTR, pdat: &::core::option::Option<IDebugApplicationThread>) -> ::windows::core::Result<IDebugProperty>;
+    fn CreatePropertyBrowserEx(&self, pvar: *mut super::super::Com::VARIANT, bstrname: &::windows::core::PCWSTR, pdat: &::core::option::Option<IDebugApplicationThread>, pdf: &::core::option::Option<IDebugFormatter>) -> ::windows::core::Result<IDebugProperty>;
     fn CreateSimpleConnectionPoint(&self, pdisp: &::core::option::Option<super::super::Com::IDispatch>) -> ::windows::core::Result<ISimpleConnectionPoint>;
 }
 #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
@@ -21251,7 +21251,7 @@ impl ::windows::core::RuntimeName for IDebugHelper {}
 #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
 impl IDebugHelper_Vtbl {
     pub const fn new<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugHelper_Impl, const OFFSET: isize>() -> IDebugHelper_Vtbl {
-        unsafe extern "system" fn CreatePropertyBrowser<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugHelper_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, pvar: *const ::core::mem::ManuallyDrop<super::super::Com::VARIANT>, bstrname: ::windows::core::PCWSTR, pdat: *mut ::core::ffi::c_void, ppdob: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn CreatePropertyBrowser<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugHelper_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, pvar: *mut ::core::mem::ManuallyDrop<super::super::Com::VARIANT>, bstrname: ::windows::core::PCWSTR, pdat: *mut ::core::ffi::c_void, ppdob: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.CreatePropertyBrowser(::core::mem::transmute_copy(&pvar), ::core::mem::transmute(&bstrname), ::core::mem::transmute(&pdat)) {
@@ -21262,7 +21262,7 @@ impl IDebugHelper_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn CreatePropertyBrowserEx<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugHelper_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, pvar: *const ::core::mem::ManuallyDrop<super::super::Com::VARIANT>, bstrname: ::windows::core::PCWSTR, pdat: *mut ::core::ffi::c_void, pdf: *mut ::core::ffi::c_void, ppdob: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn CreatePropertyBrowserEx<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugHelper_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, pvar: *mut ::core::mem::ManuallyDrop<super::super::Com::VARIANT>, bstrname: ::windows::core::PCWSTR, pdat: *mut ::core::ffi::c_void, pdf: *mut ::core::ffi::c_void, ppdob: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.CreatePropertyBrowserEx(::core::mem::transmute_copy(&pvar), ::core::mem::transmute(&bstrname), ::core::mem::transmute(&pdat), ::core::mem::transmute(&pdf)) {
@@ -21632,9 +21632,9 @@ impl IDebugHostField_Vtbl {
 }
 pub trait IDebugHostMemory_Impl: Sized {
     fn ReadBytes(&self, context: &::core::option::Option<IDebugHostContext>, location: &Location, buffer: *mut ::core::ffi::c_void, buffersize: u64, bytesread: *mut u64) -> ::windows::core::Result<()>;
-    fn WriteBytes(&self, context: &::core::option::Option<IDebugHostContext>, location: &Location, buffer: *const ::core::ffi::c_void, buffersize: u64) -> ::windows::core::Result<u64>;
+    fn WriteBytes(&self, context: &::core::option::Option<IDebugHostContext>, location: &Location, buffer: *mut ::core::ffi::c_void, buffersize: u64) -> ::windows::core::Result<u64>;
     fn ReadPointers(&self, context: &::core::option::Option<IDebugHostContext>, location: &Location, count: u64, pointers: *mut u64) -> ::windows::core::Result<()>;
-    fn WritePointers(&self, context: &::core::option::Option<IDebugHostContext>, location: &Location, count: u64, pointers: *const u64) -> ::windows::core::Result<()>;
+    fn WritePointers(&self, context: &::core::option::Option<IDebugHostContext>, location: &Location, count: u64, pointers: *mut u64) -> ::windows::core::Result<()>;
     fn GetDisplayStringForLocation(&self, context: &::core::option::Option<IDebugHostContext>, location: &Location, verbose: u8) -> ::windows::core::Result<::windows::core::BSTR>;
 }
 impl ::windows::core::RuntimeName for IDebugHostMemory {}
@@ -21645,7 +21645,7 @@ impl IDebugHostMemory_Vtbl {
             let this = (*this).get_impl();
             this.ReadBytes(::core::mem::transmute(&context), ::core::mem::transmute(&location), ::core::mem::transmute_copy(&buffer), ::core::mem::transmute_copy(&buffersize), ::core::mem::transmute_copy(&bytesread)).into()
         }
-        unsafe extern "system" fn WriteBytes<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugHostMemory_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, context: *mut ::core::ffi::c_void, location: Location, buffer: *const ::core::ffi::c_void, buffersize: u64, byteswritten: *mut u64) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn WriteBytes<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugHostMemory_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, context: *mut ::core::ffi::c_void, location: Location, buffer: *mut ::core::ffi::c_void, buffersize: u64, byteswritten: *mut u64) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.WriteBytes(::core::mem::transmute(&context), ::core::mem::transmute(&location), ::core::mem::transmute_copy(&buffer), ::core::mem::transmute_copy(&buffersize)) {
@@ -21661,7 +21661,7 @@ impl IDebugHostMemory_Vtbl {
             let this = (*this).get_impl();
             this.ReadPointers(::core::mem::transmute(&context), ::core::mem::transmute(&location), ::core::mem::transmute_copy(&count), ::core::mem::transmute_copy(&pointers)).into()
         }
-        unsafe extern "system" fn WritePointers<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugHostMemory_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, context: *mut ::core::ffi::c_void, location: Location, count: u64, pointers: *const u64) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn WritePointers<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugHostMemory_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, context: *mut ::core::ffi::c_void, location: Location, count: u64, pointers: *mut u64) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.WritePointers(::core::mem::transmute(&context), ::core::mem::transmute(&location), ::core::mem::transmute_copy(&count), ::core::mem::transmute_copy(&pointers)).into()
@@ -22193,7 +22193,7 @@ pub trait IDebugHostType_Impl: Sized + IDebugHostSymbol_Impl {
     fn CreatePointerTo(&self, kind: PointerKind) -> ::windows::core::Result<IDebugHostType>;
     fn GetArrayDimensionality(&self) -> ::windows::core::Result<u64>;
     fn GetArrayDimensions(&self, dimensions: u64, pdimensions: *mut ArrayDimension) -> ::windows::core::Result<()>;
-    fn CreateArrayOf(&self, dimensions: u64, pdimensions: *const ArrayDimension) -> ::windows::core::Result<IDebugHostType>;
+    fn CreateArrayOf(&self, dimensions: u64, pdimensions: *mut ArrayDimension) -> ::windows::core::Result<IDebugHostType>;
     fn GetFunctionCallingConvention(&self) -> ::windows::core::Result<CallingConventionKind>;
     fn GetFunctionReturnType(&self) -> ::windows::core::Result<IDebugHostType>;
     fn GetFunctionParameterTypeCount(&self) -> ::windows::core::Result<u64>;
@@ -22308,7 +22308,7 @@ impl IDebugHostType_Vtbl {
             let this = (*this).get_impl();
             this.GetArrayDimensions(::core::mem::transmute_copy(&dimensions), ::core::mem::transmute_copy(&pdimensions)).into()
         }
-        unsafe extern "system" fn CreateArrayOf<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugHostType_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, dimensions: u64, pdimensions: *const ArrayDimension, newtype: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn CreateArrayOf<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugHostType_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, dimensions: u64, pdimensions: *mut ArrayDimension, newtype: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.CreateArrayOf(::core::mem::transmute_copy(&dimensions), ::core::mem::transmute_copy(&pdimensions)) {
@@ -22805,7 +22805,7 @@ impl IDebugPlmClient3_Vtbl {
 #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
 pub trait IDebugProperty_Impl: Sized {
     fn GetPropertyInfo(&self, dwfieldspec: u32, nradix: u32) -> ::windows::core::Result<DebugPropertyInfo>;
-    fn GetExtendedInfo(&self, cinfos: u32, rgguidextendedinfo: *const ::windows::core::GUID) -> ::windows::core::Result<super::super::Com::VARIANT>;
+    fn GetExtendedInfo(&self, cinfos: u32, rgguidextendedinfo: *mut ::windows::core::GUID) -> ::windows::core::Result<super::super::Com::VARIANT>;
     fn SetValueAsString(&self, pszvalue: &::windows::core::PCWSTR, nradix: u32) -> ::windows::core::Result<()>;
     fn EnumMembers(&self, dwfieldspec: u32, nradix: u32, refiid: *const ::windows::core::GUID) -> ::windows::core::Result<IEnumDebugPropertyInfo>;
     fn GetParent(&self) -> ::windows::core::Result<IDebugProperty>;
@@ -22826,7 +22826,7 @@ impl IDebugProperty_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn GetExtendedInfo<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugProperty_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, cinfos: u32, rgguidextendedinfo: *const ::windows::core::GUID, rgvar: *mut ::core::mem::ManuallyDrop<super::super::Com::VARIANT>) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn GetExtendedInfo<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugProperty_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, cinfos: u32, rgguidextendedinfo: *mut ::windows::core::GUID, rgvar: *mut ::core::mem::ManuallyDrop<super::super::Com::VARIANT>) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.GetExtendedInfo(::core::mem::transmute_copy(&cinfos), ::core::mem::transmute_copy(&rgguidextendedinfo)) {
@@ -22946,9 +22946,9 @@ pub trait IDebugRegisters_Impl: Sized {
     fn GetDescription(&self, register: u32, namebuffer: ::windows::core::PSTR, namebuffersize: u32, namesize: *mut u32, desc: *mut DEBUG_REGISTER_DESCRIPTION) -> ::windows::core::Result<()>;
     fn GetIndexByName(&self, name: &::windows::core::PCSTR) -> ::windows::core::Result<u32>;
     fn GetValue(&self, register: u32) -> ::windows::core::Result<DEBUG_VALUE>;
-    fn SetValue(&self, register: u32, value: *const DEBUG_VALUE) -> ::windows::core::Result<()>;
-    fn GetValues(&self, count: u32, indices: *const u32, start: u32) -> ::windows::core::Result<DEBUG_VALUE>;
-    fn SetValues(&self, count: u32, indices: *const u32, start: u32, values: *const DEBUG_VALUE) -> ::windows::core::Result<()>;
+    fn SetValue(&self, register: u32, value: *mut DEBUG_VALUE) -> ::windows::core::Result<()>;
+    fn GetValues(&self, count: u32, indices: *mut u32, start: u32) -> ::windows::core::Result<DEBUG_VALUE>;
+    fn SetValues(&self, count: u32, indices: *mut u32, start: u32, values: *mut DEBUG_VALUE) -> ::windows::core::Result<()>;
     fn OutputRegisters(&self, outputcontrol: u32, flags: u32) -> ::windows::core::Result<()>;
     fn GetInstructionOffset(&self) -> ::windows::core::Result<u64>;
     fn GetStackOffset(&self) -> ::windows::core::Result<u64>;
@@ -22997,12 +22997,12 @@ impl IDebugRegisters_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn SetValue<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugRegisters_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, register: u32, value: *const DEBUG_VALUE) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn SetValue<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugRegisters_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, register: u32, value: *mut DEBUG_VALUE) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.SetValue(::core::mem::transmute_copy(&register), ::core::mem::transmute_copy(&value)).into()
         }
-        unsafe extern "system" fn GetValues<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugRegisters_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, count: u32, indices: *const u32, start: u32, values: *mut DEBUG_VALUE) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn GetValues<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugRegisters_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, count: u32, indices: *mut u32, start: u32, values: *mut DEBUG_VALUE) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.GetValues(::core::mem::transmute_copy(&count), ::core::mem::transmute_copy(&indices), ::core::mem::transmute_copy(&start)) {
@@ -23013,7 +23013,7 @@ impl IDebugRegisters_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn SetValues<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugRegisters_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, count: u32, indices: *const u32, start: u32, values: *const DEBUG_VALUE) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn SetValues<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugRegisters_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, count: u32, indices: *mut u32, start: u32, values: *mut DEBUG_VALUE) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.SetValues(::core::mem::transmute_copy(&count), ::core::mem::transmute_copy(&indices), ::core::mem::transmute_copy(&start), ::core::mem::transmute_copy(&values)).into()
@@ -23081,9 +23081,9 @@ pub trait IDebugRegisters2_Impl: Sized {
     fn GetDescription(&self, register: u32, namebuffer: ::windows::core::PSTR, namebuffersize: u32, namesize: *mut u32, desc: *mut DEBUG_REGISTER_DESCRIPTION) -> ::windows::core::Result<()>;
     fn GetIndexByName(&self, name: &::windows::core::PCSTR) -> ::windows::core::Result<u32>;
     fn GetValue(&self, register: u32) -> ::windows::core::Result<DEBUG_VALUE>;
-    fn SetValue(&self, register: u32, value: *const DEBUG_VALUE) -> ::windows::core::Result<()>;
-    fn GetValues(&self, count: u32, indices: *const u32, start: u32) -> ::windows::core::Result<DEBUG_VALUE>;
-    fn SetValues(&self, count: u32, indices: *const u32, start: u32, values: *const DEBUG_VALUE) -> ::windows::core::Result<()>;
+    fn SetValue(&self, register: u32, value: *mut DEBUG_VALUE) -> ::windows::core::Result<()>;
+    fn GetValues(&self, count: u32, indices: *mut u32, start: u32) -> ::windows::core::Result<DEBUG_VALUE>;
+    fn SetValues(&self, count: u32, indices: *mut u32, start: u32, values: *mut DEBUG_VALUE) -> ::windows::core::Result<()>;
     fn OutputRegisters(&self, outputcontrol: u32, flags: u32) -> ::windows::core::Result<()>;
     fn GetInstructionOffset(&self) -> ::windows::core::Result<u64>;
     fn GetStackOffset(&self) -> ::windows::core::Result<u64>;
@@ -23095,10 +23095,10 @@ pub trait IDebugRegisters2_Impl: Sized {
     fn GetPseudoDescriptionWide(&self, register: u32, namebuffer: ::windows::core::PWSTR, namebuffersize: u32, namesize: *mut u32, typemodule: *mut u64, typeid: *mut u32) -> ::windows::core::Result<()>;
     fn GetPseudoIndexByName(&self, name: &::windows::core::PCSTR) -> ::windows::core::Result<u32>;
     fn GetPseudoIndexByNameWide(&self, name: &::windows::core::PCWSTR) -> ::windows::core::Result<u32>;
-    fn GetPseudoValues(&self, source: u32, count: u32, indices: *const u32, start: u32) -> ::windows::core::Result<DEBUG_VALUE>;
-    fn SetPseudoValues(&self, source: u32, count: u32, indices: *const u32, start: u32, values: *const DEBUG_VALUE) -> ::windows::core::Result<()>;
-    fn GetValues2(&self, source: u32, count: u32, indices: *const u32, start: u32) -> ::windows::core::Result<DEBUG_VALUE>;
-    fn SetValues2(&self, source: u32, count: u32, indices: *const u32, start: u32, values: *const DEBUG_VALUE) -> ::windows::core::Result<()>;
+    fn GetPseudoValues(&self, source: u32, count: u32, indices: *mut u32, start: u32) -> ::windows::core::Result<DEBUG_VALUE>;
+    fn SetPseudoValues(&self, source: u32, count: u32, indices: *mut u32, start: u32, values: *mut DEBUG_VALUE) -> ::windows::core::Result<()>;
+    fn GetValues2(&self, source: u32, count: u32, indices: *mut u32, start: u32) -> ::windows::core::Result<DEBUG_VALUE>;
+    fn SetValues2(&self, source: u32, count: u32, indices: *mut u32, start: u32, values: *mut DEBUG_VALUE) -> ::windows::core::Result<()>;
     fn OutputRegisters2(&self, outputcontrol: u32, source: u32, flags: u32) -> ::windows::core::Result<()>;
     fn GetInstructionOffset2(&self, source: u32) -> ::windows::core::Result<u64>;
     fn GetStackOffset2(&self, source: u32) -> ::windows::core::Result<u64>;
@@ -23147,12 +23147,12 @@ impl IDebugRegisters2_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn SetValue<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugRegisters2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, register: u32, value: *const DEBUG_VALUE) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn SetValue<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugRegisters2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, register: u32, value: *mut DEBUG_VALUE) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.SetValue(::core::mem::transmute_copy(&register), ::core::mem::transmute_copy(&value)).into()
         }
-        unsafe extern "system" fn GetValues<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugRegisters2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, count: u32, indices: *const u32, start: u32, values: *mut DEBUG_VALUE) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn GetValues<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugRegisters2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, count: u32, indices: *mut u32, start: u32, values: *mut DEBUG_VALUE) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.GetValues(::core::mem::transmute_copy(&count), ::core::mem::transmute_copy(&indices), ::core::mem::transmute_copy(&start)) {
@@ -23163,7 +23163,7 @@ impl IDebugRegisters2_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn SetValues<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugRegisters2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, count: u32, indices: *const u32, start: u32, values: *const DEBUG_VALUE) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn SetValues<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugRegisters2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, count: u32, indices: *mut u32, start: u32, values: *mut DEBUG_VALUE) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.SetValues(::core::mem::transmute_copy(&count), ::core::mem::transmute_copy(&indices), ::core::mem::transmute_copy(&start), ::core::mem::transmute_copy(&values)).into()
@@ -23265,7 +23265,7 @@ impl IDebugRegisters2_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn GetPseudoValues<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugRegisters2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, source: u32, count: u32, indices: *const u32, start: u32, values: *mut DEBUG_VALUE) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn GetPseudoValues<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugRegisters2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, source: u32, count: u32, indices: *mut u32, start: u32, values: *mut DEBUG_VALUE) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.GetPseudoValues(::core::mem::transmute_copy(&source), ::core::mem::transmute_copy(&count), ::core::mem::transmute_copy(&indices), ::core::mem::transmute_copy(&start)) {
@@ -23276,12 +23276,12 @@ impl IDebugRegisters2_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn SetPseudoValues<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugRegisters2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, source: u32, count: u32, indices: *const u32, start: u32, values: *const DEBUG_VALUE) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn SetPseudoValues<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugRegisters2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, source: u32, count: u32, indices: *mut u32, start: u32, values: *mut DEBUG_VALUE) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.SetPseudoValues(::core::mem::transmute_copy(&source), ::core::mem::transmute_copy(&count), ::core::mem::transmute_copy(&indices), ::core::mem::transmute_copy(&start), ::core::mem::transmute_copy(&values)).into()
         }
-        unsafe extern "system" fn GetValues2<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugRegisters2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, source: u32, count: u32, indices: *const u32, start: u32, values: *mut DEBUG_VALUE) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn GetValues2<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugRegisters2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, source: u32, count: u32, indices: *mut u32, start: u32, values: *mut DEBUG_VALUE) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.GetValues2(::core::mem::transmute_copy(&source), ::core::mem::transmute_copy(&count), ::core::mem::transmute_copy(&indices), ::core::mem::transmute_copy(&start)) {
@@ -23292,7 +23292,7 @@ impl IDebugRegisters2_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn SetValues2<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugRegisters2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, source: u32, count: u32, indices: *const u32, start: u32, values: *const DEBUG_VALUE) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn SetValues2<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugRegisters2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, source: u32, count: u32, indices: *mut u32, start: u32, values: *mut DEBUG_VALUE) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.SetValues2(::core::mem::transmute_copy(&source), ::core::mem::transmute_copy(&count), ::core::mem::transmute_copy(&indices), ::core::mem::transmute_copy(&start), ::core::mem::transmute_copy(&values)).into()
@@ -23893,7 +23893,7 @@ pub trait IDebugSymbols_Impl: Sized {
     fn GetModuleByModuleName(&self, name: &::windows::core::PCSTR, startindex: u32, index: *mut u32, base: *mut u64) -> ::windows::core::Result<()>;
     fn GetModuleByOffset(&self, offset: u64, startindex: u32, index: *mut u32, base: *mut u64) -> ::windows::core::Result<()>;
     fn GetModuleNames(&self, index: u32, base: u64, imagenamebuffer: ::windows::core::PSTR, imagenamebuffersize: u32, imagenamesize: *mut u32, modulenamebuffer: ::windows::core::PSTR, modulenamebuffersize: u32, modulenamesize: *mut u32, loadedimagenamebuffer: ::windows::core::PSTR, loadedimagenamebuffersize: u32, loadedimagenamesize: *mut u32) -> ::windows::core::Result<()>;
-    fn GetModuleParameters(&self, count: u32, bases: *const u64, start: u32) -> ::windows::core::Result<DEBUG_MODULE_PARAMETERS>;
+    fn GetModuleParameters(&self, count: u32, bases: *mut u64, start: u32) -> ::windows::core::Result<DEBUG_MODULE_PARAMETERS>;
     fn GetSymbolModule(&self, symbol: &::windows::core::PCSTR) -> ::windows::core::Result<u64>;
     fn GetTypeName(&self, module: u64, typeid: u32, namebuffer: ::windows::core::PSTR, namebuffersize: u32, namesize: *mut u32) -> ::windows::core::Result<()>;
     fn GetTypeId(&self, module: u64, name: &::windows::core::PCSTR) -> ::windows::core::Result<u32>;
@@ -23902,13 +23902,13 @@ pub trait IDebugSymbols_Impl: Sized {
     fn GetSymbolTypeId(&self, symbol: &::windows::core::PCSTR, typeid: *mut u32, module: *mut u64) -> ::windows::core::Result<()>;
     fn GetOffsetTypeId(&self, offset: u64, typeid: *mut u32, module: *mut u64) -> ::windows::core::Result<()>;
     fn ReadTypedDataVirtual(&self, offset: u64, module: u64, typeid: u32, buffer: *mut ::core::ffi::c_void, buffersize: u32, bytesread: *mut u32) -> ::windows::core::Result<()>;
-    fn WriteTypedDataVirtual(&self, offset: u64, module: u64, typeid: u32, buffer: *const ::core::ffi::c_void, buffersize: u32) -> ::windows::core::Result<u32>;
+    fn WriteTypedDataVirtual(&self, offset: u64, module: u64, typeid: u32, buffer: *mut ::core::ffi::c_void, buffersize: u32) -> ::windows::core::Result<u32>;
     fn OutputTypedDataVirtual(&self, outputcontrol: u32, offset: u64, module: u64, typeid: u32, flags: u32) -> ::windows::core::Result<()>;
     fn ReadTypedDataPhysical(&self, offset: u64, module: u64, typeid: u32, buffer: *mut ::core::ffi::c_void, buffersize: u32, bytesread: *mut u32) -> ::windows::core::Result<()>;
-    fn WriteTypedDataPhysical(&self, offset: u64, module: u64, typeid: u32, buffer: *const ::core::ffi::c_void, buffersize: u32) -> ::windows::core::Result<u32>;
+    fn WriteTypedDataPhysical(&self, offset: u64, module: u64, typeid: u32, buffer: *mut ::core::ffi::c_void, buffersize: u32) -> ::windows::core::Result<u32>;
     fn OutputTypedDataPhysical(&self, outputcontrol: u32, offset: u64, module: u64, typeid: u32, flags: u32) -> ::windows::core::Result<()>;
     fn GetScope(&self, instructionoffset: *mut u64, scopeframe: *mut DEBUG_STACK_FRAME, scopecontext: *mut ::core::ffi::c_void, scopecontextsize: u32) -> ::windows::core::Result<()>;
-    fn SetScope(&self, instructionoffset: u64, scopeframe: *const DEBUG_STACK_FRAME, scopecontext: *const ::core::ffi::c_void, scopecontextsize: u32) -> ::windows::core::Result<()>;
+    fn SetScope(&self, instructionoffset: u64, scopeframe: *mut DEBUG_STACK_FRAME, scopecontext: *mut ::core::ffi::c_void, scopecontextsize: u32) -> ::windows::core::Result<()>;
     fn ResetScope(&self) -> ::windows::core::Result<()>;
     fn GetScopeSymbolGroup(&self, flags: u32, update: &::core::option::Option<IDebugSymbolGroup>) -> ::windows::core::Result<IDebugSymbolGroup>;
     fn CreateSymbolGroup(&self) -> ::windows::core::Result<IDebugSymbolGroup>;
@@ -24041,7 +24041,7 @@ impl IDebugSymbols_Vtbl {
             )
             .into()
         }
-        unsafe extern "system" fn GetModuleParameters<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugSymbols_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, count: u32, bases: *const u64, start: u32, params: *mut DEBUG_MODULE_PARAMETERS) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn GetModuleParameters<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugSymbols_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, count: u32, bases: *mut u64, start: u32, params: *mut DEBUG_MODULE_PARAMETERS) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.GetModuleParameters(::core::mem::transmute_copy(&count), ::core::mem::transmute_copy(&bases), ::core::mem::transmute_copy(&start)) {
@@ -24116,7 +24116,7 @@ impl IDebugSymbols_Vtbl {
             let this = (*this).get_impl();
             this.ReadTypedDataVirtual(::core::mem::transmute_copy(&offset), ::core::mem::transmute_copy(&module), ::core::mem::transmute_copy(&typeid), ::core::mem::transmute_copy(&buffer), ::core::mem::transmute_copy(&buffersize), ::core::mem::transmute_copy(&bytesread)).into()
         }
-        unsafe extern "system" fn WriteTypedDataVirtual<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugSymbols_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, offset: u64, module: u64, typeid: u32, buffer: *const ::core::ffi::c_void, buffersize: u32, byteswritten: *mut u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn WriteTypedDataVirtual<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugSymbols_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, offset: u64, module: u64, typeid: u32, buffer: *mut ::core::ffi::c_void, buffersize: u32, byteswritten: *mut u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.WriteTypedDataVirtual(::core::mem::transmute_copy(&offset), ::core::mem::transmute_copy(&module), ::core::mem::transmute_copy(&typeid), ::core::mem::transmute_copy(&buffer), ::core::mem::transmute_copy(&buffersize)) {
@@ -24137,7 +24137,7 @@ impl IDebugSymbols_Vtbl {
             let this = (*this).get_impl();
             this.ReadTypedDataPhysical(::core::mem::transmute_copy(&offset), ::core::mem::transmute_copy(&module), ::core::mem::transmute_copy(&typeid), ::core::mem::transmute_copy(&buffer), ::core::mem::transmute_copy(&buffersize), ::core::mem::transmute_copy(&bytesread)).into()
         }
-        unsafe extern "system" fn WriteTypedDataPhysical<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugSymbols_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, offset: u64, module: u64, typeid: u32, buffer: *const ::core::ffi::c_void, buffersize: u32, byteswritten: *mut u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn WriteTypedDataPhysical<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugSymbols_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, offset: u64, module: u64, typeid: u32, buffer: *mut ::core::ffi::c_void, buffersize: u32, byteswritten: *mut u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.WriteTypedDataPhysical(::core::mem::transmute_copy(&offset), ::core::mem::transmute_copy(&module), ::core::mem::transmute_copy(&typeid), ::core::mem::transmute_copy(&buffer), ::core::mem::transmute_copy(&buffersize)) {
@@ -24158,7 +24158,7 @@ impl IDebugSymbols_Vtbl {
             let this = (*this).get_impl();
             this.GetScope(::core::mem::transmute_copy(&instructionoffset), ::core::mem::transmute_copy(&scopeframe), ::core::mem::transmute_copy(&scopecontext), ::core::mem::transmute_copy(&scopecontextsize)).into()
         }
-        unsafe extern "system" fn SetScope<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugSymbols_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, instructionoffset: u64, scopeframe: *const DEBUG_STACK_FRAME, scopecontext: *const ::core::ffi::c_void, scopecontextsize: u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn SetScope<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugSymbols_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, instructionoffset: u64, scopeframe: *mut DEBUG_STACK_FRAME, scopecontext: *mut ::core::ffi::c_void, scopecontextsize: u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.SetScope(::core::mem::transmute_copy(&instructionoffset), ::core::mem::transmute_copy(&scopeframe), ::core::mem::transmute_copy(&scopecontext), ::core::mem::transmute_copy(&scopecontextsize)).into()
@@ -24349,7 +24349,7 @@ pub trait IDebugSymbols2_Impl: Sized {
     fn GetModuleByModuleName(&self, name: &::windows::core::PCSTR, startindex: u32, index: *mut u32, base: *mut u64) -> ::windows::core::Result<()>;
     fn GetModuleByOffset(&self, offset: u64, startindex: u32, index: *mut u32, base: *mut u64) -> ::windows::core::Result<()>;
     fn GetModuleNames(&self, index: u32, base: u64, imagenamebuffer: ::windows::core::PSTR, imagenamebuffersize: u32, imagenamesize: *mut u32, modulenamebuffer: ::windows::core::PSTR, modulenamebuffersize: u32, modulenamesize: *mut u32, loadedimagenamebuffer: ::windows::core::PSTR, loadedimagenamebuffersize: u32, loadedimagenamesize: *mut u32) -> ::windows::core::Result<()>;
-    fn GetModuleParameters(&self, count: u32, bases: *const u64, start: u32) -> ::windows::core::Result<DEBUG_MODULE_PARAMETERS>;
+    fn GetModuleParameters(&self, count: u32, bases: *mut u64, start: u32) -> ::windows::core::Result<DEBUG_MODULE_PARAMETERS>;
     fn GetSymbolModule(&self, symbol: &::windows::core::PCSTR) -> ::windows::core::Result<u64>;
     fn GetTypeName(&self, module: u64, typeid: u32, namebuffer: ::windows::core::PSTR, namebuffersize: u32, namesize: *mut u32) -> ::windows::core::Result<()>;
     fn GetTypeId(&self, module: u64, name: &::windows::core::PCSTR) -> ::windows::core::Result<u32>;
@@ -24358,13 +24358,13 @@ pub trait IDebugSymbols2_Impl: Sized {
     fn GetSymbolTypeId(&self, symbol: &::windows::core::PCSTR, typeid: *mut u32, module: *mut u64) -> ::windows::core::Result<()>;
     fn GetOffsetTypeId(&self, offset: u64, typeid: *mut u32, module: *mut u64) -> ::windows::core::Result<()>;
     fn ReadTypedDataVirtual(&self, offset: u64, module: u64, typeid: u32, buffer: *mut ::core::ffi::c_void, buffersize: u32, bytesread: *mut u32) -> ::windows::core::Result<()>;
-    fn WriteTypedDataVirtual(&self, offset: u64, module: u64, typeid: u32, buffer: *const ::core::ffi::c_void, buffersize: u32) -> ::windows::core::Result<u32>;
+    fn WriteTypedDataVirtual(&self, offset: u64, module: u64, typeid: u32, buffer: *mut ::core::ffi::c_void, buffersize: u32) -> ::windows::core::Result<u32>;
     fn OutputTypedDataVirtual(&self, outputcontrol: u32, offset: u64, module: u64, typeid: u32, flags: u32) -> ::windows::core::Result<()>;
     fn ReadTypedDataPhysical(&self, offset: u64, module: u64, typeid: u32, buffer: *mut ::core::ffi::c_void, buffersize: u32, bytesread: *mut u32) -> ::windows::core::Result<()>;
-    fn WriteTypedDataPhysical(&self, offset: u64, module: u64, typeid: u32, buffer: *const ::core::ffi::c_void, buffersize: u32) -> ::windows::core::Result<u32>;
+    fn WriteTypedDataPhysical(&self, offset: u64, module: u64, typeid: u32, buffer: *mut ::core::ffi::c_void, buffersize: u32) -> ::windows::core::Result<u32>;
     fn OutputTypedDataPhysical(&self, outputcontrol: u32, offset: u64, module: u64, typeid: u32, flags: u32) -> ::windows::core::Result<()>;
     fn GetScope(&self, instructionoffset: *mut u64, scopeframe: *mut DEBUG_STACK_FRAME, scopecontext: *mut ::core::ffi::c_void, scopecontextsize: u32) -> ::windows::core::Result<()>;
-    fn SetScope(&self, instructionoffset: u64, scopeframe: *const DEBUG_STACK_FRAME, scopecontext: *const ::core::ffi::c_void, scopecontextsize: u32) -> ::windows::core::Result<()>;
+    fn SetScope(&self, instructionoffset: u64, scopeframe: *mut DEBUG_STACK_FRAME, scopecontext: *mut ::core::ffi::c_void, scopecontextsize: u32) -> ::windows::core::Result<()>;
     fn ResetScope(&self) -> ::windows::core::Result<()>;
     fn GetScopeSymbolGroup(&self, flags: u32, update: &::core::option::Option<IDebugSymbolGroup>) -> ::windows::core::Result<IDebugSymbolGroup>;
     fn CreateSymbolGroup(&self) -> ::windows::core::Result<IDebugSymbolGroup>;
@@ -24505,7 +24505,7 @@ impl IDebugSymbols2_Vtbl {
             )
             .into()
         }
-        unsafe extern "system" fn GetModuleParameters<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugSymbols2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, count: u32, bases: *const u64, start: u32, params: *mut DEBUG_MODULE_PARAMETERS) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn GetModuleParameters<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugSymbols2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, count: u32, bases: *mut u64, start: u32, params: *mut DEBUG_MODULE_PARAMETERS) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.GetModuleParameters(::core::mem::transmute_copy(&count), ::core::mem::transmute_copy(&bases), ::core::mem::transmute_copy(&start)) {
@@ -24580,7 +24580,7 @@ impl IDebugSymbols2_Vtbl {
             let this = (*this).get_impl();
             this.ReadTypedDataVirtual(::core::mem::transmute_copy(&offset), ::core::mem::transmute_copy(&module), ::core::mem::transmute_copy(&typeid), ::core::mem::transmute_copy(&buffer), ::core::mem::transmute_copy(&buffersize), ::core::mem::transmute_copy(&bytesread)).into()
         }
-        unsafe extern "system" fn WriteTypedDataVirtual<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugSymbols2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, offset: u64, module: u64, typeid: u32, buffer: *const ::core::ffi::c_void, buffersize: u32, byteswritten: *mut u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn WriteTypedDataVirtual<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugSymbols2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, offset: u64, module: u64, typeid: u32, buffer: *mut ::core::ffi::c_void, buffersize: u32, byteswritten: *mut u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.WriteTypedDataVirtual(::core::mem::transmute_copy(&offset), ::core::mem::transmute_copy(&module), ::core::mem::transmute_copy(&typeid), ::core::mem::transmute_copy(&buffer), ::core::mem::transmute_copy(&buffersize)) {
@@ -24601,7 +24601,7 @@ impl IDebugSymbols2_Vtbl {
             let this = (*this).get_impl();
             this.ReadTypedDataPhysical(::core::mem::transmute_copy(&offset), ::core::mem::transmute_copy(&module), ::core::mem::transmute_copy(&typeid), ::core::mem::transmute_copy(&buffer), ::core::mem::transmute_copy(&buffersize), ::core::mem::transmute_copy(&bytesread)).into()
         }
-        unsafe extern "system" fn WriteTypedDataPhysical<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugSymbols2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, offset: u64, module: u64, typeid: u32, buffer: *const ::core::ffi::c_void, buffersize: u32, byteswritten: *mut u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn WriteTypedDataPhysical<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugSymbols2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, offset: u64, module: u64, typeid: u32, buffer: *mut ::core::ffi::c_void, buffersize: u32, byteswritten: *mut u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.WriteTypedDataPhysical(::core::mem::transmute_copy(&offset), ::core::mem::transmute_copy(&module), ::core::mem::transmute_copy(&typeid), ::core::mem::transmute_copy(&buffer), ::core::mem::transmute_copy(&buffersize)) {
@@ -24622,7 +24622,7 @@ impl IDebugSymbols2_Vtbl {
             let this = (*this).get_impl();
             this.GetScope(::core::mem::transmute_copy(&instructionoffset), ::core::mem::transmute_copy(&scopeframe), ::core::mem::transmute_copy(&scopecontext), ::core::mem::transmute_copy(&scopecontextsize)).into()
         }
-        unsafe extern "system" fn SetScope<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugSymbols2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, instructionoffset: u64, scopeframe: *const DEBUG_STACK_FRAME, scopecontext: *const ::core::ffi::c_void, scopecontextsize: u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn SetScope<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugSymbols2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, instructionoffset: u64, scopeframe: *mut DEBUG_STACK_FRAME, scopecontext: *mut ::core::ffi::c_void, scopecontextsize: u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.SetScope(::core::mem::transmute_copy(&instructionoffset), ::core::mem::transmute_copy(&scopeframe), ::core::mem::transmute_copy(&scopecontext), ::core::mem::transmute_copy(&scopecontextsize)).into()
@@ -24867,7 +24867,7 @@ pub trait IDebugSymbols3_Impl: Sized {
     fn GetModuleByModuleName(&self, name: &::windows::core::PCSTR, startindex: u32, index: *mut u32, base: *mut u64) -> ::windows::core::Result<()>;
     fn GetModuleByOffset(&self, offset: u64, startindex: u32, index: *mut u32, base: *mut u64) -> ::windows::core::Result<()>;
     fn GetModuleNames(&self, index: u32, base: u64, imagenamebuffer: ::windows::core::PSTR, imagenamebuffersize: u32, imagenamesize: *mut u32, modulenamebuffer: ::windows::core::PSTR, modulenamebuffersize: u32, modulenamesize: *mut u32, loadedimagenamebuffer: ::windows::core::PSTR, loadedimagenamebuffersize: u32, loadedimagenamesize: *mut u32) -> ::windows::core::Result<()>;
-    fn GetModuleParameters(&self, count: u32, bases: *const u64, start: u32) -> ::windows::core::Result<DEBUG_MODULE_PARAMETERS>;
+    fn GetModuleParameters(&self, count: u32, bases: *mut u64, start: u32) -> ::windows::core::Result<DEBUG_MODULE_PARAMETERS>;
     fn GetSymbolModule(&self, symbol: &::windows::core::PCSTR) -> ::windows::core::Result<u64>;
     fn GetTypeName(&self, module: u64, typeid: u32, namebuffer: ::windows::core::PSTR, namebuffersize: u32, namesize: *mut u32) -> ::windows::core::Result<()>;
     fn GetTypeId(&self, module: u64, name: &::windows::core::PCSTR) -> ::windows::core::Result<u32>;
@@ -24876,13 +24876,13 @@ pub trait IDebugSymbols3_Impl: Sized {
     fn GetSymbolTypeId(&self, symbol: &::windows::core::PCSTR, typeid: *mut u32, module: *mut u64) -> ::windows::core::Result<()>;
     fn GetOffsetTypeId(&self, offset: u64, typeid: *mut u32, module: *mut u64) -> ::windows::core::Result<()>;
     fn ReadTypedDataVirtual(&self, offset: u64, module: u64, typeid: u32, buffer: *mut ::core::ffi::c_void, buffersize: u32, bytesread: *mut u32) -> ::windows::core::Result<()>;
-    fn WriteTypedDataVirtual(&self, offset: u64, module: u64, typeid: u32, buffer: *const ::core::ffi::c_void, buffersize: u32) -> ::windows::core::Result<u32>;
+    fn WriteTypedDataVirtual(&self, offset: u64, module: u64, typeid: u32, buffer: *mut ::core::ffi::c_void, buffersize: u32) -> ::windows::core::Result<u32>;
     fn OutputTypedDataVirtual(&self, outputcontrol: u32, offset: u64, module: u64, typeid: u32, flags: u32) -> ::windows::core::Result<()>;
     fn ReadTypedDataPhysical(&self, offset: u64, module: u64, typeid: u32, buffer: *mut ::core::ffi::c_void, buffersize: u32, bytesread: *mut u32) -> ::windows::core::Result<()>;
-    fn WriteTypedDataPhysical(&self, offset: u64, module: u64, typeid: u32, buffer: *const ::core::ffi::c_void, buffersize: u32) -> ::windows::core::Result<u32>;
+    fn WriteTypedDataPhysical(&self, offset: u64, module: u64, typeid: u32, buffer: *mut ::core::ffi::c_void, buffersize: u32) -> ::windows::core::Result<u32>;
     fn OutputTypedDataPhysical(&self, outputcontrol: u32, offset: u64, module: u64, typeid: u32, flags: u32) -> ::windows::core::Result<()>;
     fn GetScope(&self, instructionoffset: *mut u64, scopeframe: *mut DEBUG_STACK_FRAME, scopecontext: *mut ::core::ffi::c_void, scopecontextsize: u32) -> ::windows::core::Result<()>;
-    fn SetScope(&self, instructionoffset: u64, scopeframe: *const DEBUG_STACK_FRAME, scopecontext: *const ::core::ffi::c_void, scopecontextsize: u32) -> ::windows::core::Result<()>;
+    fn SetScope(&self, instructionoffset: u64, scopeframe: *mut DEBUG_STACK_FRAME, scopecontext: *mut ::core::ffi::c_void, scopecontextsize: u32) -> ::windows::core::Result<()>;
     fn ResetScope(&self) -> ::windows::core::Result<()>;
     fn GetScopeSymbolGroup(&self, flags: u32, update: &::core::option::Option<IDebugSymbolGroup>) -> ::windows::core::Result<IDebugSymbolGroup>;
     fn CreateSymbolGroup(&self) -> ::windows::core::Result<IDebugSymbolGroup>;
@@ -24959,23 +24959,23 @@ pub trait IDebugSymbols3_Impl: Sized {
     fn GetFieldTypeAndOffsetWide(&self, module: u64, containertypeid: u32, field: &::windows::core::PCWSTR, fieldtypeid: *mut u32, offset: *mut u32) -> ::windows::core::Result<()>;
     fn AddSyntheticSymbol(&self, offset: u64, size: u32, name: &::windows::core::PCSTR, flags: u32) -> ::windows::core::Result<DEBUG_MODULE_AND_ID>;
     fn AddSyntheticSymbolWide(&self, offset: u64, size: u32, name: &::windows::core::PCWSTR, flags: u32) -> ::windows::core::Result<DEBUG_MODULE_AND_ID>;
-    fn RemoveSyntheticSymbol(&self, id: *const DEBUG_MODULE_AND_ID) -> ::windows::core::Result<()>;
+    fn RemoveSyntheticSymbol(&self, id: *mut DEBUG_MODULE_AND_ID) -> ::windows::core::Result<()>;
     fn GetSymbolEntriesByOffset(&self, offset: u64, flags: u32, ids: *mut DEBUG_MODULE_AND_ID, displacements: *mut u64, idscount: u32, entries: *mut u32) -> ::windows::core::Result<()>;
     fn GetSymbolEntriesByName(&self, symbol: &::windows::core::PCSTR, flags: u32, ids: *mut DEBUG_MODULE_AND_ID, idscount: u32, entries: *mut u32) -> ::windows::core::Result<()>;
     fn GetSymbolEntriesByNameWide(&self, symbol: &::windows::core::PCWSTR, flags: u32, ids: *mut DEBUG_MODULE_AND_ID, idscount: u32, entries: *mut u32) -> ::windows::core::Result<()>;
     fn GetSymbolEntryByToken(&self, modulebase: u64, token: u32) -> ::windows::core::Result<DEBUG_MODULE_AND_ID>;
-    fn GetSymbolEntryInformation(&self, id: *const DEBUG_MODULE_AND_ID) -> ::windows::core::Result<DEBUG_SYMBOL_ENTRY>;
-    fn GetSymbolEntryString(&self, id: *const DEBUG_MODULE_AND_ID, which: u32, buffer: ::windows::core::PSTR, buffersize: u32, stringsize: *mut u32) -> ::windows::core::Result<()>;
-    fn GetSymbolEntryStringWide(&self, id: *const DEBUG_MODULE_AND_ID, which: u32, buffer: ::windows::core::PWSTR, buffersize: u32, stringsize: *mut u32) -> ::windows::core::Result<()>;
-    fn GetSymbolEntryOffsetRegions(&self, id: *const DEBUG_MODULE_AND_ID, flags: u32, regions: *mut DEBUG_OFFSET_REGION, regionscount: u32, regionsavail: *mut u32) -> ::windows::core::Result<()>;
-    fn GetSymbolEntryBySymbolEntry(&self, fromid: *const DEBUG_MODULE_AND_ID, flags: u32) -> ::windows::core::Result<DEBUG_MODULE_AND_ID>;
+    fn GetSymbolEntryInformation(&self, id: *mut DEBUG_MODULE_AND_ID) -> ::windows::core::Result<DEBUG_SYMBOL_ENTRY>;
+    fn GetSymbolEntryString(&self, id: *mut DEBUG_MODULE_AND_ID, which: u32, buffer: ::windows::core::PSTR, buffersize: u32, stringsize: *mut u32) -> ::windows::core::Result<()>;
+    fn GetSymbolEntryStringWide(&self, id: *mut DEBUG_MODULE_AND_ID, which: u32, buffer: ::windows::core::PWSTR, buffersize: u32, stringsize: *mut u32) -> ::windows::core::Result<()>;
+    fn GetSymbolEntryOffsetRegions(&self, id: *mut DEBUG_MODULE_AND_ID, flags: u32, regions: *mut DEBUG_OFFSET_REGION, regionscount: u32, regionsavail: *mut u32) -> ::windows::core::Result<()>;
+    fn GetSymbolEntryBySymbolEntry(&self, fromid: *mut DEBUG_MODULE_AND_ID, flags: u32) -> ::windows::core::Result<DEBUG_MODULE_AND_ID>;
     fn GetSourceEntriesByOffset(&self, offset: u64, flags: u32, entries: *mut DEBUG_SYMBOL_SOURCE_ENTRY, entriescount: u32, entriesavail: *mut u32) -> ::windows::core::Result<()>;
     fn GetSourceEntriesByLine(&self, line: u32, file: &::windows::core::PCSTR, flags: u32, entries: *mut DEBUG_SYMBOL_SOURCE_ENTRY, entriescount: u32, entriesavail: *mut u32) -> ::windows::core::Result<()>;
     fn GetSourceEntriesByLineWide(&self, line: u32, file: &::windows::core::PCWSTR, flags: u32, entries: *mut DEBUG_SYMBOL_SOURCE_ENTRY, entriescount: u32, entriesavail: *mut u32) -> ::windows::core::Result<()>;
-    fn GetSourceEntryString(&self, entry: *const DEBUG_SYMBOL_SOURCE_ENTRY, which: u32, buffer: ::windows::core::PSTR, buffersize: u32, stringsize: *mut u32) -> ::windows::core::Result<()>;
-    fn GetSourceEntryStringWide(&self, entry: *const DEBUG_SYMBOL_SOURCE_ENTRY, which: u32, buffer: ::windows::core::PWSTR, buffersize: u32, stringsize: *mut u32) -> ::windows::core::Result<()>;
-    fn GetSourceEntryOffsetRegions(&self, entry: *const DEBUG_SYMBOL_SOURCE_ENTRY, flags: u32, regions: *mut DEBUG_OFFSET_REGION, regionscount: u32, regionsavail: *mut u32) -> ::windows::core::Result<()>;
-    fn GetSourceEntryBySourceEntry(&self, fromentry: *const DEBUG_SYMBOL_SOURCE_ENTRY, flags: u32) -> ::windows::core::Result<DEBUG_SYMBOL_SOURCE_ENTRY>;
+    fn GetSourceEntryString(&self, entry: *mut DEBUG_SYMBOL_SOURCE_ENTRY, which: u32, buffer: ::windows::core::PSTR, buffersize: u32, stringsize: *mut u32) -> ::windows::core::Result<()>;
+    fn GetSourceEntryStringWide(&self, entry: *mut DEBUG_SYMBOL_SOURCE_ENTRY, which: u32, buffer: ::windows::core::PWSTR, buffersize: u32, stringsize: *mut u32) -> ::windows::core::Result<()>;
+    fn GetSourceEntryOffsetRegions(&self, entry: *mut DEBUG_SYMBOL_SOURCE_ENTRY, flags: u32, regions: *mut DEBUG_OFFSET_REGION, regionscount: u32, regionsavail: *mut u32) -> ::windows::core::Result<()>;
+    fn GetSourceEntryBySourceEntry(&self, fromentry: *mut DEBUG_SYMBOL_SOURCE_ENTRY, flags: u32) -> ::windows::core::Result<DEBUG_SYMBOL_SOURCE_ENTRY>;
 }
 #[cfg(feature = "Win32_Foundation")]
 impl ::windows::core::RuntimeName for IDebugSymbols3 {}
@@ -25089,7 +25089,7 @@ impl IDebugSymbols3_Vtbl {
             )
             .into()
         }
-        unsafe extern "system" fn GetModuleParameters<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugSymbols3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, count: u32, bases: *const u64, start: u32, params: *mut DEBUG_MODULE_PARAMETERS) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn GetModuleParameters<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugSymbols3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, count: u32, bases: *mut u64, start: u32, params: *mut DEBUG_MODULE_PARAMETERS) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.GetModuleParameters(::core::mem::transmute_copy(&count), ::core::mem::transmute_copy(&bases), ::core::mem::transmute_copy(&start)) {
@@ -25164,7 +25164,7 @@ impl IDebugSymbols3_Vtbl {
             let this = (*this).get_impl();
             this.ReadTypedDataVirtual(::core::mem::transmute_copy(&offset), ::core::mem::transmute_copy(&module), ::core::mem::transmute_copy(&typeid), ::core::mem::transmute_copy(&buffer), ::core::mem::transmute_copy(&buffersize), ::core::mem::transmute_copy(&bytesread)).into()
         }
-        unsafe extern "system" fn WriteTypedDataVirtual<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugSymbols3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, offset: u64, module: u64, typeid: u32, buffer: *const ::core::ffi::c_void, buffersize: u32, byteswritten: *mut u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn WriteTypedDataVirtual<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugSymbols3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, offset: u64, module: u64, typeid: u32, buffer: *mut ::core::ffi::c_void, buffersize: u32, byteswritten: *mut u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.WriteTypedDataVirtual(::core::mem::transmute_copy(&offset), ::core::mem::transmute_copy(&module), ::core::mem::transmute_copy(&typeid), ::core::mem::transmute_copy(&buffer), ::core::mem::transmute_copy(&buffersize)) {
@@ -25185,7 +25185,7 @@ impl IDebugSymbols3_Vtbl {
             let this = (*this).get_impl();
             this.ReadTypedDataPhysical(::core::mem::transmute_copy(&offset), ::core::mem::transmute_copy(&module), ::core::mem::transmute_copy(&typeid), ::core::mem::transmute_copy(&buffer), ::core::mem::transmute_copy(&buffersize), ::core::mem::transmute_copy(&bytesread)).into()
         }
-        unsafe extern "system" fn WriteTypedDataPhysical<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugSymbols3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, offset: u64, module: u64, typeid: u32, buffer: *const ::core::ffi::c_void, buffersize: u32, byteswritten: *mut u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn WriteTypedDataPhysical<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugSymbols3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, offset: u64, module: u64, typeid: u32, buffer: *mut ::core::ffi::c_void, buffersize: u32, byteswritten: *mut u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.WriteTypedDataPhysical(::core::mem::transmute_copy(&offset), ::core::mem::transmute_copy(&module), ::core::mem::transmute_copy(&typeid), ::core::mem::transmute_copy(&buffer), ::core::mem::transmute_copy(&buffersize)) {
@@ -25206,7 +25206,7 @@ impl IDebugSymbols3_Vtbl {
             let this = (*this).get_impl();
             this.GetScope(::core::mem::transmute_copy(&instructionoffset), ::core::mem::transmute_copy(&scopeframe), ::core::mem::transmute_copy(&scopecontext), ::core::mem::transmute_copy(&scopecontextsize)).into()
         }
-        unsafe extern "system" fn SetScope<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugSymbols3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, instructionoffset: u64, scopeframe: *const DEBUG_STACK_FRAME, scopecontext: *const ::core::ffi::c_void, scopecontextsize: u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn SetScope<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugSymbols3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, instructionoffset: u64, scopeframe: *mut DEBUG_STACK_FRAME, scopecontext: *mut ::core::ffi::c_void, scopecontextsize: u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.SetScope(::core::mem::transmute_copy(&instructionoffset), ::core::mem::transmute_copy(&scopeframe), ::core::mem::transmute_copy(&scopecontext), ::core::mem::transmute_copy(&scopecontextsize)).into()
@@ -25681,7 +25681,7 @@ impl IDebugSymbols3_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn RemoveSyntheticSymbol<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugSymbols3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, id: *const DEBUG_MODULE_AND_ID) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn RemoveSyntheticSymbol<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugSymbols3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, id: *mut DEBUG_MODULE_AND_ID) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.RemoveSyntheticSymbol(::core::mem::transmute_copy(&id)).into()
@@ -25712,7 +25712,7 @@ impl IDebugSymbols3_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn GetSymbolEntryInformation<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugSymbols3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, id: *const DEBUG_MODULE_AND_ID, info: *mut DEBUG_SYMBOL_ENTRY) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn GetSymbolEntryInformation<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugSymbols3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, id: *mut DEBUG_MODULE_AND_ID, info: *mut DEBUG_SYMBOL_ENTRY) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.GetSymbolEntryInformation(::core::mem::transmute_copy(&id)) {
@@ -25723,22 +25723,22 @@ impl IDebugSymbols3_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn GetSymbolEntryString<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugSymbols3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, id: *const DEBUG_MODULE_AND_ID, which: u32, buffer: ::windows::core::PSTR, buffersize: u32, stringsize: *mut u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn GetSymbolEntryString<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugSymbols3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, id: *mut DEBUG_MODULE_AND_ID, which: u32, buffer: ::windows::core::PSTR, buffersize: u32, stringsize: *mut u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.GetSymbolEntryString(::core::mem::transmute_copy(&id), ::core::mem::transmute_copy(&which), ::core::mem::transmute_copy(&buffer), ::core::mem::transmute_copy(&buffersize), ::core::mem::transmute_copy(&stringsize)).into()
         }
-        unsafe extern "system" fn GetSymbolEntryStringWide<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugSymbols3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, id: *const DEBUG_MODULE_AND_ID, which: u32, buffer: ::windows::core::PWSTR, buffersize: u32, stringsize: *mut u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn GetSymbolEntryStringWide<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugSymbols3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, id: *mut DEBUG_MODULE_AND_ID, which: u32, buffer: ::windows::core::PWSTR, buffersize: u32, stringsize: *mut u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.GetSymbolEntryStringWide(::core::mem::transmute_copy(&id), ::core::mem::transmute_copy(&which), ::core::mem::transmute_copy(&buffer), ::core::mem::transmute_copy(&buffersize), ::core::mem::transmute_copy(&stringsize)).into()
         }
-        unsafe extern "system" fn GetSymbolEntryOffsetRegions<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugSymbols3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, id: *const DEBUG_MODULE_AND_ID, flags: u32, regions: *mut DEBUG_OFFSET_REGION, regionscount: u32, regionsavail: *mut u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn GetSymbolEntryOffsetRegions<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugSymbols3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, id: *mut DEBUG_MODULE_AND_ID, flags: u32, regions: *mut DEBUG_OFFSET_REGION, regionscount: u32, regionsavail: *mut u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.GetSymbolEntryOffsetRegions(::core::mem::transmute_copy(&id), ::core::mem::transmute_copy(&flags), ::core::mem::transmute_copy(&regions), ::core::mem::transmute_copy(&regionscount), ::core::mem::transmute_copy(&regionsavail)).into()
         }
-        unsafe extern "system" fn GetSymbolEntryBySymbolEntry<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugSymbols3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, fromid: *const DEBUG_MODULE_AND_ID, flags: u32, toid: *mut DEBUG_MODULE_AND_ID) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn GetSymbolEntryBySymbolEntry<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugSymbols3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, fromid: *mut DEBUG_MODULE_AND_ID, flags: u32, toid: *mut DEBUG_MODULE_AND_ID) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.GetSymbolEntryBySymbolEntry(::core::mem::transmute_copy(&fromid), ::core::mem::transmute_copy(&flags)) {
@@ -25764,22 +25764,22 @@ impl IDebugSymbols3_Vtbl {
             let this = (*this).get_impl();
             this.GetSourceEntriesByLineWide(::core::mem::transmute_copy(&line), ::core::mem::transmute(&file), ::core::mem::transmute_copy(&flags), ::core::mem::transmute_copy(&entries), ::core::mem::transmute_copy(&entriescount), ::core::mem::transmute_copy(&entriesavail)).into()
         }
-        unsafe extern "system" fn GetSourceEntryString<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugSymbols3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, entry: *const DEBUG_SYMBOL_SOURCE_ENTRY, which: u32, buffer: ::windows::core::PSTR, buffersize: u32, stringsize: *mut u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn GetSourceEntryString<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugSymbols3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, entry: *mut DEBUG_SYMBOL_SOURCE_ENTRY, which: u32, buffer: ::windows::core::PSTR, buffersize: u32, stringsize: *mut u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.GetSourceEntryString(::core::mem::transmute_copy(&entry), ::core::mem::transmute_copy(&which), ::core::mem::transmute_copy(&buffer), ::core::mem::transmute_copy(&buffersize), ::core::mem::transmute_copy(&stringsize)).into()
         }
-        unsafe extern "system" fn GetSourceEntryStringWide<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugSymbols3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, entry: *const DEBUG_SYMBOL_SOURCE_ENTRY, which: u32, buffer: ::windows::core::PWSTR, buffersize: u32, stringsize: *mut u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn GetSourceEntryStringWide<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugSymbols3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, entry: *mut DEBUG_SYMBOL_SOURCE_ENTRY, which: u32, buffer: ::windows::core::PWSTR, buffersize: u32, stringsize: *mut u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.GetSourceEntryStringWide(::core::mem::transmute_copy(&entry), ::core::mem::transmute_copy(&which), ::core::mem::transmute_copy(&buffer), ::core::mem::transmute_copy(&buffersize), ::core::mem::transmute_copy(&stringsize)).into()
         }
-        unsafe extern "system" fn GetSourceEntryOffsetRegions<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugSymbols3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, entry: *const DEBUG_SYMBOL_SOURCE_ENTRY, flags: u32, regions: *mut DEBUG_OFFSET_REGION, regionscount: u32, regionsavail: *mut u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn GetSourceEntryOffsetRegions<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugSymbols3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, entry: *mut DEBUG_SYMBOL_SOURCE_ENTRY, flags: u32, regions: *mut DEBUG_OFFSET_REGION, regionscount: u32, regionsavail: *mut u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.GetSourceEntryOffsetRegions(::core::mem::transmute_copy(&entry), ::core::mem::transmute_copy(&flags), ::core::mem::transmute_copy(&regions), ::core::mem::transmute_copy(&regionscount), ::core::mem::transmute_copy(&regionsavail)).into()
         }
-        unsafe extern "system" fn GetSourceEntryBySourceEntry<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugSymbols3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, fromentry: *const DEBUG_SYMBOL_SOURCE_ENTRY, flags: u32, toentry: *mut DEBUG_SYMBOL_SOURCE_ENTRY) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn GetSourceEntryBySourceEntry<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugSymbols3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, fromentry: *mut DEBUG_SYMBOL_SOURCE_ENTRY, flags: u32, toentry: *mut DEBUG_SYMBOL_SOURCE_ENTRY) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.GetSourceEntryBySourceEntry(::core::mem::transmute_copy(&fromentry), ::core::mem::transmute_copy(&flags)) {
@@ -25937,7 +25937,7 @@ pub trait IDebugSymbols4_Impl: Sized {
     fn GetModuleByModuleName(&self, name: &::windows::core::PCSTR, startindex: u32, index: *mut u32, base: *mut u64) -> ::windows::core::Result<()>;
     fn GetModuleByOffset(&self, offset: u64, startindex: u32, index: *mut u32, base: *mut u64) -> ::windows::core::Result<()>;
     fn GetModuleNames(&self, index: u32, base: u64, imagenamebuffer: ::windows::core::PSTR, imagenamebuffersize: u32, imagenamesize: *mut u32, modulenamebuffer: ::windows::core::PSTR, modulenamebuffersize: u32, modulenamesize: *mut u32, loadedimagenamebuffer: ::windows::core::PSTR, loadedimagenamebuffersize: u32, loadedimagenamesize: *mut u32) -> ::windows::core::Result<()>;
-    fn GetModuleParameters(&self, count: u32, bases: *const u64, start: u32) -> ::windows::core::Result<DEBUG_MODULE_PARAMETERS>;
+    fn GetModuleParameters(&self, count: u32, bases: *mut u64, start: u32) -> ::windows::core::Result<DEBUG_MODULE_PARAMETERS>;
     fn GetSymbolModule(&self, symbol: &::windows::core::PCSTR) -> ::windows::core::Result<u64>;
     fn GetTypeName(&self, module: u64, typeid: u32, namebuffer: ::windows::core::PSTR, namebuffersize: u32, namesize: *mut u32) -> ::windows::core::Result<()>;
     fn GetTypeId(&self, module: u64, name: &::windows::core::PCSTR) -> ::windows::core::Result<u32>;
@@ -25946,13 +25946,13 @@ pub trait IDebugSymbols4_Impl: Sized {
     fn GetSymbolTypeId(&self, symbol: &::windows::core::PCSTR, typeid: *mut u32, module: *mut u64) -> ::windows::core::Result<()>;
     fn GetOffsetTypeId(&self, offset: u64, typeid: *mut u32, module: *mut u64) -> ::windows::core::Result<()>;
     fn ReadTypedDataVirtual(&self, offset: u64, module: u64, typeid: u32, buffer: *mut ::core::ffi::c_void, buffersize: u32, bytesread: *mut u32) -> ::windows::core::Result<()>;
-    fn WriteTypedDataVirtual(&self, offset: u64, module: u64, typeid: u32, buffer: *const ::core::ffi::c_void, buffersize: u32) -> ::windows::core::Result<u32>;
+    fn WriteTypedDataVirtual(&self, offset: u64, module: u64, typeid: u32, buffer: *mut ::core::ffi::c_void, buffersize: u32) -> ::windows::core::Result<u32>;
     fn OutputTypedDataVirtual(&self, outputcontrol: u32, offset: u64, module: u64, typeid: u32, flags: u32) -> ::windows::core::Result<()>;
     fn ReadTypedDataPhysical(&self, offset: u64, module: u64, typeid: u32, buffer: *mut ::core::ffi::c_void, buffersize: u32, bytesread: *mut u32) -> ::windows::core::Result<()>;
-    fn WriteTypedDataPhysical(&self, offset: u64, module: u64, typeid: u32, buffer: *const ::core::ffi::c_void, buffersize: u32) -> ::windows::core::Result<u32>;
+    fn WriteTypedDataPhysical(&self, offset: u64, module: u64, typeid: u32, buffer: *mut ::core::ffi::c_void, buffersize: u32) -> ::windows::core::Result<u32>;
     fn OutputTypedDataPhysical(&self, outputcontrol: u32, offset: u64, module: u64, typeid: u32, flags: u32) -> ::windows::core::Result<()>;
     fn GetScope(&self, instructionoffset: *mut u64, scopeframe: *mut DEBUG_STACK_FRAME, scopecontext: *mut ::core::ffi::c_void, scopecontextsize: u32) -> ::windows::core::Result<()>;
-    fn SetScope(&self, instructionoffset: u64, scopeframe: *const DEBUG_STACK_FRAME, scopecontext: *const ::core::ffi::c_void, scopecontextsize: u32) -> ::windows::core::Result<()>;
+    fn SetScope(&self, instructionoffset: u64, scopeframe: *mut DEBUG_STACK_FRAME, scopecontext: *mut ::core::ffi::c_void, scopecontextsize: u32) -> ::windows::core::Result<()>;
     fn ResetScope(&self) -> ::windows::core::Result<()>;
     fn GetScopeSymbolGroup(&self, flags: u32, update: &::core::option::Option<IDebugSymbolGroup>) -> ::windows::core::Result<IDebugSymbolGroup>;
     fn CreateSymbolGroup(&self) -> ::windows::core::Result<IDebugSymbolGroup>;
@@ -26029,25 +26029,25 @@ pub trait IDebugSymbols4_Impl: Sized {
     fn GetFieldTypeAndOffsetWide(&self, module: u64, containertypeid: u32, field: &::windows::core::PCWSTR, fieldtypeid: *mut u32, offset: *mut u32) -> ::windows::core::Result<()>;
     fn AddSyntheticSymbol(&self, offset: u64, size: u32, name: &::windows::core::PCSTR, flags: u32) -> ::windows::core::Result<DEBUG_MODULE_AND_ID>;
     fn AddSyntheticSymbolWide(&self, offset: u64, size: u32, name: &::windows::core::PCWSTR, flags: u32) -> ::windows::core::Result<DEBUG_MODULE_AND_ID>;
-    fn RemoveSyntheticSymbol(&self, id: *const DEBUG_MODULE_AND_ID) -> ::windows::core::Result<()>;
+    fn RemoveSyntheticSymbol(&self, id: *mut DEBUG_MODULE_AND_ID) -> ::windows::core::Result<()>;
     fn GetSymbolEntriesByOffset(&self, offset: u64, flags: u32, ids: *mut DEBUG_MODULE_AND_ID, displacements: *mut u64, idscount: u32, entries: *mut u32) -> ::windows::core::Result<()>;
     fn GetSymbolEntriesByName(&self, symbol: &::windows::core::PCSTR, flags: u32, ids: *mut DEBUG_MODULE_AND_ID, idscount: u32, entries: *mut u32) -> ::windows::core::Result<()>;
     fn GetSymbolEntriesByNameWide(&self, symbol: &::windows::core::PCWSTR, flags: u32, ids: *mut DEBUG_MODULE_AND_ID, idscount: u32, entries: *mut u32) -> ::windows::core::Result<()>;
     fn GetSymbolEntryByToken(&self, modulebase: u64, token: u32) -> ::windows::core::Result<DEBUG_MODULE_AND_ID>;
-    fn GetSymbolEntryInformation(&self, id: *const DEBUG_MODULE_AND_ID) -> ::windows::core::Result<DEBUG_SYMBOL_ENTRY>;
-    fn GetSymbolEntryString(&self, id: *const DEBUG_MODULE_AND_ID, which: u32, buffer: ::windows::core::PSTR, buffersize: u32, stringsize: *mut u32) -> ::windows::core::Result<()>;
-    fn GetSymbolEntryStringWide(&self, id: *const DEBUG_MODULE_AND_ID, which: u32, buffer: ::windows::core::PWSTR, buffersize: u32, stringsize: *mut u32) -> ::windows::core::Result<()>;
-    fn GetSymbolEntryOffsetRegions(&self, id: *const DEBUG_MODULE_AND_ID, flags: u32, regions: *mut DEBUG_OFFSET_REGION, regionscount: u32, regionsavail: *mut u32) -> ::windows::core::Result<()>;
-    fn GetSymbolEntryBySymbolEntry(&self, fromid: *const DEBUG_MODULE_AND_ID, flags: u32) -> ::windows::core::Result<DEBUG_MODULE_AND_ID>;
+    fn GetSymbolEntryInformation(&self, id: *mut DEBUG_MODULE_AND_ID) -> ::windows::core::Result<DEBUG_SYMBOL_ENTRY>;
+    fn GetSymbolEntryString(&self, id: *mut DEBUG_MODULE_AND_ID, which: u32, buffer: ::windows::core::PSTR, buffersize: u32, stringsize: *mut u32) -> ::windows::core::Result<()>;
+    fn GetSymbolEntryStringWide(&self, id: *mut DEBUG_MODULE_AND_ID, which: u32, buffer: ::windows::core::PWSTR, buffersize: u32, stringsize: *mut u32) -> ::windows::core::Result<()>;
+    fn GetSymbolEntryOffsetRegions(&self, id: *mut DEBUG_MODULE_AND_ID, flags: u32, regions: *mut DEBUG_OFFSET_REGION, regionscount: u32, regionsavail: *mut u32) -> ::windows::core::Result<()>;
+    fn GetSymbolEntryBySymbolEntry(&self, fromid: *mut DEBUG_MODULE_AND_ID, flags: u32) -> ::windows::core::Result<DEBUG_MODULE_AND_ID>;
     fn GetSourceEntriesByOffset(&self, offset: u64, flags: u32, entries: *mut DEBUG_SYMBOL_SOURCE_ENTRY, entriescount: u32, entriesavail: *mut u32) -> ::windows::core::Result<()>;
     fn GetSourceEntriesByLine(&self, line: u32, file: &::windows::core::PCSTR, flags: u32, entries: *mut DEBUG_SYMBOL_SOURCE_ENTRY, entriescount: u32, entriesavail: *mut u32) -> ::windows::core::Result<()>;
     fn GetSourceEntriesByLineWide(&self, line: u32, file: &::windows::core::PCWSTR, flags: u32, entries: *mut DEBUG_SYMBOL_SOURCE_ENTRY, entriescount: u32, entriesavail: *mut u32) -> ::windows::core::Result<()>;
-    fn GetSourceEntryString(&self, entry: *const DEBUG_SYMBOL_SOURCE_ENTRY, which: u32, buffer: ::windows::core::PSTR, buffersize: u32, stringsize: *mut u32) -> ::windows::core::Result<()>;
-    fn GetSourceEntryStringWide(&self, entry: *const DEBUG_SYMBOL_SOURCE_ENTRY, which: u32, buffer: ::windows::core::PWSTR, buffersize: u32, stringsize: *mut u32) -> ::windows::core::Result<()>;
-    fn GetSourceEntryOffsetRegions(&self, entry: *const DEBUG_SYMBOL_SOURCE_ENTRY, flags: u32, regions: *mut DEBUG_OFFSET_REGION, regionscount: u32, regionsavail: *mut u32) -> ::windows::core::Result<()>;
-    fn GetSourceEntryBySourceEntry(&self, fromentry: *const DEBUG_SYMBOL_SOURCE_ENTRY, flags: u32) -> ::windows::core::Result<DEBUG_SYMBOL_SOURCE_ENTRY>;
+    fn GetSourceEntryString(&self, entry: *mut DEBUG_SYMBOL_SOURCE_ENTRY, which: u32, buffer: ::windows::core::PSTR, buffersize: u32, stringsize: *mut u32) -> ::windows::core::Result<()>;
+    fn GetSourceEntryStringWide(&self, entry: *mut DEBUG_SYMBOL_SOURCE_ENTRY, which: u32, buffer: ::windows::core::PWSTR, buffersize: u32, stringsize: *mut u32) -> ::windows::core::Result<()>;
+    fn GetSourceEntryOffsetRegions(&self, entry: *mut DEBUG_SYMBOL_SOURCE_ENTRY, flags: u32, regions: *mut DEBUG_OFFSET_REGION, regionscount: u32, regionsavail: *mut u32) -> ::windows::core::Result<()>;
+    fn GetSourceEntryBySourceEntry(&self, fromentry: *mut DEBUG_SYMBOL_SOURCE_ENTRY, flags: u32) -> ::windows::core::Result<DEBUG_SYMBOL_SOURCE_ENTRY>;
     fn GetScopeEx(&self, instructionoffset: *mut u64, scopeframe: *mut DEBUG_STACK_FRAME_EX, scopecontext: *mut ::core::ffi::c_void, scopecontextsize: u32) -> ::windows::core::Result<()>;
-    fn SetScopeEx(&self, instructionoffset: u64, scopeframe: *const DEBUG_STACK_FRAME_EX, scopecontext: *const ::core::ffi::c_void, scopecontextsize: u32) -> ::windows::core::Result<()>;
+    fn SetScopeEx(&self, instructionoffset: u64, scopeframe: *mut DEBUG_STACK_FRAME_EX, scopecontext: *mut ::core::ffi::c_void, scopecontextsize: u32) -> ::windows::core::Result<()>;
     fn GetNameByInlineContext(&self, offset: u64, inlinecontext: u32, namebuffer: ::windows::core::PSTR, namebuffersize: u32, namesize: *mut u32, displacement: *mut u64) -> ::windows::core::Result<()>;
     fn GetNameByInlineContextWide(&self, offset: u64, inlinecontext: u32, namebuffer: ::windows::core::PWSTR, namebuffersize: u32, namesize: *mut u32, displacement: *mut u64) -> ::windows::core::Result<()>;
     fn GetLineByInlineContext(&self, offset: u64, inlinecontext: u32, line: *mut u32, filebuffer: ::windows::core::PSTR, filebuffersize: u32, filesize: *mut u32, displacement: *mut u64) -> ::windows::core::Result<()>;
@@ -26166,7 +26166,7 @@ impl IDebugSymbols4_Vtbl {
             )
             .into()
         }
-        unsafe extern "system" fn GetModuleParameters<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugSymbols4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, count: u32, bases: *const u64, start: u32, params: *mut DEBUG_MODULE_PARAMETERS) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn GetModuleParameters<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugSymbols4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, count: u32, bases: *mut u64, start: u32, params: *mut DEBUG_MODULE_PARAMETERS) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.GetModuleParameters(::core::mem::transmute_copy(&count), ::core::mem::transmute_copy(&bases), ::core::mem::transmute_copy(&start)) {
@@ -26241,7 +26241,7 @@ impl IDebugSymbols4_Vtbl {
             let this = (*this).get_impl();
             this.ReadTypedDataVirtual(::core::mem::transmute_copy(&offset), ::core::mem::transmute_copy(&module), ::core::mem::transmute_copy(&typeid), ::core::mem::transmute_copy(&buffer), ::core::mem::transmute_copy(&buffersize), ::core::mem::transmute_copy(&bytesread)).into()
         }
-        unsafe extern "system" fn WriteTypedDataVirtual<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugSymbols4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, offset: u64, module: u64, typeid: u32, buffer: *const ::core::ffi::c_void, buffersize: u32, byteswritten: *mut u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn WriteTypedDataVirtual<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugSymbols4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, offset: u64, module: u64, typeid: u32, buffer: *mut ::core::ffi::c_void, buffersize: u32, byteswritten: *mut u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.WriteTypedDataVirtual(::core::mem::transmute_copy(&offset), ::core::mem::transmute_copy(&module), ::core::mem::transmute_copy(&typeid), ::core::mem::transmute_copy(&buffer), ::core::mem::transmute_copy(&buffersize)) {
@@ -26262,7 +26262,7 @@ impl IDebugSymbols4_Vtbl {
             let this = (*this).get_impl();
             this.ReadTypedDataPhysical(::core::mem::transmute_copy(&offset), ::core::mem::transmute_copy(&module), ::core::mem::transmute_copy(&typeid), ::core::mem::transmute_copy(&buffer), ::core::mem::transmute_copy(&buffersize), ::core::mem::transmute_copy(&bytesread)).into()
         }
-        unsafe extern "system" fn WriteTypedDataPhysical<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugSymbols4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, offset: u64, module: u64, typeid: u32, buffer: *const ::core::ffi::c_void, buffersize: u32, byteswritten: *mut u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn WriteTypedDataPhysical<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugSymbols4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, offset: u64, module: u64, typeid: u32, buffer: *mut ::core::ffi::c_void, buffersize: u32, byteswritten: *mut u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.WriteTypedDataPhysical(::core::mem::transmute_copy(&offset), ::core::mem::transmute_copy(&module), ::core::mem::transmute_copy(&typeid), ::core::mem::transmute_copy(&buffer), ::core::mem::transmute_copy(&buffersize)) {
@@ -26283,7 +26283,7 @@ impl IDebugSymbols4_Vtbl {
             let this = (*this).get_impl();
             this.GetScope(::core::mem::transmute_copy(&instructionoffset), ::core::mem::transmute_copy(&scopeframe), ::core::mem::transmute_copy(&scopecontext), ::core::mem::transmute_copy(&scopecontextsize)).into()
         }
-        unsafe extern "system" fn SetScope<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugSymbols4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, instructionoffset: u64, scopeframe: *const DEBUG_STACK_FRAME, scopecontext: *const ::core::ffi::c_void, scopecontextsize: u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn SetScope<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugSymbols4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, instructionoffset: u64, scopeframe: *mut DEBUG_STACK_FRAME, scopecontext: *mut ::core::ffi::c_void, scopecontextsize: u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.SetScope(::core::mem::transmute_copy(&instructionoffset), ::core::mem::transmute_copy(&scopeframe), ::core::mem::transmute_copy(&scopecontext), ::core::mem::transmute_copy(&scopecontextsize)).into()
@@ -26758,7 +26758,7 @@ impl IDebugSymbols4_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn RemoveSyntheticSymbol<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugSymbols4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, id: *const DEBUG_MODULE_AND_ID) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn RemoveSyntheticSymbol<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugSymbols4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, id: *mut DEBUG_MODULE_AND_ID) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.RemoveSyntheticSymbol(::core::mem::transmute_copy(&id)).into()
@@ -26789,7 +26789,7 @@ impl IDebugSymbols4_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn GetSymbolEntryInformation<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugSymbols4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, id: *const DEBUG_MODULE_AND_ID, info: *mut DEBUG_SYMBOL_ENTRY) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn GetSymbolEntryInformation<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugSymbols4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, id: *mut DEBUG_MODULE_AND_ID, info: *mut DEBUG_SYMBOL_ENTRY) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.GetSymbolEntryInformation(::core::mem::transmute_copy(&id)) {
@@ -26800,22 +26800,22 @@ impl IDebugSymbols4_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn GetSymbolEntryString<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugSymbols4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, id: *const DEBUG_MODULE_AND_ID, which: u32, buffer: ::windows::core::PSTR, buffersize: u32, stringsize: *mut u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn GetSymbolEntryString<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugSymbols4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, id: *mut DEBUG_MODULE_AND_ID, which: u32, buffer: ::windows::core::PSTR, buffersize: u32, stringsize: *mut u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.GetSymbolEntryString(::core::mem::transmute_copy(&id), ::core::mem::transmute_copy(&which), ::core::mem::transmute_copy(&buffer), ::core::mem::transmute_copy(&buffersize), ::core::mem::transmute_copy(&stringsize)).into()
         }
-        unsafe extern "system" fn GetSymbolEntryStringWide<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugSymbols4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, id: *const DEBUG_MODULE_AND_ID, which: u32, buffer: ::windows::core::PWSTR, buffersize: u32, stringsize: *mut u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn GetSymbolEntryStringWide<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugSymbols4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, id: *mut DEBUG_MODULE_AND_ID, which: u32, buffer: ::windows::core::PWSTR, buffersize: u32, stringsize: *mut u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.GetSymbolEntryStringWide(::core::mem::transmute_copy(&id), ::core::mem::transmute_copy(&which), ::core::mem::transmute_copy(&buffer), ::core::mem::transmute_copy(&buffersize), ::core::mem::transmute_copy(&stringsize)).into()
         }
-        unsafe extern "system" fn GetSymbolEntryOffsetRegions<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugSymbols4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, id: *const DEBUG_MODULE_AND_ID, flags: u32, regions: *mut DEBUG_OFFSET_REGION, regionscount: u32, regionsavail: *mut u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn GetSymbolEntryOffsetRegions<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugSymbols4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, id: *mut DEBUG_MODULE_AND_ID, flags: u32, regions: *mut DEBUG_OFFSET_REGION, regionscount: u32, regionsavail: *mut u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.GetSymbolEntryOffsetRegions(::core::mem::transmute_copy(&id), ::core::mem::transmute_copy(&flags), ::core::mem::transmute_copy(&regions), ::core::mem::transmute_copy(&regionscount), ::core::mem::transmute_copy(&regionsavail)).into()
         }
-        unsafe extern "system" fn GetSymbolEntryBySymbolEntry<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugSymbols4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, fromid: *const DEBUG_MODULE_AND_ID, flags: u32, toid: *mut DEBUG_MODULE_AND_ID) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn GetSymbolEntryBySymbolEntry<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugSymbols4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, fromid: *mut DEBUG_MODULE_AND_ID, flags: u32, toid: *mut DEBUG_MODULE_AND_ID) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.GetSymbolEntryBySymbolEntry(::core::mem::transmute_copy(&fromid), ::core::mem::transmute_copy(&flags)) {
@@ -26841,22 +26841,22 @@ impl IDebugSymbols4_Vtbl {
             let this = (*this).get_impl();
             this.GetSourceEntriesByLineWide(::core::mem::transmute_copy(&line), ::core::mem::transmute(&file), ::core::mem::transmute_copy(&flags), ::core::mem::transmute_copy(&entries), ::core::mem::transmute_copy(&entriescount), ::core::mem::transmute_copy(&entriesavail)).into()
         }
-        unsafe extern "system" fn GetSourceEntryString<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugSymbols4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, entry: *const DEBUG_SYMBOL_SOURCE_ENTRY, which: u32, buffer: ::windows::core::PSTR, buffersize: u32, stringsize: *mut u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn GetSourceEntryString<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugSymbols4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, entry: *mut DEBUG_SYMBOL_SOURCE_ENTRY, which: u32, buffer: ::windows::core::PSTR, buffersize: u32, stringsize: *mut u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.GetSourceEntryString(::core::mem::transmute_copy(&entry), ::core::mem::transmute_copy(&which), ::core::mem::transmute_copy(&buffer), ::core::mem::transmute_copy(&buffersize), ::core::mem::transmute_copy(&stringsize)).into()
         }
-        unsafe extern "system" fn GetSourceEntryStringWide<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugSymbols4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, entry: *const DEBUG_SYMBOL_SOURCE_ENTRY, which: u32, buffer: ::windows::core::PWSTR, buffersize: u32, stringsize: *mut u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn GetSourceEntryStringWide<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugSymbols4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, entry: *mut DEBUG_SYMBOL_SOURCE_ENTRY, which: u32, buffer: ::windows::core::PWSTR, buffersize: u32, stringsize: *mut u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.GetSourceEntryStringWide(::core::mem::transmute_copy(&entry), ::core::mem::transmute_copy(&which), ::core::mem::transmute_copy(&buffer), ::core::mem::transmute_copy(&buffersize), ::core::mem::transmute_copy(&stringsize)).into()
         }
-        unsafe extern "system" fn GetSourceEntryOffsetRegions<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugSymbols4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, entry: *const DEBUG_SYMBOL_SOURCE_ENTRY, flags: u32, regions: *mut DEBUG_OFFSET_REGION, regionscount: u32, regionsavail: *mut u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn GetSourceEntryOffsetRegions<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugSymbols4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, entry: *mut DEBUG_SYMBOL_SOURCE_ENTRY, flags: u32, regions: *mut DEBUG_OFFSET_REGION, regionscount: u32, regionsavail: *mut u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.GetSourceEntryOffsetRegions(::core::mem::transmute_copy(&entry), ::core::mem::transmute_copy(&flags), ::core::mem::transmute_copy(&regions), ::core::mem::transmute_copy(&regionscount), ::core::mem::transmute_copy(&regionsavail)).into()
         }
-        unsafe extern "system" fn GetSourceEntryBySourceEntry<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugSymbols4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, fromentry: *const DEBUG_SYMBOL_SOURCE_ENTRY, flags: u32, toentry: *mut DEBUG_SYMBOL_SOURCE_ENTRY) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn GetSourceEntryBySourceEntry<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugSymbols4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, fromentry: *mut DEBUG_SYMBOL_SOURCE_ENTRY, flags: u32, toentry: *mut DEBUG_SYMBOL_SOURCE_ENTRY) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.GetSourceEntryBySourceEntry(::core::mem::transmute_copy(&fromentry), ::core::mem::transmute_copy(&flags)) {
@@ -26872,7 +26872,7 @@ impl IDebugSymbols4_Vtbl {
             let this = (*this).get_impl();
             this.GetScopeEx(::core::mem::transmute_copy(&instructionoffset), ::core::mem::transmute_copy(&scopeframe), ::core::mem::transmute_copy(&scopecontext), ::core::mem::transmute_copy(&scopecontextsize)).into()
         }
-        unsafe extern "system" fn SetScopeEx<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugSymbols4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, instructionoffset: u64, scopeframe: *const DEBUG_STACK_FRAME_EX, scopecontext: *const ::core::ffi::c_void, scopecontextsize: u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn SetScopeEx<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugSymbols4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, instructionoffset: u64, scopeframe: *mut DEBUG_STACK_FRAME_EX, scopecontext: *mut ::core::ffi::c_void, scopecontextsize: u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.SetScopeEx(::core::mem::transmute_copy(&instructionoffset), ::core::mem::transmute_copy(&scopeframe), ::core::mem::transmute_copy(&scopecontext), ::core::mem::transmute_copy(&scopecontextsize)).into()
@@ -27056,7 +27056,7 @@ pub trait IDebugSymbols5_Impl: Sized {
     fn GetModuleByModuleName(&self, name: &::windows::core::PCSTR, startindex: u32, index: *mut u32, base: *mut u64) -> ::windows::core::Result<()>;
     fn GetModuleByOffset(&self, offset: u64, startindex: u32, index: *mut u32, base: *mut u64) -> ::windows::core::Result<()>;
     fn GetModuleNames(&self, index: u32, base: u64, imagenamebuffer: ::windows::core::PSTR, imagenamebuffersize: u32, imagenamesize: *mut u32, modulenamebuffer: ::windows::core::PSTR, modulenamebuffersize: u32, modulenamesize: *mut u32, loadedimagenamebuffer: ::windows::core::PSTR, loadedimagenamebuffersize: u32, loadedimagenamesize: *mut u32) -> ::windows::core::Result<()>;
-    fn GetModuleParameters(&self, count: u32, bases: *const u64, start: u32) -> ::windows::core::Result<DEBUG_MODULE_PARAMETERS>;
+    fn GetModuleParameters(&self, count: u32, bases: *mut u64, start: u32) -> ::windows::core::Result<DEBUG_MODULE_PARAMETERS>;
     fn GetSymbolModule(&self, symbol: &::windows::core::PCSTR) -> ::windows::core::Result<u64>;
     fn GetTypeName(&self, module: u64, typeid: u32, namebuffer: ::windows::core::PSTR, namebuffersize: u32, namesize: *mut u32) -> ::windows::core::Result<()>;
     fn GetTypeId(&self, module: u64, name: &::windows::core::PCSTR) -> ::windows::core::Result<u32>;
@@ -27065,13 +27065,13 @@ pub trait IDebugSymbols5_Impl: Sized {
     fn GetSymbolTypeId(&self, symbol: &::windows::core::PCSTR, typeid: *mut u32, module: *mut u64) -> ::windows::core::Result<()>;
     fn GetOffsetTypeId(&self, offset: u64, typeid: *mut u32, module: *mut u64) -> ::windows::core::Result<()>;
     fn ReadTypedDataVirtual(&self, offset: u64, module: u64, typeid: u32, buffer: *mut ::core::ffi::c_void, buffersize: u32, bytesread: *mut u32) -> ::windows::core::Result<()>;
-    fn WriteTypedDataVirtual(&self, offset: u64, module: u64, typeid: u32, buffer: *const ::core::ffi::c_void, buffersize: u32) -> ::windows::core::Result<u32>;
+    fn WriteTypedDataVirtual(&self, offset: u64, module: u64, typeid: u32, buffer: *mut ::core::ffi::c_void, buffersize: u32) -> ::windows::core::Result<u32>;
     fn OutputTypedDataVirtual(&self, outputcontrol: u32, offset: u64, module: u64, typeid: u32, flags: u32) -> ::windows::core::Result<()>;
     fn ReadTypedDataPhysical(&self, offset: u64, module: u64, typeid: u32, buffer: *mut ::core::ffi::c_void, buffersize: u32, bytesread: *mut u32) -> ::windows::core::Result<()>;
-    fn WriteTypedDataPhysical(&self, offset: u64, module: u64, typeid: u32, buffer: *const ::core::ffi::c_void, buffersize: u32) -> ::windows::core::Result<u32>;
+    fn WriteTypedDataPhysical(&self, offset: u64, module: u64, typeid: u32, buffer: *mut ::core::ffi::c_void, buffersize: u32) -> ::windows::core::Result<u32>;
     fn OutputTypedDataPhysical(&self, outputcontrol: u32, offset: u64, module: u64, typeid: u32, flags: u32) -> ::windows::core::Result<()>;
     fn GetScope(&self, instructionoffset: *mut u64, scopeframe: *mut DEBUG_STACK_FRAME, scopecontext: *mut ::core::ffi::c_void, scopecontextsize: u32) -> ::windows::core::Result<()>;
-    fn SetScope(&self, instructionoffset: u64, scopeframe: *const DEBUG_STACK_FRAME, scopecontext: *const ::core::ffi::c_void, scopecontextsize: u32) -> ::windows::core::Result<()>;
+    fn SetScope(&self, instructionoffset: u64, scopeframe: *mut DEBUG_STACK_FRAME, scopecontext: *mut ::core::ffi::c_void, scopecontextsize: u32) -> ::windows::core::Result<()>;
     fn ResetScope(&self) -> ::windows::core::Result<()>;
     fn GetScopeSymbolGroup(&self, flags: u32, update: &::core::option::Option<IDebugSymbolGroup>) -> ::windows::core::Result<IDebugSymbolGroup>;
     fn CreateSymbolGroup(&self) -> ::windows::core::Result<IDebugSymbolGroup>;
@@ -27148,25 +27148,25 @@ pub trait IDebugSymbols5_Impl: Sized {
     fn GetFieldTypeAndOffsetWide(&self, module: u64, containertypeid: u32, field: &::windows::core::PCWSTR, fieldtypeid: *mut u32, offset: *mut u32) -> ::windows::core::Result<()>;
     fn AddSyntheticSymbol(&self, offset: u64, size: u32, name: &::windows::core::PCSTR, flags: u32) -> ::windows::core::Result<DEBUG_MODULE_AND_ID>;
     fn AddSyntheticSymbolWide(&self, offset: u64, size: u32, name: &::windows::core::PCWSTR, flags: u32) -> ::windows::core::Result<DEBUG_MODULE_AND_ID>;
-    fn RemoveSyntheticSymbol(&self, id: *const DEBUG_MODULE_AND_ID) -> ::windows::core::Result<()>;
+    fn RemoveSyntheticSymbol(&self, id: *mut DEBUG_MODULE_AND_ID) -> ::windows::core::Result<()>;
     fn GetSymbolEntriesByOffset(&self, offset: u64, flags: u32, ids: *mut DEBUG_MODULE_AND_ID, displacements: *mut u64, idscount: u32, entries: *mut u32) -> ::windows::core::Result<()>;
     fn GetSymbolEntriesByName(&self, symbol: &::windows::core::PCSTR, flags: u32, ids: *mut DEBUG_MODULE_AND_ID, idscount: u32, entries: *mut u32) -> ::windows::core::Result<()>;
     fn GetSymbolEntriesByNameWide(&self, symbol: &::windows::core::PCWSTR, flags: u32, ids: *mut DEBUG_MODULE_AND_ID, idscount: u32, entries: *mut u32) -> ::windows::core::Result<()>;
     fn GetSymbolEntryByToken(&self, modulebase: u64, token: u32) -> ::windows::core::Result<DEBUG_MODULE_AND_ID>;
-    fn GetSymbolEntryInformation(&self, id: *const DEBUG_MODULE_AND_ID) -> ::windows::core::Result<DEBUG_SYMBOL_ENTRY>;
-    fn GetSymbolEntryString(&self, id: *const DEBUG_MODULE_AND_ID, which: u32, buffer: ::windows::core::PSTR, buffersize: u32, stringsize: *mut u32) -> ::windows::core::Result<()>;
-    fn GetSymbolEntryStringWide(&self, id: *const DEBUG_MODULE_AND_ID, which: u32, buffer: ::windows::core::PWSTR, buffersize: u32, stringsize: *mut u32) -> ::windows::core::Result<()>;
-    fn GetSymbolEntryOffsetRegions(&self, id: *const DEBUG_MODULE_AND_ID, flags: u32, regions: *mut DEBUG_OFFSET_REGION, regionscount: u32, regionsavail: *mut u32) -> ::windows::core::Result<()>;
-    fn GetSymbolEntryBySymbolEntry(&self, fromid: *const DEBUG_MODULE_AND_ID, flags: u32) -> ::windows::core::Result<DEBUG_MODULE_AND_ID>;
+    fn GetSymbolEntryInformation(&self, id: *mut DEBUG_MODULE_AND_ID) -> ::windows::core::Result<DEBUG_SYMBOL_ENTRY>;
+    fn GetSymbolEntryString(&self, id: *mut DEBUG_MODULE_AND_ID, which: u32, buffer: ::windows::core::PSTR, buffersize: u32, stringsize: *mut u32) -> ::windows::core::Result<()>;
+    fn GetSymbolEntryStringWide(&self, id: *mut DEBUG_MODULE_AND_ID, which: u32, buffer: ::windows::core::PWSTR, buffersize: u32, stringsize: *mut u32) -> ::windows::core::Result<()>;
+    fn GetSymbolEntryOffsetRegions(&self, id: *mut DEBUG_MODULE_AND_ID, flags: u32, regions: *mut DEBUG_OFFSET_REGION, regionscount: u32, regionsavail: *mut u32) -> ::windows::core::Result<()>;
+    fn GetSymbolEntryBySymbolEntry(&self, fromid: *mut DEBUG_MODULE_AND_ID, flags: u32) -> ::windows::core::Result<DEBUG_MODULE_AND_ID>;
     fn GetSourceEntriesByOffset(&self, offset: u64, flags: u32, entries: *mut DEBUG_SYMBOL_SOURCE_ENTRY, entriescount: u32, entriesavail: *mut u32) -> ::windows::core::Result<()>;
     fn GetSourceEntriesByLine(&self, line: u32, file: &::windows::core::PCSTR, flags: u32, entries: *mut DEBUG_SYMBOL_SOURCE_ENTRY, entriescount: u32, entriesavail: *mut u32) -> ::windows::core::Result<()>;
     fn GetSourceEntriesByLineWide(&self, line: u32, file: &::windows::core::PCWSTR, flags: u32, entries: *mut DEBUG_SYMBOL_SOURCE_ENTRY, entriescount: u32, entriesavail: *mut u32) -> ::windows::core::Result<()>;
-    fn GetSourceEntryString(&self, entry: *const DEBUG_SYMBOL_SOURCE_ENTRY, which: u32, buffer: ::windows::core::PSTR, buffersize: u32, stringsize: *mut u32) -> ::windows::core::Result<()>;
-    fn GetSourceEntryStringWide(&self, entry: *const DEBUG_SYMBOL_SOURCE_ENTRY, which: u32, buffer: ::windows::core::PWSTR, buffersize: u32, stringsize: *mut u32) -> ::windows::core::Result<()>;
-    fn GetSourceEntryOffsetRegions(&self, entry: *const DEBUG_SYMBOL_SOURCE_ENTRY, flags: u32, regions: *mut DEBUG_OFFSET_REGION, regionscount: u32, regionsavail: *mut u32) -> ::windows::core::Result<()>;
-    fn GetSourceEntryBySourceEntry(&self, fromentry: *const DEBUG_SYMBOL_SOURCE_ENTRY, flags: u32) -> ::windows::core::Result<DEBUG_SYMBOL_SOURCE_ENTRY>;
+    fn GetSourceEntryString(&self, entry: *mut DEBUG_SYMBOL_SOURCE_ENTRY, which: u32, buffer: ::windows::core::PSTR, buffersize: u32, stringsize: *mut u32) -> ::windows::core::Result<()>;
+    fn GetSourceEntryStringWide(&self, entry: *mut DEBUG_SYMBOL_SOURCE_ENTRY, which: u32, buffer: ::windows::core::PWSTR, buffersize: u32, stringsize: *mut u32) -> ::windows::core::Result<()>;
+    fn GetSourceEntryOffsetRegions(&self, entry: *mut DEBUG_SYMBOL_SOURCE_ENTRY, flags: u32, regions: *mut DEBUG_OFFSET_REGION, regionscount: u32, regionsavail: *mut u32) -> ::windows::core::Result<()>;
+    fn GetSourceEntryBySourceEntry(&self, fromentry: *mut DEBUG_SYMBOL_SOURCE_ENTRY, flags: u32) -> ::windows::core::Result<DEBUG_SYMBOL_SOURCE_ENTRY>;
     fn GetScopeEx(&self, instructionoffset: *mut u64, scopeframe: *mut DEBUG_STACK_FRAME_EX, scopecontext: *mut ::core::ffi::c_void, scopecontextsize: u32) -> ::windows::core::Result<()>;
-    fn SetScopeEx(&self, instructionoffset: u64, scopeframe: *const DEBUG_STACK_FRAME_EX, scopecontext: *const ::core::ffi::c_void, scopecontextsize: u32) -> ::windows::core::Result<()>;
+    fn SetScopeEx(&self, instructionoffset: u64, scopeframe: *mut DEBUG_STACK_FRAME_EX, scopecontext: *mut ::core::ffi::c_void, scopecontextsize: u32) -> ::windows::core::Result<()>;
     fn GetNameByInlineContext(&self, offset: u64, inlinecontext: u32, namebuffer: ::windows::core::PSTR, namebuffersize: u32, namesize: *mut u32, displacement: *mut u64) -> ::windows::core::Result<()>;
     fn GetNameByInlineContextWide(&self, offset: u64, inlinecontext: u32, namebuffer: ::windows::core::PWSTR, namebuffersize: u32, namesize: *mut u32, displacement: *mut u64) -> ::windows::core::Result<()>;
     fn GetLineByInlineContext(&self, offset: u64, inlinecontext: u32, line: *mut u32, filebuffer: ::windows::core::PSTR, filebuffersize: u32, filesize: *mut u32, displacement: *mut u64) -> ::windows::core::Result<()>;
@@ -27287,7 +27287,7 @@ impl IDebugSymbols5_Vtbl {
             )
             .into()
         }
-        unsafe extern "system" fn GetModuleParameters<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugSymbols5_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, count: u32, bases: *const u64, start: u32, params: *mut DEBUG_MODULE_PARAMETERS) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn GetModuleParameters<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugSymbols5_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, count: u32, bases: *mut u64, start: u32, params: *mut DEBUG_MODULE_PARAMETERS) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.GetModuleParameters(::core::mem::transmute_copy(&count), ::core::mem::transmute_copy(&bases), ::core::mem::transmute_copy(&start)) {
@@ -27362,7 +27362,7 @@ impl IDebugSymbols5_Vtbl {
             let this = (*this).get_impl();
             this.ReadTypedDataVirtual(::core::mem::transmute_copy(&offset), ::core::mem::transmute_copy(&module), ::core::mem::transmute_copy(&typeid), ::core::mem::transmute_copy(&buffer), ::core::mem::transmute_copy(&buffersize), ::core::mem::transmute_copy(&bytesread)).into()
         }
-        unsafe extern "system" fn WriteTypedDataVirtual<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugSymbols5_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, offset: u64, module: u64, typeid: u32, buffer: *const ::core::ffi::c_void, buffersize: u32, byteswritten: *mut u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn WriteTypedDataVirtual<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugSymbols5_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, offset: u64, module: u64, typeid: u32, buffer: *mut ::core::ffi::c_void, buffersize: u32, byteswritten: *mut u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.WriteTypedDataVirtual(::core::mem::transmute_copy(&offset), ::core::mem::transmute_copy(&module), ::core::mem::transmute_copy(&typeid), ::core::mem::transmute_copy(&buffer), ::core::mem::transmute_copy(&buffersize)) {
@@ -27383,7 +27383,7 @@ impl IDebugSymbols5_Vtbl {
             let this = (*this).get_impl();
             this.ReadTypedDataPhysical(::core::mem::transmute_copy(&offset), ::core::mem::transmute_copy(&module), ::core::mem::transmute_copy(&typeid), ::core::mem::transmute_copy(&buffer), ::core::mem::transmute_copy(&buffersize), ::core::mem::transmute_copy(&bytesread)).into()
         }
-        unsafe extern "system" fn WriteTypedDataPhysical<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugSymbols5_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, offset: u64, module: u64, typeid: u32, buffer: *const ::core::ffi::c_void, buffersize: u32, byteswritten: *mut u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn WriteTypedDataPhysical<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugSymbols5_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, offset: u64, module: u64, typeid: u32, buffer: *mut ::core::ffi::c_void, buffersize: u32, byteswritten: *mut u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.WriteTypedDataPhysical(::core::mem::transmute_copy(&offset), ::core::mem::transmute_copy(&module), ::core::mem::transmute_copy(&typeid), ::core::mem::transmute_copy(&buffer), ::core::mem::transmute_copy(&buffersize)) {
@@ -27404,7 +27404,7 @@ impl IDebugSymbols5_Vtbl {
             let this = (*this).get_impl();
             this.GetScope(::core::mem::transmute_copy(&instructionoffset), ::core::mem::transmute_copy(&scopeframe), ::core::mem::transmute_copy(&scopecontext), ::core::mem::transmute_copy(&scopecontextsize)).into()
         }
-        unsafe extern "system" fn SetScope<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugSymbols5_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, instructionoffset: u64, scopeframe: *const DEBUG_STACK_FRAME, scopecontext: *const ::core::ffi::c_void, scopecontextsize: u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn SetScope<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugSymbols5_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, instructionoffset: u64, scopeframe: *mut DEBUG_STACK_FRAME, scopecontext: *mut ::core::ffi::c_void, scopecontextsize: u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.SetScope(::core::mem::transmute_copy(&instructionoffset), ::core::mem::transmute_copy(&scopeframe), ::core::mem::transmute_copy(&scopecontext), ::core::mem::transmute_copy(&scopecontextsize)).into()
@@ -27879,7 +27879,7 @@ impl IDebugSymbols5_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn RemoveSyntheticSymbol<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugSymbols5_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, id: *const DEBUG_MODULE_AND_ID) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn RemoveSyntheticSymbol<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugSymbols5_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, id: *mut DEBUG_MODULE_AND_ID) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.RemoveSyntheticSymbol(::core::mem::transmute_copy(&id)).into()
@@ -27910,7 +27910,7 @@ impl IDebugSymbols5_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn GetSymbolEntryInformation<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugSymbols5_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, id: *const DEBUG_MODULE_AND_ID, info: *mut DEBUG_SYMBOL_ENTRY) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn GetSymbolEntryInformation<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugSymbols5_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, id: *mut DEBUG_MODULE_AND_ID, info: *mut DEBUG_SYMBOL_ENTRY) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.GetSymbolEntryInformation(::core::mem::transmute_copy(&id)) {
@@ -27921,22 +27921,22 @@ impl IDebugSymbols5_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn GetSymbolEntryString<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugSymbols5_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, id: *const DEBUG_MODULE_AND_ID, which: u32, buffer: ::windows::core::PSTR, buffersize: u32, stringsize: *mut u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn GetSymbolEntryString<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugSymbols5_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, id: *mut DEBUG_MODULE_AND_ID, which: u32, buffer: ::windows::core::PSTR, buffersize: u32, stringsize: *mut u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.GetSymbolEntryString(::core::mem::transmute_copy(&id), ::core::mem::transmute_copy(&which), ::core::mem::transmute_copy(&buffer), ::core::mem::transmute_copy(&buffersize), ::core::mem::transmute_copy(&stringsize)).into()
         }
-        unsafe extern "system" fn GetSymbolEntryStringWide<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugSymbols5_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, id: *const DEBUG_MODULE_AND_ID, which: u32, buffer: ::windows::core::PWSTR, buffersize: u32, stringsize: *mut u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn GetSymbolEntryStringWide<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugSymbols5_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, id: *mut DEBUG_MODULE_AND_ID, which: u32, buffer: ::windows::core::PWSTR, buffersize: u32, stringsize: *mut u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.GetSymbolEntryStringWide(::core::mem::transmute_copy(&id), ::core::mem::transmute_copy(&which), ::core::mem::transmute_copy(&buffer), ::core::mem::transmute_copy(&buffersize), ::core::mem::transmute_copy(&stringsize)).into()
         }
-        unsafe extern "system" fn GetSymbolEntryOffsetRegions<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugSymbols5_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, id: *const DEBUG_MODULE_AND_ID, flags: u32, regions: *mut DEBUG_OFFSET_REGION, regionscount: u32, regionsavail: *mut u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn GetSymbolEntryOffsetRegions<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugSymbols5_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, id: *mut DEBUG_MODULE_AND_ID, flags: u32, regions: *mut DEBUG_OFFSET_REGION, regionscount: u32, regionsavail: *mut u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.GetSymbolEntryOffsetRegions(::core::mem::transmute_copy(&id), ::core::mem::transmute_copy(&flags), ::core::mem::transmute_copy(&regions), ::core::mem::transmute_copy(&regionscount), ::core::mem::transmute_copy(&regionsavail)).into()
         }
-        unsafe extern "system" fn GetSymbolEntryBySymbolEntry<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugSymbols5_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, fromid: *const DEBUG_MODULE_AND_ID, flags: u32, toid: *mut DEBUG_MODULE_AND_ID) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn GetSymbolEntryBySymbolEntry<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugSymbols5_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, fromid: *mut DEBUG_MODULE_AND_ID, flags: u32, toid: *mut DEBUG_MODULE_AND_ID) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.GetSymbolEntryBySymbolEntry(::core::mem::transmute_copy(&fromid), ::core::mem::transmute_copy(&flags)) {
@@ -27962,22 +27962,22 @@ impl IDebugSymbols5_Vtbl {
             let this = (*this).get_impl();
             this.GetSourceEntriesByLineWide(::core::mem::transmute_copy(&line), ::core::mem::transmute(&file), ::core::mem::transmute_copy(&flags), ::core::mem::transmute_copy(&entries), ::core::mem::transmute_copy(&entriescount), ::core::mem::transmute_copy(&entriesavail)).into()
         }
-        unsafe extern "system" fn GetSourceEntryString<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugSymbols5_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, entry: *const DEBUG_SYMBOL_SOURCE_ENTRY, which: u32, buffer: ::windows::core::PSTR, buffersize: u32, stringsize: *mut u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn GetSourceEntryString<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugSymbols5_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, entry: *mut DEBUG_SYMBOL_SOURCE_ENTRY, which: u32, buffer: ::windows::core::PSTR, buffersize: u32, stringsize: *mut u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.GetSourceEntryString(::core::mem::transmute_copy(&entry), ::core::mem::transmute_copy(&which), ::core::mem::transmute_copy(&buffer), ::core::mem::transmute_copy(&buffersize), ::core::mem::transmute_copy(&stringsize)).into()
         }
-        unsafe extern "system" fn GetSourceEntryStringWide<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugSymbols5_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, entry: *const DEBUG_SYMBOL_SOURCE_ENTRY, which: u32, buffer: ::windows::core::PWSTR, buffersize: u32, stringsize: *mut u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn GetSourceEntryStringWide<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugSymbols5_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, entry: *mut DEBUG_SYMBOL_SOURCE_ENTRY, which: u32, buffer: ::windows::core::PWSTR, buffersize: u32, stringsize: *mut u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.GetSourceEntryStringWide(::core::mem::transmute_copy(&entry), ::core::mem::transmute_copy(&which), ::core::mem::transmute_copy(&buffer), ::core::mem::transmute_copy(&buffersize), ::core::mem::transmute_copy(&stringsize)).into()
         }
-        unsafe extern "system" fn GetSourceEntryOffsetRegions<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugSymbols5_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, entry: *const DEBUG_SYMBOL_SOURCE_ENTRY, flags: u32, regions: *mut DEBUG_OFFSET_REGION, regionscount: u32, regionsavail: *mut u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn GetSourceEntryOffsetRegions<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugSymbols5_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, entry: *mut DEBUG_SYMBOL_SOURCE_ENTRY, flags: u32, regions: *mut DEBUG_OFFSET_REGION, regionscount: u32, regionsavail: *mut u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.GetSourceEntryOffsetRegions(::core::mem::transmute_copy(&entry), ::core::mem::transmute_copy(&flags), ::core::mem::transmute_copy(&regions), ::core::mem::transmute_copy(&regionscount), ::core::mem::transmute_copy(&regionsavail)).into()
         }
-        unsafe extern "system" fn GetSourceEntryBySourceEntry<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugSymbols5_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, fromentry: *const DEBUG_SYMBOL_SOURCE_ENTRY, flags: u32, toentry: *mut DEBUG_SYMBOL_SOURCE_ENTRY) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn GetSourceEntryBySourceEntry<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugSymbols5_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, fromentry: *mut DEBUG_SYMBOL_SOURCE_ENTRY, flags: u32, toentry: *mut DEBUG_SYMBOL_SOURCE_ENTRY) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.GetSourceEntryBySourceEntry(::core::mem::transmute_copy(&fromentry), ::core::mem::transmute_copy(&flags)) {
@@ -27993,7 +27993,7 @@ impl IDebugSymbols5_Vtbl {
             let this = (*this).get_impl();
             this.GetScopeEx(::core::mem::transmute_copy(&instructionoffset), ::core::mem::transmute_copy(&scopeframe), ::core::mem::transmute_copy(&scopecontext), ::core::mem::transmute_copy(&scopecontextsize)).into()
         }
-        unsafe extern "system" fn SetScopeEx<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugSymbols5_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, instructionoffset: u64, scopeframe: *const DEBUG_STACK_FRAME_EX, scopecontext: *const ::core::ffi::c_void, scopecontextsize: u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn SetScopeEx<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDebugSymbols5_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, instructionoffset: u64, scopeframe: *mut DEBUG_STACK_FRAME_EX, scopecontext: *mut ::core::ffi::c_void, scopecontextsize: u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.SetScopeEx(::core::mem::transmute_copy(&instructionoffset), ::core::mem::transmute_copy(&scopeframe), ::core::mem::transmute_copy(&scopecontext), ::core::mem::transmute_copy(&scopecontextsize)).into()
@@ -30615,8 +30615,8 @@ impl IHostDataModelAccess_Vtbl {
 }
 pub trait IIndexableConcept_Impl: Sized {
     fn GetDimensionality(&self, contextobject: &::core::option::Option<IModelObject>) -> ::windows::core::Result<u64>;
-    fn GetAt(&self, contextobject: &::core::option::Option<IModelObject>, indexercount: u64, indexers: *const ::core::option::Option<IModelObject>, object: *mut ::core::option::Option<IModelObject>, metadata: *mut ::core::option::Option<IKeyStore>) -> ::windows::core::Result<()>;
-    fn SetAt(&self, contextobject: &::core::option::Option<IModelObject>, indexercount: u64, indexers: *const ::core::option::Option<IModelObject>, value: &::core::option::Option<IModelObject>) -> ::windows::core::Result<()>;
+    fn GetAt(&self, contextobject: &::core::option::Option<IModelObject>, indexercount: u64, indexers: *mut ::core::option::Option<IModelObject>, object: *mut ::core::option::Option<IModelObject>, metadata: *mut ::core::option::Option<IKeyStore>) -> ::windows::core::Result<()>;
+    fn SetAt(&self, contextobject: &::core::option::Option<IModelObject>, indexercount: u64, indexers: *mut ::core::option::Option<IModelObject>, value: &::core::option::Option<IModelObject>) -> ::windows::core::Result<()>;
 }
 impl ::windows::core::RuntimeName for IIndexableConcept {}
 impl IIndexableConcept_Vtbl {
@@ -30632,12 +30632,12 @@ impl IIndexableConcept_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn GetAt<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IIndexableConcept_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, contextobject: *mut ::core::ffi::c_void, indexercount: u64, indexers: *const *mut ::core::ffi::c_void, object: *mut *mut ::core::ffi::c_void, metadata: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn GetAt<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IIndexableConcept_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, contextobject: *mut ::core::ffi::c_void, indexercount: u64, indexers: *mut *mut ::core::ffi::c_void, object: *mut *mut ::core::ffi::c_void, metadata: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.GetAt(::core::mem::transmute(&contextobject), ::core::mem::transmute_copy(&indexercount), ::core::mem::transmute_copy(&indexers), ::core::mem::transmute_copy(&object), ::core::mem::transmute_copy(&metadata)).into()
         }
-        unsafe extern "system" fn SetAt<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IIndexableConcept_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, contextobject: *mut ::core::ffi::c_void, indexercount: u64, indexers: *const *mut ::core::ffi::c_void, value: *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn SetAt<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IIndexableConcept_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, contextobject: *mut ::core::ffi::c_void, indexercount: u64, indexers: *mut *mut ::core::ffi::c_void, value: *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.SetAt(::core::mem::transmute(&contextobject), ::core::mem::transmute_copy(&indexercount), ::core::mem::transmute_copy(&indexers), ::core::mem::transmute(&value)).into()
@@ -30774,7 +30774,7 @@ impl IJsDebugBreakPoint_Vtbl {
 }
 pub trait IJsDebugDataTarget_Impl: Sized {
     fn ReadMemory(&self, address: u64, flags: JsDebugReadMemoryFlags, pbuffer: *mut u8, size: u32, pbytesread: *mut u32) -> ::windows::core::Result<()>;
-    fn WriteMemory(&self, address: u64, pmemory: *const u8, size: u32) -> ::windows::core::Result<()>;
+    fn WriteMemory(&self, address: u64, pmemory: *mut u8, size: u32) -> ::windows::core::Result<()>;
     fn AllocateVirtualMemory(&self, address: u64, size: u32, allocationtype: u32, pageprotection: u32) -> ::windows::core::Result<u64>;
     fn FreeVirtualMemory(&self, address: u64, size: u32, freetype: u32) -> ::windows::core::Result<()>;
     fn GetTlsValue(&self, threadid: u32, tlsindex: u32) -> ::windows::core::Result<u64>;
@@ -30791,7 +30791,7 @@ impl IJsDebugDataTarget_Vtbl {
             let this = (*this).get_impl();
             this.ReadMemory(::core::mem::transmute_copy(&address), ::core::mem::transmute_copy(&flags), ::core::mem::transmute_copy(&pbuffer), ::core::mem::transmute_copy(&size), ::core::mem::transmute_copy(&pbytesread)).into()
         }
-        unsafe extern "system" fn WriteMemory<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IJsDebugDataTarget_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, address: u64, pmemory: *const u8, size: u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn WriteMemory<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IJsDebugDataTarget_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, address: u64, pmemory: *mut u8, size: u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.WriteMemory(::core::mem::transmute_copy(&address), ::core::mem::transmute_copy(&pmemory), ::core::mem::transmute_copy(&size)).into()
@@ -31434,12 +31434,12 @@ impl IModelKeyReference2_Vtbl {
     }
 }
 pub trait IModelMethod_Impl: Sized {
-    fn Call(&self, pcontextobject: &::core::option::Option<IModelObject>, argcount: u64, pparguments: *const ::core::option::Option<IModelObject>, ppresult: *mut ::core::option::Option<IModelObject>, ppmetadata: *mut ::core::option::Option<IKeyStore>) -> ::windows::core::Result<()>;
+    fn Call(&self, pcontextobject: &::core::option::Option<IModelObject>, argcount: u64, pparguments: *mut ::core::option::Option<IModelObject>, ppresult: *mut ::core::option::Option<IModelObject>, ppmetadata: *mut ::core::option::Option<IKeyStore>) -> ::windows::core::Result<()>;
 }
 impl ::windows::core::RuntimeName for IModelMethod {}
 impl IModelMethod_Vtbl {
     pub const fn new<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IModelMethod_Impl, const OFFSET: isize>() -> IModelMethod_Vtbl {
-        unsafe extern "system" fn Call<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IModelMethod_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, pcontextobject: *mut ::core::ffi::c_void, argcount: u64, pparguments: *const *mut ::core::ffi::c_void, ppresult: *mut *mut ::core::ffi::c_void, ppmetadata: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn Call<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IModelMethod_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, pcontextobject: *mut ::core::ffi::c_void, argcount: u64, pparguments: *mut *mut ::core::ffi::c_void, ppresult: *mut *mut ::core::ffi::c_void, ppmetadata: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.Call(::core::mem::transmute(&pcontextobject), ::core::mem::transmute_copy(&argcount), ::core::mem::transmute_copy(&pparguments), ::core::mem::transmute_copy(&ppresult), ::core::mem::transmute_copy(&ppmetadata)).into()
@@ -32734,7 +32734,7 @@ pub trait IScriptNode_Impl: Sized {
     fn GetChild(&self, isn: u32) -> ::windows::core::Result<IScriptNode>;
     fn GetLanguage(&self) -> ::windows::core::Result<::windows::core::BSTR>;
     fn CreateChildEntry(&self, isn: u32, dwcookie: u32, pszdelimiter: &::windows::core::PCWSTR) -> ::windows::core::Result<IScriptEntry>;
-    fn CreateChildHandler(&self, pszdefaultname: &::windows::core::PCWSTR, prgpsznames: *const ::windows::core::PWSTR, cpsznames: u32, pszevent: &::windows::core::PCWSTR, pszdelimiter: &::windows::core::PCWSTR, ptisignature: &::core::option::Option<super::super::Com::ITypeInfo>, imethodsignature: u32, isn: u32, dwcookie: u32) -> ::windows::core::Result<IScriptEntry>;
+    fn CreateChildHandler(&self, pszdefaultname: &::windows::core::PCWSTR, prgpsznames: *mut ::windows::core::PWSTR, cpsznames: u32, pszevent: &::windows::core::PCWSTR, pszdelimiter: &::windows::core::PCWSTR, ptisignature: &::core::option::Option<super::super::Com::ITypeInfo>, imethodsignature: u32, isn: u32, dwcookie: u32) -> ::windows::core::Result<IScriptEntry>;
 }
 #[cfg(feature = "Win32_System_Com")]
 impl ::windows::core::RuntimeName for IScriptNode {}
@@ -32828,7 +32828,7 @@ impl IScriptNode_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn CreateChildHandler<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IScriptNode_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, pszdefaultname: ::windows::core::PCWSTR, prgpsznames: *const ::windows::core::PWSTR, cpsznames: u32, pszevent: ::windows::core::PCWSTR, pszdelimiter: ::windows::core::PCWSTR, ptisignature: *mut ::core::ffi::c_void, imethodsignature: u32, isn: u32, dwcookie: u32, ppse: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn CreateChildHandler<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IScriptNode_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, pszdefaultname: ::windows::core::PCWSTR, prgpsznames: *mut ::windows::core::PWSTR, cpsznames: u32, pszevent: ::windows::core::PCWSTR, pszdelimiter: ::windows::core::PCWSTR, ptisignature: *mut ::core::ffi::c_void, imethodsignature: u32, isn: u32, dwcookie: u32, ppse: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.CreateChildHandler(::core::mem::transmute(&pszdefaultname), ::core::mem::transmute_copy(&prgpsznames), ::core::mem::transmute_copy(&cpsznames), ::core::mem::transmute(&pszevent), ::core::mem::transmute(&pszdelimiter), ::core::mem::transmute(&ptisignature), ::core::mem::transmute_copy(&imethodsignature), ::core::mem::transmute_copy(&isn), ::core::mem::transmute_copy(&dwcookie)) {
@@ -33014,14 +33014,14 @@ impl IStringDisplayableConcept_Vtbl {
 }
 #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
 pub trait ITridentEventSink_Impl: Sized {
-    fn FireEvent(&self, pstrevent: &::windows::core::PCWSTR, pdp: *const super::super::Com::DISPPARAMS, pvarres: *mut super::super::Com::VARIANT, pei: *mut super::super::Com::EXCEPINFO) -> ::windows::core::Result<()>;
+    fn FireEvent(&self, pstrevent: &::windows::core::PCWSTR, pdp: *mut super::super::Com::DISPPARAMS, pvarres: *mut super::super::Com::VARIANT, pei: *mut super::super::Com::EXCEPINFO) -> ::windows::core::Result<()>;
 }
 #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
 impl ::windows::core::RuntimeName for ITridentEventSink {}
 #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
 impl ITridentEventSink_Vtbl {
     pub const fn new<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: ITridentEventSink_Impl, const OFFSET: isize>() -> ITridentEventSink_Vtbl {
-        unsafe extern "system" fn FireEvent<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: ITridentEventSink_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, pstrevent: ::windows::core::PCWSTR, pdp: *const super::super::Com::DISPPARAMS, pvarres: *mut ::core::mem::ManuallyDrop<super::super::Com::VARIANT>, pei: *mut ::core::mem::ManuallyDrop<super::super::Com::EXCEPINFO>) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn FireEvent<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: ITridentEventSink_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, pstrevent: ::windows::core::PCWSTR, pdp: *mut super::super::Com::DISPPARAMS, pvarres: *mut ::core::mem::ManuallyDrop<super::super::Com::VARIANT>, pei: *mut ::core::mem::ManuallyDrop<super::super::Com::EXCEPINFO>) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.FireEvent(::core::mem::transmute(&pstrevent), ::core::mem::transmute_copy(&pdp), ::core::mem::transmute_copy(&pvarres), ::core::mem::transmute_copy(&pei)).into()

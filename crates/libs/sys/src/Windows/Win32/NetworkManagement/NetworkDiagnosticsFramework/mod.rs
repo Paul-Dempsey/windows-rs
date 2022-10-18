@@ -1,7 +1,7 @@
 #[cfg_attr(windows, link(name = "windows"))]
 extern "system" {
     #[doc = "*Required features: `\"Win32_NetworkManagement_NetworkDiagnosticsFramework\"`*"]
-    pub fn NdfCancelIncident(handle: *const ::core::ffi::c_void) -> ::windows_sys::core::HRESULT;
+    pub fn NdfCancelIncident(handle: *mut ::core::ffi::c_void) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_NetworkManagement_NetworkDiagnosticsFramework\"`*"]
     pub fn NdfCloseIncident(handle: *mut ::core::ffi::c_void) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_NetworkManagement_NetworkDiagnosticsFramework\"`*"]
@@ -10,10 +10,10 @@ extern "system" {
     pub fn NdfCreateDNSIncident(hostname: ::windows_sys::core::PCWSTR, querytype: u16, handle: *mut *mut ::core::ffi::c_void) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_NetworkManagement_NetworkDiagnosticsFramework\"`, `\"Win32_Foundation\"`, `\"Win32_Networking_WinSock\"`*"]
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_Networking_WinSock"))]
-    pub fn NdfCreateGroupingIncident(cloudname: ::windows_sys::core::PCWSTR, groupname: ::windows_sys::core::PCWSTR, identity: ::windows_sys::core::PCWSTR, invitation: ::windows_sys::core::PCWSTR, addresses: *const super::super::Networking::WinSock::SOCKET_ADDRESS_LIST, appid: ::windows_sys::core::PCWSTR, handle: *mut *mut ::core::ffi::c_void) -> ::windows_sys::core::HRESULT;
+    pub fn NdfCreateGroupingIncident(cloudname: ::windows_sys::core::PCWSTR, groupname: ::windows_sys::core::PCWSTR, identity: ::windows_sys::core::PCWSTR, invitation: ::windows_sys::core::PCWSTR, addresses: *mut super::super::Networking::WinSock::SOCKET_ADDRESS_LIST, appid: ::windows_sys::core::PCWSTR, handle: *mut *mut ::core::ffi::c_void) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_NetworkManagement_NetworkDiagnosticsFramework\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub fn NdfCreateIncident(helperclassname: ::windows_sys::core::PCWSTR, celt: u32, attributes: *const HELPER_ATTRIBUTE, handle: *mut *mut ::core::ffi::c_void) -> ::windows_sys::core::HRESULT;
+    pub fn NdfCreateIncident(helperclassname: ::windows_sys::core::PCWSTR, celt: u32, attributes: *mut HELPER_ATTRIBUTE, handle: *mut *mut ::core::ffi::c_void) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_NetworkManagement_NetworkDiagnosticsFramework\"`*"]
     pub fn NdfCreateNetConnectionIncident(handle: *mut *mut ::core::ffi::c_void, id: ::windows_sys::core::GUID) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_NetworkManagement_NetworkDiagnosticsFramework\"`, `\"Win32_Foundation\"`*"]
@@ -25,19 +25,19 @@ extern "system" {
     pub fn NdfCreateWebIncident(url: ::windows_sys::core::PCWSTR, handle: *mut *mut ::core::ffi::c_void) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_NetworkManagement_NetworkDiagnosticsFramework\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub fn NdfCreateWebIncidentEx(url: ::windows_sys::core::PCWSTR, usewinhttp: super::super::Foundation::BOOL, modulename: ::windows_sys::core::PCWSTR, handle: *mut *mut ::core::ffi::c_void) -> ::windows_sys::core::HRESULT;
+    pub fn NdfCreateWebIncidentEx(url: ::windows_sys::core::PCWSTR, usewinhttp: super::super::Foundation::BOOL, modulename: ::windows_sys::core::PWSTR, handle: *mut *mut ::core::ffi::c_void) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_NetworkManagement_NetworkDiagnosticsFramework\"`, `\"Win32_Networking_WinSock\"`, `\"Win32_Security\"`*"]
     #[cfg(all(feature = "Win32_Networking_WinSock", feature = "Win32_Security"))]
-    pub fn NdfCreateWinSockIncident(sock: super::super::Networking::WinSock::SOCKET, host: ::windows_sys::core::PCWSTR, port: u16, appid: ::windows_sys::core::PCWSTR, userid: *const super::super::Security::SID, handle: *mut *mut ::core::ffi::c_void) -> ::windows_sys::core::HRESULT;
+    pub fn NdfCreateWinSockIncident(sock: super::super::Networking::WinSock::SOCKET, host: ::windows_sys::core::PCWSTR, port: u16, appid: ::windows_sys::core::PCWSTR, userid: *mut super::super::Security::SID, handle: *mut *mut ::core::ffi::c_void) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_NetworkManagement_NetworkDiagnosticsFramework\"`*"]
-    pub fn NdfDiagnoseIncident(handle: *const ::core::ffi::c_void, rootcausecount: *mut u32, rootcauses: *mut *mut RootCauseInfo, dwwait: u32, dwflags: u32) -> ::windows_sys::core::HRESULT;
+    pub fn NdfDiagnoseIncident(handle: *mut ::core::ffi::c_void, rootcausecount: *mut u32, rootcauses: *mut *mut RootCauseInfo, dwwait: u32, dwflags: u32) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_NetworkManagement_NetworkDiagnosticsFramework\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub fn NdfExecuteDiagnosis(handle: *const ::core::ffi::c_void, hwnd: super::super::Foundation::HWND) -> ::windows_sys::core::HRESULT;
+    pub fn NdfExecuteDiagnosis(handle: *mut ::core::ffi::c_void, hwnd: super::super::Foundation::HWND) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_NetworkManagement_NetworkDiagnosticsFramework\"`*"]
-    pub fn NdfGetTraceFile(handle: *const ::core::ffi::c_void, tracefilelocation: *mut ::windows_sys::core::PWSTR) -> ::windows_sys::core::HRESULT;
+    pub fn NdfGetTraceFile(handle: *mut ::core::ffi::c_void, tracefilelocation: *mut ::windows_sys::core::PWSTR) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_NetworkManagement_NetworkDiagnosticsFramework\"`*"]
-    pub fn NdfRepairIncident(handle: *const ::core::ffi::c_void, repairex: *const RepairInfoEx, dwwait: u32) -> ::windows_sys::core::HRESULT;
+    pub fn NdfRepairIncident(handle: *mut ::core::ffi::c_void, repairex: *mut RepairInfoEx, dwwait: u32) -> ::windows_sys::core::HRESULT;
 }
 pub type INetDiagExtensibleHelper = *mut ::core::ffi::c_void;
 pub type INetDiagHelper = *mut ::core::ffi::c_void;

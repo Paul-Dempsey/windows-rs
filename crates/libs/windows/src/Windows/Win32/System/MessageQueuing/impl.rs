@@ -26,7 +26,7 @@ impl IMSMQApplication_Vtbl {
 }
 #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
 pub trait IMSMQApplication2_Impl: Sized + IMSMQApplication_Impl {
-    fn RegisterCertificate(&self, flags: *const super::Com::VARIANT, externalcertificate: *const super::Com::VARIANT) -> ::windows::core::Result<()>;
+    fn RegisterCertificate(&self, flags: *mut super::Com::VARIANT, externalcertificate: *mut super::Com::VARIANT) -> ::windows::core::Result<()>;
     fn MachineNameOfMachineId(&self, bstrguid: &::windows::core::BSTR) -> ::windows::core::Result<::windows::core::BSTR>;
     fn MSMQVersionMajor(&self) -> ::windows::core::Result<i16>;
     fn MSMQVersionMinor(&self) -> ::windows::core::Result<i16>;
@@ -39,7 +39,7 @@ impl ::windows::core::RuntimeName for IMSMQApplication2 {}
 #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
 impl IMSMQApplication2_Vtbl {
     pub const fn new<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQApplication2_Impl, const OFFSET: isize>() -> IMSMQApplication2_Vtbl {
-        unsafe extern "system" fn RegisterCertificate<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQApplication2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, flags: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, externalcertificate: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn RegisterCertificate<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQApplication2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, flags: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, externalcertificate: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.RegisterCertificate(::core::mem::transmute_copy(&flags), ::core::mem::transmute_copy(&externalcertificate)).into()
@@ -249,7 +249,7 @@ impl IMSMQApplication3_Vtbl {
 }
 #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
 pub trait IMSMQCollection_Impl: Sized + super::Com::IDispatch_Impl {
-    fn Item(&self, index: *const super::Com::VARIANT) -> ::windows::core::Result<super::Com::VARIANT>;
+    fn Item(&self, index: *mut super::Com::VARIANT) -> ::windows::core::Result<super::Com::VARIANT>;
     fn Count(&self) -> ::windows::core::Result<i32>;
     fn _NewEnum(&self) -> ::windows::core::Result<::windows::core::IUnknown>;
 }
@@ -258,7 +258,7 @@ impl ::windows::core::RuntimeName for IMSMQCollection {}
 #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
 impl IMSMQCollection_Vtbl {
     pub const fn new<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQCollection_Impl, const OFFSET: isize>() -> IMSMQCollection_Vtbl {
-        unsafe extern "system" fn Item<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQCollection_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, index: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, pvarret: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn Item<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQCollection_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, index: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, pvarret: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.Item(::core::mem::transmute_copy(&index)) {
@@ -622,7 +622,7 @@ impl IMSMQEvent3_Vtbl {
 }
 #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
 pub trait IMSMQManagement_Impl: Sized + super::Com::IDispatch_Impl {
-    fn Init(&self, machine: *const super::Com::VARIANT, pathname: *const super::Com::VARIANT, formatname: *const super::Com::VARIANT) -> ::windows::core::Result<()>;
+    fn Init(&self, machine: *mut super::Com::VARIANT, pathname: *mut super::Com::VARIANT, formatname: *mut super::Com::VARIANT) -> ::windows::core::Result<()>;
     fn FormatName(&self) -> ::windows::core::Result<::windows::core::BSTR>;
     fn Machine(&self) -> ::windows::core::Result<::windows::core::BSTR>;
     fn MessageCount(&self) -> ::windows::core::Result<i32>;
@@ -637,7 +637,7 @@ impl ::windows::core::RuntimeName for IMSMQManagement {}
 #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
 impl IMSMQManagement_Vtbl {
     pub const fn new<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQManagement_Impl, const OFFSET: isize>() -> IMSMQManagement_Vtbl {
-        unsafe extern "system" fn Init<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQManagement_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, machine: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, pathname: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, formatname: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn Init<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQManagement_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, machine: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, pathname: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, formatname: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.Init(::core::mem::transmute_copy(&machine), ::core::mem::transmute_copy(&pathname), ::core::mem::transmute_copy(&formatname)).into()
@@ -796,7 +796,7 @@ pub trait IMSMQMessage_Impl: Sized + super::Com::IDispatch_Impl {
     fn SenderId(&self) -> ::windows::core::Result<super::Com::VARIANT>;
     fn SenderIdType(&self) -> ::windows::core::Result<i32>;
     fn SetSenderIdType(&self, lsenderidtype: i32) -> ::windows::core::Result<()>;
-    fn Send(&self, destinationqueue: &::core::option::Option<IMSMQQueue>, transaction: *const super::Com::VARIANT) -> ::windows::core::Result<()>;
+    fn Send(&self, destinationqueue: &::core::option::Option<IMSMQQueue>, transaction: *mut super::Com::VARIANT) -> ::windows::core::Result<()>;
     fn AttachCurrentSecurityContext(&self) -> ::windows::core::Result<()>;
 }
 #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
@@ -1207,7 +1207,7 @@ impl IMSMQMessage_Vtbl {
             let this = (*this).get_impl();
             this.SetSenderIdType(::core::mem::transmute_copy(&lsenderidtype)).into()
         }
-        unsafe extern "system" fn Send<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQMessage_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, destinationqueue: *mut ::core::ffi::c_void, transaction: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn Send<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQMessage_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, destinationqueue: *mut ::core::ffi::c_void, transaction: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.Send(::core::mem::transmute(&destinationqueue), ::core::mem::transmute_copy(&transaction)).into()
@@ -1323,7 +1323,7 @@ pub trait IMSMQMessage2_Impl: Sized + super::Com::IDispatch_Impl {
     fn SenderId(&self) -> ::windows::core::Result<super::Com::VARIANT>;
     fn SenderIdType(&self) -> ::windows::core::Result<i32>;
     fn SetSenderIdType(&self, lsenderidtype: i32) -> ::windows::core::Result<()>;
-    fn Send(&self, destinationqueue: &::core::option::Option<IMSMQQueue2>, transaction: *const super::Com::VARIANT) -> ::windows::core::Result<()>;
+    fn Send(&self, destinationqueue: &::core::option::Option<IMSMQQueue2>, transaction: *mut super::Com::VARIANT) -> ::windows::core::Result<()>;
     fn AttachCurrentSecurityContext(&self) -> ::windows::core::Result<()>;
     fn SenderVersion(&self) -> ::windows::core::Result<i32>;
     fn Extension(&self) -> ::windows::core::Result<super::Com::VARIANT>;
@@ -1760,7 +1760,7 @@ impl IMSMQMessage2_Vtbl {
             let this = (*this).get_impl();
             this.SetSenderIdType(::core::mem::transmute_copy(&lsenderidtype)).into()
         }
-        unsafe extern "system" fn Send<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQMessage2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, destinationqueue: *mut ::core::ffi::c_void, transaction: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn Send<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQMessage2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, destinationqueue: *mut ::core::ffi::c_void, transaction: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.Send(::core::mem::transmute(&destinationqueue), ::core::mem::transmute_copy(&transaction)).into()
@@ -2128,7 +2128,7 @@ pub trait IMSMQMessage3_Impl: Sized + super::Com::IDispatch_Impl {
     fn SenderId(&self) -> ::windows::core::Result<super::Com::VARIANT>;
     fn SenderIdType(&self) -> ::windows::core::Result<i32>;
     fn SetSenderIdType(&self, lsenderidtype: i32) -> ::windows::core::Result<()>;
-    fn Send(&self, destinationqueue: &::core::option::Option<super::Com::IDispatch>, transaction: *const super::Com::VARIANT) -> ::windows::core::Result<()>;
+    fn Send(&self, destinationqueue: &::core::option::Option<super::Com::IDispatch>, transaction: *mut super::Com::VARIANT) -> ::windows::core::Result<()>;
     fn AttachCurrentSecurityContext(&self) -> ::windows::core::Result<()>;
     fn SenderVersion(&self) -> ::windows::core::Result<i32>;
     fn Extension(&self) -> ::windows::core::Result<super::Com::VARIANT>;
@@ -2581,7 +2581,7 @@ impl IMSMQMessage3_Vtbl {
             let this = (*this).get_impl();
             this.SetSenderIdType(::core::mem::transmute_copy(&lsenderidtype)).into()
         }
-        unsafe extern "system" fn Send<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQMessage3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, destinationqueue: *mut ::core::ffi::c_void, transaction: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn Send<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQMessage3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, destinationqueue: *mut ::core::ffi::c_void, transaction: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.Send(::core::mem::transmute(&destinationqueue), ::core::mem::transmute_copy(&transaction)).into()
@@ -3105,7 +3105,7 @@ pub trait IMSMQMessage4_Impl: Sized + super::Com::IDispatch_Impl {
     fn SenderId(&self) -> ::windows::core::Result<super::Com::VARIANT>;
     fn SenderIdType(&self) -> ::windows::core::Result<i32>;
     fn SetSenderIdType(&self, lsenderidtype: i32) -> ::windows::core::Result<()>;
-    fn Send(&self, destinationqueue: &::core::option::Option<super::Com::IDispatch>, transaction: *const super::Com::VARIANT) -> ::windows::core::Result<()>;
+    fn Send(&self, destinationqueue: &::core::option::Option<super::Com::IDispatch>, transaction: *mut super::Com::VARIANT) -> ::windows::core::Result<()>;
     fn AttachCurrentSecurityContext(&self) -> ::windows::core::Result<()>;
     fn SenderVersion(&self) -> ::windows::core::Result<i32>;
     fn Extension(&self) -> ::windows::core::Result<super::Com::VARIANT>;
@@ -3558,7 +3558,7 @@ impl IMSMQMessage4_Vtbl {
             let this = (*this).get_impl();
             this.SetSenderIdType(::core::mem::transmute_copy(&lsenderidtype)).into()
         }
-        unsafe extern "system" fn Send<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQMessage4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, destinationqueue: *mut ::core::ffi::c_void, transaction: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn Send<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQMessage4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, destinationqueue: *mut ::core::ffi::c_void, transaction: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.Send(::core::mem::transmute(&destinationqueue), ::core::mem::transmute_copy(&transaction)).into()
@@ -4190,7 +4190,7 @@ impl IMSMQPrivateEvent_Vtbl {
 }
 #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
 pub trait IMSMQQuery_Impl: Sized + super::Com::IDispatch_Impl {
-    fn LookupQueue(&self, queueguid: *const super::Com::VARIANT, servicetypeguid: *const super::Com::VARIANT, label: *const super::Com::VARIANT, createtime: *const super::Com::VARIANT, modifytime: *const super::Com::VARIANT, relservicetype: *const super::Com::VARIANT, rellabel: *const super::Com::VARIANT, relcreatetime: *const super::Com::VARIANT, relmodifytime: *const super::Com::VARIANT) -> ::windows::core::Result<IMSMQQueueInfos>;
+    fn LookupQueue(&self, queueguid: *mut super::Com::VARIANT, servicetypeguid: *mut super::Com::VARIANT, label: *mut super::Com::VARIANT, createtime: *mut super::Com::VARIANT, modifytime: *mut super::Com::VARIANT, relservicetype: *mut super::Com::VARIANT, rellabel: *mut super::Com::VARIANT, relcreatetime: *mut super::Com::VARIANT, relmodifytime: *mut super::Com::VARIANT) -> ::windows::core::Result<IMSMQQueueInfos>;
 }
 #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
 impl ::windows::core::RuntimeName for IMSMQQuery {}
@@ -4199,15 +4199,15 @@ impl IMSMQQuery_Vtbl {
     pub const fn new<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQuery_Impl, const OFFSET: isize>() -> IMSMQQuery_Vtbl {
         unsafe extern "system" fn LookupQueue<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQuery_Impl, const OFFSET: isize>(
             this: *mut ::core::ffi::c_void,
-            queueguid: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>,
-            servicetypeguid: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>,
-            label: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>,
-            createtime: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>,
-            modifytime: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>,
-            relservicetype: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>,
-            rellabel: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>,
-            relcreatetime: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>,
-            relmodifytime: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>,
+            queueguid: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>,
+            servicetypeguid: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>,
+            label: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>,
+            createtime: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>,
+            modifytime: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>,
+            relservicetype: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>,
+            rellabel: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>,
+            relcreatetime: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>,
+            relmodifytime: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>,
             ppqinfos: *mut *mut ::core::ffi::c_void,
         ) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
@@ -4228,7 +4228,7 @@ impl IMSMQQuery_Vtbl {
 }
 #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
 pub trait IMSMQQuery2_Impl: Sized + super::Com::IDispatch_Impl {
-    fn LookupQueue(&self, queueguid: *const super::Com::VARIANT, servicetypeguid: *const super::Com::VARIANT, label: *const super::Com::VARIANT, createtime: *const super::Com::VARIANT, modifytime: *const super::Com::VARIANT, relservicetype: *const super::Com::VARIANT, rellabel: *const super::Com::VARIANT, relcreatetime: *const super::Com::VARIANT, relmodifytime: *const super::Com::VARIANT) -> ::windows::core::Result<IMSMQQueueInfos2>;
+    fn LookupQueue(&self, queueguid: *mut super::Com::VARIANT, servicetypeguid: *mut super::Com::VARIANT, label: *mut super::Com::VARIANT, createtime: *mut super::Com::VARIANT, modifytime: *mut super::Com::VARIANT, relservicetype: *mut super::Com::VARIANT, rellabel: *mut super::Com::VARIANT, relcreatetime: *mut super::Com::VARIANT, relmodifytime: *mut super::Com::VARIANT) -> ::windows::core::Result<IMSMQQueueInfos2>;
     fn Properties(&self) -> ::windows::core::Result<super::Com::IDispatch>;
 }
 #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
@@ -4238,15 +4238,15 @@ impl IMSMQQuery2_Vtbl {
     pub const fn new<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQuery2_Impl, const OFFSET: isize>() -> IMSMQQuery2_Vtbl {
         unsafe extern "system" fn LookupQueue<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQuery2_Impl, const OFFSET: isize>(
             this: *mut ::core::ffi::c_void,
-            queueguid: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>,
-            servicetypeguid: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>,
-            label: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>,
-            createtime: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>,
-            modifytime: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>,
-            relservicetype: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>,
-            rellabel: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>,
-            relcreatetime: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>,
-            relmodifytime: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>,
+            queueguid: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>,
+            servicetypeguid: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>,
+            label: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>,
+            createtime: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>,
+            modifytime: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>,
+            relservicetype: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>,
+            rellabel: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>,
+            relcreatetime: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>,
+            relmodifytime: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>,
             ppqinfos: *mut *mut ::core::ffi::c_void,
         ) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
@@ -4282,9 +4282,9 @@ impl IMSMQQuery2_Vtbl {
 }
 #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
 pub trait IMSMQQuery3_Impl: Sized + super::Com::IDispatch_Impl {
-    fn LookupQueue_v2(&self, queueguid: *const super::Com::VARIANT, servicetypeguid: *const super::Com::VARIANT, label: *const super::Com::VARIANT, createtime: *const super::Com::VARIANT, modifytime: *const super::Com::VARIANT, relservicetype: *const super::Com::VARIANT, rellabel: *const super::Com::VARIANT, relcreatetime: *const super::Com::VARIANT, relmodifytime: *const super::Com::VARIANT) -> ::windows::core::Result<IMSMQQueueInfos3>;
+    fn LookupQueue_v2(&self, queueguid: *mut super::Com::VARIANT, servicetypeguid: *mut super::Com::VARIANT, label: *mut super::Com::VARIANT, createtime: *mut super::Com::VARIANT, modifytime: *mut super::Com::VARIANT, relservicetype: *mut super::Com::VARIANT, rellabel: *mut super::Com::VARIANT, relcreatetime: *mut super::Com::VARIANT, relmodifytime: *mut super::Com::VARIANT) -> ::windows::core::Result<IMSMQQueueInfos3>;
     fn Properties(&self) -> ::windows::core::Result<super::Com::IDispatch>;
-    fn LookupQueue(&self, queueguid: *const super::Com::VARIANT, servicetypeguid: *const super::Com::VARIANT, label: *const super::Com::VARIANT, createtime: *const super::Com::VARIANT, modifytime: *const super::Com::VARIANT, relservicetype: *const super::Com::VARIANT, rellabel: *const super::Com::VARIANT, relcreatetime: *const super::Com::VARIANT, relmodifytime: *const super::Com::VARIANT, multicastaddress: *const super::Com::VARIANT, relmulticastaddress: *const super::Com::VARIANT) -> ::windows::core::Result<IMSMQQueueInfos3>;
+    fn LookupQueue(&self, queueguid: *mut super::Com::VARIANT, servicetypeguid: *mut super::Com::VARIANT, label: *mut super::Com::VARIANT, createtime: *mut super::Com::VARIANT, modifytime: *mut super::Com::VARIANT, relservicetype: *mut super::Com::VARIANT, rellabel: *mut super::Com::VARIANT, relcreatetime: *mut super::Com::VARIANT, relmodifytime: *mut super::Com::VARIANT, multicastaddress: *mut super::Com::VARIANT, relmulticastaddress: *mut super::Com::VARIANT) -> ::windows::core::Result<IMSMQQueueInfos3>;
 }
 #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
 impl ::windows::core::RuntimeName for IMSMQQuery3 {}
@@ -4293,15 +4293,15 @@ impl IMSMQQuery3_Vtbl {
     pub const fn new<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQuery3_Impl, const OFFSET: isize>() -> IMSMQQuery3_Vtbl {
         unsafe extern "system" fn LookupQueue_v2<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQuery3_Impl, const OFFSET: isize>(
             this: *mut ::core::ffi::c_void,
-            queueguid: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>,
-            servicetypeguid: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>,
-            label: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>,
-            createtime: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>,
-            modifytime: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>,
-            relservicetype: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>,
-            rellabel: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>,
-            relcreatetime: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>,
-            relmodifytime: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>,
+            queueguid: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>,
+            servicetypeguid: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>,
+            label: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>,
+            createtime: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>,
+            modifytime: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>,
+            relservicetype: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>,
+            rellabel: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>,
+            relcreatetime: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>,
+            relmodifytime: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>,
             ppqinfos: *mut *mut ::core::ffi::c_void,
         ) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
@@ -4327,17 +4327,17 @@ impl IMSMQQuery3_Vtbl {
         }
         unsafe extern "system" fn LookupQueue<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQuery3_Impl, const OFFSET: isize>(
             this: *mut ::core::ffi::c_void,
-            queueguid: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>,
-            servicetypeguid: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>,
-            label: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>,
-            createtime: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>,
-            modifytime: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>,
-            relservicetype: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>,
-            rellabel: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>,
-            relcreatetime: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>,
-            relmodifytime: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>,
-            multicastaddress: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>,
-            relmulticastaddress: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>,
+            queueguid: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>,
+            servicetypeguid: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>,
+            label: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>,
+            createtime: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>,
+            modifytime: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>,
+            relservicetype: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>,
+            rellabel: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>,
+            relcreatetime: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>,
+            relmodifytime: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>,
+            multicastaddress: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>,
+            relmulticastaddress: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>,
             ppqinfos: *mut *mut ::core::ffi::c_void,
         ) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
@@ -4375,9 +4375,9 @@ impl IMSMQQuery3_Vtbl {
 }
 #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
 pub trait IMSMQQuery4_Impl: Sized + super::Com::IDispatch_Impl {
-    fn LookupQueue_v2(&self, queueguid: *const super::Com::VARIANT, servicetypeguid: *const super::Com::VARIANT, label: *const super::Com::VARIANT, createtime: *const super::Com::VARIANT, modifytime: *const super::Com::VARIANT, relservicetype: *const super::Com::VARIANT, rellabel: *const super::Com::VARIANT, relcreatetime: *const super::Com::VARIANT, relmodifytime: *const super::Com::VARIANT) -> ::windows::core::Result<IMSMQQueueInfos4>;
+    fn LookupQueue_v2(&self, queueguid: *mut super::Com::VARIANT, servicetypeguid: *mut super::Com::VARIANT, label: *mut super::Com::VARIANT, createtime: *mut super::Com::VARIANT, modifytime: *mut super::Com::VARIANT, relservicetype: *mut super::Com::VARIANT, rellabel: *mut super::Com::VARIANT, relcreatetime: *mut super::Com::VARIANT, relmodifytime: *mut super::Com::VARIANT) -> ::windows::core::Result<IMSMQQueueInfos4>;
     fn Properties(&self) -> ::windows::core::Result<super::Com::IDispatch>;
-    fn LookupQueue(&self, queueguid: *const super::Com::VARIANT, servicetypeguid: *const super::Com::VARIANT, label: *const super::Com::VARIANT, createtime: *const super::Com::VARIANT, modifytime: *const super::Com::VARIANT, relservicetype: *const super::Com::VARIANT, rellabel: *const super::Com::VARIANT, relcreatetime: *const super::Com::VARIANT, relmodifytime: *const super::Com::VARIANT, multicastaddress: *const super::Com::VARIANT, relmulticastaddress: *const super::Com::VARIANT) -> ::windows::core::Result<IMSMQQueueInfos4>;
+    fn LookupQueue(&self, queueguid: *mut super::Com::VARIANT, servicetypeguid: *mut super::Com::VARIANT, label: *mut super::Com::VARIANT, createtime: *mut super::Com::VARIANT, modifytime: *mut super::Com::VARIANT, relservicetype: *mut super::Com::VARIANT, rellabel: *mut super::Com::VARIANT, relcreatetime: *mut super::Com::VARIANT, relmodifytime: *mut super::Com::VARIANT, multicastaddress: *mut super::Com::VARIANT, relmulticastaddress: *mut super::Com::VARIANT) -> ::windows::core::Result<IMSMQQueueInfos4>;
 }
 #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
 impl ::windows::core::RuntimeName for IMSMQQuery4 {}
@@ -4386,15 +4386,15 @@ impl IMSMQQuery4_Vtbl {
     pub const fn new<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQuery4_Impl, const OFFSET: isize>() -> IMSMQQuery4_Vtbl {
         unsafe extern "system" fn LookupQueue_v2<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQuery4_Impl, const OFFSET: isize>(
             this: *mut ::core::ffi::c_void,
-            queueguid: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>,
-            servicetypeguid: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>,
-            label: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>,
-            createtime: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>,
-            modifytime: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>,
-            relservicetype: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>,
-            rellabel: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>,
-            relcreatetime: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>,
-            relmodifytime: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>,
+            queueguid: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>,
+            servicetypeguid: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>,
+            label: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>,
+            createtime: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>,
+            modifytime: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>,
+            relservicetype: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>,
+            rellabel: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>,
+            relcreatetime: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>,
+            relmodifytime: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>,
             ppqinfos: *mut *mut ::core::ffi::c_void,
         ) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
@@ -4420,17 +4420,17 @@ impl IMSMQQuery4_Vtbl {
         }
         unsafe extern "system" fn LookupQueue<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQuery4_Impl, const OFFSET: isize>(
             this: *mut ::core::ffi::c_void,
-            queueguid: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>,
-            servicetypeguid: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>,
-            label: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>,
-            createtime: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>,
-            modifytime: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>,
-            relservicetype: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>,
-            rellabel: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>,
-            relcreatetime: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>,
-            relmodifytime: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>,
-            multicastaddress: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>,
-            relmulticastaddress: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>,
+            queueguid: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>,
+            servicetypeguid: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>,
+            label: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>,
+            createtime: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>,
+            modifytime: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>,
+            relservicetype: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>,
+            rellabel: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>,
+            relcreatetime: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>,
+            relmodifytime: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>,
+            multicastaddress: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>,
+            relmulticastaddress: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>,
             ppqinfos: *mut *mut ::core::ffi::c_void,
         ) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
@@ -4474,13 +4474,13 @@ pub trait IMSMQQueue_Impl: Sized + super::Com::IDispatch_Impl {
     fn Handle(&self) -> ::windows::core::Result<i32>;
     fn IsOpen(&self) -> ::windows::core::Result<i16>;
     fn Close(&self) -> ::windows::core::Result<()>;
-    fn Receive(&self, transaction: *const super::Com::VARIANT, wantdestinationqueue: *const super::Com::VARIANT, wantbody: *const super::Com::VARIANT, receivetimeout: *const super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage>;
-    fn Peek(&self, wantdestinationqueue: *const super::Com::VARIANT, wantbody: *const super::Com::VARIANT, receivetimeout: *const super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage>;
-    fn EnableNotification(&self, event: &::core::option::Option<IMSMQEvent>, cursor: *const super::Com::VARIANT, receivetimeout: *const super::Com::VARIANT) -> ::windows::core::Result<()>;
+    fn Receive(&self, transaction: *mut super::Com::VARIANT, wantdestinationqueue: *mut super::Com::VARIANT, wantbody: *mut super::Com::VARIANT, receivetimeout: *mut super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage>;
+    fn Peek(&self, wantdestinationqueue: *mut super::Com::VARIANT, wantbody: *mut super::Com::VARIANT, receivetimeout: *mut super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage>;
+    fn EnableNotification(&self, event: &::core::option::Option<IMSMQEvent>, cursor: *mut super::Com::VARIANT, receivetimeout: *mut super::Com::VARIANT) -> ::windows::core::Result<()>;
     fn Reset(&self) -> ::windows::core::Result<()>;
-    fn ReceiveCurrent(&self, transaction: *const super::Com::VARIANT, wantdestinationqueue: *const super::Com::VARIANT, wantbody: *const super::Com::VARIANT, receivetimeout: *const super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage>;
-    fn PeekNext(&self, wantdestinationqueue: *const super::Com::VARIANT, wantbody: *const super::Com::VARIANT, receivetimeout: *const super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage>;
-    fn PeekCurrent(&self, wantdestinationqueue: *const super::Com::VARIANT, wantbody: *const super::Com::VARIANT, receivetimeout: *const super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage>;
+    fn ReceiveCurrent(&self, transaction: *mut super::Com::VARIANT, wantdestinationqueue: *mut super::Com::VARIANT, wantbody: *mut super::Com::VARIANT, receivetimeout: *mut super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage>;
+    fn PeekNext(&self, wantdestinationqueue: *mut super::Com::VARIANT, wantbody: *mut super::Com::VARIANT, receivetimeout: *mut super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage>;
+    fn PeekCurrent(&self, wantdestinationqueue: *mut super::Com::VARIANT, wantbody: *mut super::Com::VARIANT, receivetimeout: *mut super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage>;
 }
 #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
 impl ::windows::core::RuntimeName for IMSMQQueue {}
@@ -4547,7 +4547,7 @@ impl IMSMQQueue_Vtbl {
             let this = (*this).get_impl();
             this.Close().into()
         }
-        unsafe extern "system" fn Receive<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, transaction: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantdestinationqueue: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, receivetimeout: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn Receive<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, transaction: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantdestinationqueue: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, receivetimeout: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.Receive(::core::mem::transmute_copy(&transaction), ::core::mem::transmute_copy(&wantdestinationqueue), ::core::mem::transmute_copy(&wantbody), ::core::mem::transmute_copy(&receivetimeout)) {
@@ -4558,7 +4558,7 @@ impl IMSMQQueue_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn Peek<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, wantdestinationqueue: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, receivetimeout: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn Peek<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, wantdestinationqueue: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, receivetimeout: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.Peek(::core::mem::transmute_copy(&wantdestinationqueue), ::core::mem::transmute_copy(&wantbody), ::core::mem::transmute_copy(&receivetimeout)) {
@@ -4569,7 +4569,7 @@ impl IMSMQQueue_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn EnableNotification<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, event: *mut ::core::ffi::c_void, cursor: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, receivetimeout: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn EnableNotification<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, event: *mut ::core::ffi::c_void, cursor: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, receivetimeout: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.EnableNotification(::core::mem::transmute(&event), ::core::mem::transmute_copy(&cursor), ::core::mem::transmute_copy(&receivetimeout)).into()
@@ -4579,7 +4579,7 @@ impl IMSMQQueue_Vtbl {
             let this = (*this).get_impl();
             this.Reset().into()
         }
-        unsafe extern "system" fn ReceiveCurrent<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, transaction: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantdestinationqueue: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, receivetimeout: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn ReceiveCurrent<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, transaction: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantdestinationqueue: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, receivetimeout: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.ReceiveCurrent(::core::mem::transmute_copy(&transaction), ::core::mem::transmute_copy(&wantdestinationqueue), ::core::mem::transmute_copy(&wantbody), ::core::mem::transmute_copy(&receivetimeout)) {
@@ -4590,7 +4590,7 @@ impl IMSMQQueue_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn PeekNext<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, wantdestinationqueue: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, receivetimeout: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn PeekNext<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, wantdestinationqueue: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, receivetimeout: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.PeekNext(::core::mem::transmute_copy(&wantdestinationqueue), ::core::mem::transmute_copy(&wantbody), ::core::mem::transmute_copy(&receivetimeout)) {
@@ -4601,7 +4601,7 @@ impl IMSMQQueue_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn PeekCurrent<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, wantdestinationqueue: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, receivetimeout: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn PeekCurrent<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, wantdestinationqueue: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, receivetimeout: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.PeekCurrent(::core::mem::transmute_copy(&wantdestinationqueue), ::core::mem::transmute_copy(&wantbody), ::core::mem::transmute_copy(&receivetimeout)) {
@@ -4641,18 +4641,18 @@ pub trait IMSMQQueue2_Impl: Sized + super::Com::IDispatch_Impl {
     fn Handle(&self) -> ::windows::core::Result<i32>;
     fn IsOpen(&self) -> ::windows::core::Result<i16>;
     fn Close(&self) -> ::windows::core::Result<()>;
-    fn Receive_v1(&self, transaction: *const super::Com::VARIANT, wantdestinationqueue: *const super::Com::VARIANT, wantbody: *const super::Com::VARIANT, receivetimeout: *const super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage>;
-    fn Peek_v1(&self, wantdestinationqueue: *const super::Com::VARIANT, wantbody: *const super::Com::VARIANT, receivetimeout: *const super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage>;
-    fn EnableNotification(&self, event: &::core::option::Option<IMSMQEvent2>, cursor: *const super::Com::VARIANT, receivetimeout: *const super::Com::VARIANT) -> ::windows::core::Result<()>;
+    fn Receive_v1(&self, transaction: *mut super::Com::VARIANT, wantdestinationqueue: *mut super::Com::VARIANT, wantbody: *mut super::Com::VARIANT, receivetimeout: *mut super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage>;
+    fn Peek_v1(&self, wantdestinationqueue: *mut super::Com::VARIANT, wantbody: *mut super::Com::VARIANT, receivetimeout: *mut super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage>;
+    fn EnableNotification(&self, event: &::core::option::Option<IMSMQEvent2>, cursor: *mut super::Com::VARIANT, receivetimeout: *mut super::Com::VARIANT) -> ::windows::core::Result<()>;
     fn Reset(&self) -> ::windows::core::Result<()>;
-    fn ReceiveCurrent_v1(&self, transaction: *const super::Com::VARIANT, wantdestinationqueue: *const super::Com::VARIANT, wantbody: *const super::Com::VARIANT, receivetimeout: *const super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage>;
-    fn PeekNext_v1(&self, wantdestinationqueue: *const super::Com::VARIANT, wantbody: *const super::Com::VARIANT, receivetimeout: *const super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage>;
-    fn PeekCurrent_v1(&self, wantdestinationqueue: *const super::Com::VARIANT, wantbody: *const super::Com::VARIANT, receivetimeout: *const super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage>;
-    fn Receive(&self, transaction: *const super::Com::VARIANT, wantdestinationqueue: *const super::Com::VARIANT, wantbody: *const super::Com::VARIANT, receivetimeout: *const super::Com::VARIANT, wantconnectortype: *const super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage2>;
-    fn Peek(&self, wantdestinationqueue: *const super::Com::VARIANT, wantbody: *const super::Com::VARIANT, receivetimeout: *const super::Com::VARIANT, wantconnectortype: *const super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage2>;
-    fn ReceiveCurrent(&self, transaction: *const super::Com::VARIANT, wantdestinationqueue: *const super::Com::VARIANT, wantbody: *const super::Com::VARIANT, receivetimeout: *const super::Com::VARIANT, wantconnectortype: *const super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage2>;
-    fn PeekNext(&self, wantdestinationqueue: *const super::Com::VARIANT, wantbody: *const super::Com::VARIANT, receivetimeout: *const super::Com::VARIANT, wantconnectortype: *const super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage2>;
-    fn PeekCurrent(&self, wantdestinationqueue: *const super::Com::VARIANT, wantbody: *const super::Com::VARIANT, receivetimeout: *const super::Com::VARIANT, wantconnectortype: *const super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage2>;
+    fn ReceiveCurrent_v1(&self, transaction: *mut super::Com::VARIANT, wantdestinationqueue: *mut super::Com::VARIANT, wantbody: *mut super::Com::VARIANT, receivetimeout: *mut super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage>;
+    fn PeekNext_v1(&self, wantdestinationqueue: *mut super::Com::VARIANT, wantbody: *mut super::Com::VARIANT, receivetimeout: *mut super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage>;
+    fn PeekCurrent_v1(&self, wantdestinationqueue: *mut super::Com::VARIANT, wantbody: *mut super::Com::VARIANT, receivetimeout: *mut super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage>;
+    fn Receive(&self, transaction: *mut super::Com::VARIANT, wantdestinationqueue: *mut super::Com::VARIANT, wantbody: *mut super::Com::VARIANT, receivetimeout: *mut super::Com::VARIANT, wantconnectortype: *mut super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage2>;
+    fn Peek(&self, wantdestinationqueue: *mut super::Com::VARIANT, wantbody: *mut super::Com::VARIANT, receivetimeout: *mut super::Com::VARIANT, wantconnectortype: *mut super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage2>;
+    fn ReceiveCurrent(&self, transaction: *mut super::Com::VARIANT, wantdestinationqueue: *mut super::Com::VARIANT, wantbody: *mut super::Com::VARIANT, receivetimeout: *mut super::Com::VARIANT, wantconnectortype: *mut super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage2>;
+    fn PeekNext(&self, wantdestinationqueue: *mut super::Com::VARIANT, wantbody: *mut super::Com::VARIANT, receivetimeout: *mut super::Com::VARIANT, wantconnectortype: *mut super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage2>;
+    fn PeekCurrent(&self, wantdestinationqueue: *mut super::Com::VARIANT, wantbody: *mut super::Com::VARIANT, receivetimeout: *mut super::Com::VARIANT, wantconnectortype: *mut super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage2>;
     fn Properties(&self) -> ::windows::core::Result<super::Com::IDispatch>;
 }
 #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
@@ -4720,7 +4720,7 @@ impl IMSMQQueue2_Vtbl {
             let this = (*this).get_impl();
             this.Close().into()
         }
-        unsafe extern "system" fn Receive_v1<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, transaction: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantdestinationqueue: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, receivetimeout: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn Receive_v1<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, transaction: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantdestinationqueue: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, receivetimeout: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.Receive_v1(::core::mem::transmute_copy(&transaction), ::core::mem::transmute_copy(&wantdestinationqueue), ::core::mem::transmute_copy(&wantbody), ::core::mem::transmute_copy(&receivetimeout)) {
@@ -4731,7 +4731,7 @@ impl IMSMQQueue2_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn Peek_v1<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, wantdestinationqueue: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, receivetimeout: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn Peek_v1<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, wantdestinationqueue: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, receivetimeout: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.Peek_v1(::core::mem::transmute_copy(&wantdestinationqueue), ::core::mem::transmute_copy(&wantbody), ::core::mem::transmute_copy(&receivetimeout)) {
@@ -4742,7 +4742,7 @@ impl IMSMQQueue2_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn EnableNotification<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, event: *mut ::core::ffi::c_void, cursor: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, receivetimeout: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn EnableNotification<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, event: *mut ::core::ffi::c_void, cursor: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, receivetimeout: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.EnableNotification(::core::mem::transmute(&event), ::core::mem::transmute_copy(&cursor), ::core::mem::transmute_copy(&receivetimeout)).into()
@@ -4752,7 +4752,7 @@ impl IMSMQQueue2_Vtbl {
             let this = (*this).get_impl();
             this.Reset().into()
         }
-        unsafe extern "system" fn ReceiveCurrent_v1<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, transaction: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantdestinationqueue: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, receivetimeout: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn ReceiveCurrent_v1<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, transaction: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantdestinationqueue: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, receivetimeout: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.ReceiveCurrent_v1(::core::mem::transmute_copy(&transaction), ::core::mem::transmute_copy(&wantdestinationqueue), ::core::mem::transmute_copy(&wantbody), ::core::mem::transmute_copy(&receivetimeout)) {
@@ -4763,7 +4763,7 @@ impl IMSMQQueue2_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn PeekNext_v1<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, wantdestinationqueue: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, receivetimeout: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn PeekNext_v1<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, wantdestinationqueue: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, receivetimeout: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.PeekNext_v1(::core::mem::transmute_copy(&wantdestinationqueue), ::core::mem::transmute_copy(&wantbody), ::core::mem::transmute_copy(&receivetimeout)) {
@@ -4774,7 +4774,7 @@ impl IMSMQQueue2_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn PeekCurrent_v1<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, wantdestinationqueue: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, receivetimeout: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn PeekCurrent_v1<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, wantdestinationqueue: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, receivetimeout: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.PeekCurrent_v1(::core::mem::transmute_copy(&wantdestinationqueue), ::core::mem::transmute_copy(&wantbody), ::core::mem::transmute_copy(&receivetimeout)) {
@@ -4785,7 +4785,7 @@ impl IMSMQQueue2_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn Receive<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, transaction: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantdestinationqueue: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, receivetimeout: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantconnectortype: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn Receive<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, transaction: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantdestinationqueue: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, receivetimeout: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantconnectortype: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.Receive(::core::mem::transmute_copy(&transaction), ::core::mem::transmute_copy(&wantdestinationqueue), ::core::mem::transmute_copy(&wantbody), ::core::mem::transmute_copy(&receivetimeout), ::core::mem::transmute_copy(&wantconnectortype)) {
@@ -4796,7 +4796,7 @@ impl IMSMQQueue2_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn Peek<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, wantdestinationqueue: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, receivetimeout: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantconnectortype: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn Peek<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, wantdestinationqueue: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, receivetimeout: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantconnectortype: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.Peek(::core::mem::transmute_copy(&wantdestinationqueue), ::core::mem::transmute_copy(&wantbody), ::core::mem::transmute_copy(&receivetimeout), ::core::mem::transmute_copy(&wantconnectortype)) {
@@ -4807,7 +4807,7 @@ impl IMSMQQueue2_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn ReceiveCurrent<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, transaction: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantdestinationqueue: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, receivetimeout: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantconnectortype: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn ReceiveCurrent<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, transaction: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantdestinationqueue: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, receivetimeout: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantconnectortype: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.ReceiveCurrent(::core::mem::transmute_copy(&transaction), ::core::mem::transmute_copy(&wantdestinationqueue), ::core::mem::transmute_copy(&wantbody), ::core::mem::transmute_copy(&receivetimeout), ::core::mem::transmute_copy(&wantconnectortype)) {
@@ -4818,7 +4818,7 @@ impl IMSMQQueue2_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn PeekNext<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, wantdestinationqueue: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, receivetimeout: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantconnectortype: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn PeekNext<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, wantdestinationqueue: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, receivetimeout: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantconnectortype: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.PeekNext(::core::mem::transmute_copy(&wantdestinationqueue), ::core::mem::transmute_copy(&wantbody), ::core::mem::transmute_copy(&receivetimeout), ::core::mem::transmute_copy(&wantconnectortype)) {
@@ -4829,7 +4829,7 @@ impl IMSMQQueue2_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn PeekCurrent<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, wantdestinationqueue: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, receivetimeout: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantconnectortype: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn PeekCurrent<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, wantdestinationqueue: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, receivetimeout: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantconnectortype: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.PeekCurrent(::core::mem::transmute_copy(&wantdestinationqueue), ::core::mem::transmute_copy(&wantbody), ::core::mem::transmute_copy(&receivetimeout), ::core::mem::transmute_copy(&wantconnectortype)) {
@@ -4886,30 +4886,30 @@ pub trait IMSMQQueue3_Impl: Sized + super::Com::IDispatch_Impl {
     fn Handle(&self) -> ::windows::core::Result<i32>;
     fn IsOpen(&self) -> ::windows::core::Result<i16>;
     fn Close(&self) -> ::windows::core::Result<()>;
-    fn Receive_v1(&self, transaction: *const super::Com::VARIANT, wantdestinationqueue: *const super::Com::VARIANT, wantbody: *const super::Com::VARIANT, receivetimeout: *const super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage>;
-    fn Peek_v1(&self, wantdestinationqueue: *const super::Com::VARIANT, wantbody: *const super::Com::VARIANT, receivetimeout: *const super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage>;
-    fn EnableNotification(&self, event: &::core::option::Option<IMSMQEvent3>, cursor: *const super::Com::VARIANT, receivetimeout: *const super::Com::VARIANT) -> ::windows::core::Result<()>;
+    fn Receive_v1(&self, transaction: *mut super::Com::VARIANT, wantdestinationqueue: *mut super::Com::VARIANT, wantbody: *mut super::Com::VARIANT, receivetimeout: *mut super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage>;
+    fn Peek_v1(&self, wantdestinationqueue: *mut super::Com::VARIANT, wantbody: *mut super::Com::VARIANT, receivetimeout: *mut super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage>;
+    fn EnableNotification(&self, event: &::core::option::Option<IMSMQEvent3>, cursor: *mut super::Com::VARIANT, receivetimeout: *mut super::Com::VARIANT) -> ::windows::core::Result<()>;
     fn Reset(&self) -> ::windows::core::Result<()>;
-    fn ReceiveCurrent_v1(&self, transaction: *const super::Com::VARIANT, wantdestinationqueue: *const super::Com::VARIANT, wantbody: *const super::Com::VARIANT, receivetimeout: *const super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage>;
-    fn PeekNext_v1(&self, wantdestinationqueue: *const super::Com::VARIANT, wantbody: *const super::Com::VARIANT, receivetimeout: *const super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage>;
-    fn PeekCurrent_v1(&self, wantdestinationqueue: *const super::Com::VARIANT, wantbody: *const super::Com::VARIANT, receivetimeout: *const super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage>;
-    fn Receive(&self, transaction: *const super::Com::VARIANT, wantdestinationqueue: *const super::Com::VARIANT, wantbody: *const super::Com::VARIANT, receivetimeout: *const super::Com::VARIANT, wantconnectortype: *const super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage3>;
-    fn Peek(&self, wantdestinationqueue: *const super::Com::VARIANT, wantbody: *const super::Com::VARIANT, receivetimeout: *const super::Com::VARIANT, wantconnectortype: *const super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage3>;
-    fn ReceiveCurrent(&self, transaction: *const super::Com::VARIANT, wantdestinationqueue: *const super::Com::VARIANT, wantbody: *const super::Com::VARIANT, receivetimeout: *const super::Com::VARIANT, wantconnectortype: *const super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage3>;
-    fn PeekNext(&self, wantdestinationqueue: *const super::Com::VARIANT, wantbody: *const super::Com::VARIANT, receivetimeout: *const super::Com::VARIANT, wantconnectortype: *const super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage3>;
-    fn PeekCurrent(&self, wantdestinationqueue: *const super::Com::VARIANT, wantbody: *const super::Com::VARIANT, receivetimeout: *const super::Com::VARIANT, wantconnectortype: *const super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage3>;
+    fn ReceiveCurrent_v1(&self, transaction: *mut super::Com::VARIANT, wantdestinationqueue: *mut super::Com::VARIANT, wantbody: *mut super::Com::VARIANT, receivetimeout: *mut super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage>;
+    fn PeekNext_v1(&self, wantdestinationqueue: *mut super::Com::VARIANT, wantbody: *mut super::Com::VARIANT, receivetimeout: *mut super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage>;
+    fn PeekCurrent_v1(&self, wantdestinationqueue: *mut super::Com::VARIANT, wantbody: *mut super::Com::VARIANT, receivetimeout: *mut super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage>;
+    fn Receive(&self, transaction: *mut super::Com::VARIANT, wantdestinationqueue: *mut super::Com::VARIANT, wantbody: *mut super::Com::VARIANT, receivetimeout: *mut super::Com::VARIANT, wantconnectortype: *mut super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage3>;
+    fn Peek(&self, wantdestinationqueue: *mut super::Com::VARIANT, wantbody: *mut super::Com::VARIANT, receivetimeout: *mut super::Com::VARIANT, wantconnectortype: *mut super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage3>;
+    fn ReceiveCurrent(&self, transaction: *mut super::Com::VARIANT, wantdestinationqueue: *mut super::Com::VARIANT, wantbody: *mut super::Com::VARIANT, receivetimeout: *mut super::Com::VARIANT, wantconnectortype: *mut super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage3>;
+    fn PeekNext(&self, wantdestinationqueue: *mut super::Com::VARIANT, wantbody: *mut super::Com::VARIANT, receivetimeout: *mut super::Com::VARIANT, wantconnectortype: *mut super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage3>;
+    fn PeekCurrent(&self, wantdestinationqueue: *mut super::Com::VARIANT, wantbody: *mut super::Com::VARIANT, receivetimeout: *mut super::Com::VARIANT, wantconnectortype: *mut super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage3>;
     fn Properties(&self) -> ::windows::core::Result<super::Com::IDispatch>;
     fn Handle2(&self) -> ::windows::core::Result<super::Com::VARIANT>;
-    fn ReceiveByLookupId(&self, lookupid: &super::Com::VARIANT, transaction: *const super::Com::VARIANT, wantdestinationqueue: *const super::Com::VARIANT, wantbody: *const super::Com::VARIANT, wantconnectortype: *const super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage3>;
-    fn ReceiveNextByLookupId(&self, lookupid: &super::Com::VARIANT, transaction: *const super::Com::VARIANT, wantdestinationqueue: *const super::Com::VARIANT, wantbody: *const super::Com::VARIANT, wantconnectortype: *const super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage3>;
-    fn ReceivePreviousByLookupId(&self, lookupid: &super::Com::VARIANT, transaction: *const super::Com::VARIANT, wantdestinationqueue: *const super::Com::VARIANT, wantbody: *const super::Com::VARIANT, wantconnectortype: *const super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage3>;
-    fn ReceiveFirstByLookupId(&self, transaction: *const super::Com::VARIANT, wantdestinationqueue: *const super::Com::VARIANT, wantbody: *const super::Com::VARIANT, wantconnectortype: *const super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage3>;
-    fn ReceiveLastByLookupId(&self, transaction: *const super::Com::VARIANT, wantdestinationqueue: *const super::Com::VARIANT, wantbody: *const super::Com::VARIANT, wantconnectortype: *const super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage3>;
-    fn PeekByLookupId(&self, lookupid: &super::Com::VARIANT, wantdestinationqueue: *const super::Com::VARIANT, wantbody: *const super::Com::VARIANT, wantconnectortype: *const super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage3>;
-    fn PeekNextByLookupId(&self, lookupid: &super::Com::VARIANT, wantdestinationqueue: *const super::Com::VARIANT, wantbody: *const super::Com::VARIANT, wantconnectortype: *const super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage3>;
-    fn PeekPreviousByLookupId(&self, lookupid: &super::Com::VARIANT, wantdestinationqueue: *const super::Com::VARIANT, wantbody: *const super::Com::VARIANT, wantconnectortype: *const super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage3>;
-    fn PeekFirstByLookupId(&self, wantdestinationqueue: *const super::Com::VARIANT, wantbody: *const super::Com::VARIANT, wantconnectortype: *const super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage3>;
-    fn PeekLastByLookupId(&self, wantdestinationqueue: *const super::Com::VARIANT, wantbody: *const super::Com::VARIANT, wantconnectortype: *const super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage3>;
+    fn ReceiveByLookupId(&self, lookupid: &super::Com::VARIANT, transaction: *mut super::Com::VARIANT, wantdestinationqueue: *mut super::Com::VARIANT, wantbody: *mut super::Com::VARIANT, wantconnectortype: *mut super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage3>;
+    fn ReceiveNextByLookupId(&self, lookupid: &super::Com::VARIANT, transaction: *mut super::Com::VARIANT, wantdestinationqueue: *mut super::Com::VARIANT, wantbody: *mut super::Com::VARIANT, wantconnectortype: *mut super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage3>;
+    fn ReceivePreviousByLookupId(&self, lookupid: &super::Com::VARIANT, transaction: *mut super::Com::VARIANT, wantdestinationqueue: *mut super::Com::VARIANT, wantbody: *mut super::Com::VARIANT, wantconnectortype: *mut super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage3>;
+    fn ReceiveFirstByLookupId(&self, transaction: *mut super::Com::VARIANT, wantdestinationqueue: *mut super::Com::VARIANT, wantbody: *mut super::Com::VARIANT, wantconnectortype: *mut super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage3>;
+    fn ReceiveLastByLookupId(&self, transaction: *mut super::Com::VARIANT, wantdestinationqueue: *mut super::Com::VARIANT, wantbody: *mut super::Com::VARIANT, wantconnectortype: *mut super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage3>;
+    fn PeekByLookupId(&self, lookupid: &super::Com::VARIANT, wantdestinationqueue: *mut super::Com::VARIANT, wantbody: *mut super::Com::VARIANT, wantconnectortype: *mut super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage3>;
+    fn PeekNextByLookupId(&self, lookupid: &super::Com::VARIANT, wantdestinationqueue: *mut super::Com::VARIANT, wantbody: *mut super::Com::VARIANT, wantconnectortype: *mut super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage3>;
+    fn PeekPreviousByLookupId(&self, lookupid: &super::Com::VARIANT, wantdestinationqueue: *mut super::Com::VARIANT, wantbody: *mut super::Com::VARIANT, wantconnectortype: *mut super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage3>;
+    fn PeekFirstByLookupId(&self, wantdestinationqueue: *mut super::Com::VARIANT, wantbody: *mut super::Com::VARIANT, wantconnectortype: *mut super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage3>;
+    fn PeekLastByLookupId(&self, wantdestinationqueue: *mut super::Com::VARIANT, wantbody: *mut super::Com::VARIANT, wantconnectortype: *mut super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage3>;
     fn Purge(&self) -> ::windows::core::Result<()>;
     fn IsOpen2(&self) -> ::windows::core::Result<i16>;
 }
@@ -4978,7 +4978,7 @@ impl IMSMQQueue3_Vtbl {
             let this = (*this).get_impl();
             this.Close().into()
         }
-        unsafe extern "system" fn Receive_v1<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, transaction: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantdestinationqueue: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, receivetimeout: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn Receive_v1<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, transaction: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantdestinationqueue: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, receivetimeout: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.Receive_v1(::core::mem::transmute_copy(&transaction), ::core::mem::transmute_copy(&wantdestinationqueue), ::core::mem::transmute_copy(&wantbody), ::core::mem::transmute_copy(&receivetimeout)) {
@@ -4989,7 +4989,7 @@ impl IMSMQQueue3_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn Peek_v1<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, wantdestinationqueue: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, receivetimeout: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn Peek_v1<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, wantdestinationqueue: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, receivetimeout: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.Peek_v1(::core::mem::transmute_copy(&wantdestinationqueue), ::core::mem::transmute_copy(&wantbody), ::core::mem::transmute_copy(&receivetimeout)) {
@@ -5000,7 +5000,7 @@ impl IMSMQQueue3_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn EnableNotification<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, event: *mut ::core::ffi::c_void, cursor: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, receivetimeout: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn EnableNotification<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, event: *mut ::core::ffi::c_void, cursor: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, receivetimeout: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.EnableNotification(::core::mem::transmute(&event), ::core::mem::transmute_copy(&cursor), ::core::mem::transmute_copy(&receivetimeout)).into()
@@ -5010,7 +5010,7 @@ impl IMSMQQueue3_Vtbl {
             let this = (*this).get_impl();
             this.Reset().into()
         }
-        unsafe extern "system" fn ReceiveCurrent_v1<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, transaction: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantdestinationqueue: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, receivetimeout: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn ReceiveCurrent_v1<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, transaction: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantdestinationqueue: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, receivetimeout: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.ReceiveCurrent_v1(::core::mem::transmute_copy(&transaction), ::core::mem::transmute_copy(&wantdestinationqueue), ::core::mem::transmute_copy(&wantbody), ::core::mem::transmute_copy(&receivetimeout)) {
@@ -5021,7 +5021,7 @@ impl IMSMQQueue3_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn PeekNext_v1<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, wantdestinationqueue: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, receivetimeout: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn PeekNext_v1<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, wantdestinationqueue: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, receivetimeout: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.PeekNext_v1(::core::mem::transmute_copy(&wantdestinationqueue), ::core::mem::transmute_copy(&wantbody), ::core::mem::transmute_copy(&receivetimeout)) {
@@ -5032,7 +5032,7 @@ impl IMSMQQueue3_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn PeekCurrent_v1<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, wantdestinationqueue: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, receivetimeout: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn PeekCurrent_v1<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, wantdestinationqueue: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, receivetimeout: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.PeekCurrent_v1(::core::mem::transmute_copy(&wantdestinationqueue), ::core::mem::transmute_copy(&wantbody), ::core::mem::transmute_copy(&receivetimeout)) {
@@ -5043,7 +5043,7 @@ impl IMSMQQueue3_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn Receive<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, transaction: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantdestinationqueue: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, receivetimeout: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantconnectortype: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn Receive<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, transaction: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantdestinationqueue: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, receivetimeout: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantconnectortype: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.Receive(::core::mem::transmute_copy(&transaction), ::core::mem::transmute_copy(&wantdestinationqueue), ::core::mem::transmute_copy(&wantbody), ::core::mem::transmute_copy(&receivetimeout), ::core::mem::transmute_copy(&wantconnectortype)) {
@@ -5054,7 +5054,7 @@ impl IMSMQQueue3_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn Peek<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, wantdestinationqueue: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, receivetimeout: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantconnectortype: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn Peek<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, wantdestinationqueue: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, receivetimeout: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantconnectortype: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.Peek(::core::mem::transmute_copy(&wantdestinationqueue), ::core::mem::transmute_copy(&wantbody), ::core::mem::transmute_copy(&receivetimeout), ::core::mem::transmute_copy(&wantconnectortype)) {
@@ -5065,7 +5065,7 @@ impl IMSMQQueue3_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn ReceiveCurrent<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, transaction: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantdestinationqueue: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, receivetimeout: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantconnectortype: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn ReceiveCurrent<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, transaction: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantdestinationqueue: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, receivetimeout: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantconnectortype: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.ReceiveCurrent(::core::mem::transmute_copy(&transaction), ::core::mem::transmute_copy(&wantdestinationqueue), ::core::mem::transmute_copy(&wantbody), ::core::mem::transmute_copy(&receivetimeout), ::core::mem::transmute_copy(&wantconnectortype)) {
@@ -5076,7 +5076,7 @@ impl IMSMQQueue3_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn PeekNext<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, wantdestinationqueue: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, receivetimeout: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantconnectortype: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn PeekNext<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, wantdestinationqueue: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, receivetimeout: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantconnectortype: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.PeekNext(::core::mem::transmute_copy(&wantdestinationqueue), ::core::mem::transmute_copy(&wantbody), ::core::mem::transmute_copy(&receivetimeout), ::core::mem::transmute_copy(&wantconnectortype)) {
@@ -5087,7 +5087,7 @@ impl IMSMQQueue3_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn PeekCurrent<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, wantdestinationqueue: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, receivetimeout: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantconnectortype: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn PeekCurrent<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, wantdestinationqueue: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, receivetimeout: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantconnectortype: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.PeekCurrent(::core::mem::transmute_copy(&wantdestinationqueue), ::core::mem::transmute_copy(&wantbody), ::core::mem::transmute_copy(&receivetimeout), ::core::mem::transmute_copy(&wantconnectortype)) {
@@ -5120,7 +5120,7 @@ impl IMSMQQueue3_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn ReceiveByLookupId<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, lookupid: ::core::mem::ManuallyDrop<super::Com::VARIANT>, transaction: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantdestinationqueue: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantconnectortype: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn ReceiveByLookupId<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, lookupid: ::core::mem::ManuallyDrop<super::Com::VARIANT>, transaction: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantdestinationqueue: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantconnectortype: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.ReceiveByLookupId(::core::mem::transmute(&lookupid), ::core::mem::transmute_copy(&transaction), ::core::mem::transmute_copy(&wantdestinationqueue), ::core::mem::transmute_copy(&wantbody), ::core::mem::transmute_copy(&wantconnectortype)) {
@@ -5131,7 +5131,7 @@ impl IMSMQQueue3_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn ReceiveNextByLookupId<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, lookupid: ::core::mem::ManuallyDrop<super::Com::VARIANT>, transaction: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantdestinationqueue: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantconnectortype: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn ReceiveNextByLookupId<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, lookupid: ::core::mem::ManuallyDrop<super::Com::VARIANT>, transaction: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantdestinationqueue: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantconnectortype: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.ReceiveNextByLookupId(::core::mem::transmute(&lookupid), ::core::mem::transmute_copy(&transaction), ::core::mem::transmute_copy(&wantdestinationqueue), ::core::mem::transmute_copy(&wantbody), ::core::mem::transmute_copy(&wantconnectortype)) {
@@ -5142,7 +5142,7 @@ impl IMSMQQueue3_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn ReceivePreviousByLookupId<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, lookupid: ::core::mem::ManuallyDrop<super::Com::VARIANT>, transaction: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantdestinationqueue: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantconnectortype: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn ReceivePreviousByLookupId<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, lookupid: ::core::mem::ManuallyDrop<super::Com::VARIANT>, transaction: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantdestinationqueue: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantconnectortype: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.ReceivePreviousByLookupId(::core::mem::transmute(&lookupid), ::core::mem::transmute_copy(&transaction), ::core::mem::transmute_copy(&wantdestinationqueue), ::core::mem::transmute_copy(&wantbody), ::core::mem::transmute_copy(&wantconnectortype)) {
@@ -5153,7 +5153,7 @@ impl IMSMQQueue3_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn ReceiveFirstByLookupId<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, transaction: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantdestinationqueue: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantconnectortype: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn ReceiveFirstByLookupId<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, transaction: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantdestinationqueue: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantconnectortype: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.ReceiveFirstByLookupId(::core::mem::transmute_copy(&transaction), ::core::mem::transmute_copy(&wantdestinationqueue), ::core::mem::transmute_copy(&wantbody), ::core::mem::transmute_copy(&wantconnectortype)) {
@@ -5164,7 +5164,7 @@ impl IMSMQQueue3_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn ReceiveLastByLookupId<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, transaction: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantdestinationqueue: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantconnectortype: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn ReceiveLastByLookupId<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, transaction: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantdestinationqueue: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantconnectortype: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.ReceiveLastByLookupId(::core::mem::transmute_copy(&transaction), ::core::mem::transmute_copy(&wantdestinationqueue), ::core::mem::transmute_copy(&wantbody), ::core::mem::transmute_copy(&wantconnectortype)) {
@@ -5175,7 +5175,7 @@ impl IMSMQQueue3_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn PeekByLookupId<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, lookupid: ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantdestinationqueue: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantconnectortype: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn PeekByLookupId<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, lookupid: ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantdestinationqueue: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantconnectortype: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.PeekByLookupId(::core::mem::transmute(&lookupid), ::core::mem::transmute_copy(&wantdestinationqueue), ::core::mem::transmute_copy(&wantbody), ::core::mem::transmute_copy(&wantconnectortype)) {
@@ -5186,7 +5186,7 @@ impl IMSMQQueue3_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn PeekNextByLookupId<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, lookupid: ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantdestinationqueue: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantconnectortype: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn PeekNextByLookupId<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, lookupid: ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantdestinationqueue: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantconnectortype: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.PeekNextByLookupId(::core::mem::transmute(&lookupid), ::core::mem::transmute_copy(&wantdestinationqueue), ::core::mem::transmute_copy(&wantbody), ::core::mem::transmute_copy(&wantconnectortype)) {
@@ -5197,7 +5197,7 @@ impl IMSMQQueue3_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn PeekPreviousByLookupId<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, lookupid: ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantdestinationqueue: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantconnectortype: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn PeekPreviousByLookupId<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, lookupid: ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantdestinationqueue: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantconnectortype: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.PeekPreviousByLookupId(::core::mem::transmute(&lookupid), ::core::mem::transmute_copy(&wantdestinationqueue), ::core::mem::transmute_copy(&wantbody), ::core::mem::transmute_copy(&wantconnectortype)) {
@@ -5208,7 +5208,7 @@ impl IMSMQQueue3_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn PeekFirstByLookupId<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, wantdestinationqueue: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantconnectortype: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn PeekFirstByLookupId<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, wantdestinationqueue: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantconnectortype: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.PeekFirstByLookupId(::core::mem::transmute_copy(&wantdestinationqueue), ::core::mem::transmute_copy(&wantbody), ::core::mem::transmute_copy(&wantconnectortype)) {
@@ -5219,7 +5219,7 @@ impl IMSMQQueue3_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn PeekLastByLookupId<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, wantdestinationqueue: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantconnectortype: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn PeekLastByLookupId<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, wantdestinationqueue: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantconnectortype: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.PeekLastByLookupId(::core::mem::transmute_copy(&wantdestinationqueue), ::core::mem::transmute_copy(&wantbody), ::core::mem::transmute_copy(&wantconnectortype)) {
@@ -5294,33 +5294,33 @@ pub trait IMSMQQueue4_Impl: Sized + super::Com::IDispatch_Impl {
     fn Handle(&self) -> ::windows::core::Result<i32>;
     fn IsOpen(&self) -> ::windows::core::Result<i16>;
     fn Close(&self) -> ::windows::core::Result<()>;
-    fn Receive_v1(&self, transaction: *const super::Com::VARIANT, wantdestinationqueue: *const super::Com::VARIANT, wantbody: *const super::Com::VARIANT, receivetimeout: *const super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage>;
-    fn Peek_v1(&self, wantdestinationqueue: *const super::Com::VARIANT, wantbody: *const super::Com::VARIANT, receivetimeout: *const super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage>;
-    fn EnableNotification(&self, event: &::core::option::Option<IMSMQEvent3>, cursor: *const super::Com::VARIANT, receivetimeout: *const super::Com::VARIANT) -> ::windows::core::Result<()>;
+    fn Receive_v1(&self, transaction: *mut super::Com::VARIANT, wantdestinationqueue: *mut super::Com::VARIANT, wantbody: *mut super::Com::VARIANT, receivetimeout: *mut super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage>;
+    fn Peek_v1(&self, wantdestinationqueue: *mut super::Com::VARIANT, wantbody: *mut super::Com::VARIANT, receivetimeout: *mut super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage>;
+    fn EnableNotification(&self, event: &::core::option::Option<IMSMQEvent3>, cursor: *mut super::Com::VARIANT, receivetimeout: *mut super::Com::VARIANT) -> ::windows::core::Result<()>;
     fn Reset(&self) -> ::windows::core::Result<()>;
-    fn ReceiveCurrent_v1(&self, transaction: *const super::Com::VARIANT, wantdestinationqueue: *const super::Com::VARIANT, wantbody: *const super::Com::VARIANT, receivetimeout: *const super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage>;
-    fn PeekNext_v1(&self, wantdestinationqueue: *const super::Com::VARIANT, wantbody: *const super::Com::VARIANT, receivetimeout: *const super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage>;
-    fn PeekCurrent_v1(&self, wantdestinationqueue: *const super::Com::VARIANT, wantbody: *const super::Com::VARIANT, receivetimeout: *const super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage>;
-    fn Receive(&self, transaction: *const super::Com::VARIANT, wantdestinationqueue: *const super::Com::VARIANT, wantbody: *const super::Com::VARIANT, receivetimeout: *const super::Com::VARIANT, wantconnectortype: *const super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage4>;
-    fn Peek(&self, wantdestinationqueue: *const super::Com::VARIANT, wantbody: *const super::Com::VARIANT, receivetimeout: *const super::Com::VARIANT, wantconnectortype: *const super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage4>;
-    fn ReceiveCurrent(&self, transaction: *const super::Com::VARIANT, wantdestinationqueue: *const super::Com::VARIANT, wantbody: *const super::Com::VARIANT, receivetimeout: *const super::Com::VARIANT, wantconnectortype: *const super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage4>;
-    fn PeekNext(&self, wantdestinationqueue: *const super::Com::VARIANT, wantbody: *const super::Com::VARIANT, receivetimeout: *const super::Com::VARIANT, wantconnectortype: *const super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage4>;
-    fn PeekCurrent(&self, wantdestinationqueue: *const super::Com::VARIANT, wantbody: *const super::Com::VARIANT, receivetimeout: *const super::Com::VARIANT, wantconnectortype: *const super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage4>;
+    fn ReceiveCurrent_v1(&self, transaction: *mut super::Com::VARIANT, wantdestinationqueue: *mut super::Com::VARIANT, wantbody: *mut super::Com::VARIANT, receivetimeout: *mut super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage>;
+    fn PeekNext_v1(&self, wantdestinationqueue: *mut super::Com::VARIANT, wantbody: *mut super::Com::VARIANT, receivetimeout: *mut super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage>;
+    fn PeekCurrent_v1(&self, wantdestinationqueue: *mut super::Com::VARIANT, wantbody: *mut super::Com::VARIANT, receivetimeout: *mut super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage>;
+    fn Receive(&self, transaction: *mut super::Com::VARIANT, wantdestinationqueue: *mut super::Com::VARIANT, wantbody: *mut super::Com::VARIANT, receivetimeout: *mut super::Com::VARIANT, wantconnectortype: *mut super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage4>;
+    fn Peek(&self, wantdestinationqueue: *mut super::Com::VARIANT, wantbody: *mut super::Com::VARIANT, receivetimeout: *mut super::Com::VARIANT, wantconnectortype: *mut super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage4>;
+    fn ReceiveCurrent(&self, transaction: *mut super::Com::VARIANT, wantdestinationqueue: *mut super::Com::VARIANT, wantbody: *mut super::Com::VARIANT, receivetimeout: *mut super::Com::VARIANT, wantconnectortype: *mut super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage4>;
+    fn PeekNext(&self, wantdestinationqueue: *mut super::Com::VARIANT, wantbody: *mut super::Com::VARIANT, receivetimeout: *mut super::Com::VARIANT, wantconnectortype: *mut super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage4>;
+    fn PeekCurrent(&self, wantdestinationqueue: *mut super::Com::VARIANT, wantbody: *mut super::Com::VARIANT, receivetimeout: *mut super::Com::VARIANT, wantconnectortype: *mut super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage4>;
     fn Properties(&self) -> ::windows::core::Result<super::Com::IDispatch>;
     fn Handle2(&self) -> ::windows::core::Result<super::Com::VARIANT>;
-    fn ReceiveByLookupId(&self, lookupid: &super::Com::VARIANT, transaction: *const super::Com::VARIANT, wantdestinationqueue: *const super::Com::VARIANT, wantbody: *const super::Com::VARIANT, wantconnectortype: *const super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage4>;
-    fn ReceiveNextByLookupId(&self, lookupid: &super::Com::VARIANT, transaction: *const super::Com::VARIANT, wantdestinationqueue: *const super::Com::VARIANT, wantbody: *const super::Com::VARIANT, wantconnectortype: *const super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage4>;
-    fn ReceivePreviousByLookupId(&self, lookupid: &super::Com::VARIANT, transaction: *const super::Com::VARIANT, wantdestinationqueue: *const super::Com::VARIANT, wantbody: *const super::Com::VARIANT, wantconnectortype: *const super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage4>;
-    fn ReceiveFirstByLookupId(&self, transaction: *const super::Com::VARIANT, wantdestinationqueue: *const super::Com::VARIANT, wantbody: *const super::Com::VARIANT, wantconnectortype: *const super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage4>;
-    fn ReceiveLastByLookupId(&self, transaction: *const super::Com::VARIANT, wantdestinationqueue: *const super::Com::VARIANT, wantbody: *const super::Com::VARIANT, wantconnectortype: *const super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage4>;
-    fn PeekByLookupId(&self, lookupid: &super::Com::VARIANT, wantdestinationqueue: *const super::Com::VARIANT, wantbody: *const super::Com::VARIANT, wantconnectortype: *const super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage4>;
-    fn PeekNextByLookupId(&self, lookupid: &super::Com::VARIANT, wantdestinationqueue: *const super::Com::VARIANT, wantbody: *const super::Com::VARIANT, wantconnectortype: *const super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage4>;
-    fn PeekPreviousByLookupId(&self, lookupid: &super::Com::VARIANT, wantdestinationqueue: *const super::Com::VARIANT, wantbody: *const super::Com::VARIANT, wantconnectortype: *const super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage4>;
-    fn PeekFirstByLookupId(&self, wantdestinationqueue: *const super::Com::VARIANT, wantbody: *const super::Com::VARIANT, wantconnectortype: *const super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage4>;
-    fn PeekLastByLookupId(&self, wantdestinationqueue: *const super::Com::VARIANT, wantbody: *const super::Com::VARIANT, wantconnectortype: *const super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage4>;
+    fn ReceiveByLookupId(&self, lookupid: &super::Com::VARIANT, transaction: *mut super::Com::VARIANT, wantdestinationqueue: *mut super::Com::VARIANT, wantbody: *mut super::Com::VARIANT, wantconnectortype: *mut super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage4>;
+    fn ReceiveNextByLookupId(&self, lookupid: &super::Com::VARIANT, transaction: *mut super::Com::VARIANT, wantdestinationqueue: *mut super::Com::VARIANT, wantbody: *mut super::Com::VARIANT, wantconnectortype: *mut super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage4>;
+    fn ReceivePreviousByLookupId(&self, lookupid: &super::Com::VARIANT, transaction: *mut super::Com::VARIANT, wantdestinationqueue: *mut super::Com::VARIANT, wantbody: *mut super::Com::VARIANT, wantconnectortype: *mut super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage4>;
+    fn ReceiveFirstByLookupId(&self, transaction: *mut super::Com::VARIANT, wantdestinationqueue: *mut super::Com::VARIANT, wantbody: *mut super::Com::VARIANT, wantconnectortype: *mut super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage4>;
+    fn ReceiveLastByLookupId(&self, transaction: *mut super::Com::VARIANT, wantdestinationqueue: *mut super::Com::VARIANT, wantbody: *mut super::Com::VARIANT, wantconnectortype: *mut super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage4>;
+    fn PeekByLookupId(&self, lookupid: &super::Com::VARIANT, wantdestinationqueue: *mut super::Com::VARIANT, wantbody: *mut super::Com::VARIANT, wantconnectortype: *mut super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage4>;
+    fn PeekNextByLookupId(&self, lookupid: &super::Com::VARIANT, wantdestinationqueue: *mut super::Com::VARIANT, wantbody: *mut super::Com::VARIANT, wantconnectortype: *mut super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage4>;
+    fn PeekPreviousByLookupId(&self, lookupid: &super::Com::VARIANT, wantdestinationqueue: *mut super::Com::VARIANT, wantbody: *mut super::Com::VARIANT, wantconnectortype: *mut super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage4>;
+    fn PeekFirstByLookupId(&self, wantdestinationqueue: *mut super::Com::VARIANT, wantbody: *mut super::Com::VARIANT, wantconnectortype: *mut super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage4>;
+    fn PeekLastByLookupId(&self, wantdestinationqueue: *mut super::Com::VARIANT, wantbody: *mut super::Com::VARIANT, wantconnectortype: *mut super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage4>;
     fn Purge(&self) -> ::windows::core::Result<()>;
     fn IsOpen2(&self) -> ::windows::core::Result<i16>;
-    fn ReceiveByLookupIdAllowPeek(&self, lookupid: &super::Com::VARIANT, transaction: *const super::Com::VARIANT, wantdestinationqueue: *const super::Com::VARIANT, wantbody: *const super::Com::VARIANT, wantconnectortype: *const super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage4>;
+    fn ReceiveByLookupIdAllowPeek(&self, lookupid: &super::Com::VARIANT, transaction: *mut super::Com::VARIANT, wantdestinationqueue: *mut super::Com::VARIANT, wantbody: *mut super::Com::VARIANT, wantconnectortype: *mut super::Com::VARIANT) -> ::windows::core::Result<IMSMQMessage4>;
 }
 #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
 impl ::windows::core::RuntimeName for IMSMQQueue4 {}
@@ -5387,7 +5387,7 @@ impl IMSMQQueue4_Vtbl {
             let this = (*this).get_impl();
             this.Close().into()
         }
-        unsafe extern "system" fn Receive_v1<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, transaction: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantdestinationqueue: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, receivetimeout: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn Receive_v1<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, transaction: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantdestinationqueue: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, receivetimeout: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.Receive_v1(::core::mem::transmute_copy(&transaction), ::core::mem::transmute_copy(&wantdestinationqueue), ::core::mem::transmute_copy(&wantbody), ::core::mem::transmute_copy(&receivetimeout)) {
@@ -5398,7 +5398,7 @@ impl IMSMQQueue4_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn Peek_v1<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, wantdestinationqueue: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, receivetimeout: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn Peek_v1<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, wantdestinationqueue: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, receivetimeout: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.Peek_v1(::core::mem::transmute_copy(&wantdestinationqueue), ::core::mem::transmute_copy(&wantbody), ::core::mem::transmute_copy(&receivetimeout)) {
@@ -5409,7 +5409,7 @@ impl IMSMQQueue4_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn EnableNotification<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, event: *mut ::core::ffi::c_void, cursor: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, receivetimeout: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn EnableNotification<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, event: *mut ::core::ffi::c_void, cursor: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, receivetimeout: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.EnableNotification(::core::mem::transmute(&event), ::core::mem::transmute_copy(&cursor), ::core::mem::transmute_copy(&receivetimeout)).into()
@@ -5419,7 +5419,7 @@ impl IMSMQQueue4_Vtbl {
             let this = (*this).get_impl();
             this.Reset().into()
         }
-        unsafe extern "system" fn ReceiveCurrent_v1<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, transaction: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantdestinationqueue: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, receivetimeout: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn ReceiveCurrent_v1<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, transaction: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantdestinationqueue: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, receivetimeout: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.ReceiveCurrent_v1(::core::mem::transmute_copy(&transaction), ::core::mem::transmute_copy(&wantdestinationqueue), ::core::mem::transmute_copy(&wantbody), ::core::mem::transmute_copy(&receivetimeout)) {
@@ -5430,7 +5430,7 @@ impl IMSMQQueue4_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn PeekNext_v1<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, wantdestinationqueue: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, receivetimeout: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn PeekNext_v1<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, wantdestinationqueue: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, receivetimeout: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.PeekNext_v1(::core::mem::transmute_copy(&wantdestinationqueue), ::core::mem::transmute_copy(&wantbody), ::core::mem::transmute_copy(&receivetimeout)) {
@@ -5441,7 +5441,7 @@ impl IMSMQQueue4_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn PeekCurrent_v1<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, wantdestinationqueue: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, receivetimeout: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn PeekCurrent_v1<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, wantdestinationqueue: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, receivetimeout: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.PeekCurrent_v1(::core::mem::transmute_copy(&wantdestinationqueue), ::core::mem::transmute_copy(&wantbody), ::core::mem::transmute_copy(&receivetimeout)) {
@@ -5452,7 +5452,7 @@ impl IMSMQQueue4_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn Receive<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, transaction: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantdestinationqueue: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, receivetimeout: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantconnectortype: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn Receive<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, transaction: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantdestinationqueue: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, receivetimeout: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantconnectortype: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.Receive(::core::mem::transmute_copy(&transaction), ::core::mem::transmute_copy(&wantdestinationqueue), ::core::mem::transmute_copy(&wantbody), ::core::mem::transmute_copy(&receivetimeout), ::core::mem::transmute_copy(&wantconnectortype)) {
@@ -5463,7 +5463,7 @@ impl IMSMQQueue4_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn Peek<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, wantdestinationqueue: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, receivetimeout: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantconnectortype: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn Peek<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, wantdestinationqueue: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, receivetimeout: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantconnectortype: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.Peek(::core::mem::transmute_copy(&wantdestinationqueue), ::core::mem::transmute_copy(&wantbody), ::core::mem::transmute_copy(&receivetimeout), ::core::mem::transmute_copy(&wantconnectortype)) {
@@ -5474,7 +5474,7 @@ impl IMSMQQueue4_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn ReceiveCurrent<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, transaction: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantdestinationqueue: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, receivetimeout: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantconnectortype: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn ReceiveCurrent<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, transaction: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantdestinationqueue: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, receivetimeout: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantconnectortype: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.ReceiveCurrent(::core::mem::transmute_copy(&transaction), ::core::mem::transmute_copy(&wantdestinationqueue), ::core::mem::transmute_copy(&wantbody), ::core::mem::transmute_copy(&receivetimeout), ::core::mem::transmute_copy(&wantconnectortype)) {
@@ -5485,7 +5485,7 @@ impl IMSMQQueue4_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn PeekNext<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, wantdestinationqueue: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, receivetimeout: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantconnectortype: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn PeekNext<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, wantdestinationqueue: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, receivetimeout: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantconnectortype: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.PeekNext(::core::mem::transmute_copy(&wantdestinationqueue), ::core::mem::transmute_copy(&wantbody), ::core::mem::transmute_copy(&receivetimeout), ::core::mem::transmute_copy(&wantconnectortype)) {
@@ -5496,7 +5496,7 @@ impl IMSMQQueue4_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn PeekCurrent<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, wantdestinationqueue: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, receivetimeout: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantconnectortype: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn PeekCurrent<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, wantdestinationqueue: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, receivetimeout: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantconnectortype: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.PeekCurrent(::core::mem::transmute_copy(&wantdestinationqueue), ::core::mem::transmute_copy(&wantbody), ::core::mem::transmute_copy(&receivetimeout), ::core::mem::transmute_copy(&wantconnectortype)) {
@@ -5529,7 +5529,7 @@ impl IMSMQQueue4_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn ReceiveByLookupId<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, lookupid: ::core::mem::ManuallyDrop<super::Com::VARIANT>, transaction: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantdestinationqueue: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantconnectortype: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn ReceiveByLookupId<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, lookupid: ::core::mem::ManuallyDrop<super::Com::VARIANT>, transaction: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantdestinationqueue: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantconnectortype: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.ReceiveByLookupId(::core::mem::transmute(&lookupid), ::core::mem::transmute_copy(&transaction), ::core::mem::transmute_copy(&wantdestinationqueue), ::core::mem::transmute_copy(&wantbody), ::core::mem::transmute_copy(&wantconnectortype)) {
@@ -5540,7 +5540,7 @@ impl IMSMQQueue4_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn ReceiveNextByLookupId<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, lookupid: ::core::mem::ManuallyDrop<super::Com::VARIANT>, transaction: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantdestinationqueue: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantconnectortype: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn ReceiveNextByLookupId<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, lookupid: ::core::mem::ManuallyDrop<super::Com::VARIANT>, transaction: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantdestinationqueue: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantconnectortype: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.ReceiveNextByLookupId(::core::mem::transmute(&lookupid), ::core::mem::transmute_copy(&transaction), ::core::mem::transmute_copy(&wantdestinationqueue), ::core::mem::transmute_copy(&wantbody), ::core::mem::transmute_copy(&wantconnectortype)) {
@@ -5551,7 +5551,7 @@ impl IMSMQQueue4_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn ReceivePreviousByLookupId<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, lookupid: ::core::mem::ManuallyDrop<super::Com::VARIANT>, transaction: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantdestinationqueue: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantconnectortype: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn ReceivePreviousByLookupId<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, lookupid: ::core::mem::ManuallyDrop<super::Com::VARIANT>, transaction: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantdestinationqueue: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantconnectortype: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.ReceivePreviousByLookupId(::core::mem::transmute(&lookupid), ::core::mem::transmute_copy(&transaction), ::core::mem::transmute_copy(&wantdestinationqueue), ::core::mem::transmute_copy(&wantbody), ::core::mem::transmute_copy(&wantconnectortype)) {
@@ -5562,7 +5562,7 @@ impl IMSMQQueue4_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn ReceiveFirstByLookupId<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, transaction: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantdestinationqueue: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantconnectortype: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn ReceiveFirstByLookupId<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, transaction: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantdestinationqueue: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantconnectortype: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.ReceiveFirstByLookupId(::core::mem::transmute_copy(&transaction), ::core::mem::transmute_copy(&wantdestinationqueue), ::core::mem::transmute_copy(&wantbody), ::core::mem::transmute_copy(&wantconnectortype)) {
@@ -5573,7 +5573,7 @@ impl IMSMQQueue4_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn ReceiveLastByLookupId<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, transaction: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantdestinationqueue: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantconnectortype: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn ReceiveLastByLookupId<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, transaction: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantdestinationqueue: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantconnectortype: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.ReceiveLastByLookupId(::core::mem::transmute_copy(&transaction), ::core::mem::transmute_copy(&wantdestinationqueue), ::core::mem::transmute_copy(&wantbody), ::core::mem::transmute_copy(&wantconnectortype)) {
@@ -5584,7 +5584,7 @@ impl IMSMQQueue4_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn PeekByLookupId<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, lookupid: ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantdestinationqueue: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantconnectortype: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn PeekByLookupId<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, lookupid: ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantdestinationqueue: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantconnectortype: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.PeekByLookupId(::core::mem::transmute(&lookupid), ::core::mem::transmute_copy(&wantdestinationqueue), ::core::mem::transmute_copy(&wantbody), ::core::mem::transmute_copy(&wantconnectortype)) {
@@ -5595,7 +5595,7 @@ impl IMSMQQueue4_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn PeekNextByLookupId<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, lookupid: ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantdestinationqueue: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantconnectortype: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn PeekNextByLookupId<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, lookupid: ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantdestinationqueue: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantconnectortype: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.PeekNextByLookupId(::core::mem::transmute(&lookupid), ::core::mem::transmute_copy(&wantdestinationqueue), ::core::mem::transmute_copy(&wantbody), ::core::mem::transmute_copy(&wantconnectortype)) {
@@ -5606,7 +5606,7 @@ impl IMSMQQueue4_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn PeekPreviousByLookupId<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, lookupid: ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantdestinationqueue: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantconnectortype: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn PeekPreviousByLookupId<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, lookupid: ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantdestinationqueue: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantconnectortype: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.PeekPreviousByLookupId(::core::mem::transmute(&lookupid), ::core::mem::transmute_copy(&wantdestinationqueue), ::core::mem::transmute_copy(&wantbody), ::core::mem::transmute_copy(&wantconnectortype)) {
@@ -5617,7 +5617,7 @@ impl IMSMQQueue4_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn PeekFirstByLookupId<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, wantdestinationqueue: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantconnectortype: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn PeekFirstByLookupId<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, wantdestinationqueue: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantconnectortype: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.PeekFirstByLookupId(::core::mem::transmute_copy(&wantdestinationqueue), ::core::mem::transmute_copy(&wantbody), ::core::mem::transmute_copy(&wantconnectortype)) {
@@ -5628,7 +5628,7 @@ impl IMSMQQueue4_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn PeekLastByLookupId<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, wantdestinationqueue: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantconnectortype: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn PeekLastByLookupId<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, wantdestinationqueue: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantconnectortype: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.PeekLastByLookupId(::core::mem::transmute_copy(&wantdestinationqueue), ::core::mem::transmute_copy(&wantbody), ::core::mem::transmute_copy(&wantconnectortype)) {
@@ -5655,7 +5655,7 @@ impl IMSMQQueue4_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn ReceiveByLookupIdAllowPeek<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, lookupid: ::core::mem::ManuallyDrop<super::Com::VARIANT>, transaction: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantdestinationqueue: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantconnectortype: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn ReceiveByLookupIdAllowPeek<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueue4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, lookupid: ::core::mem::ManuallyDrop<super::Com::VARIANT>, transaction: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantdestinationqueue: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantbody: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, wantconnectortype: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, ppmsg: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.ReceiveByLookupIdAllowPeek(::core::mem::transmute(&lookupid), ::core::mem::transmute_copy(&transaction), ::core::mem::transmute_copy(&wantdestinationqueue), ::core::mem::transmute_copy(&wantbody), ::core::mem::transmute_copy(&wantconnectortype)) {
@@ -5734,7 +5734,7 @@ pub trait IMSMQQueueInfo_Impl: Sized + super::Com::IDispatch_Impl {
     fn JournalQuota(&self) -> ::windows::core::Result<i32>;
     fn SetJournalQuota(&self, ljournalquota: i32) -> ::windows::core::Result<()>;
     fn IsWorldReadable(&self) -> ::windows::core::Result<i16>;
-    fn Create(&self, istransactional: *const super::Com::VARIANT, isworldreadable: *const super::Com::VARIANT) -> ::windows::core::Result<()>;
+    fn Create(&self, istransactional: *mut super::Com::VARIANT, isworldreadable: *mut super::Com::VARIANT) -> ::windows::core::Result<()>;
     fn Delete(&self) -> ::windows::core::Result<()>;
     fn Open(&self, access: i32, sharemode: i32) -> ::windows::core::Result<IMSMQQueue>;
     fn Refresh(&self) -> ::windows::core::Result<()>;
@@ -5960,7 +5960,7 @@ impl IMSMQQueueInfo_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn Create<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueueInfo_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, istransactional: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, isworldreadable: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn Create<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueueInfo_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, istransactional: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, isworldreadable: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.Create(::core::mem::transmute_copy(&istransactional), ::core::mem::transmute_copy(&isworldreadable)).into()
@@ -6056,7 +6056,7 @@ pub trait IMSMQQueueInfo2_Impl: Sized + super::Com::IDispatch_Impl {
     fn JournalQuota(&self) -> ::windows::core::Result<i32>;
     fn SetJournalQuota(&self, ljournalquota: i32) -> ::windows::core::Result<()>;
     fn IsWorldReadable(&self) -> ::windows::core::Result<i16>;
-    fn Create(&self, istransactional: *const super::Com::VARIANT, isworldreadable: *const super::Com::VARIANT) -> ::windows::core::Result<()>;
+    fn Create(&self, istransactional: *mut super::Com::VARIANT, isworldreadable: *mut super::Com::VARIANT) -> ::windows::core::Result<()>;
     fn Delete(&self) -> ::windows::core::Result<()>;
     fn Open(&self, access: i32, sharemode: i32) -> ::windows::core::Result<IMSMQQueue2>;
     fn Refresh(&self) -> ::windows::core::Result<()>;
@@ -6286,7 +6286,7 @@ impl IMSMQQueueInfo2_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn Create<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueueInfo2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, istransactional: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, isworldreadable: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn Create<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueueInfo2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, istransactional: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, isworldreadable: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.Create(::core::mem::transmute_copy(&istransactional), ::core::mem::transmute_copy(&isworldreadable)).into()
@@ -6424,7 +6424,7 @@ pub trait IMSMQQueueInfo3_Impl: Sized + super::Com::IDispatch_Impl {
     fn JournalQuota(&self) -> ::windows::core::Result<i32>;
     fn SetJournalQuota(&self, ljournalquota: i32) -> ::windows::core::Result<()>;
     fn IsWorldReadable(&self) -> ::windows::core::Result<i16>;
-    fn Create(&self, istransactional: *const super::Com::VARIANT, isworldreadable: *const super::Com::VARIANT) -> ::windows::core::Result<()>;
+    fn Create(&self, istransactional: *mut super::Com::VARIANT, isworldreadable: *mut super::Com::VARIANT) -> ::windows::core::Result<()>;
     fn Delete(&self) -> ::windows::core::Result<()>;
     fn Open(&self, access: i32, sharemode: i32) -> ::windows::core::Result<IMSMQQueue3>;
     fn Refresh(&self) -> ::windows::core::Result<()>;
@@ -6659,7 +6659,7 @@ impl IMSMQQueueInfo3_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn Create<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueueInfo3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, istransactional: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, isworldreadable: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn Create<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueueInfo3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, istransactional: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, isworldreadable: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.Create(::core::mem::transmute_copy(&istransactional), ::core::mem::transmute_copy(&isworldreadable)).into()
@@ -6851,7 +6851,7 @@ pub trait IMSMQQueueInfo4_Impl: Sized + super::Com::IDispatch_Impl {
     fn JournalQuota(&self) -> ::windows::core::Result<i32>;
     fn SetJournalQuota(&self, ljournalquota: i32) -> ::windows::core::Result<()>;
     fn IsWorldReadable(&self) -> ::windows::core::Result<i16>;
-    fn Create(&self, istransactional: *const super::Com::VARIANT, isworldreadable: *const super::Com::VARIANT) -> ::windows::core::Result<()>;
+    fn Create(&self, istransactional: *mut super::Com::VARIANT, isworldreadable: *mut super::Com::VARIANT) -> ::windows::core::Result<()>;
     fn Delete(&self) -> ::windows::core::Result<()>;
     fn Open(&self, access: i32, sharemode: i32) -> ::windows::core::Result<IMSMQQueue4>;
     fn Refresh(&self) -> ::windows::core::Result<()>;
@@ -7086,7 +7086,7 @@ impl IMSMQQueueInfo4_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn Create<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueueInfo4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, istransactional: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, isworldreadable: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn Create<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQQueueInfo4_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, istransactional: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, isworldreadable: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.Create(::core::mem::transmute_copy(&istransactional), ::core::mem::transmute_copy(&isworldreadable)).into()
@@ -7492,8 +7492,8 @@ impl IMSMQQueueManagement_Vtbl {
 #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
 pub trait IMSMQTransaction_Impl: Sized + super::Com::IDispatch_Impl {
     fn Transaction(&self) -> ::windows::core::Result<i32>;
-    fn Commit(&self, fretaining: *const super::Com::VARIANT, grftc: *const super::Com::VARIANT, grfrm: *const super::Com::VARIANT) -> ::windows::core::Result<()>;
-    fn Abort(&self, fretaining: *const super::Com::VARIANT, fasync: *const super::Com::VARIANT) -> ::windows::core::Result<()>;
+    fn Commit(&self, fretaining: *mut super::Com::VARIANT, grftc: *mut super::Com::VARIANT, grfrm: *mut super::Com::VARIANT) -> ::windows::core::Result<()>;
+    fn Abort(&self, fretaining: *mut super::Com::VARIANT, fasync: *mut super::Com::VARIANT) -> ::windows::core::Result<()>;
 }
 #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
 impl ::windows::core::RuntimeName for IMSMQTransaction {}
@@ -7511,12 +7511,12 @@ impl IMSMQTransaction_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn Commit<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQTransaction_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, fretaining: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, grftc: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, grfrm: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn Commit<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQTransaction_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, fretaining: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, grftc: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, grfrm: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.Commit(::core::mem::transmute_copy(&fretaining), ::core::mem::transmute_copy(&grftc), ::core::mem::transmute_copy(&grfrm)).into()
         }
-        unsafe extern "system" fn Abort<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQTransaction_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, fretaining: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, fasync: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn Abort<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSMQTransaction_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, fretaining: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, fasync: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.Abort(::core::mem::transmute_copy(&fretaining), ::core::mem::transmute_copy(&fasync)).into()

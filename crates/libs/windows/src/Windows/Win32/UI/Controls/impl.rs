@@ -5,7 +5,7 @@ pub trait IImageList_Impl: Sized {
     fn SetOverlayImage(&self, iimage: i32, ioverlay: i32) -> ::windows::core::Result<()>;
     fn Replace(&self, i: i32, hbmimage: super::super::Graphics::Gdi::HBITMAP, hbmmask: super::super::Graphics::Gdi::HBITMAP) -> ::windows::core::Result<()>;
     fn AddMasked(&self, hbmimage: super::super::Graphics::Gdi::HBITMAP, crmask: super::super::Foundation::COLORREF) -> ::windows::core::Result<i32>;
-    fn Draw(&self, pimldp: *const IMAGELISTDRAWPARAMS) -> ::windows::core::Result<()>;
+    fn Draw(&self, pimldp: *mut IMAGELISTDRAWPARAMS) -> ::windows::core::Result<()>;
     fn Remove(&self, i: i32) -> ::windows::core::Result<()>;
     fn GetIcon(&self, i: i32, flags: u32) -> ::windows::core::Result<super::WindowsAndMessaging::HICON>;
     fn GetImageInfo(&self, i: i32) -> ::windows::core::Result<IMAGEINFO>;
@@ -78,7 +78,7 @@ impl IImageList_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn Draw<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IImageList_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, pimldp: *const IMAGELISTDRAWPARAMS) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn Draw<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IImageList_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, pimldp: *mut IMAGELISTDRAWPARAMS) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.Draw(::core::mem::transmute_copy(&pimldp)).into()
@@ -292,7 +292,7 @@ pub trait IImageList2_Impl: Sized + IImageList_Impl {
     fn GetCallback(&self, riid: *const ::windows::core::GUID, ppv: *mut *mut ::core::ffi::c_void) -> ::windows::core::Result<()>;
     fn ForceImagePresent(&self, iimage: i32, dwflags: u32) -> ::windows::core::Result<()>;
     fn DiscardImages(&self, ifirstimage: i32, ilastimage: i32, dwflags: u32) -> ::windows::core::Result<()>;
-    fn PreloadImages(&self, pimldp: *const IMAGELISTDRAWPARAMS) -> ::windows::core::Result<()>;
+    fn PreloadImages(&self, pimldp: *mut IMAGELISTDRAWPARAMS) -> ::windows::core::Result<()>;
     fn GetStatistics(&self, pils: *mut IMAGELISTSTATS) -> ::windows::core::Result<()>;
     fn Initialize(&self, cx: i32, cy: i32, flags: IMAGELIST_CREATION_FLAGS, cinitial: i32, cgrow: i32) -> ::windows::core::Result<()>;
     fn Replace2(&self, i: i32, hbmimage: super::super::Graphics::Gdi::HBITMAP, hbmmask: super::super::Graphics::Gdi::HBITMAP, punk: &::core::option::Option<::windows::core::IUnknown>, dwflags: u32) -> ::windows::core::Result<()>;
@@ -338,7 +338,7 @@ impl IImageList2_Vtbl {
             let this = (*this).get_impl();
             this.DiscardImages(::core::mem::transmute_copy(&ifirstimage), ::core::mem::transmute_copy(&ilastimage), ::core::mem::transmute_copy(&dwflags)).into()
         }
-        unsafe extern "system" fn PreloadImages<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IImageList2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, pimldp: *const IMAGELISTDRAWPARAMS) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn PreloadImages<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IImageList2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, pimldp: *mut IMAGELISTDRAWPARAMS) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.PreloadImages(::core::mem::transmute_copy(&pimldp)).into()

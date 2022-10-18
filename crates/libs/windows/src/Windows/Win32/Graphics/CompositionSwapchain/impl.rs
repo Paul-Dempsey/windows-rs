@@ -2,7 +2,7 @@
 pub trait ICompositionFramePresentStatistics_Impl: Sized + IPresentStatistics_Impl {
     fn GetContentTag(&self) -> usize;
     fn GetCompositionFrameId(&self) -> u64;
-    fn GetDisplayInstanceArray(&self, displayinstancearraycount: *mut u32, displayinstancearray: *mut *mut CompositionFrameDisplayInstance);
+    fn GetDisplayInstanceArray(&self, displayinstancearraycount: *mut u32, displayinstancearray: *const *const CompositionFrameDisplayInstance);
 }
 #[cfg(all(feature = "Win32_Foundation", feature = "Win32_Graphics_Dxgi_Common"))]
 impl ::windows::core::RuntimeName for ICompositionFramePresentStatistics {}
@@ -19,7 +19,7 @@ impl ICompositionFramePresentStatistics_Vtbl {
             let this = (*this).get_impl();
             this.GetCompositionFrameId()
         }
-        unsafe extern "system" fn GetDisplayInstanceArray<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: ICompositionFramePresentStatistics_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, displayinstancearraycount: *mut u32, displayinstancearray: *mut *mut CompositionFrameDisplayInstance) {
+        unsafe extern "system" fn GetDisplayInstanceArray<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: ICompositionFramePresentStatistics_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, displayinstancearraycount: *mut u32, displayinstancearray: *const *const CompositionFrameDisplayInstance) {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.GetDisplayInstanceArray(::core::mem::transmute_copy(&displayinstancearraycount), ::core::mem::transmute_copy(&displayinstancearray))
@@ -388,7 +388,7 @@ pub trait IPresentationSurface_Impl: Sized + IPresentationContent_Impl {
     fn SetColorSpace(&self, colorspace: super::Dxgi::Common::DXGI_COLOR_SPACE_TYPE) -> ::windows::core::Result<()>;
     fn SetAlphaMode(&self, alphamode: super::Dxgi::Common::DXGI_ALPHA_MODE) -> ::windows::core::Result<()>;
     fn SetSourceRect(&self, sourcerect: *const super::super::Foundation::RECT) -> ::windows::core::Result<()>;
-    fn SetTransform(&self, transform: *const PresentationTransform) -> ::windows::core::Result<()>;
+    fn SetTransform(&self, transform: *mut PresentationTransform) -> ::windows::core::Result<()>;
     fn RestrictToOutput(&self, output: &::core::option::Option<::windows::core::IUnknown>) -> ::windows::core::Result<()>;
     fn SetDisableReadback(&self, value: u8) -> ::windows::core::Result<()>;
     fn SetLetterboxingMargins(&self, leftletterboxsize: f32, topletterboxsize: f32, rightletterboxsize: f32, bottomletterboxsize: f32) -> ::windows::core::Result<()>;
@@ -418,7 +418,7 @@ impl IPresentationSurface_Vtbl {
             let this = (*this).get_impl();
             this.SetSourceRect(::core::mem::transmute_copy(&sourcerect)).into()
         }
-        unsafe extern "system" fn SetTransform<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IPresentationSurface_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, transform: *const PresentationTransform) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn SetTransform<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IPresentationSurface_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, transform: *mut PresentationTransform) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.SetTransform(::core::mem::transmute_copy(&transform)).into()

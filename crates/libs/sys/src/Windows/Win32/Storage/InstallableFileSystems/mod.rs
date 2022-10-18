@@ -8,7 +8,7 @@ extern "system" {
     pub fn FilterClose(hfilter: HFILTER) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_Storage_InstallableFileSystems\"`, `\"Win32_Foundation\"`, `\"Win32_Security\"`*"]
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_Security"))]
-    pub fn FilterConnectCommunicationPort(lpportname: ::windows_sys::core::PCWSTR, dwoptions: u32, lpcontext: *const ::core::ffi::c_void, wsizeofcontext: u16, lpsecurityattributes: *const super::super::Security::SECURITY_ATTRIBUTES, hport: *mut super::super::Foundation::HANDLE) -> ::windows_sys::core::HRESULT;
+    pub fn FilterConnectCommunicationPort(lpportname: ::windows_sys::core::PCWSTR, dwoptions: u32, lpcontext: *const ::core::ffi::c_void, wsizeofcontext: u16, lpsecurityattributes: *mut super::super::Security::SECURITY_ATTRIBUTES, hport: *mut super::super::Foundation::HANDLE) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_Storage_InstallableFileSystems\"`*"]
     pub fn FilterCreate(lpfiltername: ::windows_sys::core::PCWSTR, hfilter: *mut HFILTER) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_Storage_InstallableFileSystems\"`*"]
@@ -46,10 +46,10 @@ extern "system" {
     pub fn FilterLoad(lpfiltername: ::windows_sys::core::PCWSTR) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_Storage_InstallableFileSystems\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub fn FilterReplyMessage(hport: super::super::Foundation::HANDLE, lpreplybuffer: *const FILTER_REPLY_HEADER, dwreplybuffersize: u32) -> ::windows_sys::core::HRESULT;
+    pub fn FilterReplyMessage(hport: super::super::Foundation::HANDLE, lpreplybuffer: *mut FILTER_REPLY_HEADER, dwreplybuffersize: u32) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_Storage_InstallableFileSystems\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub fn FilterSendMessage(hport: super::super::Foundation::HANDLE, lpinbuffer: *const ::core::ffi::c_void, dwinbuffersize: u32, lpoutbuffer: *mut ::core::ffi::c_void, dwoutbuffersize: u32, lpbytesreturned: *mut u32) -> ::windows_sys::core::HRESULT;
+    pub fn FilterSendMessage(hport: super::super::Foundation::HANDLE, lpinbuffer: *mut ::core::ffi::c_void, dwinbuffersize: u32, lpoutbuffer: *mut ::core::ffi::c_void, dwoutbuffersize: u32, lpbytesreturned: *mut u32) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_Storage_InstallableFileSystems\"`*"]
     pub fn FilterUnload(lpfiltername: ::windows_sys::core::PCWSTR) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_Storage_InstallableFileSystems\"`, `\"Win32_Foundation\"`*"]

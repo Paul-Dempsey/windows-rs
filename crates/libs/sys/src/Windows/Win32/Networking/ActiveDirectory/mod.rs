@@ -8,7 +8,7 @@ extern "system" {
     pub fn ADsBuildVarArrayInt(lpdwobjecttypes: *mut u32, dwobjecttypes: u32, pvar: *mut super::super::System::Com::VARIANT) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_Networking_ActiveDirectory\"`, `\"Win32_Foundation\"`, `\"Win32_System_Com\"`, `\"Win32_System_Ole\"`*"]
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub fn ADsBuildVarArrayStr(lpppathnames: *const ::windows_sys::core::PWSTR, dwpathnames: u32, pvar: *mut super::super::System::Com::VARIANT) -> ::windows_sys::core::HRESULT;
+    pub fn ADsBuildVarArrayStr(lpppathnames: *mut ::windows_sys::core::PWSTR, dwpathnames: u32, pvar: *mut super::super::System::Com::VARIANT) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_Networking_ActiveDirectory\"`*"]
     pub fn ADsDecodeBinaryData(szsrcdata: ::windows_sys::core::PCWSTR, ppbdestdata: *mut *mut u8, pdwdestlen: *mut u32) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_Networking_ActiveDirectory\"`*"]
@@ -30,7 +30,7 @@ extern "system" {
     pub fn ADsPropCheckIfWritable(pwzattr: ::windows_sys::core::PCWSTR, pwritableattrs: *const ADS_ATTR_INFO) -> super::super::Foundation::BOOL;
     #[doc = "*Required features: `\"Win32_Networking_ActiveDirectory\"`, `\"Win32_Foundation\"`, `\"Win32_System_Com\"`*"]
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com"))]
-    pub fn ADsPropCreateNotifyObj(pappthddataobj: super::super::System::Com::IDataObject, pwzadsobjname: ::windows_sys::core::PCWSTR, phnotifyobj: *mut super::super::Foundation::HWND) -> ::windows_sys::core::HRESULT;
+    pub fn ADsPropCreateNotifyObj(pappthddataobj: super::super::System::Com::IDataObject, pwzadsobjname: ::windows_sys::core::PWSTR, phnotifyobj: *mut super::super::Foundation::HWND) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_Networking_ActiveDirectory\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
     pub fn ADsPropGetInitInfo(hnotifyobj: super::super::Foundation::HWND, pinitparams: *mut ADSPROPINITPARAMS) -> super::super::Foundation::BOOL;
@@ -42,7 +42,7 @@ extern "system" {
     pub fn ADsPropSetHwnd(hnotifyobj: super::super::Foundation::HWND, hpage: super::super::Foundation::HWND) -> super::super::Foundation::BOOL;
     #[doc = "*Required features: `\"Win32_Networking_ActiveDirectory\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub fn ADsPropSetHwndWithTitle(hnotifyobj: super::super::Foundation::HWND, hpage: super::super::Foundation::HWND, ptztitle: *const i8) -> super::super::Foundation::BOOL;
+    pub fn ADsPropSetHwndWithTitle(hnotifyobj: super::super::Foundation::HWND, hpage: super::super::Foundation::HWND, ptztitle: *mut i8) -> super::super::Foundation::BOOL;
     #[doc = "*Required features: `\"Win32_Networking_ActiveDirectory\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
     pub fn ADsPropShowErrorDialog(hnotifyobj: super::super::Foundation::HWND, hpage: super::super::Foundation::HWND) -> super::super::Foundation::BOOL;
@@ -63,31 +63,31 @@ extern "system" {
     pub fn BinarySDToSecurityDescriptor(psecuritydescriptor: super::super::Security::PSECURITY_DESCRIPTOR, pvarsec: *mut super::super::System::Com::VARIANT, pszservername: ::windows_sys::core::PCWSTR, username: ::windows_sys::core::PCWSTR, password: ::windows_sys::core::PCWSTR, dwflags: u32) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_Networking_ActiveDirectory\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub fn DsAddSidHistoryA(hds: super::super::Foundation::HANDLE, flags: u32, srcdomain: ::windows_sys::core::PCSTR, srcprincipal: ::windows_sys::core::PCSTR, srcdomaincontroller: ::windows_sys::core::PCSTR, srcdomaincreds: *const ::core::ffi::c_void, dstdomain: ::windows_sys::core::PCSTR, dstprincipal: ::windows_sys::core::PCSTR) -> u32;
+    pub fn DsAddSidHistoryA(hds: super::super::Foundation::HANDLE, flags: u32, srcdomain: ::windows_sys::core::PCSTR, srcprincipal: ::windows_sys::core::PCSTR, srcdomaincontroller: ::windows_sys::core::PCSTR, srcdomaincreds: *mut ::core::ffi::c_void, dstdomain: ::windows_sys::core::PCSTR, dstprincipal: ::windows_sys::core::PCSTR) -> u32;
     #[doc = "*Required features: `\"Win32_Networking_ActiveDirectory\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub fn DsAddSidHistoryW(hds: super::super::Foundation::HANDLE, flags: u32, srcdomain: ::windows_sys::core::PCWSTR, srcprincipal: ::windows_sys::core::PCWSTR, srcdomaincontroller: ::windows_sys::core::PCWSTR, srcdomaincreds: *const ::core::ffi::c_void, dstdomain: ::windows_sys::core::PCWSTR, dstprincipal: ::windows_sys::core::PCWSTR) -> u32;
+    pub fn DsAddSidHistoryW(hds: super::super::Foundation::HANDLE, flags: u32, srcdomain: ::windows_sys::core::PCWSTR, srcprincipal: ::windows_sys::core::PCWSTR, srcdomaincontroller: ::windows_sys::core::PCWSTR, srcdomaincreds: *mut ::core::ffi::c_void, dstdomain: ::windows_sys::core::PCWSTR, dstprincipal: ::windows_sys::core::PCWSTR) -> u32;
     #[doc = "*Required features: `\"Win32_Networking_ActiveDirectory\"`, `\"Win32_Foundation\"`, `\"Win32_Networking_WinSock\"`*"]
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_Networking_WinSock"))]
-    pub fn DsAddressToSiteNamesA(computername: ::windows_sys::core::PCSTR, entrycount: u32, socketaddresses: *const super::WinSock::SOCKET_ADDRESS, sitenames: *mut *mut ::windows_sys::core::PSTR) -> u32;
+    pub fn DsAddressToSiteNamesA(computername: ::windows_sys::core::PCSTR, entrycount: u32, socketaddresses: *mut super::WinSock::SOCKET_ADDRESS, sitenames: *mut *mut ::windows_sys::core::PSTR) -> u32;
     #[doc = "*Required features: `\"Win32_Networking_ActiveDirectory\"`, `\"Win32_Foundation\"`, `\"Win32_Networking_WinSock\"`*"]
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_Networking_WinSock"))]
-    pub fn DsAddressToSiteNamesExA(computername: ::windows_sys::core::PCSTR, entrycount: u32, socketaddresses: *const super::WinSock::SOCKET_ADDRESS, sitenames: *mut *mut ::windows_sys::core::PSTR, subnetnames: *mut *mut ::windows_sys::core::PSTR) -> u32;
+    pub fn DsAddressToSiteNamesExA(computername: ::windows_sys::core::PCSTR, entrycount: u32, socketaddresses: *mut super::WinSock::SOCKET_ADDRESS, sitenames: *mut *mut ::windows_sys::core::PSTR, subnetnames: *mut *mut ::windows_sys::core::PSTR) -> u32;
     #[doc = "*Required features: `\"Win32_Networking_ActiveDirectory\"`, `\"Win32_Foundation\"`, `\"Win32_Networking_WinSock\"`*"]
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_Networking_WinSock"))]
-    pub fn DsAddressToSiteNamesExW(computername: ::windows_sys::core::PCWSTR, entrycount: u32, socketaddresses: *const super::WinSock::SOCKET_ADDRESS, sitenames: *mut *mut ::windows_sys::core::PWSTR, subnetnames: *mut *mut ::windows_sys::core::PWSTR) -> u32;
+    pub fn DsAddressToSiteNamesExW(computername: ::windows_sys::core::PCWSTR, entrycount: u32, socketaddresses: *mut super::WinSock::SOCKET_ADDRESS, sitenames: *mut *mut ::windows_sys::core::PWSTR, subnetnames: *mut *mut ::windows_sys::core::PWSTR) -> u32;
     #[doc = "*Required features: `\"Win32_Networking_ActiveDirectory\"`, `\"Win32_Foundation\"`, `\"Win32_Networking_WinSock\"`*"]
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_Networking_WinSock"))]
-    pub fn DsAddressToSiteNamesW(computername: ::windows_sys::core::PCWSTR, entrycount: u32, socketaddresses: *const super::WinSock::SOCKET_ADDRESS, sitenames: *mut *mut ::windows_sys::core::PWSTR) -> u32;
+    pub fn DsAddressToSiteNamesW(computername: ::windows_sys::core::PCWSTR, entrycount: u32, socketaddresses: *mut super::WinSock::SOCKET_ADDRESS, sitenames: *mut *mut ::windows_sys::core::PWSTR) -> u32;
     #[doc = "*Required features: `\"Win32_Networking_ActiveDirectory\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
     pub fn DsBindA(domaincontrollername: ::windows_sys::core::PCSTR, dnsdomainname: ::windows_sys::core::PCSTR, phds: *mut super::super::Foundation::HANDLE) -> u32;
     #[doc = "*Required features: `\"Win32_Networking_ActiveDirectory\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub fn DsBindByInstanceA(servername: ::windows_sys::core::PCSTR, annotation: ::windows_sys::core::PCSTR, instanceguid: *const ::windows_sys::core::GUID, dnsdomainname: ::windows_sys::core::PCSTR, authidentity: *const ::core::ffi::c_void, serviceprincipalname: ::windows_sys::core::PCSTR, bindflags: u32, phds: *mut super::super::Foundation::HANDLE) -> u32;
+    pub fn DsBindByInstanceA(servername: ::windows_sys::core::PCSTR, annotation: ::windows_sys::core::PCSTR, instanceguid: *mut ::windows_sys::core::GUID, dnsdomainname: ::windows_sys::core::PCSTR, authidentity: *mut ::core::ffi::c_void, serviceprincipalname: ::windows_sys::core::PCSTR, bindflags: u32, phds: *mut super::super::Foundation::HANDLE) -> u32;
     #[doc = "*Required features: `\"Win32_Networking_ActiveDirectory\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub fn DsBindByInstanceW(servername: ::windows_sys::core::PCWSTR, annotation: ::windows_sys::core::PCWSTR, instanceguid: *const ::windows_sys::core::GUID, dnsdomainname: ::windows_sys::core::PCWSTR, authidentity: *const ::core::ffi::c_void, serviceprincipalname: ::windows_sys::core::PCWSTR, bindflags: u32, phds: *mut super::super::Foundation::HANDLE) -> u32;
+    pub fn DsBindByInstanceW(servername: ::windows_sys::core::PCWSTR, annotation: ::windows_sys::core::PCWSTR, instanceguid: *mut ::windows_sys::core::GUID, dnsdomainname: ::windows_sys::core::PCWSTR, authidentity: *mut ::core::ffi::c_void, serviceprincipalname: ::windows_sys::core::PCWSTR, bindflags: u32, phds: *mut super::super::Foundation::HANDLE) -> u32;
     #[doc = "*Required features: `\"Win32_Networking_ActiveDirectory\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
     pub fn DsBindToISTGA(sitename: ::windows_sys::core::PCSTR, phds: *mut super::super::Foundation::HANDLE) -> u32;
@@ -99,22 +99,22 @@ extern "system" {
     pub fn DsBindW(domaincontrollername: ::windows_sys::core::PCWSTR, dnsdomainname: ::windows_sys::core::PCWSTR, phds: *mut super::super::Foundation::HANDLE) -> u32;
     #[doc = "*Required features: `\"Win32_Networking_ActiveDirectory\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub fn DsBindWithCredA(domaincontrollername: ::windows_sys::core::PCSTR, dnsdomainname: ::windows_sys::core::PCSTR, authidentity: *const ::core::ffi::c_void, phds: *mut super::super::Foundation::HANDLE) -> u32;
+    pub fn DsBindWithCredA(domaincontrollername: ::windows_sys::core::PCSTR, dnsdomainname: ::windows_sys::core::PCSTR, authidentity: *mut ::core::ffi::c_void, phds: *mut super::super::Foundation::HANDLE) -> u32;
     #[doc = "*Required features: `\"Win32_Networking_ActiveDirectory\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub fn DsBindWithCredW(domaincontrollername: ::windows_sys::core::PCWSTR, dnsdomainname: ::windows_sys::core::PCWSTR, authidentity: *const ::core::ffi::c_void, phds: *mut super::super::Foundation::HANDLE) -> u32;
+    pub fn DsBindWithCredW(domaincontrollername: ::windows_sys::core::PCWSTR, dnsdomainname: ::windows_sys::core::PCWSTR, authidentity: *mut ::core::ffi::c_void, phds: *mut super::super::Foundation::HANDLE) -> u32;
     #[doc = "*Required features: `\"Win32_Networking_ActiveDirectory\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub fn DsBindWithSpnA(domaincontrollername: ::windows_sys::core::PCSTR, dnsdomainname: ::windows_sys::core::PCSTR, authidentity: *const ::core::ffi::c_void, serviceprincipalname: ::windows_sys::core::PCSTR, phds: *mut super::super::Foundation::HANDLE) -> u32;
+    pub fn DsBindWithSpnA(domaincontrollername: ::windows_sys::core::PCSTR, dnsdomainname: ::windows_sys::core::PCSTR, authidentity: *mut ::core::ffi::c_void, serviceprincipalname: ::windows_sys::core::PCSTR, phds: *mut super::super::Foundation::HANDLE) -> u32;
     #[doc = "*Required features: `\"Win32_Networking_ActiveDirectory\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub fn DsBindWithSpnExA(domaincontrollername: ::windows_sys::core::PCSTR, dnsdomainname: ::windows_sys::core::PCSTR, authidentity: *const ::core::ffi::c_void, serviceprincipalname: ::windows_sys::core::PCSTR, bindflags: u32, phds: *mut super::super::Foundation::HANDLE) -> u32;
+    pub fn DsBindWithSpnExA(domaincontrollername: ::windows_sys::core::PCSTR, dnsdomainname: ::windows_sys::core::PCSTR, authidentity: *mut ::core::ffi::c_void, serviceprincipalname: ::windows_sys::core::PCSTR, bindflags: u32, phds: *mut super::super::Foundation::HANDLE) -> u32;
     #[doc = "*Required features: `\"Win32_Networking_ActiveDirectory\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub fn DsBindWithSpnExW(domaincontrollername: ::windows_sys::core::PCWSTR, dnsdomainname: ::windows_sys::core::PCWSTR, authidentity: *const ::core::ffi::c_void, serviceprincipalname: ::windows_sys::core::PCWSTR, bindflags: u32, phds: *mut super::super::Foundation::HANDLE) -> u32;
+    pub fn DsBindWithSpnExW(domaincontrollername: ::windows_sys::core::PCWSTR, dnsdomainname: ::windows_sys::core::PCWSTR, authidentity: *mut ::core::ffi::c_void, serviceprincipalname: ::windows_sys::core::PCWSTR, bindflags: u32, phds: *mut super::super::Foundation::HANDLE) -> u32;
     #[doc = "*Required features: `\"Win32_Networking_ActiveDirectory\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub fn DsBindWithSpnW(domaincontrollername: ::windows_sys::core::PCWSTR, dnsdomainname: ::windows_sys::core::PCWSTR, authidentity: *const ::core::ffi::c_void, serviceprincipalname: ::windows_sys::core::PCWSTR, phds: *mut super::super::Foundation::HANDLE) -> u32;
+    pub fn DsBindWithSpnW(domaincontrollername: ::windows_sys::core::PCWSTR, dnsdomainname: ::windows_sys::core::PCWSTR, authidentity: *mut ::core::ffi::c_void, serviceprincipalname: ::windows_sys::core::PCWSTR, phds: *mut super::super::Foundation::HANDLE) -> u32;
     #[doc = "*Required features: `\"Win32_Networking_ActiveDirectory\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
     pub fn DsBindingSetTimeout(hds: super::super::Foundation::HANDLE, ctimeoutsecs: u32) -> u32;
@@ -153,29 +153,29 @@ extern "system" {
     #[cfg(feature = "Win32_Foundation")]
     pub fn DsCrackUnquotedMangledRdnW(pszrdn: ::windows_sys::core::PCWSTR, cchrdn: u32, pguid: *mut ::windows_sys::core::GUID, pedsmanglefor: *mut DS_MANGLE_FOR) -> super::super::Foundation::BOOL;
     #[doc = "*Required features: `\"Win32_Networking_ActiveDirectory\"`*"]
-    pub fn DsDeregisterDnsHostRecordsA(servername: ::windows_sys::core::PCSTR, dnsdomainname: ::windows_sys::core::PCSTR, domainguid: *const ::windows_sys::core::GUID, dsaguid: *const ::windows_sys::core::GUID, dnshostname: ::windows_sys::core::PCSTR) -> u32;
+    pub fn DsDeregisterDnsHostRecordsA(servername: ::windows_sys::core::PSTR, dnsdomainname: ::windows_sys::core::PSTR, domainguid: *mut ::windows_sys::core::GUID, dsaguid: *mut ::windows_sys::core::GUID, dnshostname: ::windows_sys::core::PSTR) -> u32;
     #[doc = "*Required features: `\"Win32_Networking_ActiveDirectory\"`*"]
-    pub fn DsDeregisterDnsHostRecordsW(servername: ::windows_sys::core::PCWSTR, dnsdomainname: ::windows_sys::core::PCWSTR, domainguid: *const ::windows_sys::core::GUID, dsaguid: *const ::windows_sys::core::GUID, dnshostname: ::windows_sys::core::PCWSTR) -> u32;
+    pub fn DsDeregisterDnsHostRecordsW(servername: ::windows_sys::core::PWSTR, dnsdomainname: ::windows_sys::core::PWSTR, domainguid: *mut ::windows_sys::core::GUID, dsaguid: *mut ::windows_sys::core::GUID, dnshostname: ::windows_sys::core::PWSTR) -> u32;
     #[doc = "*Required features: `\"Win32_Networking_ActiveDirectory\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub fn DsEnumerateDomainTrustsA(servername: ::windows_sys::core::PCSTR, flags: u32, domains: *mut *mut DS_DOMAIN_TRUSTSA, domaincount: *mut u32) -> u32;
+    pub fn DsEnumerateDomainTrustsA(servername: ::windows_sys::core::PSTR, flags: u32, domains: *mut *mut DS_DOMAIN_TRUSTSA, domaincount: *mut u32) -> u32;
     #[doc = "*Required features: `\"Win32_Networking_ActiveDirectory\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub fn DsEnumerateDomainTrustsW(servername: ::windows_sys::core::PCWSTR, flags: u32, domains: *mut *mut DS_DOMAIN_TRUSTSW, domaincount: *mut u32) -> u32;
+    pub fn DsEnumerateDomainTrustsW(servername: ::windows_sys::core::PWSTR, flags: u32, domains: *mut *mut DS_DOMAIN_TRUSTSW, domaincount: *mut u32) -> u32;
     #[doc = "*Required features: `\"Win32_Networking_ActiveDirectory\"`*"]
-    pub fn DsFreeDomainControllerInfoA(infolevel: u32, cinfo: u32, pinfo: *const ::core::ffi::c_void);
+    pub fn DsFreeDomainControllerInfoA(infolevel: u32, cinfo: u32, pinfo: *mut ::core::ffi::c_void);
     #[doc = "*Required features: `\"Win32_Networking_ActiveDirectory\"`*"]
-    pub fn DsFreeDomainControllerInfoW(infolevel: u32, cinfo: u32, pinfo: *const ::core::ffi::c_void);
+    pub fn DsFreeDomainControllerInfoW(infolevel: u32, cinfo: u32, pinfo: *mut ::core::ffi::c_void);
     #[doc = "*Required features: `\"Win32_Networking_ActiveDirectory\"`*"]
-    pub fn DsFreeNameResultA(presult: *const DS_NAME_RESULTA);
+    pub fn DsFreeNameResultA(presult: *mut DS_NAME_RESULTA);
     #[doc = "*Required features: `\"Win32_Networking_ActiveDirectory\"`*"]
-    pub fn DsFreeNameResultW(presult: *const DS_NAME_RESULTW);
+    pub fn DsFreeNameResultW(presult: *mut DS_NAME_RESULTW);
     #[doc = "*Required features: `\"Win32_Networking_ActiveDirectory\"`*"]
-    pub fn DsFreePasswordCredentials(authidentity: *const ::core::ffi::c_void);
+    pub fn DsFreePasswordCredentials(authidentity: *mut ::core::ffi::c_void);
     #[doc = "*Required features: `\"Win32_Networking_ActiveDirectory\"`*"]
-    pub fn DsFreeSchemaGuidMapA(pguidmap: *const DS_SCHEMA_GUID_MAPA);
+    pub fn DsFreeSchemaGuidMapA(pguidmap: *mut DS_SCHEMA_GUID_MAPA);
     #[doc = "*Required features: `\"Win32_Networking_ActiveDirectory\"`*"]
-    pub fn DsFreeSchemaGuidMapW(pguidmap: *const DS_SCHEMA_GUID_MAPW);
+    pub fn DsFreeSchemaGuidMapW(pguidmap: *mut DS_SCHEMA_GUID_MAPW);
     #[doc = "*Required features: `\"Win32_Networking_ActiveDirectory\"`*"]
     pub fn DsFreeSpnArrayA(cspn: u32, rpszspn: *mut ::windows_sys::core::PSTR);
     #[doc = "*Required features: `\"Win32_Networking_ActiveDirectory\"`*"]
@@ -183,9 +183,9 @@ extern "system" {
     #[doc = "*Required features: `\"Win32_Networking_ActiveDirectory\"`*"]
     pub fn DsGetDcCloseW(getdccontexthandle: GetDcContextHandle);
     #[doc = "*Required features: `\"Win32_Networking_ActiveDirectory\"`*"]
-    pub fn DsGetDcNameA(computername: ::windows_sys::core::PCSTR, domainname: ::windows_sys::core::PCSTR, domainguid: *const ::windows_sys::core::GUID, sitename: ::windows_sys::core::PCSTR, flags: u32, domaincontrollerinfo: *mut *mut DOMAIN_CONTROLLER_INFOA) -> u32;
+    pub fn DsGetDcNameA(computername: ::windows_sys::core::PCSTR, domainname: ::windows_sys::core::PCSTR, domainguid: *mut ::windows_sys::core::GUID, sitename: ::windows_sys::core::PCSTR, flags: u32, domaincontrollerinfo: *mut *mut DOMAIN_CONTROLLER_INFOA) -> u32;
     #[doc = "*Required features: `\"Win32_Networking_ActiveDirectory\"`*"]
-    pub fn DsGetDcNameW(computername: ::windows_sys::core::PCWSTR, domainname: ::windows_sys::core::PCWSTR, domainguid: *const ::windows_sys::core::GUID, sitename: ::windows_sys::core::PCWSTR, flags: u32, domaincontrollerinfo: *mut *mut DOMAIN_CONTROLLER_INFOW) -> u32;
+    pub fn DsGetDcNameW(computername: ::windows_sys::core::PCWSTR, domainname: ::windows_sys::core::PCWSTR, domainguid: *mut ::windows_sys::core::GUID, sitename: ::windows_sys::core::PCWSTR, flags: u32, domaincontrollerinfo: *mut *mut DOMAIN_CONTROLLER_INFOW) -> u32;
     #[doc = "*Required features: `\"Win32_Networking_ActiveDirectory\"`, `\"Win32_Foundation\"`, `\"Win32_Networking_WinSock\"`*"]
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_Networking_WinSock"))]
     pub fn DsGetDcNextA(getdccontexthandle: super::super::Foundation::HANDLE, sockaddresscount: *mut u32, sockaddresses: *mut *mut super::WinSock::SOCKET_ADDRESS, dnshostname: *mut ::windows_sys::core::PSTR) -> u32;
@@ -193,9 +193,9 @@ extern "system" {
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_Networking_WinSock"))]
     pub fn DsGetDcNextW(getdccontexthandle: super::super::Foundation::HANDLE, sockaddresscount: *mut u32, sockaddresses: *mut *mut super::WinSock::SOCKET_ADDRESS, dnshostname: *mut ::windows_sys::core::PWSTR) -> u32;
     #[doc = "*Required features: `\"Win32_Networking_ActiveDirectory\"`*"]
-    pub fn DsGetDcOpenA(dnsname: ::windows_sys::core::PCSTR, optionflags: u32, sitename: ::windows_sys::core::PCSTR, domainguid: *const ::windows_sys::core::GUID, dnsforestname: ::windows_sys::core::PCSTR, dcflags: u32, retgetdccontext: *mut GetDcContextHandle) -> u32;
+    pub fn DsGetDcOpenA(dnsname: ::windows_sys::core::PCSTR, optionflags: u32, sitename: ::windows_sys::core::PCSTR, domainguid: *mut ::windows_sys::core::GUID, dnsforestname: ::windows_sys::core::PCSTR, dcflags: u32, retgetdccontext: *mut GetDcContextHandle) -> u32;
     #[doc = "*Required features: `\"Win32_Networking_ActiveDirectory\"`*"]
-    pub fn DsGetDcOpenW(dnsname: ::windows_sys::core::PCWSTR, optionflags: u32, sitename: ::windows_sys::core::PCWSTR, domainguid: *const ::windows_sys::core::GUID, dnsforestname: ::windows_sys::core::PCWSTR, dcflags: u32, retgetdccontext: *mut GetDcContextHandle) -> u32;
+    pub fn DsGetDcOpenW(dnsname: ::windows_sys::core::PCWSTR, optionflags: u32, sitename: ::windows_sys::core::PCWSTR, domainguid: *mut ::windows_sys::core::GUID, dnsforestname: ::windows_sys::core::PCWSTR, dcflags: u32, retgetdccontext: *mut GetDcContextHandle) -> u32;
     #[doc = "*Required features: `\"Win32_Networking_ActiveDirectory\"`*"]
     pub fn DsGetDcSiteCoverageA(servername: ::windows_sys::core::PCSTR, entrycount: *mut u32, sitenames: *mut *mut ::windows_sys::core::PSTR) -> u32;
     #[doc = "*Required features: `\"Win32_Networking_ActiveDirectory\"`*"]
@@ -221,9 +221,9 @@ extern "system" {
     #[doc = "*Required features: `\"Win32_Networking_ActiveDirectory\"`*"]
     pub fn DsGetSiteNameW(computername: ::windows_sys::core::PCWSTR, sitename: *mut ::windows_sys::core::PWSTR) -> u32;
     #[doc = "*Required features: `\"Win32_Networking_ActiveDirectory\"`*"]
-    pub fn DsGetSpnA(servicetype: DS_SPN_NAME_TYPE, serviceclass: ::windows_sys::core::PCSTR, servicename: ::windows_sys::core::PCSTR, instanceport: u16, cinstancenames: u16, pinstancenames: *const ::windows_sys::core::PSTR, pinstanceports: *const u16, pcspn: *mut u32, prpszspn: *mut *mut ::windows_sys::core::PSTR) -> u32;
+    pub fn DsGetSpnA(servicetype: DS_SPN_NAME_TYPE, serviceclass: ::windows_sys::core::PCSTR, servicename: ::windows_sys::core::PCSTR, instanceport: u16, cinstancenames: u16, pinstancenames: *mut ::windows_sys::core::PSTR, pinstanceports: *const u16, pcspn: *mut u32, prpszspn: *mut *mut ::windows_sys::core::PSTR) -> u32;
     #[doc = "*Required features: `\"Win32_Networking_ActiveDirectory\"`*"]
-    pub fn DsGetSpnW(servicetype: DS_SPN_NAME_TYPE, serviceclass: ::windows_sys::core::PCWSTR, servicename: ::windows_sys::core::PCWSTR, instanceport: u16, cinstancenames: u16, pinstancenames: *const ::windows_sys::core::PWSTR, pinstanceports: *const u16, pcspn: *mut u32, prpszspn: *mut *mut ::windows_sys::core::PWSTR) -> u32;
+    pub fn DsGetSpnW(servicetype: DS_SPN_NAME_TYPE, serviceclass: ::windows_sys::core::PCWSTR, servicename: ::windows_sys::core::PCWSTR, instanceport: u16, cinstancenames: u16, pinstancenames: *mut ::windows_sys::core::PWSTR, pinstanceports: *const u16, pcspn: *mut u32, prpszspn: *mut *mut ::windows_sys::core::PWSTR) -> u32;
     #[doc = "*Required features: `\"Win32_Networking_ActiveDirectory\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
     pub fn DsInheritSecurityIdentityA(hds: super::super::Foundation::HANDLE, flags: u32, srcprincipal: ::windows_sys::core::PCSTR, dstprincipal: ::windows_sys::core::PCSTR) -> u32;
@@ -288,37 +288,37 @@ extern "system" {
     pub fn DsMakeSpnW(serviceclass: ::windows_sys::core::PCWSTR, servicename: ::windows_sys::core::PCWSTR, instancename: ::windows_sys::core::PCWSTR, instanceport: u16, referrer: ::windows_sys::core::PCWSTR, pcspnlength: *mut u32, pszspn: ::windows_sys::core::PWSTR) -> u32;
     #[doc = "*Required features: `\"Win32_Networking_ActiveDirectory\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub fn DsMapSchemaGuidsA(hds: super::super::Foundation::HANDLE, cguids: u32, rguids: *const ::windows_sys::core::GUID, ppguidmap: *mut *mut DS_SCHEMA_GUID_MAPA) -> u32;
+    pub fn DsMapSchemaGuidsA(hds: super::super::Foundation::HANDLE, cguids: u32, rguids: *mut ::windows_sys::core::GUID, ppguidmap: *mut *mut DS_SCHEMA_GUID_MAPA) -> u32;
     #[doc = "*Required features: `\"Win32_Networking_ActiveDirectory\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub fn DsMapSchemaGuidsW(hds: super::super::Foundation::HANDLE, cguids: u32, rguids: *const ::windows_sys::core::GUID, ppguidmap: *mut *mut DS_SCHEMA_GUID_MAPW) -> u32;
+    pub fn DsMapSchemaGuidsW(hds: super::super::Foundation::HANDLE, cguids: u32, rguids: *mut ::windows_sys::core::GUID, ppguidmap: *mut *mut DS_SCHEMA_GUID_MAPW) -> u32;
     #[doc = "*Required features: `\"Win32_Networking_ActiveDirectory\"`, `\"Win32_Foundation\"`, `\"Win32_Security_Authentication_Identity\"`*"]
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_Security_Authentication_Identity"))]
-    pub fn DsMergeForestTrustInformationW(domainname: ::windows_sys::core::PCWSTR, newforesttrustinfo: *const super::super::Security::Authentication::Identity::LSA_FOREST_TRUST_INFORMATION, oldforesttrustinfo: *const super::super::Security::Authentication::Identity::LSA_FOREST_TRUST_INFORMATION, mergedforesttrustinfo: *mut *mut super::super::Security::Authentication::Identity::LSA_FOREST_TRUST_INFORMATION) -> u32;
+    pub fn DsMergeForestTrustInformationW(domainname: ::windows_sys::core::PCWSTR, newforesttrustinfo: *mut super::super::Security::Authentication::Identity::LSA_FOREST_TRUST_INFORMATION, oldforesttrustinfo: *mut super::super::Security::Authentication::Identity::LSA_FOREST_TRUST_INFORMATION, mergedforesttrustinfo: *mut *mut super::super::Security::Authentication::Identity::LSA_FOREST_TRUST_INFORMATION) -> u32;
     #[doc = "*Required features: `\"Win32_Networking_ActiveDirectory\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub fn DsQuerySitesByCostA(hds: super::super::Foundation::HANDLE, pszfromsite: ::windows_sys::core::PCSTR, rgsztosites: *const ::windows_sys::core::PSTR, ctosites: u32, dwflags: u32, prgsiteinfo: *mut *mut DS_SITE_COST_INFO) -> u32;
+    pub fn DsQuerySitesByCostA(hds: super::super::Foundation::HANDLE, pszfromsite: ::windows_sys::core::PSTR, rgsztosites: *mut ::windows_sys::core::PSTR, ctosites: u32, dwflags: u32, prgsiteinfo: *mut *mut DS_SITE_COST_INFO) -> u32;
     #[doc = "*Required features: `\"Win32_Networking_ActiveDirectory\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub fn DsQuerySitesByCostW(hds: super::super::Foundation::HANDLE, pwszfromsite: ::windows_sys::core::PCWSTR, rgwsztosites: *const ::windows_sys::core::PWSTR, ctosites: u32, dwflags: u32, prgsiteinfo: *mut *mut DS_SITE_COST_INFO) -> u32;
+    pub fn DsQuerySitesByCostW(hds: super::super::Foundation::HANDLE, pwszfromsite: ::windows_sys::core::PWSTR, rgwsztosites: *mut ::windows_sys::core::PWSTR, ctosites: u32, dwflags: u32, prgsiteinfo: *mut *mut DS_SITE_COST_INFO) -> u32;
     #[doc = "*Required features: `\"Win32_Networking_ActiveDirectory\"`*"]
-    pub fn DsQuerySitesFree(rgsiteinfo: *const DS_SITE_COST_INFO);
+    pub fn DsQuerySitesFree(rgsiteinfo: *mut DS_SITE_COST_INFO);
     #[doc = "*Required features: `\"Win32_Networking_ActiveDirectory\"`*"]
     pub fn DsQuoteRdnValueA(cunquotedrdnvaluelength: u32, psunquotedrdnvalue: ::windows_sys::core::PCSTR, pcquotedrdnvaluelength: *mut u32, psquotedrdnvalue: ::windows_sys::core::PSTR) -> u32;
     #[doc = "*Required features: `\"Win32_Networking_ActiveDirectory\"`*"]
     pub fn DsQuoteRdnValueW(cunquotedrdnvaluelength: u32, psunquotedrdnvalue: ::windows_sys::core::PCWSTR, pcquotedrdnvaluelength: *mut u32, psquotedrdnvalue: ::windows_sys::core::PWSTR) -> u32;
     #[doc = "*Required features: `\"Win32_Networking_ActiveDirectory\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub fn DsRemoveDsDomainA(hds: super::super::Foundation::HANDLE, domaindn: ::windows_sys::core::PCSTR) -> u32;
+    pub fn DsRemoveDsDomainA(hds: super::super::Foundation::HANDLE, domaindn: ::windows_sys::core::PSTR) -> u32;
     #[doc = "*Required features: `\"Win32_Networking_ActiveDirectory\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub fn DsRemoveDsDomainW(hds: super::super::Foundation::HANDLE, domaindn: ::windows_sys::core::PCWSTR) -> u32;
+    pub fn DsRemoveDsDomainW(hds: super::super::Foundation::HANDLE, domaindn: ::windows_sys::core::PWSTR) -> u32;
     #[doc = "*Required features: `\"Win32_Networking_ActiveDirectory\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub fn DsRemoveDsServerA(hds: super::super::Foundation::HANDLE, serverdn: ::windows_sys::core::PCSTR, domaindn: ::windows_sys::core::PCSTR, flastdcindomain: *mut super::super::Foundation::BOOL, fcommit: super::super::Foundation::BOOL) -> u32;
+    pub fn DsRemoveDsServerA(hds: super::super::Foundation::HANDLE, serverdn: ::windows_sys::core::PSTR, domaindn: ::windows_sys::core::PSTR, flastdcindomain: *mut super::super::Foundation::BOOL, fcommit: super::super::Foundation::BOOL) -> u32;
     #[doc = "*Required features: `\"Win32_Networking_ActiveDirectory\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub fn DsRemoveDsServerW(hds: super::super::Foundation::HANDLE, serverdn: ::windows_sys::core::PCWSTR, domaindn: ::windows_sys::core::PCWSTR, flastdcindomain: *mut super::super::Foundation::BOOL, fcommit: super::super::Foundation::BOOL) -> u32;
+    pub fn DsRemoveDsServerW(hds: super::super::Foundation::HANDLE, serverdn: ::windows_sys::core::PWSTR, domaindn: ::windows_sys::core::PWSTR, flastdcindomain: *mut super::super::Foundation::BOOL, fcommit: super::super::Foundation::BOOL) -> u32;
     #[doc = "*Required features: `\"Win32_Networking_ActiveDirectory\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
     pub fn DsReplicaAddA(hds: super::super::Foundation::HANDLE, namecontext: ::windows_sys::core::PCSTR, sourcedsadn: ::windows_sys::core::PCSTR, transportdn: ::windows_sys::core::PCSTR, sourcedsaaddress: ::windows_sys::core::PCSTR, pschedule: *const SCHEDULE, options: u32) -> u32;
@@ -335,13 +335,13 @@ extern "system" {
     #[cfg(feature = "Win32_Foundation")]
     pub fn DsReplicaDelW(hds: super::super::Foundation::HANDLE, namecontext: ::windows_sys::core::PCWSTR, dsasrc: ::windows_sys::core::PCWSTR, options: u32) -> u32;
     #[doc = "*Required features: `\"Win32_Networking_ActiveDirectory\"`*"]
-    pub fn DsReplicaFreeInfo(infotype: DS_REPL_INFO_TYPE, pinfo: *const ::core::ffi::c_void);
+    pub fn DsReplicaFreeInfo(infotype: DS_REPL_INFO_TYPE, pinfo: *mut ::core::ffi::c_void);
     #[doc = "*Required features: `\"Win32_Networking_ActiveDirectory\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub fn DsReplicaGetInfo2W(hds: super::super::Foundation::HANDLE, infotype: DS_REPL_INFO_TYPE, pszobject: ::windows_sys::core::PCWSTR, puuidforsourcedsaobjguid: *const ::windows_sys::core::GUID, pszattributename: ::windows_sys::core::PCWSTR, pszvalue: ::windows_sys::core::PCWSTR, dwflags: u32, dwenumerationcontext: u32, ppinfo: *mut *mut ::core::ffi::c_void) -> u32;
+    pub fn DsReplicaGetInfo2W(hds: super::super::Foundation::HANDLE, infotype: DS_REPL_INFO_TYPE, pszobject: ::windows_sys::core::PCWSTR, puuidforsourcedsaobjguid: *mut ::windows_sys::core::GUID, pszattributename: ::windows_sys::core::PCWSTR, pszvalue: ::windows_sys::core::PCWSTR, dwflags: u32, dwenumerationcontext: u32, ppinfo: *mut *mut ::core::ffi::c_void) -> u32;
     #[doc = "*Required features: `\"Win32_Networking_ActiveDirectory\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub fn DsReplicaGetInfoW(hds: super::super::Foundation::HANDLE, infotype: DS_REPL_INFO_TYPE, pszobject: ::windows_sys::core::PCWSTR, puuidforsourcedsaobjguid: *const ::windows_sys::core::GUID, ppinfo: *mut *mut ::core::ffi::c_void) -> u32;
+    pub fn DsReplicaGetInfoW(hds: super::super::Foundation::HANDLE, infotype: DS_REPL_INFO_TYPE, pszobject: ::windows_sys::core::PCWSTR, puuidforsourcedsaobjguid: *mut ::windows_sys::core::GUID, ppinfo: *mut *mut ::core::ffi::c_void) -> u32;
     #[doc = "*Required features: `\"Win32_Networking_ActiveDirectory\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
     pub fn DsReplicaModifyA(hds: super::super::Foundation::HANDLE, namecontext: ::windows_sys::core::PCSTR, puuidsourcedsa: *const ::windows_sys::core::GUID, transportdn: ::windows_sys::core::PCSTR, sourcedsaaddress: ::windows_sys::core::PCSTR, pschedule: *const SCHEDULE, replicaflags: u32, modifyfields: u32, options: u32) -> u32;
@@ -353,10 +353,10 @@ extern "system" {
     pub fn DsReplicaSyncA(hds: super::super::Foundation::HANDLE, namecontext: ::windows_sys::core::PCSTR, puuiddsasrc: *const ::windows_sys::core::GUID, options: u32) -> u32;
     #[doc = "*Required features: `\"Win32_Networking_ActiveDirectory\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub fn DsReplicaSyncAllA(hds: super::super::Foundation::HANDLE, psznamecontext: ::windows_sys::core::PCSTR, ulflags: u32, pfncallback: isize, pcallbackdata: *const ::core::ffi::c_void, perrors: *mut *mut *mut DS_REPSYNCALL_ERRINFOA) -> u32;
+    pub fn DsReplicaSyncAllA(hds: super::super::Foundation::HANDLE, psznamecontext: ::windows_sys::core::PCSTR, ulflags: u32, pfncallback: isize, pcallbackdata: *mut ::core::ffi::c_void, perrors: *mut *mut *mut DS_REPSYNCALL_ERRINFOA) -> u32;
     #[doc = "*Required features: `\"Win32_Networking_ActiveDirectory\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub fn DsReplicaSyncAllW(hds: super::super::Foundation::HANDLE, psznamecontext: ::windows_sys::core::PCWSTR, ulflags: u32, pfncallback: isize, pcallbackdata: *const ::core::ffi::c_void, perrors: *mut *mut *mut DS_REPSYNCALL_ERRINFOW) -> u32;
+    pub fn DsReplicaSyncAllW(hds: super::super::Foundation::HANDLE, psznamecontext: ::windows_sys::core::PCWSTR, ulflags: u32, pfncallback: isize, pcallbackdata: *mut ::core::ffi::c_void, perrors: *mut *mut *mut DS_REPSYNCALL_ERRINFOW) -> u32;
     #[doc = "*Required features: `\"Win32_Networking_ActiveDirectory\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
     pub fn DsReplicaSyncW(hds: super::super::Foundation::HANDLE, namecontext: ::windows_sys::core::PCWSTR, puuiddsasrc: *const ::windows_sys::core::GUID, options: u32) -> u32;
@@ -382,10 +382,10 @@ extern "system" {
     pub fn DsServerRegisterSpnW(operation: DS_SPN_WRITE_OP, serviceclass: ::windows_sys::core::PCWSTR, userobjectdn: ::windows_sys::core::PCWSTR) -> u32;
     #[doc = "*Required features: `\"Win32_Networking_ActiveDirectory\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub fn DsUnBindA(phds: *const super::super::Foundation::HANDLE) -> u32;
+    pub fn DsUnBindA(phds: *mut super::super::Foundation::HANDLE) -> u32;
     #[doc = "*Required features: `\"Win32_Networking_ActiveDirectory\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub fn DsUnBindW(phds: *const super::super::Foundation::HANDLE) -> u32;
+    pub fn DsUnBindW(phds: *mut super::super::Foundation::HANDLE) -> u32;
     #[doc = "*Required features: `\"Win32_Networking_ActiveDirectory\"`*"]
     pub fn DsUnquoteRdnValueA(cquotedrdnvaluelength: u32, psquotedrdnvalue: ::windows_sys::core::PCSTR, pcunquotedrdnvaluelength: *mut u32, psunquotedrdnvalue: ::windows_sys::core::PSTR) -> u32;
     #[doc = "*Required features: `\"Win32_Networking_ActiveDirectory\"`*"]
@@ -396,16 +396,16 @@ extern "system" {
     pub fn DsValidateSubnetNameW(subnetname: ::windows_sys::core::PCWSTR) -> u32;
     #[doc = "*Required features: `\"Win32_Networking_ActiveDirectory\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub fn DsWriteAccountSpnA(hds: super::super::Foundation::HANDLE, operation: DS_SPN_WRITE_OP, pszaccount: ::windows_sys::core::PCSTR, cspn: u32, rpszspn: *const ::windows_sys::core::PSTR) -> u32;
+    pub fn DsWriteAccountSpnA(hds: super::super::Foundation::HANDLE, operation: DS_SPN_WRITE_OP, pszaccount: ::windows_sys::core::PCSTR, cspn: u32, rpszspn: *mut ::windows_sys::core::PSTR) -> u32;
     #[doc = "*Required features: `\"Win32_Networking_ActiveDirectory\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub fn DsWriteAccountSpnW(hds: super::super::Foundation::HANDLE, operation: DS_SPN_WRITE_OP, pszaccount: ::windows_sys::core::PCWSTR, cspn: u32, rpszspn: *const ::windows_sys::core::PWSTR) -> u32;
+    pub fn DsWriteAccountSpnW(hds: super::super::Foundation::HANDLE, operation: DS_SPN_WRITE_OP, pszaccount: ::windows_sys::core::PCWSTR, cspn: u32, rpszspn: *mut ::windows_sys::core::PWSTR) -> u32;
     #[doc = "*Required features: `\"Win32_Networking_ActiveDirectory\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
     pub fn FreeADsMem(pmem: *mut ::core::ffi::c_void) -> super::super::Foundation::BOOL;
     #[doc = "*Required features: `\"Win32_Networking_ActiveDirectory\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub fn FreeADsStr(pstr: ::windows_sys::core::PCWSTR) -> super::super::Foundation::BOOL;
+    pub fn FreeADsStr(pstr: ::windows_sys::core::PWSTR) -> super::super::Foundation::BOOL;
     #[doc = "*Required features: `\"Win32_Networking_ActiveDirectory\"`, `\"Win32_Foundation\"`, `\"Win32_System_Com\"`, `\"Win32_System_Ole\"`*"]
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
     pub fn PropVariantToAdsType(pvariant: *mut super::super::System::Com::VARIANT, dwnumvariant: u32, ppadsvalues: *mut *mut ADSVALUE, pdwnumvalues: *mut u32) -> ::windows_sys::core::HRESULT;
@@ -413,7 +413,7 @@ extern "system" {
     pub fn ReallocADsMem(poldmem: *mut ::core::ffi::c_void, cbold: u32, cbnew: u32) -> *mut ::core::ffi::c_void;
     #[doc = "*Required features: `\"Win32_Networking_ActiveDirectory\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub fn ReallocADsStr(ppstr: *mut ::windows_sys::core::PWSTR, pstr: ::windows_sys::core::PCWSTR) -> super::super::Foundation::BOOL;
+    pub fn ReallocADsStr(ppstr: *mut ::windows_sys::core::PWSTR, pstr: ::windows_sys::core::PWSTR) -> super::super::Foundation::BOOL;
     #[doc = "*Required features: `\"Win32_Networking_ActiveDirectory\"`, `\"Win32_Foundation\"`, `\"Win32_Security\"`, `\"Win32_System_Com\"`, `\"Win32_System_Ole\"`*"]
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_Security", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
     pub fn SecurityDescriptorToBinarySD(vvarsecdes: super::super::System::Com::VARIANT, ppsecuritydescriptor: *mut super::super::Security::PSECURITY_DESCRIPTOR, pdwsdlength: *mut u32, pszservername: ::windows_sys::core::PCWSTR, username: ::windows_sys::core::PCWSTR, password: ::windows_sys::core::PCWSTR, dwflags: u32) -> ::windows_sys::core::HRESULT;

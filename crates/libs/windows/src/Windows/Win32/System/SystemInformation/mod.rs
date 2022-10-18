@@ -479,10 +479,10 @@ pub unsafe fn RtlOsDeploymentState(flags: u32) -> OS_DEPLOYEMENT_STATE_VALUES {
 }
 #[doc = "*Required features: `\"Win32_System_SystemInformation\"`*"]
 #[inline]
-pub unsafe fn RtlSwitchedVVI(versioninfo: *const OSVERSIONINFOEXW, typemask: u32, conditionmask: u64) -> u32 {
+pub unsafe fn RtlSwitchedVVI(versioninfo: *mut OSVERSIONINFOEXW, typemask: u32, conditionmask: u64) -> u32 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn RtlSwitchedVVI(versioninfo: *const OSVERSIONINFOEXW, typemask: u32, conditionmask: u64) -> u32;
+        fn RtlSwitchedVVI(versioninfo: *mut OSVERSIONINFOEXW, typemask: u32, conditionmask: u64) -> u32;
     }
     RtlSwitchedVVI(::core::mem::transmute(versioninfo), typemask, conditionmask)
 }

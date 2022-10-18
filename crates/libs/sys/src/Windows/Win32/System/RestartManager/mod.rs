@@ -2,7 +2,7 @@
 extern "system" {
     #[doc = "*Required features: `\"Win32_System_RestartManager\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub fn RmAddFilter(dwsessionhandle: u32, strmodulename: ::windows_sys::core::PCWSTR, pprocess: *const RM_UNIQUE_PROCESS, strserviceshortname: ::windows_sys::core::PCWSTR, filteraction: RM_FILTER_ACTION) -> u32;
+    pub fn RmAddFilter(dwsessionhandle: u32, strmodulename: ::windows_sys::core::PCWSTR, pprocess: *mut RM_UNIQUE_PROCESS, strserviceshortname: ::windows_sys::core::PCWSTR, filteraction: RM_FILTER_ACTION) -> u32;
     #[doc = "*Required features: `\"Win32_System_RestartManager\"`*"]
     pub fn RmCancelCurrentTask(dwsessionhandle: u32) -> u32;
     #[doc = "*Required features: `\"Win32_System_RestartManager\"`*"]
@@ -16,10 +16,10 @@ extern "system" {
     pub fn RmJoinSession(psessionhandle: *mut u32, strsessionkey: ::windows_sys::core::PCWSTR) -> u32;
     #[doc = "*Required features: `\"Win32_System_RestartManager\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub fn RmRegisterResources(dwsessionhandle: u32, nfiles: u32, rgsfilenames: *const ::windows_sys::core::PWSTR, napplications: u32, rgapplications: *const RM_UNIQUE_PROCESS, nservices: u32, rgsservicenames: *const ::windows_sys::core::PWSTR) -> u32;
+    pub fn RmRegisterResources(dwsessionhandle: u32, nfiles: u32, rgsfilenames: *mut ::windows_sys::core::PWSTR, napplications: u32, rgapplications: *mut RM_UNIQUE_PROCESS, nservices: u32, rgsservicenames: *mut ::windows_sys::core::PWSTR) -> u32;
     #[doc = "*Required features: `\"Win32_System_RestartManager\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub fn RmRemoveFilter(dwsessionhandle: u32, strmodulename: ::windows_sys::core::PCWSTR, pprocess: *const RM_UNIQUE_PROCESS, strserviceshortname: ::windows_sys::core::PCWSTR) -> u32;
+    pub fn RmRemoveFilter(dwsessionhandle: u32, strmodulename: ::windows_sys::core::PCWSTR, pprocess: *mut RM_UNIQUE_PROCESS, strserviceshortname: ::windows_sys::core::PCWSTR) -> u32;
     #[doc = "*Required features: `\"Win32_System_RestartManager\"`*"]
     pub fn RmRestart(dwsessionhandle: u32, dwrestartflags: u32, fnstatus: RM_WRITE_STATUS_CALLBACK) -> u32;
     #[doc = "*Required features: `\"Win32_System_RestartManager\"`*"]

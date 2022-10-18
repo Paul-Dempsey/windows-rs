@@ -274,11 +274,8 @@ impl IDirectMusicCollection {
         let mut result__ = ::core::mem::MaybeUninit::zeroed();
         (::windows::core::Vtable::vtable(self).GetInstrument)(::windows::core::Vtable::as_raw(self), dwpatch, ::core::mem::transmute(result__.as_mut_ptr())).from_abi::<IDirectMusicInstrument>(result__)
     }
-    pub unsafe fn EnumInstrument<'a, P0>(&self, dwindex: u32, pdwpatch: *mut u32, pwszname: P0, dwnamelen: u32) -> ::windows::core::Result<()>
-    where
-        P0: ::std::convert::Into<::windows::core::PCWSTR>,
-    {
-        (::windows::core::Vtable::vtable(self).EnumInstrument)(::windows::core::Vtable::as_raw(self), dwindex, ::core::mem::transmute(pdwpatch), pwszname.into(), dwnamelen).ok()
+    pub unsafe fn EnumInstrument(&self, dwindex: u32, pdwpatch: *mut u32, pwszname: ::windows::core::PWSTR, dwnamelen: u32) -> ::windows::core::Result<()> {
+        (::windows::core::Vtable::vtable(self).EnumInstrument)(::windows::core::Vtable::as_raw(self), dwindex, ::core::mem::transmute(pdwpatch), ::core::mem::transmute(pwszname), dwnamelen).ok()
     }
 }
 ::windows::core::interface_hierarchy!(IDirectMusicCollection, ::windows::core::IUnknown);
@@ -309,7 +306,7 @@ unsafe impl ::windows::core::Interface for IDirectMusicCollection {
 pub struct IDirectMusicCollection_Vtbl {
     pub base__: ::windows::core::IUnknown_Vtbl,
     pub GetInstrument: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, dwpatch: u32, ppinstrument: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT,
-    pub EnumInstrument: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, dwindex: u32, pdwpatch: *mut u32, pwszname: ::windows::core::PCWSTR, dwnamelen: u32) -> ::windows::core::HRESULT,
+    pub EnumInstrument: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, dwindex: u32, pdwpatch: *mut u32, pwszname: ::windows::core::PWSTR, dwnamelen: u32) -> ::windows::core::HRESULT,
 }
 #[doc = "*Required features: `\"Win32_Media_Audio_DirectMusic\"`*"]
 #[repr(transparent)]

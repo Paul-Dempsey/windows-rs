@@ -36,7 +36,7 @@ impl IDialBranding_Vtbl {
 }
 pub trait IDialEngine_Impl: Sized {
     fn Initialize(&self, pwzconnectoid: &::windows::core::PCWSTR, pides: &::core::option::Option<IDialEventSink>) -> ::windows::core::Result<()>;
-    fn GetProperty(&self, pwzproperty: &::windows::core::PCWSTR, pwzvalue: &::windows::core::PCWSTR, dwbufsize: u32) -> ::windows::core::Result<()>;
+    fn GetProperty(&self, pwzproperty: &::windows::core::PCWSTR, pwzvalue: &::windows::core::PWSTR, dwbufsize: u32) -> ::windows::core::Result<()>;
     fn SetProperty(&self, pwzproperty: &::windows::core::PCWSTR, pwzvalue: &::windows::core::PCWSTR) -> ::windows::core::Result<()>;
     fn Dial(&self) -> ::windows::core::Result<()>;
     fn HangUp(&self) -> ::windows::core::Result<()>;
@@ -51,7 +51,7 @@ impl IDialEngine_Vtbl {
             let this = (*this).get_impl();
             this.Initialize(::core::mem::transmute(&pwzconnectoid), ::core::mem::transmute(&pides)).into()
         }
-        unsafe extern "system" fn GetProperty<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDialEngine_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, pwzproperty: ::windows::core::PCWSTR, pwzvalue: ::windows::core::PCWSTR, dwbufsize: u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn GetProperty<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDialEngine_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, pwzproperty: ::windows::core::PCWSTR, pwzvalue: ::windows::core::PWSTR, dwbufsize: u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.GetProperty(::core::mem::transmute(&pwzproperty), ::core::mem::transmute(&pwzvalue), ::core::mem::transmute_copy(&dwbufsize)).into()

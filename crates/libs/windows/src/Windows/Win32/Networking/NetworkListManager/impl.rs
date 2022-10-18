@@ -490,26 +490,26 @@ impl INetworkConnectionEvents_Vtbl {
 }
 #[cfg(feature = "Win32_Foundation")]
 pub trait INetworkCostManager_Impl: Sized {
-    fn GetCost(&self, pcost: *mut u32, pdestipaddr: *const NLM_SOCKADDR) -> ::windows::core::Result<()>;
-    fn GetDataPlanStatus(&self, pdataplanstatus: *mut NLM_DATAPLAN_STATUS, pdestipaddr: *const NLM_SOCKADDR) -> ::windows::core::Result<()>;
-    fn SetDestinationAddresses(&self, length: u32, pdestipaddrlist: *const NLM_SOCKADDR, bappend: i16) -> ::windows::core::Result<()>;
+    fn GetCost(&self, pcost: *mut u32, pdestipaddr: *mut NLM_SOCKADDR) -> ::windows::core::Result<()>;
+    fn GetDataPlanStatus(&self, pdataplanstatus: *mut NLM_DATAPLAN_STATUS, pdestipaddr: *mut NLM_SOCKADDR) -> ::windows::core::Result<()>;
+    fn SetDestinationAddresses(&self, length: u32, pdestipaddrlist: *mut NLM_SOCKADDR, bappend: i16) -> ::windows::core::Result<()>;
 }
 #[cfg(feature = "Win32_Foundation")]
 impl ::windows::core::RuntimeName for INetworkCostManager {}
 #[cfg(feature = "Win32_Foundation")]
 impl INetworkCostManager_Vtbl {
     pub const fn new<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: INetworkCostManager_Impl, const OFFSET: isize>() -> INetworkCostManager_Vtbl {
-        unsafe extern "system" fn GetCost<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: INetworkCostManager_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, pcost: *mut u32, pdestipaddr: *const NLM_SOCKADDR) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn GetCost<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: INetworkCostManager_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, pcost: *mut u32, pdestipaddr: *mut NLM_SOCKADDR) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.GetCost(::core::mem::transmute_copy(&pcost), ::core::mem::transmute_copy(&pdestipaddr)).into()
         }
-        unsafe extern "system" fn GetDataPlanStatus<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: INetworkCostManager_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, pdataplanstatus: *mut NLM_DATAPLAN_STATUS, pdestipaddr: *const NLM_SOCKADDR) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn GetDataPlanStatus<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: INetworkCostManager_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, pdataplanstatus: *mut NLM_DATAPLAN_STATUS, pdestipaddr: *mut NLM_SOCKADDR) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.GetDataPlanStatus(::core::mem::transmute_copy(&pdataplanstatus), ::core::mem::transmute_copy(&pdestipaddr)).into()
         }
-        unsafe extern "system" fn SetDestinationAddresses<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: INetworkCostManager_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, length: u32, pdestipaddrlist: *const NLM_SOCKADDR, bappend: i16) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn SetDestinationAddresses<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: INetworkCostManager_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, length: u32, pdestipaddrlist: *mut NLM_SOCKADDR, bappend: i16) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.SetDestinationAddresses(::core::mem::transmute_copy(&length), ::core::mem::transmute_copy(&pdestipaddrlist), ::core::mem::transmute_copy(&bappend)).into()
@@ -526,18 +526,18 @@ impl INetworkCostManager_Vtbl {
     }
 }
 pub trait INetworkCostManagerEvents_Impl: Sized {
-    fn CostChanged(&self, newcost: u32, pdestaddr: *const NLM_SOCKADDR) -> ::windows::core::Result<()>;
-    fn DataPlanStatusChanged(&self, pdestaddr: *const NLM_SOCKADDR) -> ::windows::core::Result<()>;
+    fn CostChanged(&self, newcost: u32, pdestaddr: *mut NLM_SOCKADDR) -> ::windows::core::Result<()>;
+    fn DataPlanStatusChanged(&self, pdestaddr: *mut NLM_SOCKADDR) -> ::windows::core::Result<()>;
 }
 impl ::windows::core::RuntimeName for INetworkCostManagerEvents {}
 impl INetworkCostManagerEvents_Vtbl {
     pub const fn new<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: INetworkCostManagerEvents_Impl, const OFFSET: isize>() -> INetworkCostManagerEvents_Vtbl {
-        unsafe extern "system" fn CostChanged<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: INetworkCostManagerEvents_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, newcost: u32, pdestaddr: *const NLM_SOCKADDR) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn CostChanged<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: INetworkCostManagerEvents_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, newcost: u32, pdestaddr: *mut NLM_SOCKADDR) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.CostChanged(::core::mem::transmute_copy(&newcost), ::core::mem::transmute_copy(&pdestaddr)).into()
         }
-        unsafe extern "system" fn DataPlanStatusChanged<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: INetworkCostManagerEvents_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, pdestaddr: *const NLM_SOCKADDR) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn DataPlanStatusChanged<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: INetworkCostManagerEvents_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, pdestaddr: *mut NLM_SOCKADDR) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.DataPlanStatusChanged(::core::mem::transmute_copy(&pdestaddr)).into()
@@ -602,7 +602,7 @@ pub trait INetworkListManager_Impl: Sized + super::super::System::Com::IDispatch
     fn IsConnectedToInternet(&self) -> ::windows::core::Result<i16>;
     fn IsConnected(&self) -> ::windows::core::Result<i16>;
     fn GetConnectivity(&self) -> ::windows::core::Result<NLM_CONNECTIVITY>;
-    fn SetSimulatedProfileInfo(&self, psimulatedinfo: *const NLM_SIMULATED_PROFILE_INFO) -> ::windows::core::Result<()>;
+    fn SetSimulatedProfileInfo(&self, psimulatedinfo: *mut NLM_SIMULATED_PROFILE_INFO) -> ::windows::core::Result<()>;
     fn ClearSimulatedProfileInfo(&self) -> ::windows::core::Result<()>;
 }
 #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
@@ -687,7 +687,7 @@ impl INetworkListManager_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn SetSimulatedProfileInfo<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: INetworkListManager_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, psimulatedinfo: *const NLM_SIMULATED_PROFILE_INFO) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn SetSimulatedProfileInfo<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: INetworkListManager_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, psimulatedinfo: *mut NLM_SIMULATED_PROFILE_INFO) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.SetSimulatedProfileInfo(::core::mem::transmute_copy(&psimulatedinfo)).into()

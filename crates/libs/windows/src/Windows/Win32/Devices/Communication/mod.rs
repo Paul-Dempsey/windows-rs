@@ -269,13 +269,13 @@ where
 #[doc = "*Required features: `\"Win32_Devices_Communication\"`, `\"Win32_Foundation\"`*"]
 #[cfg(feature = "Win32_Foundation")]
 #[inline]
-pub unsafe fn SetCommConfig<'a, P0>(hcommdev: P0, lpcc: *const COMMCONFIG, dwsize: u32) -> super::super::Foundation::BOOL
+pub unsafe fn SetCommConfig<'a, P0>(hcommdev: P0, lpcc: *mut COMMCONFIG, dwsize: u32) -> super::super::Foundation::BOOL
 where
     P0: ::std::convert::Into<super::super::Foundation::HANDLE>,
 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn SetCommConfig(hcommdev: super::super::Foundation::HANDLE, lpcc: *const COMMCONFIG, dwsize: u32) -> super::super::Foundation::BOOL;
+        fn SetCommConfig(hcommdev: super::super::Foundation::HANDLE, lpcc: *mut COMMCONFIG, dwsize: u32) -> super::super::Foundation::BOOL;
     }
     SetCommConfig(hcommdev.into(), ::core::mem::transmute(lpcc), dwsize)
 }
@@ -295,52 +295,52 @@ where
 #[doc = "*Required features: `\"Win32_Devices_Communication\"`, `\"Win32_Foundation\"`*"]
 #[cfg(feature = "Win32_Foundation")]
 #[inline]
-pub unsafe fn SetCommState<'a, P0>(hfile: P0, lpdcb: *const DCB) -> super::super::Foundation::BOOL
+pub unsafe fn SetCommState<'a, P0>(hfile: P0, lpdcb: *mut DCB) -> super::super::Foundation::BOOL
 where
     P0: ::std::convert::Into<super::super::Foundation::HANDLE>,
 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn SetCommState(hfile: super::super::Foundation::HANDLE, lpdcb: *const DCB) -> super::super::Foundation::BOOL;
+        fn SetCommState(hfile: super::super::Foundation::HANDLE, lpdcb: *mut DCB) -> super::super::Foundation::BOOL;
     }
     SetCommState(hfile.into(), ::core::mem::transmute(lpdcb))
 }
 #[doc = "*Required features: `\"Win32_Devices_Communication\"`, `\"Win32_Foundation\"`*"]
 #[cfg(feature = "Win32_Foundation")]
 #[inline]
-pub unsafe fn SetCommTimeouts<'a, P0>(hfile: P0, lpcommtimeouts: *const COMMTIMEOUTS) -> super::super::Foundation::BOOL
+pub unsafe fn SetCommTimeouts<'a, P0>(hfile: P0, lpcommtimeouts: *mut COMMTIMEOUTS) -> super::super::Foundation::BOOL
 where
     P0: ::std::convert::Into<super::super::Foundation::HANDLE>,
 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn SetCommTimeouts(hfile: super::super::Foundation::HANDLE, lpcommtimeouts: *const COMMTIMEOUTS) -> super::super::Foundation::BOOL;
+        fn SetCommTimeouts(hfile: super::super::Foundation::HANDLE, lpcommtimeouts: *mut COMMTIMEOUTS) -> super::super::Foundation::BOOL;
     }
     SetCommTimeouts(hfile.into(), ::core::mem::transmute(lpcommtimeouts))
 }
 #[doc = "*Required features: `\"Win32_Devices_Communication\"`, `\"Win32_Foundation\"`*"]
 #[cfg(feature = "Win32_Foundation")]
 #[inline]
-pub unsafe fn SetDefaultCommConfigA<'a, P0>(lpszname: P0, lpcc: *const COMMCONFIG, dwsize: u32) -> super::super::Foundation::BOOL
+pub unsafe fn SetDefaultCommConfigA<'a, P0>(lpszname: P0, lpcc: *mut COMMCONFIG, dwsize: u32) -> super::super::Foundation::BOOL
 where
     P0: ::std::convert::Into<::windows::core::PCSTR>,
 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn SetDefaultCommConfigA(lpszname: ::windows::core::PCSTR, lpcc: *const COMMCONFIG, dwsize: u32) -> super::super::Foundation::BOOL;
+        fn SetDefaultCommConfigA(lpszname: ::windows::core::PCSTR, lpcc: *mut COMMCONFIG, dwsize: u32) -> super::super::Foundation::BOOL;
     }
     SetDefaultCommConfigA(lpszname.into(), ::core::mem::transmute(lpcc), dwsize)
 }
 #[doc = "*Required features: `\"Win32_Devices_Communication\"`, `\"Win32_Foundation\"`*"]
 #[cfg(feature = "Win32_Foundation")]
 #[inline]
-pub unsafe fn SetDefaultCommConfigW<'a, P0>(lpszname: P0, lpcc: *const COMMCONFIG, dwsize: u32) -> super::super::Foundation::BOOL
+pub unsafe fn SetDefaultCommConfigW<'a, P0>(lpszname: P0, lpcc: *mut COMMCONFIG, dwsize: u32) -> super::super::Foundation::BOOL
 where
     P0: ::std::convert::Into<::windows::core::PCWSTR>,
 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn SetDefaultCommConfigW(lpszname: ::windows::core::PCWSTR, lpcc: *const COMMCONFIG, dwsize: u32) -> super::super::Foundation::BOOL;
+        fn SetDefaultCommConfigW(lpszname: ::windows::core::PCWSTR, lpcc: *mut COMMCONFIG, dwsize: u32) -> super::super::Foundation::BOOL;
     }
     SetDefaultCommConfigW(lpszname.into(), ::core::mem::transmute(lpcc), dwsize)
 }

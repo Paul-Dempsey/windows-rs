@@ -109,7 +109,7 @@ extern "system" {
     #[doc = "*Required features: `\"Win32_System_HostComputeSystem\"`*"]
     pub fn HcsSetOperationContext(operation: HCS_OPERATION, context: *const ::core::ffi::c_void) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_System_HostComputeSystem\"`*"]
-    pub fn HcsSetProcessCallback(process: HCS_PROCESS, callbackoptions: HCS_EVENT_OPTIONS, context: *const ::core::ffi::c_void, callback: HCS_EVENT_CALLBACK) -> ::windows_sys::core::HRESULT;
+    pub fn HcsSetProcessCallback(process: HCS_PROCESS, callbackoptions: HCS_EVENT_OPTIONS, context: *mut ::core::ffi::c_void, callback: HCS_EVENT_CALLBACK) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_System_HostComputeSystem\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
     pub fn HcsSetupBaseOSLayer(layerpath: ::windows_sys::core::PCWSTR, vhdhandle: super::super::Foundation::HANDLE, options: ::windows_sys::core::PCWSTR) -> ::windows_sys::core::HRESULT;
@@ -309,8 +309,8 @@ impl ::core::clone::Clone for HCS_PROCESS_INFORMATION {
 }
 pub type HCS_SYSTEM = isize;
 #[doc = "*Required features: `\"Win32_System_HostComputeSystem\"`*"]
-pub type HCS_EVENT_CALLBACK = ::core::option::Option<unsafe extern "system" fn(event: *const HCS_EVENT, context: *const ::core::ffi::c_void)>;
+pub type HCS_EVENT_CALLBACK = ::core::option::Option<unsafe extern "system" fn(event: *mut HCS_EVENT, context: *mut ::core::ffi::c_void)>;
 #[doc = "*Required features: `\"Win32_System_HostComputeSystem\"`*"]
-pub type HCS_NOTIFICATION_CALLBACK = ::core::option::Option<unsafe extern "system" fn(notificationtype: u32, context: *const ::core::ffi::c_void, notificationstatus: ::windows_sys::core::HRESULT, notificationdata: ::windows_sys::core::PCWSTR)>;
+pub type HCS_NOTIFICATION_CALLBACK = ::core::option::Option<unsafe extern "system" fn(notificationtype: u32, context: *mut ::core::ffi::c_void, notificationstatus: ::windows_sys::core::HRESULT, notificationdata: ::windows_sys::core::PCWSTR)>;
 #[doc = "*Required features: `\"Win32_System_HostComputeSystem\"`*"]
-pub type HCS_OPERATION_COMPLETION = ::core::option::Option<unsafe extern "system" fn(operation: HCS_OPERATION, context: *const ::core::ffi::c_void)>;
+pub type HCS_OPERATION_COMPLETION = ::core::option::Option<unsafe extern "system" fn(operation: HCS_OPERATION, context: *mut ::core::ffi::c_void)>;

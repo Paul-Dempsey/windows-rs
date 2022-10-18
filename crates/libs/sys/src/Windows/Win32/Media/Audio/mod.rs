@@ -12,7 +12,7 @@ pub mod XAudio2;
 extern "system" {
     #[doc = "*Required features: `\"Win32_Media_Audio\"`, `\"Win32_Foundation\"`, `\"Win32_System_Com_StructuredStorage\"`*"]
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com_StructuredStorage"))]
-    pub fn ActivateAudioInterfaceAsync(deviceinterfacepath: ::windows_sys::core::PCWSTR, riid: *const ::windows_sys::core::GUID, activationparams: *const super::super::System::Com::StructuredStorage::PROPVARIANT, completionhandler: IActivateAudioInterfaceCompletionHandler, activationoperation: *mut IActivateAudioInterfaceAsyncOperation) -> ::windows_sys::core::HRESULT;
+    pub fn ActivateAudioInterfaceAsync(deviceinterfacepath: ::windows_sys::core::PCWSTR, riid: *const ::windows_sys::core::GUID, activationparams: *mut super::super::System::Com::StructuredStorage::PROPVARIANT, completionhandler: IActivateAudioInterfaceCompletionHandler, activationoperation: *mut IActivateAudioInterfaceAsyncOperation) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_Media_Audio\"`*"]
     pub fn CoRegisterMessageFilter(lpmessagefilter: IMessageFilter, lplpmessagefilter: *mut IMessageFilter) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_Media_Audio\"`*"]
@@ -158,9 +158,9 @@ extern "system" {
     #[doc = "*Required features: `\"Win32_Media_Audio\"`*"]
     pub fn auxSetVolume(udeviceid: u32, dwvolume: u32) -> u32;
     #[doc = "*Required features: `\"Win32_Media_Audio\"`*"]
-    pub fn midiConnect(hmi: HMIDI, hmo: HMIDIOUT, preserved: *const ::core::ffi::c_void) -> u32;
+    pub fn midiConnect(hmi: HMIDI, hmo: HMIDIOUT, preserved: *mut ::core::ffi::c_void) -> u32;
     #[doc = "*Required features: `\"Win32_Media_Audio\"`*"]
-    pub fn midiDisconnect(hmi: HMIDI, hmo: HMIDIOUT, preserved: *const ::core::ffi::c_void) -> u32;
+    pub fn midiDisconnect(hmi: HMIDI, hmo: HMIDIOUT, preserved: *mut ::core::ffi::c_void) -> u32;
     #[doc = "*Required features: `\"Win32_Media_Audio\"`*"]
     pub fn midiInAddBuffer(hmi: HMIDIIN, pmh: *mut MIDIHDR, cbmh: u32) -> u32;
     #[doc = "*Required features: `\"Win32_Media_Audio\"`*"]
@@ -193,9 +193,9 @@ extern "system" {
     #[doc = "*Required features: `\"Win32_Media_Audio\"`*"]
     pub fn midiInUnprepareHeader(hmi: HMIDIIN, pmh: *mut MIDIHDR, cbmh: u32) -> u32;
     #[doc = "*Required features: `\"Win32_Media_Audio\"`*"]
-    pub fn midiOutCacheDrumPatches(hmo: HMIDIOUT, upatch: u32, pwkya: *const u16, fucache: u32) -> u32;
+    pub fn midiOutCacheDrumPatches(hmo: HMIDIOUT, upatch: u32, pwkya: *mut u16, fucache: u32) -> u32;
     #[doc = "*Required features: `\"Win32_Media_Audio\"`*"]
-    pub fn midiOutCachePatches(hmo: HMIDIOUT, ubank: u32, pwpa: *const u16, fucache: u32) -> u32;
+    pub fn midiOutCachePatches(hmo: HMIDIOUT, ubank: u32, pwpa: *mut u16, fucache: u32) -> u32;
     #[doc = "*Required features: `\"Win32_Media_Audio\"`*"]
     pub fn midiOutClose(hmo: HMIDIOUT) -> u32;
     #[doc = "*Required features: `\"Win32_Media_Audio\"`, `\"Win32_Foundation\"`*"]
@@ -214,7 +214,7 @@ extern "system" {
     #[doc = "*Required features: `\"Win32_Media_Audio\"`*"]
     pub fn midiOutGetVolume(hmo: HMIDIOUT, pdwvolume: *mut u32) -> u32;
     #[doc = "*Required features: `\"Win32_Media_Audio\"`*"]
-    pub fn midiOutLongMsg(hmo: HMIDIOUT, pmh: *const MIDIHDR, cbmh: u32) -> u32;
+    pub fn midiOutLongMsg(hmo: HMIDIOUT, pmh: *mut MIDIHDR, cbmh: u32) -> u32;
     #[doc = "*Required features: `\"Win32_Media_Audio\"`*"]
     pub fn midiOutMessage(hmo: HMIDIOUT, umsg: u32, dw1: usize, dw2: usize) -> u32;
     #[doc = "*Required features: `\"Win32_Media_Audio\"`*"]
@@ -278,7 +278,7 @@ extern "system" {
     pub fn mixerOpen(phmx: *mut isize, umxid: u32, dwcallback: usize, dwinstance: usize, fdwopen: u32) -> u32;
     #[doc = "*Required features: `\"Win32_Media_Audio\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub fn mixerSetControlDetails(hmxobj: HMIXEROBJ, pmxcd: *const MIXERCONTROLDETAILS, fdwdetails: u32) -> u32;
+    pub fn mixerSetControlDetails(hmxobj: HMIXEROBJ, pmxcd: *mut MIXERCONTROLDETAILS, fdwdetails: u32) -> u32;
     #[doc = "*Required features: `\"Win32_Media_Audio\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
     pub fn sndPlaySoundA(pszsound: ::windows_sys::core::PCSTR, fusound: u32) -> super::super::Foundation::BOOL;
@@ -299,7 +299,7 @@ extern "system" {
     #[doc = "*Required features: `\"Win32_Media_Audio\"`*"]
     pub fn waveInGetErrorTextW(mmrerror: u32, psztext: ::windows_sys::core::PWSTR, cchtext: u32) -> u32;
     #[doc = "*Required features: `\"Win32_Media_Audio\"`*"]
-    pub fn waveInGetID(hwi: HWAVEIN, pudeviceid: *const u32) -> u32;
+    pub fn waveInGetID(hwi: HWAVEIN, pudeviceid: *mut u32) -> u32;
     #[doc = "*Required features: `\"Win32_Media_Audio\"`*"]
     pub fn waveInGetNumDevs() -> u32;
     #[doc = "*Required features: `\"Win32_Media_Audio\"`*"]
@@ -307,7 +307,7 @@ extern "system" {
     #[doc = "*Required features: `\"Win32_Media_Audio\"`*"]
     pub fn waveInMessage(hwi: HWAVEIN, umsg: u32, dw1: usize, dw2: usize) -> u32;
     #[doc = "*Required features: `\"Win32_Media_Audio\"`*"]
-    pub fn waveInOpen(phwi: *mut HWAVEIN, udeviceid: u32, pwfx: *const WAVEFORMATEX, dwcallback: usize, dwinstance: usize, fdwopen: MIDI_WAVE_OPEN_TYPE) -> u32;
+    pub fn waveInOpen(phwi: *mut HWAVEIN, udeviceid: u32, pwfx: *mut WAVEFORMATEX, dwcallback: usize, dwinstance: usize, fdwopen: MIDI_WAVE_OPEN_TYPE) -> u32;
     #[doc = "*Required features: `\"Win32_Media_Audio\"`*"]
     pub fn waveInPrepareHeader(hwi: HWAVEIN, pwh: *mut WAVEHDR, cbwh: u32) -> u32;
     #[doc = "*Required features: `\"Win32_Media_Audio\"`*"]
@@ -346,7 +346,7 @@ extern "system" {
     #[doc = "*Required features: `\"Win32_Media_Audio\"`*"]
     pub fn waveOutMessage(hwo: HWAVEOUT, umsg: u32, dw1: usize, dw2: usize) -> u32;
     #[doc = "*Required features: `\"Win32_Media_Audio\"`*"]
-    pub fn waveOutOpen(phwo: *mut HWAVEOUT, udeviceid: u32, pwfx: *const WAVEFORMATEX, dwcallback: usize, dwinstance: usize, fdwopen: MIDI_WAVE_OPEN_TYPE) -> u32;
+    pub fn waveOutOpen(phwo: *mut HWAVEOUT, udeviceid: u32, pwfx: *mut WAVEFORMATEX, dwcallback: usize, dwinstance: usize, fdwopen: MIDI_WAVE_OPEN_TYPE) -> u32;
     #[doc = "*Required features: `\"Win32_Media_Audio\"`*"]
     pub fn waveOutPause(hwo: HWAVEOUT) -> u32;
     #[doc = "*Required features: `\"Win32_Media_Audio\"`*"]
@@ -3797,4 +3797,4 @@ pub type LPMIDICALLBACK = ::core::option::Option<unsafe extern "system" fn(hdrvr
 #[cfg(feature = "Win32_Media_Multimedia")]
 pub type LPWAVECALLBACK = ::core::option::Option<unsafe extern "system" fn(hdrvr: super::Multimedia::HDRVR, umsg: u32, dwuser: usize, dw1: usize, dw2: usize)>;
 #[doc = "*Required features: `\"Win32_Media_Audio\"`*"]
-pub type PAudioStateMonitorCallback = ::core::option::Option<unsafe extern "system" fn(audiostatemonitor: IAudioStateMonitor, context: *const ::core::ffi::c_void)>;
+pub type PAudioStateMonitorCallback = ::core::option::Option<unsafe extern "system" fn(audiostatemonitor: IAudioStateMonitor, context: *mut ::core::ffi::c_void)>;

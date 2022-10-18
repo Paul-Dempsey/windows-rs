@@ -36,11 +36,11 @@ extern "system" {
     #[cfg(target_arch = "x86")]
     pub fn SQLBindParameter(hstmt: *mut ::core::ffi::c_void, ipar: u16, fparamtype: i16, fctype: i16, fsqltype: i16, cbcoldef: u32, ibscale: i16, rgbvalue: *mut ::core::ffi::c_void, cbvaluemax: i32, pcbvalue: *mut i32) -> i16;
     #[doc = "*Required features: `\"Win32_System_Search\"`*"]
-    pub fn SQLBrowseConnect(hdbc: *mut ::core::ffi::c_void, szconnstrin: *const u8, cchconnstrin: i16, szconnstrout: *mut u8, cchconnstroutmax: i16, pcchconnstrout: *mut i16) -> i16;
+    pub fn SQLBrowseConnect(hdbc: *mut ::core::ffi::c_void, szconnstrin: *mut u8, cchconnstrin: i16, szconnstrout: *mut u8, cchconnstroutmax: i16, pcchconnstrout: *mut i16) -> i16;
     #[doc = "*Required features: `\"Win32_System_Search\"`*"]
-    pub fn SQLBrowseConnectA(hdbc: *mut ::core::ffi::c_void, szconnstrin: *const u8, cbconnstrin: i16, szconnstrout: *mut u8, cbconnstroutmax: i16, pcbconnstrout: *mut i16) -> i16;
+    pub fn SQLBrowseConnectA(hdbc: *mut ::core::ffi::c_void, szconnstrin: *mut u8, cbconnstrin: i16, szconnstrout: *mut u8, cbconnstroutmax: i16, pcbconnstrout: *mut i16) -> i16;
     #[doc = "*Required features: `\"Win32_System_Search\"`*"]
-    pub fn SQLBrowseConnectW(hdbc: *mut ::core::ffi::c_void, szconnstrin: *const u16, cchconnstrin: i16, szconnstrout: *mut u16, cchconnstroutmax: i16, pcchconnstrout: *mut i16) -> i16;
+    pub fn SQLBrowseConnectW(hdbc: *mut ::core::ffi::c_void, szconnstrin: *mut u16, cchconnstrin: i16, szconnstrout: *mut u16, cchconnstroutmax: i16, pcchconnstrout: *mut i16) -> i16;
     #[doc = "*Required features: `\"Win32_System_Search\"`*"]
     pub fn SQLBulkOperations(statementhandle: *mut ::core::ffi::c_void, operation: i16) -> i16;
     #[doc = "*Required features: `\"Win32_System_Search\"`*"]
@@ -89,25 +89,25 @@ extern "system" {
     #[cfg(target_arch = "x86")]
     pub fn SQLColAttributesW(hstmt: *mut ::core::ffi::c_void, icol: u16, fdesctype: u16, rgbdesc: *mut ::core::ffi::c_void, cbdescmax: i16, pcbdesc: *mut i16, pfdesc: *mut i32) -> i16;
     #[doc = "*Required features: `\"Win32_System_Search\"`*"]
-    pub fn SQLColumnPrivileges(hstmt: *mut ::core::ffi::c_void, szcatalogname: *const u8, cchcatalogname: i16, szschemaname: *const u8, cchschemaname: i16, sztablename: *const u8, cchtablename: i16, szcolumnname: *const u8, cchcolumnname: i16) -> i16;
+    pub fn SQLColumnPrivileges(hstmt: *mut ::core::ffi::c_void, szcatalogname: *mut u8, cchcatalogname: i16, szschemaname: *mut u8, cchschemaname: i16, sztablename: *mut u8, cchtablename: i16, szcolumnname: *mut u8, cchcolumnname: i16) -> i16;
     #[doc = "*Required features: `\"Win32_System_Search\"`*"]
-    pub fn SQLColumnPrivilegesA(hstmt: *mut ::core::ffi::c_void, szcatalogname: *const u8, cbcatalogname: i16, szschemaname: *const u8, cbschemaname: i16, sztablename: *const u8, cbtablename: i16, szcolumnname: *const u8, cbcolumnname: i16) -> i16;
+    pub fn SQLColumnPrivilegesA(hstmt: *mut ::core::ffi::c_void, szcatalogname: *mut u8, cbcatalogname: i16, szschemaname: *mut u8, cbschemaname: i16, sztablename: *mut u8, cbtablename: i16, szcolumnname: *mut u8, cbcolumnname: i16) -> i16;
     #[doc = "*Required features: `\"Win32_System_Search\"`*"]
-    pub fn SQLColumnPrivilegesW(hstmt: *mut ::core::ffi::c_void, szcatalogname: *const u16, cchcatalogname: i16, szschemaname: *const u16, cchschemaname: i16, sztablename: *const u16, cchtablename: i16, szcolumnname: *const u16, cchcolumnname: i16) -> i16;
+    pub fn SQLColumnPrivilegesW(hstmt: *mut ::core::ffi::c_void, szcatalogname: *mut u16, cchcatalogname: i16, szschemaname: *mut u16, cchschemaname: i16, sztablename: *mut u16, cchtablename: i16, szcolumnname: *mut u16, cchcolumnname: i16) -> i16;
     #[doc = "*Required features: `\"Win32_System_Search\"`*"]
-    pub fn SQLColumns(statementhandle: *mut ::core::ffi::c_void, catalogname: *const u8, namelength1: i16, schemaname: *const u8, namelength2: i16, tablename: *const u8, namelength3: i16, columnname: *const u8, namelength4: i16) -> i16;
+    pub fn SQLColumns(statementhandle: *mut ::core::ffi::c_void, catalogname: *mut u8, namelength1: i16, schemaname: *mut u8, namelength2: i16, tablename: *mut u8, namelength3: i16, columnname: *mut u8, namelength4: i16) -> i16;
     #[doc = "*Required features: `\"Win32_System_Search\"`*"]
-    pub fn SQLColumnsA(hstmt: *mut ::core::ffi::c_void, szcatalogname: *const u8, cbcatalogname: i16, szschemaname: *const u8, cbschemaname: i16, sztablename: *const u8, cbtablename: i16, szcolumnname: *const u8, cbcolumnname: i16) -> i16;
+    pub fn SQLColumnsA(hstmt: *mut ::core::ffi::c_void, szcatalogname: *mut u8, cbcatalogname: i16, szschemaname: *mut u8, cbschemaname: i16, sztablename: *mut u8, cbtablename: i16, szcolumnname: *mut u8, cbcolumnname: i16) -> i16;
     #[doc = "*Required features: `\"Win32_System_Search\"`*"]
-    pub fn SQLColumnsW(hstmt: *mut ::core::ffi::c_void, szcatalogname: *const u16, cchcatalogname: i16, szschemaname: *const u16, cchschemaname: i16, sztablename: *const u16, cchtablename: i16, szcolumnname: *const u16, cchcolumnname: i16) -> i16;
+    pub fn SQLColumnsW(hstmt: *mut ::core::ffi::c_void, szcatalogname: *mut u16, cchcatalogname: i16, szschemaname: *mut u16, cchschemaname: i16, sztablename: *mut u16, cchtablename: i16, szcolumnname: *mut u16, cchcolumnname: i16) -> i16;
     #[doc = "*Required features: `\"Win32_System_Search\"`*"]
     pub fn SQLCompleteAsync(handletype: i16, handle: *mut ::core::ffi::c_void, asyncretcodeptr: *mut i16) -> i16;
     #[doc = "*Required features: `\"Win32_System_Search\"`*"]
-    pub fn SQLConnect(connectionhandle: *mut ::core::ffi::c_void, servername: *const u8, namelength1: i16, username: *const u8, namelength2: i16, authentication: *const u8, namelength3: i16) -> i16;
+    pub fn SQLConnect(connectionhandle: *mut ::core::ffi::c_void, servername: *mut u8, namelength1: i16, username: *mut u8, namelength2: i16, authentication: *mut u8, namelength3: i16) -> i16;
     #[doc = "*Required features: `\"Win32_System_Search\"`*"]
-    pub fn SQLConnectA(hdbc: *mut ::core::ffi::c_void, szdsn: *const u8, cbdsn: i16, szuid: *const u8, cbuid: i16, szauthstr: *const u8, cbauthstr: i16) -> i16;
+    pub fn SQLConnectA(hdbc: *mut ::core::ffi::c_void, szdsn: *mut u8, cbdsn: i16, szuid: *mut u8, cbuid: i16, szauthstr: *mut u8, cbauthstr: i16) -> i16;
     #[doc = "*Required features: `\"Win32_System_Search\"`*"]
-    pub fn SQLConnectW(hdbc: *mut ::core::ffi::c_void, szdsn: *const u16, cchdsn: i16, szuid: *const u16, cchuid: i16, szauthstr: *const u16, cchauthstr: i16) -> i16;
+    pub fn SQLConnectW(hdbc: *mut ::core::ffi::c_void, szdsn: *mut u16, cchdsn: i16, szuid: *mut u16, cchuid: i16, szauthstr: *mut u16, cchauthstr: i16) -> i16;
     #[doc = "*Required features: `\"Win32_System_Search\"`*"]
     pub fn SQLCopyDesc(sourcedeschandle: *mut ::core::ffi::c_void, targetdeschandle: *mut ::core::ffi::c_void) -> i16;
     #[doc = "*Required features: `\"Win32_System_Search\"`*"]
@@ -143,11 +143,11 @@ extern "system" {
     #[doc = "*Required features: `\"Win32_System_Search\"`*"]
     pub fn SQLDisconnect(connectionhandle: *mut ::core::ffi::c_void) -> i16;
     #[doc = "*Required features: `\"Win32_System_Search\"`*"]
-    pub fn SQLDriverConnect(hdbc: *mut ::core::ffi::c_void, hwnd: isize, szconnstrin: *const u8, cchconnstrin: i16, szconnstrout: *mut u8, cchconnstroutmax: i16, pcchconnstrout: *mut i16, fdrivercompletion: u16) -> i16;
+    pub fn SQLDriverConnect(hdbc: *mut ::core::ffi::c_void, hwnd: isize, szconnstrin: *mut u8, cchconnstrin: i16, szconnstrout: *mut u8, cchconnstroutmax: i16, pcchconnstrout: *mut i16, fdrivercompletion: u16) -> i16;
     #[doc = "*Required features: `\"Win32_System_Search\"`*"]
-    pub fn SQLDriverConnectA(hdbc: *mut ::core::ffi::c_void, hwnd: isize, szconnstrin: *const u8, cbconnstrin: i16, szconnstrout: *mut u8, cbconnstroutmax: i16, pcbconnstrout: *mut i16, fdrivercompletion: u16) -> i16;
+    pub fn SQLDriverConnectA(hdbc: *mut ::core::ffi::c_void, hwnd: isize, szconnstrin: *mut u8, cbconnstrin: i16, szconnstrout: *mut u8, cbconnstroutmax: i16, pcbconnstrout: *mut i16, fdrivercompletion: u16) -> i16;
     #[doc = "*Required features: `\"Win32_System_Search\"`*"]
-    pub fn SQLDriverConnectW(hdbc: *mut ::core::ffi::c_void, hwnd: isize, szconnstrin: *const u16, cchconnstrin: i16, szconnstrout: *mut u16, cchconnstroutmax: i16, pcchconnstrout: *mut i16, fdrivercompletion: u16) -> i16;
+    pub fn SQLDriverConnectW(hdbc: *mut ::core::ffi::c_void, hwnd: isize, szconnstrin: *mut u16, cchconnstrin: i16, szconnstrout: *mut u16, cchconnstroutmax: i16, pcchconnstrout: *mut i16, fdrivercompletion: u16) -> i16;
     #[doc = "*Required features: `\"Win32_System_Search\"`*"]
     pub fn SQLDrivers(henv: *mut ::core::ffi::c_void, fdirection: u16, szdriverdesc: *mut u8, cchdriverdescmax: i16, pcchdriverdesc: *mut i16, szdriverattributes: *mut u8, cchdrvrattrmax: i16, pcchdrvrattr: *mut i16) -> i16;
     #[doc = "*Required features: `\"Win32_System_Search\"`*"]
@@ -163,11 +163,11 @@ extern "system" {
     #[doc = "*Required features: `\"Win32_System_Search\"`*"]
     pub fn SQLErrorW(henv: *mut ::core::ffi::c_void, hdbc: *mut ::core::ffi::c_void, hstmt: *mut ::core::ffi::c_void, wszsqlstate: *mut u16, pfnativeerror: *mut i32, wszerrormsg: *mut u16, ccherrormsgmax: i16, pccherrormsg: *mut i16) -> i16;
     #[doc = "*Required features: `\"Win32_System_Search\"`*"]
-    pub fn SQLExecDirect(statementhandle: *mut ::core::ffi::c_void, statementtext: *const u8, textlength: i32) -> i16;
+    pub fn SQLExecDirect(statementhandle: *mut ::core::ffi::c_void, statementtext: *mut u8, textlength: i32) -> i16;
     #[doc = "*Required features: `\"Win32_System_Search\"`*"]
-    pub fn SQLExecDirectA(hstmt: *mut ::core::ffi::c_void, szsqlstr: *const u8, cbsqlstr: i32) -> i16;
+    pub fn SQLExecDirectA(hstmt: *mut ::core::ffi::c_void, szsqlstr: *mut u8, cbsqlstr: i32) -> i16;
     #[doc = "*Required features: `\"Win32_System_Search\"`*"]
-    pub fn SQLExecDirectW(hstmt: *mut ::core::ffi::c_void, szsqlstr: *const u16, textlength: i32) -> i16;
+    pub fn SQLExecDirectW(hstmt: *mut ::core::ffi::c_void, szsqlstr: *mut u16, textlength: i32) -> i16;
     #[doc = "*Required features: `\"Win32_System_Search\"`*"]
     pub fn SQLExecute(statementhandle: *mut ::core::ffi::c_void) -> i16;
     #[doc = "*Required features: `\"Win32_System_Search\"`*"]
@@ -185,11 +185,11 @@ extern "system" {
     #[cfg(target_arch = "x86")]
     pub fn SQLFetchScroll(statementhandle: *mut ::core::ffi::c_void, fetchorientation: i16, fetchoffset: i32) -> i16;
     #[doc = "*Required features: `\"Win32_System_Search\"`*"]
-    pub fn SQLForeignKeys(hstmt: *mut ::core::ffi::c_void, szpkcatalogname: *const u8, cchpkcatalogname: i16, szpkschemaname: *const u8, cchpkschemaname: i16, szpktablename: *const u8, cchpktablename: i16, szfkcatalogname: *const u8, cchfkcatalogname: i16, szfkschemaname: *const u8, cchfkschemaname: i16, szfktablename: *const u8, cchfktablename: i16) -> i16;
+    pub fn SQLForeignKeys(hstmt: *mut ::core::ffi::c_void, szpkcatalogname: *mut u8, cchpkcatalogname: i16, szpkschemaname: *mut u8, cchpkschemaname: i16, szpktablename: *mut u8, cchpktablename: i16, szfkcatalogname: *mut u8, cchfkcatalogname: i16, szfkschemaname: *mut u8, cchfkschemaname: i16, szfktablename: *mut u8, cchfktablename: i16) -> i16;
     #[doc = "*Required features: `\"Win32_System_Search\"`*"]
-    pub fn SQLForeignKeysA(hstmt: *mut ::core::ffi::c_void, szpkcatalogname: *const u8, cbpkcatalogname: i16, szpkschemaname: *const u8, cbpkschemaname: i16, szpktablename: *const u8, cbpktablename: i16, szfkcatalogname: *const u8, cbfkcatalogname: i16, szfkschemaname: *const u8, cbfkschemaname: i16, szfktablename: *const u8, cbfktablename: i16) -> i16;
+    pub fn SQLForeignKeysA(hstmt: *mut ::core::ffi::c_void, szpkcatalogname: *mut u8, cbpkcatalogname: i16, szpkschemaname: *mut u8, cbpkschemaname: i16, szpktablename: *mut u8, cbpktablename: i16, szfkcatalogname: *mut u8, cbfkcatalogname: i16, szfkschemaname: *mut u8, cbfkschemaname: i16, szfktablename: *mut u8, cbfktablename: i16) -> i16;
     #[doc = "*Required features: `\"Win32_System_Search\"`*"]
-    pub fn SQLForeignKeysW(hstmt: *mut ::core::ffi::c_void, szpkcatalogname: *const u16, cchpkcatalogname: i16, szpkschemaname: *const u16, cchpkschemaname: i16, szpktablename: *const u16, cchpktablename: i16, szfkcatalogname: *const u16, cchfkcatalogname: i16, szfkschemaname: *const u16, cchfkschemaname: i16, szfktablename: *const u16, cchfktablename: i16) -> i16;
+    pub fn SQLForeignKeysW(hstmt: *mut ::core::ffi::c_void, szpkcatalogname: *mut u16, cchpkcatalogname: i16, szpkschemaname: *mut u16, cchpkschemaname: i16, szpktablename: *mut u16, cchpktablename: i16, szfkcatalogname: *mut u16, cchfkcatalogname: i16, szfkschemaname: *mut u16, cchfkschemaname: i16, szfktablename: *mut u16, cchfktablename: i16) -> i16;
     #[doc = "*Required features: `\"Win32_System_Search\"`*"]
     pub fn SQLFreeConnect(connectionhandle: *mut ::core::ffi::c_void) -> i16;
     #[doc = "*Required features: `\"Win32_System_Search\"`*"]
@@ -287,7 +287,7 @@ extern "system" {
     pub fn SQLGetTypeInfoW(statementhandle: *mut ::core::ffi::c_void, datatype: i16) -> i16;
     #[doc = "*Required features: `\"Win32_System_Search\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub fn SQLInitEnumServers(pwchservername: ::windows_sys::core::PCWSTR, pwchinstancename: ::windows_sys::core::PCWSTR) -> super::super::Foundation::HANDLE;
+    pub fn SQLInitEnumServers(pwchservername: ::windows_sys::core::PWSTR, pwchinstancename: ::windows_sys::core::PWSTR) -> super::super::Foundation::HANDLE;
     #[doc = "*Required features: `\"Win32_System_Search\"`*"]
     pub fn SQLLinkedCatalogsA(param0: *mut ::core::ffi::c_void, param1: ::windows_sys::core::PCSTR, param2: i16) -> i16;
     #[doc = "*Required features: `\"Win32_System_Search\"`*"]
@@ -297,11 +297,11 @@ extern "system" {
     #[doc = "*Required features: `\"Win32_System_Search\"`*"]
     pub fn SQLMoreResults(hstmt: *mut ::core::ffi::c_void) -> i16;
     #[doc = "*Required features: `\"Win32_System_Search\"`*"]
-    pub fn SQLNativeSql(hdbc: *mut ::core::ffi::c_void, szsqlstrin: *const u8, cchsqlstrin: i32, szsqlstr: *mut u8, cchsqlstrmax: i32, pcbsqlstr: *mut i32) -> i16;
+    pub fn SQLNativeSql(hdbc: *mut ::core::ffi::c_void, szsqlstrin: *mut u8, cchsqlstrin: i32, szsqlstr: *mut u8, cchsqlstrmax: i32, pcbsqlstr: *mut i32) -> i16;
     #[doc = "*Required features: `\"Win32_System_Search\"`*"]
-    pub fn SQLNativeSqlA(hdbc: *mut ::core::ffi::c_void, szsqlstrin: *const u8, cbsqlstrin: i32, szsqlstr: *mut u8, cbsqlstrmax: i32, pcbsqlstr: *mut i32) -> i16;
+    pub fn SQLNativeSqlA(hdbc: *mut ::core::ffi::c_void, szsqlstrin: *mut u8, cbsqlstrin: i32, szsqlstr: *mut u8, cbsqlstrmax: i32, pcbsqlstr: *mut i32) -> i16;
     #[doc = "*Required features: `\"Win32_System_Search\"`*"]
-    pub fn SQLNativeSqlW(hdbc: *mut ::core::ffi::c_void, szsqlstrin: *const u16, cchsqlstrin: i32, szsqlstr: *mut u16, cchsqlstrmax: i32, pcchsqlstr: *mut i32) -> i16;
+    pub fn SQLNativeSqlW(hdbc: *mut ::core::ffi::c_void, szsqlstrin: *mut u16, cchsqlstrin: i32, szsqlstr: *mut u16, cchsqlstrmax: i32, pcchsqlstr: *mut i32) -> i16;
     #[doc = "*Required features: `\"Win32_System_Search\"`*"]
     pub fn SQLNumParams(hstmt: *mut ::core::ffi::c_void, pcpar: *mut i16) -> i16;
     #[doc = "*Required features: `\"Win32_System_Search\"`*"]
@@ -315,47 +315,47 @@ extern "system" {
     #[cfg(target_arch = "x86")]
     pub fn SQLParamOptions(hstmt: *mut ::core::ffi::c_void, crow: u32, pirow: *mut u32) -> i16;
     #[doc = "*Required features: `\"Win32_System_Search\"`*"]
-    pub fn SQLPrepare(statementhandle: *mut ::core::ffi::c_void, statementtext: *const u8, textlength: i32) -> i16;
+    pub fn SQLPrepare(statementhandle: *mut ::core::ffi::c_void, statementtext: *mut u8, textlength: i32) -> i16;
     #[doc = "*Required features: `\"Win32_System_Search\"`*"]
-    pub fn SQLPrepareA(hstmt: *mut ::core::ffi::c_void, szsqlstr: *const u8, cbsqlstr: i32) -> i16;
+    pub fn SQLPrepareA(hstmt: *mut ::core::ffi::c_void, szsqlstr: *mut u8, cbsqlstr: i32) -> i16;
     #[doc = "*Required features: `\"Win32_System_Search\"`*"]
-    pub fn SQLPrepareW(hstmt: *mut ::core::ffi::c_void, szsqlstr: *const u16, cchsqlstr: i32) -> i16;
+    pub fn SQLPrepareW(hstmt: *mut ::core::ffi::c_void, szsqlstr: *mut u16, cchsqlstr: i32) -> i16;
     #[doc = "*Required features: `\"Win32_System_Search\"`*"]
-    pub fn SQLPrimaryKeys(hstmt: *mut ::core::ffi::c_void, szcatalogname: *const u8, cchcatalogname: i16, szschemaname: *const u8, cchschemaname: i16, sztablename: *const u8, cchtablename: i16) -> i16;
+    pub fn SQLPrimaryKeys(hstmt: *mut ::core::ffi::c_void, szcatalogname: *mut u8, cchcatalogname: i16, szschemaname: *mut u8, cchschemaname: i16, sztablename: *mut u8, cchtablename: i16) -> i16;
     #[doc = "*Required features: `\"Win32_System_Search\"`*"]
-    pub fn SQLPrimaryKeysA(hstmt: *mut ::core::ffi::c_void, szcatalogname: *const u8, cbcatalogname: i16, szschemaname: *const u8, cbschemaname: i16, sztablename: *const u8, cbtablename: i16) -> i16;
+    pub fn SQLPrimaryKeysA(hstmt: *mut ::core::ffi::c_void, szcatalogname: *mut u8, cbcatalogname: i16, szschemaname: *mut u8, cbschemaname: i16, sztablename: *mut u8, cbtablename: i16) -> i16;
     #[doc = "*Required features: `\"Win32_System_Search\"`*"]
-    pub fn SQLPrimaryKeysW(hstmt: *mut ::core::ffi::c_void, szcatalogname: *const u16, cchcatalogname: i16, szschemaname: *const u16, cchschemaname: i16, sztablename: *const u16, cchtablename: i16) -> i16;
+    pub fn SQLPrimaryKeysW(hstmt: *mut ::core::ffi::c_void, szcatalogname: *mut u16, cchcatalogname: i16, szschemaname: *mut u16, cchschemaname: i16, sztablename: *mut u16, cchtablename: i16) -> i16;
     #[doc = "*Required features: `\"Win32_System_Search\"`*"]
-    pub fn SQLProcedureColumns(hstmt: *mut ::core::ffi::c_void, szcatalogname: *const u8, cchcatalogname: i16, szschemaname: *const u8, cchschemaname: i16, szprocname: *const u8, cchprocname: i16, szcolumnname: *const u8, cchcolumnname: i16) -> i16;
+    pub fn SQLProcedureColumns(hstmt: *mut ::core::ffi::c_void, szcatalogname: *mut u8, cchcatalogname: i16, szschemaname: *mut u8, cchschemaname: i16, szprocname: *mut u8, cchprocname: i16, szcolumnname: *mut u8, cchcolumnname: i16) -> i16;
     #[doc = "*Required features: `\"Win32_System_Search\"`*"]
-    pub fn SQLProcedureColumnsA(hstmt: *mut ::core::ffi::c_void, szcatalogname: *const u8, cbcatalogname: i16, szschemaname: *const u8, cbschemaname: i16, szprocname: *const u8, cbprocname: i16, szcolumnname: *const u8, cbcolumnname: i16) -> i16;
+    pub fn SQLProcedureColumnsA(hstmt: *mut ::core::ffi::c_void, szcatalogname: *mut u8, cbcatalogname: i16, szschemaname: *mut u8, cbschemaname: i16, szprocname: *mut u8, cbprocname: i16, szcolumnname: *mut u8, cbcolumnname: i16) -> i16;
     #[doc = "*Required features: `\"Win32_System_Search\"`*"]
-    pub fn SQLProcedureColumnsW(hstmt: *mut ::core::ffi::c_void, szcatalogname: *const u16, cchcatalogname: i16, szschemaname: *const u16, cchschemaname: i16, szprocname: *const u16, cchprocname: i16, szcolumnname: *const u16, cchcolumnname: i16) -> i16;
+    pub fn SQLProcedureColumnsW(hstmt: *mut ::core::ffi::c_void, szcatalogname: *mut u16, cchcatalogname: i16, szschemaname: *mut u16, cchschemaname: i16, szprocname: *mut u16, cchprocname: i16, szcolumnname: *mut u16, cchcolumnname: i16) -> i16;
     #[doc = "*Required features: `\"Win32_System_Search\"`*"]
-    pub fn SQLProcedures(hstmt: *mut ::core::ffi::c_void, szcatalogname: *const u8, cchcatalogname: i16, szschemaname: *const u8, cchschemaname: i16, szprocname: *const u8, cchprocname: i16) -> i16;
+    pub fn SQLProcedures(hstmt: *mut ::core::ffi::c_void, szcatalogname: *mut u8, cchcatalogname: i16, szschemaname: *mut u8, cchschemaname: i16, szprocname: *mut u8, cchprocname: i16) -> i16;
     #[doc = "*Required features: `\"Win32_System_Search\"`*"]
-    pub fn SQLProceduresA(hstmt: *mut ::core::ffi::c_void, szcatalogname: *const u8, cbcatalogname: i16, szschemaname: *const u8, cbschemaname: i16, szprocname: *const u8, cbprocname: i16) -> i16;
+    pub fn SQLProceduresA(hstmt: *mut ::core::ffi::c_void, szcatalogname: *mut u8, cbcatalogname: i16, szschemaname: *mut u8, cbschemaname: i16, szprocname: *mut u8, cbprocname: i16) -> i16;
     #[doc = "*Required features: `\"Win32_System_Search\"`*"]
-    pub fn SQLProceduresW(hstmt: *mut ::core::ffi::c_void, szcatalogname: *const u16, cchcatalogname: i16, szschemaname: *const u16, cchschemaname: i16, szprocname: *const u16, cchprocname: i16) -> i16;
-    #[doc = "*Required features: `\"Win32_System_Search\"`*"]
-    #[cfg(any(target_arch = "aarch64", target_arch = "x86_64"))]
-    pub fn SQLPutData(statementhandle: *mut ::core::ffi::c_void, data: *const ::core::ffi::c_void, strlen_or_ind: i64) -> i16;
-    #[doc = "*Required features: `\"Win32_System_Search\"`*"]
-    #[cfg(target_arch = "x86")]
-    pub fn SQLPutData(statementhandle: *mut ::core::ffi::c_void, data: *const ::core::ffi::c_void, strlen_or_ind: i32) -> i16;
+    pub fn SQLProceduresW(hstmt: *mut ::core::ffi::c_void, szcatalogname: *mut u16, cchcatalogname: i16, szschemaname: *mut u16, cchschemaname: i16, szprocname: *mut u16, cchprocname: i16) -> i16;
     #[doc = "*Required features: `\"Win32_System_Search\"`*"]
     #[cfg(any(target_arch = "aarch64", target_arch = "x86_64"))]
-    pub fn SQLRowCount(statementhandle: *const ::core::ffi::c_void, rowcount: *mut i64) -> i16;
+    pub fn SQLPutData(statementhandle: *mut ::core::ffi::c_void, data: *mut ::core::ffi::c_void, strlen_or_ind: i64) -> i16;
     #[doc = "*Required features: `\"Win32_System_Search\"`*"]
     #[cfg(target_arch = "x86")]
-    pub fn SQLRowCount(statementhandle: *const ::core::ffi::c_void, rowcount: *mut i32) -> i16;
+    pub fn SQLPutData(statementhandle: *mut ::core::ffi::c_void, data: *mut ::core::ffi::c_void, strlen_or_ind: i32) -> i16;
     #[doc = "*Required features: `\"Win32_System_Search\"`*"]
-    pub fn SQLSetConnectAttr(connectionhandle: *mut ::core::ffi::c_void, attribute: i32, value: *const ::core::ffi::c_void, stringlength: i32) -> i16;
+    #[cfg(any(target_arch = "aarch64", target_arch = "x86_64"))]
+    pub fn SQLRowCount(statementhandle: *mut ::core::ffi::c_void, rowcount: *mut i64) -> i16;
     #[doc = "*Required features: `\"Win32_System_Search\"`*"]
-    pub fn SQLSetConnectAttrA(hdbc: *mut ::core::ffi::c_void, fattribute: i32, rgbvalue: *const ::core::ffi::c_void, cbvalue: i32) -> i16;
+    #[cfg(target_arch = "x86")]
+    pub fn SQLRowCount(statementhandle: *mut ::core::ffi::c_void, rowcount: *mut i32) -> i16;
     #[doc = "*Required features: `\"Win32_System_Search\"`*"]
-    pub fn SQLSetConnectAttrW(hdbc: *mut ::core::ffi::c_void, fattribute: i32, rgbvalue: *const ::core::ffi::c_void, cbvalue: i32) -> i16;
+    pub fn SQLSetConnectAttr(connectionhandle: *mut ::core::ffi::c_void, attribute: i32, value: *mut ::core::ffi::c_void, stringlength: i32) -> i16;
+    #[doc = "*Required features: `\"Win32_System_Search\"`*"]
+    pub fn SQLSetConnectAttrA(hdbc: *mut ::core::ffi::c_void, fattribute: i32, rgbvalue: *mut ::core::ffi::c_void, cbvalue: i32) -> i16;
+    #[doc = "*Required features: `\"Win32_System_Search\"`*"]
+    pub fn SQLSetConnectAttrW(hdbc: *mut ::core::ffi::c_void, fattribute: i32, rgbvalue: *mut ::core::ffi::c_void, cbvalue: i32) -> i16;
     #[doc = "*Required features: `\"Win32_System_Search\"`*"]
     #[cfg(any(target_arch = "aarch64", target_arch = "x86_64"))]
     pub fn SQLSetConnectOption(connectionhandle: *mut ::core::ffi::c_void, option: u16, value: u64) -> i16;
@@ -375,13 +375,13 @@ extern "system" {
     #[cfg(target_arch = "x86")]
     pub fn SQLSetConnectOptionW(hdbc: *mut ::core::ffi::c_void, foption: u16, vparam: u32) -> i16;
     #[doc = "*Required features: `\"Win32_System_Search\"`*"]
-    pub fn SQLSetCursorName(statementhandle: *mut ::core::ffi::c_void, cursorname: *const u8, namelength: i16) -> i16;
+    pub fn SQLSetCursorName(statementhandle: *mut ::core::ffi::c_void, cursorname: *mut u8, namelength: i16) -> i16;
     #[doc = "*Required features: `\"Win32_System_Search\"`*"]
-    pub fn SQLSetCursorNameA(hstmt: *mut ::core::ffi::c_void, szcursor: *const u8, cbcursor: i16) -> i16;
+    pub fn SQLSetCursorNameA(hstmt: *mut ::core::ffi::c_void, szcursor: *mut u8, cbcursor: i16) -> i16;
     #[doc = "*Required features: `\"Win32_System_Search\"`*"]
-    pub fn SQLSetCursorNameW(hstmt: *mut ::core::ffi::c_void, szcursor: *const u16, cchcursor: i16) -> i16;
+    pub fn SQLSetCursorNameW(hstmt: *mut ::core::ffi::c_void, szcursor: *mut u16, cchcursor: i16) -> i16;
     #[doc = "*Required features: `\"Win32_System_Search\"`*"]
-    pub fn SQLSetDescField(descriptorhandle: *mut ::core::ffi::c_void, recnumber: i16, fieldidentifier: i16, value: *const ::core::ffi::c_void, bufferlength: i32) -> i16;
+    pub fn SQLSetDescField(descriptorhandle: *mut ::core::ffi::c_void, recnumber: i16, fieldidentifier: i16, value: *mut ::core::ffi::c_void, bufferlength: i32) -> i16;
     #[doc = "*Required features: `\"Win32_System_Search\"`*"]
     pub fn SQLSetDescFieldW(descriptorhandle: *mut ::core::ffi::c_void, recnumber: i16, fieldidentifier: i16, value: *mut ::core::ffi::c_void, bufferlength: i32) -> i16;
     #[doc = "*Required features: `\"Win32_System_Search\"`*"]
@@ -391,13 +391,13 @@ extern "system" {
     #[cfg(target_arch = "x86")]
     pub fn SQLSetDescRec(descriptorhandle: *mut ::core::ffi::c_void, recnumber: i16, r#type: i16, subtype: i16, length: i32, precision: i16, scale: i16, data: *mut ::core::ffi::c_void, stringlength: *mut i32, indicator: *mut i32) -> i16;
     #[doc = "*Required features: `\"Win32_System_Search\"`*"]
-    pub fn SQLSetEnvAttr(environmenthandle: *mut ::core::ffi::c_void, attribute: i32, value: *const ::core::ffi::c_void, stringlength: i32) -> i16;
+    pub fn SQLSetEnvAttr(environmenthandle: *mut ::core::ffi::c_void, attribute: i32, value: *mut ::core::ffi::c_void, stringlength: i32) -> i16;
     #[doc = "*Required features: `\"Win32_System_Search\"`*"]
     #[cfg(any(target_arch = "aarch64", target_arch = "x86_64"))]
-    pub fn SQLSetParam(statementhandle: *mut ::core::ffi::c_void, parameternumber: u16, valuetype: i16, parametertype: i16, lengthprecision: u64, parameterscale: i16, parametervalue: *const ::core::ffi::c_void, strlen_or_ind: *mut i64) -> i16;
+    pub fn SQLSetParam(statementhandle: *mut ::core::ffi::c_void, parameternumber: u16, valuetype: i16, parametertype: i16, lengthprecision: u64, parameterscale: i16, parametervalue: *mut ::core::ffi::c_void, strlen_or_ind: *mut i64) -> i16;
     #[doc = "*Required features: `\"Win32_System_Search\"`*"]
     #[cfg(target_arch = "x86")]
-    pub fn SQLSetParam(statementhandle: *mut ::core::ffi::c_void, parameternumber: u16, valuetype: i16, parametertype: i16, lengthprecision: u32, parameterscale: i16, parametervalue: *const ::core::ffi::c_void, strlen_or_ind: *mut i32) -> i16;
+    pub fn SQLSetParam(statementhandle: *mut ::core::ffi::c_void, parameternumber: u16, valuetype: i16, parametertype: i16, lengthprecision: u32, parameterscale: i16, parametervalue: *mut ::core::ffi::c_void, strlen_or_ind: *mut i32) -> i16;
     #[doc = "*Required features: `\"Win32_System_Search\"`*"]
     #[cfg(any(target_arch = "aarch64", target_arch = "x86_64"))]
     pub fn SQLSetPos(hstmt: *mut ::core::ffi::c_void, irow: u64, foption: u16, flock: u16) -> i16;
@@ -411,7 +411,7 @@ extern "system" {
     #[cfg(target_arch = "x86")]
     pub fn SQLSetScrollOptions(hstmt: *mut ::core::ffi::c_void, fconcurrency: u16, crowkeyset: i32, crowrowset: u16) -> i16;
     #[doc = "*Required features: `\"Win32_System_Search\"`*"]
-    pub fn SQLSetStmtAttr(statementhandle: *mut ::core::ffi::c_void, attribute: i32, value: *const ::core::ffi::c_void, stringlength: i32) -> i16;
+    pub fn SQLSetStmtAttr(statementhandle: *mut ::core::ffi::c_void, attribute: i32, value: *mut ::core::ffi::c_void, stringlength: i32) -> i16;
     #[doc = "*Required features: `\"Win32_System_Search\"`*"]
     pub fn SQLSetStmtAttrW(hstmt: *mut ::core::ffi::c_void, fattribute: i32, rgbvalue: *mut ::core::ffi::c_void, cbvaluemax: i32) -> i16;
     #[doc = "*Required features: `\"Win32_System_Search\"`*"]
@@ -421,29 +421,29 @@ extern "system" {
     #[cfg(target_arch = "x86")]
     pub fn SQLSetStmtOption(statementhandle: *mut ::core::ffi::c_void, option: u16, value: u32) -> i16;
     #[doc = "*Required features: `\"Win32_System_Search\"`*"]
-    pub fn SQLSpecialColumns(statementhandle: *mut ::core::ffi::c_void, identifiertype: u16, catalogname: *const u8, namelength1: i16, schemaname: *const u8, namelength2: i16, tablename: *const u8, namelength3: i16, scope: u16, nullable: u16) -> i16;
+    pub fn SQLSpecialColumns(statementhandle: *mut ::core::ffi::c_void, identifiertype: u16, catalogname: *mut u8, namelength1: i16, schemaname: *mut u8, namelength2: i16, tablename: *mut u8, namelength3: i16, scope: u16, nullable: u16) -> i16;
     #[doc = "*Required features: `\"Win32_System_Search\"`*"]
-    pub fn SQLSpecialColumnsA(hstmt: *mut ::core::ffi::c_void, fcoltype: u16, szcatalogname: *const u8, cbcatalogname: i16, szschemaname: *const u8, cbschemaname: i16, sztablename: *const u8, cbtablename: i16, fscope: u16, fnullable: u16) -> i16;
+    pub fn SQLSpecialColumnsA(hstmt: *mut ::core::ffi::c_void, fcoltype: u16, szcatalogname: *mut u8, cbcatalogname: i16, szschemaname: *mut u8, cbschemaname: i16, sztablename: *mut u8, cbtablename: i16, fscope: u16, fnullable: u16) -> i16;
     #[doc = "*Required features: `\"Win32_System_Search\"`*"]
-    pub fn SQLSpecialColumnsW(hstmt: *mut ::core::ffi::c_void, fcoltype: u16, szcatalogname: *const u16, cchcatalogname: i16, szschemaname: *const u16, cchschemaname: i16, sztablename: *const u16, cchtablename: i16, fscope: u16, fnullable: u16) -> i16;
+    pub fn SQLSpecialColumnsW(hstmt: *mut ::core::ffi::c_void, fcoltype: u16, szcatalogname: *mut u16, cchcatalogname: i16, szschemaname: *mut u16, cchschemaname: i16, sztablename: *mut u16, cchtablename: i16, fscope: u16, fnullable: u16) -> i16;
     #[doc = "*Required features: `\"Win32_System_Search\"`*"]
-    pub fn SQLStatistics(statementhandle: *mut ::core::ffi::c_void, catalogname: *const u8, namelength1: i16, schemaname: *const u8, namelength2: i16, tablename: *const u8, namelength3: i16, unique: u16, reserved: u16) -> i16;
+    pub fn SQLStatistics(statementhandle: *mut ::core::ffi::c_void, catalogname: *mut u8, namelength1: i16, schemaname: *mut u8, namelength2: i16, tablename: *mut u8, namelength3: i16, unique: u16, reserved: u16) -> i16;
     #[doc = "*Required features: `\"Win32_System_Search\"`*"]
-    pub fn SQLStatisticsA(hstmt: *mut ::core::ffi::c_void, szcatalogname: *const u8, cbcatalogname: i16, szschemaname: *const u8, cbschemaname: i16, sztablename: *const u8, cbtablename: i16, funique: u16, faccuracy: u16) -> i16;
+    pub fn SQLStatisticsA(hstmt: *mut ::core::ffi::c_void, szcatalogname: *mut u8, cbcatalogname: i16, szschemaname: *mut u8, cbschemaname: i16, sztablename: *mut u8, cbtablename: i16, funique: u16, faccuracy: u16) -> i16;
     #[doc = "*Required features: `\"Win32_System_Search\"`*"]
-    pub fn SQLStatisticsW(hstmt: *mut ::core::ffi::c_void, szcatalogname: *const u16, cchcatalogname: i16, szschemaname: *const u16, cchschemaname: i16, sztablename: *const u16, cchtablename: i16, funique: u16, faccuracy: u16) -> i16;
+    pub fn SQLStatisticsW(hstmt: *mut ::core::ffi::c_void, szcatalogname: *mut u16, cchcatalogname: i16, szschemaname: *mut u16, cchschemaname: i16, sztablename: *mut u16, cchtablename: i16, funique: u16, faccuracy: u16) -> i16;
     #[doc = "*Required features: `\"Win32_System_Search\"`*"]
-    pub fn SQLTablePrivileges(hstmt: *mut ::core::ffi::c_void, szcatalogname: *const u8, cchcatalogname: i16, szschemaname: *const u8, cchschemaname: i16, sztablename: *const u8, cchtablename: i16) -> i16;
+    pub fn SQLTablePrivileges(hstmt: *mut ::core::ffi::c_void, szcatalogname: *mut u8, cchcatalogname: i16, szschemaname: *mut u8, cchschemaname: i16, sztablename: *mut u8, cchtablename: i16) -> i16;
     #[doc = "*Required features: `\"Win32_System_Search\"`*"]
-    pub fn SQLTablePrivilegesA(hstmt: *mut ::core::ffi::c_void, szcatalogname: *const u8, cbcatalogname: i16, szschemaname: *const u8, cbschemaname: i16, sztablename: *const u8, cbtablename: i16) -> i16;
+    pub fn SQLTablePrivilegesA(hstmt: *mut ::core::ffi::c_void, szcatalogname: *mut u8, cbcatalogname: i16, szschemaname: *mut u8, cbschemaname: i16, sztablename: *mut u8, cbtablename: i16) -> i16;
     #[doc = "*Required features: `\"Win32_System_Search\"`*"]
-    pub fn SQLTablePrivilegesW(hstmt: *mut ::core::ffi::c_void, szcatalogname: *const u16, cchcatalogname: i16, szschemaname: *const u16, cchschemaname: i16, sztablename: *const u16, cchtablename: i16) -> i16;
+    pub fn SQLTablePrivilegesW(hstmt: *mut ::core::ffi::c_void, szcatalogname: *mut u16, cchcatalogname: i16, szschemaname: *mut u16, cchschemaname: i16, sztablename: *mut u16, cchtablename: i16) -> i16;
     #[doc = "*Required features: `\"Win32_System_Search\"`*"]
-    pub fn SQLTables(statementhandle: *mut ::core::ffi::c_void, catalogname: *const u8, namelength1: i16, schemaname: *const u8, namelength2: i16, tablename: *const u8, namelength3: i16, tabletype: *const u8, namelength4: i16) -> i16;
+    pub fn SQLTables(statementhandle: *mut ::core::ffi::c_void, catalogname: *mut u8, namelength1: i16, schemaname: *mut u8, namelength2: i16, tablename: *mut u8, namelength3: i16, tabletype: *mut u8, namelength4: i16) -> i16;
     #[doc = "*Required features: `\"Win32_System_Search\"`*"]
-    pub fn SQLTablesA(hstmt: *mut ::core::ffi::c_void, szcatalogname: *const u8, cbcatalogname: i16, szschemaname: *const u8, cbschemaname: i16, sztablename: *const u8, cbtablename: i16, sztabletype: *const u8, cbtabletype: i16) -> i16;
+    pub fn SQLTablesA(hstmt: *mut ::core::ffi::c_void, szcatalogname: *mut u8, cbcatalogname: i16, szschemaname: *mut u8, cbschemaname: i16, sztablename: *mut u8, cbtablename: i16, sztabletype: *mut u8, cbtabletype: i16) -> i16;
     #[doc = "*Required features: `\"Win32_System_Search\"`*"]
-    pub fn SQLTablesW(hstmt: *mut ::core::ffi::c_void, szcatalogname: *const u16, cchcatalogname: i16, szschemaname: *const u16, cchschemaname: i16, sztablename: *const u16, cchtablename: i16, sztabletype: *const u16, cchtabletype: i16) -> i16;
+    pub fn SQLTablesW(hstmt: *mut ::core::ffi::c_void, szcatalogname: *mut u16, cchcatalogname: i16, szschemaname: *mut u16, cchschemaname: i16, sztablename: *mut u16, cchtablename: i16, sztabletype: *mut u16, cchtabletype: i16) -> i16;
     #[doc = "*Required features: `\"Win32_System_Search\"`*"]
     pub fn SQLTransact(environmenthandle: *mut ::core::ffi::c_void, connectionhandle: *mut ::core::ffi::c_void, completiontype: u16) -> i16;
     #[doc = "*Required features: `\"Win32_System_Search\"`*"]
@@ -11669,4 +11669,4 @@ impl ::core::clone::Clone for VECTORRESTRICTION {
 pub type PFNFILLTEXTBUFFER = ::core::option::Option<unsafe extern "system" fn(ptextsource: *mut TEXT_SOURCE) -> ::windows_sys::core::HRESULT>;
 #[doc = "*Required features: `\"Win32_System_Search\"`, `\"Win32_Foundation\"`*"]
 #[cfg(feature = "Win32_Foundation")]
-pub type SQL_ASYNC_NOTIFICATION_CALLBACK = ::core::option::Option<unsafe extern "system" fn(pcontext: *const ::core::ffi::c_void, flast: super::super::Foundation::BOOL) -> i16>;
+pub type SQL_ASYNC_NOTIFICATION_CALLBACK = ::core::option::Option<unsafe extern "system" fn(pcontext: *mut ::core::ffi::c_void, flast: super::super::Foundation::BOOL) -> i16>;

@@ -2,10 +2,10 @@
 extern "system" {
     #[doc = "*Required features: `\"Win32_NetworkManagement_WebDav\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub fn DavAddConnection(connectionhandle: *mut super::super::Foundation::HANDLE, remotename: ::windows_sys::core::PCWSTR, username: ::windows_sys::core::PCWSTR, password: ::windows_sys::core::PCWSTR, clientcert: *const u8, certsize: u32) -> u32;
+    pub fn DavAddConnection(connectionhandle: *mut super::super::Foundation::HANDLE, remotename: ::windows_sys::core::PCWSTR, username: ::windows_sys::core::PCWSTR, password: ::windows_sys::core::PCWSTR, clientcert: *mut u8, certsize: u32) -> u32;
     #[doc = "*Required features: `\"Win32_NetworkManagement_WebDav\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub fn DavCancelConnectionsToServer(lpname: ::windows_sys::core::PCWSTR, fforce: super::super::Foundation::BOOL) -> u32;
+    pub fn DavCancelConnectionsToServer(lpname: ::windows_sys::core::PWSTR, fforce: super::super::Foundation::BOOL) -> u32;
     #[doc = "*Required features: `\"Win32_NetworkManagement_WebDav\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
     pub fn DavDeleteConnection(connectionhandle: super::super::Foundation::HANDLE) -> u32;
@@ -97,6 +97,6 @@ impl ::core::clone::Clone for DAV_CALLBACK_CRED {
 }
 #[doc = "*Required features: `\"Win32_NetworkManagement_WebDav\"`, `\"Win32_Foundation\"`*"]
 #[cfg(feature = "Win32_Foundation")]
-pub type PFNDAVAUTHCALLBACK = ::core::option::Option<unsafe extern "system" fn(lpwzservername: ::windows_sys::core::PCWSTR, lpwzremotename: ::windows_sys::core::PCWSTR, dwauthscheme: u32, dwflags: u32, pcallbackcred: *mut DAV_CALLBACK_CRED, nextstep: *mut AUTHNEXTSTEP, pfreecred: *mut PFNDAVAUTHCALLBACK_FREECRED) -> u32>;
+pub type PFNDAVAUTHCALLBACK = ::core::option::Option<unsafe extern "system" fn(lpwzservername: ::windows_sys::core::PWSTR, lpwzremotename: ::windows_sys::core::PWSTR, dwauthscheme: u32, dwflags: u32, pcallbackcred: *mut DAV_CALLBACK_CRED, nextstep: *mut AUTHNEXTSTEP, pfreecred: *mut PFNDAVAUTHCALLBACK_FREECRED) -> u32>;
 #[doc = "*Required features: `\"Win32_NetworkManagement_WebDav\"`*"]
-pub type PFNDAVAUTHCALLBACK_FREECRED = ::core::option::Option<unsafe extern "system" fn(pbuffer: *const ::core::ffi::c_void) -> u32>;
+pub type PFNDAVAUTHCALLBACK_FREECRED = ::core::option::Option<unsafe extern "system" fn(pbuffer: *mut ::core::ffi::c_void) -> u32>;

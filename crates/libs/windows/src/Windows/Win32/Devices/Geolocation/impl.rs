@@ -495,7 +495,7 @@ pub trait ILocation_Impl: Sized {
     fn SetReportInterval(&self, reporttype: *const ::windows::core::GUID, millisecondsrequested: u32) -> ::windows::core::Result<()>;
     fn GetDesiredAccuracy(&self, reporttype: *const ::windows::core::GUID) -> ::windows::core::Result<super::Sensors::LOCATION_DESIRED_ACCURACY>;
     fn SetDesiredAccuracy(&self, reporttype: *const ::windows::core::GUID, desiredaccuracy: super::Sensors::LOCATION_DESIRED_ACCURACY) -> ::windows::core::Result<()>;
-    fn RequestPermissions(&self, hparent: super::super::Foundation::HWND, preporttypes: *const ::windows::core::GUID, count: u32, fmodal: super::super::Foundation::BOOL) -> ::windows::core::Result<()>;
+    fn RequestPermissions(&self, hparent: super::super::Foundation::HWND, preporttypes: *mut ::windows::core::GUID, count: u32, fmodal: super::super::Foundation::BOOL) -> ::windows::core::Result<()>;
 }
 #[cfg(all(feature = "Win32_Devices_Sensors", feature = "Win32_Foundation"))]
 impl ::windows::core::RuntimeName for ILocation {}
@@ -566,7 +566,7 @@ impl ILocation_Vtbl {
             let this = (*this).get_impl();
             this.SetDesiredAccuracy(::core::mem::transmute_copy(&reporttype), ::core::mem::transmute_copy(&desiredaccuracy)).into()
         }
-        unsafe extern "system" fn RequestPermissions<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: ILocation_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, hparent: super::super::Foundation::HWND, preporttypes: *const ::windows::core::GUID, count: u32, fmodal: super::super::Foundation::BOOL) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn RequestPermissions<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: ILocation_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, hparent: super::super::Foundation::HWND, preporttypes: *mut ::windows::core::GUID, count: u32, fmodal: super::super::Foundation::BOOL) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.RequestPermissions(::core::mem::transmute_copy(&hparent), ::core::mem::transmute_copy(&preporttypes), ::core::mem::transmute_copy(&count), ::core::mem::transmute_copy(&fmodal)).into()
@@ -706,7 +706,7 @@ pub trait ILocationReportFactory_Impl: Sized + super::super::System::Com::IDispa
     fn SetReportInterval(&self, millisecondsrequested: u32) -> ::windows::core::Result<()>;
     fn DesiredAccuracy(&self) -> ::windows::core::Result<u32>;
     fn SetDesiredAccuracy(&self, desiredaccuracy: u32) -> ::windows::core::Result<()>;
-    fn RequestPermissions(&self, hwnd: *const u32) -> ::windows::core::Result<()>;
+    fn RequestPermissions(&self, hwnd: *mut u32) -> ::windows::core::Result<()>;
 }
 #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
 impl ::windows::core::RuntimeName for ILocationReportFactory {}
@@ -766,7 +766,7 @@ impl ILocationReportFactory_Vtbl {
             let this = (*this).get_impl();
             this.SetDesiredAccuracy(::core::mem::transmute_copy(&desiredaccuracy)).into()
         }
-        unsafe extern "system" fn RequestPermissions<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: ILocationReportFactory_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, hwnd: *const u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn RequestPermissions<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: ILocationReportFactory_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, hwnd: *mut u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.RequestPermissions(::core::mem::transmute_copy(&hwnd)).into()

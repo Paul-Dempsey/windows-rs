@@ -86,7 +86,7 @@ impl IUIAnimationInterpolator_Vtbl {
 }
 pub trait IUIAnimationInterpolator2_Impl: Sized {
     fn GetDimension(&self) -> ::windows::core::Result<u32>;
-    fn SetInitialValueAndVelocity(&self, initialvalue: *const f64, initialvelocity: *const f64, cdimension: u32) -> ::windows::core::Result<()>;
+    fn SetInitialValueAndVelocity(&self, initialvalue: *mut f64, initialvelocity: *mut f64, cdimension: u32) -> ::windows::core::Result<()>;
     fn SetDuration(&self, duration: f64) -> ::windows::core::Result<()>;
     fn GetDuration(&self) -> ::windows::core::Result<f64>;
     fn GetFinalValue(&self, value: *mut f64, cdimension: u32) -> ::windows::core::Result<()>;
@@ -109,7 +109,7 @@ impl IUIAnimationInterpolator2_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn SetInitialValueAndVelocity<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IUIAnimationInterpolator2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, initialvalue: *const f64, initialvelocity: *const f64, cdimension: u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn SetInitialValueAndVelocity<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IUIAnimationInterpolator2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, initialvalue: *mut f64, initialvelocity: *mut f64, cdimension: u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.SetInitialValueAndVelocity(::core::mem::transmute_copy(&initialvalue), ::core::mem::transmute_copy(&initialvelocity), ::core::mem::transmute_copy(&cdimension)).into()
@@ -1982,7 +1982,7 @@ pub trait IUIAnimationVariable2_Impl: Sized {
     fn GetValue(&self) -> ::windows::core::Result<f64>;
     fn GetVectorValue(&self, value: *mut f64, cdimension: u32) -> ::windows::core::Result<()>;
     fn GetCurve(&self, animation: &::core::option::Option<super::super::Graphics::DirectComposition::IDCompositionAnimation>) -> ::windows::core::Result<()>;
-    fn GetVectorCurve(&self, animation: *const ::core::option::Option<super::super::Graphics::DirectComposition::IDCompositionAnimation>, cdimension: u32) -> ::windows::core::Result<()>;
+    fn GetVectorCurve(&self, animation: *mut ::core::option::Option<super::super::Graphics::DirectComposition::IDCompositionAnimation>, cdimension: u32) -> ::windows::core::Result<()>;
     fn GetFinalValue(&self) -> ::windows::core::Result<f64>;
     fn GetFinalVectorValue(&self, finalvalue: *mut f64, cdimension: u32) -> ::windows::core::Result<()>;
     fn GetPreviousValue(&self) -> ::windows::core::Result<f64>;
@@ -2042,7 +2042,7 @@ impl IUIAnimationVariable2_Vtbl {
             let this = (*this).get_impl();
             this.GetCurve(::core::mem::transmute(&animation)).into()
         }
-        unsafe extern "system" fn GetVectorCurve<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IUIAnimationVariable2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, animation: *const *mut ::core::ffi::c_void, cdimension: u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn GetVectorCurve<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IUIAnimationVariable2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, animation: *mut *mut ::core::ffi::c_void, cdimension: u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.GetVectorCurve(::core::mem::transmute_copy(&animation), ::core::mem::transmute_copy(&cdimension)).into()
@@ -2240,12 +2240,12 @@ impl IUIAnimationVariableChangeHandler_Vtbl {
     }
 }
 pub trait IUIAnimationVariableChangeHandler2_Impl: Sized {
-    fn OnValueChanged(&self, storyboard: &::core::option::Option<IUIAnimationStoryboard2>, variable: &::core::option::Option<IUIAnimationVariable2>, newvalue: *const f64, previousvalue: *const f64, cdimension: u32) -> ::windows::core::Result<()>;
+    fn OnValueChanged(&self, storyboard: &::core::option::Option<IUIAnimationStoryboard2>, variable: &::core::option::Option<IUIAnimationVariable2>, newvalue: *mut f64, previousvalue: *mut f64, cdimension: u32) -> ::windows::core::Result<()>;
 }
 impl ::windows::core::RuntimeName for IUIAnimationVariableChangeHandler2 {}
 impl IUIAnimationVariableChangeHandler2_Vtbl {
     pub const fn new<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IUIAnimationVariableChangeHandler2_Impl, const OFFSET: isize>() -> IUIAnimationVariableChangeHandler2_Vtbl {
-        unsafe extern "system" fn OnValueChanged<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IUIAnimationVariableChangeHandler2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, storyboard: *mut ::core::ffi::c_void, variable: *mut ::core::ffi::c_void, newvalue: *const f64, previousvalue: *const f64, cdimension: u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn OnValueChanged<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IUIAnimationVariableChangeHandler2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, storyboard: *mut ::core::ffi::c_void, variable: *mut ::core::ffi::c_void, newvalue: *mut f64, previousvalue: *mut f64, cdimension: u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.OnValueChanged(::core::mem::transmute(&storyboard), ::core::mem::transmute(&variable), ::core::mem::transmute_copy(&newvalue), ::core::mem::transmute_copy(&previousvalue), ::core::mem::transmute_copy(&cdimension)).into()
@@ -2291,12 +2291,12 @@ impl IUIAnimationVariableIntegerChangeHandler_Vtbl {
     }
 }
 pub trait IUIAnimationVariableIntegerChangeHandler2_Impl: Sized {
-    fn OnIntegerValueChanged(&self, storyboard: &::core::option::Option<IUIAnimationStoryboard2>, variable: &::core::option::Option<IUIAnimationVariable2>, newvalue: *const i32, previousvalue: *const i32, cdimension: u32) -> ::windows::core::Result<()>;
+    fn OnIntegerValueChanged(&self, storyboard: &::core::option::Option<IUIAnimationStoryboard2>, variable: &::core::option::Option<IUIAnimationVariable2>, newvalue: *mut i32, previousvalue: *mut i32, cdimension: u32) -> ::windows::core::Result<()>;
 }
 impl ::windows::core::RuntimeName for IUIAnimationVariableIntegerChangeHandler2 {}
 impl IUIAnimationVariableIntegerChangeHandler2_Vtbl {
     pub const fn new<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IUIAnimationVariableIntegerChangeHandler2_Impl, const OFFSET: isize>() -> IUIAnimationVariableIntegerChangeHandler2_Vtbl {
-        unsafe extern "system" fn OnIntegerValueChanged<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IUIAnimationVariableIntegerChangeHandler2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, storyboard: *mut ::core::ffi::c_void, variable: *mut ::core::ffi::c_void, newvalue: *const i32, previousvalue: *const i32, cdimension: u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn OnIntegerValueChanged<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IUIAnimationVariableIntegerChangeHandler2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, storyboard: *mut ::core::ffi::c_void, variable: *mut ::core::ffi::c_void, newvalue: *mut i32, previousvalue: *mut i32, cdimension: u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.OnIntegerValueChanged(::core::mem::transmute(&storyboard), ::core::mem::transmute(&variable), ::core::mem::transmute_copy(&newvalue), ::core::mem::transmute_copy(&previousvalue), ::core::mem::transmute_copy(&cdimension)).into()

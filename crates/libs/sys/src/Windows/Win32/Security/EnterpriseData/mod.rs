@@ -22,7 +22,7 @@ extern "system" {
     #[cfg(feature = "Win32_Foundation")]
     pub fn SrpGetEnterprisePolicy(tokenhandle: super::super::Foundation::HANDLE, policyflags: *mut ENTERPRISE_DATA_POLICIES) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_Security_EnterpriseData\"`*"]
-    pub fn SrpHostingInitialize(version: SRPHOSTING_VERSION, r#type: SRPHOSTING_TYPE, pvdata: *const ::core::ffi::c_void, cbdata: u32) -> ::windows_sys::core::HRESULT;
+    pub fn SrpHostingInitialize(version: SRPHOSTING_VERSION, r#type: SRPHOSTING_TYPE, pvdata: *mut ::core::ffi::c_void, cbdata: u32) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_Security_EnterpriseData\"`*"]
     pub fn SrpHostingTerminate(r#type: SRPHOSTING_TYPE);
     #[doc = "*Required features: `\"Win32_Security_EnterpriseData\"`, `\"Win32_Foundation\"`*"]

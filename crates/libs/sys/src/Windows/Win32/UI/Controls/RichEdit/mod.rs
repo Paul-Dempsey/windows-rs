@@ -3431,11 +3431,11 @@ impl ::core::clone::Clone for TEXTRANGEW {
     }
 }
 #[doc = "*Required features: `\"Win32_UI_Controls_RichEdit\"`*"]
-pub type AutoCorrectProc = ::core::option::Option<unsafe extern "system" fn(langid: u16, pszbefore: ::windows_sys::core::PCWSTR, pszafter: ::windows_sys::core::PCWSTR, cchafter: i32, pcchreplaced: *mut i32) -> i32>;
+pub type AutoCorrectProc = ::core::option::Option<unsafe extern "system" fn(langid: u16, pszbefore: ::windows_sys::core::PCWSTR, pszafter: ::windows_sys::core::PWSTR, cchafter: i32, pcchreplaced: *mut i32) -> i32>;
 #[doc = "*Required features: `\"Win32_UI_Controls_RichEdit\"`*"]
 pub type EDITSTREAMCALLBACK = ::core::option::Option<unsafe extern "system" fn(dwcookie: usize, pbbuff: *mut u8, cb: i32, pcb: *mut i32) -> u32>;
 #[doc = "*Required features: `\"Win32_UI_Controls_RichEdit\"`*"]
-pub type EDITWORDBREAKPROCEX = ::core::option::Option<unsafe extern "system" fn(pchtext: ::windows_sys::core::PCSTR, cchtext: i32, bcharset: u8, action: i32) -> i32>;
+pub type EDITWORDBREAKPROCEX = ::core::option::Option<unsafe extern "system" fn(pchtext: ::windows_sys::core::PSTR, cchtext: i32, bcharset: u8, action: i32) -> i32>;
 #[doc = "*Required features: `\"Win32_UI_Controls_RichEdit\"`*"]
 pub type PCreateTextServices = ::core::option::Option<unsafe extern "system" fn(punkouter: ::windows_sys::core::IUnknown, pitexthost: ITextHost, ppunk: *mut ::windows_sys::core::IUnknown) -> ::windows_sys::core::HRESULT>;
 #[doc = "*Required features: `\"Win32_UI_Controls_RichEdit\"`*"]

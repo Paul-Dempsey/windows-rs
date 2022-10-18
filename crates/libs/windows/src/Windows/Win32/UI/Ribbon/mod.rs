@@ -259,7 +259,7 @@ pub struct IUIContextualUI_Vtbl {
 #[repr(transparent)]
 pub struct IUIEventLogger(::windows::core::IUnknown);
 impl IUIEventLogger {
-    pub unsafe fn OnUIEvent(&self, peventparams: *const UI_EVENTPARAMS) {
+    pub unsafe fn OnUIEvent(&self, peventparams: *mut UI_EVENTPARAMS) {
         (::windows::core::Vtable::vtable(self).OnUIEvent)(::windows::core::Vtable::as_raw(self), ::core::mem::transmute(peventparams))
     }
 }
@@ -290,7 +290,7 @@ unsafe impl ::windows::core::Interface for IUIEventLogger {
 #[doc(hidden)]
 pub struct IUIEventLogger_Vtbl {
     pub base__: ::windows::core::IUnknown_Vtbl,
-    pub OnUIEvent: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, peventparams: *const UI_EVENTPARAMS),
+    pub OnUIEvent: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, peventparams: *mut UI_EVENTPARAMS),
 }
 #[doc = "*Required features: `\"Win32_UI_Ribbon\"`*"]
 #[repr(transparent)]

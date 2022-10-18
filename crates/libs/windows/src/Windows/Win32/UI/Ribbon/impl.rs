@@ -183,12 +183,12 @@ impl IUIContextualUI_Vtbl {
     }
 }
 pub trait IUIEventLogger_Impl: Sized {
-    fn OnUIEvent(&self, peventparams: *const UI_EVENTPARAMS);
+    fn OnUIEvent(&self, peventparams: *mut UI_EVENTPARAMS);
 }
 impl ::windows::core::RuntimeName for IUIEventLogger {}
 impl IUIEventLogger_Vtbl {
     pub const fn new<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IUIEventLogger_Impl, const OFFSET: isize>() -> IUIEventLogger_Vtbl {
-        unsafe extern "system" fn OnUIEvent<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IUIEventLogger_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, peventparams: *const UI_EVENTPARAMS) {
+        unsafe extern "system" fn OnUIEvent<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IUIEventLogger_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, peventparams: *mut UI_EVENTPARAMS) {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.OnUIEvent(::core::mem::transmute_copy(&peventparams))

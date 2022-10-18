@@ -32,12 +32,12 @@ impl IWsbApplicationAsync_Vtbl {
     }
 }
 pub trait IWsbApplicationBackupSupport_Impl: Sized {
-    fn CheckConsistency(&self, wszwritermetadata: &::windows::core::PCWSTR, wszcomponentname: &::windows::core::PCWSTR, wszcomponentlogicalpath: &::windows::core::PCWSTR, cvolumes: u32, rgwszsourcevolumepath: *const ::windows::core::PWSTR, rgwszsnapshotvolumepath: *const ::windows::core::PWSTR) -> ::windows::core::Result<IWsbApplicationAsync>;
+    fn CheckConsistency(&self, wszwritermetadata: &::windows::core::PWSTR, wszcomponentname: &::windows::core::PWSTR, wszcomponentlogicalpath: &::windows::core::PWSTR, cvolumes: u32, rgwszsourcevolumepath: *mut ::windows::core::PWSTR, rgwszsnapshotvolumepath: *mut ::windows::core::PWSTR) -> ::windows::core::Result<IWsbApplicationAsync>;
 }
 impl ::windows::core::RuntimeName for IWsbApplicationBackupSupport {}
 impl IWsbApplicationBackupSupport_Vtbl {
     pub const fn new<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IWsbApplicationBackupSupport_Impl, const OFFSET: isize>() -> IWsbApplicationBackupSupport_Vtbl {
-        unsafe extern "system" fn CheckConsistency<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IWsbApplicationBackupSupport_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, wszwritermetadata: ::windows::core::PCWSTR, wszcomponentname: ::windows::core::PCWSTR, wszcomponentlogicalpath: ::windows::core::PCWSTR, cvolumes: u32, rgwszsourcevolumepath: *const ::windows::core::PWSTR, rgwszsnapshotvolumepath: *const ::windows::core::PWSTR, ppasync: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn CheckConsistency<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IWsbApplicationBackupSupport_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, wszwritermetadata: ::windows::core::PWSTR, wszcomponentname: ::windows::core::PWSTR, wszcomponentlogicalpath: ::windows::core::PWSTR, cvolumes: u32, rgwszsourcevolumepath: *mut ::windows::core::PWSTR, rgwszsnapshotvolumepath: *mut ::windows::core::PWSTR, ppasync: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.CheckConsistency(::core::mem::transmute(&wszwritermetadata), ::core::mem::transmute(&wszcomponentname), ::core::mem::transmute(&wszcomponentlogicalpath), ::core::mem::transmute_copy(&cvolumes), ::core::mem::transmute_copy(&rgwszsourcevolumepath), ::core::mem::transmute_copy(&rgwszsnapshotvolumepath)) {
@@ -56,9 +56,9 @@ impl IWsbApplicationBackupSupport_Vtbl {
 }
 #[cfg(feature = "Win32_Foundation")]
 pub trait IWsbApplicationRestoreSupport_Impl: Sized {
-    fn PreRestore(&self, wszwritermetadata: &::windows::core::PCWSTR, wszcomponentname: &::windows::core::PCWSTR, wszcomponentlogicalpath: &::windows::core::PCWSTR, bnorollforward: super::super::Foundation::BOOLEAN) -> ::windows::core::Result<()>;
-    fn PostRestore(&self, wszwritermetadata: &::windows::core::PCWSTR, wszcomponentname: &::windows::core::PCWSTR, wszcomponentlogicalpath: &::windows::core::PCWSTR, bnorollforward: super::super::Foundation::BOOLEAN) -> ::windows::core::Result<()>;
-    fn OrderComponents(&self, ccomponents: u32, rgcomponentname: *const ::windows::core::PWSTR, rgcomponentlogicalpaths: *const ::windows::core::PWSTR, prgcomponentname: *mut *mut ::windows::core::PWSTR, prgcomponentlogicalpath: *mut *mut ::windows::core::PWSTR) -> ::windows::core::Result<()>;
+    fn PreRestore(&self, wszwritermetadata: &::windows::core::PWSTR, wszcomponentname: &::windows::core::PWSTR, wszcomponentlogicalpath: &::windows::core::PWSTR, bnorollforward: super::super::Foundation::BOOLEAN) -> ::windows::core::Result<()>;
+    fn PostRestore(&self, wszwritermetadata: &::windows::core::PWSTR, wszcomponentname: &::windows::core::PWSTR, wszcomponentlogicalpath: &::windows::core::PWSTR, bnorollforward: super::super::Foundation::BOOLEAN) -> ::windows::core::Result<()>;
+    fn OrderComponents(&self, ccomponents: u32, rgcomponentname: *mut ::windows::core::PWSTR, rgcomponentlogicalpaths: *mut ::windows::core::PWSTR, prgcomponentname: *mut *mut ::windows::core::PWSTR, prgcomponentlogicalpath: *mut *mut ::windows::core::PWSTR) -> ::windows::core::Result<()>;
     fn IsRollForwardSupported(&self) -> ::windows::core::Result<u8>;
 }
 #[cfg(feature = "Win32_Foundation")]
@@ -66,17 +66,17 @@ impl ::windows::core::RuntimeName for IWsbApplicationRestoreSupport {}
 #[cfg(feature = "Win32_Foundation")]
 impl IWsbApplicationRestoreSupport_Vtbl {
     pub const fn new<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IWsbApplicationRestoreSupport_Impl, const OFFSET: isize>() -> IWsbApplicationRestoreSupport_Vtbl {
-        unsafe extern "system" fn PreRestore<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IWsbApplicationRestoreSupport_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, wszwritermetadata: ::windows::core::PCWSTR, wszcomponentname: ::windows::core::PCWSTR, wszcomponentlogicalpath: ::windows::core::PCWSTR, bnorollforward: super::super::Foundation::BOOLEAN) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn PreRestore<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IWsbApplicationRestoreSupport_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, wszwritermetadata: ::windows::core::PWSTR, wszcomponentname: ::windows::core::PWSTR, wszcomponentlogicalpath: ::windows::core::PWSTR, bnorollforward: super::super::Foundation::BOOLEAN) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.PreRestore(::core::mem::transmute(&wszwritermetadata), ::core::mem::transmute(&wszcomponentname), ::core::mem::transmute(&wszcomponentlogicalpath), ::core::mem::transmute_copy(&bnorollforward)).into()
         }
-        unsafe extern "system" fn PostRestore<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IWsbApplicationRestoreSupport_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, wszwritermetadata: ::windows::core::PCWSTR, wszcomponentname: ::windows::core::PCWSTR, wszcomponentlogicalpath: ::windows::core::PCWSTR, bnorollforward: super::super::Foundation::BOOLEAN) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn PostRestore<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IWsbApplicationRestoreSupport_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, wszwritermetadata: ::windows::core::PWSTR, wszcomponentname: ::windows::core::PWSTR, wszcomponentlogicalpath: ::windows::core::PWSTR, bnorollforward: super::super::Foundation::BOOLEAN) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.PostRestore(::core::mem::transmute(&wszwritermetadata), ::core::mem::transmute(&wszcomponentname), ::core::mem::transmute(&wszcomponentlogicalpath), ::core::mem::transmute_copy(&bnorollforward)).into()
         }
-        unsafe extern "system" fn OrderComponents<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IWsbApplicationRestoreSupport_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, ccomponents: u32, rgcomponentname: *const ::windows::core::PWSTR, rgcomponentlogicalpaths: *const ::windows::core::PWSTR, prgcomponentname: *mut *mut ::windows::core::PWSTR, prgcomponentlogicalpath: *mut *mut ::windows::core::PWSTR) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn OrderComponents<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IWsbApplicationRestoreSupport_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, ccomponents: u32, rgcomponentname: *mut ::windows::core::PWSTR, rgcomponentlogicalpaths: *mut ::windows::core::PWSTR, prgcomponentname: *mut *mut ::windows::core::PWSTR, prgcomponentlogicalpath: *mut *mut ::windows::core::PWSTR) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.OrderComponents(::core::mem::transmute_copy(&ccomponents), ::core::mem::transmute_copy(&rgcomponentname), ::core::mem::transmute_copy(&rgcomponentlogicalpaths), ::core::mem::transmute_copy(&prgcomponentname), ::core::mem::transmute_copy(&prgcomponentlogicalpath)).into()

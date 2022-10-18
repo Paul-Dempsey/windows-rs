@@ -2,10 +2,10 @@
 extern "system" {
     #[doc = "*Required features: `\"Win32_System_PasswordManagement\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub fn MSChapSrvChangePassword(servername: ::windows_sys::core::PCWSTR, username: ::windows_sys::core::PCWSTR, lmoldpresent: super::super::Foundation::BOOLEAN, lmoldowfpassword: *const LM_OWF_PASSWORD, lmnewowfpassword: *const LM_OWF_PASSWORD, ntoldowfpassword: *const LM_OWF_PASSWORD, ntnewowfpassword: *const LM_OWF_PASSWORD) -> u32;
+    pub fn MSChapSrvChangePassword(servername: ::windows_sys::core::PWSTR, username: ::windows_sys::core::PWSTR, lmoldpresent: super::super::Foundation::BOOLEAN, lmoldowfpassword: *mut LM_OWF_PASSWORD, lmnewowfpassword: *mut LM_OWF_PASSWORD, ntoldowfpassword: *mut LM_OWF_PASSWORD, ntnewowfpassword: *mut LM_OWF_PASSWORD) -> u32;
     #[doc = "*Required features: `\"Win32_System_PasswordManagement\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub fn MSChapSrvChangePassword2(servername: ::windows_sys::core::PCWSTR, username: ::windows_sys::core::PCWSTR, newpasswordencryptedwitholdnt: *const SAMPR_ENCRYPTED_USER_PASSWORD, oldntowfpasswordencryptedwithnewnt: *const ENCRYPTED_LM_OWF_PASSWORD, lmpresent: super::super::Foundation::BOOLEAN, newpasswordencryptedwitholdlm: *const SAMPR_ENCRYPTED_USER_PASSWORD, oldlmowfpasswordencryptedwithnewlmornt: *const ENCRYPTED_LM_OWF_PASSWORD) -> u32;
+    pub fn MSChapSrvChangePassword2(servername: ::windows_sys::core::PWSTR, username: ::windows_sys::core::PWSTR, newpasswordencryptedwitholdnt: *mut SAMPR_ENCRYPTED_USER_PASSWORD, oldntowfpasswordencryptedwithnewnt: *mut ENCRYPTED_LM_OWF_PASSWORD, lmpresent: super::super::Foundation::BOOLEAN, newpasswordencryptedwitholdlm: *mut SAMPR_ENCRYPTED_USER_PASSWORD, oldlmowfpasswordencryptedwithnewlmornt: *mut ENCRYPTED_LM_OWF_PASSWORD) -> u32;
 }
 #[repr(C)]
 #[doc = "*Required features: `\"Win32_System_PasswordManagement\"`, `\"Win32_Foundation\"`*"]

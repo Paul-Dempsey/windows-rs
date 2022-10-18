@@ -58,10 +58,10 @@ pub unsafe fn XInputGetState(dwuserindex: u32, pstate: *mut XINPUT_STATE) -> u32
 }
 #[doc = "*Required features: `\"Win32_UI_Input_XboxController\"`*"]
 #[inline]
-pub unsafe fn XInputSetState(dwuserindex: u32, pvibration: *const XINPUT_VIBRATION) -> u32 {
+pub unsafe fn XInputSetState(dwuserindex: u32, pvibration: *mut XINPUT_VIBRATION) -> u32 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn XInputSetState(dwuserindex: u32, pvibration: *const XINPUT_VIBRATION) -> u32;
+        fn XInputSetState(dwuserindex: u32, pvibration: *mut XINPUT_VIBRATION) -> u32;
     }
     XInputSetState(dwuserindex, ::core::mem::transmute(pvibration))
 }

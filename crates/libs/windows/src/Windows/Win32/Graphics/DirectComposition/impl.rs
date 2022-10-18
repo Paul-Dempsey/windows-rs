@@ -518,12 +518,12 @@ pub trait IDCompositionDevice_Impl: Sized {
     fn CreateRotateTransform(&self) -> ::windows::core::Result<IDCompositionRotateTransform>;
     fn CreateSkewTransform(&self) -> ::windows::core::Result<IDCompositionSkewTransform>;
     fn CreateMatrixTransform(&self) -> ::windows::core::Result<IDCompositionMatrixTransform>;
-    fn CreateTransformGroup(&self, transforms: *const ::core::option::Option<IDCompositionTransform>, elements: u32) -> ::windows::core::Result<IDCompositionTransform>;
+    fn CreateTransformGroup(&self, transforms: *mut ::core::option::Option<IDCompositionTransform>, elements: u32) -> ::windows::core::Result<IDCompositionTransform>;
     fn CreateTranslateTransform3D(&self) -> ::windows::core::Result<IDCompositionTranslateTransform3D>;
     fn CreateScaleTransform3D(&self) -> ::windows::core::Result<IDCompositionScaleTransform3D>;
     fn CreateRotateTransform3D(&self) -> ::windows::core::Result<IDCompositionRotateTransform3D>;
     fn CreateMatrixTransform3D(&self) -> ::windows::core::Result<IDCompositionMatrixTransform3D>;
-    fn CreateTransform3DGroup(&self, transforms3d: *const ::core::option::Option<IDCompositionTransform3D>, elements: u32) -> ::windows::core::Result<IDCompositionTransform3D>;
+    fn CreateTransform3DGroup(&self, transforms3d: *mut ::core::option::Option<IDCompositionTransform3D>, elements: u32) -> ::windows::core::Result<IDCompositionTransform3D>;
     fn CreateEffectGroup(&self) -> ::windows::core::Result<IDCompositionEffectGroup>;
     fn CreateRectangleClip(&self) -> ::windows::core::Result<IDCompositionRectangleClip>;
     fn CreateAnimation(&self) -> ::windows::core::Result<IDCompositionAnimation>;
@@ -676,7 +676,7 @@ impl IDCompositionDevice_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn CreateTransformGroup<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDCompositionDevice_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, transforms: *const *mut ::core::ffi::c_void, elements: u32, transformgroup: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn CreateTransformGroup<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDCompositionDevice_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, transforms: *mut *mut ::core::ffi::c_void, elements: u32, transformgroup: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.CreateTransformGroup(::core::mem::transmute_copy(&transforms), ::core::mem::transmute_copy(&elements)) {
@@ -731,7 +731,7 @@ impl IDCompositionDevice_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn CreateTransform3DGroup<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDCompositionDevice_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, transforms3d: *const *mut ::core::ffi::c_void, elements: u32, transform3dgroup: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn CreateTransform3DGroup<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDCompositionDevice_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, transforms3d: *mut *mut ::core::ffi::c_void, elements: u32, transform3dgroup: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.CreateTransform3DGroup(::core::mem::transmute_copy(&transforms3d), ::core::mem::transmute_copy(&elements)) {
@@ -832,12 +832,12 @@ pub trait IDCompositionDevice2_Impl: Sized {
     fn CreateRotateTransform(&self) -> ::windows::core::Result<IDCompositionRotateTransform>;
     fn CreateSkewTransform(&self) -> ::windows::core::Result<IDCompositionSkewTransform>;
     fn CreateMatrixTransform(&self) -> ::windows::core::Result<IDCompositionMatrixTransform>;
-    fn CreateTransformGroup(&self, transforms: *const ::core::option::Option<IDCompositionTransform>, elements: u32) -> ::windows::core::Result<IDCompositionTransform>;
+    fn CreateTransformGroup(&self, transforms: *mut ::core::option::Option<IDCompositionTransform>, elements: u32) -> ::windows::core::Result<IDCompositionTransform>;
     fn CreateTranslateTransform3D(&self) -> ::windows::core::Result<IDCompositionTranslateTransform3D>;
     fn CreateScaleTransform3D(&self) -> ::windows::core::Result<IDCompositionScaleTransform3D>;
     fn CreateRotateTransform3D(&self) -> ::windows::core::Result<IDCompositionRotateTransform3D>;
     fn CreateMatrixTransform3D(&self) -> ::windows::core::Result<IDCompositionMatrixTransform3D>;
-    fn CreateTransform3DGroup(&self, transforms3d: *const ::core::option::Option<IDCompositionTransform3D>, elements: u32) -> ::windows::core::Result<IDCompositionTransform3D>;
+    fn CreateTransform3DGroup(&self, transforms3d: *mut ::core::option::Option<IDCompositionTransform3D>, elements: u32) -> ::windows::core::Result<IDCompositionTransform3D>;
     fn CreateEffectGroup(&self) -> ::windows::core::Result<IDCompositionEffectGroup>;
     fn CreateRectangleClip(&self) -> ::windows::core::Result<IDCompositionRectangleClip>;
     fn CreateAnimation(&self) -> ::windows::core::Result<IDCompositionAnimation>;
@@ -967,7 +967,7 @@ impl IDCompositionDevice2_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn CreateTransformGroup<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDCompositionDevice2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, transforms: *const *mut ::core::ffi::c_void, elements: u32, transformgroup: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn CreateTransformGroup<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDCompositionDevice2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, transforms: *mut *mut ::core::ffi::c_void, elements: u32, transformgroup: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.CreateTransformGroup(::core::mem::transmute_copy(&transforms), ::core::mem::transmute_copy(&elements)) {
@@ -1022,7 +1022,7 @@ impl IDCompositionDevice2_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn CreateTransform3DGroup<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDCompositionDevice2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, transforms3d: *const *mut ::core::ffi::c_void, elements: u32, transform3dgroup: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn CreateTransform3DGroup<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDCompositionDevice2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, transforms3d: *mut *mut ::core::ffi::c_void, elements: u32, transform3dgroup: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.CreateTransform3DGroup(::core::mem::transmute_copy(&transforms3d), ::core::mem::transmute_copy(&elements)) {

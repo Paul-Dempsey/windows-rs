@@ -230,7 +230,7 @@ impl AsyncIFtpRoleProvider_Vtbl {
     }
 }
 pub trait AsyncIMSAdminBaseSinkW_Impl: Sized {
-    fn Begin_SinkNotify(&self, dwmdnumelements: u32, pcochangelist: *const MD_CHANGE_OBJECT_W) -> ::windows::core::Result<()>;
+    fn Begin_SinkNotify(&self, dwmdnumelements: u32, pcochangelist: *mut MD_CHANGE_OBJECT_W) -> ::windows::core::Result<()>;
     fn Finish_SinkNotify(&self) -> ::windows::core::Result<()>;
     fn Begin_ShutdownNotify(&self) -> ::windows::core::Result<()>;
     fn Finish_ShutdownNotify(&self) -> ::windows::core::Result<()>;
@@ -238,7 +238,7 @@ pub trait AsyncIMSAdminBaseSinkW_Impl: Sized {
 impl ::windows::core::RuntimeName for AsyncIMSAdminBaseSinkW {}
 impl AsyncIMSAdminBaseSinkW_Vtbl {
     pub const fn new<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: AsyncIMSAdminBaseSinkW_Impl, const OFFSET: isize>() -> AsyncIMSAdminBaseSinkW_Vtbl {
-        unsafe extern "system" fn Begin_SinkNotify<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: AsyncIMSAdminBaseSinkW_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, dwmdnumelements: u32, pcochangelist: *const MD_CHANGE_OBJECT_W) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn Begin_SinkNotify<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: AsyncIMSAdminBaseSinkW_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, dwmdnumelements: u32, pcochangelist: *mut MD_CHANGE_OBJECT_W) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.Begin_SinkNotify(::core::mem::transmute_copy(&dwmdnumelements), ::core::mem::transmute_copy(&pcochangelist)).into()
@@ -441,14 +441,14 @@ impl IFtpPreprocessProvider_Vtbl {
 }
 #[cfg(feature = "Win32_System_Com")]
 pub trait IFtpProviderConstruct_Impl: Sized {
-    fn Construct(&self, configurationentries: *const super::Com::SAFEARRAY) -> ::windows::core::Result<()>;
+    fn Construct(&self, configurationentries: *mut super::Com::SAFEARRAY) -> ::windows::core::Result<()>;
 }
 #[cfg(feature = "Win32_System_Com")]
 impl ::windows::core::RuntimeName for IFtpProviderConstruct {}
 #[cfg(feature = "Win32_System_Com")]
 impl IFtpProviderConstruct_Vtbl {
     pub const fn new<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IFtpProviderConstruct_Impl, const OFFSET: isize>() -> IFtpProviderConstruct_Vtbl {
-        unsafe extern "system" fn Construct<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IFtpProviderConstruct_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, configurationentries: *const super::Com::SAFEARRAY) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn Construct<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IFtpProviderConstruct_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, configurationentries: *mut super::Com::SAFEARRAY) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.Construct(::core::mem::transmute_copy(&configurationentries)).into()
@@ -564,13 +564,13 @@ impl IMSAdminBase3W_Vtbl {
     }
 }
 pub trait IMSAdminBaseSinkW_Impl: Sized {
-    fn SinkNotify(&self, dwmdnumelements: u32, pcochangelist: *const MD_CHANGE_OBJECT_W) -> ::windows::core::Result<()>;
+    fn SinkNotify(&self, dwmdnumelements: u32, pcochangelist: *mut MD_CHANGE_OBJECT_W) -> ::windows::core::Result<()>;
     fn ShutdownNotify(&self) -> ::windows::core::Result<()>;
 }
 impl ::windows::core::RuntimeName for IMSAdminBaseSinkW {}
 impl IMSAdminBaseSinkW_Vtbl {
     pub const fn new<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSAdminBaseSinkW_Impl, const OFFSET: isize>() -> IMSAdminBaseSinkW_Vtbl {
-        unsafe extern "system" fn SinkNotify<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSAdminBaseSinkW_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, dwmdnumelements: u32, pcochangelist: *const MD_CHANGE_OBJECT_W) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn SinkNotify<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSAdminBaseSinkW_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, dwmdnumelements: u32, pcochangelist: *mut MD_CHANGE_OBJECT_W) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.SinkNotify(::core::mem::transmute_copy(&dwmdnumelements), ::core::mem::transmute_copy(&pcochangelist)).into()
@@ -613,7 +613,7 @@ pub trait IMSAdminBaseW_Impl: Sized {
     fn GetHandleInfo(&self, hmdhandle: u32) -> ::windows::core::Result<METADATA_HANDLE_INFO>;
     fn GetSystemChangeNumber(&self) -> ::windows::core::Result<u32>;
     fn GetDataSetNumber(&self, hmdhandle: u32, pszmdpath: &::windows::core::PCWSTR) -> ::windows::core::Result<u32>;
-    fn SetLastChangeTime(&self, hmdhandle: u32, pszmdpath: &::windows::core::PCWSTR, pftmdlastchangetime: *const super::super::Foundation::FILETIME, blocaltime: super::super::Foundation::BOOL) -> ::windows::core::Result<()>;
+    fn SetLastChangeTime(&self, hmdhandle: u32, pszmdpath: &::windows::core::PCWSTR, pftmdlastchangetime: *mut super::super::Foundation::FILETIME, blocaltime: super::super::Foundation::BOOL) -> ::windows::core::Result<()>;
     fn GetLastChangeTime(&self, hmdhandle: u32, pszmdpath: &::windows::core::PCWSTR, pftmdlastchangetime: *mut super::super::Foundation::FILETIME, blocaltime: super::super::Foundation::BOOL) -> ::windows::core::Result<()>;
     fn KeyExchangePhase1(&self) -> ::windows::core::Result<()>;
     fn KeyExchangePhase2(&self) -> ::windows::core::Result<()>;
@@ -758,7 +758,7 @@ impl IMSAdminBaseW_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn SetLastChangeTime<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSAdminBaseW_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, hmdhandle: u32, pszmdpath: ::windows::core::PCWSTR, pftmdlastchangetime: *const super::super::Foundation::FILETIME, blocaltime: super::super::Foundation::BOOL) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn SetLastChangeTime<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMSAdminBaseW_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, hmdhandle: u32, pszmdpath: ::windows::core::PCWSTR, pftmdlastchangetime: *mut super::super::Foundation::FILETIME, blocaltime: super::super::Foundation::BOOL) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.SetLastChangeTime(::core::mem::transmute_copy(&hmdhandle), ::core::mem::transmute(&pszmdpath), ::core::mem::transmute_copy(&pftmdlastchangetime), ::core::mem::transmute_copy(&blocaltime)).into()

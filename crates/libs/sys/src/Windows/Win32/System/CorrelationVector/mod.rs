@@ -11,7 +11,7 @@ extern "system" {
     pub fn RtlInitializeCorrelationVector(correlationvector: *mut CORRELATION_VECTOR, version: i32, guid: *const ::windows_sys::core::GUID) -> u32;
     #[doc = "*Required features: `\"Win32_System_CorrelationVector\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub fn RtlValidateCorrelationVector(vector: *const CORRELATION_VECTOR) -> u32;
+    pub fn RtlValidateCorrelationVector(vector: *mut CORRELATION_VECTOR) -> u32;
 }
 #[doc = "*Required features: `\"Win32_System_CorrelationVector\"`*"]
 pub const RTL_CORRELATION_VECTOR_STRING_LENGTH: u32 = 129u32;

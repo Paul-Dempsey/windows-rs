@@ -692,17 +692,17 @@ pub struct Frame_Vtbl {
 #[repr(transparent)]
 pub struct IColumnData(::windows::core::IUnknown);
 impl IColumnData {
-    pub unsafe fn SetColumnConfigData(&self, pcolid: *const SColumnSetID, pcolsetdata: *const MMC_COLUMN_SET_DATA) -> ::windows::core::Result<()> {
+    pub unsafe fn SetColumnConfigData(&self, pcolid: *mut SColumnSetID, pcolsetdata: *mut MMC_COLUMN_SET_DATA) -> ::windows::core::Result<()> {
         (::windows::core::Vtable::vtable(self).SetColumnConfigData)(::windows::core::Vtable::as_raw(self), ::core::mem::transmute(pcolid), ::core::mem::transmute(pcolsetdata)).ok()
     }
-    pub unsafe fn GetColumnConfigData(&self, pcolid: *const SColumnSetID) -> ::windows::core::Result<*mut MMC_COLUMN_SET_DATA> {
+    pub unsafe fn GetColumnConfigData(&self, pcolid: *mut SColumnSetID) -> ::windows::core::Result<*mut MMC_COLUMN_SET_DATA> {
         let mut result__ = ::core::mem::MaybeUninit::zeroed();
         (::windows::core::Vtable::vtable(self).GetColumnConfigData)(::windows::core::Vtable::as_raw(self), ::core::mem::transmute(pcolid), ::core::mem::transmute(result__.as_mut_ptr())).from_abi::<*mut MMC_COLUMN_SET_DATA>(result__)
     }
-    pub unsafe fn SetColumnSortData(&self, pcolid: *const SColumnSetID, pcolsortdata: *const MMC_SORT_SET_DATA) -> ::windows::core::Result<()> {
+    pub unsafe fn SetColumnSortData(&self, pcolid: *mut SColumnSetID, pcolsortdata: *mut MMC_SORT_SET_DATA) -> ::windows::core::Result<()> {
         (::windows::core::Vtable::vtable(self).SetColumnSortData)(::windows::core::Vtable::as_raw(self), ::core::mem::transmute(pcolid), ::core::mem::transmute(pcolsortdata)).ok()
     }
-    pub unsafe fn GetColumnSortData(&self, pcolid: *const SColumnSetID) -> ::windows::core::Result<*mut MMC_SORT_SET_DATA> {
+    pub unsafe fn GetColumnSortData(&self, pcolid: *mut SColumnSetID) -> ::windows::core::Result<*mut MMC_SORT_SET_DATA> {
         let mut result__ = ::core::mem::MaybeUninit::zeroed();
         (::windows::core::Vtable::vtable(self).GetColumnSortData)(::windows::core::Vtable::as_raw(self), ::core::mem::transmute(pcolid), ::core::mem::transmute(result__.as_mut_ptr())).from_abi::<*mut MMC_SORT_SET_DATA>(result__)
     }
@@ -734,10 +734,10 @@ unsafe impl ::windows::core::Interface for IColumnData {
 #[doc(hidden)]
 pub struct IColumnData_Vtbl {
     pub base__: ::windows::core::IUnknown_Vtbl,
-    pub SetColumnConfigData: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pcolid: *const SColumnSetID, pcolsetdata: *const MMC_COLUMN_SET_DATA) -> ::windows::core::HRESULT,
-    pub GetColumnConfigData: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pcolid: *const SColumnSetID, ppcolsetdata: *mut *mut MMC_COLUMN_SET_DATA) -> ::windows::core::HRESULT,
-    pub SetColumnSortData: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pcolid: *const SColumnSetID, pcolsortdata: *const MMC_SORT_SET_DATA) -> ::windows::core::HRESULT,
-    pub GetColumnSortData: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pcolid: *const SColumnSetID, ppcolsortdata: *mut *mut MMC_SORT_SET_DATA) -> ::windows::core::HRESULT,
+    pub SetColumnConfigData: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pcolid: *mut SColumnSetID, pcolsetdata: *mut MMC_COLUMN_SET_DATA) -> ::windows::core::HRESULT,
+    pub GetColumnConfigData: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pcolid: *mut SColumnSetID, ppcolsetdata: *mut *mut MMC_COLUMN_SET_DATA) -> ::windows::core::HRESULT,
+    pub SetColumnSortData: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pcolid: *mut SColumnSetID, pcolsortdata: *mut MMC_SORT_SET_DATA) -> ::windows::core::HRESULT,
+    pub GetColumnSortData: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pcolid: *mut SColumnSetID, ppcolsortdata: *mut *mut MMC_SORT_SET_DATA) -> ::windows::core::HRESULT,
 }
 #[doc = "*Required features: `\"Win32_System_Mmc\"`*"]
 #[repr(transparent)]
@@ -888,7 +888,7 @@ impl IComponent2 {
     pub unsafe fn GetResultViewType2(&self, cookie: isize, presultviewtype: *mut RESULT_VIEW_TYPE_INFO) -> ::windows::core::Result<()> {
         (::windows::core::Vtable::vtable(self).GetResultViewType2)(::windows::core::Vtable::as_raw(self), cookie, ::core::mem::transmute(presultviewtype)).ok()
     }
-    pub unsafe fn RestoreResultView(&self, cookie: isize, presultviewtype: *const RESULT_VIEW_TYPE_INFO) -> ::windows::core::Result<()> {
+    pub unsafe fn RestoreResultView(&self, cookie: isize, presultviewtype: *mut RESULT_VIEW_TYPE_INFO) -> ::windows::core::Result<()> {
         (::windows::core::Vtable::vtable(self).RestoreResultView)(::windows::core::Vtable::as_raw(self), cookie, ::core::mem::transmute(presultviewtype)).ok()
     }
 }
@@ -924,7 +924,7 @@ pub struct IComponent2_Vtbl {
     #[cfg(not(feature = "Win32_System_Com"))]
     QueryDispatch: usize,
     pub GetResultViewType2: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, cookie: isize, presultviewtype: *mut ::core::mem::ManuallyDrop<RESULT_VIEW_TYPE_INFO>) -> ::windows::core::HRESULT,
-    pub RestoreResultView: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, cookie: isize, presultviewtype: *const ::core::mem::ManuallyDrop<RESULT_VIEW_TYPE_INFO>) -> ::windows::core::HRESULT,
+    pub RestoreResultView: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, cookie: isize, presultviewtype: *mut ::core::mem::ManuallyDrop<RESULT_VIEW_TYPE_INFO>) -> ::windows::core::HRESULT,
 }
 #[doc = "*Required features: `\"Win32_System_Mmc\"`*"]
 #[repr(transparent)]
@@ -1286,11 +1286,8 @@ impl IConsole2 {
     pub unsafe fn IsTaskpadViewPreferred(&self) -> ::windows::core::Result<()> {
         (::windows::core::Vtable::vtable(self).IsTaskpadViewPreferred)(::windows::core::Vtable::as_raw(self)).ok()
     }
-    pub unsafe fn SetStatusText<'a, P0>(&self, pszstatustext: P0) -> ::windows::core::Result<()>
-    where
-        P0: ::std::convert::Into<::windows::core::PCWSTR>,
-    {
-        (::windows::core::Vtable::vtable(self).SetStatusText)(::windows::core::Vtable::as_raw(self), pszstatustext.into()).ok()
+    pub unsafe fn SetStatusText(&self, pszstatustext: ::windows::core::PWSTR) -> ::windows::core::Result<()> {
+        (::windows::core::Vtable::vtable(self).SetStatusText)(::windows::core::Vtable::as_raw(self), ::core::mem::transmute(pszstatustext)).ok()
     }
 }
 ::windows::core::interface_hierarchy!(IConsole2, ::windows::core::IUnknown, IConsole);
@@ -1325,7 +1322,7 @@ pub struct IConsole2_Vtbl {
     #[cfg(not(feature = "Win32_Foundation"))]
     Expand: usize,
     pub IsTaskpadViewPreferred: unsafe extern "system" fn(this: *mut ::core::ffi::c_void) -> ::windows::core::HRESULT,
-    pub SetStatusText: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pszstatustext: ::windows::core::PCWSTR) -> ::windows::core::HRESULT,
+    pub SetStatusText: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pszstatustext: ::windows::core::PWSTR) -> ::windows::core::HRESULT,
 }
 #[doc = "*Required features: `\"Win32_System_Mmc\"`*"]
 #[repr(transparent)]
@@ -1399,11 +1396,8 @@ impl IConsole3 {
     pub unsafe fn IsTaskpadViewPreferred(&self) -> ::windows::core::Result<()> {
         (::windows::core::Vtable::vtable(self).base__.IsTaskpadViewPreferred)(::windows::core::Vtable::as_raw(self)).ok()
     }
-    pub unsafe fn SetStatusText<'a, P0>(&self, pszstatustext: P0) -> ::windows::core::Result<()>
-    where
-        P0: ::std::convert::Into<::windows::core::PCWSTR>,
-    {
-        (::windows::core::Vtable::vtable(self).base__.SetStatusText)(::windows::core::Vtable::as_raw(self), pszstatustext.into()).ok()
+    pub unsafe fn SetStatusText(&self, pszstatustext: ::windows::core::PWSTR) -> ::windows::core::Result<()> {
+        (::windows::core::Vtable::vtable(self).base__.SetStatusText)(::windows::core::Vtable::as_raw(self), ::core::mem::transmute(pszstatustext)).ok()
     }
     pub unsafe fn RenameScopeItem(&self, hscopeitem: isize) -> ::windows::core::Result<()> {
         (::windows::core::Vtable::vtable(self).RenameScopeItem)(::windows::core::Vtable::as_raw(self), hscopeitem).ok()
@@ -1452,7 +1446,7 @@ impl IConsoleNameSpace {
     }
     #[doc = "*Required features: `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub unsafe fn SetItem(&self, item: *const SCOPEDATAITEM) -> ::windows::core::Result<()> {
+    pub unsafe fn SetItem(&self, item: *mut SCOPEDATAITEM) -> ::windows::core::Result<()> {
         (::windows::core::Vtable::vtable(self).SetItem)(::windows::core::Vtable::as_raw(self), ::core::mem::transmute(item)).ok()
     }
     #[doc = "*Required features: `\"Win32_Foundation\"`*"]
@@ -1503,7 +1497,7 @@ pub struct IConsoleNameSpace_Vtbl {
     InsertItem: usize,
     pub DeleteItem: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, hitem: isize, fdeletethis: i32) -> ::windows::core::HRESULT,
     #[cfg(feature = "Win32_Foundation")]
-    pub SetItem: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, item: *const SCOPEDATAITEM) -> ::windows::core::HRESULT,
+    pub SetItem: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, item: *mut SCOPEDATAITEM) -> ::windows::core::HRESULT,
     #[cfg(not(feature = "Win32_Foundation"))]
     SetItem: usize,
     #[cfg(feature = "Win32_Foundation")]
@@ -1528,7 +1522,7 @@ impl IConsoleNameSpace2 {
     }
     #[doc = "*Required features: `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub unsafe fn SetItem(&self, item: *const SCOPEDATAITEM) -> ::windows::core::Result<()> {
+    pub unsafe fn SetItem(&self, item: *mut SCOPEDATAITEM) -> ::windows::core::Result<()> {
         (::windows::core::Vtable::vtable(self).base__.SetItem)(::windows::core::Vtable::as_raw(self), ::core::mem::transmute(item)).ok()
     }
     #[doc = "*Required features: `\"Win32_Foundation\"`*"]
@@ -1548,7 +1542,7 @@ impl IConsoleNameSpace2 {
     pub unsafe fn Expand(&self, hitem: isize) -> ::windows::core::Result<()> {
         (::windows::core::Vtable::vtable(self).Expand)(::windows::core::Vtable::as_raw(self), hitem).ok()
     }
-    pub unsafe fn AddExtension(&self, hitem: isize, lpclsid: *const ::windows::core::GUID) -> ::windows::core::Result<()> {
+    pub unsafe fn AddExtension(&self, hitem: isize, lpclsid: *mut ::windows::core::GUID) -> ::windows::core::Result<()> {
         (::windows::core::Vtable::vtable(self).AddExtension)(::windows::core::Vtable::as_raw(self), hitem, ::core::mem::transmute(lpclsid)).ok()
     }
 }
@@ -1580,7 +1574,7 @@ unsafe impl ::windows::core::Interface for IConsoleNameSpace2 {
 pub struct IConsoleNameSpace2_Vtbl {
     pub base__: IConsoleNameSpace_Vtbl,
     pub Expand: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, hitem: isize) -> ::windows::core::HRESULT,
-    pub AddExtension: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, hitem: isize, lpclsid: *const ::windows::core::GUID) -> ::windows::core::HRESULT,
+    pub AddExtension: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, hitem: isize, lpclsid: *mut ::windows::core::GUID) -> ::windows::core::HRESULT,
 }
 #[doc = "*Required features: `\"Win32_System_Mmc\"`*"]
 #[repr(transparent)]
@@ -1737,7 +1731,7 @@ pub struct IConsoleVerb_Vtbl {
 #[repr(transparent)]
 pub struct IContextMenuCallback(::windows::core::IUnknown);
 impl IContextMenuCallback {
-    pub unsafe fn AddItem(&self, pitem: *const CONTEXTMENUITEM) -> ::windows::core::Result<()> {
+    pub unsafe fn AddItem(&self, pitem: *mut CONTEXTMENUITEM) -> ::windows::core::Result<()> {
         (::windows::core::Vtable::vtable(self).AddItem)(::windows::core::Vtable::as_raw(self), ::core::mem::transmute(pitem)).ok()
     }
 }
@@ -1768,13 +1762,13 @@ unsafe impl ::windows::core::Interface for IContextMenuCallback {
 #[doc(hidden)]
 pub struct IContextMenuCallback_Vtbl {
     pub base__: ::windows::core::IUnknown_Vtbl,
-    pub AddItem: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pitem: *const CONTEXTMENUITEM) -> ::windows::core::HRESULT,
+    pub AddItem: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pitem: *mut CONTEXTMENUITEM) -> ::windows::core::HRESULT,
 }
 #[doc = "*Required features: `\"Win32_System_Mmc\"`*"]
 #[repr(transparent)]
 pub struct IContextMenuCallback2(::windows::core::IUnknown);
 impl IContextMenuCallback2 {
-    pub unsafe fn AddItem(&self, pitem: *const CONTEXTMENUITEM2) -> ::windows::core::Result<()> {
+    pub unsafe fn AddItem(&self, pitem: *mut CONTEXTMENUITEM2) -> ::windows::core::Result<()> {
         (::windows::core::Vtable::vtable(self).AddItem)(::windows::core::Vtable::as_raw(self), ::core::mem::transmute(pitem)).ok()
     }
 }
@@ -1805,13 +1799,13 @@ unsafe impl ::windows::core::Interface for IContextMenuCallback2 {
 #[doc(hidden)]
 pub struct IContextMenuCallback2_Vtbl {
     pub base__: ::windows::core::IUnknown_Vtbl,
-    pub AddItem: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pitem: *const CONTEXTMENUITEM2) -> ::windows::core::HRESULT,
+    pub AddItem: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pitem: *mut CONTEXTMENUITEM2) -> ::windows::core::HRESULT,
 }
 #[doc = "*Required features: `\"Win32_System_Mmc\"`*"]
 #[repr(transparent)]
 pub struct IContextMenuProvider(::windows::core::IUnknown);
 impl IContextMenuProvider {
-    pub unsafe fn AddItem(&self, pitem: *const CONTEXTMENUITEM) -> ::windows::core::Result<()> {
+    pub unsafe fn AddItem(&self, pitem: *mut CONTEXTMENUITEM) -> ::windows::core::Result<()> {
         (::windows::core::Vtable::vtable(self).base__.AddItem)(::windows::core::Vtable::as_raw(self), ::core::mem::transmute(pitem)).ok()
     }
     pub unsafe fn EmptyMenuList(&self) -> ::windows::core::Result<()> {
@@ -1944,11 +1938,8 @@ pub struct IControlbar_Vtbl {
 #[repr(transparent)]
 pub struct IDisplayHelp(::windows::core::IUnknown);
 impl IDisplayHelp {
-    pub unsafe fn ShowTopic<'a, P0>(&self, pszhelptopic: P0) -> ::windows::core::Result<()>
-    where
-        P0: ::std::convert::Into<::windows::core::PCWSTR>,
-    {
-        (::windows::core::Vtable::vtable(self).ShowTopic)(::windows::core::Vtable::as_raw(self), pszhelptopic.into()).ok()
+    pub unsafe fn ShowTopic(&self, pszhelptopic: ::windows::core::PWSTR) -> ::windows::core::Result<()> {
+        (::windows::core::Vtable::vtable(self).ShowTopic)(::windows::core::Vtable::as_raw(self), ::core::mem::transmute(pszhelptopic)).ok()
     }
 }
 ::windows::core::interface_hierarchy!(IDisplayHelp, ::windows::core::IUnknown);
@@ -1978,7 +1969,7 @@ unsafe impl ::windows::core::Interface for IDisplayHelp {
 #[doc(hidden)]
 pub struct IDisplayHelp_Vtbl {
     pub base__: ::windows::core::IUnknown_Vtbl,
-    pub ShowTopic: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pszhelptopic: ::windows::core::PCWSTR) -> ::windows::core::HRESULT,
+    pub ShowTopic: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pszhelptopic: ::windows::core::PWSTR) -> ::windows::core::HRESULT,
 }
 #[doc = "*Required features: `\"Win32_System_Mmc\"`*"]
 #[repr(transparent)]
@@ -2267,7 +2258,7 @@ pub struct IExtendTaskPad(::windows::core::IUnknown);
 impl IExtendTaskPad {
     #[doc = "*Required features: `\"Win32_Foundation\"`, `\"Win32_System_Com\"`, `\"Win32_System_Ole\"`*"]
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub unsafe fn TaskNotify<'a, P0>(&self, pdo: P0, arg: *const super::Com::VARIANT, param2: *const super::Com::VARIANT) -> ::windows::core::Result<()>
+    pub unsafe fn TaskNotify<'a, P0>(&self, pdo: P0, arg: *mut super::Com::VARIANT, param2: *mut super::Com::VARIANT) -> ::windows::core::Result<()>
     where
         P0: ::std::convert::Into<::windows::core::InParam<'a, super::Com::IDataObject>>,
     {
@@ -2275,41 +2266,28 @@ impl IExtendTaskPad {
     }
     #[doc = "*Required features: `\"Win32_System_Com\"`*"]
     #[cfg(feature = "Win32_System_Com")]
-    pub unsafe fn EnumTasks<'a, P0, P1>(&self, pdo: P0, sztaskgroup: P1) -> ::windows::core::Result<IEnumTASK>
+    pub unsafe fn EnumTasks<'a, P0>(&self, pdo: P0, sztaskgroup: ::windows::core::PWSTR) -> ::windows::core::Result<IEnumTASK>
     where
         P0: ::std::convert::Into<::windows::core::InParam<'a, super::Com::IDataObject>>,
-        P1: ::std::convert::Into<::windows::core::PCWSTR>,
     {
         let mut result__ = ::core::mem::MaybeUninit::zeroed();
-        (::windows::core::Vtable::vtable(self).EnumTasks)(::windows::core::Vtable::as_raw(self), pdo.into().abi(), sztaskgroup.into(), ::core::mem::transmute(result__.as_mut_ptr())).from_abi::<IEnumTASK>(result__)
+        (::windows::core::Vtable::vtable(self).EnumTasks)(::windows::core::Vtable::as_raw(self), pdo.into().abi(), ::core::mem::transmute(sztaskgroup), ::core::mem::transmute(result__.as_mut_ptr())).from_abi::<IEnumTASK>(result__)
     }
-    pub unsafe fn GetTitle<'a, P0>(&self, pszgroup: P0) -> ::windows::core::Result<::windows::core::PWSTR>
-    where
-        P0: ::std::convert::Into<::windows::core::PCWSTR>,
-    {
+    pub unsafe fn GetTitle(&self, pszgroup: ::windows::core::PWSTR) -> ::windows::core::Result<::windows::core::PWSTR> {
         let mut result__ = ::core::mem::MaybeUninit::zeroed();
-        (::windows::core::Vtable::vtable(self).GetTitle)(::windows::core::Vtable::as_raw(self), pszgroup.into(), ::core::mem::transmute(result__.as_mut_ptr())).from_abi::<::windows::core::PWSTR>(result__)
+        (::windows::core::Vtable::vtable(self).GetTitle)(::windows::core::Vtable::as_raw(self), ::core::mem::transmute(pszgroup), ::core::mem::transmute(result__.as_mut_ptr())).from_abi::<::windows::core::PWSTR>(result__)
     }
-    pub unsafe fn GetDescriptiveText<'a, P0>(&self, pszgroup: P0) -> ::windows::core::Result<::windows::core::PWSTR>
-    where
-        P0: ::std::convert::Into<::windows::core::PCWSTR>,
-    {
+    pub unsafe fn GetDescriptiveText(&self, pszgroup: ::windows::core::PWSTR) -> ::windows::core::Result<::windows::core::PWSTR> {
         let mut result__ = ::core::mem::MaybeUninit::zeroed();
-        (::windows::core::Vtable::vtable(self).GetDescriptiveText)(::windows::core::Vtable::as_raw(self), pszgroup.into(), ::core::mem::transmute(result__.as_mut_ptr())).from_abi::<::windows::core::PWSTR>(result__)
+        (::windows::core::Vtable::vtable(self).GetDescriptiveText)(::windows::core::Vtable::as_raw(self), ::core::mem::transmute(pszgroup), ::core::mem::transmute(result__.as_mut_ptr())).from_abi::<::windows::core::PWSTR>(result__)
     }
-    pub unsafe fn GetBackground<'a, P0>(&self, pszgroup: P0) -> ::windows::core::Result<MMC_TASK_DISPLAY_OBJECT>
-    where
-        P0: ::std::convert::Into<::windows::core::PCWSTR>,
-    {
+    pub unsafe fn GetBackground(&self, pszgroup: ::windows::core::PWSTR) -> ::windows::core::Result<MMC_TASK_DISPLAY_OBJECT> {
         let mut result__ = ::core::mem::MaybeUninit::zeroed();
-        (::windows::core::Vtable::vtable(self).GetBackground)(::windows::core::Vtable::as_raw(self), pszgroup.into(), ::core::mem::transmute(result__.as_mut_ptr())).from_abi::<MMC_TASK_DISPLAY_OBJECT>(result__)
+        (::windows::core::Vtable::vtable(self).GetBackground)(::windows::core::Vtable::as_raw(self), ::core::mem::transmute(pszgroup), ::core::mem::transmute(result__.as_mut_ptr())).from_abi::<MMC_TASK_DISPLAY_OBJECT>(result__)
     }
-    pub unsafe fn GetListPadInfo<'a, P0>(&self, pszgroup: P0) -> ::windows::core::Result<MMC_LISTPAD_INFO>
-    where
-        P0: ::std::convert::Into<::windows::core::PCWSTR>,
-    {
+    pub unsafe fn GetListPadInfo(&self, pszgroup: ::windows::core::PWSTR) -> ::windows::core::Result<MMC_LISTPAD_INFO> {
         let mut result__ = ::core::mem::MaybeUninit::zeroed();
-        (::windows::core::Vtable::vtable(self).GetListPadInfo)(::windows::core::Vtable::as_raw(self), pszgroup.into(), ::core::mem::transmute(result__.as_mut_ptr())).from_abi::<MMC_LISTPAD_INFO>(result__)
+        (::windows::core::Vtable::vtable(self).GetListPadInfo)(::windows::core::Vtable::as_raw(self), ::core::mem::transmute(pszgroup), ::core::mem::transmute(result__.as_mut_ptr())).from_abi::<MMC_LISTPAD_INFO>(result__)
     }
 }
 ::windows::core::interface_hierarchy!(IExtendTaskPad, ::windows::core::IUnknown);
@@ -2340,17 +2318,17 @@ unsafe impl ::windows::core::Interface for IExtendTaskPad {
 pub struct IExtendTaskPad_Vtbl {
     pub base__: ::windows::core::IUnknown_Vtbl,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub TaskNotify: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pdo: *mut ::core::ffi::c_void, arg: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>, param2: *const ::core::mem::ManuallyDrop<super::Com::VARIANT>) -> ::windows::core::HRESULT,
+    pub TaskNotify: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pdo: *mut ::core::ffi::c_void, arg: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>, param2: *mut ::core::mem::ManuallyDrop<super::Com::VARIANT>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     TaskNotify: usize,
     #[cfg(feature = "Win32_System_Com")]
-    pub EnumTasks: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pdo: *mut ::core::ffi::c_void, sztaskgroup: ::windows::core::PCWSTR, ppenumtask: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT,
+    pub EnumTasks: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pdo: *mut ::core::ffi::c_void, sztaskgroup: ::windows::core::PWSTR, ppenumtask: *mut *mut ::core::ffi::c_void) -> ::windows::core::HRESULT,
     #[cfg(not(feature = "Win32_System_Com"))]
     EnumTasks: usize,
-    pub GetTitle: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pszgroup: ::windows::core::PCWSTR, psztitle: *mut ::windows::core::PWSTR) -> ::windows::core::HRESULT,
-    pub GetDescriptiveText: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pszgroup: ::windows::core::PCWSTR, pszdescriptivetext: *mut ::windows::core::PWSTR) -> ::windows::core::HRESULT,
-    pub GetBackground: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pszgroup: ::windows::core::PCWSTR, ptdo: *mut MMC_TASK_DISPLAY_OBJECT) -> ::windows::core::HRESULT,
-    pub GetListPadInfo: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pszgroup: ::windows::core::PCWSTR, lplistpadinfo: *mut MMC_LISTPAD_INFO) -> ::windows::core::HRESULT,
+    pub GetTitle: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pszgroup: ::windows::core::PWSTR, psztitle: *mut ::windows::core::PWSTR) -> ::windows::core::HRESULT,
+    pub GetDescriptiveText: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pszgroup: ::windows::core::PWSTR, pszdescriptivetext: *mut ::windows::core::PWSTR) -> ::windows::core::HRESULT,
+    pub GetBackground: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pszgroup: ::windows::core::PWSTR, ptdo: *mut MMC_TASK_DISPLAY_OBJECT) -> ::windows::core::HRESULT,
+    pub GetListPadInfo: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pszgroup: ::windows::core::PWSTR, lplistpadinfo: *mut MMC_LISTPAD_INFO) -> ::windows::core::HRESULT,
 }
 #[doc = "*Required features: `\"Win32_System_Mmc\"`*"]
 #[repr(transparent)]
@@ -2496,7 +2474,7 @@ impl IHeaderCtrl2 {
     pub unsafe fn SetChangeTimeOut(&self, utimeout: u32) -> ::windows::core::Result<()> {
         (::windows::core::Vtable::vtable(self).SetChangeTimeOut)(::windows::core::Vtable::as_raw(self), utimeout).ok()
     }
-    pub unsafe fn SetColumnFilter(&self, ncolumn: u32, dwtype: u32, pfilterdata: *const MMC_FILTERDATA) -> ::windows::core::Result<()> {
+    pub unsafe fn SetColumnFilter(&self, ncolumn: u32, dwtype: u32, pfilterdata: *mut MMC_FILTERDATA) -> ::windows::core::Result<()> {
         (::windows::core::Vtable::vtable(self).SetColumnFilter)(::windows::core::Vtable::as_raw(self), ncolumn, dwtype, ::core::mem::transmute(pfilterdata)).ok()
     }
     pub unsafe fn GetColumnFilter(&self, ncolumn: u32, pdwtype: *mut u32, pfilterdata: *mut MMC_FILTERDATA) -> ::windows::core::Result<()> {
@@ -2531,19 +2509,19 @@ unsafe impl ::windows::core::Interface for IHeaderCtrl2 {
 pub struct IHeaderCtrl2_Vtbl {
     pub base__: IHeaderCtrl_Vtbl,
     pub SetChangeTimeOut: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, utimeout: u32) -> ::windows::core::HRESULT,
-    pub SetColumnFilter: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, ncolumn: u32, dwtype: u32, pfilterdata: *const MMC_FILTERDATA) -> ::windows::core::HRESULT,
+    pub SetColumnFilter: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, ncolumn: u32, dwtype: u32, pfilterdata: *mut MMC_FILTERDATA) -> ::windows::core::HRESULT,
     pub GetColumnFilter: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, ncolumn: u32, pdwtype: *mut u32, pfilterdata: *mut MMC_FILTERDATA) -> ::windows::core::HRESULT,
 }
 #[doc = "*Required features: `\"Win32_System_Mmc\"`*"]
 #[repr(transparent)]
 pub struct IImageList(::windows::core::IUnknown);
 impl IImageList {
-    pub unsafe fn ImageListSetIcon(&self, picon: *const isize, nloc: i32) -> ::windows::core::Result<()> {
+    pub unsafe fn ImageListSetIcon(&self, picon: *mut isize, nloc: i32) -> ::windows::core::Result<()> {
         (::windows::core::Vtable::vtable(self).ImageListSetIcon)(::windows::core::Vtable::as_raw(self), ::core::mem::transmute(picon), nloc).ok()
     }
     #[doc = "*Required features: `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub unsafe fn ImageListSetStrip<'a, P0>(&self, pbmapsm: *const isize, pbmaplg: *const isize, nstartloc: i32, cmask: P0) -> ::windows::core::Result<()>
+    pub unsafe fn ImageListSetStrip<'a, P0>(&self, pbmapsm: *mut isize, pbmaplg: *mut isize, nstartloc: i32, cmask: P0) -> ::windows::core::Result<()>
     where
         P0: ::std::convert::Into<super::super::Foundation::COLORREF>,
     {
@@ -2577,9 +2555,9 @@ unsafe impl ::windows::core::Interface for IImageList {
 #[doc(hidden)]
 pub struct IImageList_Vtbl {
     pub base__: ::windows::core::IUnknown_Vtbl,
-    pub ImageListSetIcon: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, picon: *const isize, nloc: i32) -> ::windows::core::HRESULT,
+    pub ImageListSetIcon: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, picon: *mut isize, nloc: i32) -> ::windows::core::HRESULT,
     #[cfg(feature = "Win32_Foundation")]
-    pub ImageListSetStrip: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pbmapsm: *const isize, pbmaplg: *const isize, nstartloc: i32, cmask: super::super::Foundation::COLORREF) -> ::windows::core::HRESULT,
+    pub ImageListSetStrip: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pbmapsm: *mut isize, pbmaplg: *mut isize, nstartloc: i32, cmask: super::super::Foundation::COLORREF) -> ::windows::core::HRESULT,
     #[cfg(not(feature = "Win32_Foundation"))]
     ImageListSetStrip: usize,
 }
@@ -2624,19 +2602,11 @@ pub struct IMMCVersionInfo_Vtbl {
 #[repr(transparent)]
 pub struct IMenuButton(::windows::core::IUnknown);
 impl IMenuButton {
-    pub unsafe fn AddButton<'a, P0, P1>(&self, idcommand: i32, lpbuttontext: P0, lptooltiptext: P1) -> ::windows::core::Result<()>
-    where
-        P0: ::std::convert::Into<::windows::core::PCWSTR>,
-        P1: ::std::convert::Into<::windows::core::PCWSTR>,
-    {
-        (::windows::core::Vtable::vtable(self).AddButton)(::windows::core::Vtable::as_raw(self), idcommand, lpbuttontext.into(), lptooltiptext.into()).ok()
+    pub unsafe fn AddButton(&self, idcommand: i32, lpbuttontext: ::windows::core::PWSTR, lptooltiptext: ::windows::core::PWSTR) -> ::windows::core::Result<()> {
+        (::windows::core::Vtable::vtable(self).AddButton)(::windows::core::Vtable::as_raw(self), idcommand, ::core::mem::transmute(lpbuttontext), ::core::mem::transmute(lptooltiptext)).ok()
     }
-    pub unsafe fn SetButton<'a, P0, P1>(&self, idcommand: i32, lpbuttontext: P0, lptooltiptext: P1) -> ::windows::core::Result<()>
-    where
-        P0: ::std::convert::Into<::windows::core::PCWSTR>,
-        P1: ::std::convert::Into<::windows::core::PCWSTR>,
-    {
-        (::windows::core::Vtable::vtable(self).SetButton)(::windows::core::Vtable::as_raw(self), idcommand, lpbuttontext.into(), lptooltiptext.into()).ok()
+    pub unsafe fn SetButton(&self, idcommand: i32, lpbuttontext: ::windows::core::PWSTR, lptooltiptext: ::windows::core::PWSTR) -> ::windows::core::Result<()> {
+        (::windows::core::Vtable::vtable(self).SetButton)(::windows::core::Vtable::as_raw(self), idcommand, ::core::mem::transmute(lpbuttontext), ::core::mem::transmute(lptooltiptext)).ok()
     }
     #[doc = "*Required features: `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
@@ -2674,8 +2644,8 @@ unsafe impl ::windows::core::Interface for IMenuButton {
 #[doc(hidden)]
 pub struct IMenuButton_Vtbl {
     pub base__: ::windows::core::IUnknown_Vtbl,
-    pub AddButton: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, idcommand: i32, lpbuttontext: ::windows::core::PCWSTR, lptooltiptext: ::windows::core::PCWSTR) -> ::windows::core::HRESULT,
-    pub SetButton: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, idcommand: i32, lpbuttontext: ::windows::core::PCWSTR, lptooltiptext: ::windows::core::PCWSTR) -> ::windows::core::HRESULT,
+    pub AddButton: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, idcommand: i32, lpbuttontext: ::windows::core::PWSTR, lptooltiptext: ::windows::core::PWSTR) -> ::windows::core::HRESULT,
+    pub SetButton: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, idcommand: i32, lpbuttontext: ::windows::core::PWSTR, lptooltiptext: ::windows::core::PWSTR) -> ::windows::core::HRESULT,
     #[cfg(feature = "Win32_Foundation")]
     pub SetButtonState: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, idcommand: i32, nstate: MMC_BUTTON_STATE, bstate: super::super::Foundation::BOOL) -> ::windows::core::HRESULT,
     #[cfg(not(feature = "Win32_Foundation"))]
@@ -2994,7 +2964,7 @@ impl IResultData {
     }
     #[doc = "*Required features: `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub unsafe fn SetItem(&self, item: *const RESULTDATAITEM) -> ::windows::core::Result<()> {
+    pub unsafe fn SetItem(&self, item: *mut RESULTDATAITEM) -> ::windows::core::Result<()> {
         (::windows::core::Vtable::vtable(self).SetItem)(::windows::core::Vtable::as_raw(self), ::core::mem::transmute(item)).ok()
     }
     #[doc = "*Required features: `\"Win32_Foundation\"`*"]
@@ -3031,11 +3001,8 @@ impl IResultData {
     {
         (::windows::core::Vtable::vtable(self).Sort)(::windows::core::Vtable::as_raw(self), ncolumn, dwsortoptions, luserparam.into()).ok()
     }
-    pub unsafe fn SetDescBarText<'a, P0>(&self, desctext: P0) -> ::windows::core::Result<()>
-    where
-        P0: ::std::convert::Into<::windows::core::PCWSTR>,
-    {
-        (::windows::core::Vtable::vtable(self).SetDescBarText)(::windows::core::Vtable::as_raw(self), desctext.into()).ok()
+    pub unsafe fn SetDescBarText(&self, desctext: ::windows::core::PWSTR) -> ::windows::core::Result<()> {
+        (::windows::core::Vtable::vtable(self).SetDescBarText)(::windows::core::Vtable::as_raw(self), ::core::mem::transmute(desctext)).ok()
     }
     pub unsafe fn SetItemCount(&self, nitemcount: i32, dwoptions: u32) -> ::windows::core::Result<()> {
         (::windows::core::Vtable::vtable(self).SetItemCount)(::windows::core::Vtable::as_raw(self), nitemcount, dwoptions).ok()
@@ -3079,7 +3046,7 @@ pub struct IResultData_Vtbl {
     FindItemByLParam: usize,
     pub DeleteAllRsltItems: unsafe extern "system" fn(this: *mut ::core::ffi::c_void) -> ::windows::core::HRESULT,
     #[cfg(feature = "Win32_Foundation")]
-    pub SetItem: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, item: *const RESULTDATAITEM) -> ::windows::core::HRESULT,
+    pub SetItem: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, item: *mut RESULTDATAITEM) -> ::windows::core::HRESULT,
     #[cfg(not(feature = "Win32_Foundation"))]
     SetItem: usize,
     #[cfg(feature = "Win32_Foundation")]
@@ -3099,7 +3066,7 @@ pub struct IResultData_Vtbl {
     pub Sort: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, ncolumn: i32, dwsortoptions: u32, luserparam: super::super::Foundation::LPARAM) -> ::windows::core::HRESULT,
     #[cfg(not(feature = "Win32_Foundation"))]
     Sort: usize,
-    pub SetDescBarText: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, desctext: ::windows::core::PCWSTR) -> ::windows::core::HRESULT,
+    pub SetDescBarText: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, desctext: ::windows::core::PWSTR) -> ::windows::core::HRESULT,
     pub SetItemCount: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, nitemcount: i32, dwoptions: u32) -> ::windows::core::HRESULT,
 }
 #[doc = "*Required features: `\"Win32_System_Mmc\"`*"]
@@ -3128,7 +3095,7 @@ impl IResultData2 {
     }
     #[doc = "*Required features: `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub unsafe fn SetItem(&self, item: *const RESULTDATAITEM) -> ::windows::core::Result<()> {
+    pub unsafe fn SetItem(&self, item: *mut RESULTDATAITEM) -> ::windows::core::Result<()> {
         (::windows::core::Vtable::vtable(self).base__.SetItem)(::windows::core::Vtable::as_raw(self), ::core::mem::transmute(item)).ok()
     }
     #[doc = "*Required features: `\"Win32_Foundation\"`*"]
@@ -3165,11 +3132,8 @@ impl IResultData2 {
     {
         (::windows::core::Vtable::vtable(self).base__.Sort)(::windows::core::Vtable::as_raw(self), ncolumn, dwsortoptions, luserparam.into()).ok()
     }
-    pub unsafe fn SetDescBarText<'a, P0>(&self, desctext: P0) -> ::windows::core::Result<()>
-    where
-        P0: ::std::convert::Into<::windows::core::PCWSTR>,
-    {
-        (::windows::core::Vtable::vtable(self).base__.SetDescBarText)(::windows::core::Vtable::as_raw(self), desctext.into()).ok()
+    pub unsafe fn SetDescBarText(&self, desctext: ::windows::core::PWSTR) -> ::windows::core::Result<()> {
+        (::windows::core::Vtable::vtable(self).base__.SetDescBarText)(::windows::core::Vtable::as_raw(self), ::core::mem::transmute(desctext)).ok()
     }
     pub unsafe fn SetItemCount(&self, nitemcount: i32, dwoptions: u32) -> ::windows::core::Result<()> {
         (::windows::core::Vtable::vtable(self).base__.SetItemCount)(::windows::core::Vtable::as_raw(self), nitemcount, dwoptions).ok()
@@ -3258,7 +3222,7 @@ pub struct IResultDataCompareEx(::windows::core::IUnknown);
 impl IResultDataCompareEx {
     #[doc = "*Required features: `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub unsafe fn Compare(&self, prdc: *const RDCOMPARE) -> ::windows::core::Result<i32> {
+    pub unsafe fn Compare(&self, prdc: *mut RDCOMPARE) -> ::windows::core::Result<i32> {
         let mut result__ = ::core::mem::MaybeUninit::zeroed();
         (::windows::core::Vtable::vtable(self).Compare)(::windows::core::Vtable::as_raw(self), ::core::mem::transmute(prdc), ::core::mem::transmute(result__.as_mut_ptr())).from_abi::<i32>(result__)
     }
@@ -3291,7 +3255,7 @@ unsafe impl ::windows::core::Interface for IResultDataCompareEx {
 pub struct IResultDataCompareEx_Vtbl {
     pub base__: ::windows::core::IUnknown_Vtbl,
     #[cfg(feature = "Win32_Foundation")]
-    pub Compare: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, prdc: *const RDCOMPARE, pnresult: *mut i32) -> ::windows::core::HRESULT,
+    pub Compare: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, prdc: *mut RDCOMPARE, pnresult: *mut i32) -> ::windows::core::HRESULT,
     #[cfg(not(feature = "Win32_Foundation"))]
     Compare: usize,
 }
@@ -3299,7 +3263,7 @@ pub struct IResultDataCompareEx_Vtbl {
 #[repr(transparent)]
 pub struct IResultOwnerData(::windows::core::IUnknown);
 impl IResultOwnerData {
-    pub unsafe fn FindItem(&self, pfindinfo: *const RESULTFINDINFO) -> ::windows::core::Result<i32> {
+    pub unsafe fn FindItem(&self, pfindinfo: *mut RESULTFINDINFO) -> ::windows::core::Result<i32> {
         let mut result__ = ::core::mem::MaybeUninit::zeroed();
         (::windows::core::Vtable::vtable(self).FindItem)(::windows::core::Vtable::as_raw(self), ::core::mem::transmute(pfindinfo), ::core::mem::transmute(result__.as_mut_ptr())).from_abi::<i32>(result__)
     }
@@ -3342,7 +3306,7 @@ unsafe impl ::windows::core::Interface for IResultOwnerData {
 #[doc(hidden)]
 pub struct IResultOwnerData_Vtbl {
     pub base__: ::windows::core::IUnknown_Vtbl,
-    pub FindItem: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pfindinfo: *const RESULTFINDINFO, pnfoundindex: *mut i32) -> ::windows::core::HRESULT,
+    pub FindItem: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pfindinfo: *mut RESULTFINDINFO, pnfoundindex: *mut i32) -> ::windows::core::HRESULT,
     pub CacheHint: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, nstartindex: i32, nendindex: i32) -> ::windows::core::HRESULT,
     #[cfg(feature = "Win32_Foundation")]
     pub SortItems: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, ncolumn: i32, dwsortoptions: u32, luserparam: super::super::Foundation::LPARAM) -> ::windows::core::HRESULT,
@@ -3553,7 +3517,7 @@ pub struct ISnapinProperties_Vtbl {
     Initialize: usize,
     pub QueryPropertyNames: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pcallback: *mut ::core::ffi::c_void) -> ::windows::core::HRESULT,
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
-    pub PropertiesChanged: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, cproperties: i32, pproperties: *const ::core::mem::ManuallyDrop<MMC_SNAPIN_PROPERTY>) -> ::windows::core::HRESULT,
+    pub PropertiesChanged: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, cproperties: i32, pproperties: *mut ::core::mem::ManuallyDrop<MMC_SNAPIN_PROPERTY>) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole")))]
     PropertiesChanged: usize,
 }
@@ -3686,10 +3650,10 @@ impl IToolbar {
     {
         (::windows::core::Vtable::vtable(self).AddBitmap)(::windows::core::Vtable::as_raw(self), nimages, hbmp.into(), cxsize, cysize, crmask.into()).ok()
     }
-    pub unsafe fn AddButtons(&self, nbuttons: i32, lpbuttons: *const MMCBUTTON) -> ::windows::core::Result<()> {
+    pub unsafe fn AddButtons(&self, nbuttons: i32, lpbuttons: *mut MMCBUTTON) -> ::windows::core::Result<()> {
         (::windows::core::Vtable::vtable(self).AddButtons)(::windows::core::Vtable::as_raw(self), nbuttons, ::core::mem::transmute(lpbuttons)).ok()
     }
-    pub unsafe fn InsertButton(&self, nindex: i32, lpbutton: *const MMCBUTTON) -> ::windows::core::Result<()> {
+    pub unsafe fn InsertButton(&self, nindex: i32, lpbutton: *mut MMCBUTTON) -> ::windows::core::Result<()> {
         (::windows::core::Vtable::vtable(self).InsertButton)(::windows::core::Vtable::as_raw(self), nindex, ::core::mem::transmute(lpbutton)).ok()
     }
     pub unsafe fn DeleteButton(&self, nindex: i32) -> ::windows::core::Result<()> {
@@ -3741,8 +3705,8 @@ pub struct IToolbar_Vtbl {
     pub AddBitmap: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, nimages: i32, hbmp: super::super::Graphics::Gdi::HBITMAP, cxsize: i32, cysize: i32, crmask: super::super::Foundation::COLORREF) -> ::windows::core::HRESULT,
     #[cfg(not(all(feature = "Win32_Foundation", feature = "Win32_Graphics_Gdi")))]
     AddBitmap: usize,
-    pub AddButtons: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, nbuttons: i32, lpbuttons: *const MMCBUTTON) -> ::windows::core::HRESULT,
-    pub InsertButton: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, nindex: i32, lpbutton: *const MMCBUTTON) -> ::windows::core::HRESULT,
+    pub AddButtons: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, nbuttons: i32, lpbuttons: *mut MMCBUTTON) -> ::windows::core::HRESULT,
+    pub InsertButton: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, nindex: i32, lpbutton: *mut MMCBUTTON) -> ::windows::core::HRESULT,
     pub DeleteButton: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, nindex: i32) -> ::windows::core::HRESULT,
     #[cfg(feature = "Win32_Foundation")]
     pub GetButtonState: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, idcommand: i32, nstate: MMC_BUTTON_STATE, pstate: *mut super::super::Foundation::BOOL) -> ::windows::core::HRESULT,
@@ -3759,7 +3723,7 @@ pub struct IViewExtensionCallback(::windows::core::IUnknown);
 impl IViewExtensionCallback {
     #[doc = "*Required features: `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub unsafe fn AddView(&self, pextviewdata: *const MMC_EXT_VIEW_DATA) -> ::windows::core::Result<()> {
+    pub unsafe fn AddView(&self, pextviewdata: *mut MMC_EXT_VIEW_DATA) -> ::windows::core::Result<()> {
         (::windows::core::Vtable::vtable(self).AddView)(::windows::core::Vtable::as_raw(self), ::core::mem::transmute(pextviewdata)).ok()
     }
 }
@@ -3791,7 +3755,7 @@ unsafe impl ::windows::core::Interface for IViewExtensionCallback {
 pub struct IViewExtensionCallback_Vtbl {
     pub base__: ::windows::core::IUnknown_Vtbl,
     #[cfg(feature = "Win32_Foundation")]
-    pub AddView: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pextviewdata: *const MMC_EXT_VIEW_DATA) -> ::windows::core::HRESULT,
+    pub AddView: unsafe extern "system" fn(this: *mut ::core::ffi::c_void, pextviewdata: *mut MMC_EXT_VIEW_DATA) -> ::windows::core::HRESULT,
     #[cfg(not(feature = "Win32_Foundation"))]
     AddView: usize,
 }

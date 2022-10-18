@@ -7,10 +7,10 @@ pub trait IDiskQuotaControl_Impl: Sized + super::super::System::Com::IConnection
     fn GetQuotaLogFlags(&self, pdwflags: *mut u32) -> ::windows::core::Result<()>;
     fn SetDefaultQuotaThreshold(&self, llthreshold: i64) -> ::windows::core::Result<()>;
     fn GetDefaultQuotaThreshold(&self, pllthreshold: *mut i64) -> ::windows::core::Result<()>;
-    fn GetDefaultQuotaThresholdText(&self, psztext: &::windows::core::PCWSTR, cchtext: u32) -> ::windows::core::Result<()>;
+    fn GetDefaultQuotaThresholdText(&self, psztext: &::windows::core::PWSTR, cchtext: u32) -> ::windows::core::Result<()>;
     fn SetDefaultQuotaLimit(&self, lllimit: i64) -> ::windows::core::Result<()>;
     fn GetDefaultQuotaLimit(&self, plllimit: *mut i64) -> ::windows::core::Result<()>;
-    fn GetDefaultQuotaLimitText(&self, psztext: &::windows::core::PCWSTR, cchtext: u32) -> ::windows::core::Result<()>;
+    fn GetDefaultQuotaLimitText(&self, psztext: &::windows::core::PWSTR, cchtext: u32) -> ::windows::core::Result<()>;
     fn AddUserSid(&self, pusersid: super::super::Foundation::PSID, fnameresolution: DISKQUOTA_USERNAME_RESOLVE) -> ::windows::core::Result<IDiskQuotaUser>;
     fn AddUserName(&self, pszlogonname: &::windows::core::PCWSTR, fnameresolution: DISKQUOTA_USERNAME_RESOLVE) -> ::windows::core::Result<IDiskQuotaUser>;
     fn DeleteUser(&self, puser: &::core::option::Option<IDiskQuotaUser>) -> ::windows::core::Result<()>;
@@ -62,7 +62,7 @@ impl IDiskQuotaControl_Vtbl {
             let this = (*this).get_impl();
             this.GetDefaultQuotaThreshold(::core::mem::transmute_copy(&pllthreshold)).into()
         }
-        unsafe extern "system" fn GetDefaultQuotaThresholdText<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDiskQuotaControl_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, psztext: ::windows::core::PCWSTR, cchtext: u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn GetDefaultQuotaThresholdText<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDiskQuotaControl_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, psztext: ::windows::core::PWSTR, cchtext: u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.GetDefaultQuotaThresholdText(::core::mem::transmute(&psztext), ::core::mem::transmute_copy(&cchtext)).into()
@@ -77,7 +77,7 @@ impl IDiskQuotaControl_Vtbl {
             let this = (*this).get_impl();
             this.GetDefaultQuotaLimit(::core::mem::transmute_copy(&plllimit)).into()
         }
-        unsafe extern "system" fn GetDefaultQuotaLimitText<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDiskQuotaControl_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, psztext: ::windows::core::PCWSTR, cchtext: u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn GetDefaultQuotaLimitText<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDiskQuotaControl_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, psztext: ::windows::core::PWSTR, cchtext: u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.GetDefaultQuotaLimitText(::core::mem::transmute(&psztext), ::core::mem::transmute_copy(&cchtext)).into()
@@ -211,15 +211,15 @@ impl IDiskQuotaEvents_Vtbl {
 #[cfg(feature = "Win32_Foundation")]
 pub trait IDiskQuotaUser_Impl: Sized {
     fn GetID(&self, pulid: *mut u32) -> ::windows::core::Result<()>;
-    fn GetName(&self, pszaccountcontainer: &::windows::core::PCWSTR, cchaccountcontainer: u32, pszlogonname: &::windows::core::PCWSTR, cchlogonname: u32, pszdisplayname: &::windows::core::PCWSTR, cchdisplayname: u32) -> ::windows::core::Result<()>;
+    fn GetName(&self, pszaccountcontainer: &::windows::core::PWSTR, cchaccountcontainer: u32, pszlogonname: &::windows::core::PWSTR, cchlogonname: u32, pszdisplayname: &::windows::core::PWSTR, cchdisplayname: u32) -> ::windows::core::Result<()>;
     fn GetSidLength(&self, pdwlength: *mut u32) -> ::windows::core::Result<()>;
     fn GetSid(&self, pbsidbuffer: *mut u8, cbsidbuffer: u32) -> ::windows::core::Result<()>;
     fn GetQuotaThreshold(&self, pllthreshold: *mut i64) -> ::windows::core::Result<()>;
-    fn GetQuotaThresholdText(&self, psztext: &::windows::core::PCWSTR, cchtext: u32) -> ::windows::core::Result<()>;
+    fn GetQuotaThresholdText(&self, psztext: &::windows::core::PWSTR, cchtext: u32) -> ::windows::core::Result<()>;
     fn GetQuotaLimit(&self, plllimit: *mut i64) -> ::windows::core::Result<()>;
-    fn GetQuotaLimitText(&self, psztext: &::windows::core::PCWSTR, cchtext: u32) -> ::windows::core::Result<()>;
+    fn GetQuotaLimitText(&self, psztext: &::windows::core::PWSTR, cchtext: u32) -> ::windows::core::Result<()>;
     fn GetQuotaUsed(&self, pllused: *mut i64) -> ::windows::core::Result<()>;
-    fn GetQuotaUsedText(&self, psztext: &::windows::core::PCWSTR, cchtext: u32) -> ::windows::core::Result<()>;
+    fn GetQuotaUsedText(&self, psztext: &::windows::core::PWSTR, cchtext: u32) -> ::windows::core::Result<()>;
     fn GetQuotaInformation(&self, pbquotainfo: *mut ::core::ffi::c_void, cbquotainfo: u32) -> ::windows::core::Result<()>;
     fn SetQuotaThreshold(&self, llthreshold: i64, fwritethrough: super::super::Foundation::BOOL) -> ::windows::core::Result<()>;
     fn SetQuotaLimit(&self, lllimit: i64, fwritethrough: super::super::Foundation::BOOL) -> ::windows::core::Result<()>;
@@ -236,7 +236,7 @@ impl IDiskQuotaUser_Vtbl {
             let this = (*this).get_impl();
             this.GetID(::core::mem::transmute_copy(&pulid)).into()
         }
-        unsafe extern "system" fn GetName<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDiskQuotaUser_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, pszaccountcontainer: ::windows::core::PCWSTR, cchaccountcontainer: u32, pszlogonname: ::windows::core::PCWSTR, cchlogonname: u32, pszdisplayname: ::windows::core::PCWSTR, cchdisplayname: u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn GetName<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDiskQuotaUser_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, pszaccountcontainer: ::windows::core::PWSTR, cchaccountcontainer: u32, pszlogonname: ::windows::core::PWSTR, cchlogonname: u32, pszdisplayname: ::windows::core::PWSTR, cchdisplayname: u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.GetName(::core::mem::transmute(&pszaccountcontainer), ::core::mem::transmute_copy(&cchaccountcontainer), ::core::mem::transmute(&pszlogonname), ::core::mem::transmute_copy(&cchlogonname), ::core::mem::transmute(&pszdisplayname), ::core::mem::transmute_copy(&cchdisplayname)).into()
@@ -256,7 +256,7 @@ impl IDiskQuotaUser_Vtbl {
             let this = (*this).get_impl();
             this.GetQuotaThreshold(::core::mem::transmute_copy(&pllthreshold)).into()
         }
-        unsafe extern "system" fn GetQuotaThresholdText<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDiskQuotaUser_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, psztext: ::windows::core::PCWSTR, cchtext: u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn GetQuotaThresholdText<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDiskQuotaUser_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, psztext: ::windows::core::PWSTR, cchtext: u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.GetQuotaThresholdText(::core::mem::transmute(&psztext), ::core::mem::transmute_copy(&cchtext)).into()
@@ -266,7 +266,7 @@ impl IDiskQuotaUser_Vtbl {
             let this = (*this).get_impl();
             this.GetQuotaLimit(::core::mem::transmute_copy(&plllimit)).into()
         }
-        unsafe extern "system" fn GetQuotaLimitText<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDiskQuotaUser_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, psztext: ::windows::core::PCWSTR, cchtext: u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn GetQuotaLimitText<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDiskQuotaUser_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, psztext: ::windows::core::PWSTR, cchtext: u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.GetQuotaLimitText(::core::mem::transmute(&psztext), ::core::mem::transmute_copy(&cchtext)).into()
@@ -276,7 +276,7 @@ impl IDiskQuotaUser_Vtbl {
             let this = (*this).get_impl();
             this.GetQuotaUsed(::core::mem::transmute_copy(&pllused)).into()
         }
-        unsafe extern "system" fn GetQuotaUsedText<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDiskQuotaUser_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, psztext: ::windows::core::PCWSTR, cchtext: u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn GetQuotaUsedText<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IDiskQuotaUser_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, psztext: ::windows::core::PWSTR, cchtext: u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.GetQuotaUsedText(::core::mem::transmute(&psztext), ::core::mem::transmute_copy(&cchtext)).into()

@@ -2432,7 +2432,7 @@ pub trait ITfCandidateListUIElement_Impl: Sized + ITfUIElement_Impl {
     fn GetSelection(&self) -> ::windows::core::Result<u32>;
     fn GetString(&self, uindex: u32) -> ::windows::core::Result<::windows::core::BSTR>;
     fn GetPageIndex(&self, pindex: *mut u32, usize: u32, pupagecnt: *mut u32) -> ::windows::core::Result<()>;
-    fn SetPageIndex(&self, pindex: *const u32, upagecnt: u32) -> ::windows::core::Result<()>;
+    fn SetPageIndex(&self, pindex: *mut u32, upagecnt: u32) -> ::windows::core::Result<()>;
     fn GetCurrentPage(&self) -> ::windows::core::Result<u32>;
 }
 #[cfg(feature = "Win32_Foundation")]
@@ -2500,7 +2500,7 @@ impl ITfCandidateListUIElement_Vtbl {
             let this = (*this).get_impl();
             this.GetPageIndex(::core::mem::transmute_copy(&pindex), ::core::mem::transmute_copy(&usize), ::core::mem::transmute_copy(&pupagecnt)).into()
         }
-        unsafe extern "system" fn SetPageIndex<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: ITfCandidateListUIElement_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, pindex: *const u32, upagecnt: u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn SetPageIndex<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: ITfCandidateListUIElement_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, pindex: *mut u32, upagecnt: u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.SetPageIndex(::core::mem::transmute_copy(&pindex), ::core::mem::transmute_copy(&upagecnt)).into()
@@ -4187,12 +4187,12 @@ impl ITfFnGetLinguisticAlternates_Vtbl {
     }
 }
 pub trait ITfFnGetPreferredTouchKeyboardLayout_Impl: Sized + ITfFunction_Impl {
-    fn GetLayout(&self, ptkblayouttype: *mut TKBLayoutType, pwpreferredlayoutid: *const u16) -> ::windows::core::Result<()>;
+    fn GetLayout(&self, ptkblayouttype: *mut TKBLayoutType, pwpreferredlayoutid: *mut u16) -> ::windows::core::Result<()>;
 }
 impl ::windows::core::RuntimeName for ITfFnGetPreferredTouchKeyboardLayout {}
 impl ITfFnGetPreferredTouchKeyboardLayout_Vtbl {
     pub const fn new<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: ITfFnGetPreferredTouchKeyboardLayout_Impl, const OFFSET: isize>() -> ITfFnGetPreferredTouchKeyboardLayout_Vtbl {
-        unsafe extern "system" fn GetLayout<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: ITfFnGetPreferredTouchKeyboardLayout_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, ptkblayouttype: *mut TKBLayoutType, pwpreferredlayoutid: *const u16) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn GetLayout<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: ITfFnGetPreferredTouchKeyboardLayout_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, ptkblayouttype: *mut TKBLayoutType, pwpreferredlayoutid: *mut u16) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.GetLayout(::core::mem::transmute_copy(&ptkblayouttype), ::core::mem::transmute_copy(&pwpreferredlayoutid)).into()
@@ -5835,8 +5835,8 @@ pub trait ITfLangBarItemMgr_Impl: Sized {
     fn GetItemsStatus(&self, ulcount: u32, prgguid: *const ::windows::core::GUID) -> ::windows::core::Result<u32>;
     fn GetItemNum(&self) -> ::windows::core::Result<u32>;
     fn GetItems(&self, ulcount: u32, ppitem: *mut ::core::option::Option<ITfLangBarItem>, pinfo: *mut TF_LANGBARITEMINFO, pdwstatus: *mut u32, pcfetched: *mut u32) -> ::windows::core::Result<()>;
-    fn AdviseItemsSink(&self, ulcount: u32, ppunk: *const ::core::option::Option<ITfLangBarItemSink>, pguiditem: *const ::windows::core::GUID) -> ::windows::core::Result<u32>;
-    fn UnadviseItemsSink(&self, ulcount: u32, pdwcookie: *const u32) -> ::windows::core::Result<()>;
+    fn AdviseItemsSink(&self, ulcount: u32, ppunk: *mut ::core::option::Option<ITfLangBarItemSink>, pguiditem: *const ::windows::core::GUID) -> ::windows::core::Result<u32>;
+    fn UnadviseItemsSink(&self, ulcount: u32, pdwcookie: *mut u32) -> ::windows::core::Result<()>;
 }
 #[cfg(feature = "Win32_Foundation")]
 impl ::windows::core::RuntimeName for ITfLangBarItemMgr {}
@@ -5923,7 +5923,7 @@ impl ITfLangBarItemMgr_Vtbl {
             let this = (*this).get_impl();
             this.GetItems(::core::mem::transmute_copy(&ulcount), ::core::mem::transmute_copy(&ppitem), ::core::mem::transmute_copy(&pinfo), ::core::mem::transmute_copy(&pdwstatus), ::core::mem::transmute_copy(&pcfetched)).into()
         }
-        unsafe extern "system" fn AdviseItemsSink<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: ITfLangBarItemMgr_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, ulcount: u32, ppunk: *const *mut ::core::ffi::c_void, pguiditem: *const ::windows::core::GUID, pdwcookie: *mut u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn AdviseItemsSink<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: ITfLangBarItemMgr_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, ulcount: u32, ppunk: *mut *mut ::core::ffi::c_void, pguiditem: *const ::windows::core::GUID, pdwcookie: *mut u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.AdviseItemsSink(::core::mem::transmute_copy(&ulcount), ::core::mem::transmute_copy(&ppunk), ::core::mem::transmute_copy(&pguiditem)) {
@@ -5934,7 +5934,7 @@ impl ITfLangBarItemMgr_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn UnadviseItemsSink<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: ITfLangBarItemMgr_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, ulcount: u32, pdwcookie: *const u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn UnadviseItemsSink<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: ITfLangBarItemMgr_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, ulcount: u32, pdwcookie: *mut u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.UnadviseItemsSink(::core::mem::transmute_copy(&ulcount), ::core::mem::transmute_copy(&pdwcookie)).into()
@@ -5978,7 +5978,7 @@ impl ITfLangBarItemSink_Vtbl {
 }
 #[cfg(feature = "Win32_Foundation")]
 pub trait ITfLangBarMgr_Impl: Sized {
-    fn AdviseEventSink(&self, psink: &::core::option::Option<ITfLangBarEventSink>, hwnd: super::super::Foundation::HWND, dwflags: u32, pdwcookie: *const u32) -> ::windows::core::Result<()>;
+    fn AdviseEventSink(&self, psink: &::core::option::Option<ITfLangBarEventSink>, hwnd: super::super::Foundation::HWND, dwflags: u32, pdwcookie: *mut u32) -> ::windows::core::Result<()>;
     fn UnadviseEventSink(&self, dwcookie: u32) -> ::windows::core::Result<()>;
     fn GetThreadMarshalInterface(&self, dwthreadid: u32, dwtype: u32, riid: *const ::windows::core::GUID) -> ::windows::core::Result<::windows::core::IUnknown>;
     fn GetThreadLangBarItemMgr(&self, dwthreadid: u32, pplbi: *mut ::core::option::Option<ITfLangBarItemMgr>, pdwthreadid: *mut u32) -> ::windows::core::Result<()>;
@@ -5993,7 +5993,7 @@ impl ::windows::core::RuntimeName for ITfLangBarMgr {}
 #[cfg(feature = "Win32_Foundation")]
 impl ITfLangBarMgr_Vtbl {
     pub const fn new<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: ITfLangBarMgr_Impl, const OFFSET: isize>() -> ITfLangBarMgr_Vtbl {
-        unsafe extern "system" fn AdviseEventSink<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: ITfLangBarMgr_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, psink: *mut ::core::ffi::c_void, hwnd: super::super::Foundation::HWND, dwflags: u32, pdwcookie: *const u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn AdviseEventSink<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: ITfLangBarMgr_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, psink: *mut ::core::ffi::c_void, hwnd: super::super::Foundation::HWND, dwflags: u32, pdwcookie: *mut u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.AdviseEventSink(::core::mem::transmute(&psink), ::core::mem::transmute_copy(&hwnd), ::core::mem::transmute_copy(&dwflags), ::core::mem::transmute_copy(&pdwcookie)).into()
@@ -7212,7 +7212,7 @@ impl ITfSystemDeviceTypeLangBarItem_Vtbl {
 #[cfg(feature = "Win32_UI_WindowsAndMessaging")]
 pub trait ITfSystemLangBarItem_Impl: Sized {
     fn SetIcon(&self, hicon: super::WindowsAndMessaging::HICON) -> ::windows::core::Result<()>;
-    fn SetTooltipString(&self, pchtooltip: &::windows::core::PCWSTR, cch: u32) -> ::windows::core::Result<()>;
+    fn SetTooltipString(&self, pchtooltip: &::windows::core::PWSTR, cch: u32) -> ::windows::core::Result<()>;
 }
 #[cfg(feature = "Win32_UI_WindowsAndMessaging")]
 impl ::windows::core::RuntimeName for ITfSystemLangBarItem {}
@@ -7224,7 +7224,7 @@ impl ITfSystemLangBarItem_Vtbl {
             let this = (*this).get_impl();
             this.SetIcon(::core::mem::transmute_copy(&hicon)).into()
         }
-        unsafe extern "system" fn SetTooltipString<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: ITfSystemLangBarItem_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, pchtooltip: ::windows::core::PCWSTR, cch: u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn SetTooltipString<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: ITfSystemLangBarItem_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, pchtooltip: ::windows::core::PWSTR, cch: u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.SetTooltipString(::core::mem::transmute(&pchtooltip), ::core::mem::transmute_copy(&cch)).into()
@@ -8048,10 +8048,10 @@ impl ITfUIElementSink_Vtbl {
 }
 #[cfg(feature = "Win32_Foundation")]
 pub trait IUIManagerEventSink_Impl: Sized {
-    fn OnWindowOpening(&self, prcbounds: *const super::super::Foundation::RECT) -> ::windows::core::Result<()>;
-    fn OnWindowOpened(&self, prcbounds: *const super::super::Foundation::RECT) -> ::windows::core::Result<()>;
-    fn OnWindowUpdating(&self, prcupdatedbounds: *const super::super::Foundation::RECT) -> ::windows::core::Result<()>;
-    fn OnWindowUpdated(&self, prcupdatedbounds: *const super::super::Foundation::RECT) -> ::windows::core::Result<()>;
+    fn OnWindowOpening(&self, prcbounds: *mut super::super::Foundation::RECT) -> ::windows::core::Result<()>;
+    fn OnWindowOpened(&self, prcbounds: *mut super::super::Foundation::RECT) -> ::windows::core::Result<()>;
+    fn OnWindowUpdating(&self, prcupdatedbounds: *mut super::super::Foundation::RECT) -> ::windows::core::Result<()>;
+    fn OnWindowUpdated(&self, prcupdatedbounds: *mut super::super::Foundation::RECT) -> ::windows::core::Result<()>;
     fn OnWindowClosing(&self) -> ::windows::core::Result<()>;
     fn OnWindowClosed(&self) -> ::windows::core::Result<()>;
 }
@@ -8060,22 +8060,22 @@ impl ::windows::core::RuntimeName for IUIManagerEventSink {}
 #[cfg(feature = "Win32_Foundation")]
 impl IUIManagerEventSink_Vtbl {
     pub const fn new<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IUIManagerEventSink_Impl, const OFFSET: isize>() -> IUIManagerEventSink_Vtbl {
-        unsafe extern "system" fn OnWindowOpening<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IUIManagerEventSink_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, prcbounds: *const super::super::Foundation::RECT) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn OnWindowOpening<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IUIManagerEventSink_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, prcbounds: *mut super::super::Foundation::RECT) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.OnWindowOpening(::core::mem::transmute_copy(&prcbounds)).into()
         }
-        unsafe extern "system" fn OnWindowOpened<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IUIManagerEventSink_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, prcbounds: *const super::super::Foundation::RECT) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn OnWindowOpened<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IUIManagerEventSink_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, prcbounds: *mut super::super::Foundation::RECT) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.OnWindowOpened(::core::mem::transmute_copy(&prcbounds)).into()
         }
-        unsafe extern "system" fn OnWindowUpdating<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IUIManagerEventSink_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, prcupdatedbounds: *const super::super::Foundation::RECT) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn OnWindowUpdating<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IUIManagerEventSink_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, prcupdatedbounds: *mut super::super::Foundation::RECT) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.OnWindowUpdating(::core::mem::transmute_copy(&prcupdatedbounds)).into()
         }
-        unsafe extern "system" fn OnWindowUpdated<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IUIManagerEventSink_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, prcupdatedbounds: *const super::super::Foundation::RECT) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn OnWindowUpdated<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IUIManagerEventSink_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, prcupdatedbounds: *mut super::super::Foundation::RECT) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.OnWindowUpdated(::core::mem::transmute_copy(&prcupdatedbounds)).into()

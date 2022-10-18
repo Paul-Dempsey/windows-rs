@@ -79,63 +79,63 @@ pub unsafe fn K32EnumProcesses(lpidprocess: *mut u32, cb: u32, lpcbneeded: *mut 
 }
 #[doc = "*Required features: `\"Win32_System_ProcessStatus\"`*"]
 #[inline]
-pub unsafe fn K32GetDeviceDriverBaseNameA(imagebase: *const ::core::ffi::c_void, lpfilename: &mut [u8]) -> u32 {
+pub unsafe fn K32GetDeviceDriverBaseNameA(imagebase: *mut ::core::ffi::c_void, lpfilename: &mut [u8]) -> u32 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn K32GetDeviceDriverBaseNameA(imagebase: *const ::core::ffi::c_void, lpfilename: ::windows::core::PSTR, nsize: u32) -> u32;
+        fn K32GetDeviceDriverBaseNameA(imagebase: *mut ::core::ffi::c_void, lpfilename: ::windows::core::PSTR, nsize: u32) -> u32;
     }
     K32GetDeviceDriverBaseNameA(::core::mem::transmute(imagebase), ::core::mem::transmute(lpfilename.as_ptr()), lpfilename.len() as _)
 }
 #[doc = "*Required features: `\"Win32_System_ProcessStatus\"`*"]
 #[inline]
-pub unsafe fn K32GetDeviceDriverBaseNameW(imagebase: *const ::core::ffi::c_void, lpbasename: &mut [u16]) -> u32 {
+pub unsafe fn K32GetDeviceDriverBaseNameW(imagebase: *mut ::core::ffi::c_void, lpbasename: &mut [u16]) -> u32 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn K32GetDeviceDriverBaseNameW(imagebase: *const ::core::ffi::c_void, lpbasename: ::windows::core::PWSTR, nsize: u32) -> u32;
+        fn K32GetDeviceDriverBaseNameW(imagebase: *mut ::core::ffi::c_void, lpbasename: ::windows::core::PWSTR, nsize: u32) -> u32;
     }
     K32GetDeviceDriverBaseNameW(::core::mem::transmute(imagebase), ::core::mem::transmute(lpbasename.as_ptr()), lpbasename.len() as _)
 }
 #[doc = "*Required features: `\"Win32_System_ProcessStatus\"`*"]
 #[inline]
-pub unsafe fn K32GetDeviceDriverFileNameA(imagebase: *const ::core::ffi::c_void, lpfilename: &mut [u8]) -> u32 {
+pub unsafe fn K32GetDeviceDriverFileNameA(imagebase: *mut ::core::ffi::c_void, lpfilename: &mut [u8]) -> u32 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn K32GetDeviceDriverFileNameA(imagebase: *const ::core::ffi::c_void, lpfilename: ::windows::core::PSTR, nsize: u32) -> u32;
+        fn K32GetDeviceDriverFileNameA(imagebase: *mut ::core::ffi::c_void, lpfilename: ::windows::core::PSTR, nsize: u32) -> u32;
     }
     K32GetDeviceDriverFileNameA(::core::mem::transmute(imagebase), ::core::mem::transmute(lpfilename.as_ptr()), lpfilename.len() as _)
 }
 #[doc = "*Required features: `\"Win32_System_ProcessStatus\"`*"]
 #[inline]
-pub unsafe fn K32GetDeviceDriverFileNameW(imagebase: *const ::core::ffi::c_void, lpfilename: &mut [u16]) -> u32 {
+pub unsafe fn K32GetDeviceDriverFileNameW(imagebase: *mut ::core::ffi::c_void, lpfilename: &mut [u16]) -> u32 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn K32GetDeviceDriverFileNameW(imagebase: *const ::core::ffi::c_void, lpfilename: ::windows::core::PWSTR, nsize: u32) -> u32;
+        fn K32GetDeviceDriverFileNameW(imagebase: *mut ::core::ffi::c_void, lpfilename: ::windows::core::PWSTR, nsize: u32) -> u32;
     }
     K32GetDeviceDriverFileNameW(::core::mem::transmute(imagebase), ::core::mem::transmute(lpfilename.as_ptr()), lpfilename.len() as _)
 }
 #[doc = "*Required features: `\"Win32_System_ProcessStatus\"`, `\"Win32_Foundation\"`*"]
 #[cfg(feature = "Win32_Foundation")]
 #[inline]
-pub unsafe fn K32GetMappedFileNameA<'a, P0>(hprocess: P0, lpv: *const ::core::ffi::c_void, lpfilename: &mut [u8]) -> u32
+pub unsafe fn K32GetMappedFileNameA<'a, P0>(hprocess: P0, lpv: *mut ::core::ffi::c_void, lpfilename: &mut [u8]) -> u32
 where
     P0: ::std::convert::Into<super::super::Foundation::HANDLE>,
 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn K32GetMappedFileNameA(hprocess: super::super::Foundation::HANDLE, lpv: *const ::core::ffi::c_void, lpfilename: ::windows::core::PSTR, nsize: u32) -> u32;
+        fn K32GetMappedFileNameA(hprocess: super::super::Foundation::HANDLE, lpv: *mut ::core::ffi::c_void, lpfilename: ::windows::core::PSTR, nsize: u32) -> u32;
     }
     K32GetMappedFileNameA(hprocess.into(), ::core::mem::transmute(lpv), ::core::mem::transmute(lpfilename.as_ptr()), lpfilename.len() as _)
 }
 #[doc = "*Required features: `\"Win32_System_ProcessStatus\"`, `\"Win32_Foundation\"`*"]
 #[cfg(feature = "Win32_Foundation")]
 #[inline]
-pub unsafe fn K32GetMappedFileNameW<'a, P0>(hprocess: P0, lpv: *const ::core::ffi::c_void, lpfilename: &mut [u16]) -> u32
+pub unsafe fn K32GetMappedFileNameW<'a, P0>(hprocess: P0, lpv: *mut ::core::ffi::c_void, lpfilename: &mut [u16]) -> u32
 where
     P0: ::std::convert::Into<super::super::Foundation::HANDLE>,
 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn K32GetMappedFileNameW(hprocess: super::super::Foundation::HANDLE, lpv: *const ::core::ffi::c_void, lpfilename: ::windows::core::PWSTR, nsize: u32) -> u32;
+        fn K32GetMappedFileNameW(hprocess: super::super::Foundation::HANDLE, lpv: *mut ::core::ffi::c_void, lpfilename: ::windows::core::PWSTR, nsize: u32) -> u32;
     }
     K32GetMappedFileNameW(hprocess.into(), ::core::mem::transmute(lpv), ::core::mem::transmute(lpfilename.as_ptr()), lpfilename.len() as _)
 }

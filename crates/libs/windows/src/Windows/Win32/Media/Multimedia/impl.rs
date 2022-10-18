@@ -4,7 +4,7 @@ pub trait IAVIEditStream_Impl: Sized {
     fn Copy(&self, plstart: *mut i32, pllength: *mut i32, ppresult: *mut ::core::option::Option<IAVIStream>) -> ::windows::core::Result<()>;
     fn Paste(&self, plpos: *mut i32, pllength: *mut i32, pstream: &::core::option::Option<IAVIStream>, lstart: i32, lend: i32) -> ::windows::core::Result<()>;
     fn Clone(&self) -> ::windows::core::Result<IAVIStream>;
-    fn SetInfo(&self, lpinfo: *const AVISTREAMINFOW, cbinfo: i32) -> ::windows::core::Result<()>;
+    fn SetInfo(&self, lpinfo: *mut AVISTREAMINFOW, cbinfo: i32) -> ::windows::core::Result<()>;
 }
 #[cfg(feature = "Win32_Foundation")]
 impl ::windows::core::RuntimeName for IAVIEditStream {}
@@ -37,7 +37,7 @@ impl IAVIEditStream_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn SetInfo<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IAVIEditStream_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, lpinfo: *const AVISTREAMINFOW, cbinfo: i32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn SetInfo<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IAVIEditStream_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, lpinfo: *mut AVISTREAMINFOW, cbinfo: i32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.SetInfo(::core::mem::transmute_copy(&lpinfo), ::core::mem::transmute_copy(&cbinfo)).into()
@@ -59,8 +59,8 @@ impl IAVIEditStream_Vtbl {
 pub trait IAVIFile_Impl: Sized {
     fn Info(&self, pfi: *mut AVIFILEINFOW, lsize: i32) -> ::windows::core::Result<()>;
     fn GetStream(&self, ppstream: *mut ::core::option::Option<IAVIStream>, fcctype: u32, lparam: i32) -> ::windows::core::Result<()>;
-    fn CreateStream(&self, ppstream: *mut ::core::option::Option<IAVIStream>, psi: *const AVISTREAMINFOW) -> ::windows::core::Result<()>;
-    fn WriteData(&self, ckid: u32, lpdata: *const ::core::ffi::c_void, cbdata: i32) -> ::windows::core::Result<()>;
+    fn CreateStream(&self, ppstream: *mut ::core::option::Option<IAVIStream>, psi: *mut AVISTREAMINFOW) -> ::windows::core::Result<()>;
+    fn WriteData(&self, ckid: u32, lpdata: *mut ::core::ffi::c_void, cbdata: i32) -> ::windows::core::Result<()>;
     fn ReadData(&self, ckid: u32, lpdata: *mut ::core::ffi::c_void, lpcbdata: *mut i32) -> ::windows::core::Result<()>;
     fn EndRecord(&self) -> ::windows::core::Result<()>;
     fn DeleteStream(&self, fcctype: u32, lparam: i32) -> ::windows::core::Result<()>;
@@ -80,12 +80,12 @@ impl IAVIFile_Vtbl {
             let this = (*this).get_impl();
             this.GetStream(::core::mem::transmute_copy(&ppstream), ::core::mem::transmute_copy(&fcctype), ::core::mem::transmute_copy(&lparam)).into()
         }
-        unsafe extern "system" fn CreateStream<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IAVIFile_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, ppstream: *mut *mut ::core::ffi::c_void, psi: *const AVISTREAMINFOW) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn CreateStream<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IAVIFile_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, ppstream: *mut *mut ::core::ffi::c_void, psi: *mut AVISTREAMINFOW) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.CreateStream(::core::mem::transmute_copy(&ppstream), ::core::mem::transmute_copy(&psi)).into()
         }
-        unsafe extern "system" fn WriteData<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IAVIFile_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, ckid: u32, lpdata: *const ::core::ffi::c_void, cbdata: i32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn WriteData<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IAVIFile_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, ckid: u32, lpdata: *mut ::core::ffi::c_void, cbdata: i32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.WriteData(::core::mem::transmute_copy(&ckid), ::core::mem::transmute_copy(&lpdata), ::core::mem::transmute_copy(&cbdata)).into()
@@ -146,13 +146,13 @@ pub trait IAVIStream_Impl: Sized {
     fn Info(&self, psi: *mut AVISTREAMINFOW, lsize: i32) -> ::windows::core::Result<()>;
     fn FindSample(&self, lpos: i32, lflags: i32) -> i32;
     fn ReadFormat(&self, lpos: i32, lpformat: *mut ::core::ffi::c_void, lpcbformat: *mut i32) -> ::windows::core::Result<()>;
-    fn SetFormat(&self, lpos: i32, lpformat: *const ::core::ffi::c_void, cbformat: i32) -> ::windows::core::Result<()>;
+    fn SetFormat(&self, lpos: i32, lpformat: *mut ::core::ffi::c_void, cbformat: i32) -> ::windows::core::Result<()>;
     fn Read(&self, lstart: i32, lsamples: i32, lpbuffer: *mut ::core::ffi::c_void, cbbuffer: i32, plbytes: *mut i32, plsamples: *mut i32) -> ::windows::core::Result<()>;
-    fn Write(&self, lstart: i32, lsamples: i32, lpbuffer: *const ::core::ffi::c_void, cbbuffer: i32, dwflags: u32, plsampwritten: *mut i32, plbyteswritten: *mut i32) -> ::windows::core::Result<()>;
+    fn Write(&self, lstart: i32, lsamples: i32, lpbuffer: *mut ::core::ffi::c_void, cbbuffer: i32, dwflags: u32, plsampwritten: *mut i32, plbyteswritten: *mut i32) -> ::windows::core::Result<()>;
     fn Delete(&self, lstart: i32, lsamples: i32) -> ::windows::core::Result<()>;
     fn ReadData(&self, fcc: u32, lp: *mut ::core::ffi::c_void, lpcb: *mut i32) -> ::windows::core::Result<()>;
-    fn WriteData(&self, fcc: u32, lp: *const ::core::ffi::c_void, cb: i32) -> ::windows::core::Result<()>;
-    fn SetInfo(&self, lpinfo: *const AVISTREAMINFOW, cbinfo: i32) -> ::windows::core::Result<()>;
+    fn WriteData(&self, fcc: u32, lp: *mut ::core::ffi::c_void, cb: i32) -> ::windows::core::Result<()>;
+    fn SetInfo(&self, lpinfo: *mut AVISTREAMINFOW, cbinfo: i32) -> ::windows::core::Result<()>;
 }
 #[cfg(feature = "Win32_Foundation")]
 impl ::windows::core::RuntimeName for IAVIStream {}
@@ -179,7 +179,7 @@ impl IAVIStream_Vtbl {
             let this = (*this).get_impl();
             this.ReadFormat(::core::mem::transmute_copy(&lpos), ::core::mem::transmute_copy(&lpformat), ::core::mem::transmute_copy(&lpcbformat)).into()
         }
-        unsafe extern "system" fn SetFormat<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IAVIStream_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, lpos: i32, lpformat: *const ::core::ffi::c_void, cbformat: i32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn SetFormat<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IAVIStream_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, lpos: i32, lpformat: *mut ::core::ffi::c_void, cbformat: i32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.SetFormat(::core::mem::transmute_copy(&lpos), ::core::mem::transmute_copy(&lpformat), ::core::mem::transmute_copy(&cbformat)).into()
@@ -189,7 +189,7 @@ impl IAVIStream_Vtbl {
             let this = (*this).get_impl();
             this.Read(::core::mem::transmute_copy(&lstart), ::core::mem::transmute_copy(&lsamples), ::core::mem::transmute_copy(&lpbuffer), ::core::mem::transmute_copy(&cbbuffer), ::core::mem::transmute_copy(&plbytes), ::core::mem::transmute_copy(&plsamples)).into()
         }
-        unsafe extern "system" fn Write<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IAVIStream_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, lstart: i32, lsamples: i32, lpbuffer: *const ::core::ffi::c_void, cbbuffer: i32, dwflags: u32, plsampwritten: *mut i32, plbyteswritten: *mut i32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn Write<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IAVIStream_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, lstart: i32, lsamples: i32, lpbuffer: *mut ::core::ffi::c_void, cbbuffer: i32, dwflags: u32, plsampwritten: *mut i32, plbyteswritten: *mut i32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.Write(::core::mem::transmute_copy(&lstart), ::core::mem::transmute_copy(&lsamples), ::core::mem::transmute_copy(&lpbuffer), ::core::mem::transmute_copy(&cbbuffer), ::core::mem::transmute_copy(&dwflags), ::core::mem::transmute_copy(&plsampwritten), ::core::mem::transmute_copy(&plbyteswritten)).into()
@@ -204,12 +204,12 @@ impl IAVIStream_Vtbl {
             let this = (*this).get_impl();
             this.ReadData(::core::mem::transmute_copy(&fcc), ::core::mem::transmute_copy(&lp), ::core::mem::transmute_copy(&lpcb)).into()
         }
-        unsafe extern "system" fn WriteData<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IAVIStream_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, fcc: u32, lp: *const ::core::ffi::c_void, cb: i32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn WriteData<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IAVIStream_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, fcc: u32, lp: *mut ::core::ffi::c_void, cb: i32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.WriteData(::core::mem::transmute_copy(&fcc), ::core::mem::transmute_copy(&lp), ::core::mem::transmute_copy(&cb)).into()
         }
-        unsafe extern "system" fn SetInfo<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IAVIStream_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, lpinfo: *const AVISTREAMINFOW, cbinfo: i32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn SetInfo<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IAVIStream_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, lpinfo: *mut AVISTREAMINFOW, cbinfo: i32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.SetInfo(::core::mem::transmute_copy(&lpinfo), ::core::mem::transmute_copy(&cbinfo)).into()
@@ -261,7 +261,7 @@ pub trait IGetFrame_Impl: Sized {
     fn GetFrame(&self, lpos: i32) -> *mut ::core::ffi::c_void;
     fn Begin(&self, lstart: i32, lend: i32, lrate: i32) -> ::windows::core::Result<()>;
     fn End(&self) -> ::windows::core::Result<()>;
-    fn SetFormat(&self, lpbi: *const super::super::Graphics::Gdi::BITMAPINFOHEADER, lpbits: *const ::core::ffi::c_void, x: i32, y: i32, dx: i32, dy: i32) -> ::windows::core::Result<()>;
+    fn SetFormat(&self, lpbi: *mut super::super::Graphics::Gdi::BITMAPINFOHEADER, lpbits: *mut ::core::ffi::c_void, x: i32, y: i32, dx: i32, dy: i32) -> ::windows::core::Result<()>;
 }
 #[cfg(feature = "Win32_Graphics_Gdi")]
 impl ::windows::core::RuntimeName for IGetFrame {}
@@ -283,7 +283,7 @@ impl IGetFrame_Vtbl {
             let this = (*this).get_impl();
             this.End().into()
         }
-        unsafe extern "system" fn SetFormat<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IGetFrame_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, lpbi: *const super::super::Graphics::Gdi::BITMAPINFOHEADER, lpbits: *const ::core::ffi::c_void, x: i32, y: i32, dx: i32, dy: i32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn SetFormat<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IGetFrame_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, lpbi: *mut super::super::Graphics::Gdi::BITMAPINFOHEADER, lpbits: *mut ::core::ffi::c_void, x: i32, y: i32, dx: i32, dy: i32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.SetFormat(::core::mem::transmute_copy(&lpbi), ::core::mem::transmute_copy(&lpbits), ::core::mem::transmute_copy(&x), ::core::mem::transmute_copy(&y), ::core::mem::transmute_copy(&dx), ::core::mem::transmute_copy(&dy)).into()

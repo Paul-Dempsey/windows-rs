@@ -126,7 +126,7 @@ extern "system" {
     #[doc = "*Required features: `\"Win32_System_SystemInformation\"`*"]
     pub fn RtlOsDeploymentState(flags: u32) -> OS_DEPLOYEMENT_STATE_VALUES;
     #[doc = "*Required features: `\"Win32_System_SystemInformation\"`*"]
-    pub fn RtlSwitchedVVI(versioninfo: *const OSVERSIONINFOEXW, typemask: u32, conditionmask: u64) -> u32;
+    pub fn RtlSwitchedVVI(versioninfo: *mut OSVERSIONINFOEXW, typemask: u32, conditionmask: u64) -> u32;
     #[doc = "*Required features: `\"Win32_System_SystemInformation\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
     pub fn SetComputerNameA(lpcomputername: ::windows_sys::core::PCSTR) -> super::super::Foundation::BOOL;

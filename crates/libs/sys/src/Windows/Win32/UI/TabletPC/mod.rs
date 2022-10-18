@@ -4,7 +4,7 @@ extern "system" {
     #[cfg(feature = "Win32_Graphics_Gdi")]
     pub fn AddStroke(hrc: HRECOCONTEXT, ppacketdesc: *const PACKET_DESCRIPTION, cbpacket: u32, ppacket: *const u8, pxform: *const super::super::Graphics::Gdi::XFORM) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_UI_TabletPC\"`*"]
-    pub fn AddWordsToWordList(hwl: HRECOWORDLIST, pwcwords: ::windows_sys::core::PCWSTR) -> ::windows_sys::core::HRESULT;
+    pub fn AddWordsToWordList(hwl: HRECOWORDLIST, pwcwords: ::windows_sys::core::PWSTR) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_UI_TabletPC\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
     pub fn AdviseInkChange(hrc: HRECOCONTEXT, bnewstroke: super::super::Foundation::BOOL) -> ::windows_sys::core::HRESULT;
@@ -41,7 +41,7 @@ extern "system" {
     #[doc = "*Required features: `\"Win32_UI_TabletPC\"`*"]
     pub fn LoadCachedAttributes(clsid: ::windows_sys::core::GUID, precoattributes: *mut RECO_ATTRS) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_UI_TabletPC\"`*"]
-    pub fn MakeWordList(hrec: HRECOGNIZER, pbuffer: ::windows_sys::core::PCWSTR, phwl: *mut HRECOWORDLIST) -> ::windows_sys::core::HRESULT;
+    pub fn MakeWordList(hrec: HRECOGNIZER, pbuffer: ::windows_sys::core::PWSTR, phwl: *mut HRECOWORDLIST) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_UI_TabletPC\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
     pub fn Process(hrc: HRECOCONTEXT, pbpartialprocessing: *mut super::super::Foundation::BOOL) -> ::windows_sys::core::HRESULT;

@@ -619,18 +619,18 @@ impl IMXXMLFilter_Vtbl {
 }
 pub trait ISAXAttributes_Impl: Sized {
     fn getLength(&self) -> ::windows::core::Result<i32>;
-    fn getURI(&self, nindex: i32, ppwchuri: *mut *mut u16, pcchuri: *mut i32) -> ::windows::core::Result<()>;
-    fn getLocalName(&self, nindex: i32, ppwchlocalname: *mut *mut u16, pcchlocalname: *mut i32) -> ::windows::core::Result<()>;
-    fn getQName(&self, nindex: i32, ppwchqname: *mut *mut u16, pcchqname: *mut i32) -> ::windows::core::Result<()>;
-    fn getName(&self, nindex: i32, ppwchuri: *mut *mut u16, pcchuri: *mut i32, ppwchlocalname: *mut *mut u16, pcchlocalname: *mut i32, ppwchqname: *mut *mut u16, pcchqname: *mut i32) -> ::windows::core::Result<()>;
+    fn getURI(&self, nindex: i32, ppwchuri: *const *const u16, pcchuri: *mut i32) -> ::windows::core::Result<()>;
+    fn getLocalName(&self, nindex: i32, ppwchlocalname: *const *const u16, pcchlocalname: *mut i32) -> ::windows::core::Result<()>;
+    fn getQName(&self, nindex: i32, ppwchqname: *const *const u16, pcchqname: *mut i32) -> ::windows::core::Result<()>;
+    fn getName(&self, nindex: i32, ppwchuri: *const *const u16, pcchuri: *mut i32, ppwchlocalname: *const *const u16, pcchlocalname: *mut i32, ppwchqname: *const *const u16, pcchqname: *mut i32) -> ::windows::core::Result<()>;
     fn getIndexFromName(&self, pwchuri: &::windows::core::PCWSTR, cchuri: i32, pwchlocalname: &::windows::core::PCWSTR, cchlocalname: i32) -> ::windows::core::Result<i32>;
     fn getIndexFromQName(&self, pwchqname: &::windows::core::PCWSTR, cchqname: i32) -> ::windows::core::Result<i32>;
-    fn getType(&self, nindex: i32, ppwchtype: *mut *mut u16, pcchtype: *mut i32) -> ::windows::core::Result<()>;
-    fn getTypeFromName(&self, pwchuri: &::windows::core::PCWSTR, cchuri: i32, pwchlocalname: &::windows::core::PCWSTR, cchlocalname: i32, ppwchtype: *mut *mut u16, pcchtype: *mut i32) -> ::windows::core::Result<()>;
-    fn getTypeFromQName(&self, pwchqname: &::windows::core::PCWSTR, cchqname: i32, ppwchtype: *mut *mut u16, pcchtype: *mut i32) -> ::windows::core::Result<()>;
-    fn getValue(&self, nindex: i32, ppwchvalue: *mut *mut u16, pcchvalue: *mut i32) -> ::windows::core::Result<()>;
-    fn getValueFromName(&self, pwchuri: &::windows::core::PCWSTR, cchuri: i32, pwchlocalname: &::windows::core::PCWSTR, cchlocalname: i32, ppwchvalue: *mut *mut u16, pcchvalue: *mut i32) -> ::windows::core::Result<()>;
-    fn getValueFromQName(&self, pwchqname: &::windows::core::PCWSTR, cchqname: i32, ppwchvalue: *mut *mut u16, pcchvalue: *mut i32) -> ::windows::core::Result<()>;
+    fn getType(&self, nindex: i32, ppwchtype: *const *const u16, pcchtype: *mut i32) -> ::windows::core::Result<()>;
+    fn getTypeFromName(&self, pwchuri: &::windows::core::PCWSTR, cchuri: i32, pwchlocalname: &::windows::core::PCWSTR, cchlocalname: i32, ppwchtype: *const *const u16, pcchtype: *mut i32) -> ::windows::core::Result<()>;
+    fn getTypeFromQName(&self, pwchqname: &::windows::core::PCWSTR, cchqname: i32, ppwchtype: *const *const u16, pcchtype: *mut i32) -> ::windows::core::Result<()>;
+    fn getValue(&self, nindex: i32, ppwchvalue: *const *const u16, pcchvalue: *mut i32) -> ::windows::core::Result<()>;
+    fn getValueFromName(&self, pwchuri: &::windows::core::PCWSTR, cchuri: i32, pwchlocalname: &::windows::core::PCWSTR, cchlocalname: i32, ppwchvalue: *const *const u16, pcchvalue: *mut i32) -> ::windows::core::Result<()>;
+    fn getValueFromQName(&self, pwchqname: &::windows::core::PCWSTR, cchqname: i32, ppwchvalue: *const *const u16, pcchvalue: *mut i32) -> ::windows::core::Result<()>;
 }
 impl ::windows::core::RuntimeName for ISAXAttributes {}
 impl ISAXAttributes_Vtbl {
@@ -646,22 +646,22 @@ impl ISAXAttributes_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn getURI<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: ISAXAttributes_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, nindex: i32, ppwchuri: *mut *mut u16, pcchuri: *mut i32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn getURI<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: ISAXAttributes_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, nindex: i32, ppwchuri: *const *const u16, pcchuri: *mut i32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.getURI(::core::mem::transmute_copy(&nindex), ::core::mem::transmute_copy(&ppwchuri), ::core::mem::transmute_copy(&pcchuri)).into()
         }
-        unsafe extern "system" fn getLocalName<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: ISAXAttributes_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, nindex: i32, ppwchlocalname: *mut *mut u16, pcchlocalname: *mut i32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn getLocalName<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: ISAXAttributes_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, nindex: i32, ppwchlocalname: *const *const u16, pcchlocalname: *mut i32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.getLocalName(::core::mem::transmute_copy(&nindex), ::core::mem::transmute_copy(&ppwchlocalname), ::core::mem::transmute_copy(&pcchlocalname)).into()
         }
-        unsafe extern "system" fn getQName<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: ISAXAttributes_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, nindex: i32, ppwchqname: *mut *mut u16, pcchqname: *mut i32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn getQName<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: ISAXAttributes_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, nindex: i32, ppwchqname: *const *const u16, pcchqname: *mut i32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.getQName(::core::mem::transmute_copy(&nindex), ::core::mem::transmute_copy(&ppwchqname), ::core::mem::transmute_copy(&pcchqname)).into()
         }
-        unsafe extern "system" fn getName<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: ISAXAttributes_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, nindex: i32, ppwchuri: *mut *mut u16, pcchuri: *mut i32, ppwchlocalname: *mut *mut u16, pcchlocalname: *mut i32, ppwchqname: *mut *mut u16, pcchqname: *mut i32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn getName<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: ISAXAttributes_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, nindex: i32, ppwchuri: *const *const u16, pcchuri: *mut i32, ppwchlocalname: *const *const u16, pcchlocalname: *mut i32, ppwchqname: *const *const u16, pcchqname: *mut i32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.getName(::core::mem::transmute_copy(&nindex), ::core::mem::transmute_copy(&ppwchuri), ::core::mem::transmute_copy(&pcchuri), ::core::mem::transmute_copy(&ppwchlocalname), ::core::mem::transmute_copy(&pcchlocalname), ::core::mem::transmute_copy(&ppwchqname), ::core::mem::transmute_copy(&pcchqname)).into()
@@ -688,32 +688,32 @@ impl ISAXAttributes_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn getType<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: ISAXAttributes_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, nindex: i32, ppwchtype: *mut *mut u16, pcchtype: *mut i32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn getType<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: ISAXAttributes_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, nindex: i32, ppwchtype: *const *const u16, pcchtype: *mut i32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.getType(::core::mem::transmute_copy(&nindex), ::core::mem::transmute_copy(&ppwchtype), ::core::mem::transmute_copy(&pcchtype)).into()
         }
-        unsafe extern "system" fn getTypeFromName<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: ISAXAttributes_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, pwchuri: ::windows::core::PCWSTR, cchuri: i32, pwchlocalname: ::windows::core::PCWSTR, cchlocalname: i32, ppwchtype: *mut *mut u16, pcchtype: *mut i32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn getTypeFromName<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: ISAXAttributes_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, pwchuri: ::windows::core::PCWSTR, cchuri: i32, pwchlocalname: ::windows::core::PCWSTR, cchlocalname: i32, ppwchtype: *const *const u16, pcchtype: *mut i32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.getTypeFromName(::core::mem::transmute(&pwchuri), ::core::mem::transmute_copy(&cchuri), ::core::mem::transmute(&pwchlocalname), ::core::mem::transmute_copy(&cchlocalname), ::core::mem::transmute_copy(&ppwchtype), ::core::mem::transmute_copy(&pcchtype)).into()
         }
-        unsafe extern "system" fn getTypeFromQName<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: ISAXAttributes_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, pwchqname: ::windows::core::PCWSTR, cchqname: i32, ppwchtype: *mut *mut u16, pcchtype: *mut i32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn getTypeFromQName<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: ISAXAttributes_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, pwchqname: ::windows::core::PCWSTR, cchqname: i32, ppwchtype: *const *const u16, pcchtype: *mut i32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.getTypeFromQName(::core::mem::transmute(&pwchqname), ::core::mem::transmute_copy(&cchqname), ::core::mem::transmute_copy(&ppwchtype), ::core::mem::transmute_copy(&pcchtype)).into()
         }
-        unsafe extern "system" fn getValue<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: ISAXAttributes_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, nindex: i32, ppwchvalue: *mut *mut u16, pcchvalue: *mut i32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn getValue<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: ISAXAttributes_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, nindex: i32, ppwchvalue: *const *const u16, pcchvalue: *mut i32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.getValue(::core::mem::transmute_copy(&nindex), ::core::mem::transmute_copy(&ppwchvalue), ::core::mem::transmute_copy(&pcchvalue)).into()
         }
-        unsafe extern "system" fn getValueFromName<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: ISAXAttributes_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, pwchuri: ::windows::core::PCWSTR, cchuri: i32, pwchlocalname: ::windows::core::PCWSTR, cchlocalname: i32, ppwchvalue: *mut *mut u16, pcchvalue: *mut i32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn getValueFromName<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: ISAXAttributes_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, pwchuri: ::windows::core::PCWSTR, cchuri: i32, pwchlocalname: ::windows::core::PCWSTR, cchlocalname: i32, ppwchvalue: *const *const u16, pcchvalue: *mut i32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.getValueFromName(::core::mem::transmute(&pwchuri), ::core::mem::transmute_copy(&cchuri), ::core::mem::transmute(&pwchlocalname), ::core::mem::transmute_copy(&cchlocalname), ::core::mem::transmute_copy(&ppwchvalue), ::core::mem::transmute_copy(&pcchvalue)).into()
         }
-        unsafe extern "system" fn getValueFromQName<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: ISAXAttributes_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, pwchqname: ::windows::core::PCWSTR, cchqname: i32, ppwchvalue: *mut *mut u16, pcchvalue: *mut i32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn getValueFromQName<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: ISAXAttributes_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, pwchqname: ::windows::core::PCWSTR, cchqname: i32, ppwchvalue: *const *const u16, pcchvalue: *mut i32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.getValueFromQName(::core::mem::transmute(&pwchqname), ::core::mem::transmute_copy(&cchqname), ::core::mem::transmute_copy(&ppwchvalue), ::core::mem::transmute_copy(&pcchvalue)).into()
@@ -1022,8 +1022,8 @@ impl ISAXLexicalHandler_Vtbl {
 pub trait ISAXLocator_Impl: Sized {
     fn getColumnNumber(&self) -> ::windows::core::Result<i32>;
     fn getLineNumber(&self) -> ::windows::core::Result<i32>;
-    fn getPublicId(&self) -> ::windows::core::Result<*mut u16>;
-    fn getSystemId(&self) -> ::windows::core::Result<*mut u16>;
+    fn getPublicId(&self) -> ::windows::core::Result<*const u16>;
+    fn getSystemId(&self) -> ::windows::core::Result<*const u16>;
 }
 impl ::windows::core::RuntimeName for ISAXLocator {}
 impl ISAXLocator_Vtbl {
@@ -1050,7 +1050,7 @@ impl ISAXLocator_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn getPublicId<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: ISAXLocator_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, ppwchpublicid: *mut *mut u16) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn getPublicId<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: ISAXLocator_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, ppwchpublicid: *const *const u16) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.getPublicId() {
@@ -1061,7 +1061,7 @@ impl ISAXLocator_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn getSystemId<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: ISAXLocator_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, ppwchsystemid: *mut *mut u16) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn getSystemId<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: ISAXLocator_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, ppwchsystemid: *const *const u16) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.getSystemId() {
@@ -1134,9 +1134,9 @@ pub trait ISAXXMLReader_Impl: Sized {
     fn putDTDHandler(&self, phandler: &::core::option::Option<ISAXDTDHandler>) -> ::windows::core::Result<()>;
     fn getErrorHandler(&self) -> ::windows::core::Result<ISAXErrorHandler>;
     fn putErrorHandler(&self, phandler: &::core::option::Option<ISAXErrorHandler>) -> ::windows::core::Result<()>;
-    fn getBaseURL(&self) -> ::windows::core::Result<*mut u16>;
+    fn getBaseURL(&self) -> ::windows::core::Result<*const u16>;
     fn putBaseURL(&self, pwchbaseurl: &::windows::core::PCWSTR) -> ::windows::core::Result<()>;
-    fn getSecureBaseURL(&self) -> ::windows::core::Result<*mut u16>;
+    fn getSecureBaseURL(&self) -> ::windows::core::Result<*const u16>;
     fn putSecureBaseURL(&self, pwchsecurebaseurl: &::windows::core::PCWSTR) -> ::windows::core::Result<()>;
     fn parse(&self, varinput: &super::super::super::System::Com::VARIANT) -> ::windows::core::Result<()>;
     fn parseURL(&self, pwchurl: &::windows::core::PCWSTR) -> ::windows::core::Result<()>;
@@ -1242,7 +1242,7 @@ impl ISAXXMLReader_Vtbl {
             let this = (*this).get_impl();
             this.putErrorHandler(::core::mem::transmute(&phandler)).into()
         }
-        unsafe extern "system" fn getBaseURL<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: ISAXXMLReader_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, ppwchbaseurl: *mut *mut u16) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn getBaseURL<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: ISAXXMLReader_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, ppwchbaseurl: *const *const u16) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.getBaseURL() {
@@ -1258,7 +1258,7 @@ impl ISAXXMLReader_Vtbl {
             let this = (*this).get_impl();
             this.putBaseURL(::core::mem::transmute(&pwchbaseurl)).into()
         }
-        unsafe extern "system" fn getSecureBaseURL<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: ISAXXMLReader_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, ppwchsecurebaseurl: *mut *mut u16) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn getSecureBaseURL<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: ISAXXMLReader_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, ppwchsecurebaseurl: *const *const u16) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             match this.getSecureBaseURL() {

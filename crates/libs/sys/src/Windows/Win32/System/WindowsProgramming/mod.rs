@@ -27,10 +27,10 @@ extern "system" {
     pub fn ConvertPerformanceCounterToAuxiliaryCounter(ullperformancecountervalue: u64, lpauxiliarycountervalue: *mut u64, lpconversionerror: *mut u64) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_System_WindowsProgramming\"`, `\"Win32_Foundation\"`, `\"Win32_Security\"`*"]
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_Security"))]
-    pub fn CreateWaitableTimerA(lptimerattributes: *const super::super::Security::SECURITY_ATTRIBUTES, bmanualreset: super::super::Foundation::BOOL, lptimername: ::windows_sys::core::PCSTR) -> super::super::Foundation::HANDLE;
+    pub fn CreateWaitableTimerA(lptimerattributes: *mut super::super::Security::SECURITY_ATTRIBUTES, bmanualreset: super::super::Foundation::BOOL, lptimername: ::windows_sys::core::PCSTR) -> super::super::Foundation::HANDLE;
     #[doc = "*Required features: `\"Win32_System_WindowsProgramming\"`, `\"Win32_Foundation\"`, `\"Win32_Security\"`*"]
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_Security"))]
-    pub fn CreateWaitableTimerExA(lptimerattributes: *const super::super::Security::SECURITY_ATTRIBUTES, lptimername: ::windows_sys::core::PCSTR, dwflags: u32, dwdesiredaccess: u32) -> super::super::Foundation::HANDLE;
+    pub fn CreateWaitableTimerExA(lptimerattributes: *mut super::super::Security::SECURITY_ATTRIBUTES, lptimername: ::windows_sys::core::PCSTR, dwflags: u32, dwdesiredaccess: u32) -> super::super::Foundation::HANDLE;
     #[doc = "*Required features: `\"Win32_System_WindowsProgramming\"`*"]
     pub fn DCIBeginAccess(pdci: *mut DCISURFACEINFO, x: i32, y: i32, dx: i32, dy: i32) -> i32;
     #[doc = "*Required features: `\"Win32_System_WindowsProgramming\"`, `\"Win32_Graphics_Gdi\"`*"]
@@ -108,7 +108,7 @@ extern "system" {
     pub fn FileSaveRestoreOnINFW(hwnd: super::super::Foundation::HWND, psztitle: ::windows_sys::core::PCWSTR, pszinf: ::windows_sys::core::PCWSTR, pszsection: ::windows_sys::core::PCWSTR, pszbackupdir: ::windows_sys::core::PCWSTR, pszbasebackupfile: ::windows_sys::core::PCWSTR, dwflags: u32) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_System_WindowsProgramming\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub fn FileSaveRestoreW(hdlg: super::super::Foundation::HWND, lpfilelist: ::windows_sys::core::PCWSTR, lpdir: ::windows_sys::core::PCWSTR, lpbasename: ::windows_sys::core::PCWSTR, dwflags: u32) -> ::windows_sys::core::HRESULT;
+    pub fn FileSaveRestoreW(hdlg: super::super::Foundation::HWND, lpfilelist: ::windows_sys::core::PWSTR, lpdir: ::windows_sys::core::PCWSTR, lpbasename: ::windows_sys::core::PCWSTR, dwflags: u32) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_System_WindowsProgramming\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
     pub fn FileTimeToDosDateTime(lpfiletime: *const super::super::Foundation::FILETIME, lpfatdate: *mut u16, lpfattime: *mut u16) -> super::super::Foundation::BOOL;
@@ -240,7 +240,7 @@ extern "system" {
     pub fn IsBadHugeReadPtr(lp: *const ::core::ffi::c_void, ucb: usize) -> super::super::Foundation::BOOL;
     #[doc = "*Required features: `\"Win32_System_WindowsProgramming\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub fn IsBadHugeWritePtr(lp: *const ::core::ffi::c_void, ucb: usize) -> super::super::Foundation::BOOL;
+    pub fn IsBadHugeWritePtr(lp: *mut ::core::ffi::c_void, ucb: usize) -> super::super::Foundation::BOOL;
     #[doc = "*Required features: `\"Win32_System_WindowsProgramming\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
     pub fn IsNTAdmin(dwreserved: u32, lpdwreserved: *mut u32) -> super::super::Foundation::BOOL;
@@ -252,7 +252,7 @@ extern "system" {
     pub fn IsTokenUntrusted(tokenhandle: super::super::Foundation::HANDLE) -> super::super::Foundation::BOOL;
     #[doc = "*Required features: `\"Win32_System_WindowsProgramming\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub fn LaunchINFSectionExW(hwnd: super::super::Foundation::HWND, hinstance: super::super::Foundation::HINSTANCE, pszparms: ::windows_sys::core::PCWSTR, nshow: i32) -> ::windows_sys::core::HRESULT;
+    pub fn LaunchINFSectionExW(hwnd: super::super::Foundation::HWND, hinstance: super::super::Foundation::HINSTANCE, pszparms: ::windows_sys::core::PWSTR, nshow: i32) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_System_WindowsProgramming\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
     pub fn LaunchINFSectionW(hwndowner: super::super::Foundation::HWND, hinstance: super::super::Foundation::HINSTANCE, pszparams: ::windows_sys::core::PWSTR, nshow: i32) -> i32;
@@ -275,7 +275,7 @@ extern "system" {
     pub fn NtDeviceIoControlFile(filehandle: super::super::Foundation::HANDLE, event: super::super::Foundation::HANDLE, apcroutine: PIO_APC_ROUTINE, apccontext: *mut ::core::ffi::c_void, iostatusblock: *mut IO_STATUS_BLOCK, iocontrolcode: u32, inputbuffer: *mut ::core::ffi::c_void, inputbufferlength: u32, outputbuffer: *mut ::core::ffi::c_void, outputbufferlength: u32) -> super::super::Foundation::NTSTATUS;
     #[doc = "*Required features: `\"Win32_System_WindowsProgramming\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub fn NtNotifyChangeMultipleKeys(masterkeyhandle: super::super::Foundation::HANDLE, count: u32, subordinateobjects: *const OBJECT_ATTRIBUTES, event: super::super::Foundation::HANDLE, apcroutine: PIO_APC_ROUTINE, apccontext: *const ::core::ffi::c_void, iostatusblock: *mut IO_STATUS_BLOCK, completionfilter: u32, watchtree: super::super::Foundation::BOOLEAN, buffer: *mut ::core::ffi::c_void, buffersize: u32, asynchronous: super::super::Foundation::BOOLEAN) -> super::super::Foundation::NTSTATUS;
+    pub fn NtNotifyChangeMultipleKeys(masterkeyhandle: super::super::Foundation::HANDLE, count: u32, subordinateobjects: *mut OBJECT_ATTRIBUTES, event: super::super::Foundation::HANDLE, apcroutine: PIO_APC_ROUTINE, apccontext: *mut ::core::ffi::c_void, iostatusblock: *mut IO_STATUS_BLOCK, completionfilter: u32, watchtree: super::super::Foundation::BOOLEAN, buffer: *mut ::core::ffi::c_void, buffersize: u32, asynchronous: super::super::Foundation::BOOLEAN) -> super::super::Foundation::NTSTATUS;
     #[doc = "*Required features: `\"Win32_System_WindowsProgramming\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
     pub fn NtOpenFile(filehandle: *mut super::super::Foundation::HANDLE, desiredaccess: u32, objectattributes: *mut OBJECT_ATTRIBUTES, iostatusblock: *mut IO_STATUS_BLOCK, shareaccess: u32, openoptions: u32) -> super::super::Foundation::NTSTATUS;
@@ -296,10 +296,10 @@ extern "system" {
     pub fn NtQueryTimerResolution(maximumtime: *mut u32, minimumtime: *mut u32, currenttime: *mut u32) -> super::super::Foundation::NTSTATUS;
     #[doc = "*Required features: `\"Win32_System_WindowsProgramming\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub fn NtRenameKey(keyhandle: super::super::Foundation::HANDLE, newname: *const super::super::Foundation::UNICODE_STRING) -> super::super::Foundation::NTSTATUS;
+    pub fn NtRenameKey(keyhandle: super::super::Foundation::HANDLE, newname: *mut super::super::Foundation::UNICODE_STRING) -> super::super::Foundation::NTSTATUS;
     #[doc = "*Required features: `\"Win32_System_WindowsProgramming\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub fn NtSetInformationKey(keyhandle: super::super::Foundation::HANDLE, keysetinformationclass: KEY_SET_INFORMATION_CLASS, keysetinformation: *const ::core::ffi::c_void, keysetinformationlength: u32) -> super::super::Foundation::NTSTATUS;
+    pub fn NtSetInformationKey(keyhandle: super::super::Foundation::HANDLE, keysetinformationclass: KEY_SET_INFORMATION_CLASS, keysetinformation: *mut ::core::ffi::c_void, keysetinformationlength: u32) -> super::super::Foundation::NTSTATUS;
     #[doc = "*Required features: `\"Win32_System_WindowsProgramming\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
     pub fn NtWaitForSingleObject(handle: super::super::Foundation::HANDLE, alertable: super::super::Foundation::BOOLEAN, timeout: *mut i64) -> super::super::Foundation::NTSTATUS;
@@ -340,7 +340,7 @@ extern "system" {
     #[doc = "*Required features: `\"Win32_System_WindowsProgramming\"`*"]
     pub fn QueryUnbiasedInterruptTimePrecise(lpunbiasedinterrupttimeprecise: *mut u64);
     #[doc = "*Required features: `\"Win32_System_WindowsProgramming\"`*"]
-    pub fn RaiseCustomSystemEventTrigger(customsystemeventtriggerconfig: *const CUSTOM_SYSTEM_EVENT_TRIGGER_CONFIG) -> u32;
+    pub fn RaiseCustomSystemEventTrigger(customsystemeventtriggerconfig: *mut CUSTOM_SYSTEM_EVENT_TRIGGER_CONFIG) -> u32;
     #[doc = "*Required features: `\"Win32_System_WindowsProgramming\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
     pub fn RebootCheckOnInstallA(hwnd: super::super::Foundation::HWND, pszinf: ::windows_sys::core::PCSTR, pszsec: ::windows_sys::core::PCSTR, dwreserved: u32) -> ::windows_sys::core::HRESULT;
@@ -377,7 +377,7 @@ extern "system" {
     pub fn RegSaveRestoreW(hwnd: super::super::Foundation::HWND, psztitlestring: ::windows_sys::core::PCWSTR, hkbckupkey: super::Registry::HKEY, pcszrootkey: ::windows_sys::core::PCWSTR, pcszsubkey: ::windows_sys::core::PCWSTR, pcszvaluename: ::windows_sys::core::PCWSTR, dwflags: u32) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_System_WindowsProgramming\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub fn ReplacePartitionUnit(targetpartition: ::windows_sys::core::PCWSTR, sparepartition: ::windows_sys::core::PCWSTR, flags: u32) -> super::super::Foundation::BOOL;
+    pub fn ReplacePartitionUnit(targetpartition: ::windows_sys::core::PWSTR, sparepartition: ::windows_sys::core::PWSTR, flags: u32) -> super::super::Foundation::BOOL;
     #[doc = "*Required features: `\"Win32_System_WindowsProgramming\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
     pub fn RequestDeviceWakeup(hdevice: super::super::Foundation::HANDLE) -> super::super::Foundation::BOOL;
@@ -420,7 +420,7 @@ extern "system" {
     #[cfg(feature = "Win32_Foundation")]
     pub fn RtlLocalTimeToSystemTime(localtime: *mut i64, systemtime: *mut i64) -> super::super::Foundation::NTSTATUS;
     #[doc = "*Required features: `\"Win32_System_WindowsProgramming\"`*"]
-    pub fn RtlRaiseCustomSystemEventTrigger(triggerconfig: *const CUSTOM_SYSTEM_EVENT_TRIGGER_CONFIG) -> u32;
+    pub fn RtlRaiseCustomSystemEventTrigger(triggerconfig: *mut CUSTOM_SYSTEM_EVENT_TRIGGER_CONFIG) -> u32;
     #[doc = "*Required features: `\"Win32_System_WindowsProgramming\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
     pub fn RtlTimeToSecondsSince1970(time: *mut i64, elapsedseconds: *mut u32) -> super::super::Foundation::BOOLEAN;
@@ -432,7 +432,7 @@ extern "system" {
     pub fn RtlUnicodeStringToOemString(destinationstring: *mut super::Kernel::STRING, sourcestring: *mut super::super::Foundation::UNICODE_STRING, allocatedestinationstring: super::super::Foundation::BOOLEAN) -> super::super::Foundation::NTSTATUS;
     #[doc = "*Required features: `\"Win32_System_WindowsProgramming\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub fn RtlUnicodeToMultiByteSize(bytesinmultibytestring: *mut u32, unicodestring: ::windows_sys::core::PCWSTR, bytesinunicodestring: u32) -> super::super::Foundation::NTSTATUS;
+    pub fn RtlUnicodeToMultiByteSize(bytesinmultibytestring: *mut u32, unicodestring: ::windows_sys::core::PWSTR, bytesinunicodestring: u32) -> super::super::Foundation::NTSTATUS;
     #[doc = "*Required features: `\"Win32_System_WindowsProgramming\"`*"]
     pub fn RtlUniform(seed: *mut u32) -> u32;
     #[doc = "*Required features: `\"Win32_System_WindowsProgramming\"`, `\"Win32_Foundation\"`*"]
@@ -449,19 +449,19 @@ extern "system" {
     pub fn SendIMEMessageExW(param0: super::super::Foundation::HWND, param1: super::super::Foundation::LPARAM) -> super::super::Foundation::LRESULT;
     #[doc = "*Required features: `\"Win32_System_WindowsProgramming\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub fn SetEnvironmentStringsA(newenvironment: ::windows_sys::core::PCSTR) -> super::super::Foundation::BOOL;
+    pub fn SetEnvironmentStringsA(newenvironment: ::windows_sys::core::PSTR) -> super::super::Foundation::BOOL;
     #[doc = "*Required features: `\"Win32_System_WindowsProgramming\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub fn SetFirmwareEnvironmentVariableA(lpname: ::windows_sys::core::PCSTR, lpguid: ::windows_sys::core::PCSTR, pvalue: *const ::core::ffi::c_void, nsize: u32) -> super::super::Foundation::BOOL;
+    pub fn SetFirmwareEnvironmentVariableA(lpname: ::windows_sys::core::PCSTR, lpguid: ::windows_sys::core::PCSTR, pvalue: *mut ::core::ffi::c_void, nsize: u32) -> super::super::Foundation::BOOL;
     #[doc = "*Required features: `\"Win32_System_WindowsProgramming\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub fn SetFirmwareEnvironmentVariableExA(lpname: ::windows_sys::core::PCSTR, lpguid: ::windows_sys::core::PCSTR, pvalue: *const ::core::ffi::c_void, nsize: u32, dwattributes: u32) -> super::super::Foundation::BOOL;
+    pub fn SetFirmwareEnvironmentVariableExA(lpname: ::windows_sys::core::PCSTR, lpguid: ::windows_sys::core::PCSTR, pvalue: *mut ::core::ffi::c_void, nsize: u32, dwattributes: u32) -> super::super::Foundation::BOOL;
     #[doc = "*Required features: `\"Win32_System_WindowsProgramming\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub fn SetFirmwareEnvironmentVariableExW(lpname: ::windows_sys::core::PCWSTR, lpguid: ::windows_sys::core::PCWSTR, pvalue: *const ::core::ffi::c_void, nsize: u32, dwattributes: u32) -> super::super::Foundation::BOOL;
+    pub fn SetFirmwareEnvironmentVariableExW(lpname: ::windows_sys::core::PCWSTR, lpguid: ::windows_sys::core::PCWSTR, pvalue: *mut ::core::ffi::c_void, nsize: u32, dwattributes: u32) -> super::super::Foundation::BOOL;
     #[doc = "*Required features: `\"Win32_System_WindowsProgramming\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub fn SetFirmwareEnvironmentVariableW(lpname: ::windows_sys::core::PCWSTR, lpguid: ::windows_sys::core::PCWSTR, pvalue: *const ::core::ffi::c_void, nsize: u32) -> super::super::Foundation::BOOL;
+    pub fn SetFirmwareEnvironmentVariableW(lpname: ::windows_sys::core::PCWSTR, lpguid: ::windows_sys::core::PCWSTR, pvalue: *mut ::core::ffi::c_void, nsize: u32) -> super::super::Foundation::BOOL;
     #[doc = "*Required features: `\"Win32_System_WindowsProgramming\"`*"]
     pub fn SetHandleCount(unumber: u32) -> u32;
     #[doc = "*Required features: `\"Win32_System_WindowsProgramming\"`, `\"Win32_Foundation\"`*"]
@@ -477,7 +477,7 @@ extern "system" {
     #[cfg(feature = "Win32_Foundation")]
     pub fn SignalObjectAndWait(hobjecttosignal: super::super::Foundation::HANDLE, hobjecttowaiton: super::super::Foundation::HANDLE, dwmilliseconds: u32, balertable: super::super::Foundation::BOOL) -> super::super::Foundation::WIN32_ERROR;
     #[doc = "*Required features: `\"Win32_System_WindowsProgramming\"`*"]
-    pub fn SubscribeFeatureStateChangeNotification(subscription: *mut FEATURE_STATE_CHANGE_SUBSCRIPTION, callback: PFEATURE_STATE_CHANGE_CALLBACK, context: *const ::core::ffi::c_void);
+    pub fn SubscribeFeatureStateChangeNotification(subscription: *mut FEATURE_STATE_CHANGE_SUBSCRIPTION, callback: PFEATURE_STATE_CHANGE_CALLBACK, context: *mut ::core::ffi::c_void);
     #[doc = "*Required features: `\"Win32_System_WindowsProgramming\"`*"]
     pub fn TranslateInfStringA(pszinffilename: ::windows_sys::core::PCSTR, pszinstallsection: ::windows_sys::core::PCSTR, psztranslatesection: ::windows_sys::core::PCSTR, psztranslatekey: ::windows_sys::core::PCSTR, pszbuffer: ::windows_sys::core::PSTR, cchbuffer: u32, pdwrequiredsize: *mut u32, pvreserved: *mut ::core::ffi::c_void) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_System_WindowsProgramming\"`*"]
@@ -525,10 +525,10 @@ extern "system" {
     pub fn WinWatchOpen(hwnd: super::super::Foundation::HWND) -> HWINWATCH;
     #[doc = "*Required features: `\"Win32_System_WindowsProgramming\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub fn WldpGetLockdownPolicy(hostinformation: *const WLDP_HOST_INFORMATION, lockdownstate: *mut u32, lockdownflags: u32) -> ::windows_sys::core::HRESULT;
+    pub fn WldpGetLockdownPolicy(hostinformation: *mut WLDP_HOST_INFORMATION, lockdownstate: *mut u32, lockdownflags: u32) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_System_WindowsProgramming\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub fn WldpIsClassInApprovedList(classid: *const ::windows_sys::core::GUID, hostinformation: *const WLDP_HOST_INFORMATION, isapproved: *mut super::super::Foundation::BOOL, optionalflags: u32) -> ::windows_sys::core::HRESULT;
+    pub fn WldpIsClassInApprovedList(classid: *const ::windows_sys::core::GUID, hostinformation: *mut WLDP_HOST_INFORMATION, isapproved: *mut super::super::Foundation::BOOL, optionalflags: u32) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_System_WindowsProgramming\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
     pub fn WldpIsDynamicCodePolicyEnabled(isenabled: *mut super::super::Foundation::BOOL) -> ::windows_sys::core::HRESULT;
@@ -536,7 +536,7 @@ extern "system" {
     pub fn WldpQueryDeviceSecurityInformation(information: *mut WLDP_DEVICE_SECURITY_INFORMATION, informationlength: u32, returnlength: *mut u32) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_System_WindowsProgramming\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub fn WldpQueryDynamicCodeTrust(filehandle: super::super::Foundation::HANDLE, baseimage: *const ::core::ffi::c_void, imagesize: u32) -> ::windows_sys::core::HRESULT;
+    pub fn WldpQueryDynamicCodeTrust(filehandle: super::super::Foundation::HANDLE, baseimage: *mut ::core::ffi::c_void, imagesize: u32) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_System_WindowsProgramming\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
     pub fn WldpSetDynamicCodeTrust(filehandle: super::super::Foundation::HANDLE) -> ::windows_sys::core::HRESULT;
@@ -554,10 +554,10 @@ extern "system" {
     pub fn WritePrivateProfileStringW(lpappname: ::windows_sys::core::PCWSTR, lpkeyname: ::windows_sys::core::PCWSTR, lpstring: ::windows_sys::core::PCWSTR, lpfilename: ::windows_sys::core::PCWSTR) -> super::super::Foundation::BOOL;
     #[doc = "*Required features: `\"Win32_System_WindowsProgramming\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub fn WritePrivateProfileStructA(lpszsection: ::windows_sys::core::PCSTR, lpszkey: ::windows_sys::core::PCSTR, lpstruct: *const ::core::ffi::c_void, usizestruct: u32, szfile: ::windows_sys::core::PCSTR) -> super::super::Foundation::BOOL;
+    pub fn WritePrivateProfileStructA(lpszsection: ::windows_sys::core::PCSTR, lpszkey: ::windows_sys::core::PCSTR, lpstruct: *mut ::core::ffi::c_void, usizestruct: u32, szfile: ::windows_sys::core::PCSTR) -> super::super::Foundation::BOOL;
     #[doc = "*Required features: `\"Win32_System_WindowsProgramming\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub fn WritePrivateProfileStructW(lpszsection: ::windows_sys::core::PCWSTR, lpszkey: ::windows_sys::core::PCWSTR, lpstruct: *const ::core::ffi::c_void, usizestruct: u32, szfile: ::windows_sys::core::PCWSTR) -> super::super::Foundation::BOOL;
+    pub fn WritePrivateProfileStructW(lpszsection: ::windows_sys::core::PCWSTR, lpszkey: ::windows_sys::core::PCWSTR, lpstruct: *mut ::core::ffi::c_void, usizestruct: u32, szfile: ::windows_sys::core::PCWSTR) -> super::super::Foundation::BOOL;
     #[doc = "*Required features: `\"Win32_System_WindowsProgramming\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
     pub fn WriteProfileSectionA(lpappname: ::windows_sys::core::PCSTR, lpstring: ::windows_sys::core::PCSTR) -> super::super::Foundation::BOOL;
@@ -588,28 +588,28 @@ extern "system" {
     pub fn _lwrite(hfile: i32, lpbuffer: ::windows_sys::core::PCSTR, ubytes: u32) -> u32;
     #[doc = "*Required features: `\"Win32_System_WindowsProgramming\"`*"]
     #[cfg(any(target_arch = "aarch64", target_arch = "x86_64"))]
-    pub fn uaw_lstrcmpW(string1: *const u16, string2: *const u16) -> i32;
+    pub fn uaw_lstrcmpW(string1: *mut u16, string2: *mut u16) -> i32;
     #[doc = "*Required features: `\"Win32_System_WindowsProgramming\"`*"]
     #[cfg(any(target_arch = "aarch64", target_arch = "x86_64"))]
-    pub fn uaw_lstrcmpiW(string1: *const u16, string2: *const u16) -> i32;
+    pub fn uaw_lstrcmpiW(string1: *mut u16, string2: *mut u16) -> i32;
     #[doc = "*Required features: `\"Win32_System_WindowsProgramming\"`*"]
     #[cfg(any(target_arch = "aarch64", target_arch = "x86_64"))]
-    pub fn uaw_lstrlenW(string: *const u16) -> i32;
+    pub fn uaw_lstrlenW(string: *mut u16) -> i32;
     #[doc = "*Required features: `\"Win32_System_WindowsProgramming\"`*"]
     #[cfg(any(target_arch = "aarch64", target_arch = "x86_64"))]
-    pub fn uaw_wcschr(string: *const u16, character: u16) -> *mut u16;
+    pub fn uaw_wcschr(string: *mut u16, character: u16) -> *mut u16;
     #[doc = "*Required features: `\"Win32_System_WindowsProgramming\"`*"]
     #[cfg(any(target_arch = "aarch64", target_arch = "x86_64"))]
-    pub fn uaw_wcscpy(destination: *mut u16, source: *const u16) -> *mut u16;
+    pub fn uaw_wcscpy(destination: *mut u16, source: *mut u16) -> *mut u16;
     #[doc = "*Required features: `\"Win32_System_WindowsProgramming\"`*"]
     #[cfg(any(target_arch = "aarch64", target_arch = "x86_64"))]
-    pub fn uaw_wcsicmp(string1: *const u16, string2: *const u16) -> i32;
+    pub fn uaw_wcsicmp(string1: *mut u16, string2: *mut u16) -> i32;
     #[doc = "*Required features: `\"Win32_System_WindowsProgramming\"`*"]
     #[cfg(any(target_arch = "aarch64", target_arch = "x86_64"))]
-    pub fn uaw_wcslen(string: *const u16) -> usize;
+    pub fn uaw_wcslen(string: *mut u16) -> usize;
     #[doc = "*Required features: `\"Win32_System_WindowsProgramming\"`*"]
     #[cfg(any(target_arch = "aarch64", target_arch = "x86_64"))]
-    pub fn uaw_wcsrchr(string: *const u16, character: u16) -> *mut u16;
+    pub fn uaw_wcsrchr(string: *mut u16, character: u16) -> *mut u16;
 }
 pub type ICameraUIControl = *mut ::core::ffi::c_void;
 pub type ICameraUIControlEventCallback = *mut ::core::ffi::c_void;
@@ -3238,9 +3238,9 @@ pub type APPLICATION_RECOVERY_CALLBACK = ::core::option::Option<unsafe extern "s
 #[doc = "*Required features: `\"Win32_System_WindowsProgramming\"`*"]
 pub type ENUM_CALLBACK = ::core::option::Option<unsafe extern "system" fn(lpsurfaceinfo: *mut DCISURFACEINFO, lpcontext: *mut ::core::ffi::c_void)>;
 #[doc = "*Required features: `\"Win32_System_WindowsProgramming\"`*"]
-pub type PDELAYLOAD_FAILURE_DLL_CALLBACK = ::core::option::Option<unsafe extern "system" fn(notificationreason: u32, delayloadinfo: *const DELAYLOAD_INFO) -> *mut ::core::ffi::c_void>;
+pub type PDELAYLOAD_FAILURE_DLL_CALLBACK = ::core::option::Option<unsafe extern "system" fn(notificationreason: u32, delayloadinfo: *mut DELAYLOAD_INFO) -> *mut ::core::ffi::c_void>;
 #[doc = "*Required features: `\"Win32_System_WindowsProgramming\"`*"]
-pub type PFEATURE_STATE_CHANGE_CALLBACK = ::core::option::Option<unsafe extern "system" fn(context: *const ::core::ffi::c_void)>;
+pub type PFEATURE_STATE_CHANGE_CALLBACK = ::core::option::Option<unsafe extern "system" fn(context: *mut ::core::ffi::c_void)>;
 #[doc = "*Required features: `\"Win32_System_WindowsProgramming\"`*"]
 pub type PFIBER_CALLOUT_ROUTINE = ::core::option::Option<unsafe extern "system" fn(lpparameter: *mut ::core::ffi::c_void) -> *mut ::core::ffi::c_void>;
 #[doc = "*Required features: `\"Win32_System_WindowsProgramming\"`, `\"Win32_Foundation\"`*"]
@@ -3248,7 +3248,7 @@ pub type PFIBER_CALLOUT_ROUTINE = ::core::option::Option<unsafe extern "system" 
 pub type PIO_APC_ROUTINE = ::core::option::Option<unsafe extern "system" fn(apccontext: *mut ::core::ffi::c_void, iostatusblock: *mut IO_STATUS_BLOCK, reserved: u32)>;
 #[doc = "*Required features: `\"Win32_System_WindowsProgramming\"`, `\"Win32_Foundation\"`*"]
 #[cfg(feature = "Win32_Foundation")]
-pub type PQUERYACTCTXW_FUNC = ::core::option::Option<unsafe extern "system" fn(dwflags: u32, hactctx: super::super::Foundation::HANDLE, pvsubinstance: *const ::core::ffi::c_void, ulinfoclass: u32, pvbuffer: *mut ::core::ffi::c_void, cbbuffer: usize, pcbwrittenorrequired: *mut usize) -> super::super::Foundation::BOOL>;
+pub type PQUERYACTCTXW_FUNC = ::core::option::Option<unsafe extern "system" fn(dwflags: u32, hactctx: super::super::Foundation::HANDLE, pvsubinstance: *mut ::core::ffi::c_void, ulinfoclass: u32, pvbuffer: *mut ::core::ffi::c_void, cbbuffer: usize, pcbwrittenorrequired: *mut usize) -> super::super::Foundation::BOOL>;
 #[doc = "*Required features: `\"Win32_System_WindowsProgramming\"`, `\"Win32_Foundation\"`*"]
 #[cfg(feature = "Win32_Foundation")]
 pub type PWINSTATIONQUERYINFORMATIONW = ::core::option::Option<unsafe extern "system" fn(param0: super::super::Foundation::HANDLE, param1: u32, param2: WINSTATIONINFOCLASS, param3: *mut ::core::ffi::c_void, param4: u32, param5: *mut u32) -> super::super::Foundation::BOOLEAN>;
@@ -3267,7 +3267,7 @@ pub type PWLDP_ISWCOSPRODUCTIONCONFIGURATION_API = ::core::option::Option<unsafe
 pub type PWLDP_QUERYDEVICESECURITYINFORMATION_API = ::core::option::Option<unsafe extern "system" fn(information: *mut WLDP_DEVICE_SECURITY_INFORMATION, informationlength: u32, returnlength: *mut u32) -> ::windows_sys::core::HRESULT>;
 #[doc = "*Required features: `\"Win32_System_WindowsProgramming\"`, `\"Win32_Foundation\"`*"]
 #[cfg(feature = "Win32_Foundation")]
-pub type PWLDP_QUERYDYNAMICODETRUST_API = ::core::option::Option<unsafe extern "system" fn(filehandle: super::super::Foundation::HANDLE, baseimage: *const ::core::ffi::c_void, imagesize: u32) -> ::windows_sys::core::HRESULT>;
+pub type PWLDP_QUERYDYNAMICODETRUST_API = ::core::option::Option<unsafe extern "system" fn(filehandle: super::super::Foundation::HANDLE, baseimage: *mut ::core::ffi::c_void, imagesize: u32) -> ::windows_sys::core::HRESULT>;
 #[doc = "*Required features: `\"Win32_System_WindowsProgramming\"`, `\"Win32_Foundation\"`*"]
 #[cfg(feature = "Win32_Foundation")]
 pub type PWLDP_QUERYPOLICYSETTINGENABLED2_API = ::core::option::Option<unsafe extern "system" fn(setting: ::windows_sys::core::PCWSTR, enabled: *mut super::super::Foundation::BOOL) -> ::windows_sys::core::HRESULT>;

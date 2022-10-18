@@ -584,7 +584,7 @@ impl IMLOperatorTypeInferrer_Vtbl {
 }
 #[cfg(feature = "Win32_Graphics_Direct3D12")]
 pub trait IWinMLEvaluationContext_Impl: Sized {
-    fn BindValue(&self, pdescriptor: *const WINML_BINDING_DESC) -> ::windows::core::Result<()>;
+    fn BindValue(&self, pdescriptor: *mut WINML_BINDING_DESC) -> ::windows::core::Result<()>;
     fn GetValueByName(&self, name: &::windows::core::PCWSTR) -> ::windows::core::Result<*mut WINML_BINDING_DESC>;
     fn Clear(&self) -> ::windows::core::Result<()>;
 }
@@ -593,7 +593,7 @@ impl ::windows::core::RuntimeName for IWinMLEvaluationContext {}
 #[cfg(feature = "Win32_Graphics_Direct3D12")]
 impl IWinMLEvaluationContext_Vtbl {
     pub const fn new<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IWinMLEvaluationContext_Impl, const OFFSET: isize>() -> IWinMLEvaluationContext_Vtbl {
-        unsafe extern "system" fn BindValue<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IWinMLEvaluationContext_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, pdescriptor: *const ::core::mem::ManuallyDrop<WINML_BINDING_DESC>) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn BindValue<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IWinMLEvaluationContext_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, pdescriptor: *mut ::core::mem::ManuallyDrop<WINML_BINDING_DESC>) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.BindValue(::core::mem::transmute_copy(&pdescriptor)).into()

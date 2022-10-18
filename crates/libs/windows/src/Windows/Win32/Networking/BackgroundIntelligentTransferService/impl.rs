@@ -172,7 +172,7 @@ impl IBackgroundCopyCallback_Vtbl {
 pub trait IBackgroundCopyCallback1_Impl: Sized {
     fn OnStatus(&self, pgroup: &::core::option::Option<IBackgroundCopyGroup>, pjob: &::core::option::Option<IBackgroundCopyJob1>, dwfileindex: u32, dwstatus: u32, dwnumofretries: u32, dwwin32result: u32, dwtransportresult: u32) -> ::windows::core::Result<()>;
     fn OnProgress(&self, progresstype: u32, pgroup: &::core::option::Option<IBackgroundCopyGroup>, pjob: &::core::option::Option<IBackgroundCopyJob1>, dwfileindex: u32, dwprogressvalue: u32) -> ::windows::core::Result<()>;
-    fn OnProgressEx(&self, progresstype: u32, pgroup: &::core::option::Option<IBackgroundCopyGroup>, pjob: &::core::option::Option<IBackgroundCopyJob1>, dwfileindex: u32, dwprogressvalue: u32, dwbytearraysize: u32, pbyte: *const u8) -> ::windows::core::Result<()>;
+    fn OnProgressEx(&self, progresstype: u32, pgroup: &::core::option::Option<IBackgroundCopyGroup>, pjob: &::core::option::Option<IBackgroundCopyJob1>, dwfileindex: u32, dwprogressvalue: u32, dwbytearraysize: u32, pbyte: *mut u8) -> ::windows::core::Result<()>;
 }
 impl ::windows::core::RuntimeName for IBackgroundCopyCallback1 {}
 impl IBackgroundCopyCallback1_Vtbl {
@@ -187,7 +187,7 @@ impl IBackgroundCopyCallback1_Vtbl {
             let this = (*this).get_impl();
             this.OnProgress(::core::mem::transmute_copy(&progresstype), ::core::mem::transmute(&pgroup), ::core::mem::transmute(&pjob), ::core::mem::transmute_copy(&dwfileindex), ::core::mem::transmute_copy(&dwprogressvalue)).into()
         }
-        unsafe extern "system" fn OnProgressEx<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IBackgroundCopyCallback1_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, progresstype: u32, pgroup: *mut ::core::ffi::c_void, pjob: *mut ::core::ffi::c_void, dwfileindex: u32, dwprogressvalue: u32, dwbytearraysize: u32, pbyte: *const u8) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn OnProgressEx<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IBackgroundCopyCallback1_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, progresstype: u32, pgroup: *mut ::core::ffi::c_void, pjob: *mut ::core::ffi::c_void, dwfileindex: u32, dwprogressvalue: u32, dwbytearraysize: u32, pbyte: *mut u8) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.OnProgressEx(::core::mem::transmute_copy(&progresstype), ::core::mem::transmute(&pgroup), ::core::mem::transmute(&pjob), ::core::mem::transmute_copy(&dwfileindex), ::core::mem::transmute_copy(&dwprogressvalue), ::core::mem::transmute_copy(&dwbytearraysize), ::core::mem::transmute_copy(&pbyte)).into()
@@ -552,7 +552,7 @@ impl IBackgroundCopyFile6_Vtbl {
 #[cfg(all(feature = "Win32_Foundation", feature = "Win32_System_Com", feature = "Win32_System_Ole"))]
 pub trait IBackgroundCopyGroup_Impl: Sized {
     fn GetProp(&self, propid: GROUPPROP) -> ::windows::core::Result<super::super::System::Com::VARIANT>;
-    fn SetProp(&self, propid: GROUPPROP, pvarval: *const super::super::System::Com::VARIANT) -> ::windows::core::Result<()>;
+    fn SetProp(&self, propid: GROUPPROP, pvarval: *mut super::super::System::Com::VARIANT) -> ::windows::core::Result<()>;
     fn GetProgress(&self, dwflags: u32) -> ::windows::core::Result<u32>;
     fn GetStatus(&self, pdwstatus: *mut u32, pdwjobindex: *mut u32) -> ::windows::core::Result<()>;
     fn GetJob(&self, jobid: &::windows::core::GUID) -> ::windows::core::Result<IBackgroundCopyJob1>;
@@ -583,7 +583,7 @@ impl IBackgroundCopyGroup_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn SetProp<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IBackgroundCopyGroup_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, propid: GROUPPROP, pvarval: *const ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn SetProp<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IBackgroundCopyGroup_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, propid: GROUPPROP, pvarval: *mut ::core::mem::ManuallyDrop<super::super::System::Com::VARIANT>) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.SetProp(::core::mem::transmute_copy(&propid), ::core::mem::transmute_copy(&pvarval)).into()
@@ -720,7 +720,7 @@ impl IBackgroundCopyGroup_Vtbl {
 }
 #[cfg(feature = "Win32_Foundation")]
 pub trait IBackgroundCopyJob_Impl: Sized {
-    fn AddFileSet(&self, cfilecount: u32, pfileset: *const BG_FILE_INFO) -> ::windows::core::Result<()>;
+    fn AddFileSet(&self, cfilecount: u32, pfileset: *mut BG_FILE_INFO) -> ::windows::core::Result<()>;
     fn AddFile(&self, remoteurl: &::windows::core::PCWSTR, localname: &::windows::core::PCWSTR) -> ::windows::core::Result<()>;
     fn EnumFiles(&self) -> ::windows::core::Result<IEnumBackgroundCopyFiles>;
     fn Suspend(&self) -> ::windows::core::Result<()>;
@@ -758,7 +758,7 @@ impl ::windows::core::RuntimeName for IBackgroundCopyJob {}
 #[cfg(feature = "Win32_Foundation")]
 impl IBackgroundCopyJob_Vtbl {
     pub const fn new<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IBackgroundCopyJob_Impl, const OFFSET: isize>() -> IBackgroundCopyJob_Vtbl {
-        unsafe extern "system" fn AddFileSet<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IBackgroundCopyJob_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, cfilecount: u32, pfileset: *const BG_FILE_INFO) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn AddFileSet<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IBackgroundCopyJob_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, cfilecount: u32, pfileset: *mut BG_FILE_INFO) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.AddFileSet(::core::mem::transmute_copy(&cfilecount), ::core::mem::transmute_copy(&pfileset)).into()
@@ -1058,7 +1058,7 @@ pub trait IBackgroundCopyJob1_Impl: Sized {
     fn CancelJob(&self) -> ::windows::core::Result<()>;
     fn GetProgress(&self, dwflags: u32) -> ::windows::core::Result<u32>;
     fn GetStatus(&self, pdwstatus: *mut u32, pdwwin32result: *mut u32, pdwtransportresult: *mut u32, pdwnumofretries: *mut u32) -> ::windows::core::Result<()>;
-    fn AddFiles(&self, cfilecount: u32, ppfileset: *const *const FILESETINFO) -> ::windows::core::Result<()>;
+    fn AddFiles(&self, cfilecount: u32, ppfileset: *mut *mut FILESETINFO) -> ::windows::core::Result<()>;
     fn GetFile(&self, cfileindex: u32) -> ::windows::core::Result<FILESETINFO>;
     fn GetFileCount(&self) -> ::windows::core::Result<u32>;
     fn SwitchToForeground(&self) -> ::windows::core::Result<()>;
@@ -1088,7 +1088,7 @@ impl IBackgroundCopyJob1_Vtbl {
             let this = (*this).get_impl();
             this.GetStatus(::core::mem::transmute_copy(&pdwstatus), ::core::mem::transmute_copy(&pdwwin32result), ::core::mem::transmute_copy(&pdwtransportresult), ::core::mem::transmute_copy(&pdwnumofretries)).into()
         }
-        unsafe extern "system" fn AddFiles<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IBackgroundCopyJob1_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, cfilecount: u32, ppfileset: *const *const ::core::mem::ManuallyDrop<FILESETINFO>) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn AddFiles<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IBackgroundCopyJob1_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, cfilecount: u32, ppfileset: *mut *mut ::core::mem::ManuallyDrop<FILESETINFO>) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.AddFiles(::core::mem::transmute_copy(&cfilecount), ::core::mem::transmute_copy(&ppfileset)).into()
@@ -1155,7 +1155,7 @@ pub trait IBackgroundCopyJob2_Impl: Sized + IBackgroundCopyJob_Impl {
     fn GetReplyData(&self, ppbuffer: *mut *mut u8, plength: *mut u64) -> ::windows::core::Result<()>;
     fn SetReplyFileName(&self, replyfilename: &::windows::core::PCWSTR) -> ::windows::core::Result<()>;
     fn GetReplyFileName(&self) -> ::windows::core::Result<::windows::core::PWSTR>;
-    fn SetCredentials(&self, credentials: *const BG_AUTH_CREDENTIALS) -> ::windows::core::Result<()>;
+    fn SetCredentials(&self, credentials: *mut BG_AUTH_CREDENTIALS) -> ::windows::core::Result<()>;
     fn RemoveCredentials(&self, target: BG_AUTH_TARGET, scheme: BG_AUTH_SCHEME) -> ::windows::core::Result<()>;
 }
 #[cfg(feature = "Win32_Foundation")]
@@ -1199,7 +1199,7 @@ impl IBackgroundCopyJob2_Vtbl {
                 ::core::result::Result::Err(err) => err.into(),
             }
         }
-        unsafe extern "system" fn SetCredentials<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IBackgroundCopyJob2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, credentials: *const BG_AUTH_CREDENTIALS) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn SetCredentials<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IBackgroundCopyJob2_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, credentials: *mut BG_AUTH_CREDENTIALS) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.SetCredentials(::core::mem::transmute_copy(&credentials)).into()
@@ -1228,7 +1228,7 @@ impl IBackgroundCopyJob2_Vtbl {
 #[cfg(feature = "Win32_Foundation")]
 pub trait IBackgroundCopyJob3_Impl: Sized + IBackgroundCopyJob2_Impl {
     fn ReplaceRemotePrefix(&self, oldprefix: &::windows::core::PCWSTR, newprefix: &::windows::core::PCWSTR) -> ::windows::core::Result<()>;
-    fn AddFileWithRanges(&self, remoteurl: &::windows::core::PCWSTR, localname: &::windows::core::PCWSTR, rangecount: u32, ranges: *const BG_FILE_RANGE) -> ::windows::core::Result<()>;
+    fn AddFileWithRanges(&self, remoteurl: &::windows::core::PCWSTR, localname: &::windows::core::PCWSTR, rangecount: u32, ranges: *mut BG_FILE_RANGE) -> ::windows::core::Result<()>;
     fn SetFileACLFlags(&self, flags: u32) -> ::windows::core::Result<()>;
     fn GetFileACLFlags(&self) -> ::windows::core::Result<u32>;
 }
@@ -1242,7 +1242,7 @@ impl IBackgroundCopyJob3_Vtbl {
             let this = (*this).get_impl();
             this.ReplaceRemotePrefix(::core::mem::transmute(&oldprefix), ::core::mem::transmute(&newprefix)).into()
         }
-        unsafe extern "system" fn AddFileWithRanges<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IBackgroundCopyJob3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, remoteurl: ::windows::core::PCWSTR, localname: ::windows::core::PCWSTR, rangecount: u32, ranges: *const BG_FILE_RANGE) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn AddFileWithRanges<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IBackgroundCopyJob3_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, remoteurl: ::windows::core::PCWSTR, localname: ::windows::core::PCWSTR, rangecount: u32, ranges: *mut BG_FILE_RANGE) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.AddFileWithRanges(::core::mem::transmute(&remoteurl), ::core::mem::transmute(&localname), ::core::mem::transmute_copy(&rangecount), ::core::mem::transmute_copy(&ranges)).into()
@@ -1394,7 +1394,7 @@ impl IBackgroundCopyJob5_Vtbl {
     }
 }
 pub trait IBackgroundCopyJobHttpOptions_Impl: Sized {
-    fn SetClientCertificateByID(&self, storelocation: BG_CERT_STORE_LOCATION, storename: &::windows::core::PCWSTR, pcerthashblob: *const u8) -> ::windows::core::Result<()>;
+    fn SetClientCertificateByID(&self, storelocation: BG_CERT_STORE_LOCATION, storename: &::windows::core::PCWSTR, pcerthashblob: *mut u8) -> ::windows::core::Result<()>;
     fn SetClientCertificateByName(&self, storelocation: BG_CERT_STORE_LOCATION, storename: &::windows::core::PCWSTR, subjectname: &::windows::core::PCWSTR) -> ::windows::core::Result<()>;
     fn RemoveClientCertificate(&self) -> ::windows::core::Result<()>;
     fn GetClientCertificate(&self, pstorelocation: *mut BG_CERT_STORE_LOCATION, pstorename: *mut ::windows::core::PWSTR, ppcerthashblob: *mut *mut u8, psubjectname: *mut ::windows::core::PWSTR) -> ::windows::core::Result<()>;
@@ -1406,7 +1406,7 @@ pub trait IBackgroundCopyJobHttpOptions_Impl: Sized {
 impl ::windows::core::RuntimeName for IBackgroundCopyJobHttpOptions {}
 impl IBackgroundCopyJobHttpOptions_Vtbl {
     pub const fn new<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IBackgroundCopyJobHttpOptions_Impl, const OFFSET: isize>() -> IBackgroundCopyJobHttpOptions_Vtbl {
-        unsafe extern "system" fn SetClientCertificateByID<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IBackgroundCopyJobHttpOptions_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, storelocation: BG_CERT_STORE_LOCATION, storename: ::windows::core::PCWSTR, pcerthashblob: *const u8) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn SetClientCertificateByID<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IBackgroundCopyJobHttpOptions_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, storelocation: BG_CERT_STORE_LOCATION, storename: ::windows::core::PCWSTR, pcerthashblob: *mut u8) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.SetClientCertificateByID(::core::mem::transmute_copy(&storelocation), ::core::mem::transmute(&storename), ::core::mem::transmute_copy(&pcerthashblob)).into()

@@ -166,7 +166,7 @@ impl IObjectWithPropertyKey_Vtbl {
 }
 pub trait IPersistSerializedPropStorage_Impl: Sized {
     fn SetFlags(&self, flags: i32) -> ::windows::core::Result<()>;
-    fn SetPropertyStorage(&self, psps: *const SERIALIZEDPROPSTORAGE, cb: u32) -> ::windows::core::Result<()>;
+    fn SetPropertyStorage(&self, psps: *mut SERIALIZEDPROPSTORAGE, cb: u32) -> ::windows::core::Result<()>;
     fn GetPropertyStorage(&self, ppsps: *mut *mut SERIALIZEDPROPSTORAGE, pcb: *mut u32) -> ::windows::core::Result<()>;
 }
 impl ::windows::core::RuntimeName for IPersistSerializedPropStorage {}
@@ -177,7 +177,7 @@ impl IPersistSerializedPropStorage_Vtbl {
             let this = (*this).get_impl();
             this.SetFlags(::core::mem::transmute_copy(&flags)).into()
         }
-        unsafe extern "system" fn SetPropertyStorage<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IPersistSerializedPropStorage_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, psps: *const SERIALIZEDPROPSTORAGE, cb: u32) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn SetPropertyStorage<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IPersistSerializedPropStorage_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, psps: *mut SERIALIZEDPROPSTORAGE, cb: u32) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.SetPropertyStorage(::core::mem::transmute_copy(&psps), ::core::mem::transmute_copy(&cb)).into()

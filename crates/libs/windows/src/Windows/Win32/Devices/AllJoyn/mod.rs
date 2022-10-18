@@ -158,10 +158,10 @@ where
 #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`, `\"Win32_Foundation\"`, `\"Win32_Security\"`*"]
 #[cfg(all(feature = "Win32_Foundation", feature = "Win32_Security"))]
 #[inline]
-pub unsafe fn AllJoynCreateBus(outbuffersize: u32, inbuffersize: u32, lpsecurityattributes: ::core::option::Option<*const super::super::Security::SECURITY_ATTRIBUTES>) -> super::super::Foundation::HANDLE {
+pub unsafe fn AllJoynCreateBus(outbuffersize: u32, inbuffersize: u32, lpsecurityattributes: ::core::option::Option<*mut super::super::Security::SECURITY_ATTRIBUTES>) -> super::super::Foundation::HANDLE {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn AllJoynCreateBus(outbuffersize: u32, inbuffersize: u32, lpsecurityattributes: *const super::super::Security::SECURITY_ATTRIBUTES) -> super::super::Foundation::HANDLE;
+        fn AllJoynCreateBus(outbuffersize: u32, inbuffersize: u32, lpsecurityattributes: *mut super::super::Security::SECURITY_ATTRIBUTES) -> super::super::Foundation::HANDLE;
     }
     AllJoynCreateBus(outbuffersize, inbuffersize, ::core::mem::transmute(lpsecurityattributes.unwrap_or(::std::ptr::null())))
 }
@@ -1918,17 +1918,16 @@ where
 }
 #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
 #[inline]
-pub unsafe fn alljoyn_busattachment_getpeerguid<'a, P0, P1, P2>(bus: P0, name: P1, guid: P2, guidsz: *mut usize) -> QStatus
+pub unsafe fn alljoyn_busattachment_getpeerguid<'a, P0, P1>(bus: P0, name: P1, guid: ::windows::core::PSTR, guidsz: *mut usize) -> QStatus
 where
     P0: ::std::convert::Into<alljoyn_busattachment>,
     P1: ::std::convert::Into<::windows::core::PCSTR>,
-    P2: ::std::convert::Into<::windows::core::PCSTR>,
 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn alljoyn_busattachment_getpeerguid(bus: alljoyn_busattachment, name: ::windows::core::PCSTR, guid: ::windows::core::PCSTR, guidsz: *mut usize) -> QStatus;
+        fn alljoyn_busattachment_getpeerguid(bus: alljoyn_busattachment, name: ::windows::core::PCSTR, guid: ::windows::core::PSTR, guidsz: *mut usize) -> QStatus;
     }
-    alljoyn_busattachment_getpeerguid(bus.into(), name.into(), guid.into(), ::core::mem::transmute(guidsz))
+    alljoyn_busattachment_getpeerguid(bus.into(), name.into(), ::core::mem::transmute(guid), ::core::mem::transmute(guidsz))
 }
 #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
 #[inline]
@@ -2685,16 +2684,15 @@ where
 }
 #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
 #[inline]
-pub unsafe fn alljoyn_busobject_getname<'a, P0, P1>(bus: P0, buffer: P1, buffersz: usize) -> usize
+pub unsafe fn alljoyn_busobject_getname<'a, P0>(bus: P0, buffer: ::windows::core::PSTR, buffersz: usize) -> usize
 where
     P0: ::std::convert::Into<alljoyn_busobject>,
-    P1: ::std::convert::Into<::windows::core::PCSTR>,
 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn alljoyn_busobject_getname(bus: alljoyn_busobject, buffer: ::windows::core::PCSTR, buffersz: usize) -> usize;
+        fn alljoyn_busobject_getname(bus: alljoyn_busobject, buffer: ::windows::core::PSTR, buffersz: usize) -> usize;
     }
-    alljoyn_busobject_getname(bus.into(), buffer.into(), buffersz)
+    alljoyn_busobject_getname(bus.into(), ::core::mem::transmute(buffer), buffersz)
 }
 #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
 #[inline]
@@ -3170,31 +3168,28 @@ where
 }
 #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
 #[inline]
-pub unsafe fn alljoyn_interfacedescription_getannotation<'a, P0, P1, P2>(iface: P0, name: P1, value: P2, value_size: *mut usize) -> i32
+pub unsafe fn alljoyn_interfacedescription_getannotation<'a, P0, P1>(iface: P0, name: P1, value: ::windows::core::PSTR, value_size: *mut usize) -> i32
 where
     P0: ::std::convert::Into<alljoyn_interfacedescription>,
     P1: ::std::convert::Into<::windows::core::PCSTR>,
-    P2: ::std::convert::Into<::windows::core::PCSTR>,
 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn alljoyn_interfacedescription_getannotation(iface: alljoyn_interfacedescription, name: ::windows::core::PCSTR, value: ::windows::core::PCSTR, value_size: *mut usize) -> i32;
+        fn alljoyn_interfacedescription_getannotation(iface: alljoyn_interfacedescription, name: ::windows::core::PCSTR, value: ::windows::core::PSTR, value_size: *mut usize) -> i32;
     }
-    alljoyn_interfacedescription_getannotation(iface.into(), name.into(), value.into(), ::core::mem::transmute(value_size))
+    alljoyn_interfacedescription_getannotation(iface.into(), name.into(), ::core::mem::transmute(value), ::core::mem::transmute(value_size))
 }
 #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
 #[inline]
-pub unsafe fn alljoyn_interfacedescription_getannotationatindex<'a, P0, P1, P2>(iface: P0, index: usize, name: P1, name_size: *mut usize, value: P2, value_size: *mut usize)
+pub unsafe fn alljoyn_interfacedescription_getannotationatindex<'a, P0>(iface: P0, index: usize, name: ::windows::core::PSTR, name_size: *mut usize, value: ::windows::core::PSTR, value_size: *mut usize)
 where
     P0: ::std::convert::Into<alljoyn_interfacedescription>,
-    P1: ::std::convert::Into<::windows::core::PCSTR>,
-    P2: ::std::convert::Into<::windows::core::PCSTR>,
 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn alljoyn_interfacedescription_getannotationatindex(iface: alljoyn_interfacedescription, index: usize, name: ::windows::core::PCSTR, name_size: *mut usize, value: ::windows::core::PCSTR, value_size: *mut usize);
+        fn alljoyn_interfacedescription_getannotationatindex(iface: alljoyn_interfacedescription, index: usize, name: ::windows::core::PSTR, name_size: *mut usize, value: ::windows::core::PSTR, value_size: *mut usize);
     }
-    alljoyn_interfacedescription_getannotationatindex(iface.into(), index, name.into(), ::core::mem::transmute(name_size), value.into(), ::core::mem::transmute(value_size))
+    alljoyn_interfacedescription_getannotationatindex(iface.into(), index, ::core::mem::transmute(name), ::core::mem::transmute(name_size), ::core::mem::transmute(value), ::core::mem::transmute(value_size))
 }
 #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
 #[inline]
@@ -3210,33 +3205,31 @@ where
 }
 #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
 #[inline]
-pub unsafe fn alljoyn_interfacedescription_getargdescriptionforlanguage<'a, P0, P1, P2, P3, P4>(iface: P0, member: P1, arg: P2, description: P3, maxlanguagelength: usize, languagetag: P4) -> usize
+pub unsafe fn alljoyn_interfacedescription_getargdescriptionforlanguage<'a, P0, P1, P2, P3>(iface: P0, member: P1, arg: P2, description: ::windows::core::PSTR, maxlanguagelength: usize, languagetag: P3) -> usize
 where
     P0: ::std::convert::Into<alljoyn_interfacedescription>,
     P1: ::std::convert::Into<::windows::core::PCSTR>,
     P2: ::std::convert::Into<::windows::core::PCSTR>,
     P3: ::std::convert::Into<::windows::core::PCSTR>,
-    P4: ::std::convert::Into<::windows::core::PCSTR>,
 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn alljoyn_interfacedescription_getargdescriptionforlanguage(iface: alljoyn_interfacedescription, member: ::windows::core::PCSTR, arg: ::windows::core::PCSTR, description: ::windows::core::PCSTR, maxlanguagelength: usize, languagetag: ::windows::core::PCSTR) -> usize;
+        fn alljoyn_interfacedescription_getargdescriptionforlanguage(iface: alljoyn_interfacedescription, member: ::windows::core::PCSTR, arg: ::windows::core::PCSTR, description: ::windows::core::PSTR, maxlanguagelength: usize, languagetag: ::windows::core::PCSTR) -> usize;
     }
-    alljoyn_interfacedescription_getargdescriptionforlanguage(iface.into(), member.into(), arg.into(), description.into(), maxlanguagelength, languagetag.into())
+    alljoyn_interfacedescription_getargdescriptionforlanguage(iface.into(), member.into(), arg.into(), ::core::mem::transmute(description), maxlanguagelength, languagetag.into())
 }
 #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
 #[inline]
-pub unsafe fn alljoyn_interfacedescription_getdescriptionforlanguage<'a, P0, P1, P2>(iface: P0, description: P1, maxlanguagelength: usize, languagetag: P2) -> usize
+pub unsafe fn alljoyn_interfacedescription_getdescriptionforlanguage<'a, P0, P1>(iface: P0, description: ::windows::core::PSTR, maxlanguagelength: usize, languagetag: P1) -> usize
 where
     P0: ::std::convert::Into<alljoyn_interfacedescription>,
     P1: ::std::convert::Into<::windows::core::PCSTR>,
-    P2: ::std::convert::Into<::windows::core::PCSTR>,
 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn alljoyn_interfacedescription_getdescriptionforlanguage(iface: alljoyn_interfacedescription, description: ::windows::core::PCSTR, maxlanguagelength: usize, languagetag: ::windows::core::PCSTR) -> usize;
+        fn alljoyn_interfacedescription_getdescriptionforlanguage(iface: alljoyn_interfacedescription, description: ::windows::core::PSTR, maxlanguagelength: usize, languagetag: ::windows::core::PCSTR) -> usize;
     }
-    alljoyn_interfacedescription_getdescriptionforlanguage(iface.into(), description.into(), maxlanguagelength, languagetag.into())
+    alljoyn_interfacedescription_getdescriptionforlanguage(iface.into(), ::core::mem::transmute(description), maxlanguagelength, languagetag.into())
 }
 #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
 #[inline]
@@ -3252,16 +3245,15 @@ where
 }
 #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
 #[inline]
-pub unsafe fn alljoyn_interfacedescription_getdescriptionlanguages2<'a, P0, P1>(iface: P0, languages: P1, languagessize: usize) -> usize
+pub unsafe fn alljoyn_interfacedescription_getdescriptionlanguages2<'a, P0>(iface: P0, languages: ::windows::core::PSTR, languagessize: usize) -> usize
 where
     P0: ::std::convert::Into<alljoyn_interfacedescription>,
-    P1: ::std::convert::Into<::windows::core::PCSTR>,
 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn alljoyn_interfacedescription_getdescriptionlanguages2(iface: alljoyn_interfacedescription, languages: ::windows::core::PCSTR, languagessize: usize) -> usize;
+        fn alljoyn_interfacedescription_getdescriptionlanguages2(iface: alljoyn_interfacedescription, languages: ::windows::core::PSTR, languagessize: usize) -> usize;
     }
-    alljoyn_interfacedescription_getdescriptionlanguages2(iface.into(), languages.into(), languagessize)
+    alljoyn_interfacedescription_getdescriptionlanguages2(iface.into(), ::core::mem::transmute(languages), languagessize)
 }
 #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
 #[inline]
@@ -3290,49 +3282,46 @@ where
 }
 #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
 #[inline]
-pub unsafe fn alljoyn_interfacedescription_getmemberannotation<'a, P0, P1, P2, P3>(iface: P0, member: P1, name: P2, value: P3, value_size: *mut usize) -> i32
+pub unsafe fn alljoyn_interfacedescription_getmemberannotation<'a, P0, P1, P2>(iface: P0, member: P1, name: P2, value: ::windows::core::PSTR, value_size: *mut usize) -> i32
 where
     P0: ::std::convert::Into<alljoyn_interfacedescription>,
     P1: ::std::convert::Into<::windows::core::PCSTR>,
     P2: ::std::convert::Into<::windows::core::PCSTR>,
-    P3: ::std::convert::Into<::windows::core::PCSTR>,
 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn alljoyn_interfacedescription_getmemberannotation(iface: alljoyn_interfacedescription, member: ::windows::core::PCSTR, name: ::windows::core::PCSTR, value: ::windows::core::PCSTR, value_size: *mut usize) -> i32;
+        fn alljoyn_interfacedescription_getmemberannotation(iface: alljoyn_interfacedescription, member: ::windows::core::PCSTR, name: ::windows::core::PCSTR, value: ::windows::core::PSTR, value_size: *mut usize) -> i32;
     }
-    alljoyn_interfacedescription_getmemberannotation(iface.into(), member.into(), name.into(), value.into(), ::core::mem::transmute(value_size))
+    alljoyn_interfacedescription_getmemberannotation(iface.into(), member.into(), name.into(), ::core::mem::transmute(value), ::core::mem::transmute(value_size))
 }
 #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
 #[inline]
-pub unsafe fn alljoyn_interfacedescription_getmemberargannotation<'a, P0, P1, P2, P3, P4>(iface: P0, member: P1, argname: P2, name: P3, value: P4, value_size: *mut usize) -> i32
+pub unsafe fn alljoyn_interfacedescription_getmemberargannotation<'a, P0, P1, P2, P3>(iface: P0, member: P1, argname: P2, name: P3, value: ::windows::core::PSTR, value_size: *mut usize) -> i32
 where
     P0: ::std::convert::Into<alljoyn_interfacedescription>,
     P1: ::std::convert::Into<::windows::core::PCSTR>,
     P2: ::std::convert::Into<::windows::core::PCSTR>,
     P3: ::std::convert::Into<::windows::core::PCSTR>,
-    P4: ::std::convert::Into<::windows::core::PCSTR>,
 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn alljoyn_interfacedescription_getmemberargannotation(iface: alljoyn_interfacedescription, member: ::windows::core::PCSTR, argname: ::windows::core::PCSTR, name: ::windows::core::PCSTR, value: ::windows::core::PCSTR, value_size: *mut usize) -> i32;
+        fn alljoyn_interfacedescription_getmemberargannotation(iface: alljoyn_interfacedescription, member: ::windows::core::PCSTR, argname: ::windows::core::PCSTR, name: ::windows::core::PCSTR, value: ::windows::core::PSTR, value_size: *mut usize) -> i32;
     }
-    alljoyn_interfacedescription_getmemberargannotation(iface.into(), member.into(), argname.into(), name.into(), value.into(), ::core::mem::transmute(value_size))
+    alljoyn_interfacedescription_getmemberargannotation(iface.into(), member.into(), argname.into(), name.into(), ::core::mem::transmute(value), ::core::mem::transmute(value_size))
 }
 #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
 #[inline]
-pub unsafe fn alljoyn_interfacedescription_getmemberdescriptionforlanguage<'a, P0, P1, P2, P3>(iface: P0, member: P1, description: P2, maxlanguagelength: usize, languagetag: P3) -> usize
+pub unsafe fn alljoyn_interfacedescription_getmemberdescriptionforlanguage<'a, P0, P1, P2>(iface: P0, member: P1, description: ::windows::core::PSTR, maxlanguagelength: usize, languagetag: P2) -> usize
 where
     P0: ::std::convert::Into<alljoyn_interfacedescription>,
     P1: ::std::convert::Into<::windows::core::PCSTR>,
     P2: ::std::convert::Into<::windows::core::PCSTR>,
-    P3: ::std::convert::Into<::windows::core::PCSTR>,
 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn alljoyn_interfacedescription_getmemberdescriptionforlanguage(iface: alljoyn_interfacedescription, member: ::windows::core::PCSTR, description: ::windows::core::PCSTR, maxlanguagelength: usize, languagetag: ::windows::core::PCSTR) -> usize;
+        fn alljoyn_interfacedescription_getmemberdescriptionforlanguage(iface: alljoyn_interfacedescription, member: ::windows::core::PCSTR, description: ::windows::core::PSTR, maxlanguagelength: usize, languagetag: ::windows::core::PCSTR) -> usize;
     }
-    alljoyn_interfacedescription_getmemberdescriptionforlanguage(iface.into(), member.into(), description.into(), maxlanguagelength, languagetag.into())
+    alljoyn_interfacedescription_getmemberdescriptionforlanguage(iface.into(), member.into(), ::core::mem::transmute(description), maxlanguagelength, languagetag.into())
 }
 #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
 #[inline]
@@ -3398,33 +3387,31 @@ where
 }
 #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
 #[inline]
-pub unsafe fn alljoyn_interfacedescription_getpropertyannotation<'a, P0, P1, P2, P3>(iface: P0, property: P1, name: P2, value: P3, str_size: *mut usize) -> i32
+pub unsafe fn alljoyn_interfacedescription_getpropertyannotation<'a, P0, P1, P2>(iface: P0, property: P1, name: P2, value: ::windows::core::PSTR, str_size: *mut usize) -> i32
 where
     P0: ::std::convert::Into<alljoyn_interfacedescription>,
     P1: ::std::convert::Into<::windows::core::PCSTR>,
     P2: ::std::convert::Into<::windows::core::PCSTR>,
-    P3: ::std::convert::Into<::windows::core::PCSTR>,
 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn alljoyn_interfacedescription_getpropertyannotation(iface: alljoyn_interfacedescription, property: ::windows::core::PCSTR, name: ::windows::core::PCSTR, value: ::windows::core::PCSTR, str_size: *mut usize) -> i32;
+        fn alljoyn_interfacedescription_getpropertyannotation(iface: alljoyn_interfacedescription, property: ::windows::core::PCSTR, name: ::windows::core::PCSTR, value: ::windows::core::PSTR, str_size: *mut usize) -> i32;
     }
-    alljoyn_interfacedescription_getpropertyannotation(iface.into(), property.into(), name.into(), value.into(), ::core::mem::transmute(str_size))
+    alljoyn_interfacedescription_getpropertyannotation(iface.into(), property.into(), name.into(), ::core::mem::transmute(value), ::core::mem::transmute(str_size))
 }
 #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
 #[inline]
-pub unsafe fn alljoyn_interfacedescription_getpropertydescriptionforlanguage<'a, P0, P1, P2, P3>(iface: P0, property: P1, description: P2, maxlanguagelength: usize, languagetag: P3) -> usize
+pub unsafe fn alljoyn_interfacedescription_getpropertydescriptionforlanguage<'a, P0, P1, P2>(iface: P0, property: P1, description: ::windows::core::PSTR, maxlanguagelength: usize, languagetag: P2) -> usize
 where
     P0: ::std::convert::Into<alljoyn_interfacedescription>,
     P1: ::std::convert::Into<::windows::core::PCSTR>,
     P2: ::std::convert::Into<::windows::core::PCSTR>,
-    P3: ::std::convert::Into<::windows::core::PCSTR>,
 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn alljoyn_interfacedescription_getpropertydescriptionforlanguage(iface: alljoyn_interfacedescription, property: ::windows::core::PCSTR, description: ::windows::core::PCSTR, maxlanguagelength: usize, languagetag: ::windows::core::PCSTR) -> usize;
+        fn alljoyn_interfacedescription_getpropertydescriptionforlanguage(iface: alljoyn_interfacedescription, property: ::windows::core::PCSTR, description: ::windows::core::PSTR, maxlanguagelength: usize, languagetag: ::windows::core::PCSTR) -> usize;
     }
-    alljoyn_interfacedescription_getpropertydescriptionforlanguage(iface.into(), property.into(), description.into(), maxlanguagelength, languagetag.into())
+    alljoyn_interfacedescription_getpropertydescriptionforlanguage(iface.into(), property.into(), ::core::mem::transmute(description), maxlanguagelength, languagetag.into())
 }
 #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
 #[inline]
@@ -3505,16 +3492,15 @@ where
 }
 #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
 #[inline]
-pub unsafe fn alljoyn_interfacedescription_introspect<'a, P0, P1>(iface: P0, str: P1, buf: usize, indent: usize) -> usize
+pub unsafe fn alljoyn_interfacedescription_introspect<'a, P0>(iface: P0, str: ::windows::core::PSTR, buf: usize, indent: usize) -> usize
 where
     P0: ::std::convert::Into<alljoyn_interfacedescription>,
-    P1: ::std::convert::Into<::windows::core::PCSTR>,
 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn alljoyn_interfacedescription_introspect(iface: alljoyn_interfacedescription, str: ::windows::core::PCSTR, buf: usize, indent: usize) -> usize;
+        fn alljoyn_interfacedescription_introspect(iface: alljoyn_interfacedescription, str: ::windows::core::PSTR, buf: usize, indent: usize) -> usize;
     }
-    alljoyn_interfacedescription_introspect(iface.into(), str.into(), buf, indent)
+    alljoyn_interfacedescription_introspect(iface.into(), ::core::mem::transmute(str), buf, indent)
 }
 #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
 #[inline]
@@ -3539,29 +3525,24 @@ pub unsafe fn alljoyn_interfacedescription_member_eql(one: alljoyn_interfacedesc
 }
 #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
 #[inline]
-pub unsafe fn alljoyn_interfacedescription_member_getannotation<'a, P0, P1>(member: alljoyn_interfacedescription_member, name: P0, value: P1, value_size: *mut usize) -> i32
+pub unsafe fn alljoyn_interfacedescription_member_getannotation<'a, P0>(member: alljoyn_interfacedescription_member, name: P0, value: ::windows::core::PSTR, value_size: *mut usize) -> i32
 where
     P0: ::std::convert::Into<::windows::core::PCSTR>,
-    P1: ::std::convert::Into<::windows::core::PCSTR>,
 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn alljoyn_interfacedescription_member_getannotation(member: alljoyn_interfacedescription_member, name: ::windows::core::PCSTR, value: ::windows::core::PCSTR, value_size: *mut usize) -> i32;
+        fn alljoyn_interfacedescription_member_getannotation(member: alljoyn_interfacedescription_member, name: ::windows::core::PCSTR, value: ::windows::core::PSTR, value_size: *mut usize) -> i32;
     }
-    alljoyn_interfacedescription_member_getannotation(::core::mem::transmute(member), name.into(), value.into(), ::core::mem::transmute(value_size))
+    alljoyn_interfacedescription_member_getannotation(::core::mem::transmute(member), name.into(), ::core::mem::transmute(value), ::core::mem::transmute(value_size))
 }
 #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
 #[inline]
-pub unsafe fn alljoyn_interfacedescription_member_getannotationatindex<'a, P0, P1>(member: alljoyn_interfacedescription_member, index: usize, name: P0, name_size: *mut usize, value: P1, value_size: *mut usize)
-where
-    P0: ::std::convert::Into<::windows::core::PCSTR>,
-    P1: ::std::convert::Into<::windows::core::PCSTR>,
-{
+pub unsafe fn alljoyn_interfacedescription_member_getannotationatindex(member: alljoyn_interfacedescription_member, index: usize, name: ::windows::core::PSTR, name_size: *mut usize, value: ::windows::core::PSTR, value_size: *mut usize) {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn alljoyn_interfacedescription_member_getannotationatindex(member: alljoyn_interfacedescription_member, index: usize, name: ::windows::core::PCSTR, name_size: *mut usize, value: ::windows::core::PCSTR, value_size: *mut usize);
+        fn alljoyn_interfacedescription_member_getannotationatindex(member: alljoyn_interfacedescription_member, index: usize, name: ::windows::core::PSTR, name_size: *mut usize, value: ::windows::core::PSTR, value_size: *mut usize);
     }
-    alljoyn_interfacedescription_member_getannotationatindex(::core::mem::transmute(member), index, name.into(), ::core::mem::transmute(name_size), value.into(), ::core::mem::transmute(value_size))
+    alljoyn_interfacedescription_member_getannotationatindex(::core::mem::transmute(member), index, ::core::mem::transmute(name), ::core::mem::transmute(name_size), ::core::mem::transmute(value), ::core::mem::transmute(value_size))
 }
 #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
 #[inline]
@@ -3574,31 +3555,28 @@ pub unsafe fn alljoyn_interfacedescription_member_getannotationscount(member: al
 }
 #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
 #[inline]
-pub unsafe fn alljoyn_interfacedescription_member_getargannotation<'a, P0, P1, P2>(member: alljoyn_interfacedescription_member, argname: P0, name: P1, value: P2, value_size: *mut usize) -> i32
+pub unsafe fn alljoyn_interfacedescription_member_getargannotation<'a, P0, P1>(member: alljoyn_interfacedescription_member, argname: P0, name: P1, value: ::windows::core::PSTR, value_size: *mut usize) -> i32
 where
     P0: ::std::convert::Into<::windows::core::PCSTR>,
     P1: ::std::convert::Into<::windows::core::PCSTR>,
-    P2: ::std::convert::Into<::windows::core::PCSTR>,
 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn alljoyn_interfacedescription_member_getargannotation(member: alljoyn_interfacedescription_member, argname: ::windows::core::PCSTR, name: ::windows::core::PCSTR, value: ::windows::core::PCSTR, value_size: *mut usize) -> i32;
+        fn alljoyn_interfacedescription_member_getargannotation(member: alljoyn_interfacedescription_member, argname: ::windows::core::PCSTR, name: ::windows::core::PCSTR, value: ::windows::core::PSTR, value_size: *mut usize) -> i32;
     }
-    alljoyn_interfacedescription_member_getargannotation(::core::mem::transmute(member), argname.into(), name.into(), value.into(), ::core::mem::transmute(value_size))
+    alljoyn_interfacedescription_member_getargannotation(::core::mem::transmute(member), argname.into(), name.into(), ::core::mem::transmute(value), ::core::mem::transmute(value_size))
 }
 #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
 #[inline]
-pub unsafe fn alljoyn_interfacedescription_member_getargannotationatindex<'a, P0, P1, P2>(member: alljoyn_interfacedescription_member, argname: P0, index: usize, name: P1, name_size: *mut usize, value: P2, value_size: *mut usize)
+pub unsafe fn alljoyn_interfacedescription_member_getargannotationatindex<'a, P0>(member: alljoyn_interfacedescription_member, argname: P0, index: usize, name: ::windows::core::PSTR, name_size: *mut usize, value: ::windows::core::PSTR, value_size: *mut usize)
 where
     P0: ::std::convert::Into<::windows::core::PCSTR>,
-    P1: ::std::convert::Into<::windows::core::PCSTR>,
-    P2: ::std::convert::Into<::windows::core::PCSTR>,
 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn alljoyn_interfacedescription_member_getargannotationatindex(member: alljoyn_interfacedescription_member, argname: ::windows::core::PCSTR, index: usize, name: ::windows::core::PCSTR, name_size: *mut usize, value: ::windows::core::PCSTR, value_size: *mut usize);
+        fn alljoyn_interfacedescription_member_getargannotationatindex(member: alljoyn_interfacedescription_member, argname: ::windows::core::PCSTR, index: usize, name: ::windows::core::PSTR, name_size: *mut usize, value: ::windows::core::PSTR, value_size: *mut usize);
     }
-    alljoyn_interfacedescription_member_getargannotationatindex(::core::mem::transmute(member), argname.into(), index, name.into(), ::core::mem::transmute(name_size), value.into(), ::core::mem::transmute(value_size))
+    alljoyn_interfacedescription_member_getargannotationatindex(::core::mem::transmute(member), argname.into(), index, ::core::mem::transmute(name), ::core::mem::transmute(name_size), ::core::mem::transmute(value), ::core::mem::transmute(value_size))
 }
 #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
 #[inline]
@@ -3623,29 +3601,24 @@ pub unsafe fn alljoyn_interfacedescription_property_eql(one: alljoyn_interfacede
 }
 #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
 #[inline]
-pub unsafe fn alljoyn_interfacedescription_property_getannotation<'a, P0, P1>(property: alljoyn_interfacedescription_property, name: P0, value: P1, value_size: *mut usize) -> i32
+pub unsafe fn alljoyn_interfacedescription_property_getannotation<'a, P0>(property: alljoyn_interfacedescription_property, name: P0, value: ::windows::core::PSTR, value_size: *mut usize) -> i32
 where
     P0: ::std::convert::Into<::windows::core::PCSTR>,
-    P1: ::std::convert::Into<::windows::core::PCSTR>,
 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn alljoyn_interfacedescription_property_getannotation(property: alljoyn_interfacedescription_property, name: ::windows::core::PCSTR, value: ::windows::core::PCSTR, value_size: *mut usize) -> i32;
+        fn alljoyn_interfacedescription_property_getannotation(property: alljoyn_interfacedescription_property, name: ::windows::core::PCSTR, value: ::windows::core::PSTR, value_size: *mut usize) -> i32;
     }
-    alljoyn_interfacedescription_property_getannotation(::core::mem::transmute(property), name.into(), value.into(), ::core::mem::transmute(value_size))
+    alljoyn_interfacedescription_property_getannotation(::core::mem::transmute(property), name.into(), ::core::mem::transmute(value), ::core::mem::transmute(value_size))
 }
 #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
 #[inline]
-pub unsafe fn alljoyn_interfacedescription_property_getannotationatindex<'a, P0, P1>(property: alljoyn_interfacedescription_property, index: usize, name: P0, name_size: *mut usize, value: P1, value_size: *mut usize)
-where
-    P0: ::std::convert::Into<::windows::core::PCSTR>,
-    P1: ::std::convert::Into<::windows::core::PCSTR>,
-{
+pub unsafe fn alljoyn_interfacedescription_property_getannotationatindex(property: alljoyn_interfacedescription_property, index: usize, name: ::windows::core::PSTR, name_size: *mut usize, value: ::windows::core::PSTR, value_size: *mut usize) {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn alljoyn_interfacedescription_property_getannotationatindex(property: alljoyn_interfacedescription_property, index: usize, name: ::windows::core::PCSTR, name_size: *mut usize, value: ::windows::core::PCSTR, value_size: *mut usize);
+        fn alljoyn_interfacedescription_property_getannotationatindex(property: alljoyn_interfacedescription_property, index: usize, name: ::windows::core::PSTR, name_size: *mut usize, value: ::windows::core::PSTR, value_size: *mut usize);
     }
-    alljoyn_interfacedescription_property_getannotationatindex(::core::mem::transmute(property), index, name.into(), ::core::mem::transmute(name_size), value.into(), ::core::mem::transmute(value_size))
+    alljoyn_interfacedescription_property_getannotationatindex(::core::mem::transmute(property), index, ::core::mem::transmute(name), ::core::mem::transmute(name_size), ::core::mem::transmute(value), ::core::mem::transmute(value_size))
 }
 #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
 #[inline]
@@ -3820,17 +3793,16 @@ where
 }
 #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
 #[inline]
-pub unsafe fn alljoyn_keystorelistener_getkeys<'a, P0, P1, P2>(listener: P0, keystore: P1, sink: P2, sink_sz: *mut usize) -> QStatus
+pub unsafe fn alljoyn_keystorelistener_getkeys<'a, P0, P1>(listener: P0, keystore: P1, sink: ::windows::core::PSTR, sink_sz: *mut usize) -> QStatus
 where
     P0: ::std::convert::Into<alljoyn_keystorelistener>,
     P1: ::std::convert::Into<alljoyn_keystore>,
-    P2: ::std::convert::Into<::windows::core::PCSTR>,
 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn alljoyn_keystorelistener_getkeys(listener: alljoyn_keystorelistener, keystore: alljoyn_keystore, sink: ::windows::core::PCSTR, sink_sz: *mut usize) -> QStatus;
+        fn alljoyn_keystorelistener_getkeys(listener: alljoyn_keystorelistener, keystore: alljoyn_keystore, sink: ::windows::core::PSTR, sink_sz: *mut usize) -> QStatus;
     }
-    alljoyn_keystorelistener_getkeys(listener.into(), keystore.into(), sink.into(), ::core::mem::transmute(sink_sz))
+    alljoyn_keystorelistener_getkeys(listener.into(), keystore.into(), ::core::mem::transmute(sink), ::core::mem::transmute(sink_sz))
 }
 #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
 #[inline]
@@ -3870,16 +3842,15 @@ where
 }
 #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
 #[inline]
-pub unsafe fn alljoyn_message_description<'a, P0, P1>(msg: P0, str: P1, buf: usize) -> usize
+pub unsafe fn alljoyn_message_description<'a, P0>(msg: P0, str: ::windows::core::PSTR, buf: usize) -> usize
 where
     P0: ::std::convert::Into<alljoyn_message>,
-    P1: ::std::convert::Into<::windows::core::PCSTR>,
 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn alljoyn_message_description(msg: alljoyn_message, str: ::windows::core::PCSTR, buf: usize) -> usize;
+        fn alljoyn_message_description(msg: alljoyn_message, str: ::windows::core::PSTR, buf: usize) -> usize;
     }
-    alljoyn_message_description(msg.into(), str.into(), buf)
+    alljoyn_message_description(msg.into(), ::core::mem::transmute(str), buf)
 }
 #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
 #[inline]
@@ -3980,16 +3951,15 @@ where
 }
 #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
 #[inline]
-pub unsafe fn alljoyn_message_geterrorname<'a, P0, P1>(msg: P0, errormessage: P1, errormessage_size: *mut usize) -> ::windows::core::PSTR
+pub unsafe fn alljoyn_message_geterrorname<'a, P0>(msg: P0, errormessage: ::windows::core::PSTR, errormessage_size: *mut usize) -> ::windows::core::PSTR
 where
     P0: ::std::convert::Into<alljoyn_message>,
-    P1: ::std::convert::Into<::windows::core::PCSTR>,
 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn alljoyn_message_geterrorname(msg: alljoyn_message, errormessage: ::windows::core::PCSTR, errormessage_size: *mut usize) -> ::windows::core::PSTR;
+        fn alljoyn_message_geterrorname(msg: alljoyn_message, errormessage: ::windows::core::PSTR, errormessage_size: *mut usize) -> ::windows::core::PSTR;
     }
-    alljoyn_message_geterrorname(msg.into(), errormessage.into(), ::core::mem::transmute(errormessage_size))
+    alljoyn_message_geterrorname(msg.into(), ::core::mem::transmute(errormessage), ::core::mem::transmute(errormessage_size))
 }
 #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
 #[inline]
@@ -4206,16 +4176,15 @@ pub unsafe fn alljoyn_message_setendianess(endian: i8) {
 }
 #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
 #[inline]
-pub unsafe fn alljoyn_message_tostring<'a, P0, P1>(msg: P0, str: P1, buf: usize) -> usize
+pub unsafe fn alljoyn_message_tostring<'a, P0>(msg: P0, str: ::windows::core::PSTR, buf: usize) -> usize
 where
     P0: ::std::convert::Into<alljoyn_message>,
-    P1: ::std::convert::Into<::windows::core::PCSTR>,
 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn alljoyn_message_tostring(msg: alljoyn_message, str: ::windows::core::PCSTR, buf: usize) -> usize;
+        fn alljoyn_message_tostring(msg: alljoyn_message, str: ::windows::core::PSTR, buf: usize) -> usize;
     }
-    alljoyn_message_tostring(msg.into(), str.into(), buf)
+    alljoyn_message_tostring(msg.into(), ::core::mem::transmute(str), buf)
 }
 #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
 #[inline]
@@ -4240,29 +4209,27 @@ where
 }
 #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
 #[inline]
-pub unsafe fn alljoyn_msgarg_array_signature<'a, P0, P1>(values: P0, numvalues: usize, str: P1, buf: usize) -> usize
+pub unsafe fn alljoyn_msgarg_array_signature<'a, P0>(values: P0, numvalues: usize, str: ::windows::core::PSTR, buf: usize) -> usize
 where
     P0: ::std::convert::Into<alljoyn_msgarg>,
-    P1: ::std::convert::Into<::windows::core::PCSTR>,
 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn alljoyn_msgarg_array_signature(values: alljoyn_msgarg, numvalues: usize, str: ::windows::core::PCSTR, buf: usize) -> usize;
+        fn alljoyn_msgarg_array_signature(values: alljoyn_msgarg, numvalues: usize, str: ::windows::core::PSTR, buf: usize) -> usize;
     }
-    alljoyn_msgarg_array_signature(values.into(), numvalues, str.into(), buf)
+    alljoyn_msgarg_array_signature(values.into(), numvalues, ::core::mem::transmute(str), buf)
 }
 #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
 #[inline]
-pub unsafe fn alljoyn_msgarg_array_tostring<'a, P0, P1>(args: P0, numargs: usize, str: P1, buf: usize, indent: usize) -> usize
+pub unsafe fn alljoyn_msgarg_array_tostring<'a, P0>(args: P0, numargs: usize, str: ::windows::core::PSTR, buf: usize, indent: usize) -> usize
 where
     P0: ::std::convert::Into<alljoyn_msgarg>,
-    P1: ::std::convert::Into<::windows::core::PCSTR>,
 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn alljoyn_msgarg_array_tostring(args: alljoyn_msgarg, numargs: usize, str: ::windows::core::PCSTR, buf: usize, indent: usize) -> usize;
+        fn alljoyn_msgarg_array_tostring(args: alljoyn_msgarg, numargs: usize, str: ::windows::core::PSTR, buf: usize, indent: usize) -> usize;
     }
-    alljoyn_msgarg_array_tostring(args.into(), numargs, str.into(), buf, indent)
+    alljoyn_msgarg_array_tostring(args.into(), numargs, ::core::mem::transmute(str), buf, indent)
 }
 #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
 #[inline]
@@ -5042,16 +5009,15 @@ where
 }
 #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
 #[inline]
-pub unsafe fn alljoyn_msgarg_signature<'a, P0, P1>(arg: P0, str: P1, buf: usize) -> usize
+pub unsafe fn alljoyn_msgarg_signature<'a, P0>(arg: P0, str: ::windows::core::PSTR, buf: usize) -> usize
 where
     P0: ::std::convert::Into<alljoyn_msgarg>,
-    P1: ::std::convert::Into<::windows::core::PCSTR>,
 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn alljoyn_msgarg_signature(arg: alljoyn_msgarg, str: ::windows::core::PCSTR, buf: usize) -> usize;
+        fn alljoyn_msgarg_signature(arg: alljoyn_msgarg, str: ::windows::core::PSTR, buf: usize) -> usize;
     }
-    alljoyn_msgarg_signature(arg.into(), str.into(), buf)
+    alljoyn_msgarg_signature(arg.into(), ::core::mem::transmute(str), buf)
 }
 #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
 #[inline]
@@ -5067,16 +5033,15 @@ where
 }
 #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
 #[inline]
-pub unsafe fn alljoyn_msgarg_tostring<'a, P0, P1>(arg: P0, str: P1, buf: usize, indent: usize) -> usize
+pub unsafe fn alljoyn_msgarg_tostring<'a, P0>(arg: P0, str: ::windows::core::PSTR, buf: usize, indent: usize) -> usize
 where
     P0: ::std::convert::Into<alljoyn_msgarg>,
-    P1: ::std::convert::Into<::windows::core::PCSTR>,
 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn alljoyn_msgarg_tostring(arg: alljoyn_msgarg, str: ::windows::core::PCSTR, buf: usize, indent: usize) -> usize;
+        fn alljoyn_msgarg_tostring(arg: alljoyn_msgarg, str: ::windows::core::PSTR, buf: usize, indent: usize) -> usize;
     }
-    alljoyn_msgarg_tostring(arg.into(), str.into(), buf, indent)
+    alljoyn_msgarg_tostring(arg.into(), ::core::mem::transmute(str), buf, indent)
 }
 #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
 #[inline]

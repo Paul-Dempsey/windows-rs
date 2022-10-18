@@ -31,10 +31,10 @@ pub unsafe fn RtlInitializeCorrelationVector(correlationvector: *mut CORRELATION
 #[doc = "*Required features: `\"Win32_System_CorrelationVector\"`, `\"Win32_Foundation\"`*"]
 #[cfg(feature = "Win32_Foundation")]
 #[inline]
-pub unsafe fn RtlValidateCorrelationVector(vector: *const CORRELATION_VECTOR) -> u32 {
+pub unsafe fn RtlValidateCorrelationVector(vector: *mut CORRELATION_VECTOR) -> u32 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "system" {
-        fn RtlValidateCorrelationVector(vector: *const CORRELATION_VECTOR) -> u32;
+        fn RtlValidateCorrelationVector(vector: *mut CORRELATION_VECTOR) -> u32;
     }
     RtlValidateCorrelationVector(::core::mem::transmute(vector))
 }

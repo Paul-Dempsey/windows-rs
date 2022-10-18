@@ -32,7 +32,7 @@ extern "system" {
     pub fn AllJoynConnectToBus(connectionspec: ::windows_sys::core::PCWSTR) -> super::super::Foundation::HANDLE;
     #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`, `\"Win32_Foundation\"`, `\"Win32_Security\"`*"]
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_Security"))]
-    pub fn AllJoynCreateBus(outbuffersize: u32, inbuffersize: u32, lpsecurityattributes: *const super::super::Security::SECURITY_ATTRIBUTES) -> super::super::Foundation::HANDLE;
+    pub fn AllJoynCreateBus(outbuffersize: u32, inbuffersize: u32, lpsecurityattributes: *mut super::super::Security::SECURITY_ATTRIBUTES) -> super::super::Foundation::HANDLE;
     #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
     pub fn AllJoynEnumEvents(connectedbushandle: super::super::Foundation::HANDLE, eventtoreset: super::super::Foundation::HANDLE, eventtypes: *mut u32) -> super::super::Foundation::BOOL;
@@ -322,7 +322,7 @@ extern "system" {
     #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
     pub fn alljoyn_busattachment_getkeyexpiration(bus: alljoyn_busattachment, guid: ::windows_sys::core::PCSTR, timeout: *mut u32) -> QStatus;
     #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
-    pub fn alljoyn_busattachment_getpeerguid(bus: alljoyn_busattachment, name: ::windows_sys::core::PCSTR, guid: ::windows_sys::core::PCSTR, guidsz: *mut usize) -> QStatus;
+    pub fn alljoyn_busattachment_getpeerguid(bus: alljoyn_busattachment, name: ::windows_sys::core::PCSTR, guid: ::windows_sys::core::PSTR, guidsz: *mut usize) -> QStatus;
     #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
     pub fn alljoyn_busattachment_getpermissionconfigurator(bus: alljoyn_busattachment) -> alljoyn_permissionconfigurator;
     #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
@@ -444,7 +444,7 @@ extern "system" {
     #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
     pub fn alljoyn_busobject_getbusattachment(bus: alljoyn_busobject) -> alljoyn_busattachment;
     #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
-    pub fn alljoyn_busobject_getname(bus: alljoyn_busobject, buffer: ::windows_sys::core::PCSTR, buffersz: usize) -> usize;
+    pub fn alljoyn_busobject_getname(bus: alljoyn_busobject, buffer: ::windows_sys::core::PSTR, buffersz: usize) -> usize;
     #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
     pub fn alljoyn_busobject_getpath(bus: alljoyn_busobject) -> ::windows_sys::core::PSTR;
     #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
@@ -520,29 +520,29 @@ extern "system" {
     #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
     pub fn alljoyn_interfacedescription_eql(one: alljoyn_interfacedescription, other: alljoyn_interfacedescription) -> i32;
     #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
-    pub fn alljoyn_interfacedescription_getannotation(iface: alljoyn_interfacedescription, name: ::windows_sys::core::PCSTR, value: ::windows_sys::core::PCSTR, value_size: *mut usize) -> i32;
+    pub fn alljoyn_interfacedescription_getannotation(iface: alljoyn_interfacedescription, name: ::windows_sys::core::PCSTR, value: ::windows_sys::core::PSTR, value_size: *mut usize) -> i32;
     #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
-    pub fn alljoyn_interfacedescription_getannotationatindex(iface: alljoyn_interfacedescription, index: usize, name: ::windows_sys::core::PCSTR, name_size: *mut usize, value: ::windows_sys::core::PCSTR, value_size: *mut usize);
+    pub fn alljoyn_interfacedescription_getannotationatindex(iface: alljoyn_interfacedescription, index: usize, name: ::windows_sys::core::PSTR, name_size: *mut usize, value: ::windows_sys::core::PSTR, value_size: *mut usize);
     #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
     pub fn alljoyn_interfacedescription_getannotationscount(iface: alljoyn_interfacedescription) -> usize;
     #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
-    pub fn alljoyn_interfacedescription_getargdescriptionforlanguage(iface: alljoyn_interfacedescription, member: ::windows_sys::core::PCSTR, arg: ::windows_sys::core::PCSTR, description: ::windows_sys::core::PCSTR, maxlanguagelength: usize, languagetag: ::windows_sys::core::PCSTR) -> usize;
+    pub fn alljoyn_interfacedescription_getargdescriptionforlanguage(iface: alljoyn_interfacedescription, member: ::windows_sys::core::PCSTR, arg: ::windows_sys::core::PCSTR, description: ::windows_sys::core::PSTR, maxlanguagelength: usize, languagetag: ::windows_sys::core::PCSTR) -> usize;
     #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
-    pub fn alljoyn_interfacedescription_getdescriptionforlanguage(iface: alljoyn_interfacedescription, description: ::windows_sys::core::PCSTR, maxlanguagelength: usize, languagetag: ::windows_sys::core::PCSTR) -> usize;
+    pub fn alljoyn_interfacedescription_getdescriptionforlanguage(iface: alljoyn_interfacedescription, description: ::windows_sys::core::PSTR, maxlanguagelength: usize, languagetag: ::windows_sys::core::PCSTR) -> usize;
     #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
     pub fn alljoyn_interfacedescription_getdescriptionlanguages(iface: alljoyn_interfacedescription, languages: *const *const i8, size: usize) -> usize;
     #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
-    pub fn alljoyn_interfacedescription_getdescriptionlanguages2(iface: alljoyn_interfacedescription, languages: ::windows_sys::core::PCSTR, languagessize: usize) -> usize;
+    pub fn alljoyn_interfacedescription_getdescriptionlanguages2(iface: alljoyn_interfacedescription, languages: ::windows_sys::core::PSTR, languagessize: usize) -> usize;
     #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
     pub fn alljoyn_interfacedescription_getdescriptiontranslationcallback(iface: alljoyn_interfacedescription) -> alljoyn_interfacedescription_translation_callback_ptr;
     #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
     pub fn alljoyn_interfacedescription_getmember(iface: alljoyn_interfacedescription, name: ::windows_sys::core::PCSTR, member: *mut alljoyn_interfacedescription_member) -> i32;
     #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
-    pub fn alljoyn_interfacedescription_getmemberannotation(iface: alljoyn_interfacedescription, member: ::windows_sys::core::PCSTR, name: ::windows_sys::core::PCSTR, value: ::windows_sys::core::PCSTR, value_size: *mut usize) -> i32;
+    pub fn alljoyn_interfacedescription_getmemberannotation(iface: alljoyn_interfacedescription, member: ::windows_sys::core::PCSTR, name: ::windows_sys::core::PCSTR, value: ::windows_sys::core::PSTR, value_size: *mut usize) -> i32;
     #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
-    pub fn alljoyn_interfacedescription_getmemberargannotation(iface: alljoyn_interfacedescription, member: ::windows_sys::core::PCSTR, argname: ::windows_sys::core::PCSTR, name: ::windows_sys::core::PCSTR, value: ::windows_sys::core::PCSTR, value_size: *mut usize) -> i32;
+    pub fn alljoyn_interfacedescription_getmemberargannotation(iface: alljoyn_interfacedescription, member: ::windows_sys::core::PCSTR, argname: ::windows_sys::core::PCSTR, name: ::windows_sys::core::PCSTR, value: ::windows_sys::core::PSTR, value_size: *mut usize) -> i32;
     #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
-    pub fn alljoyn_interfacedescription_getmemberdescriptionforlanguage(iface: alljoyn_interfacedescription, member: ::windows_sys::core::PCSTR, description: ::windows_sys::core::PCSTR, maxlanguagelength: usize, languagetag: ::windows_sys::core::PCSTR) -> usize;
+    pub fn alljoyn_interfacedescription_getmemberdescriptionforlanguage(iface: alljoyn_interfacedescription, member: ::windows_sys::core::PCSTR, description: ::windows_sys::core::PSTR, maxlanguagelength: usize, languagetag: ::windows_sys::core::PCSTR) -> usize;
     #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
     pub fn alljoyn_interfacedescription_getmembers(iface: alljoyn_interfacedescription, members: *mut alljoyn_interfacedescription_member, nummembers: usize) -> usize;
     #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
@@ -554,9 +554,9 @@ extern "system" {
     #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
     pub fn alljoyn_interfacedescription_getproperty(iface: alljoyn_interfacedescription, name: ::windows_sys::core::PCSTR, property: *mut alljoyn_interfacedescription_property) -> i32;
     #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
-    pub fn alljoyn_interfacedescription_getpropertyannotation(iface: alljoyn_interfacedescription, property: ::windows_sys::core::PCSTR, name: ::windows_sys::core::PCSTR, value: ::windows_sys::core::PCSTR, str_size: *mut usize) -> i32;
+    pub fn alljoyn_interfacedescription_getpropertyannotation(iface: alljoyn_interfacedescription, property: ::windows_sys::core::PCSTR, name: ::windows_sys::core::PCSTR, value: ::windows_sys::core::PSTR, str_size: *mut usize) -> i32;
     #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
-    pub fn alljoyn_interfacedescription_getpropertydescriptionforlanguage(iface: alljoyn_interfacedescription, property: ::windows_sys::core::PCSTR, description: ::windows_sys::core::PCSTR, maxlanguagelength: usize, languagetag: ::windows_sys::core::PCSTR) -> usize;
+    pub fn alljoyn_interfacedescription_getpropertydescriptionforlanguage(iface: alljoyn_interfacedescription, property: ::windows_sys::core::PCSTR, description: ::windows_sys::core::PSTR, maxlanguagelength: usize, languagetag: ::windows_sys::core::PCSTR) -> usize;
     #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
     pub fn alljoyn_interfacedescription_getsecuritypolicy(iface: alljoyn_interfacedescription) -> alljoyn_interfacedescription_securitypolicy;
     #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
@@ -570,29 +570,29 @@ extern "system" {
     #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
     pub fn alljoyn_interfacedescription_hasproperty(iface: alljoyn_interfacedescription, name: ::windows_sys::core::PCSTR) -> i32;
     #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
-    pub fn alljoyn_interfacedescription_introspect(iface: alljoyn_interfacedescription, str: ::windows_sys::core::PCSTR, buf: usize, indent: usize) -> usize;
+    pub fn alljoyn_interfacedescription_introspect(iface: alljoyn_interfacedescription, str: ::windows_sys::core::PSTR, buf: usize, indent: usize) -> usize;
     #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
     pub fn alljoyn_interfacedescription_issecure(iface: alljoyn_interfacedescription) -> i32;
     #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
     pub fn alljoyn_interfacedescription_member_eql(one: alljoyn_interfacedescription_member, other: alljoyn_interfacedescription_member) -> i32;
     #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
-    pub fn alljoyn_interfacedescription_member_getannotation(member: alljoyn_interfacedescription_member, name: ::windows_sys::core::PCSTR, value: ::windows_sys::core::PCSTR, value_size: *mut usize) -> i32;
+    pub fn alljoyn_interfacedescription_member_getannotation(member: alljoyn_interfacedescription_member, name: ::windows_sys::core::PCSTR, value: ::windows_sys::core::PSTR, value_size: *mut usize) -> i32;
     #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
-    pub fn alljoyn_interfacedescription_member_getannotationatindex(member: alljoyn_interfacedescription_member, index: usize, name: ::windows_sys::core::PCSTR, name_size: *mut usize, value: ::windows_sys::core::PCSTR, value_size: *mut usize);
+    pub fn alljoyn_interfacedescription_member_getannotationatindex(member: alljoyn_interfacedescription_member, index: usize, name: ::windows_sys::core::PSTR, name_size: *mut usize, value: ::windows_sys::core::PSTR, value_size: *mut usize);
     #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
     pub fn alljoyn_interfacedescription_member_getannotationscount(member: alljoyn_interfacedescription_member) -> usize;
     #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
-    pub fn alljoyn_interfacedescription_member_getargannotation(member: alljoyn_interfacedescription_member, argname: ::windows_sys::core::PCSTR, name: ::windows_sys::core::PCSTR, value: ::windows_sys::core::PCSTR, value_size: *mut usize) -> i32;
+    pub fn alljoyn_interfacedescription_member_getargannotation(member: alljoyn_interfacedescription_member, argname: ::windows_sys::core::PCSTR, name: ::windows_sys::core::PCSTR, value: ::windows_sys::core::PSTR, value_size: *mut usize) -> i32;
     #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
-    pub fn alljoyn_interfacedescription_member_getargannotationatindex(member: alljoyn_interfacedescription_member, argname: ::windows_sys::core::PCSTR, index: usize, name: ::windows_sys::core::PCSTR, name_size: *mut usize, value: ::windows_sys::core::PCSTR, value_size: *mut usize);
+    pub fn alljoyn_interfacedescription_member_getargannotationatindex(member: alljoyn_interfacedescription_member, argname: ::windows_sys::core::PCSTR, index: usize, name: ::windows_sys::core::PSTR, name_size: *mut usize, value: ::windows_sys::core::PSTR, value_size: *mut usize);
     #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
     pub fn alljoyn_interfacedescription_member_getargannotationscount(member: alljoyn_interfacedescription_member, argname: ::windows_sys::core::PCSTR) -> usize;
     #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
     pub fn alljoyn_interfacedescription_property_eql(one: alljoyn_interfacedescription_property, other: alljoyn_interfacedescription_property) -> i32;
     #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
-    pub fn alljoyn_interfacedescription_property_getannotation(property: alljoyn_interfacedescription_property, name: ::windows_sys::core::PCSTR, value: ::windows_sys::core::PCSTR, value_size: *mut usize) -> i32;
+    pub fn alljoyn_interfacedescription_property_getannotation(property: alljoyn_interfacedescription_property, name: ::windows_sys::core::PCSTR, value: ::windows_sys::core::PSTR, value_size: *mut usize) -> i32;
     #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
-    pub fn alljoyn_interfacedescription_property_getannotationatindex(property: alljoyn_interfacedescription_property, index: usize, name: ::windows_sys::core::PCSTR, name_size: *mut usize, value: ::windows_sys::core::PCSTR, value_size: *mut usize);
+    pub fn alljoyn_interfacedescription_property_getannotationatindex(property: alljoyn_interfacedescription_property, index: usize, name: ::windows_sys::core::PSTR, name_size: *mut usize, value: ::windows_sys::core::PSTR, value_size: *mut usize);
     #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
     pub fn alljoyn_interfacedescription_property_getannotationscount(property: alljoyn_interfacedescription_property) -> usize;
     #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
@@ -620,7 +620,7 @@ extern "system" {
     #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
     pub fn alljoyn_keystorelistener_destroy(listener: alljoyn_keystorelistener);
     #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
-    pub fn alljoyn_keystorelistener_getkeys(listener: alljoyn_keystorelistener, keystore: alljoyn_keystore, sink: ::windows_sys::core::PCSTR, sink_sz: *mut usize) -> QStatus;
+    pub fn alljoyn_keystorelistener_getkeys(listener: alljoyn_keystorelistener, keystore: alljoyn_keystore, sink: ::windows_sys::core::PSTR, sink_sz: *mut usize) -> QStatus;
     #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
     pub fn alljoyn_keystorelistener_putkeys(listener: alljoyn_keystorelistener, keystore: alljoyn_keystore, source: ::windows_sys::core::PCSTR, password: ::windows_sys::core::PCSTR) -> QStatus;
     #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
@@ -628,7 +628,7 @@ extern "system" {
     #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
     pub fn alljoyn_message_create(bus: alljoyn_busattachment) -> alljoyn_message;
     #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
-    pub fn alljoyn_message_description(msg: alljoyn_message, str: ::windows_sys::core::PCSTR, buf: usize) -> usize;
+    pub fn alljoyn_message_description(msg: alljoyn_message, str: ::windows_sys::core::PSTR, buf: usize) -> usize;
     #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
     pub fn alljoyn_message_destroy(msg: alljoyn_message);
     #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
@@ -646,7 +646,7 @@ extern "system" {
     #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
     pub fn alljoyn_message_getdestination(msg: alljoyn_message) -> ::windows_sys::core::PSTR;
     #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
-    pub fn alljoyn_message_geterrorname(msg: alljoyn_message, errormessage: ::windows_sys::core::PCSTR, errormessage_size: *mut usize) -> ::windows_sys::core::PSTR;
+    pub fn alljoyn_message_geterrorname(msg: alljoyn_message, errormessage: ::windows_sys::core::PSTR, errormessage_size: *mut usize) -> ::windows_sys::core::PSTR;
     #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
     pub fn alljoyn_message_getflags(msg: alljoyn_message) -> u8;
     #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
@@ -684,15 +684,15 @@ extern "system" {
     #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
     pub fn alljoyn_message_setendianess(endian: i8);
     #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
-    pub fn alljoyn_message_tostring(msg: alljoyn_message, str: ::windows_sys::core::PCSTR, buf: usize) -> usize;
+    pub fn alljoyn_message_tostring(msg: alljoyn_message, str: ::windows_sys::core::PSTR, buf: usize) -> usize;
     #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
     pub fn alljoyn_msgarg_array_create(size: usize) -> alljoyn_msgarg;
     #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
     pub fn alljoyn_msgarg_array_element(arg: alljoyn_msgarg, index: usize) -> alljoyn_msgarg;
     #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
-    pub fn alljoyn_msgarg_array_signature(values: alljoyn_msgarg, numvalues: usize, str: ::windows_sys::core::PCSTR, buf: usize) -> usize;
+    pub fn alljoyn_msgarg_array_signature(values: alljoyn_msgarg, numvalues: usize, str: ::windows_sys::core::PSTR, buf: usize) -> usize;
     #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
-    pub fn alljoyn_msgarg_array_tostring(args: alljoyn_msgarg, numargs: usize, str: ::windows_sys::core::PCSTR, buf: usize, indent: usize) -> usize;
+    pub fn alljoyn_msgarg_array_tostring(args: alljoyn_msgarg, numargs: usize, str: ::windows_sys::core::PSTR, buf: usize, indent: usize) -> usize;
     #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
     pub fn alljoyn_msgarg_clear(arg: alljoyn_msgarg);
     #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
@@ -822,11 +822,11 @@ extern "system" {
     #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
     pub fn alljoyn_msgarg_setstruct(arg: alljoyn_msgarg, struct_members: alljoyn_msgarg, num_members: usize) -> QStatus;
     #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
-    pub fn alljoyn_msgarg_signature(arg: alljoyn_msgarg, str: ::windows_sys::core::PCSTR, buf: usize) -> usize;
+    pub fn alljoyn_msgarg_signature(arg: alljoyn_msgarg, str: ::windows_sys::core::PSTR, buf: usize) -> usize;
     #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
     pub fn alljoyn_msgarg_stabilize(arg: alljoyn_msgarg);
     #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
-    pub fn alljoyn_msgarg_tostring(arg: alljoyn_msgarg, str: ::windows_sys::core::PCSTR, buf: usize, indent: usize) -> usize;
+    pub fn alljoyn_msgarg_tostring(arg: alljoyn_msgarg, str: ::windows_sys::core::PSTR, buf: usize, indent: usize) -> usize;
     #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]
     pub fn alljoyn_observer_create(bus: alljoyn_busattachment, mandatoryinterfaces: *const *const i8, nummandatoryinterfaces: usize) -> alljoyn_observer;
     #[doc = "*Required features: `\"Win32_Devices_AllJoyn\"`*"]

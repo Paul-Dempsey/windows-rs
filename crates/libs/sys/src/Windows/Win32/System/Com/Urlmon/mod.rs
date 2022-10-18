@@ -40,9 +40,9 @@ extern "system" {
     #[cfg(feature = "Win32_Foundation")]
     pub fn CoInternetSetFeatureEnabled(featureentry: INTERNETFEATURELIST, dwflags: u32, fenable: super::super::super::Foundation::BOOL) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_System_Com_Urlmon\"`*"]
-    pub fn CompareSecurityIds(pbsecurityid1: *const u8, dwlen1: u32, pbsecurityid2: *const u8, dwlen2: u32, dwreserved: u32) -> ::windows_sys::core::HRESULT;
+    pub fn CompareSecurityIds(pbsecurityid1: *mut u8, dwlen1: u32, pbsecurityid2: *mut u8, dwlen2: u32, dwreserved: u32) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_System_Com_Urlmon\"`*"]
-    pub fn CompatFlagsFromClsid(pclsid: *const ::windows_sys::core::GUID, pdwcompatflags: *mut u32, pdwmiscstatusflags: *mut u32) -> ::windows_sys::core::HRESULT;
+    pub fn CompatFlagsFromClsid(pclsid: *mut ::windows_sys::core::GUID, pdwcompatflags: *mut u32, pdwmiscstatusflags: *mut u32) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_System_Com_Urlmon\"`, `\"Win32_Foundation\"`, `\"Win32_Graphics_Gdi\"`, `\"Win32_Security\"`, `\"Win32_System_Com_StructuredStorage\"`*"]
     #[cfg(all(feature = "Win32_Foundation", feature = "Win32_Graphics_Gdi", feature = "Win32_Security", feature = "Win32_System_Com_StructuredStorage"))]
     pub fn CopyBindInfo(pcbisrc: *const super::BINDINFO, pbidest: *mut super::BINDINFO) -> ::windows_sys::core::HRESULT;
@@ -54,7 +54,7 @@ extern "system" {
     #[doc = "*Required features: `\"Win32_System_Com_Urlmon\"`*"]
     pub fn CreateAsyncBindCtxEx(pbc: super::IBindCtx, dwoptions: u32, pbscb: super::IBindStatusCallback, penum: super::IEnumFORMATETC, ppbc: *mut super::IBindCtx, reserved: u32) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_System_Com_Urlmon\"`*"]
-    pub fn CreateFormatEnumerator(cfmtetc: u32, rgfmtetc: *const super::FORMATETC, ppenumfmtetc: *mut super::IEnumFORMATETC) -> ::windows_sys::core::HRESULT;
+    pub fn CreateFormatEnumerator(cfmtetc: u32, rgfmtetc: *mut super::FORMATETC, ppenumfmtetc: *mut super::IEnumFORMATETC) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_System_Com_Urlmon\"`*"]
     pub fn CreateURLMoniker(pmkctx: super::IMoniker, szurl: ::windows_sys::core::PCWSTR, ppmk: *mut super::IMoniker) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_System_Com_Urlmon\"`*"]
@@ -63,19 +63,19 @@ extern "system" {
     pub fn CreateURLMonikerEx2(pmkctx: super::IMoniker, puri: super::IUri, ppmk: *mut super::IMoniker, dwflags: u32) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_System_Com_Urlmon\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub fn FaultInIEFeature(hwnd: super::super::super::Foundation::HWND, pclassspec: *const super::uCLSSPEC, pquery: *mut super::QUERYCONTEXT, dwflags: u32) -> ::windows_sys::core::HRESULT;
+    pub fn FaultInIEFeature(hwnd: super::super::super::Foundation::HWND, pclassspec: *mut super::uCLSSPEC, pquery: *mut super::QUERYCONTEXT, dwflags: u32) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_System_Com_Urlmon\"`*"]
     pub fn FindMediaType(rgsztypes: ::windows_sys::core::PCSTR, rgcftypes: *mut u16) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_System_Com_Urlmon\"`*"]
     pub fn FindMediaTypeClass(pbc: super::IBindCtx, sztype: ::windows_sys::core::PCSTR, pclsid: *mut ::windows_sys::core::GUID, reserved: u32) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_System_Com_Urlmon\"`*"]
-    pub fn FindMimeFromData(pbc: super::IBindCtx, pwzurl: ::windows_sys::core::PCWSTR, pbuffer: *const ::core::ffi::c_void, cbsize: u32, pwzmimeproposed: ::windows_sys::core::PCWSTR, dwmimeflags: u32, ppwzmimeout: *mut ::windows_sys::core::PWSTR, dwreserved: u32) -> ::windows_sys::core::HRESULT;
+    pub fn FindMimeFromData(pbc: super::IBindCtx, pwzurl: ::windows_sys::core::PCWSTR, pbuffer: *mut ::core::ffi::c_void, cbsize: u32, pwzmimeproposed: ::windows_sys::core::PCWSTR, dwmimeflags: u32, ppwzmimeout: *mut ::windows_sys::core::PWSTR, dwreserved: u32) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_System_Com_Urlmon\"`*"]
-    pub fn GetClassFileOrMime(pbc: super::IBindCtx, szfilename: ::windows_sys::core::PCWSTR, pbuffer: *const ::core::ffi::c_void, cbsize: u32, szmime: ::windows_sys::core::PCWSTR, dwreserved: u32, pclsid: *mut ::windows_sys::core::GUID) -> ::windows_sys::core::HRESULT;
+    pub fn GetClassFileOrMime(pbc: super::IBindCtx, szfilename: ::windows_sys::core::PCWSTR, pbuffer: *mut ::core::ffi::c_void, cbsize: u32, szmime: ::windows_sys::core::PCWSTR, dwreserved: u32, pclsid: *mut ::windows_sys::core::GUID) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_System_Com_Urlmon\"`*"]
     pub fn GetClassURL(szurl: ::windows_sys::core::PCWSTR, pclsid: *mut ::windows_sys::core::GUID) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_System_Com_Urlmon\"`*"]
-    pub fn GetComponentIDFromCLSSPEC(pclassspec: *const super::uCLSSPEC, ppszcomponentid: *mut ::windows_sys::core::PSTR) -> ::windows_sys::core::HRESULT;
+    pub fn GetComponentIDFromCLSSPEC(pclassspec: *mut super::uCLSSPEC, ppszcomponentid: *mut ::windows_sys::core::PSTR) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_System_Com_Urlmon\"`*"]
     pub fn GetSoftwareUpdateInfo(szdistunit: ::windows_sys::core::PCWSTR, psdi: *mut SOFTDISTINFO) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_System_Com_Urlmon\"`*"]
@@ -113,7 +113,7 @@ extern "system" {
     #[doc = "*Required features: `\"Win32_System_Com_Urlmon\"`*"]
     pub fn RegisterFormatEnumerator(pbc: super::IBindCtx, pefetc: super::IEnumFORMATETC, reserved: u32) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_System_Com_Urlmon\"`*"]
-    pub fn RegisterMediaTypeClass(pbc: super::IBindCtx, ctypes: u32, rgsztypes: *const ::windows_sys::core::PSTR, rgclsid: *const ::windows_sys::core::GUID, reserved: u32) -> ::windows_sys::core::HRESULT;
+    pub fn RegisterMediaTypeClass(pbc: super::IBindCtx, ctypes: u32, rgsztypes: *const ::windows_sys::core::PSTR, rgclsid: *mut ::windows_sys::core::GUID, reserved: u32) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_System_Com_Urlmon\"`*"]
     pub fn RegisterMediaTypes(ctypes: u32, rgsztypes: *const ::windows_sys::core::PSTR, rgcftypes: *mut u16) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_System_Com_Urlmon\"`, `\"Win32_Foundation\"`, `\"Win32_Graphics_Gdi\"`, `\"Win32_Security\"`, `\"Win32_System_Com_StructuredStorage\"`*"]
@@ -151,10 +151,10 @@ extern "system" {
     #[doc = "*Required features: `\"Win32_System_Com_Urlmon\"`*"]
     pub fn UrlMkGetSessionOption(dwoption: u32, pbuffer: *mut ::core::ffi::c_void, dwbufferlength: u32, pdwbufferlengthout: *mut u32, dwreserved: u32) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_System_Com_Urlmon\"`*"]
-    pub fn UrlMkSetSessionOption(dwoption: u32, pbuffer: *const ::core::ffi::c_void, dwbufferlength: u32, dwreserved: u32) -> ::windows_sys::core::HRESULT;
+    pub fn UrlMkSetSessionOption(dwoption: u32, pbuffer: *mut ::core::ffi::c_void, dwbufferlength: u32, dwreserved: u32) -> ::windows_sys::core::HRESULT;
     #[doc = "*Required features: `\"Win32_System_Com_Urlmon\"`, `\"Win32_Foundation\"`*"]
     #[cfg(feature = "Win32_Foundation")]
-    pub fn WriteHitLogging(lplogginginfo: *const HIT_LOGGING_INFO) -> super::super::super::Foundation::BOOL;
+    pub fn WriteHitLogging(lplogginginfo: *mut HIT_LOGGING_INFO) -> super::super::super::Foundation::BOOL;
 }
 pub type IBindCallbackRedirect = *mut ::core::ffi::c_void;
 pub type IBindHttpSecurity = *mut ::core::ffi::c_void;

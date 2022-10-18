@@ -257,7 +257,7 @@ impl IMILBitmapEffectConnectorInfo_Vtbl {
 }
 pub trait IMILBitmapEffectEvents_Impl: Sized {
     fn PropertyChange(&self, peffect: &::core::option::Option<IMILBitmapEffect>, bstrpropertyname: &::windows::core::BSTR) -> ::windows::core::Result<()>;
-    fn DirtyRegion(&self, peffect: &::core::option::Option<IMILBitmapEffect>, prect: *const MilRectD) -> ::windows::core::Result<()>;
+    fn DirtyRegion(&self, peffect: &::core::option::Option<IMILBitmapEffect>, prect: *mut MilRectD) -> ::windows::core::Result<()>;
 }
 impl ::windows::core::RuntimeName for IMILBitmapEffectEvents {}
 impl IMILBitmapEffectEvents_Vtbl {
@@ -267,7 +267,7 @@ impl IMILBitmapEffectEvents_Vtbl {
             let this = (*this).get_impl();
             this.PropertyChange(::core::mem::transmute(&peffect), ::core::mem::transmute(&bstrpropertyname)).into()
         }
-        unsafe extern "system" fn DirtyRegion<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMILBitmapEffectEvents_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, peffect: *mut ::core::ffi::c_void, prect: *const MilRectD) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn DirtyRegion<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMILBitmapEffectEvents_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, peffect: *mut ::core::ffi::c_void, prect: *mut MilRectD) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.DirtyRegion(::core::mem::transmute(&peffect), ::core::mem::transmute_copy(&prect)).into()
@@ -758,19 +758,19 @@ impl IMILBitmapEffectPrimitiveImpl_Vtbl {
     }
 }
 pub trait IMILBitmapEffectRenderContext_Impl: Sized {
-    fn SetOutputPixelFormat(&self, format: *const ::windows::core::GUID) -> ::windows::core::Result<()>;
+    fn SetOutputPixelFormat(&self, format: *mut ::windows::core::GUID) -> ::windows::core::Result<()>;
     fn GetOutputPixelFormat(&self) -> ::windows::core::Result<::windows::core::GUID>;
     fn SetUseSoftwareRenderer(&self, fsoftware: i16) -> ::windows::core::Result<()>;
-    fn SetInitialTransform(&self, pmatrix: *const MILMatrixF) -> ::windows::core::Result<()>;
+    fn SetInitialTransform(&self, pmatrix: *mut MILMatrixF) -> ::windows::core::Result<()>;
     fn GetFinalTransform(&self) -> ::windows::core::Result<MILMatrixF>;
     fn SetOutputDPI(&self, dbldpix: f64, dbldpiy: f64) -> ::windows::core::Result<()>;
     fn GetOutputDPI(&self, pdbldpix: *mut f64, pdbldpiy: *mut f64) -> ::windows::core::Result<()>;
-    fn SetRegionOfInterest(&self, prect: *const MilRectD) -> ::windows::core::Result<()>;
+    fn SetRegionOfInterest(&self, prect: *mut MilRectD) -> ::windows::core::Result<()>;
 }
 impl ::windows::core::RuntimeName for IMILBitmapEffectRenderContext {}
 impl IMILBitmapEffectRenderContext_Vtbl {
     pub const fn new<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMILBitmapEffectRenderContext_Impl, const OFFSET: isize>() -> IMILBitmapEffectRenderContext_Vtbl {
-        unsafe extern "system" fn SetOutputPixelFormat<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMILBitmapEffectRenderContext_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, format: *const ::windows::core::GUID) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn SetOutputPixelFormat<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMILBitmapEffectRenderContext_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, format: *mut ::windows::core::GUID) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.SetOutputPixelFormat(::core::mem::transmute_copy(&format)).into()
@@ -791,7 +791,7 @@ impl IMILBitmapEffectRenderContext_Vtbl {
             let this = (*this).get_impl();
             this.SetUseSoftwareRenderer(::core::mem::transmute_copy(&fsoftware)).into()
         }
-        unsafe extern "system" fn SetInitialTransform<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMILBitmapEffectRenderContext_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, pmatrix: *const MILMatrixF) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn SetInitialTransform<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMILBitmapEffectRenderContext_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, pmatrix: *mut MILMatrixF) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.SetInitialTransform(::core::mem::transmute_copy(&pmatrix)).into()
@@ -817,7 +817,7 @@ impl IMILBitmapEffectRenderContext_Vtbl {
             let this = (*this).get_impl();
             this.GetOutputDPI(::core::mem::transmute_copy(&pdbldpix), ::core::mem::transmute_copy(&pdbldpiy)).into()
         }
-        unsafe extern "system" fn SetRegionOfInterest<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMILBitmapEffectRenderContext_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, prect: *const MilRectD) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn SetRegionOfInterest<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMILBitmapEffectRenderContext_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, prect: *mut MilRectD) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.SetRegionOfInterest(::core::mem::transmute_copy(&prect)).into()
@@ -841,9 +841,9 @@ impl IMILBitmapEffectRenderContext_Vtbl {
 pub trait IMILBitmapEffectRenderContextImpl_Impl: Sized {
     fn GetUseSoftwareRenderer(&self) -> ::windows::core::Result<i16>;
     fn GetTransform(&self, pmatrix: *mut MILMatrixF) -> ::windows::core::Result<()>;
-    fn UpdateTransform(&self, pmatrix: *const MILMatrixF) -> ::windows::core::Result<()>;
+    fn UpdateTransform(&self, pmatrix: *mut MILMatrixF) -> ::windows::core::Result<()>;
     fn GetOutputBounds(&self, prect: *mut MilRectD) -> ::windows::core::Result<()>;
-    fn UpdateOutputBounds(&self, prect: *const MilRectD) -> ::windows::core::Result<()>;
+    fn UpdateOutputBounds(&self, prect: *mut MilRectD) -> ::windows::core::Result<()>;
 }
 impl ::windows::core::RuntimeName for IMILBitmapEffectRenderContextImpl {}
 impl IMILBitmapEffectRenderContextImpl_Vtbl {
@@ -864,7 +864,7 @@ impl IMILBitmapEffectRenderContextImpl_Vtbl {
             let this = (*this).get_impl();
             this.GetTransform(::core::mem::transmute_copy(&pmatrix)).into()
         }
-        unsafe extern "system" fn UpdateTransform<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMILBitmapEffectRenderContextImpl_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, pmatrix: *const MILMatrixF) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn UpdateTransform<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMILBitmapEffectRenderContextImpl_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, pmatrix: *mut MILMatrixF) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.UpdateTransform(::core::mem::transmute_copy(&pmatrix)).into()
@@ -874,7 +874,7 @@ impl IMILBitmapEffectRenderContextImpl_Vtbl {
             let this = (*this).get_impl();
             this.GetOutputBounds(::core::mem::transmute_copy(&prect)).into()
         }
-        unsafe extern "system" fn UpdateOutputBounds<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMILBitmapEffectRenderContextImpl_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, prect: *const MilRectD) -> ::windows::core::HRESULT {
+        unsafe extern "system" fn UpdateOutputBounds<Identity: ::windows::core::IUnknownImpl<Impl = Impl>, Impl: IMILBitmapEffectRenderContextImpl_Impl, const OFFSET: isize>(this: *mut ::core::ffi::c_void, prect: *mut MilRectD) -> ::windows::core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.UpdateOutputBounds(::core::mem::transmute_copy(&prect)).into()

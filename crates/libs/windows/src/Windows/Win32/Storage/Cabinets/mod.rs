@@ -1,74 +1,68 @@
 #[doc = "*Required features: `\"Win32_Storage_Cabinets\"`, `\"Win32_Foundation\"`*"]
 #[cfg(feature = "Win32_Foundation")]
 #[inline]
-pub unsafe fn FCIAddFile<'a, P0, P1, P2>(hfci: *const ::core::ffi::c_void, pszsourcefile: P0, pszfilename: P1, fexecute: P2, pfnfcignc: PFNFCIGETNEXTCABINET, pfnfcis: PFNFCISTATUS, pfnfcigoi: PFNFCIGETOPENINFO, typecompress: u16) -> super::super::Foundation::BOOL
+pub unsafe fn FCIAddFile<'a, P0>(hfci: *mut ::core::ffi::c_void, pszsourcefile: ::windows::core::PSTR, pszfilename: ::windows::core::PSTR, fexecute: P0, pfnfcignc: PFNFCIGETNEXTCABINET, pfnfcis: PFNFCISTATUS, pfnfcigoi: PFNFCIGETOPENINFO, typecompress: u16) -> super::super::Foundation::BOOL
 where
-    P0: ::std::convert::Into<::windows::core::PCSTR>,
-    P1: ::std::convert::Into<::windows::core::PCSTR>,
-    P2: ::std::convert::Into<super::super::Foundation::BOOL>,
+    P0: ::std::convert::Into<super::super::Foundation::BOOL>,
 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "cdecl" {
-        fn FCIAddFile(hfci: *const ::core::ffi::c_void, pszsourcefile: ::windows::core::PCSTR, pszfilename: ::windows::core::PCSTR, fexecute: super::super::Foundation::BOOL, pfnfcignc: *mut ::core::ffi::c_void, pfnfcis: *mut ::core::ffi::c_void, pfnfcigoi: *mut ::core::ffi::c_void, typecompress: u16) -> super::super::Foundation::BOOL;
+        fn FCIAddFile(hfci: *mut ::core::ffi::c_void, pszsourcefile: ::windows::core::PSTR, pszfilename: ::windows::core::PSTR, fexecute: super::super::Foundation::BOOL, pfnfcignc: *mut ::core::ffi::c_void, pfnfcis: *mut ::core::ffi::c_void, pfnfcigoi: *mut ::core::ffi::c_void, typecompress: u16) -> super::super::Foundation::BOOL;
     }
-    FCIAddFile(::core::mem::transmute(hfci), pszsourcefile.into(), pszfilename.into(), fexecute.into(), ::core::mem::transmute(pfnfcignc), ::core::mem::transmute(pfnfcis), ::core::mem::transmute(pfnfcigoi), typecompress)
+    FCIAddFile(::core::mem::transmute(hfci), ::core::mem::transmute(pszsourcefile), ::core::mem::transmute(pszfilename), fexecute.into(), ::core::mem::transmute(pfnfcignc), ::core::mem::transmute(pfnfcis), ::core::mem::transmute(pfnfcigoi), typecompress)
 }
 #[doc = "*Required features: `\"Win32_Storage_Cabinets\"`, `\"Win32_Foundation\"`*"]
 #[cfg(feature = "Win32_Foundation")]
 #[inline]
-pub unsafe fn FCICreate(perf: *const ERF, pfnfcifp: PFNFCIFILEPLACED, pfna: PFNFCIALLOC, pfnf: PFNFCIFREE, pfnopen: PFNFCIOPEN, pfnread: PFNFCIREAD, pfnwrite: PFNFCIWRITE, pfnclose: PFNFCICLOSE, pfnseek: PFNFCISEEK, pfndelete: PFNFCIDELETE, pfnfcigtf: PFNFCIGETTEMPFILE, pccab: *const CCAB, pv: ::core::option::Option<*const ::core::ffi::c_void>) -> *mut ::core::ffi::c_void {
+pub unsafe fn FCICreate(perf: *mut ERF, pfnfcifp: PFNFCIFILEPLACED, pfna: PFNFCIALLOC, pfnf: PFNFCIFREE, pfnopen: PFNFCIOPEN, pfnread: PFNFCIREAD, pfnwrite: PFNFCIWRITE, pfnclose: PFNFCICLOSE, pfnseek: PFNFCISEEK, pfndelete: PFNFCIDELETE, pfnfcigtf: PFNFCIGETTEMPFILE, pccab: *mut CCAB, pv: ::core::option::Option<*mut ::core::ffi::c_void>) -> *mut ::core::ffi::c_void {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "cdecl" {
-        fn FCICreate(perf: *const ERF, pfnfcifp: *mut ::core::ffi::c_void, pfna: *mut ::core::ffi::c_void, pfnf: *mut ::core::ffi::c_void, pfnopen: *mut ::core::ffi::c_void, pfnread: *mut ::core::ffi::c_void, pfnwrite: *mut ::core::ffi::c_void, pfnclose: *mut ::core::ffi::c_void, pfnseek: *mut ::core::ffi::c_void, pfndelete: *mut ::core::ffi::c_void, pfnfcigtf: *mut ::core::ffi::c_void, pccab: *const CCAB, pv: *const ::core::ffi::c_void) -> *mut ::core::ffi::c_void;
+        fn FCICreate(perf: *mut ERF, pfnfcifp: *mut ::core::ffi::c_void, pfna: *mut ::core::ffi::c_void, pfnf: *mut ::core::ffi::c_void, pfnopen: *mut ::core::ffi::c_void, pfnread: *mut ::core::ffi::c_void, pfnwrite: *mut ::core::ffi::c_void, pfnclose: *mut ::core::ffi::c_void, pfnseek: *mut ::core::ffi::c_void, pfndelete: *mut ::core::ffi::c_void, pfnfcigtf: *mut ::core::ffi::c_void, pccab: *mut CCAB, pv: *mut ::core::ffi::c_void) -> *mut ::core::ffi::c_void;
     }
     FCICreate(::core::mem::transmute(perf), ::core::mem::transmute(pfnfcifp), ::core::mem::transmute(pfna), ::core::mem::transmute(pfnf), ::core::mem::transmute(pfnopen), ::core::mem::transmute(pfnread), ::core::mem::transmute(pfnwrite), ::core::mem::transmute(pfnclose), ::core::mem::transmute(pfnseek), ::core::mem::transmute(pfndelete), ::core::mem::transmute(pfnfcigtf), ::core::mem::transmute(pccab), ::core::mem::transmute(pv.unwrap_or(::std::ptr::null())))
 }
 #[doc = "*Required features: `\"Win32_Storage_Cabinets\"`, `\"Win32_Foundation\"`*"]
 #[cfg(feature = "Win32_Foundation")]
 #[inline]
-pub unsafe fn FCIDestroy(hfci: *const ::core::ffi::c_void) -> super::super::Foundation::BOOL {
+pub unsafe fn FCIDestroy(hfci: *mut ::core::ffi::c_void) -> super::super::Foundation::BOOL {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "cdecl" {
-        fn FCIDestroy(hfci: *const ::core::ffi::c_void) -> super::super::Foundation::BOOL;
+        fn FCIDestroy(hfci: *mut ::core::ffi::c_void) -> super::super::Foundation::BOOL;
     }
     FCIDestroy(::core::mem::transmute(hfci))
 }
 #[doc = "*Required features: `\"Win32_Storage_Cabinets\"`, `\"Win32_Foundation\"`*"]
 #[cfg(feature = "Win32_Foundation")]
 #[inline]
-pub unsafe fn FCIFlushCabinet<'a, P0>(hfci: *const ::core::ffi::c_void, fgetnextcab: P0, pfnfcignc: PFNFCIGETNEXTCABINET, pfnfcis: PFNFCISTATUS) -> super::super::Foundation::BOOL
+pub unsafe fn FCIFlushCabinet<'a, P0>(hfci: *mut ::core::ffi::c_void, fgetnextcab: P0, pfnfcignc: PFNFCIGETNEXTCABINET, pfnfcis: PFNFCISTATUS) -> super::super::Foundation::BOOL
 where
     P0: ::std::convert::Into<super::super::Foundation::BOOL>,
 {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "cdecl" {
-        fn FCIFlushCabinet(hfci: *const ::core::ffi::c_void, fgetnextcab: super::super::Foundation::BOOL, pfnfcignc: *mut ::core::ffi::c_void, pfnfcis: *mut ::core::ffi::c_void) -> super::super::Foundation::BOOL;
+        fn FCIFlushCabinet(hfci: *mut ::core::ffi::c_void, fgetnextcab: super::super::Foundation::BOOL, pfnfcignc: *mut ::core::ffi::c_void, pfnfcis: *mut ::core::ffi::c_void) -> super::super::Foundation::BOOL;
     }
     FCIFlushCabinet(::core::mem::transmute(hfci), fgetnextcab.into(), ::core::mem::transmute(pfnfcignc), ::core::mem::transmute(pfnfcis))
 }
 #[doc = "*Required features: `\"Win32_Storage_Cabinets\"`, `\"Win32_Foundation\"`*"]
 #[cfg(feature = "Win32_Foundation")]
 #[inline]
-pub unsafe fn FCIFlushFolder(hfci: *const ::core::ffi::c_void, pfnfcignc: PFNFCIGETNEXTCABINET, pfnfcis: PFNFCISTATUS) -> super::super::Foundation::BOOL {
+pub unsafe fn FCIFlushFolder(hfci: *mut ::core::ffi::c_void, pfnfcignc: PFNFCIGETNEXTCABINET, pfnfcis: PFNFCISTATUS) -> super::super::Foundation::BOOL {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "cdecl" {
-        fn FCIFlushFolder(hfci: *const ::core::ffi::c_void, pfnfcignc: *mut ::core::ffi::c_void, pfnfcis: *mut ::core::ffi::c_void) -> super::super::Foundation::BOOL;
+        fn FCIFlushFolder(hfci: *mut ::core::ffi::c_void, pfnfcignc: *mut ::core::ffi::c_void, pfnfcis: *mut ::core::ffi::c_void) -> super::super::Foundation::BOOL;
     }
     FCIFlushFolder(::core::mem::transmute(hfci), ::core::mem::transmute(pfnfcignc), ::core::mem::transmute(pfnfcis))
 }
 #[doc = "*Required features: `\"Win32_Storage_Cabinets\"`, `\"Win32_Foundation\"`*"]
 #[cfg(feature = "Win32_Foundation")]
 #[inline]
-pub unsafe fn FDICopy<'a, P0, P1>(hfdi: *const ::core::ffi::c_void, pszcabinet: P0, pszcabpath: P1, flags: i32, pfnfdin: PFNFDINOTIFY, pfnfdid: PFNFDIDECRYPT, pvuser: ::core::option::Option<*const ::core::ffi::c_void>) -> super::super::Foundation::BOOL
-where
-    P0: ::std::convert::Into<::windows::core::PCSTR>,
-    P1: ::std::convert::Into<::windows::core::PCSTR>,
-{
+pub unsafe fn FDICopy(hfdi: *mut ::core::ffi::c_void, pszcabinet: ::windows::core::PSTR, pszcabpath: ::windows::core::PSTR, flags: i32, pfnfdin: PFNFDINOTIFY, pfnfdid: PFNFDIDECRYPT, pvuser: ::core::option::Option<*mut ::core::ffi::c_void>) -> super::super::Foundation::BOOL {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "cdecl" {
-        fn FDICopy(hfdi: *const ::core::ffi::c_void, pszcabinet: ::windows::core::PCSTR, pszcabpath: ::windows::core::PCSTR, flags: i32, pfnfdin: *mut ::core::ffi::c_void, pfnfdid: *mut ::core::ffi::c_void, pvuser: *const ::core::ffi::c_void) -> super::super::Foundation::BOOL;
+        fn FDICopy(hfdi: *mut ::core::ffi::c_void, pszcabinet: ::windows::core::PSTR, pszcabpath: ::windows::core::PSTR, flags: i32, pfnfdin: *mut ::core::ffi::c_void, pfnfdid: *mut ::core::ffi::c_void, pvuser: *mut ::core::ffi::c_void) -> super::super::Foundation::BOOL;
     }
-    FDICopy(::core::mem::transmute(hfdi), pszcabinet.into(), pszcabpath.into(), flags, ::core::mem::transmute(pfnfdin), ::core::mem::transmute(pfnfdid), ::core::mem::transmute(pvuser.unwrap_or(::std::ptr::null())))
+    FDICopy(::core::mem::transmute(hfdi), ::core::mem::transmute(pszcabinet), ::core::mem::transmute(pszcabpath), flags, ::core::mem::transmute(pfnfdin), ::core::mem::transmute(pfnfdid), ::core::mem::transmute(pvuser.unwrap_or(::std::ptr::null())))
 }
 #[doc = "*Required features: `\"Win32_Storage_Cabinets\"`, `\"Win32_Foundation\"`*"]
 #[cfg(feature = "Win32_Foundation")]
@@ -83,35 +77,32 @@ pub unsafe fn FDICreate(pfnalloc: PFNALLOC, pfnfree: PFNFREE, pfnopen: PFNOPEN, 
 #[doc = "*Required features: `\"Win32_Storage_Cabinets\"`, `\"Win32_Foundation\"`*"]
 #[cfg(feature = "Win32_Foundation")]
 #[inline]
-pub unsafe fn FDIDestroy(hfdi: *const ::core::ffi::c_void) -> super::super::Foundation::BOOL {
+pub unsafe fn FDIDestroy(hfdi: *mut ::core::ffi::c_void) -> super::super::Foundation::BOOL {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "cdecl" {
-        fn FDIDestroy(hfdi: *const ::core::ffi::c_void) -> super::super::Foundation::BOOL;
+        fn FDIDestroy(hfdi: *mut ::core::ffi::c_void) -> super::super::Foundation::BOOL;
     }
     FDIDestroy(::core::mem::transmute(hfdi))
 }
 #[doc = "*Required features: `\"Win32_Storage_Cabinets\"`, `\"Win32_Foundation\"`*"]
 #[cfg(feature = "Win32_Foundation")]
 #[inline]
-pub unsafe fn FDIIsCabinet(hfdi: *const ::core::ffi::c_void, hf: isize, pfdici: ::core::option::Option<*mut FDICABINETINFO>) -> super::super::Foundation::BOOL {
+pub unsafe fn FDIIsCabinet(hfdi: *mut ::core::ffi::c_void, hf: isize, pfdici: ::core::option::Option<*mut FDICABINETINFO>) -> super::super::Foundation::BOOL {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "cdecl" {
-        fn FDIIsCabinet(hfdi: *const ::core::ffi::c_void, hf: isize, pfdici: *mut FDICABINETINFO) -> super::super::Foundation::BOOL;
+        fn FDIIsCabinet(hfdi: *mut ::core::ffi::c_void, hf: isize, pfdici: *mut FDICABINETINFO) -> super::super::Foundation::BOOL;
     }
     FDIIsCabinet(::core::mem::transmute(hfdi), hf, ::core::mem::transmute(pfdici.unwrap_or(::std::ptr::null_mut())))
 }
 #[doc = "*Required features: `\"Win32_Storage_Cabinets\"`, `\"Win32_Foundation\"`*"]
 #[cfg(feature = "Win32_Foundation")]
 #[inline]
-pub unsafe fn FDITruncateCabinet<'a, P0>(hfdi: *const ::core::ffi::c_void, pszcabinetname: P0, ifoldertodelete: u16) -> super::super::Foundation::BOOL
-where
-    P0: ::std::convert::Into<::windows::core::PCSTR>,
-{
+pub unsafe fn FDITruncateCabinet(hfdi: *mut ::core::ffi::c_void, pszcabinetname: ::windows::core::PSTR, ifoldertodelete: u16) -> super::super::Foundation::BOOL {
     #[cfg_attr(windows, link(name = "windows"))]
     extern "cdecl" {
-        fn FDITruncateCabinet(hfdi: *const ::core::ffi::c_void, pszcabinetname: ::windows::core::PCSTR, ifoldertodelete: u16) -> super::super::Foundation::BOOL;
+        fn FDITruncateCabinet(hfdi: *mut ::core::ffi::c_void, pszcabinetname: ::windows::core::PSTR, ifoldertodelete: u16) -> super::super::Foundation::BOOL;
     }
-    FDITruncateCabinet(::core::mem::transmute(hfdi), pszcabinetname.into(), ifoldertodelete)
+    FDITruncateCabinet(::core::mem::transmute(hfdi), ::core::mem::transmute(pszcabinetname), ifoldertodelete)
 }
 #[doc = "*Required features: `\"Win32_Storage_Cabinets\"`*"]
 pub const CB_MAX_CABINET_NAME: u32 = 256u32;
@@ -832,22 +823,22 @@ pub type PFNFCIALLOC = ::core::option::Option<unsafe extern "system" fn(cb: u32)
 #[doc = "*Required features: `\"Win32_Storage_Cabinets\"`*"]
 pub type PFNFCICLOSE = ::core::option::Option<unsafe extern "system" fn(hf: isize, err: *mut i32, pv: *mut ::core::ffi::c_void) -> i32>;
 #[doc = "*Required features: `\"Win32_Storage_Cabinets\"`*"]
-pub type PFNFCIDELETE = ::core::option::Option<unsafe extern "system" fn(pszfile: ::windows::core::PCSTR, err: *mut i32, pv: *mut ::core::ffi::c_void) -> i32>;
+pub type PFNFCIDELETE = ::core::option::Option<unsafe extern "system" fn(pszfile: ::windows::core::PSTR, err: *mut i32, pv: *mut ::core::ffi::c_void) -> i32>;
 #[doc = "*Required features: `\"Win32_Storage_Cabinets\"`, `\"Win32_Foundation\"`*"]
 #[cfg(feature = "Win32_Foundation")]
-pub type PFNFCIFILEPLACED = ::core::option::Option<unsafe extern "system" fn(pccab: *mut CCAB, pszfile: ::windows::core::PCSTR, cbfile: i32, fcontinuation: super::super::Foundation::BOOL, pv: *mut ::core::ffi::c_void) -> i32>;
+pub type PFNFCIFILEPLACED = ::core::option::Option<unsafe extern "system" fn(pccab: *mut CCAB, pszfile: ::windows::core::PSTR, cbfile: i32, fcontinuation: super::super::Foundation::BOOL, pv: *mut ::core::ffi::c_void) -> i32>;
 #[doc = "*Required features: `\"Win32_Storage_Cabinets\"`*"]
 pub type PFNFCIFREE = ::core::option::Option<unsafe extern "system" fn(memory: *mut ::core::ffi::c_void)>;
 #[doc = "*Required features: `\"Win32_Storage_Cabinets\"`, `\"Win32_Foundation\"`*"]
 #[cfg(feature = "Win32_Foundation")]
 pub type PFNFCIGETNEXTCABINET = ::core::option::Option<unsafe extern "system" fn(pccab: *mut CCAB, cbprevcab: u32, pv: *mut ::core::ffi::c_void) -> super::super::Foundation::BOOL>;
 #[doc = "*Required features: `\"Win32_Storage_Cabinets\"`*"]
-pub type PFNFCIGETOPENINFO = ::core::option::Option<unsafe extern "system" fn(pszname: ::windows::core::PCSTR, pdate: *mut u16, ptime: *mut u16, pattribs: *mut u16, err: *mut i32, pv: *mut ::core::ffi::c_void) -> isize>;
+pub type PFNFCIGETOPENINFO = ::core::option::Option<unsafe extern "system" fn(pszname: ::windows::core::PSTR, pdate: *mut u16, ptime: *mut u16, pattribs: *mut u16, err: *mut i32, pv: *mut ::core::ffi::c_void) -> isize>;
 #[doc = "*Required features: `\"Win32_Storage_Cabinets\"`, `\"Win32_Foundation\"`*"]
 #[cfg(feature = "Win32_Foundation")]
 pub type PFNFCIGETTEMPFILE = ::core::option::Option<unsafe extern "system" fn(psztempname: ::windows::core::PSTR, cbtempname: i32, pv: *mut ::core::ffi::c_void) -> super::super::Foundation::BOOL>;
 #[doc = "*Required features: `\"Win32_Storage_Cabinets\"`*"]
-pub type PFNFCIOPEN = ::core::option::Option<unsafe extern "system" fn(pszfile: ::windows::core::PCSTR, oflag: i32, pmode: i32, err: *mut i32, pv: *mut ::core::ffi::c_void) -> isize>;
+pub type PFNFCIOPEN = ::core::option::Option<unsafe extern "system" fn(pszfile: ::windows::core::PSTR, oflag: i32, pmode: i32, err: *mut i32, pv: *mut ::core::ffi::c_void) -> isize>;
 #[doc = "*Required features: `\"Win32_Storage_Cabinets\"`*"]
 pub type PFNFCIREAD = ::core::option::Option<unsafe extern "system" fn(hf: isize, memory: *mut ::core::ffi::c_void, cb: u32, err: *mut i32, pv: *mut ::core::ffi::c_void) -> u32>;
 #[doc = "*Required features: `\"Win32_Storage_Cabinets\"`*"]
@@ -862,14 +853,14 @@ pub type PFNFDIDECRYPT = ::core::option::Option<unsafe extern "system" fn(pfdid:
 #[doc = "*Required features: `\"Win32_Storage_Cabinets\"`*"]
 pub type PFNFDINOTIFY = ::core::option::Option<unsafe extern "system" fn(fdint: FDINOTIFICATIONTYPE, pfdin: *mut FDINOTIFICATION) -> isize>;
 #[doc = "*Required features: `\"Win32_Storage_Cabinets\"`*"]
-pub type PFNFREE = ::core::option::Option<unsafe extern "system" fn(pv: *const ::core::ffi::c_void)>;
+pub type PFNFREE = ::core::option::Option<unsafe extern "system" fn(pv: *mut ::core::ffi::c_void)>;
 #[doc = "*Required features: `\"Win32_Storage_Cabinets\"`*"]
-pub type PFNOPEN = ::core::option::Option<unsafe extern "system" fn(pszfile: ::windows::core::PCSTR, oflag: i32, pmode: i32) -> isize>;
+pub type PFNOPEN = ::core::option::Option<unsafe extern "system" fn(pszfile: ::windows::core::PSTR, oflag: i32, pmode: i32) -> isize>;
 #[doc = "*Required features: `\"Win32_Storage_Cabinets\"`*"]
 pub type PFNREAD = ::core::option::Option<unsafe extern "system" fn(hf: isize, pv: *mut ::core::ffi::c_void, cb: u32) -> u32>;
 #[doc = "*Required features: `\"Win32_Storage_Cabinets\"`*"]
 pub type PFNSEEK = ::core::option::Option<unsafe extern "system" fn(hf: isize, dist: i32, seektype: i32) -> i32>;
 #[doc = "*Required features: `\"Win32_Storage_Cabinets\"`*"]
-pub type PFNWRITE = ::core::option::Option<unsafe extern "system" fn(hf: isize, pv: *const ::core::ffi::c_void, cb: u32) -> u32>;
+pub type PFNWRITE = ::core::option::Option<unsafe extern "system" fn(hf: isize, pv: *mut ::core::ffi::c_void, cb: u32) -> u32>;
 #[cfg(feature = "implement")]
 ::core::include!("impl.rs");
