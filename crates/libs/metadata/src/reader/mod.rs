@@ -545,7 +545,7 @@ impl<'a> Reader<'a> {
                     None
                 } else {
                     let ty = self.type_from_blob(&mut blob, None, generics).expect("Parameter type not found");
-                    let ty = if !self.param_flags(param).output() { ty.to_const() } else { ty };
+                    let ty = if self.param_is_const(param) { ty.to_const() } else { ty };
                     let array_info = self.param_array_info(param);
                     Some(SignatureParam { def: param, ty, array_info })
                 }
@@ -740,6 +740,9 @@ impl<'a> Reader<'a> {
             }
         }
         None
+    }
+    pub fn param_is_const(&self, row: Param) -> bool {
+        self.param_attributes(row).any(|attribute| self.attribute_name(attribute) == "ConstAttribute")
     }
 
     //
