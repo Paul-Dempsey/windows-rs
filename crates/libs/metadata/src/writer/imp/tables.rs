@@ -25,7 +25,7 @@ pub struct Tables<'a> {
     pub strings: Strings,
     pub blobs : Blobs,
     pub type_def_index : BTreeMap::<(&'a str, &'a str), (u32, bool)>,
-    pub type_ref_index : BTreeMap::<(&'a str, &'a str), (u32, bool)>,
+    pub type_ref_index : BTreeMap::<(&'a str, &'a str), (u32, &'a str, bool)>, // TypeRef index, assembly reference, value type?
     pub references: &'a reader::Reader<'a>,
 }
 
@@ -196,6 +196,22 @@ impl<'a> Tables<'a> {
         
     }
 
+    pub fn define(&mut self, name: &(String, String)) {
+
+    }
+
+    pub fn reference(&mut self, ty: &'a Type, references: &'a reader::Reader) {
+        if let Type::TypeDef((namespace, name)) = ty {
+            if !self.type_def_index.contains_key(&(namespace.as_str(), name.as_str())) {
+                self.type_ref_index.entry((namespace.as_str(), name.as_str())).and_modify(|info| {
+                    let def = references.get(reader::TypeName::new(namespace.as_str(), name.as_str())).next().expect("Type not found");
+                    *&mut info.1 = references.type_def_module(def);
+                    *&mut info.2 = references.type_def_is_value_type(def);
+                });
+            }
+        }
+    }
+
     pub fn field_sig(&mut self, ty: &Type) -> Vec<u8> {
         let mut buffer = vec![0x6];
         match ty {
@@ -225,7 +241,7 @@ impl<'a> Tables<'a> {
                     let code = TypeDefOrRef::TypeDef(*index).encode();
                     // TODO: now need the inverse of Blob::peek_usize to encode the code. 
                     
-                } else if let Some((index, value_type)) = self.type_ref_index.get(&(namespace, name)) {
+                } else if let Some((index, module, value_type)) = self.type_ref_index.get(&(namespace, name)) {
                     if *value_type {
                         buffer.push(0x11);
                     } else {

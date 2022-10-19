@@ -1193,6 +1193,12 @@ impl<'a> Reader<'a> {
     pub fn type_def_module(&self, row: TypeDef) -> &str {
         self.files[row.0.file as usize].str(0, TABLE_MODULE, 1)
     }
+    pub fn type_def_is_value_type(&self, row: TypeDef) -> bool {
+        match self.type_def_kind(row) {
+            TypeKind::Struct | TypeKind::Enum => true,
+            _ => false,
+        }
+    }
 
     //
     // TypeRef table queries
