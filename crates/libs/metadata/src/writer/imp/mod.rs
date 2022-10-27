@@ -1,6 +1,6 @@
 // mod strings;
 // mod blobs;
-// mod tables;
+mod tables;
 // mod codes;
 // mod file;
 
