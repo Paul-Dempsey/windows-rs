@@ -65,6 +65,20 @@ pub enum Type {
     TypeDef((String, String)),
 }
 
+impl Type {
+    pub(crate) fn reference<'a>(&'a self, type_def: &imp::TypeDef, type_ref: &mut imp::TypeRef<'a>) {
+        match self {
+            Type::TypeDef((namespace, name)) => {
+                let name = (namespace.as_str(), name.as_str());
+                if !type_def.contains(name) {
+                    type_ref.insert(name, imp::ResolutionScope::None);
+                }
+            }
+            _ => {}
+        }
+    }
+}
+
 pub enum Value {
     Bool(bool),
     U8(u8),

@@ -1,25 +1,49 @@
+mod assembly_ref;
+mod blobs;
+mod resolution_scope;
+mod strings;
+mod type_def;
+mod type_ref;
 use super::*;
+pub use assembly_ref::*;
+pub use blobs::*;
+pub use resolution_scope::*;
+use std::collections::*;
+pub use strings::*;
+pub use type_def::*;
+pub use type_ref::*;
 
-pub fn write<P: AsRef<std::path::Path>>(name: &str, defs: &[Item], refs: &[P]) -> Vec<u8> {
+pub fn write<P: AsRef<std::path::Path>>(module: &str, items: &[Item], references: &[P]) -> Vec<u8> {
+    let mut strings = Strings::default();
+    let mut blobs = Blobs::default();
+    let mut type_def = TypeDef::default();
+    let mut type_ref = TypeRef::default();
+    let mut assembly_ref = AssemblyRef::default();
 
+    assembly_ref.insert("mscorlib", (4, 0, 0, 0));
+    type_ref.insert(("System", "ValueType"), ResolutionScope::AssemblyRef("mscorlib"));
+    type_ref.insert(("System", "Enum"), ResolutionScope::AssemblyRef("mscorlib"));
+
+    // Collect references...
+    for item in items {
+        type_def.insert(item);
+
+        match item {
+            Item::Struct(ty) => ty.fields.iter().for_each(|field| field.ty.reference(&type_def, &mut type_ref)),
+            _ => {}
+        }
+    }
+
+    type_def.index();
+    type_ref.index();
+
+    
 
     todo!()
+    // Write single Module table entry with module name
 }
 
-// Strings
-// * BTreeMap of string to offset to ensure string folding
-// * build stream on the fly
-
-// Blobs
-// * Heap, no need for sorting
-// * Defer blob generation until TypeDef + TypeRef table is built
-
-// TypeDefs
-// * BTreeMap of namespace+name to type to ensure sorted table for reproducible builds
-// * Defer table generation and store extra type information for lookup
-
-// TypeRefs
-// * BTreeSet of namespace+name for lookup but not needed for reproducible builds
-// * Defer table generation
-// * Defer  referenence resolution but before blobs generation
-
+pub fn round(size: usize, round: usize) -> usize {
+    let round = round - 1;
+    (size + round) & !round
+}
