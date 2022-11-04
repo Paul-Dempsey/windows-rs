@@ -1,43 +1,50 @@
 mod assembly_ref;
 mod blobs;
+mod definitions;
+mod references;
 mod resolution_scope;
 mod strings;
-mod type_def;
-mod type_ref;
+mod tables;
+
 use super::*;
-pub use assembly_ref::*;
-pub use blobs::*;
-pub use resolution_scope::*;
+use assembly_ref::*;
+use blobs::*;
 use std::collections::*;
-pub use strings::*;
-pub use type_def::*;
-pub use type_ref::*;
+use strings::*;
+use tables::*;
+
+pub use definitions::*;
+pub use references::*;
+pub use resolution_scope::*;
 
 pub fn write<P: AsRef<std::path::Path>>(module: &str, items: &[Item], references: &[P]) -> Vec<u8> {
     let mut strings = Strings::default();
     let mut blobs = Blobs::default();
-    let mut type_def = TypeDef::default();
-    let mut type_ref = TypeRef::default();
+    let mut definitions = Definitions::default();
+    let mut references = References::default();
     let mut assembly_ref = AssemblyRef::default();
 
     assembly_ref.insert("mscorlib", (4, 0, 0, 0));
-    type_ref.insert(("System", "ValueType"), ResolutionScope::AssemblyRef("mscorlib"));
-    type_ref.insert(("System", "Enum"), ResolutionScope::AssemblyRef("mscorlib"));
+    references.insert(("System", "ValueType"), ResolutionScope::AssemblyRef("mscorlib"));
+    references.insert(("System", "Enum"), ResolutionScope::AssemblyRef("mscorlib"));
 
-    // Collect references...
+    // Collect definitions and references...
     for item in items {
-        type_def.insert(item);
+        definitions.insert(item);
 
         match item {
-            Item::Struct(ty) => ty.fields.iter().for_each(|field| field.ty.reference(&type_def, &mut type_ref)),
+            Item::Struct(ty) => ty.fields.iter().for_each(|field| field.ty.reference(&definitions, &mut references)),
             _ => {}
         }
     }
 
-    type_def.index();
-    type_ref.index();
+    // Index definitions and references...
+    definitions.index();
+    references.index();
 
-    
+    // Prepare tables...
+
+    //
 
     todo!()
     // Write single Module table entry with module name

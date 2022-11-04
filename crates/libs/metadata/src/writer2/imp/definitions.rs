@@ -1,7 +1,7 @@
 use super::*;
 
 #[derive(Default)]
-pub struct TypeDef<'a> {
+pub struct Definitions<'a> {
     // Table must be sorted to ensure reproducible builds.
     map: BTreeMap<(&'a str, &'a str), Record<'a>>,
     stream: Vec<u8>,
@@ -23,7 +23,7 @@ struct Columns {
     method_list: u32,
 }
 
-impl<'a> TypeDef<'a> {
+impl<'a> Definitions<'a> {
     // Inserts a new type into the table. The type name must be unique.
     pub fn insert(&mut self, item: &'a Item) {
         let name = match item {

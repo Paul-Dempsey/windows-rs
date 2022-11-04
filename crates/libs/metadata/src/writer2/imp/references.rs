@@ -1,7 +1,7 @@
 use super::*;
 
 #[derive(Default)]
-pub struct TypeRef<'a> {
+pub struct References<'a> {
     // Table doesn't need to be sorted. A map is used to collapse duplicate records.
     map: BTreeMap<(&'a str, &'a str), Record<'a>>,
     stream: Vec<u8>,
@@ -21,7 +21,7 @@ struct Columns {
     type_namespace: u32,
 }
 
-impl<'a> TypeRef<'a> {
+impl<'a> References<'a> {
     // Inserts a new type into the table. Duplicates are ignored.
     pub fn insert(&mut self, name: (&'a str, &'a str), scope: ResolutionScope<'a>) {
         self.map.insert(name, Record { scope, index: 0, columns: Columns::default() });

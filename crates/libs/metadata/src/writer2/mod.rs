@@ -66,7 +66,7 @@ pub enum Type {
 }
 
 impl Type {
-    pub(crate) fn reference<'a>(&'a self, type_def: &imp::TypeDef, type_ref: &mut imp::TypeRef<'a>) {
+    pub(crate) fn reference<'a>(&'a self, type_def: &imp::Definitions, type_ref: &mut imp::References<'a>) {
         match self {
             Type::TypeDef((namespace, name)) => {
                 let name = (namespace.as_str(), name.as_str());
