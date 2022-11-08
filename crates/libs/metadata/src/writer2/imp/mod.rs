@@ -30,11 +30,12 @@ pub fn write(module: &str, items: &[Item], references: &[&str]) -> Vec<u8> {
 
         match item {
             Item::Struct(ty) => ty.fields.iter().for_each(|field| field.ty.reference(&definitions, &mut references)),
-            _ => {}
+            _ => todo!(),
         }
     }
 
     for item in items {
+
     }
 
     //
@@ -55,6 +56,22 @@ pub fn write(module: &str, items: &[Item], references: &[&str]) -> Vec<u8> {
     let mscorlib = tables.AssemblyRef.push2(AssemblyRef { MajorVersion: 4, Name: strings.insert("mscorlib"), ..Default::default() });
     let value_type = tables.TypeRef.push2(TypeRef { TypeName: strings.insert("ValueType"), TypeNamespace: strings.insert("System"), ResolutionScope: ResolutionScope::AssemblyRef(mscorlib).encode() });
     let enum_type = tables.TypeRef.push2(TypeRef { TypeName: strings.insert("Enum"), TypeNamespace: strings.insert("System"), ResolutionScope: ResolutionScope::AssemblyRef(mscorlib).encode() });
+
+    for item in items {
+        match item {
+            Item::Struct(ty) => {
+                tables.TypeDef.push(TypeDef { 
+                    Flags: 0,
+                    TypeName: strings.insert(&ty.name), 
+                    TypeNamespace: strings.insert(&ty.namespace),
+                    Extends: value_type,
+                    FieldList: 0,
+                    MethodList: 0,
+                });
+            }
+            _ => todo!(),
+        }
+    }
 
     file::write(file::Streams {
         tables: tables.into_stream(),
