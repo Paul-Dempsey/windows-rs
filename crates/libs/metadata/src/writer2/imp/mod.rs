@@ -71,7 +71,7 @@ pub fn write(module: &str, items: &[Item], references: &[&str]) -> Vec<u8> {
                     tables.Field.push(tables::Field {
                         Flags: 0,
                         Name: strings.insert(&field.name),
-                        Signature: blobs.insert(type_signature(&field.ty, &definitions, &references)),
+                        Signature: blobs.insert(field_signature(&field.ty, &definitions, &references)),
                     })
                 }
             }
@@ -87,8 +87,32 @@ pub fn write(module: &str, items: &[Item], references: &[&str]) -> Vec<u8> {
     })
 }
 
+fn field_signature(ty:&Type, definitions: &Definitions, references: &References) -> Vec<u8> {
+    let mut buffer = vec![0x6];
+    buffer.append(&mut type_signature(ty, definitions, references));
+    buffer
+}
+
 fn type_signature(ty:&Type, definitions: &Definitions, references: &References) -> Vec<u8> {
-    vec![]
+    match ty {
+        Type::Void => todo!(),
+        Type::Bool => vec![0x02],
+        Type::Char => vec![0x03],
+        Type::I8 => vec![0x04],
+        Type::U8 => vec![0x05],
+        Type::I16 => vec![0x06],
+        Type::U16 => vec![0x07],
+        Type::I32 => vec![0x08],
+        Type::U32 => vec![0x09],
+        Type::I64 => vec![0x0a],
+        Type::U64 => vec![0x0b],
+        Type::F32 => vec![0x0c],
+        Type::F64 => vec![0x0d],
+        Type::ISize => vec![0x18],
+        Type::USize => vec![0x19],
+        Type::String => vec![0x0e],
+        Type::Named((namespace, name)) => vec![],
+    }
 }
 
 fn type_reference<'a>(ty : &'a Type, definitions: &Definitions, references: &mut References<'a>) {
