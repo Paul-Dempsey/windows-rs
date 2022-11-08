@@ -8,8 +8,15 @@ fn writer() {
 
         items.push(Item::Struct(Struct {
             namespace: "Test".to_string(),
-            name: "Rect".to_string(),
-            fields: vec![],
+            name: "Inner".to_string(),
+            fields: vec![Field::new("Value", Type::F32)],
+            winrt: true,
+        }));
+
+        items.push(Item::Struct(Struct {
+            namespace: "Test".to_string(),
+            name: "Outer".to_string(),
+            fields: vec![Field::new("Value", Type::new("Test", "Inner"))],
             winrt: true,
         }));
 

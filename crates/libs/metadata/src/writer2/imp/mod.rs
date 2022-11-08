@@ -12,7 +12,6 @@ use crate::bindings::*;
 use blobs::*;
 use std::collections::*;
 use strings::*;
-use tables::*;
 use codes::*;
 
 pub use definitions::*;
@@ -29,7 +28,7 @@ pub fn write(module: &str, items: &[Item], references: &[&str]) -> Vec<u8> {
         definitions.insert(item);
 
         match item {
-            Item::Struct(ty) => ty.fields.iter().for_each(|field| field.ty.reference(&definitions, &mut references)),
+            Item::Struct(ty) => ty.fields.iter().for_each(|field| type_reference(&field.ty, &definitions, &mut references)),
             _ => todo!(),
         }
     }
@@ -49,25 +48,32 @@ pub fn write(module: &str, items: &[Item], references: &[&str]) -> Vec<u8> {
     //
     let mut strings = Strings::default();
     let mut blobs = Blobs::default();
-    let mut tables = Tables::default();
+    let mut tables = tables::Tables::default();
 
-    tables.Module.push(Module { Name: strings.insert(module), Mvid: 1, ..Default::default() });
-    tables.TypeDef.push(TypeDef { TypeName: strings.insert("<Module>"), ..Default::default() });
-    let mscorlib = tables.AssemblyRef.push2(AssemblyRef { MajorVersion: 4, Name: strings.insert("mscorlib"), ..Default::default() });
-    let value_type = tables.TypeRef.push2(TypeRef { TypeName: strings.insert("ValueType"), TypeNamespace: strings.insert("System"), ResolutionScope: ResolutionScope::AssemblyRef(mscorlib).encode() });
-    let enum_type = tables.TypeRef.push2(TypeRef { TypeName: strings.insert("Enum"), TypeNamespace: strings.insert("System"), ResolutionScope: ResolutionScope::AssemblyRef(mscorlib).encode() });
+    tables.Module.push(tables::Module { Name: strings.insert(module), Mvid: 1, ..Default::default() });
+    tables.TypeDef.push(tables::TypeDef { TypeName: strings.insert("<Module>"), ..Default::default() });
+    let mscorlib = tables.AssemblyRef.push2(tables::AssemblyRef { MajorVersion: 4, Name: strings.insert("mscorlib"), ..Default::default() });
+    let value_type = tables.TypeRef.push2(tables::TypeRef { TypeName: strings.insert("ValueType"), TypeNamespace: strings.insert("System"), ResolutionScope: ResolutionScope::AssemblyRef(mscorlib).encode() });
+    let enum_type = tables.TypeRef.push2(tables::TypeRef { TypeName: strings.insert("Enum"), TypeNamespace: strings.insert("System"), ResolutionScope: ResolutionScope::AssemblyRef(mscorlib).encode() });
 
     for item in items {
         match item {
             Item::Struct(ty) => {
-                tables.TypeDef.push(TypeDef { 
+                tables.TypeDef.push(tables::TypeDef { 
                     Flags: 0,
                     TypeName: strings.insert(&ty.name), 
                     TypeNamespace: strings.insert(&ty.namespace),
                     Extends: value_type,
-                    FieldList: 0,
+                    FieldList: tables.Field.len() as _,
                     MethodList: 0,
                 });
+                for field in &ty.fields {
+                    tables.Field.push(tables::Field {
+                        Flags: 0,
+                        Name: strings.insert(&field.name),
+                        Signature: blobs.insert(type_signature(&field.ty, &definitions, &references)),
+                    })
+                }
             }
             _ => todo!(),
         }
@@ -79,6 +85,22 @@ pub fn write(module: &str, items: &[Item], references: &[&str]) -> Vec<u8> {
         blobs: blobs.into_stream(),
         guids: vec![0; 16], // zero guid
     })
+}
+
+fn type_signature(ty:&Type, definitions: &Definitions, references: &References) -> Vec<u8> {
+    vec![]
+}
+
+fn type_reference<'a>(ty : &'a Type, definitions: &Definitions, references: &mut References<'a>) {
+    match ty {
+        Type::Named((namespace, name)) => {
+            let name = (namespace.as_str(), name.as_str());
+            if !definitions.contains(name) {
+                references.insert(name);
+            }
+        }
+        _ => {}
+    }
 }
 
 pub fn round(size: usize, round: usize) -> usize {

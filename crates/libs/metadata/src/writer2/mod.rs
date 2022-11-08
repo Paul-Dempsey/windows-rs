@@ -71,20 +71,12 @@ pub enum Type {
     ISize,
     USize,
     String,
-    TypeDef((String, String)),
+    Named((String, String)),
 }
 
 impl Type {
-    pub(crate) fn reference<'a>(&'a self, type_def: &imp::Definitions, type_ref: &mut imp::References<'a>) {
-        match self {
-            Type::TypeDef((namespace, name)) => {
-                let name = (namespace.as_str(), name.as_str());
-                if !type_def.contains(name) {
-                    type_ref.insert(name);
-                }
-            }
-            _ => {}
-        }
+    pub fn new(namespace: &str, name:&str) -> Self {
+        Self::Named((namespace.to_string(), name.to_string()))
     }
 }
 
