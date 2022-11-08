@@ -1,18 +1,18 @@
 mod blobs;
+mod codes;
 mod definitions;
+mod file;
 mod references;
 mod strings;
 mod tables;
-mod codes;
-mod file;
 
 use super::*;
-use crate::imp::*;
 use crate::bindings::*;
+use crate::imp::*;
 use blobs::*;
+use codes::*;
 use std::collections::*;
 use strings::*;
-use codes::*;
 
 pub use definitions::*;
 pub use references::*;
@@ -33,9 +33,7 @@ pub fn write(module: &str, items: &[Item], references: &[&str]) -> Vec<u8> {
         }
     }
 
-    for item in items {
-
-    }
+    for item in items {}
 
     //
     // 2. Next, index definitions and references...
@@ -59,20 +57,16 @@ pub fn write(module: &str, items: &[Item], references: &[&str]) -> Vec<u8> {
     for item in items {
         match item {
             Item::Struct(ty) => {
-                tables.TypeDef.push(tables::TypeDef { 
+                tables.TypeDef.push(tables::TypeDef {
                     Flags: 0,
-                    TypeName: strings.insert(&ty.name), 
+                    TypeName: strings.insert(&ty.name),
                     TypeNamespace: strings.insert(&ty.namespace),
                     Extends: value_type,
                     FieldList: tables.Field.len() as _,
                     MethodList: 0,
                 });
                 for field in &ty.fields {
-                    tables.Field.push(tables::Field {
-                        Flags: 0,
-                        Name: strings.insert(&field.name),
-                        Signature: blobs.insert(field_signature(&field.ty, &definitions, &references)),
-                    })
+                    tables.Field.push(tables::Field { Flags: 0, Name: strings.insert(&field.name), Signature: blobs.insert(field_signature(&field.ty, &definitions, &references)) })
                 }
             }
             _ => todo!(),
@@ -87,13 +81,13 @@ pub fn write(module: &str, items: &[Item], references: &[&str]) -> Vec<u8> {
     })
 }
 
-fn field_signature(ty:&Type, definitions: &Definitions, references: &References) -> Vec<u8> {
+fn field_signature(ty: &Type, definitions: &Definitions, references: &References) -> Vec<u8> {
     let mut buffer = vec![0x6];
     buffer.append(&mut type_signature(ty, definitions, references));
     buffer
 }
 
-fn type_signature(ty:&Type, definitions: &Definitions, references: &References) -> Vec<u8> {
+fn type_signature(ty: &Type, definitions: &Definitions, references: &References) -> Vec<u8> {
     match ty {
         Type::Void => todo!(),
         Type::Bool => vec![0x02],
@@ -111,16 +105,25 @@ fn type_signature(ty:&Type, definitions: &Definitions, references: &References) 
         Type::ISize => vec![0x18],
         Type::USize => vec![0x19],
         Type::String => vec![0x0e],
-        Type::Named((namespace, name)) => vec![],
+        Type::Named((namespace, name)) => type_code(namespace, name, definitions, references),
     }
 }
 
-fn type_reference<'a>(ty : &'a Type, definitions: &Definitions, references: &mut References<'a>) {
+fn type_code(namespace: &str, name: &str, definitions: &Definitions, references: &References) -> Vec<u8> {
+    if let Some((item, index)) = definitions.get(namespace, name) {
+        todo!("typedef")
+    } else if let Some((item, index)) = definitions.get(namespace, name) {
+        todo!("typeref")
+    } else {
+        panic!("Type not found `{}.{}`", namespace, name);
+    }
+}
+
+fn type_reference<'a>(ty: &'a Type, definitions: &Definitions, references: &mut References<'a>) {
     match ty {
         Type::Named((namespace, name)) => {
-            let name = (namespace.as_str(), name.as_str());
-            if !definitions.contains(name) {
-                references.insert(name);
+            if !definitions.contains(namespace, name) {
+                references.insert(namespace, name);
             }
         }
         _ => {}

@@ -1,7 +1,8 @@
 /// A `ResolutionScope` is an index into a certain table indicating the scope in which a TypeRef can be resolved.
 #[derive(Default, Clone)]
 pub enum ResolutionScope {
-    #[default] None,
+    #[default]
+    None,
     Module(u32),
     ModuleRef(u32),
     AssemblyRef(u32),
@@ -23,7 +24,8 @@ impl ResolutionScope {
 /// A `TypeDefOrRef` is an index into a certain table used to locate a type definition.
 #[derive(Default, Clone)]
 pub enum TypeDefOrRef {
-    #[default] None,
+    #[default]
+    None,
     TypeDef(u32),
     TypeRef(u32),
     TypeSpec(u32),
@@ -43,7 +45,8 @@ impl TypeDefOrRef {
 /// A `HasConstant` is an index into a certain table used to identify the parent of a row in the `Constant` table.
 #[derive(Default, Clone)]
 pub enum HasConstant {
-    #[default] None,
+    #[default]
+    None,
     Field(u32),
     Param(u32),
     Property(u32),
@@ -62,30 +65,30 @@ impl HasConstant {
 
 #[derive(Default, Clone)]
 pub enum HasCustomAttribute {
-    #[default] None,
+    #[default]
+    None,
 }
-
 
 #[derive(Default, Clone)]
 pub enum CustomAttributeType {
-    #[default] None,
+    #[default]
+    None,
 }
-
 
 #[derive(Default, Clone)]
 pub enum TypeOrMethodDef {
-    #[default] None,
+    #[default]
+    None,
 }
-
 
 #[derive(Default, Clone)]
 pub enum MemberForwarded {
-    #[default] None,
+    #[default]
+    None,
 }
-
 
 #[derive(Default, Clone)]
 pub enum MemberRefParent {
-    #[default] None,
+    #[default]
+    None,
 }
-

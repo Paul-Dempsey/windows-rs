@@ -1,6 +1,6 @@
 use super::*;
-use std::mem::*;
 use crate::imp::*;
+use std::mem::*;
 
 pub struct Streams {
     pub tables: Vec<u8>,
@@ -8,7 +8,6 @@ pub struct Streams {
     pub blobs: Vec<u8>,
     pub guids: Vec<u8>,
 }
-
 
 impl Streams {
     fn len(&self) -> usize {

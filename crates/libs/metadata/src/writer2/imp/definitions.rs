@@ -26,11 +26,11 @@ impl<'a> Definitions<'a> {
         }
     }
 
-    pub fn contains(&self, name: (&'a str, &'a str)) -> bool {
-        self.map.contains_key(&name)
+    pub fn contains(&self, namespace: &str, name: &str) -> bool {
+        self.map.contains_key(&(namespace, name))
     }
 
-    pub fn get(&self, name: (&'a str, &'a str)) -> Option<u32> {
-        self.map.get(&name).map(|record| record.index)
+    pub fn get(&self, namespace: &str, name: &str) -> Option<(&Item, u32)> {
+        self.map.get(&(namespace, name)).map(|record| (record.item, record.index))
     }
 }

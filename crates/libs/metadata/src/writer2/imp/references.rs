@@ -9,12 +9,13 @@ pub struct References<'a> {
 
 struct Record<'a> {
     assembly: &'a str,
+    value_type: bool,
     index: u32,
 }
 
 impl<'a> References<'a> {
-    pub fn insert(&mut self, name: (&'a str, &'a str)) {
-        self.map.insert(name, Record { assembly: "", index: 0 });
+    pub fn insert(&mut self, namespace: &'a str, name: &'a str) {
+        self.map.insert((namespace, name), Record { assembly: "", value_type: false, index: 0 });
     }
 
     pub fn index(&mut self) {
@@ -23,8 +24,7 @@ impl<'a> References<'a> {
         }
     }
 
-    pub fn get(&self, name: (&'a str, &'a str)) -> Option<u32> {
-        self.map.get(&name).map(|record| record.index)
+    pub fn get(&self, namespace: &str, name: &str) -> Option<u32> {
+        self.map.get(&(namespace, name)).map(|record| record.index)
     }
-
 }
