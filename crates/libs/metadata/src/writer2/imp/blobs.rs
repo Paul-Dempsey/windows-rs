@@ -50,3 +50,19 @@ impl Blobs {
         self.stream
     }
 }
+
+pub fn write_usize(blob: &mut Vec<u8>, value: u32) {
+    if value <= 0x7F {
+        blob.push(value as _);
+    } else if value <= 0x3FFF {
+        let value = 1 << 15 | value;
+        blob.push((value >> 8) as _);
+        blob.push(value as _);
+    } else {
+        let value = 1 << 31 | 1 << 30 | value;
+        blob.push((value >> 24) as _);
+       blob.push((value >> 16) as _);
+       blob.push((value >> 8) as _);
+       blob.push(value as _);
+    }
+}

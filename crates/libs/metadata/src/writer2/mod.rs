@@ -9,15 +9,6 @@ pub enum Item {
     Enum(Enum),
 }
 
-impl Item {
-    pub fn type_name(&self) -> (&str, &str) {
-        match self {
-            Item::Struct(ty) => (ty.namespace.as_str(), ty.name.as_str()),
-            Item::Enum(ty) => (ty.namespace.as_str(), ty.name.as_str()),
-        }
-    }
-}
-
 pub struct Struct {
     pub namespace: String,
     pub name: String,

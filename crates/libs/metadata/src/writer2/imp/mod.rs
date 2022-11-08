@@ -45,7 +45,7 @@ pub fn write(module: &str, items: &[Item], references: &[&str]) -> Vec<u8> {
     // 3. Finally, prepare streams and tables...
     //
     let mut strings = Strings::default();
-    let mut blobs = Blobs::default();
+    let mut blobs = blobs::Blobs::default();
     let mut tables = tables::Tables::default();
 
     tables.Module.push(tables::Module { Name: strings.insert(module), Mvid: 1, ..Default::default() });
@@ -81,6 +81,21 @@ pub fn write(module: &str, items: &[Item], references: &[&str]) -> Vec<u8> {
     })
 }
 
+
+pub fn item_type_name(item: &Item) -> (&str, &str) {
+    match item {
+        Item::Struct(ty) => (ty.namespace.as_str(), ty.name.as_str()),
+        Item::Enum(ty) => (ty.namespace.as_str(), ty.name.as_str()),
+    }
+}
+
+pub fn item_is_value_type(item: &Item) -> bool {
+    match item {
+        Item::Struct(_) => true,
+        Item::Enum(_) => true,
+    }
+}
+
 fn field_signature(ty: &Type, definitions: &Definitions, references: &References) -> Vec<u8> {
     let mut buffer = vec![0x6];
     buffer.append(&mut type_signature(ty, definitions, references));
@@ -110,9 +125,17 @@ fn type_signature(ty: &Type, definitions: &Definitions, references: &References)
 }
 
 fn type_code(namespace: &str, name: &str, definitions: &Definitions, references: &References) -> Vec<u8> {
-    if let Some((item, index)) = definitions.get(namespace, name) {
-        todo!("typedef")
-    } else if let Some((item, index)) = definitions.get(namespace, name) {
+    if let Some(definition) = definitions.get(namespace, name) {
+        let code = TypeDefOrRef::TypeDef(definition.index);
+        let mut buffer = if item_is_value_type(definition.item) {
+            vec![0x11]
+        } else {
+            vec![0x12]
+        };
+        blobs::write_usize(&mut buffer,TypeDefOrRef::TypeDef(definition.index).encode());
+        buffer
+    } else if let Some(reference) = definitions.get(namespace, name) {
+        //if 
         todo!("typeref")
     } else {
         panic!("Type not found `{}.{}`", namespace, name);
