@@ -1,12 +1,21 @@
 mod imp;
 
-pub fn write<P: AsRef<std::path::Path>>(name: &str, defs: &[Item], refs: &[P]) -> Vec<u8> {
+pub fn write(name: &str, defs: &[Item], refs: &[&str]) -> Vec<u8> {
     imp::write(name, defs, refs)
 }
 
 pub enum Item {
     Struct(Struct),
     Enum(Enum),
+}
+
+impl Item {
+    pub fn type_name(&self) -> (&str, &str) {
+        match self {
+            Item::Struct(ty) => (ty.namespace.as_str(), ty.name.as_str()),
+            Item::Enum(ty) => (ty.namespace.as_str(), ty.name.as_str()),
+        }
+    }
 }
 
 pub struct Struct {
@@ -71,7 +80,7 @@ impl Type {
             Type::TypeDef((namespace, name)) => {
                 let name = (namespace.as_str(), name.as_str());
                 if !type_def.contains(name) {
-                    type_ref.insert(name, imp::ResolutionScope::None);
+                    type_ref.insert(name);
                 }
             }
             _ => {}

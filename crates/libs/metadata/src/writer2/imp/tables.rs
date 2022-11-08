@@ -1,7 +1,9 @@
+#![allow(non_snake_case)]
+
 use super::*;
 
 #[derive(Default)]
-pub struct Tables<'a> {
+pub struct Tables {
     pub AssemblyRef: Vec<AssemblyRef>,
     pub ClassLayout: Vec<ClassLayout>,
     pub Constant: Vec<Constant>,
@@ -158,13 +160,11 @@ pub struct TypeSpec {
     pub Signature: u32,
 }
 
-impl<'a> Tables<'a> {
-
-
+impl Tables {
     pub fn into_stream(self) -> Vec<u8> {
         let resolution_scope = coded_index_size(&[self.Module.len(), self.ModuleRef.len(), self.AssemblyRef.len(), self.TypeRef.len()]);
         let type_def_or_ref = coded_index_size(&[self.TypeDef.len(), self.TypeRef.len(), self.TypeSpec.len()]);
-        let has_constant = coded_index_size(&[self.Field.len(), self.Param.len(), self.Property.len()]);
+        //let has_constant = coded_index_size(&[self.Field.len(), self.Param.len(), self.Property.len()]);
 
         let valid_tables: u64 = 1 << 0 | // Module 
         1 << 0x01 | // TypeRef
