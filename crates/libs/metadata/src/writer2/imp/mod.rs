@@ -9,6 +9,7 @@ mod tables;
 use super::*;
 use crate::bindings::*;
 use crate::imp::*;
+use crate::*;
 use blobs::*;
 use codes::*;
 use std::collections::*;
@@ -57,16 +58,23 @@ pub fn write(module: &str, items: &[Item], references: &[&str]) -> Vec<u8> {
     for item in items {
         match item {
             Item::Struct(ty) => {
+                let mut flags = TypeAttributes(0);
+                flags.set_public();
+                if ty.winrt {
+                    flags.set_winrt();
+                }
                 tables.TypeDef.push(tables::TypeDef {
-                    Flags: 0,
+                    Flags: flags.0,
                     TypeName: strings.insert(&ty.name),
                     TypeNamespace: strings.insert(&ty.namespace),
-                    Extends: value_type,
+                    Extends: TypeDefOrRef::TypeRef(value_type).encode(),
                     FieldList: tables.Field.len() as _,
                     MethodList: 0,
                 });
                 for field in &ty.fields {
-                    tables.Field.push(tables::Field { Flags: 0, Name: strings.insert(&field.name), Signature: blobs.insert(field_signature(&field.ty, &definitions, &references)) })
+                    let mut flags = FieldAttributes(0);
+                    flags.set_public();
+                    tables.Field.push(tables::Field { Flags: flags.0, Name: strings.insert(&field.name), Signature: blobs.insert(field_signature(&field.ty, &definitions, &references)) })
                 }
             }
             _ => todo!(),
@@ -80,7 +88,6 @@ pub fn write(module: &str, items: &[Item], references: &[&str]) -> Vec<u8> {
         guids: vec![0; 16], // zero guid
     })
 }
-
 
 pub fn item_type_name(item: &Item) -> (&str, &str) {
     match item {
@@ -127,15 +134,11 @@ fn type_signature(ty: &Type, definitions: &Definitions, references: &References)
 fn type_code(namespace: &str, name: &str, definitions: &Definitions, references: &References) -> Vec<u8> {
     if let Some(definition) = definitions.get(namespace, name) {
         let code = TypeDefOrRef::TypeDef(definition.index);
-        let mut buffer = if item_is_value_type(definition.item) {
-            vec![0x11]
-        } else {
-            vec![0x12]
-        };
-        blobs::write_usize(&mut buffer,TypeDefOrRef::TypeDef(definition.index).encode());
+        let mut buffer = if item_is_value_type(definition.item) { vec![0x11] } else { vec![0x12] };
+        blobs::write_usize(&mut buffer, TypeDefOrRef::TypeDef(definition.index).encode());
         buffer
     } else if let Some(reference) = definitions.get(namespace, name) {
-        //if 
+        //if
         todo!("typeref")
     } else {
         panic!("Type not found `{}.{}`", namespace, name);

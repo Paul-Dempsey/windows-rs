@@ -8,7 +8,7 @@ pub struct Definitions<'a> {
 }
 
 pub struct Definition<'a> {
-   pub item: &'a Item,
+    pub item: &'a Item,
     pub index: u32,
 }
 

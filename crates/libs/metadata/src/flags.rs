@@ -1,24 +1,59 @@
-#[derive(Default)]
-pub struct FieldAttributes(pub usize);
+// TODO: just use constants - this is lame
 
+#[repr(transparent)]
 #[derive(Default)]
-pub struct MethodAttributes(pub usize);
+pub struct AssemblyFlags(pub u32);
 
+#[repr(transparent)]
 #[derive(Default)]
-pub struct MethodImplAttributes(pub usize);
+pub struct FieldAttributes(pub u16);
 
+#[repr(transparent)]
 #[derive(Default)]
-pub struct ParamAttributes(pub usize);
+pub struct MethodAttributes(pub u16);
 
+#[repr(transparent)]
 #[derive(Default)]
-pub struct PInvokeAttributes(pub usize);
+pub struct MethodImplAttributes(pub u16);
 
+#[repr(transparent)]
 #[derive(Default)]
-pub struct TypeAttributes(pub usize);
+pub struct ParamAttributes(pub u16);
+
+#[repr(transparent)]
+#[derive(Default)]
+pub struct PInvokeAttributes(pub u16);
+
+#[repr(transparent)]
+#[derive(Default)]
+pub struct TypeAttributes(pub u32);
+
+#[repr(transparent)]
+#[derive(Default)]
+pub struct GenericParamAttributes(pub u16);
+
+#[repr(transparent)]
+#[derive(Default)]
+pub struct PropertyAttributes(pub u16);
 
 impl FieldAttributes {
+    pub fn public(&self) -> bool {
+        self.0 & 0x6 != 0
+    }
+    pub fn set_public(&mut self) {
+        self.0 |= 0x6;
+    }
     pub fn literal(&self) -> bool {
         self.0 & 0x40 != 0
+    }
+    pub fn set_literal(&mut self) {
+        self.0 |= 0x40;
+    }
+    pub fn r#static(&self) -> bool {
+        self.0 & 0x10 != 0
+    }
+    pub fn set_static(&mut self) {
+        self.0 |= 0x10;
     }
 }
 

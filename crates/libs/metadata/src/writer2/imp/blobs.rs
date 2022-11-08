@@ -61,8 +61,8 @@ pub fn write_usize(blob: &mut Vec<u8>, value: u32) {
     } else {
         let value = 1 << 31 | 1 << 30 | value;
         blob.push((value >> 24) as _);
-       blob.push((value >> 16) as _);
-       blob.push((value >> 8) as _);
-       blob.push(value as _);
+        blob.push((value >> 16) as _);
+        blob.push((value >> 8) as _);
+        blob.push(value as _);
     }
 }
