@@ -43,7 +43,7 @@ impl TypeDefOrRef {
 }
 
 /// A `HasConstant` is an index into a certain table used to identify the parent of a row in the `Constant` table.
-#[derive(Default, Clone)]
+#[derive(Default, Clone, PartialEq, Eq, PartialOrd, Ord)]
 pub enum HasConstant {
     #[default]
     None,

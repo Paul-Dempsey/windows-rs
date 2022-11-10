@@ -15,6 +15,13 @@ fn writer() {
 
         items.push(Item::Struct(Struct { namespace: "Test".to_string(), name: "Outer".to_string(), fields: vec![Field::new("Value", Type::new("Test", "Inner"))], winrt: true }));
 
+        items.push(Item::Enum(Enum { 
+            namespace: "Test".to_string(),
+            name: "Things".to_string(),
+            constants: vec![Constant::new("One", Value::U32(1)), Constant::new("Twoish", Value::F32(2.0))],
+            winrt: true,
+        }));
+
         let buffer = write("module", &items, &[]);
         std::fs::write(temp_file, buffer);
     }

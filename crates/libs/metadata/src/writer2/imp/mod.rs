@@ -5,6 +5,7 @@ mod file;
 mod references;
 mod strings;
 mod tables;
+mod constants;
 
 use super::*;
 use crate::bindings::*;
@@ -14,6 +15,7 @@ use blobs::*;
 use codes::*;
 use std::collections::*;
 use strings::*;
+use constants::*;
 
 pub use definitions::*;
 pub use references::*;
@@ -30,7 +32,7 @@ pub fn write(module: &str, items: &[Item], references: &[&str]) -> Vec<u8> {
 
         match item {
             Item::Struct(ty) => ty.fields.iter().for_each(|field| type_reference(&field.ty, &definitions, &mut references)),
-            _ => todo!(),
+            Item::Enum(_) => {} // enums don't have references
         }
     }
 
@@ -48,6 +50,7 @@ pub fn write(module: &str, items: &[Item], references: &[&str]) -> Vec<u8> {
     let mut strings = Strings::default();
     let mut blobs = blobs::Blobs::default();
     let mut tables = tables::Tables::default();
+    let mut constants = Constants::default();
 
     tables.Module.push(tables::Module { Name: strings.insert(module), Mvid: 1, ..Default::default() });
     tables.TypeDef.push(tables::TypeDef { TypeName: strings.insert("<Module>"), ..Default::default() });
@@ -77,7 +80,21 @@ pub fn write(module: &str, items: &[Item], references: &[&str]) -> Vec<u8> {
                     tables.Field.push(tables::Field { Flags: flags.0, Name: strings.insert(&field.name), Signature: blobs.insert(field_signature(&field.ty, &definitions, &references)) })
                 }
             }
-            _ => todo!(),
+            Item::Enum(ty) => {
+                let mut flags = TypeAttributes(0);
+                flags.set_public();
+                if ty.winrt {
+                    flags.set_winrt();
+                }
+                tables.TypeDef.push(tables::TypeDef {
+                    Flags: flags.0,
+                    TypeName: strings.insert(&ty.name),
+                    TypeNamespace: strings.insert(&ty.namespace),
+                    Extends: TypeDefOrRef::TypeRef(enum_type).encode(),
+                    FieldList: tables.Field.len() as _,
+                    MethodList: 0,
+                });
+            }
         }
     }
 
