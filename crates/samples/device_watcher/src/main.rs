@@ -2,13 +2,14 @@ use windows::{core::*, Devices::Enumeration::*};
 
 // This sample tracks devices as they are added and removed,
 // maintaining a list of current devices.
+//
+// The hardest part of making use of a DeviceWatcher is the
+// plumbing for event handlers, which this sample provides.
+// See the MyDevices::hook_up_events function, and make note
+// of the thread-safe members in the MyDevices struct.
 
 mod my_devices;
 use my_devices::*;
-
-fn print_device(info: &MyDeviceInfo) {
-    println!("{}: {}", info.name, info.id);
-}
 
 fn main() -> Result<()> {
     // If you don't need to monitor all devices on the system, the API
@@ -25,7 +26,9 @@ fn main() -> Result<()> {
     MyDevices::hook_up_events(&watcher, &handler)?;
     watcher.Start()?;
 
+    //
     // wait for initial enumeration to finish
+    //
     let interval = std::time::Duration::new(1, 0);
     while !handler.is_ready()
         && match watcher.Status()? {
@@ -45,15 +48,14 @@ fn main() -> Result<()> {
         print_device(&device);
     }
 
-    // pause for input
     println!("");
-    println!("As devices are added and removed, they will be shown here.");
+    println!("As devices are added and removed, they will be shown below.");
     println!("Plug or unplug any USB device to see it in action.");
     println!("");
     println!("Waiting for changes...");
     println!("-- Press ENTER to exit --");
-    let mut buf = String::new();
-    _ = std::io::stdin().read_line(&mut buf);
+    // pause for input
+    _ = std::io::stdin().read_line(&mut String::new());
 
     if handler.is_changed() {
         println!("Current Devices:");
@@ -64,4 +66,8 @@ fn main() -> Result<()> {
         println!("No changes");
     }
     Ok(())
+}
+
+fn print_device(info: &MyDeviceInfo) {
+    println!("{}: {}", info.name, info.id);
 }

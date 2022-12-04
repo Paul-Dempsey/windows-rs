@@ -7,7 +7,8 @@ pub struct MyDeviceInfo {
     pub id: HSTRING,   // Device Id which can be used to open the device
 }
 
-// Atomics and locks required to keep MyDevices Sync + Send
+// Atomics and locks keep MyDevices Sync + Send, as required
+// by the TypedEventHandler's trait bounds.
 pub struct MyDevices {
     ready: AtomicBool,
     changed: AtomicBool,
@@ -15,83 +16,14 @@ pub struct MyDevices {
 }
 
 impl MyDevices {
-    /// Only useable in DeviceWatcher events via Arc, so we provide an Arc-based constructor
+    /// MyDevices is useable in DeviceWatcher events only via Arc, so we
+    /// provide an Arc-based constructor
     pub fn new_arc() -> Arc<Self> {
         Arc::new(MyDevices {
             ready: AtomicBool::new(false),
             changed: AtomicBool::new(false),
             data: RwLock::new(HashMap::new()),
         })
-    }
-
-    /// Returns true when initial enumeration is complete
-    pub fn is_ready(&self) -> bool {
-        self.ready.load(Ordering::SeqCst)
-    }
-
-    /// Returns true when a device has been added or removed after
-    /// the initial enumeration is complete (or the changed flag
-    /// is explicitly set).
-    pub fn is_changed(&self) -> bool {
-        self.changed.load(Ordering::SeqCst)
-    }
-
-    /// Set changed flag, returning previous state
-    pub fn set_changed(&self, flag: bool) -> bool {
-        self.changed.swap(flag, Ordering::SeqCst)
-    }
-
-    /// Project current list of devices
-    pub fn devices(&self) -> Vec<MyDeviceInfo> {
-        let hash = self.data.read().unwrap();
-        hash.values()
-            .map(|value| MyDeviceInfo {
-                name: value.name.clone(),
-                id: value.id.clone(),
-            })
-            .collect()
-    }
-
-    fn on_enumeration_complete(&self) {
-        // for demo purposes, print message when initial enumeration is finished
-        println!("enumeration complete");
-        self.ready.store(true, Ordering::SeqCst);
-        _ = self.set_changed(false);
-    }
-
-    fn on_added(&self, name: HSTRING, id: HSTRING) {
-        if self.ready.load(Ordering::SeqCst) {
-            // for demo purposes, print the name of devices added after the initial enumeration
-            println!("Added {}", name);
-        }
-
-        let key = id.to_string_lossy();
-        let mut hash = self.data.write().unwrap();
-        hash.insert(key, MyDeviceInfo { name, id });
-        _ = self.set_changed(true);
-    }
-
-    fn on_updated(&self, id: HSTRING) {
-        if self.ready.load(Ordering::SeqCst) {
-            println!("Updated {}", id)
-        }
-        _ = self.set_changed(true);
-    }
-
-    fn on_removed(&self, id: HSTRING) {
-        let key = id.to_string_lossy();
-        // for demo purposes, print name of devices removed after the initial enumeration
-        if self.ready.load(Ordering::SeqCst) {
-            let readonly_hash = self.data.read().unwrap();
-            if let Some(d) = readonly_hash.get(&key) {
-                println!("Removed {}", d.name);
-            } else {
-                println!("Removed {}", key);
-            }
-        }
-        let mut hash = self.data.write().unwrap();
-        _ = hash.remove(&key); // discard removed device info
-        _ = self.set_changed(true);
     }
 
     // Wire up the watcher's event handlers.
@@ -157,4 +89,83 @@ impl MyDevices {
 
         Ok(())
     }
+
+    //
+    // App-specific event handling
+    //
+
+    fn on_enumeration_complete(&self) {
+        // for demo purposes, print message when initial enumeration is finished
+        println!("enumeration complete");
+        self.ready.store(true, Ordering::SeqCst);
+        _ = self.set_changed(false);
+    }
+
+    fn on_added(&self, name: HSTRING, id: HSTRING) {
+        if self.ready.load(Ordering::SeqCst) {
+            // for demo purposes, print the name of devices added after the initial enumeration
+            println!("Added {}", name);
+        }
+
+        let key = id.to_string_lossy();
+        let mut hash = self.data.write().unwrap();
+        hash.insert(key, MyDeviceInfo { name, id });
+        _ = self.set_changed(true);
+    }
+
+    fn on_updated(&self, id: HSTRING) {
+        if self.ready.load(Ordering::SeqCst) {
+            println!("Updated {}", id)
+        }
+        _ = self.set_changed(true);
+    }
+
+    fn on_removed(&self, id: HSTRING) {
+        let key = id.to_string_lossy();
+        // for demo purposes, print name of devices removed after the initial enumeration
+        if self.ready.load(Ordering::SeqCst) {
+            let readonly_hash = self.data.read().unwrap();
+            if let Some(d) = readonly_hash.get(&key) {
+                println!("Removed {}", d.name);
+            } else {
+                println!("Removed {}", key);
+            }
+        }
+        let mut hash = self.data.write().unwrap();
+        _ = hash.remove(&key); // discard removed device info
+        _ = self.set_changed(true);
+    }
+
+    //
+    // public methods
+    //
+
+    /// Returns true when initial enumeration is complete
+    pub fn is_ready(&self) -> bool {
+        self.ready.load(Ordering::SeqCst)
+    }
+
+    /// Returns true when a device has been added or removed after
+    /// the initial enumeration is complete (or the changed flag
+    /// is explicitly set).
+    pub fn is_changed(&self) -> bool {
+        self.changed.load(Ordering::SeqCst)
+    }
+
+    /// Set changed flag, returning previous state
+    pub fn set_changed(&self, flag: bool) -> bool {
+        self.changed.swap(flag, Ordering::SeqCst)
+    }
+
+    /// Make a current list of devices
+    pub fn devices(&self) -> Vec<MyDeviceInfo> {
+        let hash = self.data.read().unwrap();
+        hash.values()
+            .map(|value| MyDeviceInfo {
+                name: value.name.clone(),
+                id: value.id.clone(),
+            })
+            .collect()
+    }
+
 }
